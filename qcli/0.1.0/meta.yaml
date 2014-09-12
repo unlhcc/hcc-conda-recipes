@@ -1,0 +1,59 @@
+package:
+  name: qcli
+  version: !!str 0.1.0
+
+source:
+  fn: qcli-0.1.0.tar.gz
+  url: https://pypi.python.org/packages/source/q/qcli/qcli-0.1.0.tar.gz
+  md5: faef3f08e5c3e0a45f877d4e9d08c5bf
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  #preserve_egg_dir: True
+  #entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - qcli = qcli:main
+    #
+    # Would create an entry point called qcli that calls qcli.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - qcli
+
+  #commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: UNKNOWN
+  license: UNKNOWN
+  summary: 'UNKNOWN'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

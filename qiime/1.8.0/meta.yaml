@@ -47,6 +47,7 @@ requirements:
     - biom-format ==1.3.1
     - emperor >=0.9.3
     - pyqi
+    - tax2tree ==1.0
 
 test:
   # Python imports

@@ -48,6 +48,7 @@ requirements:
     - emperor >=0.9.3
     - pyqi
     - tax2tree ==1.0
+    - muscle ==3.8.31
 
 test:
   # Python imports

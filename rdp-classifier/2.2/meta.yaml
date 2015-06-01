@@ -1,0 +1,17 @@
+package:
+  name: rdp-classifier [linux64]
+  version: 2.2
+
+source:
+  fn:  rdp_classifier_2.2.zip 
+  url: http://downloads.sourceforge.net/project/rdp-classifier/rdp-classifier/rdp_classifier_2.2.zip 
+  md5: 745db57e1644ca4cca8330bb954d0b2c 
+
+build:
+  number: 0
+
+about:
+  home: http://rdp.cme.msu.edu/
+  license: GPL
+
+# vim:set ts=8 sw=2 

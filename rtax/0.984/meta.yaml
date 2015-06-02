@@ -1,0 +1,25 @@
+package:
+  name: rtax [linux64]
+  version: 0.984
+
+source:
+  fn: rtax-0.984.tgz
+  url: http://static.davidsoergel.com/rtax-0.984.tgz
+  md5: e9dbbe4b3c26b0f0f6c14a5fb46aa587
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - usearch
+
+test:
+  commands:
+     - rtax -h
+
+about:
+  home: http://dev.davidsoergel.com/rtax
+  license: BSD
+
+# vim:set ts=8 sw=2 

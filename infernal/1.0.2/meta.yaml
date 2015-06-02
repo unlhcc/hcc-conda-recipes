@@ -1,0 +1,27 @@
+package:
+  name: infernal [linux64]
+  version: 1.0.2
+
+source:
+  fn: infernal-1.0.2.tar.gz
+  url: ftp://selab.janelia.org/pub/software/infernal/infernal-1.0.2.tar.gz
+  md5: 9f9b4c0d0d741574bd5b1b553a0ba59a
+
+build:
+  number: 0
+
+test:
+  commands:
+     - cmalign -h
+     - cmbuild -h
+     - cmcalibrate -h
+     - cmemit -h
+     - cmscore -h
+     - cmsearch -h
+     - cmstat -h
+
+about:
+  home: http://infernal.janelia.org/
+  license: GPLv3
+
+# vim:set ts=8 sw=2 

@@ -1,0 +1,21 @@
+package:
+  name: usearch6 [linux64]
+  version: 6.1.544
+
+source:
+  fn: usearch6.1.544_i86linux32
+  url: file:////util/src/usearch/usearch6.1.544_i86linux32
+  md5: 47652033ade9f15c59009c807baa8eca
+
+build:
+  number: 0
+
+test:
+  commands:
+     - usearch61 -version
+
+about:
+  home: http://www.drive5.com/usearch
+  license: Custom
+
+# vim:set ts=8 sw=2 

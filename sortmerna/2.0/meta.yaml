@@ -1,0 +1,21 @@
+package:
+  name: sortmerna [linux64]
+  version: 2.0
+
+source:
+  fn: 2.0.tar.gz
+  url: https://github.com/biocore/sortmerna/archive/2.0.tar.gz
+  md5: f233f7734105c75c14bd4c2fa4e2aefe
+
+build:
+  number: 0
+
+test:
+  commands:
+     - sortmerna --version
+
+about:
+  home: http://bioinfo.lifl.fr/RNA/sortmerna
+  license: GPL
+
+# vim:set ts=8 sw=2 

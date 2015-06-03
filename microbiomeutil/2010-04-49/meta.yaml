@@ -1,0 +1,27 @@
+package:
+  name: microbiomeutil [linux64]
+  version: 2010.04.29
+
+source:
+  fn:  microbiomeutil_2010-04-29.tar.gz
+  url: http://downloads.sourceforge.net/project/microbiomeutil/__OLD_VERSIONS/microbiomeutil_2010-04-29.tar.gz
+  md5: eb24bbe43704322afe5a31eaa31a773b
+
+build:
+  number: 0
+
+requirements: 
+
+  build:
+    - blast
+    - cdbtools
+
+  run:
+    - blast
+    - cdbtools
+
+about:
+  home: http://microbiomeutil.sourceforge.net/
+  license: BSD
+
+# vim:set ts=8 sw=2 

@@ -1,0 +1,17 @@
+package:
+  name: gsl
+  version: 1.9
+
+source:
+  fn: gsl-1.9.tar.gz
+  url: ftp://ftp.gnu.org/gnu/gsl/gsl-1.9.tar.gz
+# Backport fix from GSL 1.11 to allow 'make check' to complete successfully
+  patches:
+    - test_source.patch
+
+build:
+  number: 0
+
+about:
+  home: http://www.gnu.org/software/gsl/
+  license: GPL 3

@@ -1,0 +1,20 @@
+package:
+  name: jdk
+  version: 1.6.0_05
+
+source:
+  fn: jdk1.6.0_05.tar.gz
+  url: file:///util/src/java/dist/jdk1.6.0_05.tar.gz
+  md5: 21d8d381f3c49a2f66b965a00d768fac
+
+build:
+  binary_relocation: false
+
+test:
+  commands:
+    - java -version
+    - javac -version
+
+about:
+  home: http://www.java.com
+  license: Oracle Binary Code License Agreement

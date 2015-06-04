@@ -1,0 +1,1 @@
+CFLAGS="-I. -I${INCLUDE_PATH} -L${LIBRARY_PATH}" PREFIX=${PREFIX} make install

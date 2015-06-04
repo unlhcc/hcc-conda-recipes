@@ -1,0 +1,63 @@
+package:
+  name: burrito
+  version: "0.9.1"
+
+source:
+  fn: burrito-0.9.1.tar.gz
+  url: https://pypi.python.org/packages/source/b/burrito/burrito-0.9.1.tar.gz
+  md5: ef2b0bee1e8c037a535627a33e304d61
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - burrito = burrito:main
+    #
+    # Would create an entry point called burrito that calls burrito.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - future
+
+  run:
+    - python
+    - future
+
+test:
+  # Python imports
+  imports:
+    - burrito
+    - burrito.tests
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/biocore/burrito
+  license: BSD License
+  summary: 'Framework for wrapping and controlling command-line applications.'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

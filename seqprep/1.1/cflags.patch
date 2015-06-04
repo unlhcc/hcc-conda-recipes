@@ -1,0 +1,11 @@
+--- Makefile	2013-05-31 12:44:45.000000000 -0500
++++ Makefile.new	2015-06-04 10:28:33.431645788 -0500
+@@ -1,7 +1,7 @@
+ CC=gcc
+ CFLAGS=-c -Wall -Werror -O0 -g
+ #recommended options: -ffast-math -ftree-vectorize -march=core2 -mssse3 -O3
+-COPTS=
++COPTS= -ffast-math -ftree-vectorize -march=core2 -mssse3 -O3
+ LDFLAGS=-lz -lm
+ SOURCES=SeqPrep.c utils.c stdaln.c
+ OBJECTS=$(SOURCES:.c=.o)

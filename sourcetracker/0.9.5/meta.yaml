@@ -1,0 +1,14 @@
+package:
+  name: sourcetracker
+  version: 0.9.5
+
+source:
+  fn: sourcetracker-0.9.5.tar.gz
+  url: http://downloads.sourceforge.net/project/sourcetracker/sourcetracker-0.9.5.tar.gz
+  md5: 7f617af7a8063d5f57e4f9f9ad407814
+
+
+about:
+  home: https://github.com/danknights/sourcetracker/releases
+  license: GPL
+

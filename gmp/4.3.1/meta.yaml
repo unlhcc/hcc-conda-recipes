@@ -1,0 +1,16 @@
+package:
+  name: gmp
+  version: 4.3.1
+
+source:
+  fn: gmp-4.3.1.tar.bz2
+  url: http://ftp.gnu.org/pub/gnu/gmp/gmp-4.3.1.tar.bz2
+  sha1: acbd1edc61230b1457e9742136994110e4f381b2
+
+about:
+  home: http://gmplib.org/
+  license: GPL 3
+
+test:
+  files:
+    - test.c

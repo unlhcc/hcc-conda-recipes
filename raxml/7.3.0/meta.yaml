@@ -10,8 +10,8 @@ source:
 build:
   number: 0
 
-  features:
-    - avx
+#  features:
+#    - avx
 
 test:
   commands:

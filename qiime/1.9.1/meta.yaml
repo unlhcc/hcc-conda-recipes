@@ -1,0 +1,120 @@
+package:
+  name: qiime
+  version: "1.9.1"
+
+source:
+  fn: qiime-1.9.1.tar.gz
+  url: https://pypi.python.org/packages/source/q/qiime/qiime-1.9.1.tar.gz
+  md5: 32d4db2b2c888dbbfc6aa33f02725526
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - qiime = qiime:main
+    #
+    # Would create an entry point called qiime that calls qiime.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  number: 2
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy >=1.9.0
+    - scipy >=0.14.0
+    - cogent ==1.5.3
+    - natsort <4.0.0
+    - matplotlib >=1.1.0,!=1.4.2
+    - pynast ==1.2.2
+    - qcli >=0.1.1,<0.2.0
+    - gdata
+    - biom-format >=2.1.4,<2.2.0
+    - emperor >=0.9.51,<1.0.0
+    - scikit-bio >=0.2.3,<0.3.0
+    - burrito-fillings >=0.1.1,<0.2.0
+    - pandas >=0.13.1
+    - burrito >=0.9.1,<1.0.0
+    - qiime-default-reference >=0.1.2,<0.2.0
+    - mock
+    - nose
+    - ghc >=6.8
+
+  run:
+    - python
+    - numpy >=1.9.0
+    - scipy >=0.14.0
+    - cogent ==1.5.3
+    - natsort <4.0.0
+    - matplotlib >=1.1.0,!=1.4.2
+    - pynast ==1.2.2
+    - qcli >=0.1.1,<0.2.0
+    - gdata
+    - biom-format >=2.1.4,<2.2.0
+    - emperor >=0.9.51,<1.0.0
+    - scikit-bio >=0.2.3,<0.3.0
+    - burrito-fillings >=0.1.1,<0.2.0
+    - pandas >=0.13.1
+    - burrito >=0.9.1,<1.0.0
+    - qiime-default-reference >=0.1.2,<0.2.0
+    - mock
+    - nose
+    - ghc >=6.8
+    - blast ==2.2.22
+    - infernal ==1.0.2
+    - rproject ==3.1.2
+    - cd-hit ==3.1.1
+    - microbiomeutil ==2010.04.29
+    - clearcut ==1.0.9
+    - h5py
+    - mothur ==1.25.0
+    - muscle ==3.8.31
+    - rtax ==0.984
+    - raxml ==7.3.0
+    - usearch ==5.2.236
+    - usearch6 ==6.1.544
+    - sourcetracker ==0.9.5
+    - rdp-classifier ==2.2
+    - seqprep ==1.1
+    - ea-utils ==1.1.2.537
+    - pyqi ==0.3.2
+    - blat ==35
+
+test:
+  # Python imports
+  imports:
+    - qiime
+    - qiime.denoiser
+    - qiime.parallel
+    - qiime.pycogent_backports
+    - qiime.workflow
+    - qiime_test_data
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://www.qiime.org
+  license: GNU General Public License v2 (GPLv2)
+  summary: 'Quantitative Insights Into Microbial Ecology'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

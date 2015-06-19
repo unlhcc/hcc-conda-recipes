@@ -1,0 +1,11 @@
+--- src/scripts/R.sh.in	2013-08-05 17:05:04.000000000 -0500
++++ src/scripts/R.sh.in.new	2015-06-19 10:55:19.307653663 -0500
+@@ -28,7 +28,7 @@
+ 
+ if test -n "${R_HOME}" && \
+    test "${R_HOME}" != "${R_HOME_DIR}"; then
+-  echo "WARNING: ignoring environment value of R_HOME"
++  echo "WARNING: ignoring environment value of R_HOME" >&2
+ fi
+ R_HOME="${R_HOME_DIR}"
+ export R_HOME

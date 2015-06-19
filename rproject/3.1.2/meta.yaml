@@ -7,8 +7,13 @@ source:
     url: http://rweb.quant.ku.edu/cran/src/base/R-3/R-3.1.2.tar.gz
     md5: 3af29ec06704cbd08d4ba8d69250ae74
 
+# Workaround for warning about R_HOME breaking package installs
+# https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15070
+    patches:
+      - fix_pipe.patch
+
 build:
-    number: 0
+    number: 1
 
 requirements:
     build:

@@ -1,4 +1,6 @@
 #!/bin/bash
+# Adapted from rproject recipe here:
+# https://github.com/conda/conda-recipes/tree/master/rproject
 
 mkdir -vp ${PREFIX}/bin;
 
@@ -40,7 +42,7 @@ LinuxInstallation() {
         --with-tk-config=${PREFIX}/lib/tkConfig.sh \
 	--without-x \
         --prefix ${PREFIX} || return 1;
-    make || return 1;
+    make -j 4 || return 1;
 
     for file in ${files_list}; do
         for pattern in "${patterns_list[@]}"; do

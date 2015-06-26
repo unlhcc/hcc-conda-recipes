@@ -1,0 +1,70 @@
+package:
+  name: pyhdf
+  version: "0.8.3"
+
+source:
+  fn: pyhdf-0.8.3.tar.gz
+  url: http://downloads.sourceforge.net/project/pysclint/pyhdf/0.8.3/pyhdf-0.8.3.tar.gz
+  md5: d0d010b8d77c0d2934e02d4cba351971
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+# Requires packages in https://conda.binstar.org/mutirri
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - nco = nco:main
+    #
+    # Would create an entry point called nco that calls nco.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  number: 0
+
+requirements:
+  build:
+    - python
+    - numpy
+    - hdf4
+    - szip
+    - jpeg
+    - zlib
+
+  run:
+    - python
+    - numpy
+    - hdf4
+    - szip
+    - jpeg
+    - zlib
+
+test:
+  # Python imports
+  imports:
+    - pyhdf
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://www.sourceforge.net/projects/pysclint
+  license: 'Python Software Foundation License'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

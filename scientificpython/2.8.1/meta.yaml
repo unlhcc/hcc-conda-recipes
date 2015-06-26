@@ -17,12 +17,12 @@ requirements:
   build:
     - python
     - libnetcdf
-    - numpy ==1.8
+    - numpy
 
   run:
     - python
     - libnetcdf
-    - numpy ==1.8
+    - numpy
 test:
   # Python imports
   imports:

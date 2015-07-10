@@ -1,0 +1,87 @@
+package:
+  name: r-permute
+  # Note that conda versions cannot contain -, so any -'s in the version have
+  # been replaced with _'s.
+  version: "0.8_4"
+
+source:
+  fn: permute_0.8-4.tar.gz
+  url:
+    - http://cran.r-project.org/src/contrib/permute_0.8-4.tar.gz
+    - http://cran.r-project.org/src/contrib/Archive/permute/permute_0.8-4.tar.gz
+
+
+  # You can add a hash for the file here, like md5 or sha1
+  # md5: 49448ba4863157652311cc5ea4fea3ea
+  # sha1: 3bcfbee008276084cbb37a2b453963c61176a322
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: vegan (>= 2.0-0), testthat (>= 0.5), parallel
+requirements:
+  build:
+    - r ==3.1.2
+
+  run:
+    - r ==3.1.2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('permute')" # [not win]
+    - "\"%R%\" -e \"library('permute')\"" # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: !!python/unicode 'https://github.com/gavinsimpson/permute'
+
+  license: GPL-2
+  summary: !!python/unicode 'A set of restricted permutation designs for freely exchangeable,
+    line transects (time series), and spatial grid designs plus permutation of blocks
+    (groups of samples) is provided. ''permute'' also allows split-plot designs, in
+    which the whole-plots or split-plots or both can be freely-exchangeable or one of
+    the restricted designs. The ''permute'' package is modelled after the permutation
+    schemes of ''Canoco 3.1'' (and later) by Cajo ter Braak.'
+
+
+# The original CRAN metadata for this package was:
+
+# Package: permute
+# Title: Functions for Generating Restricted Permutations of Data
+# Version: 0.8-4
+# Date: 2015-05-19
+# Authors@R: c(person(given = "Gavin L.", family = "Simpson", email = "ucfagls@gmail.com", role = c("aut", "cph", "cre")), person(given = "R Core Team", role = "cph"), person(given = "Douglas M.", family = "Bates", role = "ctb"), person(given = "Jari", family = "Oksanen", role = "ctb"))
+# Depends: R (>= 2.14.0)
+# Suggests: vegan (>= 2.0-0), testthat (>= 0.5), parallel
+# Description: A set of restricted permutation designs for freely exchangeable, line transects (time series), and spatial grid designs plus permutation of blocks (groups of samples) is provided. 'permute' also allows split-plot designs, in which the whole-plots or split-plots or both can be freely-exchangeable or one of the restricted designs. The 'permute' package is modelled after the permutation schemes of 'Canoco 3.1' (and later) by Cajo ter Braak.
+# License: GPL-2
+# ByteCompile: true
+# URL: https://github.com/gavinsimpson/permute
+# BugReports: https://github.com/gavinsimpson/permute/issues
+# Copyright: see file COPYRIGHTS
+# NeedsCompilation: no
+# Packaged: 2015-05-19 20:31:48.464 UTC; gavin
+# Author: Gavin L. Simpson [aut, cph, cre], R Core Team [cph], Douglas M. Bates [ctb], Jari Oksanen [ctb]
+# Maintainer: Gavin L. Simpson <ucfagls@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2015-05-19 23:55:53
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

@@ -1,0 +1,85 @@
+package:
+  name: r-bbmisc
+  # Note that conda versions cannot contain -, so any -'s in the version have
+  # been replaced with _'s.
+  version: "1.9"
+
+source:
+  fn: BBmisc_1.9.tar.gz
+  url:
+    - http://cran.r-project.org/src/contrib/BBmisc_1.9.tar.gz
+    - http://cran.r-project.org/src/contrib/Archive/BBmisc/BBmisc_1.9.tar.gz
+
+
+  # You can add a hash for the file here, like md5 or sha1
+  # md5: 49448ba4863157652311cc5ea4fea3ea
+  # sha1: 3bcfbee008276084cbb37a2b453963c61176a322
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat, microbenchmark, codetools
+requirements:
+  build:
+    - r ==3.1.2
+    - r-checkmate
+
+  run:
+    - r ==3.1.2
+    - r-checkmate
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('BBmisc')" # [not win]
+    - "\"%R%\" -e \"library('BBmisc')\"" # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: !!python/unicode 'https://github.com/berndbischl/BBmisc'
+
+  license: BSD_3_clause + file LICENSE
+  summary: !!python/unicode 'Miscellaneous helper functions for and from B. Bischl and some other
+    guys at TU Dortmund, mainly for package development.'
+
+
+# The original CRAN metadata for this package was:
+
+# Package: BBmisc
+# Title: Miscellaneous Helper Functions for B. Bischl
+# Description: Miscellaneous helper functions for and from B. Bischl and some other guys at TU Dortmund, mainly for package development.
+# Authors@R: c(person("Bernd", "Bischl", email = "bernd_bischl@gmx.net", role = c("aut", "cre")), person("Michel", "Lang", email = "michellang@gmail.com", role = "aut"), person("Jakob", "Bossek", email = "jakob.bossek@tu-dortmund.de", role = "aut"), person("Daniel", "Horn", email = "daniel.horn@tu-dortmund.de", role = "aut"), person("Jakob", "Richter", email = "code@jakob-r.de", role = "aut"))
+# URL: https://github.com/berndbischl/BBmisc
+# BugReports: https://github.com/berndbischl/BBmisc/issues
+# License: BSD_3_clause + file LICENSE
+# Encoding: UTF-8
+# Imports: stats, checkmate
+# Suggests: testthat, microbenchmark, codetools
+# LazyData: yes
+# ByteCompile: yes
+# Version: 1.9
+# Packaged: 2015-02-03 12:39:37 UTC; bischl
+# Author: Bernd Bischl [aut, cre], Michel Lang [aut], Jakob Bossek [aut], Daniel Horn [aut], Jakob Richter [aut]
+# Maintainer: Bernd Bischl <bernd_bischl@gmx.net>
+# NeedsCompilation: yes
+# Repository: CRAN
+# Date/Publication: 2015-02-03 14:03:05
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

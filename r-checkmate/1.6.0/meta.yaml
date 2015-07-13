@@ -1,0 +1,84 @@
+package:
+  name: r-checkmate
+  # Note that conda versions cannot contain -, so any -'s in the version have
+  # been replaced with _'s.
+  version: "1.6.0"
+
+source:
+  fn: checkmate_1.6.0.tar.gz
+  url:
+    - http://cran.r-project.org/src/contrib/checkmate_1.6.0.tar.gz
+    - http://cran.r-project.org/src/contrib/Archive/checkmate/checkmate_1.6.0.tar.gz
+
+
+  # You can add a hash for the file here, like md5 or sha1
+  # md5: 49448ba4863157652311cc5ea4fea3ea
+  # sha1: 3bcfbee008276084cbb37a2b453963c61176a322
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat, knitr
+requirements:
+  build:
+    - r ==3.1.2
+
+  run:
+    - r ==3.1.2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('checkmate')" # [not win]
+    - "\"%R%\" -e \"library('checkmate')\"" # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: !!python/unicode 'https://github.com/mllg/checkmate'
+
+  license: BSD_3_clause + file LICENSE
+  summary: !!python/unicode 'Tests and assertions to perform frequent argument checks. A substantial
+    part of the package was written in C to minimize any worries about execution time
+    overhead.'
+
+
+# The original CRAN metadata for this package was:
+
+# Package: checkmate
+# Type: Package
+# Title: Fast and Versatile Argument Checks
+# Description: Tests and assertions to perform frequent argument checks. A substantial part of the package was written in C to minimize any worries about execution time overhead.
+# Version: 1.6.0
+# Author: Michel Lang <michellang@gmail.com>, Bernd Bischl <bernd_bischl@gmx.net>
+# Maintainer: Michel Lang <michellang@gmail.com>
+# URL: https://github.com/mllg/checkmate
+# BugReports: https://github.com/mllg/checkmate/issues
+# NeedsCompilation: yes
+# ByteCompile: yes
+# Encoding: UTF-8
+# Depends: R (>= 3.0.0)
+# Suggests: testthat, knitr
+# License: BSD_3_clause + file LICENSE
+# VignetteBuilder: knitr
+# Packaged: 2015-06-19 09:24:29 UTC; lang
+# Repository: CRAN
+# Date/Publication: 2015-06-19 13:15:20
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

@@ -23,7 +23,7 @@ build:
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -47,6 +47,7 @@ requirements:
     - mock
     - nose
     - ghc >=6.8
+    - gmp
 
   run:
     - python
@@ -68,9 +69,9 @@ requirements:
     - mock
     - nose
     - ghc >=6.8
+    - gmp
     - blast ==2.2.22
     - infernal ==1.0.2
-    - rproject ==3.1.2
     - cd-hit ==3.1.1
     - microbiomeutil ==2010.04.29
     - clearcut ==1.0.9
@@ -87,6 +88,15 @@ requirements:
     - ea-utils ==1.1.2.537
     - pyqi ==0.3.2
     - blat ==35
+    - r ==3.1.2
+    - r-ape
+    - r-biom
+    - r-optparse
+    - r-rcolorbrewer
+    - r-randomforest
+    - r-vegan
+    - bioconductor-deseq2
+    - bioconductor-metagenomeseq
 
 test:
   # Python imports

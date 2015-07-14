@@ -23,7 +23,7 @@ build:
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -97,6 +97,7 @@ requirements:
     - r-vegan
     - bioconductor-deseq2
     - bioconductor-metagenomeseq
+    - jdk ==1.6.0_05
 
 test:
   # Python imports

@@ -1,0 +1,22 @@
+# Credits to jeanconn for the package https://binstar.org/jeanconn/fftw
+package:
+    name: fftw
+    version: "2.1.5"
+
+source:
+    fn: fftw-2.1.5.tar.gz
+    url: http://www.fftw.org/fftw-2.1.5.tar.gz
+    md5: 8d16a84f3ca02a785ef9eb36249ba433
+    patches:
+      - cflags.patch
+
+requirements:
+    build:
+
+# Note: tests are run when building the package, they are not accessible
+# in the installed package.
+
+about:
+    home: http://fftw.org
+    license: GNU General Public License (GPL)
+    summary: 'The fastest Fourier transform in the west.'

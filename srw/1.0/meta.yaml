@@ -1,0 +1,29 @@
+package:
+  name: srw
+  version: "1.0"
+ 
+source:
+  git_url: https://github.com/ochubar/SRW.git
+
+  patches:
+    - pypath.patch
+    - srwl_util_und.patch
+ 
+requirements:
+  build:
+    - python
+    - fftw ==2.1.5
+  run:
+    - python
+    - fftw ==2.1.5
+    - numpy
+    - matplotlib
+
+ 
+#test:
+#  imports:
+#    - pyinstrument
+ 
+about:
+  home: https://github.com/ochubar/SRW
+  license: OPEN SOURCE LICENSE AGREEMENT

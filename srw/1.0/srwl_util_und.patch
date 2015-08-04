@@ -1,0 +1,16 @@
+--- env/work/srw_python/srwl_util_und.py	2015-08-03 17:20:09.297645022 -0500
++++ env/work/srw_python/srwl_util_und.py.new	2015-08-04 10:52:36.874651502 -0500
+@@ -5,7 +5,7 @@
+ from srwlib import *
+ 
+ #****************************************************************************
+-def srwl_und_max_flux_spec(_e_beam, _mesh, _per, _len, _bx_vs_par, _by_vs_par, [_par1_start, _par1_step], [_par1_start, _par1_step], _par1_to_use, _par2_step_to_use, _min_pol_rate):
++def srwl_und_max_flux_spec(_e_beam, _mesh, _per, _len, _bx_vs_par, _by_vs_par, _par1_start, _par1_step, _par1_to_use, _par2_step_to_use, _min_pol_rate):
+     """
+     Calculate Stokes Parameters of Emitted (and Propagated, if beamline is defined) Partially-Coherent SR
+     :param _e_beam: Finite-Emittance e-beam (SRWLPartBeam type)
+@@ -23,4 +23,3 @@
+     :param _x0: horizontal center position for mutual intensity calculation
+     :param _y0: vertical center position for mutual intensity calculation
+     """
+-

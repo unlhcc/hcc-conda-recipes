@@ -1,0 +1,21 @@
+package:
+  name: bwa [linux64]
+  version: 0.7.3
+
+source:
+  fn: 0.7.3.tar.gz
+  url: https://github.com/lh3/bwa/archive/0.7.3.tar.gz
+  md5: b64f10c9721e0fe40b1a2759fba65d89
+
+build:
+  number: 0
+
+test:
+  commands:
+     - bwa index
+
+about:
+  home: http://bio-bwa.sourceforge.net
+  license: GPLv3
+
+# vim:set ts=8 sw=2 

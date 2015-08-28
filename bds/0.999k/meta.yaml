@@ -1,0 +1,24 @@
+package:
+  name: bds [linux64]
+  version: 0.999k
+
+source:
+  fn: bds_Linux.tgz
+  url: https://github.com/pcingola/BigDataScript/releases/download/v0.999k/bds_Linux.tgz
+  md5: 78079e76cc38225a13b87428ba39d44a
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - jdk >=1.8
+test:
+  commands:
+    - bds -version
+
+about:
+  home: http://pcingola.github.io/BigDataScript/index.html
+  license: Apache 2.0
+
+# vim:set ts=8 sw=2 

@@ -1,0 +1,29 @@
+package:
+  name: picard-tools [linux64]
+  version: 1.92
+
+source:
+  fn: 1.92.tar.gz
+  url: https://github.com/broadinstitute/picard/archive/1.92.tar.gz
+  md5: 2ed8d7d4521cbb3d958dceb22efafd46
+ 
+build:
+  number: 0
+
+requirements:
+  build:
+    - jdk 1.6*
+    - ant
+
+  run:
+    - jdk
+
+test:
+  commands:
+    - java -jar ${PREFIX}/bin/ViewSam.jar --version
+
+about:
+  home: http://broadinstitute.github.io/picard/index.html
+  license: Apache 2.0
+
+# vim:set ts=8 sw=2 

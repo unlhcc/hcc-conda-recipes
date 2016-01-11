@@ -1,0 +1,27 @@
+package:
+  name: audioread
+  version: "2.1.1"
+
+source:
+  fn: audioread-2.1.1.tar.gz
+  url: https://pypi.python.org/packages/source/a/audioread/audioread-2.1.1.tar.gz
+  md5: bba8f1b12b7a7fa410e8935b1afd973e
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+
+test:
+  imports:
+    - audioread
+
+about:
+  home: https://github.com/sampsyo/audioread
+  license: MIT
+  summary: 'multi-library, cross-platform audio decoding'

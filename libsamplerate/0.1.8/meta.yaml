@@ -1,0 +1,28 @@
+package:
+  name: libsamplerate
+  version: 0.1.8
+
+source:
+  fn: libsamplerate-0.1.8.tar.gz
+  url: http://www.mega-nerd.com/SRC/libsamplerate-0.1.8.tar.gz
+  sha1:	e5fe82c4786be2fa33ca6bd4897db4868347fe70
+
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - libsndfile
+    - fftw >=3
+  run:
+    - libsndfile
+    - fftw >=3
+
+test:
+  commands: 
+    - sndfile-resample | grep sndfile-resample > /dev/null
+
+about:
+  home: http://www.mega-nerd.com/libsamplerate
+  license: GPL
+  summary: libsamplerate (also known as Secret Rabbit Code) is a library for perfroming sample rate conversion of audio data.

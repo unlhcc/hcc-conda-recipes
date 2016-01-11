@@ -1,0 +1,43 @@
+package:
+  name: libsndfile
+  version: 1.0.26
+
+source:
+  fn: libsndfile-1.0.26.tar.gz
+  url: http://www.mega-nerd.com/libsndfile/files/libsndfile-1.0.26.tar.gz
+  sha1:	c9092c06f6ed51034c9e809e150083ff1f55e79e
+
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - libogg
+    - libvorbis
+    - libflac
+    - sqlite
+  run:
+    - libogg
+    - libvorbis
+    - libflac
+    - sqlite
+
+test:
+  commands: 
+    - flac --version > /dev/null
+    - metaflac --version > /dev/null
+    - sndfile-cmp | grep sndfile-cmp > /dev/null
+    - sndfile-concat | grep sndfile-concat > /dev/null
+    - sndfile-convert | grep sndfile-convert > /dev/null
+    - sndfile-deinterleave | grep sndfile-deinterleave > /dev/null
+    - sndfile-info | grep sndfile-info > /dev/null
+    - sndfile-interleave | grep sndfile-interleave > /dev/null
+    - sndfile-metadata-get | grep sndfile-metadata-get > /dev/null
+    - sndfile-metadata-set | grep sndfile-metadata-set > /dev/null
+    - sndfile-play | grep sndfile-play > /dev/null
+    - sndfile-salvage | grep sndfile-salvage > /dev/null
+
+about:
+  home: http://www.mega-nerd.com/libsndfile
+  license: LGPL
+  summary: libsndfile is a library of C routines for reading and writing files containing sampled audio data.

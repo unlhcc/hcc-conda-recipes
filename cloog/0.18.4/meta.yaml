@@ -1,0 +1,29 @@
+package:
+  name: cloog
+  version: 0.18.4
+
+source:
+  fn: cloog-0.18.4.tar.gz
+  url: http://www.bastoul.net/cloog/pages/download/count.php3?url=./cloog-0.18.4.tar.gz
+  md5: e531f725244856c92c9bba009ff44faf
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gmp >=6.0.0
+    - isl
+
+  run:
+    - gmp >=6.0.0
+    - isl
+
+test:
+  commands:
+    - cloog --version | grep CLooG > /dev/null
+
+about:
+  home: http://www.cloog.org
+  license: LGPL
+  summary: CLooG is a free software and library to generate code for scanning Z-polyhedra.

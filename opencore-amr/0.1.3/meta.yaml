@@ -1,0 +1,29 @@
+package:
+  name: opencore-amr
+  version: 0.1.3
+
+source:
+  fn: opencore-amr-0.1.3.tar.gz
+  url: http://downloads.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.3.tar.gz
+  md5: 09d2c5dfb43a9f6e9fec8b1ae678e725
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+  run:
+    - libgcc
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libopencore-amrnb.a
+    - test -f ${PREFIX}/lib/libopencore-amrnb.so.0.0.3
+    - test -f ${PREFIX}/lib/libopencore-amrwb.a
+    - test -f ${PREFIX}/lib/libopencore-amrwb.so.0.0.3
+
+about:
+  home: http://opencore-amr.sourceforge.net
+  license: Apache 2.0
+  summary: "OpenCORE Adaptive Multi Rate (AMR) speech codec library implementation.."

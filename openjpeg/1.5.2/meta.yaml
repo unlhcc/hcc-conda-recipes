@@ -1,0 +1,38 @@
+package:
+  name: openjpeg
+  version: 1.5.2
+
+source:
+  fn: version.1.5.2.tar.gz
+  url: https://github.com/uclouvain/openjpeg/archive/version.1.5.2.tar.gz
+  md5: 545f98923430369a6b046ef3632ef95c
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - libtiff
+    - zlib
+    - libpng
+    - lcms
+
+  run:
+    - libgcc
+    - libtiff
+    - zlib
+    - libpng
+    - lcms
+
+test:
+  commands:
+    - j2k_dump -h | grep JPEG > /dev/null
+    - j2k_to_image -h | grep JPEG > /dev/null
+    - image_to_j2k -h | grep JPEG > /dev/null
+
+about:
+  home: http://www.openjpeg.org
+  license: Simplified BSD License
+  license_file: LICENSE
+  summary: "An open-source JPEG 2000 codec written in C."

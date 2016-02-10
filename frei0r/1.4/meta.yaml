@@ -1,0 +1,31 @@
+package:
+  name: frei0r
+  version: 1.4
+
+source:
+  fn: v1.4.tar.gz
+  url: https://github.com/ddennedy/frei0r/archive/v1.4.tar.gz
+  md5: 45d5257b8a406d08639b86576d91bc29
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - cmake
+    - freetype
+    - opencv
+
+  run:
+    - libgcc
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/frei0r.h
+    - test -d ${PREFIX}/lib/frei0r-1
+
+about:
+  home: http://frei0r.dyne.org
+  license: GPL
+  summary: "Frei0r is a minimalistic plugin API for video effects."

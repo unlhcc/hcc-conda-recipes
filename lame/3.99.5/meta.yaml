@@ -1,0 +1,33 @@
+package:
+  name: lame
+  version: 3.99.5
+
+source:
+  fn: lame-3.99.5.tar.gz
+  url: http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+  md5: 84835b313d4a8b68f5349816d33e07ce
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gcc
+    - libsndfile
+    - libvorbis
+    - nasm
+    - ncurses
+
+  run:
+    - libgcc
+    - libsndfile
+    - ncurses
+
+test:
+  commands:
+    - lame --version > /dev/null
+
+about:
+  home: http://lame.sourceforge.net
+  license: LGPL
+  summary: 'LAME is a high quality MPEG Audio Layer III (MP3) encoder licensed under the LGPL.'

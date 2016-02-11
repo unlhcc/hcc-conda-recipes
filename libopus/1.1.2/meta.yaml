@@ -8,7 +8,7 @@ source:
   md5: 1f08a661bc72930187893a07f3741a91
 	
 build:
-    number: 0
+    number: 1
 	  
 requirements:
   build:
@@ -25,4 +25,5 @@ test:
 about:
   home: https://www.opus-codec.org/
   license: BSD
+  license_file: COPYING
   summary: "Opus is a codec for interactive speech and audio transmission over the Internet."

@@ -1,0 +1,42 @@
+package:
+  name: libass
+  version: 0.13.1
+
+source:
+  fn: 0.13.1.tar.gz
+  url: https://github.com/libass/libass/archive/0.13.1.tar.gz
+  md5: 5bc33c26267ebf511b94941c81ba7d16
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - autoconf
+    - freetype
+    - fribidi
+    - yasm
+    - fontconfig
+#    - xz
+    - expat
+    - zlib
+
+  run:
+    - libgcc    
+    - freetype
+    - fribidi
+    - fontconfig
+#    - xz
+    - expat
+    - zlib
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libass.so.5.2.1
+    - test -f ${PREFIX}/lib/libass.a
+
+about:
+  home: https://github.com/libass/libass
+  license: ISC
+  summary: "libass is a portable subtitle renderer for the ASS/SSA (Advanced Substation Alpha/Substation Alpha) subtitle format."

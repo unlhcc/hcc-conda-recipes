@@ -1,0 +1,37 @@
+--- librtmp/Makefile	2016-02-11 22:54:38.653566658 +0000
++++ librtmp/Makefile.new	2016-02-11 23:38:19.350233086 +0000
+@@ -1,11 +1,11 @@
+ VERSION=v2.4
+ 
+-prefix=/usr/local
++prefix=${PREFIX}
+ 
+ incdir=$(prefix)/include/librtmp
+ bindir=$(prefix)/bin
+ libdir=$(prefix)/lib
+-mandir=$(prefix)/man
++mandir=$(prefix)/share/man
+ BINDIR=$(DESTDIR)$(bindir)
+ INCDIR=$(DESTDIR)$(incdir)
+ LIBDIR=$(DESTDIR)$(libdir)
+--- Makefile	2016-02-11 22:54:38.653566658 +0000
++++ Makefile.new	2016-02-11 23:43:25.294411218 +0000
+@@ -1,6 +1,6 @@
+ VERSION=v2.4
+ 
+-prefix=/usr/local
++prefix=${PREFIX}
+ 
+ CC=$(CROSS_COMPILE)gcc
+ LD=$(CROSS_COMPILE)ld
+@@ -25,8 +25,8 @@
+ LDFLAGS=-Wall $(XLDFLAGS)
+ 
+ bindir=$(prefix)/bin
+-sbindir=$(prefix)/sbin
+-mandir=$(prefix)/man
++sbindir=$(prefix)/bin
++mandir=$(prefix)/share/man
+ 
+ BINDIR=$(DESTDIR)$(bindir)
+ SBINDIR=$(DESTDIR)$(sbindir)

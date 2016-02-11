@@ -4,9 +4,11 @@ package:
 
 source:
   git_url: git://git.ffmpeg.org/rtmpdump
+  patches:
+    - makefile.patch
 	
 build:
-    number: 0
+    number: 1
 	  
 requirements:
   build:

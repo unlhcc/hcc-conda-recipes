@@ -1,0 +1,27 @@
+package:
+  name: fribidi
+  version: 0.19.7
+
+source:
+  fn: fribidi-0.19.7.tar.bz2
+  url: http://fribidi.org/download/fribidi-0.19.7.tar.bz2
+  md5: 6c7e7cfdd39c908f7ac619351c1c5c23
+
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+
+  run:
+    - libgcc
+
+test:
+  commands:
+    - fribidi -V > /dev/null
+
+about:
+  home: http://www.fribidi.org
+  license: GPL
+  summary: "GNU FriBidi is an implementation of the Unicode Bidirectional Algorithm (bidi)."

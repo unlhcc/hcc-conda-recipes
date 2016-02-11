@@ -18,7 +18,6 @@ requirements:
     - fribidi
     - yasm
     - fontconfig
-#    - xz
     - expat
     - zlib
 
@@ -27,7 +26,6 @@ requirements:
     - freetype
     - fribidi
     - fontconfig
-#    - xz
     - expat
     - zlib
 

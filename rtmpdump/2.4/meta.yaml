@@ -1,0 +1,31 @@
+package:
+  name: rtmpdump
+  version: 2.4
+
+source:
+  git_url: git://git.ffmpeg.org/rtmpdump
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - openssl
+    - zlib
+
+  run:
+    - libgcc    
+    - openssl
+    - zlib
+
+test:
+  commands:
+    - rtmpdump -h > /dev/null 2>&1
+    - rtmpgw -h > /dev/null 2>&1
+
+
+about:
+  home: https://rtmpdump.mplayerhq.hu
+  license: GPLv2
+  summary: "rtmpdump is a toolkit for RTMP streams."

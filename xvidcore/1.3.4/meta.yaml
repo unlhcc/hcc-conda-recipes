@@ -1,0 +1,30 @@
+package:
+  name: xvidcore
+  version: 1.3.4
+
+source:
+  fn: xvidcore-1.3.4.tar.gz
+  url: http://downloads.xvid.org/downloads/xvidcore-1.3.4.tar.gz
+  md5: 8cf4a42f280b03dae452080ef9e7c798
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - yasm >=1
+
+  run:
+    - libgcc
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libxvidcore.so
+    - test -f ${PREFIX}/lib/libxvidcore.a
+
+about:
+  home: https://www.xvid.com
+  license: GPL
+  license_file: LICENSE
+  summary: "Xvid is a high performance and high quality MPEG-4 video de-/encoding solution."

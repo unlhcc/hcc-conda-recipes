@@ -1,0 +1,30 @@
+package:
+  name: pkg-config
+  version: 0.29
+
+source:
+  fn: pkg-config-0.29.tar.gz
+  url: https://pkg-config.freedesktop.org/releases/pkg-config-0.29.tar.gz
+  md5: 77f27dce7ef88d0634d0d6f90e03a77f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gcc
+    - glib >=2.16
+
+  run:
+    - libgcc
+    - glib >=2.16
+
+test:
+  commands:
+    - pkg-config --version > /dev/null
+
+about:
+  home: https://www.freedesktop.org/wiki/Software/pkg-config
+  license: GPLv2
+  license_file: COPYING
+  summary: "pkg-config is a helper tool used when compiling applications and libraries."

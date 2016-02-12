@@ -1,0 +1,38 @@
+package:
+  name: libwebp
+  version: 0.5.0
+
+source:
+  fn: v0.5.0.tar.gz
+  url: https://github.com/webmproject/libwebp/archive/v0.5.0.tar.gz
+  md5: 31f93d3687abd119d699cabc7e9548ff
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - autoconf
+    - jpeg
+    - libtiff
+    - libpng
+    - giflib
+    - freeglut
+
+  run:
+    - libgcc
+    - jpeg
+    - libtiff
+    - libpng
+
+test:
+  commands:
+    - cwebp -h > /dev/null
+    - dwebp -h > /dev/null
+
+about:
+  home: http://www.webmproject.org/code/
+  license: BSD
+  license_file: COPYING
+  summary: "WebP codec: library to encode and decode images in WebP format."

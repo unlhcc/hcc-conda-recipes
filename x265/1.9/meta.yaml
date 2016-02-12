@@ -1,0 +1,30 @@
+package:
+  name: x265
+  version: 1.9
+
+source:
+  fn: x265_1.9.tar.gz
+  url: http://ftp.videolan.org/pub/videolan/x265/x265_1.9.tar.gz
+  md5: f34a1c4c660ff07511365cb0983cf164
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - yasm
+    - cmake
+
+  run:
+    - libgcc
+
+test:
+  commands:
+    - x265 -V > /dev/null 2>&1
+
+about:
+  home: https://bitbucket.org/multicoreware/x265/wiki/Home
+  license: GPL
+  license_file: COPYING
+  summary: "x265 HEVC Encoder"

@@ -1,0 +1,10 @@
+--- go	2015-08-27 07:53:52.000000000 +0000
++++ go.new	2016-02-11 23:51:58.364711906 +0000
+@@ -12,6 +12,6 @@
+ mkdir -p $build
+ cd $build
+ 
+-cmake -DCMAKE_BUILD_TYPE=$build -Wno-dev .. &&
++cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_BUILD_TYPE=$build -Wno-dev .. &&
+   make $j &&
+     (ctest $j || echo "FAILURE details in $build/Testing/Temporary/LastTest.log")

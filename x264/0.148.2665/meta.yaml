@@ -1,0 +1,28 @@
+package:
+  name: x264
+  version: "0.148.2665"
+
+source:
+  git_url: http://git.videolan.org/git/x264.git
+  git_rev: a01e33913655f983df7a4d64b0a4178abb1eb618
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - yasm
+
+  run:
+    - libgcc
+
+test:
+  commands:
+    - x264 -h > /dev/null
+
+about:
+  home: http://www.videolan.org/developers/x264.html
+  license: GPL
+  license_file: COPYING
+  summary: "x264 is a free software library and application for encoding video streams into the H.264/MPEG-4 AVC compression format."

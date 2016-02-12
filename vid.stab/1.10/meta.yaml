@@ -1,0 +1,29 @@
+package:
+  name: vid.stab
+  version: 1.10
+
+source:
+  git_url: https://github.com/georgmartius/vid.stab.git
+  git_rev: 97c6ae2719faac74687fe409b5a7258eab06b22e
+	
+build:
+    number: 0
+	  
+requirements:
+  build:
+    - gcc
+    - cmake
+
+  run:
+    - libgcc    
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libvidstab.so
+    - test -d ${PREFIX}/include/vid.stab
+
+about:
+  home: http://public.hronopik.de/vid.stab/index.php?lang=en
+  license: GPL
+  license_file: LICENSE
+  summary: "Vidstab is a video stabilization library which can be plugged-in with Ffmpeg and Transcode."

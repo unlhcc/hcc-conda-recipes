@@ -3,23 +3,25 @@ package:
   version: 0.13.1
 
 source:
-  fn: 0.13.1.tar.gz
-  url: https://github.com/libass/libass/archive/0.13.1.tar.gz
-  md5: 5bc33c26267ebf511b94941c81ba7d16
+#  fn: 0.13.1.tar.gz
+#  url: https://github.com/libass/libass/archive/0.13.1.tar.gz
+#  md5: 5bc33c26267ebf511b94941c81ba7d16
+  path: ./libass-0.13.1
 	
 build:
-    number: 0
+    number: 1
 	  
 requirements:
   build:
     - gcc
-    - autoconf
+#    - autoconf
     - freetype
     - fribidi
     - yasm
     - fontconfig
     - expat
     - zlib
+#    - pkg-config
 
   run:
     - libgcc    

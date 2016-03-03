@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./autogen.sh
+#./autogen.sh
 export C_INCLUDE_PATH=${PREFIX}/include
 export LDFLAGS="-L${PREFIX}/lib"
 export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig

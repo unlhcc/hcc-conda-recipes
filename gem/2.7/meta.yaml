@@ -1,0 +1,27 @@
+package:
+  name: gem
+  version: 2.7
+
+source:
+  fn: gem.v2.7.tar.gz
+  url: http://groups.csail.mit.edu/cgs/gem/download/gem.v2.7.tar.gz
+  md5: 7343ff7951aa66bfb0ec04c56eb24682
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - java-jdk >=7
+
+test:
+  commands:
+    - gem 2>&1 | grep GEM > /dev/null
+
+about:
+  home: http://groups.csail.mit.edu/cgs/gem
+  license: OSI-compliant
+  summary: "GEM: High resolution peak calling and motif discovery for ChIP-seq and ChIP-exo data"
+
+extra:
+  notes:  "GEM version 2.7 uses a wrapper script symlinked to bin/: gem.  The wrapper will run the jar file and pass along Java system and memory arguments (-D*, -XX*, -Xm*) and arguments for GEM. The variable GEM_HOME is also set when activating the environment and points to the GEM install location, for convenience when referencing files included with GEM. For example, to run GEM with 10GB RAM and using included files would be 'gem -Xmx10G --d $GEM_HOME/Read_Distribution_default.txt --g $GEM_HOME/mm8.chrom.sizes <additional options>'."

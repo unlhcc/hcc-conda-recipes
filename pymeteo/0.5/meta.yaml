@@ -1,0 +1,42 @@
+package:
+  name: pymeteo
+  version: "0.5"
+
+source:
+  fn: v0.5.tar.gz
+  url: https://github.com/cwebster2/pyMeteo/archive/v0.5.tar.gz
+  md5: f767d140e749ff7cca7d39a202253571
+
+build:
+  number: 0
+  skip: True # [py2k]
+
+requirements:
+  build:
+    - python 
+
+  run:
+    - python
+    - matplotlib
+    - numpy
+    - h5py
+    - netcdf4
+# https://anaconda.org/spyder-ide
+    - pyqt5
+
+test:
+  # Python imports
+  # imports:
+
+  commands:
+    - cm1_geninit
+    - skewt
+    - skewt-hdf
+    - skewt-blank
+    - skewt-wrf
+
+about:
+  home: https://github.com/cwebster2/pyMeteo
+  license: Custom OSS
+  license_file: LICENSE
+  summary: 'General meteorological routines, skew-T/log-p plotting and working with CM1 model data.'

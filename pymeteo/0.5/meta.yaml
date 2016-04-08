@@ -9,7 +9,7 @@ source:
 
 build:
   number: 0
-  skip: True # [py2k]
+  skip: True # [py27 or osx or py34]
 
 requirements:
   build:
@@ -19,21 +19,18 @@ requirements:
     - python
     - matplotlib
     - numpy
-    - h5py
+    - h5py ==2.5.0
     - netcdf4
 # https://anaconda.org/spyder-ide
     - pyqt5
 
 test:
   # Python imports
-  # imports:
+  imports:
+    - pymeteo
 
-  commands:
-    - cm1_geninit
-    - skewt
-    - skewt-hdf
-    - skewt-blank
-    - skewt-wrf
+  files:
+    - test.py
 
 about:
   home: https://github.com/cwebster2/pyMeteo

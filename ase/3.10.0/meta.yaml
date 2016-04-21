@@ -1,0 +1,42 @@
+package:
+  name: ase
+  version: "3.10.0"
+
+source:
+  fn: ase-3.10.0.tar.gz
+  url: https://pypi.python.org/packages/source/a/ase/ase-3.10.0.tar.gz
+  md5: 87854bb3b43d1a57b0c3db4b5addcee3
+
+build:
+  number: 0
+  skip: True #[py3k]
+
+requirements:
+  build:
+    - python 
+    - scipy 0.12.0
+    - numpy 1.7*
+    - matplotlib 1.3.1
+    - scientificpython
+    - netcdf4 1.0.7
+
+  run:
+    - python
+    - scipy 0.12.0
+    - numpy 1.7*
+    - matplotlib 1.3.1
+    - scientificpython
+    - netcdf4 1.0.7
+
+test:
+  # Python imports
+  imports:
+    - ase
+
+  commands:
+    - python -m ase.test
+
+about:
+  home: https://wiki.fysik.dtu.dk/ase
+  license: GNU Lesser General Public License v2 or later (LGPLv2+)
+  summary: 'Atomic Simulation Environment'

@@ -6,23 +6,24 @@ source:
   fn: ScientificPython-2.8.1.tar.gz
   url: https://sourcesup.renater.fr/frs/download.php/file/4411/ScientificPython-2.8.1.tar.gz
   md5: 73ee0df19c7b58cdf2954261f0763c77
-#  patches:
-   # List any patch files here
-   # - fix.patch
 
 build:
-  number: 0
+  number: 1
+  skip: True #[py3k]
 
 requirements:
   build:
     - python
     - libnetcdf
-    - numpy
+    - numpy x.x
+    - gcc
 
   run:
     - python
     - libnetcdf
-    - numpy
+    - numpy x.x
+    - libgcc
+
 test:
   # Python imports
   imports:

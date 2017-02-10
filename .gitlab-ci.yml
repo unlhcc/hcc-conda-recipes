@@ -1,0 +1,19 @@
+variables:
+  BIOCONDA_UTILS_TAG: "gitlabci"
+  BIOCONDA_UTILS_ARGS: "--loglevel=info"
+
+services:
+  - docker:hccdind
+
+stages:
+  - build
+
+build:
+  stage: build
+  image: unlhcc/docker-glibc
+  tags:
+    - el7
+  before_script:
+    - scripts/gitlabci-setup.sh
+  script:
+    - scripts/gitlabci-run.sh

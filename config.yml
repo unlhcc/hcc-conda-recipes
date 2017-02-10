@@ -1,0 +1,14 @@
+env_matrix: "env_matrix.yml"
+docker_image: "condaforge/linux-anvil"
+channels: ['hcc']
+upload_channel: "hcc"
+# Channels ordered from highest to lowest priority. This should match the order
+# of .condarc, but when adding channels using conda config --add, they should
+# be added in reverse (from low to high priority).
+channels:
+    - hcc
+    - bioconda
+    - r
+    - defaults
+    - conda-forge
+docker_client_version: '1.20'

@@ -2,9 +2,6 @@ variables:
   BIOCONDA_UTILS_TAG: "gitlabci"
   BIOCONDA_UTILS_ARGS: "--loglevel=info"
 
-services:
-  - docker:hccdind
-
 stages:
   - build
 

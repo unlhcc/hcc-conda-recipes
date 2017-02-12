@@ -22,8 +22,8 @@ sudo bash Miniconda3-latest-$tag-x86_64.sh -b -p /anaconda
 export PATH=/anaconda/bin:$PATH
 conda install -y conda=4.2.15
 
-$SCRIPT_DIR/../simulate-travis.py --set-channel-order
-$SCRIPT_DIR/../simulate-travis.py --install-requirements
+$SCRIPT_DIR/../simulate-gitlabci.py --set-channel-order
+$SCRIPT_DIR/../simulate-gitlabci.py --install-requirements
 
 conda index /anaconda/conda-bld/linux-64 /anaconda/conda-bld/osx-64
 conda config --add channels file://anaconda/conda-bld

@@ -4,10 +4,25 @@ variables:
 
 stages:
   - build
+  - deploy
 
 build:
   stage: build
   image: unlhcc/docker-glibc
+  except:
+    - master
+  tags:
+    - el7
+  before_script:
+    - scripts/gitlabci-setup.sh
+  script:
+    - scripts/gitlabci-run.sh
+
+deploy:
+  stage: deploy
+  image: unlhcc/docker-glibc
+  only:
+    - master
   tags:
     - el7
   before_script:

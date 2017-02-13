@@ -1,0 +1,13 @@
+--- PyInstaller/utils/misc.py	2013-09-27 14:20:24.000000000 +0000
++++ PyInstaller/utils/misc.py.new	2016-10-27 15:57:58.256901656 +0000
+@@ -141,9 +141,4 @@
+     Raise SystemExit error if the user is on unix and trying running
+     PyInstaller or its utilities as superuser 'root'.
+     """
+-    if is_unix:
+-        # Prevent running as superuser (root).
+-        if hasattr(os, "getuid") and os.getuid() == 0:
+-            logger.error('You are running PyInstaller as user root.'
+-                ' This is not supported.')
+-            raise SystemExit(10)
++    pass

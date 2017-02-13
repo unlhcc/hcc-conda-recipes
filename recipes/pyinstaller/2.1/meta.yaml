@@ -1,0 +1,34 @@
+package:
+    name: pyinstaller
+    version: 2.1
+
+source:
+    fn: v2.1.tar.gz
+    url: https://github.com/pyinstaller/pyinstaller/archive/v2.1.tar.gz
+    md5: 79102501598333a48856f71b43fc5719
+    patches:
+        - allow_as_root.patch
+
+build:
+    number: 0
+    skip: True # [not py27]
+
+requirements:
+    build:
+        - python
+        - setuptools
+        - distribute
+
+    run:
+        - python
+        - distribute
+
+test:
+    commands:
+        - pyinstaller --version > /dev/null
+
+about:
+    home: http://www.pyinstaller.org/
+    license: GLPv2 
+    license_file: COPYING.txt
+    summary: "PyInstaller is a program that freezes (packages) Python programs into stand-alone executables, under Windows, Linux, Mac OS X, FreeBSD, Solaris and AIX."

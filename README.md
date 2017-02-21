@@ -53,4 +53,4 @@ Once merged, you can update your local repo and delete the branch:
 
 `git checkout master`
 `git pull origin master`
-'git branch -d mypackage-1.0`
+`git branch -d mypackage-1.0`

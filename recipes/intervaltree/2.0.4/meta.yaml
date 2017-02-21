@@ -1,0 +1,33 @@
+package:
+  name: intervaltree
+  version: "2.0.4"
+
+source:
+  fn: 2.0.4.tar.gz
+  url: https://github.com/chaimleib/intervaltree/archive/2.0.4.tar.gz
+  md5: 8fbb37d3ae029b51874a808cabfec328
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - sortedcontainers
+
+  run:
+    - python
+    - sortedcontainers
+
+test:
+  imports:
+    - intervaltree
+
+  requires:
+    - pytest
+
+about:
+  home: https://github.com/chaimleib/intervaltree
+  license: Apache Software License
+  summary: 'Editable interval tree data structure for Python 2 and 3'

@@ -13,6 +13,7 @@ If you don't have a copy of the repo, clone it first:
 If you've already cloned it, do a pull to make sure you're up to date:
 
 `git checkout master`
+
 `git pull`
 
 Create a new branch to add your recipe to.  For example, if you're adding
@@ -52,5 +53,8 @@ HCC channel at [https://anaconda.org/hcc](https://anaconda.org/hcc).
 Once merged, you can update your local repo and delete the branch:
 
 `git checkout master`
+
 `git pull origin master`
+
 `git branch -d mypackage-1.0`
+

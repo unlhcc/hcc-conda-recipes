@@ -13,7 +13,7 @@ do
 done
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-dockerd&
+dockerd -s vfs&
 tag=Linux
 # install conda
 curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-$tag-x86_64.sh

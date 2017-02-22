@@ -12,7 +12,7 @@ build:
   except:
     - master
   tags:
-    - el7
+    - docker
   before_script:
     - scripts/gitlabci-setup.sh
   script:
@@ -24,7 +24,7 @@ deploy:
   only:
     - master
   tags:
-    - el7
+    - docker
   before_script:
     - scripts/gitlabci-setup.sh
   script:

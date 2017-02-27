@@ -1,0 +1,11 @@
+--- tensorflow/tensorflow.bzl	2017-02-11 06:33:43.000000000 +0000
++++ tensorflow/tensorflow.bzl.new	2017-02-24 17:32:16.011291223 +0000
+@@ -751,7 +751,7 @@
+   )
+ 
+ def tf_extension_linkopts():
+-  return []  # No extension link opts
++  return ["-lrt"]  # No extension link opts
+ 
+ def tf_extension_copts():
+   return []  # No extension c opts

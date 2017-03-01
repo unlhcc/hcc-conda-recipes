@@ -1,0 +1,48 @@
+package:
+    name: parcel
+    version: 0.2.15.1
+
+source:
+    git_url: https://github.com/LabAdvComp/parcel.git
+    git_rev: fddae5c09283ee5058fb9f43727a97a253de31fb
+
+build:
+    number: 0
+    skip: True # [not py27]
+
+requirements:
+    build:
+        - gcc # [not osx]
+        - llvm # [osx]
+        - python
+        - setuptools
+        - requests ==2.5.1
+        - progressbar ==2.3
+        - flask ==0.10.1
+        - intervaltree ==2.0.4
+        - termcolor ==1.1.0
+        - cmd2 ==0.6.8
+        - py2app # [osx]
+
+    run:
+        - libgcc # [not osx]
+        - python
+        - requests ==2.5.1
+        - progressbar ==2.3
+        - flask ==0.10.1
+        - intervaltree ==2.0.4
+        - termcolor ==1.1.0
+        - cmd2 ==0.6.8
+
+test:
+    imports:
+        - parcel
+
+    commands:
+        - parcel --version > /dev/null
+
+about:
+    home: http://parcel.readthedocs.io/en/latest/
+    license: Custom OSS
+    license_file: LICENSE
+    summary: "Parcel is a suite of classes and helper functions designed to be used in conjunction with Fabric for building and deploying Python web applications using native packages."

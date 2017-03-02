@@ -1,0 +1,11 @@
+--- BUILD	2016-10-16 20:28:18.000000000 +0000
++++ BUILD.new	2017-02-27 17:33:21.299607013 +0000
+@@ -27,7 +27,7 @@
+ # Android builds do not need to link in a separate pthread library.
+ LINK_OPTS = select({
+     ":android": [],
+-    "//conditions:default": ["-lpthread"],
++    "//conditions:default": ["-lpthread -Wl,-rpath=$(PREFIX)/lib"],
+ })
+ 
+ load(

@@ -1,0 +1,43 @@
+package:
+    name: tensorflow-fma
+    version: 0.12.1
+
+source:
+    fn: 0.12.1.tar.gz
+    url: https://github.com/tensorflow/tensorflow/archive/0.12.1.tar.gz
+    md5: c11121ff568fa1fffff1e95e1dbdda5e
+    patches:
+        - zlib_url.patch
+        - librt.patch
+
+build:
+    number: 0
+
+requirements:
+    build:
+        - gcc # [not osx]
+        - llvm # [osx]
+        - python
+        - wheel
+        - numpy >=1.11.0
+        - bazel ==0.3.2
+        - protobuf >=3.1.0
+        - perl
+
+    run:
+        - libgcc # [not osx]
+        - python
+        - numpy >=1.11.0
+        - protobuf >=3.1.0
+
+
+test:
+    imports:
+        - tensorflow
+
+
+about:
+    home: https://www.tensorflow.org
+    license: Apache 2.0
+    license_file: LICENSE
+    summary: Computation using data flow graphs for scalable machine learning.

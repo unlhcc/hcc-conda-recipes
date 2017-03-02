@@ -11,7 +11,7 @@ source:
         - librt.patch
 
 build:
-    number: 0
+    number: 1
 
 requirements:
     build:
@@ -20,7 +20,7 @@ requirements:
         - python
         - wheel
         - numpy >=1.11.0
-        - bazel
+        - bazel ==0.3.2
         - protobuf >=3.1.0
         - perl
 

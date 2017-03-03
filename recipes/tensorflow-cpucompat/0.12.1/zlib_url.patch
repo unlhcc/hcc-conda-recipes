@@ -1,0 +1,11 @@
+--- tensorflow/workspace.bzl    2016-12-25 13:44:34.000000000 +0000
++++ tensorflow/workspace.bzl.new        2017-02-21 21:11:16.237809206 +0000
+@@ -228,7 +228,7 @@
+
+   native.new_http_archive(
+     name = "zlib_archive",
+-    url = "http://zlib.net/zlib-1.2.8.tar.gz",
++    url = "http://zlib.net/fossils/zlib-1.2.8.tar.gz",
+     sha256 = "36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d",
+     strip_prefix = "zlib-1.2.8",
+     build_file = str(Label("//:zlib.BUILD")),

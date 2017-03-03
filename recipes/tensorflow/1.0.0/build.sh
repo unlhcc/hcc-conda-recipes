@@ -29,6 +29,6 @@ PROTOBUF_DIR=$(bazel info output_base)/external/protobuf
 patch -p0 -i ${RECIPE_DIR}/protobuf.patch -d ${PROTOBUF_DIR}
 
 # including --copt=-mavx2 would be better for AVX2 support, but it throws an illegal op error on Anvil, even though the procs support it (Docker issue maybe??)
-bazel build --define PREFIX=${PREFIX} --local_resources 4096,4,1.0 -c opt --copt=-mavx --copt=-mfpmath=both --copt=-msse4.2  //tensorflow/tools/pip_package:build_pip_package
+bazel build --define PREFIX=${PREFIX} --local_resources 2048,4,1.0 -c opt --copt=-mavx --copt=-mfpmath=both --copt=-msse4.2  //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package ${TMPDIR}
 pip install ${TMPDIR}/tensorflow*.whl

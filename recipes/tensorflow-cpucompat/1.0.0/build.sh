@@ -28,6 +28,6 @@ export TF_NEED_CUDA=0
 PROTOBUF_DIR=$(bazel info output_base)/external/protobuf
 patch -p0 -i ${RECIPE_DIR}/protobuf.patch -d ${PROTOBUF_DIR}
 
-bazel build --define PREFIX=${PREFIX} --local_resources 4096,4,1.0 -c opt --copt=-mfpmath=both //tensorflow/tools/pip_package:build_pip_package
+bazel build --define PREFIX=${PREFIX} --local_resources 2048,4,1.0 -c opt --copt=-mfpmath=both //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package ${TMPDIR}
 pip install ${TMPDIR}/tensorflow*.whl

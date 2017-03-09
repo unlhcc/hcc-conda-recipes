@@ -13,6 +13,18 @@ be EL7 or better.  Here, Fedora 25 is used as an example since it's
 the most recent and has a relatively new version of Docker in the
 default repo.
 
+To avoid a multitude of problems, disable SELinux by editing 
+`/etc/sysconfig/selinux` and change the line
+
+`SELINUX=enforcing`
+
+to
+
+`SELINUX=disabled`.
+
+After editing the file, reboot your VM for the change to take effect.  
+The `getenforce` command should return `Disabled` then.
+
 #### Install Docker
 
 An EL6-based Docker container is used for the builds.  In order to
@@ -35,7 +47,10 @@ newgrp docker
 ```
 
 If everything is setup properly, you should be able to run the `docker info`
-command as the fedora user and have it return config information.
+command as the fedora user and have it return config information.  To have
+Docker start on boot, run:
+
+`sudo chkconfig docker on`
 
 #### Clone the repo
 

@@ -22,5 +22,5 @@ test:
 
 about:
   home: https://github.com/gersteinlab/MUSIC
-  license:
+  license: Custom OSS
   summary: MUSIC is an algorithm for identification of enriched regions at multiple scales in the read depth signals from ChIP-Seq experiments.

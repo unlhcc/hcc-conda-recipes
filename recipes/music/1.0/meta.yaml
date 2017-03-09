@@ -1,0 +1,26 @@
+package:
+  name: music
+  version: "1.0"
+
+source:
+  fn: master.zip
+  url: https://github.com/gersteinlab/MUSIC/archive/master.zip
+  md5: a3a15871310b604b69c3cbb02d5e1849
+
+build:
+  number: 0
+
+requirements:
+  build:
+     - gcc
+  run:
+     - libgcc
+
+test:
+  commands:
+     - MUSIC -help
+
+about:
+  home: https://github.com/gersteinlab/MUSIC
+  license:
+  summary: MUSIC is an algorithm for identification of enriched regions at multiple scales in the read depth signals from ChIP-Seq experiments.

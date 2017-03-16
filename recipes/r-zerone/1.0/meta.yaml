@@ -1,0 +1,35 @@
+package:
+  name: r-zerone
+  version: "1.0"
+
+source:
+  fn: master.zip
+  url: https://github.com/nanakiksc/zerone/archive/master.zip
+  md5: 0a56ccda6fd39c1dc4cf181cf376be41
+
+build:
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r
+    - gcc
+
+  run:
+    - r
+    - libgcc
+
+test:
+  commands:
+    - $R -e "library('zerone')"
+
+about:
+  home: "https://github.com/nanakiksc/zerone"
+  license: GPLv3
+  license_file: LICENSE.md
+  summary: "Zerone discretizes several ChIP-seq replicates simultaneously and resolves conflicts between them. After the job is done, Zerone checks the results and tells you whether it passes the quality control."

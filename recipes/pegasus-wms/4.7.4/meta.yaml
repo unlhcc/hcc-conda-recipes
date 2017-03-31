@@ -1,0 +1,42 @@
+package:
+  name: pegasus-wms
+  version: "4.7.4"
+
+source:
+  fn: pegasus-source-4.7.4.tar.gz
+  url: https://download.pegasus.isi.edu/pegasus/4.7.4/pegasus-source-4.7.4.tar.gz
+  md5: 385612455e70bdcd28d2a7f65621761d
+  patches:
+    - conda_build_fixes.patch
+
+build:
+  number: 0
+  skip: True # [py3k]
+
+requirements:
+  build:
+    - gcc
+    - python
+    - r
+    - openjdk
+    - ant
+    - perl
+
+  run:
+    - libgcc
+    - python
+    - openjdk
+    - perl
+
+test:
+  commands:
+    - pegasus-plan --help
+    - pegasus-version
+  imports:
+    - Pegasus.DAX3
+
+about:
+  home: "https://pegasus.isi.edu"
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: "Pegasus WMS is a configurable system for mapping and executing scientific workflows over a wide range of computational infrastructures including laptops, campus clusters, supercomputers, grids, and commercial and academic clouds."

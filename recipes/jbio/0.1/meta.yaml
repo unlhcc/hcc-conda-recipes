@@ -8,6 +8,7 @@ source:
 
 build:
   number: 0
+  skip: True [py3k]
 
 requirements:
   build:
@@ -23,3 +24,4 @@ test:
 about:
   home: https://github.com/jgurtowski/jbio
   license: GPL-2.0
+  summary: General library and tools

@@ -1,0 +1,56 @@
+--- release-tools/determine-lib-dir	2017-02-24 19:54:18.000000000 +0000
++++ release-tools/determine-lib-dir.new	2017-03-17 19:09:17.900046136 +0000
+@@ -6,16 +6,5 @@
+ 
+ LIB_DIR="lib"
+ 
+-# limit this check to RHEL based systems - those are the only ones
+-# we know of which have this problem
+-if [ -e "/etc/redhat-release" ] || [ -e "/etc/SuSE-release" ]; then
+-    if [ -d "/usr/lib64" ]; then
+-        # ok, but only if it is not a symlink
+-        if [ ! -L "/usr/lib64" ]; then
+-            LIB_DIR="lib64"
+-        fi
+-    fi
+-fi
+-
+ echo $LIB_DIR
+ 
+--- release-tools/get-system-python	2017-02-24 19:54:18.000000000 +0000
++++ release-tools/get-system-python.new	2017-03-17 19:08:24.854160009 +0000
+@@ -2,10 +2,10 @@
+ 
+ set -e
+ 
+-if [ -x "/usr/bin/python2.7" ]; then
+-    echo "/usr/bin/python2.7"
+-elif [ -x "/usr/bin/python2.6" ]; then
+-    echo "/usr/bin/python2.6"
++if [ -x "${PREFIX}/bin/python2.7" ]; then
++    echo "${PREFIX}/bin/python2.7"
++elif [ -x "${PREFIX}/bin/python2.6" ]; then
++    echo "${PREFIX}/bin/python2.6"
+ else
+     echo "ERROR: Unable to locate python2.7 or python2.6" >&2
+     exit 1
+--- release-tools/python-modules-dir	2017-02-24 19:54:18.000000000 +0000
++++ release-tools/python-modules-dir.new	2017-03-17 19:08:43.718119517 +0000
+@@ -19,7 +19,7 @@
+ 
+ for LOCATION in \
+     "/usr/$SYSLIB/python$VERSION/dist-packages" \
+-    "/usr/$SYSLIB/python$VERSION/site-packages" \
++    "$PREFIX/$SYSLIB/python$VERSION/site-packages" \
+     "/Library/Python/$VERSION/site-packages" \
+ ; do
+     if [ -e "$LOCATION" ]; then
+@@ -29,7 +29,7 @@
+ done
+ 
+ # remote the prefix
+-FINAL_LOCATION=`echo "$FINAL_LOCATION" | sed -e 's/^\/usr//' | sed -e 's:^/*::'`
++FINAL_LOCATION=`echo "$FINAL_LOCATION" | sed -e "s#^$PREFIX##" | sed -e 's:^/*::'`
+ 
+ echo $FINAL_LOCATION
+ 

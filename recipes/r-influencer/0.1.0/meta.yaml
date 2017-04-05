@@ -17,13 +17,13 @@ build:
 
 requirements:
   build:
-    - r-base
+    - r
     - r-matrix >=1.1_4
     - r-igraph >=1.0.1
     - gcc # [linux]
 
   run:
-    - r-base
+    - r
     - r-matrix >=1.1_4
     - r-igraph >=1.0.1
     - libgcc # [linux]

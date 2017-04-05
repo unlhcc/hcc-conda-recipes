@@ -1,0 +1,35 @@
+package:
+  name: r-rstudioapi
+  version: "0.6"
+
+source:
+  fn: rstudioapi_0.6.tar.gz
+  url:
+    - http://cran.r-project.org/src/contrib/rstudioapi_0.6.tar.gz
+    - http://cran.r-project.org/src/contrib/Archive/rstudioapi/rstudioapi_0.6.tar.gz
+
+build:
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r
+
+  run:
+    - r
+
+test:
+  commands:
+    - $R -e "library('rstudioapi')"
+
+about:
+  #home:
+  license: MIT + file LICENSE
+  summary: Access the RStudio API (if available) and provide informative error messages when
+    it's not.
+  license_family: MIT

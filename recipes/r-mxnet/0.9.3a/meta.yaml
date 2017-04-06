@@ -9,30 +9,30 @@ source:
     - config.mk.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - gcc
     - r
     - blas
-    - opencv
+    - opencv ==3.1
     - gnu-wget
     - r-devtools
     - r-stringr
     - r-rcpp
-    - r-diagrammer
+    - r-diagrammer >=0.9.0
     - r-data.table
     - r-roxygen2
   run:
     - r
     - libgcc
-    - opencv
+    - opencv ==3.1
     - blas
     - r-devtools
     - r-stringr
     - r-rcpp
-    - r-diagrammer
+    - r-diagrammer >=0.9.0
     - r-data.table
 
 test:

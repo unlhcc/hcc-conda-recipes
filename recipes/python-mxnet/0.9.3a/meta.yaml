@@ -1,0 +1,38 @@
+package:
+  name: python-mxnet
+  version: "0.9.3a"
+
+source:
+  git_url: https://github.com/dmlc/mxnet
+  git_rev: v0.9.3a
+  patches:
+    - config.mk.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gcc
+    - python
+    - numpy
+    - blas
+    - opencv ==3.1
+    - gnu-wget
+
+  run:
+    - libgcc
+    - python
+    - numpy
+    - opencv ==3.1
+    - blas
+
+test:
+  imports:
+     - mxnet
+
+about:
+  home: http://mxnet.io/
+  license: Apache 2.0
+  license_file: LICENSE
+  summary: MXNet is an open-source deep learning framework that allows you to define, train, and deploy deep neural networks on a wide array of devices, from cloud infrastructure to mobile devices.

@@ -15,7 +15,6 @@ requirements:
   build:
     - gcc
     - python
-    - numpy
     - blas
     - opencv ==3.1
     - gnu-wget
@@ -23,7 +22,6 @@ requirements:
   run:
     - libgcc
     - python
-    - numpy
     - opencv ==3.1
     - blas
 

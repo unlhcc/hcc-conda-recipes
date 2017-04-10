@@ -1,0 +1,16 @@
+package:
+  name: mxnet
+  version: "0.9.3a"
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - r-mxnet ==0.9.3a
+    - python-mxnet ==0.9.3a
+
+about:
+  home: http://mxnet.io/
+  license: Apache 2.0
+  summary: MXNet is an open-source deep learning framework that allows you to define, train, and deploy deep neural networks on a wide array of devices, from cloud infrastructure to mobile devices.

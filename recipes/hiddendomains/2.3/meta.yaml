@@ -8,18 +8,21 @@ source:
   md5: 57087249717251b0d3f24b5171c99898
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
   run:
+     - r
+     - r-depmixs4
+     - r-hiddenmarkov
      - samtools
 
 test:
   commands:
-     - hiddenDomains -h 2>&1 | grep hiddenDomain
+     - hiddenDomains -h 2>&1 | grep hiddenDomains
 
 about:
   home: http://hiddendomains.sourceforge.net/
   license: GNU GPL
-  summary: hiddenDomains is a suite of programs used to identify significant enrichment of ChIP-seq reads that span large domains
+  summary: hiddenDomains is a suite of programs used to identify significant enrichment of ChIP-seq reads that span large domains.

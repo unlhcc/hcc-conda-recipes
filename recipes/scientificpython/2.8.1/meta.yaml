@@ -8,26 +8,36 @@ source:
   md5: 73ee0df19c7b58cdf2954261f0763c77
 
 build:
-  number: 1
+  number: 2
   skip: True #[py3k]
 
 requirements:
   build:
     - python
-    - libnetcdf
+    - libnetcdf 4.4*
     - numpy x.x
     - gcc
+    - jpeg ==8d
 
   run:
     - python
-    - libnetcdf
+    - libnetcdf 4.4*
     - numpy x.x
     - libgcc
+    - jpeg ==8d
 
 test:
   # Python imports
   imports:
     - Scientific
+    - Scientific.IO
+    - Scientific.Clustering
+    - Scientific.DistributedComputing
+    - Scientific.Functions
+    - Scientific.Physics
+    - Scientific.Signals
+    - Scientific.Threading
+    - Scientific.Visualization
 
 
 about:

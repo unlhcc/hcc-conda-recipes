@@ -1,0 +1,37 @@
+--- make/config.mk	2017-04-05 22:08:49.306447834 +0000
++++ make/config.mk.new	2017-04-05 22:08:41.104468989 +0000
+@@ -34,10 +34,10 @@
+ USE_PROFILER =
+ 
+ # the additional link flags you want to add
+-ADD_LDFLAGS =
++ADD_LDFLAGS = -L${PREFIX}/lib
+ 
+ # the additional compile flags you want to add
+-ADD_CFLAGS =
++ADD_CFLAGS = -I${PREFIX}/include
+ 
+ #---------------------------------------------
+ # matrix computation libraries for CPU/GPU
+@@ -79,10 +79,10 @@
+ # MKL ML Library folder, need to be root for /usr/local
+ # Change to User Home directory for standard user
+ # For USE_BLAS!=mkl only
+-MKLML_ROOT=/usr/local
++MKLML_ROOT=${PREFIX}
+ 
+ # whether use MKL2017 library
+-USE_MKL2017 = 0
++USE_MKL2017 = 1
+ 
+ # whether use MKL2017 experimental feature for high performance
+ # Prerequisite USE_MKL2017=1
+@@ -98,7 +98,7 @@
+ ifeq ($(UNAME_S), Darwin)
+ USE_BLAS = apple
+ else
+-USE_BLAS = atlas
++USE_BLAS = openblas
+ endif
+ 
+ # add path to intel library, you may need it for MKL, if you did not add the path

@@ -10,7 +10,7 @@ source:
     - conda_build_fixes.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [py3k]
 
 requirements:
@@ -21,6 +21,8 @@ requirements:
     - openjdk
     - ant
     - perl
+    - mysql
+    - postgresql
 
   run:
     - libgcc

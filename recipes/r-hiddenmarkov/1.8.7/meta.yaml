@@ -1,0 +1,34 @@
+package:
+  name: r-hiddenmarkov
+  version: "1.8.7"
+
+source:
+  fn: HiddenMarkov_1.8-7.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/HiddenMarkov_1.8-7.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/HiddenMarkov/HiddenMarkov_1.8-7.tar.gz
+
+build:
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r
+    - gcc
+  run:
+    - r
+    - libgcc
+
+test:
+  commands:
+    - $R -e "library('HiddenMarkov')"
+
+about:
+  home: ftp://ftp.gns.cri.nz/pub/davidh/sslib/r-repo/
+  license: GPL (>= 2)
+  summary: Contains functions for the analysis of Discrete Time Hidden Markov Models, Markov Modulated GLMs and the Markov Modulated Poisson Process. It includes functions for simulation, parameter estimation, and the Viterbi algorithm.
+  license_family: GPL2

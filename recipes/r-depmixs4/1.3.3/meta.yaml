@@ -1,0 +1,40 @@
+package:
+  name: r-depmixs4
+  version: "1.3.3"
+
+source:
+  fn: depmixS4_1.3-3.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/depmixS4_1.3-3.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/depmixS4/depmixS4_1.3-3.tar.gz
+
+build:
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r >=3.0.1
+    - r-nnet
+    - r-mass
+    - r-rsolnp
+    - gcc
+  run:
+    - r >=3.0.1
+    - r-nnet
+    - r-mass
+    - r-rsolnp
+    - libgcc
+
+test:
+  commands:
+    - $R -e "library('depmixS4')"
+
+about:
+  home: http://depmix.r-forge.r-project.org/
+  license: GPL (>= 2)
+  summary: Fits latent (hidden) Markov models on mixed categorical and continuous (time series) data, otherwise known as dependent mixture models.
+  license_family: GPL2

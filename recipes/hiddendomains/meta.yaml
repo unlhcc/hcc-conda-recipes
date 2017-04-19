@@ -1,0 +1,31 @@
+package:
+  name: hiddendomains
+  version: "2.3"
+
+source:
+  fn: hiddenDomains.2.3.tar.gz
+  url: https://sourceforge.net/projects/hiddendomains/files/hiddenDomains.2.3.tar.gz
+  md5: 57087249717251b0d3f24b5171c99898
+  patches:
+     - scripts_location.patch
+
+build:
+  number: 0
+
+requirements:
+  run:
+     - r
+     - r-depmixs4
+     - r-hiddenmarkov
+     - perl
+     - samtools
+     - bedtools
+
+test:
+  commands:
+     - hiddenDomains -h 2>&1 | grep hiddenDomains
+
+about:
+  home: http://hiddendomains.sourceforge.net/
+  license: GNU GPL
+  summary: hiddenDomains is a suite of programs used to identify significant enrichment of ChIP-seq reads that span large domains.

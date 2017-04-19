@@ -1,0 +1,121 @@
+--- hiddenDomains       2016-08-18 15:37:38.000000000 +0000
++++ hiddenDomains.new   2017-04-19 02:06:28.921862712 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+
+ ##========================================================================
+ ##
+@@ -224,13 +224,13 @@
+
+ print STDERR "binning reads in: ".$treatmentFile."\n";
+ my $treatmentBinFile = $outputPrefix."_treatment_bins.txt";
+-`./binReads.pl $optString $treatmentFile > $treatmentBinFile`;
++`/opt/anaconda1anaconda2anaconda3/bin/binReads.pl $optString $treatmentFile > $treatmentBinFile`;
+ print STDERR "finished binning reads in: ".$treatmentFile."\n";
+
+ if (defined($controlFile)) {
+     print STDERR "binning reads in: ".$controlFile."\n";
+     $controlBinFile = $outputPrefix."_control_bins.txt";
+-    `./binReads.pl $optString $controlFile > $controlBinFile`;
++    `/opt/anaconda1anaconda2anaconda3/bin/binReads.pl $optString $controlFile > $controlBinFile`;
+     print STDERR "finished binning reads in: ".$controlFile."\n";
+ }
+
+@@ -250,10 +250,10 @@
+ #print STDERR $chrFile."\n";
+
+ if (defined($controlFile)) {
+-    my @RscriptArgs = ("Rscript", "run_hiddenDomains.R", $treatmentBinFile, $controlBinFile, , $domainFile, $chrFile);
++    my @RscriptArgs = ("Rscript", "/opt/anaconda1anaconda2anaconda3/bin/run_hiddenDomains.R", $treatmentBinFile, $controlBinFile, , $domainFile, $chrFile);
+     system(@RscriptArgs);
+ } else {
+-    my @RscriptArgs = ("Rscript", "run_hiddenDomains_no_control.R", $treatmentBinFile, "NULL", , $domainFile, $chrFile);
++    my @RscriptArgs = ("Rscript", "/opt/anaconda1anaconda2anaconda3/bin/run_hiddenDomains_no_control.R", $treatmentBinFile, "NULL", , $domainFile, $chrFile);
+     system(@RscriptArgs);
+ }
+
+@@ -271,11 +271,11 @@
+ $optString = "-t -b ".$binWidth." -g ".$chrFile;
+ my $visBedFile = $outputPrefix."_vis.bed";
+ print STDERR "Creating a BED file for the UCSC browser: ".$visBedFile."\n";
+-`./domainsToBed.pl $optString $domainFile > $visBedFile`;
++`/opt/anaconda1anaconda2anaconda3/bin/domainsToBed.pl $optString $domainFile > $visBedFile`;
+
+ $optString = "-b ".$binWidth." -g ".$chrFile." -p ".$minPost;
+ my $analysisBedFile = $outputPrefix."_analysis.bed";
+ print STDERR "Creating a BED file for analysis: ".$analysisBedFile."\n";
+-`./domainsMergeToBed.pl $optString $domainFile > $analysisBedFile`;
++`/opt/anaconda1anaconda2anaconda3/bin/domainsMergeToBed.pl $optString $domainFile > $analysisBedFile`;
+
+ print STDERR "Hooray! All done!\n";
+--- run_hiddenDomains.R 2015-09-30 18:22:03.000000000 +0000
++++ run_hiddenDomains.R.new     2017-04-19 02:08:13.359074880 +0000
+@@ -1,4 +1,4 @@
+-source("hiddenDomains.R")
++source("/opt/anaconda1anaconda2anaconda3/bin/hiddenDomains.R")
+
+ args <- commandArgs(trailingOnly = TRUE)
+
+@@ -10,4 +10,4 @@
+ chr.data <- read.delim(file=args[4], sep="\t", stringsAsFactors=FALSE, header=FALSE)
+
+
+-hiddenDomains(treat.bin.file=args[1], control.bin.file=args[2], out.file.name=args[3], chr.names=chr.data[,1])
+\ No newline at end of file
++hiddenDomains(treat.bin.file=args[1], control.bin.file=args[2], out.file.name=args[3], chr.names=chr.data[,1])
+--- run_hiddenDomains_no_control.R      2016-08-18 15:37:48.000000000 +0000
++++ run_hiddenDomains_no_control.R.new  2017-04-19 02:07:47.351022040 +0000
+@@ -1,4 +1,4 @@
+-source("hiddenDomains.R")
++source("/opt/anaconda1anaconda2anaconda3/bin/hiddenDomains.R")
+
+ args <- commandArgs(trailingOnly = TRUE)
+
+@@ -10,4 +10,4 @@
+ chr.data <- read.delim(file=args[4], sep="\t", stringsAsFactors=FALSE, header=FALSE)
+
+
+-hiddenDomains(treat.bin.file=args[1], out.file.name=args[3], chr.names=chr.data[,1])
+\ No newline at end of file
++hiddenDomains(treat.bin.file=args[1], out.file.name=args[3], chr.names=chr.data[,1])
+--- peakCenters 2015-12-03 16:33:22.000000000 +0000
++++ peakCenters.new     2017-04-19 02:07:02.859931654 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+
+ ##========================================================================
+ ##
+--- domainsToBed.pl     2015-09-30 18:21:53.000000000 +0000
++++ domainsToBed.pl.new 2017-04-19 02:03:29.072497339 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+
+ ##========================================================================
+ ##
+--- domainsMergeToBed.pl        2015-09-30 18:21:53.000000000 +0000
++++ domainsMergeToBed.pl.new    2017-04-19 02:02:51.343420685 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+
+ ##========================================================================
+ ##
+--- binReads.pl 2015-09-30 18:21:52.000000000 +0000
++++ binReads.pl.new     2017-04-19 02:01:32.311260128 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+
+ ##========================================================================
+ ##
+--- centersToGEM.pl     2015-12-02 20:09:06.000000000 +0000
++++ centersToGEM.pl.new 2017-04-19 02:01:54.708305630 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+
+ use strict;
+ use warnings;

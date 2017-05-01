@@ -1,0 +1,32 @@
+package:
+  name: pymeanshift
+  version: "0.2.1"
+
+source:
+  fn: 0.2.1.tar.gz
+  url: https://github.com/fjean/pymeanshift/archive/0.2.1.tar.gz
+  md5: fe1c3a086885aca1ba507c8ebc577ae5
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - numpy
+    - gcc # [linux]
+
+  run:
+    - python
+    - numpy
+    - opencv
+    - libgcc # [linux]
+
+test:
+  imports:
+    - pymeanshift
+
+about:
+  home: "https://github.com/fjean/pymeanshift"
+  license: GPLv3
+  summary: "PyMeanShift is a Python module/extension for segmenting images using the mean shift algorithm."

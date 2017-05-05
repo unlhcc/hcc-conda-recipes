@@ -5,12 +5,12 @@ package:
 source:
   fn: pegasus-source-4.7.5dev.tar.gz
   url: http://download.pegasus.isi.edu/pegasus/4.7.5dev/pegasus-source-4.7.5dev.tar.gz
-  md5: d153250508aa5880393673435f9a0185
+  md5: 8ac5eb0a8969c677d2d5b64a065f1162
   patches:
     - conda_build_fixes.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [py3k]
 
 requirements:
@@ -29,6 +29,7 @@ requirements:
     - python
     - openjdk
     - perl
+    - graphviz
 
 test:
   commands:

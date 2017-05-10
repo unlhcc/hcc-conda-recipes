@@ -1,0 +1,20 @@
+--- bin/bosco_cluster	2017-03-02 03:47:38.000000000 +0000
++++ bin/bosco_cluster.new	2017-05-10 21:23:32.633141126 +0000
+@@ -194,7 +194,7 @@
+         ssh $remote_host "mkdir -p $start_dir" 
+     fi
+     scp $local_script $remote_host:$start_dir/bosco_run
+-    cmd_out=`ssh -o ControlMaster=auto -o "ControlPath=$ssh_control_path" $remote_host "cd $start_dir; chmod +x bosco_run; ./bosco_run $@"  2>/dev/null`
++    cmd_out=`ssh -o ControlMaster=auto -o "ControlPath=$ssh_control_path" $remote_host "cd $start_dir; chmod +x bosco_run; python ./bosco_run $@"  2>/dev/null`
+     #cmd_out=`ssh $remote_host "cd $start_dir; chmod +x bosco_run; ./bosco_run $4 $5 $6"`
+     cmd_ec=$?
+     if [ $cmd_ec -eq 0 ]; then
+@@ -921,7 +921,7 @@
+ # A download to the remote system would be faster but we cannot count on ports different form the SSH one
+ # OS X mktemp requires a template
+ tmp_dir=`mktemp -d /tmp/tmp.XXXXXXXX`
+-show_progress "Downloading for $remote_host" curl -s -o $tmp_dir/bosco-download.tar.gz $url 
++show_progress "Downloading for $remote_host" curl -L -s -o $tmp_dir/bosco-download.tar.gz $url 
+ show_progress "Unpacking" tar xzf $tmp_dir/bosco-download.tar.gz -C $tmp_dir
+ archive_dir=`ls -d $tmp_dir/condor*`
+ if [ $? -ne 0 ]; then

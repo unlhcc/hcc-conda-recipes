@@ -1,0 +1,13 @@
+--- bin/bosco_findplatform	2017-03-02 03:47:38.000000000 +0000
++++ bin/bosco_findplatform.new	2017-05-05 22:03:49.293731885 +0000
+@@ -27,8 +27,8 @@
+   DEB7: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_Debian7.tar.gz",
+   DEB8: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_Debian8.tar.gz",
+   OSX: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_MacOSX7.tar.gz",
+-  RH6: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_RedHat6.tar.gz",
+-  RH7: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_RedHat7.tar.gz",
++  RH6: "https://unl.box.com/shared/static/gk3uzksg6ns06bnwxk2a8p9jn7e5kh4z.tgz",
++  RH7: "https://unl.box.com/shared/static/n3zhhs4y2s9b5u823war54mtwu52sh37.tgz",
+   UBUNTU12: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_Ubuntu12.tar.gz",
+   UBUNTU14: "ftp://ftp.cs.wisc.edu/condor/bosco/1.2/bosco-1.2-x86_64_Ubuntu14.tar.gz",
+ }

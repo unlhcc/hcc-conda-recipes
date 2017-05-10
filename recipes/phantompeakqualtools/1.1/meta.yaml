@@ -1,0 +1,30 @@
+package:
+  name: phantompeakqualtools
+  version: "1.1"
+
+source:
+  fn: ccQualityControl.v.1.1.tar.gz
+  url: https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantompeakqualtools/ccQualityControl.v.1.1.tar.gz
+  md5: 66cfe40711edb914cd0fd69778a54e37
+  patches:
+    - hcc_fixes.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+
+  run:
+    - r
+    - r-spp
+
+test:
+  commands:
+    - run_spp  2>&1 | grep run_spp.R > /dev/null
+    - run_spp_nodups 2>&1 | grep run_spp.R > /dev/null
+
+about:
+  home: "https://code.google.com/archive/p/phantompeakqualtools"
+  license: MIT
+  summary: "Computes quick but highly informative enrichment and quality measures and fragment lengths for ChIP-seq/DNase-seq/FAIRE-seq/MNase-seq data."

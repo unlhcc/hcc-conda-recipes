@@ -1,0 +1,31 @@
+--- run_spp_nodups.R	2013-02-12 16:05:23.000000000 -0600
++++ run_spp_nodups.R.new	2017-05-09 15:19:11.474620867 -0500
+@@ -435,7 +435,10 @@
+ # ===================================
+ # Function will read a tagAlign or BAM file
+ # ===================================	
+-	if (grepl('(\\.bam)?.*(\\.tagAlign)',align.filename)) { # if tagalign file
++	# HOW IS THIS SUPPOSED TO VERIFY ITS A TAG ALIGN FILE?????
++	# HOWWWWWWWWWWWWWWW
++	#if (grepl('(\\.bam)?.*(\\.tagAlign)',align.filename)) { # if tagalign file
++	if (grepl('tagAlign',align.filename)) {
+ 		chip.data <- read.tagalign.tags(align.filename)
+ 		# get readlength info
+ 		tmpDataRows <- read.table(align.filename,nrows=500)
+@@ -849,10 +852,13 @@
+ 	
+ 	# Find peaks
+ 	cat('Finding peaks\n',file=stdout())
+-	if (!is.na(iparams$npeak)) {
+-		iparams$fdr <- 0.99
++	### BEGIN ADJUSTMENT ###
++	#if (!is.na(iparams$npeak)) {
++	if (is.na(iparams$npeak)) {
++		iparams$fdr <- 0.01
+ 	}
+-	narrow.peaks <- find.binding.positions(signal.data=chip.data,control.data=control.data,fdr=iparams$fdr,method=tag.lwcc,whs=crosscorr$whs,cluster=cluster.nodes)
++	### END ADJUSTMENT ###
++	narrow.peaks <- find.binding.positions(signal.data=chip.data,control.data=control.data,fdr=iparams$fdr,method=tag.lwcc,whs=crosscorr$whs,cluster=cluster.nodes, debug=TRUE)
+ 	if (!is.na(iparams$n.nodes)) {
+ 		stopCluster(cluster.nodes)
+ 	}

@@ -7,9 +7,12 @@ source:
   fn: hnigp8gw2353vgq95xj72yj4j26sy728.tgz
   url: https://unl.box.com/shared/static/hnigp8gw2353vgq95xj72yj4j26sy728.tgz
   md5: 597efbf543645b098c4e0573830b6b62
+  patches:
+    - installer_package_url.patch
+    - detect_platform.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [py3k]
   binary_relocation: False
 

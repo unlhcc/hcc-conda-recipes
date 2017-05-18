@@ -1,0 +1,27 @@
+package:
+  name: cnd
+  version: "1.3"
+
+source:
+  fn: cnD-1.3.tar.gz
+  url: ftp://ftp.sanger.ac.uk/pub4/resources/software/cnd/cnD-1.3.tar.gz
+  md5: e338dece67149299ce219489fc30a9e2
+  patches:
+     - perl_location.patch
+
+build:
+  number: 0
+
+requirements:
+  run:
+     - perl
+     - perl-set-intspan
+
+test:
+  commands:
+     - cnD --help 2>&1 | grep cnD
+
+about:
+  home: http://www.sanger.ac.uk/science/tools/cnd
+  license: GNU GPL
+  summary: cnD is a program to detect copy number variants from short read sequence data.

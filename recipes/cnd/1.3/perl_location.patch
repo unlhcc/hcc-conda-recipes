@@ -1,0 +1,64 @@
+--- bin/extractCNChanges.pl	2011-05-09 14:06:23.000000000 +0000
++++ bin/extractCNChanges.pl.new	2017-05-18 19:06:12.002317616 +0000
+@@ -1,11 +1,11 @@
+-#! /usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Takes in a metacall file and exports the gains/loss/complex coordinates
+ # Optionally correct for maq's bug that shifts all coordinates by 1kb
+ 
+ use strict;
+ use Getopt::Long;
+-use IntSpan;
++use Set::IntSpan;
+ 
+ my $correct_factor = 0;
+ my $window = 1000;
+@@ -80,6 +80,3 @@
+ 
+ 	return $c;
+ }
+-
+-
+-
+--- bin/extractCNFromVit.pl	2011-05-09 14:06:23.000000000 +0000
++++ bin/extractCNFromVit.pl.new	2017-05-18 19:06:05.935304512 +0000
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Takes in a metacall file and exports the gains/loss/complex coordinates
+ # Optionally correct for maq's bug that shifts all coordinates by 1kb
+@@ -96,6 +96,3 @@
+ 
+ 	return $c;
+ }
+-
+-
+-
+--- bin/metaCaller.pl	2011-05-09 14:06:23.000000000 +0000
++++ bin/metaCaller.pl.new	2017-05-18 19:06:31.121358916 +0000
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #
+ #
+ 
+@@ -117,4 +117,3 @@
+ 	# Output the record
+ 	print join("\t", ($chr,$start,$end,$outState)) . "\n";
+ }
+-
+--- bin/pileup2win.pl	2012-02-16 10:46:24.000000000 +0000
++++ bin/pileup2win.pl.new	2017-05-18 19:06:40.423379005 +0000
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use Getopt::Long;
+@@ -116,4 +116,3 @@
+ 	my($pos) = @_;
+ 	return floor(($pos - 1) / $win_size);
+ }
+-

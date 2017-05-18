@@ -1,0 +1,120 @@
+--- bin/coord2config.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/coord2config.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/filterAndMerge.pl	2012-08-08 08:40:17.000000000 +0000
++++ bin/filterAndMerge.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/gcCorrect.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/gcCorrect.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+--- bin/gcmedian.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/gcmedian.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/getSeqLines2.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/getSeqLines2.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl  -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl  -w
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/makePindelv2fastq.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/makePindelv2fastq.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+--- bin/mergeFinalCalls.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/mergeFinalCalls.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/parseBoundary.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/parseBoundary.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+--- bin/runAlignParse.pl	2012-08-08 09:15:50.000000000 +0000
++++ bin/runAlignParse.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+--- bin/runAssembly.pl	2012-08-08 09:13:49.000000000 +0000
++++ bin/runAssembly.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/runParser.pl	2012-07-31 11:05:29.000000000 +0000
++++ bin/runParser.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl 
++#!/opt/anaconda1anaconda2anaconda3/bin/perl 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/runSVcallers.pl	2012-08-08 09:11:00.000000000 +0000
++++ bin/runSVcallers.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl 
++#!/opt/anaconda1anaconda2anaconda3/bin/perl 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/SECluster.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/SECluster.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+--- bin/svAssemble.pl	2012-07-31 11:04:22.000000000 +0000
++++ bin/svAssemble.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>
+--- bin/tab2bed.pl	2012-08-08 11:11:11.000000000 +0000
++++ bin/tab2bed.pl.new	2017-05-04 21:25:19.463700204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Copyright (c) 2010, 2011, 2012 Genome Research Ltd.
+ #
+ # Author: Kim Wong <kw10@sanger.ac.uk>

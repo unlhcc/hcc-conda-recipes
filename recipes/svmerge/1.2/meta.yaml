@@ -1,0 +1,42 @@
+package:
+  name: svmerge
+  version: "1.2r37"
+
+source:
+  fn: SVMerge-1.2r37.tar.gz
+  url: https://sourceforge.net/projects/svmerge/files/Releases/SVMerge-1.2r37.tar.gz
+  md5: 18528e446ebac495f595a1ba50bdd112
+  patches:
+     - perl_path.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+     - perl
+     - perl-set-intspan
+     - pindel
+     - breakdancer
+     - exonerate
+     - cnd
+     - samtools
+     - bedtools
+  run:
+     - perl
+     - perl-set-intspan
+     - pindel
+     - breakdancer
+     - exonerate
+     - cnd
+     - samtools
+     - bedtools
+
+test:
+  commands:
+     - makeNewProject.sh 2>&1 | grep makeNewProject.sh > /dev/null
+
+about:
+  home: http://svmerge.sourceforge.net/
+  license: GNU General Public License (GPL)
+  summary: SVMerge uses a suite of software tools to detect structural variants (SVs) from mapped reads.

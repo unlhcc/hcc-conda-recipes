@@ -5,12 +5,12 @@ package:
 source:
   fn: pegasus-source-4.7.5dev.tar.gz
   url: http://download.pegasus.isi.edu/pegasus/4.7.5dev/pegasus-source-4.7.5dev.tar.gz
-  md5: 8ac5eb0a8969c677d2d5b64a065f1162
+  md5: 02730173150dd2e36d37aa83d2ea7f27
   patches:
     - conda_build_fixes.patch
 
 build:
-  number: 1
+  number: 2
   skip: True # [py3k]
 
 requirements:

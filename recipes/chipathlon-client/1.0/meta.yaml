@@ -1,0 +1,36 @@
+package:
+  name: chipathlon-client
+  version: "1.0"
+
+source:
+  git_url: https://git.unl.edu/hcc/chipathlon.git
+  git_rev: master
+
+build:
+  number: 0
+  skip: True # [py3k]
+
+requirements:
+  build:
+    - python
+    - pymongo
+    - pyyaml
+
+  run:
+    - python
+    - pymongo
+    - pyyaml
+    - bosco
+    - pegasus-wms
+
+test:
+  commands:
+    - chip-gen --help
+    - chip-create-run --help
+  imports:
+    - chipathlon
+
+about:
+  home: "https://git.unl.edu/hcc/chipathlon"
+  license: Apache-2.0
+  summary: "ChiPAthlon"

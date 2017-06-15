@@ -1,0 +1,36 @@
+package:
+  name: bosco
+  version: "8.6.3"
+
+# Since the HTCondor download requires a form (*sigh*), download from Box (*double sigh*).
+source:
+  fn: hnigp8gw2353vgq95xj72yj4j26sy728.tgz
+  url: https://unl.box.com/shared/static/i8jobloe2s2l3xgakfvl8ylj5sh16bfk.tgz
+  md5:  74e0186ba692d2f29f5d66ae6bf78a1d
+  patches:
+    - installer_package_url.patch
+    - detect_platform.patch
+
+build:
+  number: 0
+  skip: True # [py3k]
+  binary_relocation: False
+
+requirements:
+  build:
+    - python
+    - perl
+
+  run:
+    - python
+    - perl
+
+test:
+  commands:
+    - condor_version
+
+about:
+  home: "https://research.cs.wisc.edu/htcondor"
+  license: Apache-2.0
+  license_file: LICENSE-2.0.txt
+  summary: "BOSCO makes it easy for you to access High Throughput Computing resources on your campus or the Cloud from your desktop."

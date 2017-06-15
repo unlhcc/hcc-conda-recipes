@@ -1,0 +1,48 @@
+--- bin/bosco_cluster	2017-05-08 22:49:14.000000000 +0000
++++ bin/bosco_cluster.new	2017-06-14 22:06:24.086856852 +0000
+@@ -194,7 +194,7 @@
+         ssh $remote_host "mkdir -p $start_dir" 
+     fi
+     scp $local_script $remote_host:$start_dir/bosco_run
+-    cmd_out=`ssh -o ControlMaster=auto -o "ControlPath=$ssh_control_path" $remote_host "cd $start_dir; chmod +x bosco_run; ./bosco_run $@"  2>/dev/null`
++    cmd_out=`ssh -o ControlMaster=auto -o "ControlPath=$ssh_control_path" $remote_host "cd $start_dir; chmod +x bosco_run; /bin/python ./bosco_run $@"  2>/dev/null`
+     #cmd_out=`ssh $remote_host "cd $start_dir; chmod +x bosco_run; ./bosco_run $4 $5 $6"`
+     cmd_ec=$?
+     if [ $cmd_ec -eq 0 ]; then
+@@ -252,13 +252,13 @@
+     findplatform_path=$2
+     # if .. else .. only from Python 2.5, no RH5 support
+     #ssh uc3-sub /usr/bin/python -c \"import platform\; mydist = platform.dist\(\)\; print \'DEB6\' if mydist[0]==\'debian\' and mydist[1].startswith\(\'6.\'\) else \(\'RH5\' if mydist[1].startswith\(\'5.\'\) else \'RH6\' if mydist[1].startswith\(\'6.\'\) else \'UNKNOWN\'\) if mydist[0]==\'redhat\'  else \'UNKNOWN\'\"
+-    cmd_out=`ssh $remote_host "python -c \"import sys; print sys.platform\"" 2>/dev/null`
++    cmd_out=`ssh $remote_host "/bin/python -c \"import sys; print sys.platform\"" 2>/dev/null`
+     if [ $? -eq 0 -a "x$cmd_out" == "xdarwin" ]; then
+         # assume all Mac OK
+         echo "`$findplatform_path --url --force MAC`"
+         return 0
+     fi
+-    cmd_out=`ssh $remote_host "python -c \"import platform; mydist = platform.dist(); print '%s%s' % (mydist[0], mydist[1])\"" 2>/dev/null`
++    cmd_out=`ssh $remote_host "/bin/python -c \"import platform; mydist = platform.dist(); print '%s%s' % (mydist[0], mydist[1])\"" 2>/dev/null`
+     if [ $? -eq 0 ]; then
+         # check for linux
+         case "$cmd_out" in 
+@@ -266,7 +266,11 @@
+                        ;;
+             redhat6*) echo "`$findplatform_path --url --force RH6`"
+                        ;;
++            centos6*) echo "`$findplatform_path --url --force RH6`"
++                       ;;		     
+             redhat7*) echo "`$findplatform_path --url --force RH7`"
++                       ;;		       
++   	    centos7*) echo "`$findplatform_path --url --force RH7`"
+                        ;;
+             debian6*) echo "`$findplatform_path --url --force DEB6`"
+                        ;;
+@@ -921,7 +925,7 @@
+ # A download to the remote system would be faster but we cannot count on ports different form the SSH one
+ # OS X mktemp requires a template
+ tmp_dir=`mktemp -d /tmp/tmp.XXXXXXXX`
+-show_progress "Downloading for $remote_host" curl -s -o $tmp_dir/bosco-download.tar.gz $url 
++show_progress "Downloading for $remote_host" curl -L -s -o $tmp_dir/bosco-download.tar.gz $url 
+ show_progress "Unpacking" tar xzf $tmp_dir/bosco-download.tar.gz -C $tmp_dir
+ archive_dir=`ls -d $tmp_dir/condor*`
+ if [ $? -ne 0 ]; then

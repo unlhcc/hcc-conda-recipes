@@ -30,7 +30,7 @@ then
 fi
 
 # When building master or bulk, upload packages to anaconda and quay.io.
-if [[ ( $CI_BUILD_REF_NAME == "master"  ]]
+if [[  $CI_BUILD_REF_NAME == "master"  ]]
 then
         UPLOAD_ARG="--anaconda-upload"
 else

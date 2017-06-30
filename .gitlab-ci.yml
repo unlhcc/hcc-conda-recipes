@@ -1,6 +1,6 @@
 variables:
   BIOCONDA_UTILS_TAG: "gitlabci-master"
-  BIOCONDA_UTILS_ARGS: "--loglevel=info"
+  BIOCONDA_UTILS_BUILD_ARGS: "--loglevel=info"
   MINICONDA_VER: "4.2.12"
   SUBDAGS: "1"
   SUBDAG: "0"

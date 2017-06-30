@@ -108,14 +108,14 @@ if args.set_channel_order:
 if args.install_requirements:
     sp.run(
         [
-            'conda', 'install', '-y', '--file',
+            'conda', 'install', '-q', '-y', '--file',
             'https://raw.githubusercontent.com/acaprez/bioconda-utils/'
             '{0}/bioconda_utils/bioconda_utils-requirements.txt'.format(env['BIOCONDA_UTILS_TAG'])
         ], check=True)
 
     sp.run(
         [
-            'pip', 'install',
+            'pip', 'install', '-q',
             'git+https://github.com/acaprez/bioconda-utils.git@{0}'.format(env['BIOCONDA_UTILS_TAG'])
         ],
         check=True)

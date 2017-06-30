@@ -27,8 +27,8 @@ curl -O https://repo.continuum.io/miniconda/Miniconda3-$MINICONDA_VER-$tag-x86_6
 sudo bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p /anaconda
 export PATH=/anaconda/bin:$PATH
 
-$SCRIPT_DIR/../simulate-travis.py --set-channel-order
-$SCRIPT_DIR/../simulate-travis.py --install-requirements
+$SCRIPT_DIR/../simulate-gitlabci.py --set-channel-order
+$SCRIPT_DIR/../simulate-gitlabci.py --install-requirements
 
 conda index /anaconda/conda-bld/linux-64 /anaconda/conda-bld/osx-64
 conda config --add channels file://anaconda/conda-bld

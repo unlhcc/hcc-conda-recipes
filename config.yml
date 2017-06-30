@@ -8,7 +8,6 @@ upload_channel: "hcc"
 channels:
     - hcc
     - bioconda
-    - r
-    - defaults
     - conda-forge
+    - defaults
 docker_client_version: '1.20'

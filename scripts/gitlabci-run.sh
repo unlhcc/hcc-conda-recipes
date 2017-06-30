@@ -1,31 +1,54 @@
 #!/bin/bash
 set -euo pipefail
+# Set some defaults
+set +u
+[[ -z $DOCKER_ARG ]] && DOCKER_ARG=""
+[[ -z $GITLAB_CI ]] && GITLAB_CI="false"
+[[ -z $BIOCONDA_UTILS_LINT_ARGS ]] && BIOCONDA_UTILS_LINT_ARGS=""
+[[ -z $RANGE_ARG ]] && RANGE_ARG="--git-range master HEAD"
+[[ -z $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK  ]] && DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK="false"
+set -u
+
+SKIP_LINTING=true
+
+# determine recipes to build. If building locally, build anything that changed
+# since master. If on travis, only build the commit range included in the push
+# or the pull request.
+if [[ $GITLAB_CI == "true" ]]
+then
+    RANGE="master HEAD"
+    RANGE_ARG="--git-range $RANGE"
+fi
 
 export PATH=/anaconda/bin:$PATH
 
-#if [[ $TRAVIS_BRANCH = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]
-#then
-#   echo "Create Container push commands file: ${TRAVIS_BUILD_DIR}/container_push_commands.sh"
-#   export CONTAINER_PUSH_COMMANDS_PATH=${TRAVIS_BUILD_DIR}/container_push_commands.sh
-#   touch $CONTAINER_PUSH_COMMANDS_PATH
-#fi
-
-if [[ $GITLAB_CI = "true" ]]
+# On travis we always run on docker for linux. This may not always be the case
+# for local testing.
+if [[ `uname` == Linux && $GITLAB_CI == "true" ]]
 then
-    USE_DOCKER="--docker"
-else
-    USE_DOCKER=""
+    DOCKER_ARG="--docker"
 fi
 
-set -x; bioconda-utils build recipes config.yml $USE_DOCKER $BIOCONDA_UTILS_ARGS; set +x;
+# When building master or bulk, upload packages to anaconda and quay.io.
+if [[ ( $CI_BUILD_REF_NAME == "master"  ]]
+then
+        UPLOAD_ARG="--anaconda-upload"
+else
+    UPLOAD_ARG=""
+    LINT_COMMENT_ARG=""
+    if [[ $SKIP_LINTING == "false"  ]]
+    then
+        set -x; bioconda-utils lint recipes config.yml $RANGE_ARG $BIOCONDA_UTILS_LINT_ARGS $LINT_COMMENT_ARG; set +x
+    fi
+fi
 
 
-#if [[ $BUILD_OS_NAME = "linux" ]]
-#then
-#    if [[ $TRAVIS_BRANCH = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]
-#    then
-#        echo "Push containers to quay.io"
-#        cat $CONTAINER_PUSH_COMMANDS_PATH
-#        bash $CONTAINER_PUSH_COMMANDS_PATH
-#    fi
-#fi
+if [[ $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK == "true" ]]
+then
+    echo
+    echo "DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK is true."
+    echo "A comprehensive check will be performed to see what needs to be built."
+    RANGE_ARG=""
+fi
+set -x; bioconda-utils build recipes config.yml $UPLOAD_ARG $DOCKER_ARG $BIOCONDA_UTILS_BUILD_ARGS $RANGE_ARG; set +x;
+

@@ -12,6 +12,7 @@ source:
 build:
   number: 2
   skip: True # [py3k]
+  skip: True # [osx]
 
 requirements:
   build:

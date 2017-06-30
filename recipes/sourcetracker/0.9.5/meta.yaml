@@ -7,6 +7,8 @@ source:
   url: http://downloads.sourceforge.net/project/sourcetracker/sourcetracker-0.9.5.tar.gz
   md5: 7f617af7a8063d5f57e4f9f9ad407814
 
+build:
+  skip: True # [osx]
 
 about:
   home: https://github.com/danknights/sourcetracker/releases

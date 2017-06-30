@@ -7,6 +7,8 @@ source:
   url: https://ea-utils.googlecode.com/files/ea-utils.1.1.2-537.tar.gz
   sha1: 688bddb1891ed186be0070d0d581816a35f7eb4e
 
+build:
+    skip: True # [osx]
 
 requirements:
   build:

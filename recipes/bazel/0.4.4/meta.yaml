@@ -12,6 +12,7 @@ source:
 build:
   ignore_prefix_files:
     - bin/bazel
+  skip: True # [osx]
 
 requirements:
   build:

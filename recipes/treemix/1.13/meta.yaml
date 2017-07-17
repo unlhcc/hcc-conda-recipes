@@ -1,0 +1,34 @@
+package:
+  name: treemix
+  version: "1.13"
+
+source:
+  fn: treemix-1.13.tar.gz
+  url: https://bitbucket.org/nygcresearch/treemix/downloads/treemix-1.13.tar.gz
+  md5: 2a744026d3fd567d76104dd15e6a2887
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - cmake
+    - gcc
+    - blas
+    - boost
+    - gsl
+  run:
+    - libgcc
+    - blas
+    - boost
+    - gsl
+
+test:
+  commands:
+    - treemix -h | grep TreeMix > /dev/null
+
+about:
+  home: https://bitbucket.org/nygcresearch/treemix/wiki/Home
+  license: GNU GPL 3.0
+  summary: TreeMix is a method for inferring the patterns of population splits and mixtures in the history of a set of populations.

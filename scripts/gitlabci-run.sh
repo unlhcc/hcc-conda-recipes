@@ -50,5 +50,5 @@ then
     echo "A comprehensive check will be performed to see what needs to be built."
     RANGE_ARG=""
 fi
-set -x; bioconda-utils build recipes config.yml $UPLOAD_ARG $DOCKER_ARG $BIOCONDA_UTILS_BUILD_ARGS $RANGE_ARG; set +x;
+set -x; bioconda-utils build recipes config.yml $UPLOAD_ARG $DOCKER_ARG $BIOCONDA_UTILS_BUILD_ARGS ; set +x;
 

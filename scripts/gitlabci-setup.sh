@@ -14,11 +14,17 @@ done
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 dockerd -s vfs&
-tag=Linux
+sleep 5
+if [[ `uname` == Linux ]]
+then
+    tag=Linux
+else
+    tag=MacOSX
+fi
+
 # install conda
-curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-$tag-x86_64.sh
-sudo bash Miniconda3-latest-$tag-x86_64.sh -b -p /anaconda
-#sudo chown -R $USER /anaconda
+curl -O https://repo.continuum.io/miniconda/Miniconda3-$MINICONDA_VER-$tag-x86_64.sh
+sudo bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p /anaconda
 export PATH=/anaconda/bin:$PATH
 
 $SCRIPT_DIR/../simulate-gitlabci.py --set-channel-order

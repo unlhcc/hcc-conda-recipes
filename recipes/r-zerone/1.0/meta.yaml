@@ -5,7 +5,7 @@ package:
 source:
   fn: master.zip
   url: https://github.com/nanakiksc/zerone/archive/master.zip
-  md5: 0a56ccda6fd39c1dc4cf181cf376be41
+  md5: a308de146964d1b06ae74b6d9a1297dc
 
 build:
   number: 0

@@ -24,7 +24,7 @@ requirements:
     - r-rcpp
     - r-diagrammer >=0.9.0
     - r-data.table
-    - r-roxygen2
+    - r-roxygen2 ==5.0.1
   run:
     - r
     - libgcc

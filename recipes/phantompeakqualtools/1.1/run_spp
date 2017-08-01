@@ -4,4 +4,4 @@
 # to make r_spp happy.
 args=`echo $@ | sed -e 's/= /=/g'`
 
-Rscript /opt/anaconda1anaconda2anaconda3/bin/run_spp.R $args
+/opt/anaconda1anaconda2anaconda3/bin/Rscript /opt/anaconda1anaconda2anaconda3/bin/run_spp.R $args

@@ -19,11 +19,12 @@ build:
 requirements:
   build:
     - r >=1.4
-    - gcc
+    - gcc # [linux]
+    - llvm # [osx]
 
   run:
     - r >=1.4
-    - libgcc
+    - libgcc # [linux]
 
 test:
   commands:

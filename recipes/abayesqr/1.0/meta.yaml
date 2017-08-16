@@ -12,10 +12,11 @@ build:
 
 requirements:
   build:
-    - gcc
+    - gcc # [linux]
+    - llvm # [osx]
 
   run:
-    - libgcc
+    - libgcc # [linux]
 
 test:
   commands:

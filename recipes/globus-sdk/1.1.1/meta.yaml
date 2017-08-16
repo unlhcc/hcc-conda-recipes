@@ -1,0 +1,38 @@
+package:
+  name: globus-sdk
+  version: "1.1.1"
+
+source:
+  fn: globus-sdk-1.1.1.tar.gz
+  url: https://pypi.python.org/packages/55/fc/aea6cfa6dd529232279cb994cb266d7bad654d379af0af4e018b45d98111/globus-sdk-1.1.1.tar.gz
+  md5: 56a4a9c5b60a232fa8daa1310a32ab87
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - requests >=2.0.0,<3.0.0
+    - six >=1.10.0,<2.0.0
+
+  run:
+    - python
+    - requests >=2.0.0,<3.0.0
+    - six >=1.10.0,<2.0.0
+
+test:
+  imports:
+    - globus_sdk
+    - globus_sdk.auth
+    - globus_sdk.auth.client_types
+    - globus_sdk.authorizers
+    - globus_sdk.transfer
+    - globus_sdk.transfer.response
+
+about:
+  home: https://github.com/globus/globus-sdk-python
+  license: Apache Software License
+  summary: 'Globus SDK for Python'
+  license_family: APACHE

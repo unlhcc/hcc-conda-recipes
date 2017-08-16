@@ -19,9 +19,11 @@ build:
 requirements:
   build:
     - r >=1.4
+    - gcc
 
   run:
     - r >=1.4
+    - libgcc
 
 test:
   commands:

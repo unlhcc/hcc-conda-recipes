@@ -1,0 +1,43 @@
+package:
+  name: r-bindrcpp
+  version: "0.2"
+
+source:
+  fn: bindrcpp_0.2.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/bindrcpp_0.2.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/bindrcpp/bindrcpp_0.2.tar.gz
+
+build:
+  number: 0
+  skip: True # [osx]
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r >=3.0
+    - gcc # [linux]
+    - llvm # [osx]
+    - r-rcpp
+    - r-plogr
+    - r-bindr
+
+  run:
+    - r >=3.0
+    - libgcc # [linux]
+    - r-rcpp
+    - r-plogr
+    - r-bindr
+
+test:
+  commands:
+    - $R -e "library('bindrcpp')"
+
+about:
+  home: https://cran.r-project.org/web/packages/bindrcpp/index.html
+  license: MIT
+  summary: Provides an easy way to fill an environment with active bindings that call a C++ function.
+  license_family: MIT

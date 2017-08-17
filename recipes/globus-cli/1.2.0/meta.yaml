@@ -13,7 +13,7 @@ build:
     - globus = globus_cli:main
 
   number: 0
-  skip: True # [py34]
+  skip: True # [py34 or osx]
 
 requirements:
   build:

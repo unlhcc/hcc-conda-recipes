@@ -1,0 +1,63 @@
+package:
+  name: globus-cli
+  version: "1.2.0"
+
+source:
+  fn: globus-cli-1.2.0.tar.gz
+  url: https://pypi.python.org/packages/4d/05/7827f8ef300ddd5f3aa3ac35b6c4617211a1466946c1014fedb41fc0689e/globus-cli-1.2.0.tar.gz
+  md5: f41a9f8cbbbb6aa95c34682dfefca86d
+
+build:
+  preserve_egg_dir: True
+  entry_points:
+    - globus = globus_cli:main
+
+  number: 0
+  skip: True # [py34 or osx]
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - globus-sdk ==1.1.1
+    - click >=6.6,<7.0
+    - jmespath ==0.9.2
+    - configobj >=5.0.6,<6.0.0
+    - requests >=2.0.0,<3.0.0
+    - six >=1.10.0,<2.0.0
+
+  run:
+    - python
+    - globus-sdk ==1.1.1
+    - click >=6.6,<7.0
+    - jmespath ==0.9.2
+    - configobj >=5.0.6,<6.0.0
+    - requests >=2.0.0,<3.0.0
+    - six >=1.10.0,<2.0.0
+
+test:
+  # Python imports
+  imports:
+    - globus_cli
+    - globus_cli.commands
+    - globus_cli.commands.bookmark
+    - globus_cli.commands.config
+    - globus_cli.commands.endpoint
+    - globus_cli.commands.endpoint.permission
+    - globus_cli.commands.endpoint.role
+    - globus_cli.commands.endpoint.server
+    - globus_cli.commands.task
+    - globus_cli.helpers
+    - globus_cli.parsing
+    - globus_cli.safeio
+    - globus_cli.services
+
+  commands:
+    - export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    - globus --help
+
+about:
+  home: https://github.com/globus/globus-cli
+  license: Apache Software License
+  summary: 'Globus CLI'
+  license_family: APACHE

@@ -1,0 +1,37 @@
+package:
+  name: r-pkgconfig
+  version: "2.0.1"
+
+source:
+  fn: pkgconfig_2.0.1.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/pkgconfig_2.0.1.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/pkgconfig/pkgconfig_2.0.1.tar.gz
+
+build:
+  number: 0
+  skip: True # [osx]
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r >=3.0
+    - gcc # [linux]
+    - llvm # [osx]
+
+  run:
+    - r >=3.0
+    - libgcc # [linux]
+
+test:
+  commands:
+    - $R -e "library('pkgconfig')"
+
+about:
+  home: https://cran.r-project.org/web/packages/pkgconfig/index.html
+  license: Custom OSS
+  summary: Set configuration options on a per-package basis.
+  license_family: Other

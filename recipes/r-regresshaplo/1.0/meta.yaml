@@ -1,0 +1,46 @@
+package:
+  name: r-regresshaplo
+  version: "1.0"
+
+source:
+  git_url: https://github.com/SLeviyang/RegressHaplo.git
+  git_rev: 82add3c1bea6b10334fbd4277ead8e248e3bc818
+
+build:
+  number: 0
+  skip: True # [osx]
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r
+    - r-devtools
+    - r-igraph
+    - r-plyr
+    - r-dplyr
+    - r-rmutil
+    - bioconductor-rsamtools
+    - bioconductor-biostrings
+    - bioconductor-genomicalignments
+  run:
+    - r
+    - r-devtools
+    - r-igraph
+    - r-plyr
+    - r-dplyr
+    - r-rmutil
+    - bioconductor-rsamtools
+    - bioconductor-biostrings
+    - bioconductor-genomicalignments
+
+test:
+  commands:
+    - $R -e "library('RegressHaplo')"
+
+about:
+  home: https://github.com/SLeviyang/RegressHaplo
+  license: Custom OSS
+  summary: This package reconstructs haplotypes from a BAM file using a penalized regression approach.

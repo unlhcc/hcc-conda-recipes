@@ -1,0 +1,40 @@
+package:
+  name: beta
+  version: "1.0.7"
+
+source:
+  fn: BETA_1.0.7.zip
+  url: http://cistrome.dfci.harvard.edu/BETA/src/BETA_1.0.7.zip
+  md5: 9ca1af9c3fd05a528c7399bedc62f724
+  patches:
+     - script_location.patch
+
+build:
+  number: 0
+  skip: True # [osx or py3k]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - llvm # [osx]
+    - python
+    - r
+    - numpy
+    - argparse
+
+  run:
+    - libgcc # [linux]
+    - python
+    - r
+    - numpy
+    - argparse
+
+test:
+  commands:
+    - BETA -h
+    - misp -h 2>&1 | grep misp > /dev/null
+
+about:
+  home: http://cistrome.dfci.harvard.edu/BETA/
+  license: Custom OSS
+  summary: "Binding and Expression Target Analysis (BETA) is a software package that integrates ChIP-seq of transcription factors or chromatin regulators with differential gene expression data to infer direct target genes."

@@ -11,8 +11,7 @@ source:
 
 build:
   number: 0
-  skip: True # [osx]
-  skip: True # [py3k]
+  skip: True # [osx or py3k]
 
 requirements:
   build:
@@ -20,23 +19,20 @@ requirements:
     - llvm # [osx]
     - python
     - r
-    - setuptools
-    - argparse
     - numpy
-    - git
+    - argparse
 
   run:
     - libgcc # [linux]
     - python
     - r
-    - setuptools
-    - argparse
     - numpy
-    - git
+    - argparse
 
 test:
   commands:
     - BETA -h
+    - misp -h 2>&1 | grep misp > /dev/null
 
 about:
   home: http://cistrome.dfci.harvard.edu/BETA/

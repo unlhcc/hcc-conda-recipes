@@ -36,7 +36,7 @@ requirements:
 
 test:
   commands:
-    - BETA
+    - BETA -h
 
 about:
   home: http://cistrome.dfci.harvard.edu/BETA/

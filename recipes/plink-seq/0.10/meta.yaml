@@ -1,0 +1,37 @@
+package:
+  name: plinkseq
+  version: "0.10"
+
+source:
+  fn: plinkseq-x86_64-latest.zip
+  url: http://psychgen.u.hpc.mssm.edu/plinkseq_downloads/plinkseq-x86_64-latest.zip
+  md5: 18a0466d5376f21c79e83873acb2da7e
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - gcc
+    - zlib
+
+  run:
+    - libgcc
+    - zlib
+
+test:
+  commands:
+    - pseq help
+    #- smp 2>&1 | grep smp
+    #- pbrowse 2>&1 | grep pbrowse
+    #- mongoose 2>&1 | grep mongoose
+    #- mm 2>&1 | grep mm
+    #- gcol 2>&1 | grep gcol
+    #- behead 2>&1 | grep behead
+    #- browser 2>&1 | grep browser
+
+about:
+  home: https://atgu.mgh.harvard.edu/plinkseq/
+  license: Custom OSS
+  summary: "PLINK/SEQ is an open-source C/C++ library for working with human genetic variation data."

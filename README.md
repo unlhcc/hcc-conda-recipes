@@ -25,6 +25,11 @@ to
 After editing the file, reboot your VM for the change to take effect.  
 The `getenforce` command should return `Disabled` then.
 
+If you are using Fedora or Centos 7, add the `/bin` directory to the `PATH`
+variable in `~/.bashrc`   
+`export PATH=$PATH:/bin`
+and then type `source ~/.bashrc`.
+
 #### Install Docker
 
 An EL6-based Docker container is used for the builds.  In order to

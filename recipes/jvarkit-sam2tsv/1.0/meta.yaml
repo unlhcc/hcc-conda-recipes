@@ -16,7 +16,7 @@ requirements:
     - cmake
    
   run:
-    - openjdk
+    - openjdk >=8
 
 test:
   commands:

@@ -1,0 +1,28 @@
+package:
+  name: age
+  version: '2016.01.18.1'
+
+source:
+  fn: age-1c3efae94.tar.gz
+  url: https://github.com/abyzovlab/AGE/archive/1c3efae94.tar.gz
+  md5: f15fd0f21ca96cb4c779f78e8760b700
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - llvm # [osx]
+  run:
+    - libgcc # [linux]
+
+test:
+  commands:
+    - age_align
+
+about:
+  home: https://github.com/abyzovlab/AGE
+  license: CCPL (Creative Commons Public License)
+  summary: "a tools that implements an algorithm for optimal alignment of sequences with structural variants (SVs)"

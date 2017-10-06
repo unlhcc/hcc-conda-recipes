@@ -1,0 +1,45 @@
+package:
+  name: lftp
+  version: "4.8.2"
+
+source:
+  fn: lftp-4.8.2.tar.gz
+  url: http://lftp.yar.ru/ftp/lftp-4.8.2.tar.gz
+  md5: ee621e90c26f684fd71317b45868d96e
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - llvm # [osx]
+    - pkgconfig
+    - readline
+    - ncurses
+    - zlib
+    - openssl
+    - bison
+    - expat
+    - libiconv
+
+  run:
+    - libgcc # [linux]
+    - readline
+    - ncurses
+    - zlib
+    - openssl
+    - expat
+    - libiconv
+
+test:
+  commands:
+    - lftp --help
+
+about:
+  home: http://lftp.yar.ru
+  license: GPLv3
+  license_file: COPYING
+  summary: 'LFTP is a sophisticated file transfer program supporting a number of network protocols (ftp, http, sftp, fish, torrent).'
+  license_family: BSD

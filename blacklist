@@ -1,4 +1,3 @@
 # Blacklist
-recipes/tensorflow
 recipes/tensorflow-cpucompat
 recipes/tensorflow-fma

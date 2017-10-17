@@ -1,0 +1,37 @@
+package:
+    name: dm-sonnet
+    version: 1.13
+
+source:
+    fn: v1.13.tar.gz
+    url: https://github.com/deepmind/sonnet/archive/v1.13.tar.gz
+    md5: ac45047cf1cf04eb46bbb18903d3d087
+
+build:
+    number: 0
+    skip: True # [osx]
+
+requirements:
+    build:
+        - gcc # [linux]
+        - llvm # [osx]
+        - python
+        - wheel
+        - tensorflow >=1.2
+        - bazel >=0.4.5
+
+    run:
+        - libgcc # [linux]
+        - python
+        - tensorflow >=1.2
+        - six
+
+test:
+    imports:
+        - sonnet
+
+about:
+    home: https://deepmind.github.io/sonnet
+    license: Apache 2.0
+    license_file: LICENSE
+    summary: Sonnet is a library built on top of TensorFlow for building complex neural networks.

@@ -1,0 +1,36 @@
+{% set version = "4.3.2" %}
+
+package:
+  name: gmp
+  version: {{ version }}
+
+source:
+  fn: gmp-{{ version }}.tar.bz2
+  url: https://ftp.gnu.org/gnu/gmp/gmp-{{ version }}.tar.bz2
+  sha256: 936162c0312886c21581002b79932829aa048cfaf9937c6265aeaa14f1cd1775
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - llvm # [osx]
+    - m4
+
+  run:
+    - libgcc # [linux]
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libgmp.dylib    # [osx]
+    - test -f ${PREFIX}/lib/libgmp.so.3       # [linux]
+    - test -f ${PREFIX}/lib/libgmpxx.dylib  # [osx]
+    - test -f ${PREFIX}/lib/libgmpxx.so.4.1.2     # [linux]
+
+about:
+  home: http://gmplib.org/
+  license: GPL 2 and LGPL 3
+  license_file: COPYING
+  summary: The GNU multiprecision library.

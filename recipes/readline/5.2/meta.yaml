@@ -1,0 +1,56 @@
+{% set version = "5.2" %}
+
+package:
+  name: readline
+  version: {{ version }}
+
+source:
+  url: ftp://ftp.gnu.org/gnu/readline/readline-{{ version }}.tar.gz
+  fn: readline-{{ version }}.tar.gz
+  sha256: 12e88d96aee2cd1192500356f0535540db499282ca7f76339fb4228c31249f45
+  patches:
+    - patches/readline52-001
+    - patches/readline52-002
+    - patches/readline52-003
+    - patches/readline52-004
+    - patches/readline52-005
+    - patches/readline52-006
+    - patches/readline52-007
+    - patches/readline52-008
+    - patches/readline52-009
+    - patches/readline52-010
+    - patches/readline52-011
+    - patches/readline52-012
+    - patches/readline52-013
+    - patches/readline52-014
+
+build:
+  skip: True  # [osx]
+  number: 0
+
+requirements:
+  build:
+    - gcc # [linux]
+    - gmp 6.1*
+    - llvm # [osx]
+    - ncurses 5.9*
+
+  run:
+    - libgcc # [linux]
+
+test:
+  commands:
+  {% set readline_libs = [
+    'libreadline',
+    'libhistory'
+  ] %}
+  {% for lib in readline_libs %}
+    - test -f ${PREFIX}/lib/{{ lib }}.a
+    - test -f ${PREFIX}/lib/{{ lib }}.so      # [linux]
+    - test -f ${PREFIX}/lib/{{ lib }}.dylib   # [osx]
+  {% endfor %}
+
+about:
+  home: https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+  license: GPL3
+  summary: library for editing command lines as they are typed in

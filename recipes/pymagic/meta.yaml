@@ -17,8 +17,6 @@ requirements:
   build:
     - python
     - r
-    - numpy
-    - pandas
     - scipy
     - matplotlib
     - seaborn
@@ -29,8 +27,6 @@ requirements:
   run:
     - python
     - r
-    - numpy
-    - pandas
     - scipy
     - matplotlib
     - seaborn

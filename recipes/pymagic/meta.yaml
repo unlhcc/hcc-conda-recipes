@@ -1,0 +1,50 @@
+package:
+  name: magic
+  version: '0.1'
+
+source:
+  fn: 0.1.tar.gz
+  url: https://github.com/pkathail/magic/archive/0.1.tar.gz
+  md5: a4cc4f571f4c4c682b852b4d739d2563
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  skip: True # [py27]
+
+requirements:
+  build:
+    - python
+    - r
+    - numpy
+    - pandas
+    - scipy
+    - matplotlib
+    - seaborn
+    - scikit-learn
+    - hdf5
+    - fcsparser
+
+  run:
+    - python
+    - r
+    - numpy
+    - pandas
+    - scipy
+    - matplotlib
+    - seaborn
+    - scikit-learn
+    - hdf5
+    - fcsparser
+
+test:
+  imports:
+      - magic
+  commands:
+      - MAGIC.py -h
+
+about:
+  home: https://github.com/pkathail/magic
+  license: GPL-2.0
+  summary: 'MAGIC: A diffusion-based imputation method reveals gene-gene interactions in single-cell RNA-sequencing data'

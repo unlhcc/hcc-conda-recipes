@@ -1,0 +1,10 @@
+--- settings.in	2017-02-08 01:56:17.000000000 +0000
++++ settings.in.new	2017-12-12 23:38:34.828197293 +0000
+@@ -1,6 +1,6 @@
+ [("GCC extra via C opts", "@GccExtraViaCOpts@"),
+  ("C compiler command", "@SettingsCCompilerCommand@"),
+- ("C compiler flags", "@SettingsCCompilerFlags@"),
++ ("C compiler flags", "@SettingsCCompilerFlags@ -L/opt/anaconda1anaconda2anaconda3/lib"),
+  ("C compiler link flags", "@SettingsCCompilerLinkFlags@"),
+  ("C compiler supports -no-pie", "@SettingsCCompilerSupportsNoPie@"),
+  ("Haskell CPP command","@SettingsHaskellCPPCommand@"),

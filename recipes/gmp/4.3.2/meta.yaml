@@ -10,13 +10,11 @@ source:
   sha256: 936162c0312886c21581002b79932829aa048cfaf9937c6265aeaa14f1cd1775
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
 requirements:
   build:
-    - gcc # [linux]
-    - llvm # [osx]
     - m4
 
   run:
@@ -24,6 +22,7 @@ requirements:
 
 test:
   commands:
+    - test -f ${PREFIX}/lib/libgmp.so      # [linux]
     - test -f ${PREFIX}/lib/libgmp.dylib    # [osx]
     - test -f ${PREFIX}/lib/libgmp.so.3       # [linux]
     - test -f ${PREFIX}/lib/libgmpxx.dylib  # [osx]

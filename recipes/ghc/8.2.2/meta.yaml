@@ -24,6 +24,7 @@ requirements:
     - gmp 4.3*
     - readline 5.2*
     - ncurses 5.9*
+    - perl
 
 test:
   commands:

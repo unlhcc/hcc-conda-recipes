@@ -1,0 +1,32 @@
+{% set version = "1.5.1" %}
+{% set unixsha256 = "e6f84f559aec22050acb459dc7736542454982cb90210ac97e64207a2c682979" %}
+
+package:
+  name: stack
+  version: {{ version }}
+
+source:
+  fn: stack-{{ version }}-linux-x86_64-gmp4.tar.gz  # [unix]
+  url: https://github.com/commercialhaskell/stack/releases/download/v{{ version }}/stack-{{ version }}-linux-x86_64-gmp4.tar.gz  # [unix]
+  sha256: {{ unixsha256 }}  # [unix]
+
+build:
+  number: 0
+  skip: True  # [osx] 
+
+requirements:
+  build:
+    - gmp 4.*
+  run:
+    - gmp 4.*
+
+test:
+  commands:
+    - stack --help
+
+about:
+  home: www.haskellstack.org
+  license: BSD3-like
+  summary: 'Stack is a cross-platform program for developing Haskell projects.'
+  doc_url: https://docs.haskellstack.org/en/stable/README/
+  dev_url: https://github.com/commercialhaskell/stack

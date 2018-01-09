@@ -9,6 +9,7 @@ set +u
 [[ -z $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK  ]] && DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK="false"
 set -u
 
+export HOST_USER_ID=`id -u`
 SKIP_LINTING=true
 
 # determine recipes to build. If building locally, build anything that changed

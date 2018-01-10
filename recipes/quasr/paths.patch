@@ -1,0 +1,212 @@
+--- QUASR-master/quality_control.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/quality_control.py.new	2018-01-09 18:59:49.307245436 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''This script takes in a FASTQ file, and for each sequence calculates the median quality
+ score. If this is lower than a user-specified cutoff, it trims from the 3' end until either
+@@ -24,7 +24,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, getopt
+-sys.path.append('/Users/sw10/Dropbox/Sanger/QUASR/QUASR_v6.09/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	import qc, qa
+ except ImportError:
+@@ -139,4 +139,4 @@
+ 	
+ 	if paired is True:
+ 		graphfile_r = outprefix + '.r.jpg'
+-		qa.main(outfile_r, graphfile_r, r_path, ascii_offset, end_length)
+\ No newline at end of file
++		qa.main(outfile_r, graphfile_r, r_path, ascii_offset, end_length)
+--- QUASR-master/readset_parser.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/readset_parser.py.new	2018-01-09 19:00:46.474714010 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''This script will perform the following processing steps on the data:
+ 1) Convert SFF to FASTQ
+@@ -25,7 +25,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, getopt
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR6/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	import sff_to_fastq, qa, split_mids_by_header, split_mids_by_sequence, fastq_primer_remover
+ except ImportError:
+@@ -257,4 +257,4 @@
+ 			graphfile = outprefix + '.trim.jpg'
+ 		else:
+ 			graphfile = outprefix + '.jpg'
+-		qa.main(infile, graphfile, r_path, ascii_offset, end_length)
+\ No newline at end of file
++		qa.main(infile, graphfile, r_path, ascii_offset, end_length)
+--- QUASR-master/extras/convert_sam_to_pileup.sh	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/convert_sam_to_pileup.sh.new	2018-01-09 19:02:00.197318281 -0600
+@@ -1,4 +1,4 @@
+-#! /bin/bash
++#!/bin/bash
+ 
+ # This script takes in either a SAM or BAM file and outputs a pileup file
+ # using SAMtools
+@@ -20,7 +20,7 @@
+ # You should have received a copy of the GNU General Public License
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+-samtools_path='/nfs/users/nfs_s/sw10/QUASR_v6.07/samtools-0.1.8'
++samtools_path='/opt/anaconda1anaconda2anaconda3/bin/'
+ 
+ if [ "$#" = "0" ]; then
+ 	echo "[USAGE]: convert_sam_to_pileup.sh <options>
+@@ -94,4 +94,4 @@
+ 	$samtools_path/samtools pileup -c $sorted_bam_filename > $pileup_filename
+ else
+ 	$samtools_path/samtools pileup -c -f $ref_seq_fasta $sorted_bam_filename > $pileup_filename
+-fi
+\ No newline at end of file
++fi
+--- QUASR-master/extras/fastq_duplicate_remover.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/fastq_duplicate_remover.py.new	2018-01-09 19:03:36.514107747 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''Takes in a FASTQ file and stores each record in a dictionary with the sequence 
+ as the key to output only unique sequences
+@@ -22,7 +22,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, os.path
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR6/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	from fastq import *
+ except ImportError:
+--- QUASR-master/extras/fastq_remove_Ns.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/fastq_remove_Ns.py.new	2018-01-09 19:04:40.795634629 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''Script written for removing N's from a FASTQ file. Will get the location of N's in a sequence. If multiple, discards read. If 1, trims from closest end.
+ '''
+@@ -21,7 +21,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR6/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	import fastq
+ except ImportError:
+@@ -77,4 +77,4 @@
+ 	print('[TOTAL]: Input sequences: %d' % total_seqs)
+ 	print('[PASS]: Sequences written to "%s": %d' % (outfile, passed_seqs))
+ 	print('[FAIL]: Sequences with >1 N: %d' % failed_seqs)
+-	print('[FAIL]: Unparseable sequences: %d' % unparseable_seqs)
+\ No newline at end of file
++	print('[FAIL]: Unparseable sequences: %d' % unparseable_seqs)
+--- QUASR-master/extras/pileup_consensus.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/pileup_consensus.py.new	2018-01-09 19:05:34.026070937 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''Generates a consensus sequene from a pileup file. Works in 1 of 2 ways depending on command-line
+ flags used:
+@@ -25,7 +25,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, getopt
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR6/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	from pileup import *
+ except ImportError:
+--- QUASR-master/extras/pileup_depth_graph.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/pileup_depth_graph.py.new	2018-01-09 19:06:27.361508106 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''Uses R to create a depth plot from a pileup file'''
+ 
+@@ -20,7 +20,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, os, tempfile, getopt, math
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR6/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	from pileup import *
+ except ImportError:
+--- QUASR-master/extras/pileup_minority_graph.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/pileup_minority_graph.py.new	2018-01-09 19:07:19.719937254 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''This script takes in a pileup file and uses R to print out a stacked histogram of the
+ minority bases. The minority bases are those that are not the most frequent base.
+@@ -22,7 +22,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, os, math, tempfile, getopt
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR6/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	from pileup import *
+ except ImportError:
+@@ -293,4 +293,4 @@
+ else:
+ 	print('[INFO]: Depth plots written to:')
+ 	for i in range(num_pages):
+-		print('[INFO]: %s.minority%.2d.jpg' % (outprefix, (i+1)))
+\ No newline at end of file
++		print('[INFO]: %s.minority%.2d.jpg' % (outprefix, (i+1)))
+--- QUASR-master/extras/pileup_minority_list.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/pileup_minority_list.py.new	2018-01-09 19:08:21.142440714 -0600
+@@ -1,4 +1,4 @@
+-#! /usr/local/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''This script takes in a pileup file and writes to file all minority bases above 
+ a certain frequency for all positions. The minority bases are those that are not 
+@@ -23,7 +23,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, getopt
+-sys.path.append('/Users/sw10/Dropbox/Sanger/QUASR/QUASR_v6.09/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	from pileup import *
+ except ImportError:
+@@ -149,4 +149,4 @@
+ 				continue
+ 			elif freqs[base] > f_cutoff and total > depth_cutoff:
+ 				outfh.write('%s\t%d\t%s\t%.2f\t%d\t%s\n' % (segs[n], counter, base, freqs[base], total, max_base))
+-print('[INFO]: Minority frequencies written to "%s"' % outfile)
+\ No newline at end of file
++print('[INFO]: Minority frequencies written to "%s"' % outfile)
+--- QUASR-master/extras/pileup_minority_numbers.py	2015-12-09 10:42:23.000000000 -0600
++++ QUASR-master/extras/pileup_minority_numbers.py.new	2018-01-09 19:09:05.477804110 -0600
+@@ -1,4 +1,4 @@
+-#! /software/bin/python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ '''This script takes in a pileup file and writes to file all minority bases above 
+ a certain frequency for all positions. The minority bases are those that are not 
+@@ -23,7 +23,7 @@
+ # along with QUASR.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import sys, getopt
+-sys.path.append('/nfs/users/nfs_s/sw10/QUASR_v6.08/modules/')
++sys.path.append('/opt/anaconda1anaconda2anaconda3/modules/')
+ try:
+ 	from pileup import *
+ except ImportError:

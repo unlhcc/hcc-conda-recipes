@@ -1,0 +1,34 @@
+package:
+  name: cabal-install
+  version: 2.0.0.0
+
+source:
+  fn: cabal-install-2.0.0.0.tar.gz
+  url: https://www.haskell.org/cabal/release/cabal-install-2.0.0.0/cabal-install-2.0.0.0.tar.gz
+  sha1: 78b4fbd9ba8b8e5c80bbe75567d80a8f06a1aba8
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - libgcc # [linux]
+    - ghc
+    - gmp 4.3*
+    - zlib
+
+  run:
+    - libgcc # [linux]
+    - ghc
+    - gmp 4.3*
+    - zlib
+
+test:
+  commands:
+    - cabal -V
+
+about:
+  home: https://wiki.haskell.org/Cabal-Install
+  license: BSD
+  summary: "The cabal-install package provides the cabal command-line tool which simplifies the process of managing Haskell software by automating the fetching, configuration, compilation and installation of Haskell libraries and programs."

@@ -4,7 +4,7 @@
  [("GCC extra via C opts", "@GccExtraViaCOpts@"),
   ("C compiler command", "@SettingsCCompilerCommand@"),
 - ("C compiler flags", "@SettingsCCompilerFlags@"),
-+ ("C compiler flags", "@SettingsCCompilerFlags@ -L/opt/anaconda1anaconda2anaconda3/lib -Wl,--rpath /opt/anaconda1anaconda2anaconda3/lib"),
++ ("C compiler flags", "@SettingsCCompilerFlags@ -L/opt/anaconda1anaconda2anaconda3/lib -Wl,-rpath /opt/anaconda1anaconda2anaconda3/lib"),
   ("C compiler link flags", "@SettingsCCompilerLinkFlags@"),
   ("C compiler supports -no-pie", "@SettingsCCompilerSupportsNoPie@"),
   ("Haskell CPP command","@SettingsHaskellCPPCommand@"),

@@ -8,7 +8,7 @@ source:
   sha1: 78b4fbd9ba8b8e5c80bbe75567d80a8f06a1aba8
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:

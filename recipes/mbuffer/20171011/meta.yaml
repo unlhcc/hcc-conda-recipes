@@ -16,6 +16,7 @@ requirements:
     - gcc # [linux]
     - llvm # [osx]
     - libgcrypt
+    - gmp >=6.1
 
   run:
     - libgcc # [linux]

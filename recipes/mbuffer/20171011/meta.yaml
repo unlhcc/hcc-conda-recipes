@@ -1,0 +1,31 @@
+package:
+  name: mbuffer
+  version: '20171011'
+
+source:
+  fn: mbuffer-20171011.tgz
+  url: http://www.maier-komor.de/software/mbuffer/mbuffer-20171011.tgz
+  md5: 4e23fe909fe4e53a7cef03abf6c44a98
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - llvm # [osx]
+    - libgcrypt
+
+  run:
+    - libgcc # [linux]
+    - libgcrypt
+
+test:
+  commands:
+    - mbuffer -h
+
+about:
+  home: http://www.maier-komor.de/mbuffer.html
+  license: GPLv3
+  summary: mbuffer is a tool for buffering data streams with a large set of unique features

@@ -1,0 +1,11 @@
+--- kSNP3.1_Linux_package/kSNP3/kSNP3	2017-12-01 18:01:10.000000000 -0600
++++ kSNP3.1_Linux_package/kSNP3/kSNP3.new	2018-01-24 09:45:19.544409835 -0600
+@@ -4,7 +4,7 @@
+ 
+ # WHERE ARE ALL THE kSNP SCRIPTS?  
+ # IF YOU INSTALLED kSNP ANYWHERE OTHER THAN /user/local THEN YOU MUST MODIFY THIS TO POINT TO THE DIRECTORY WHERE YOU HAVE INSTALLED kSNP SCRIPTS
+-set kSNP=/usr/local/kSNP3
++set kSNP=/opt/anaconda1anaconda2anaconda3/bin
+ #set kSNP=/g/g15/shea/kSNP3_Source
+ 
+ ########################################################################

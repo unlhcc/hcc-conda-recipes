@@ -1,0 +1,11 @@
+--- src/sequence/short_sequence.h	2016-07-11 19:05:44.000000000 +0000
++++ src/sequence/short_sequence.h.new	2018-01-30 20:15:17.757904598 +0000
+@@ -99,7 +99,7 @@
+         return size() < seq.size();
+     }
+ 
+-    static const uint32_t kMaxShortSequence = 128;
++    static const uint32_t kMaxShortSequence = 600;
+     static const uint32_t kNumBytes = (kMaxShortSequence + 3) / 4 + 2;
+ 
+ private:

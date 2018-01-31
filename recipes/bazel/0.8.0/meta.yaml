@@ -1,0 +1,39 @@
+{% set name="bazel" %}
+{% set version="0.8.0" %}
+{% set sha256="aa840321d056abd3c6be10c4a1e98a64f9f73fff9aa89c468dae8c003974a078" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+source:
+  url: https://github.com/bazelbuild/bazel/releases/download/{{ version }}/bazel-{{ version }}-dist.zip
+  sha256: {{ sha256 }}
+
+build:
+  ignore_prefix_files:
+    - bin/bazel
+  binary_relocation: False
+  skip: True # [osx]
+
+requirements:
+  build:
+    - openjdk 8.0*
+    - sed
+    - unzip
+    - zip
+    - gcc
+    - gmp {{CONDA_GMP}}*
+  run:
+    - openjdk 8.0*
+    - libgcc
+    - gmp {{CONDA_GMP}}*
+
+test:
+  commands:
+    - bazel -h
+
+about:
+  home: https://bazel.build
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Correct, reproducible, and fast builds for everyone

@@ -20,6 +20,7 @@ requirements:
     - python
     - r
     - numpy
+    - gmp {{CONDA_GMP}}*
     - argparse
 
   run:
@@ -28,6 +29,7 @@ requirements:
     - r
     - numpy
     - argparse
+    - gmp {{CONDA_GMP}}*
 
 test:
   commands:

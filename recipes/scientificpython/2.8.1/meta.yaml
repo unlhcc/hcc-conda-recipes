@@ -16,16 +16,18 @@ requirements:
   build:
     - python
     - libnetcdf 4.4*
-    - numpy x.x
+    - numpy
     - gcc
     - jpeg ==8d
+    - gmp {{CONDA_GMP}}*
 
   run:
     - python
     - libnetcdf 4.4*
-    - numpy x.x
+    - numpy
     - libgcc
     - jpeg ==8d
+    - gmp {{CONDA_GMP}}*
 
 test:
   # Python imports

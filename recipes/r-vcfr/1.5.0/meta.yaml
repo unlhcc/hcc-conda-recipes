@@ -32,6 +32,7 @@ requirements:
     - r-viridislite
     - gcc # [linux]
     - llvm # [osx]
+    - gmp {{CONDA_GMP}}*
 
   run:
     - r >=3.0.1
@@ -47,6 +48,7 @@ requirements:
     - r-vegan
     - r-viridislite
     - libgcc # [linux]
+    - gmp {{CONDA_GMP}}*
 
 test:
   commands:

@@ -20,10 +20,11 @@ requirements:
   build:
     - r
     - gcc
-
+    - gmp {{CONDA_GMP}}*
   run:
     - r
     - libgcc
+    - gmp {{CONDA_GMP}}*
 
 test:
   commands:

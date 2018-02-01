@@ -21,11 +21,13 @@ requirements:
     - r
     - r-brew
     - gcc
+    - gmp {{CONDA_GMP}}*
 
   run:
     - r
     - r-brew
     - libgcc
+    - gmp {{CONDA_GMP}}*
 
 test:
   commands:

@@ -16,12 +16,14 @@ requirements:
     - python
     - numpy x.x
     - gcc # [linux]
+    - gmp {{CONDA_GMP}}*
 
   run:
     - python
     - numpy x.x
     - opencv
     - libgcc # [linux]
+    - gmp {{CONDA_GMP}}*
 
 test:
   imports:

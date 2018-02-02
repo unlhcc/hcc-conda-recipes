@@ -1,0 +1,43 @@
+{% set version = "1.5.0" %}
+
+package:
+  name: tensorflow-tensorboard
+  version: {{ version }}
+
+requirements:
+  build:
+    - python
+    - pip
+    - wheel >=0.26
+    - bleach ==1.5.0
+    - markdown >=2.6.8
+    - html5lib ==0.9999999
+    - werkzeug >=0.11.10
+    - protobuf >=3.4.0
+    - six >=1.10.0
+    - numpy x.x
+  run:
+    - python
+    - bleach ==1.5.0
+    - markdown >=2.6.8
+    - html5lib ==0.9999999
+    - werkzeug >=0.11.10
+    - protobuf >=3.4.0
+    - six >=1.10.0
+    - numpy x.x
+
+build:
+  script:
+    - pip install tensorflow-tensorboard=={{ version }}
+    - pip uninstall futures -y
+  entry_points:
+    - tensorboard = tensorboard.main:run_main
+
+test:
+  imports:
+    - tensorboard
+
+about:
+  home: http://tensorflow.org/
+  license: Apache 2.0
+  summary: TensorBoard lets you watch Tensors Flow

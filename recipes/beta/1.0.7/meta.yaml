@@ -19,7 +19,7 @@ requirements:
     - llvm # [osx]
     - python
     - r
-    - numpy
+    - numpy x.x
     - gmp {{CONDA_GMP}}*
     - argparse
 
@@ -27,7 +27,7 @@ requirements:
     - libgcc # [linux]
     - python
     - r
-    - numpy
+    - numpy x.x
     - argparse
     - gmp {{CONDA_GMP}}*
 

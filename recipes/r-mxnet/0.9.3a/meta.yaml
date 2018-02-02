@@ -25,6 +25,8 @@ requirements:
     - r-diagrammer >=0.9.0
     - r-data.table
     - r-roxygen2 ==5.0.1
+    - gmp {{CONDA_GMP}}*
+
   run:
     - r
     - libgcc
@@ -35,6 +37,7 @@ requirements:
     - r-rcpp
     - r-diagrammer >=0.9.0
     - r-data.table
+    - gmp {{CONDA_GMP}}*
 
 test:
   commands:

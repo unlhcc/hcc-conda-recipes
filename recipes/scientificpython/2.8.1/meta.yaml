@@ -19,6 +19,7 @@ requirements:
     - numpy x.x
     - gcc
     - jpeg ==8d
+    - gmp {{CONDA_GMP}}*
 
   run:
     - python
@@ -26,6 +27,7 @@ requirements:
     - numpy x.x
     - libgcc
     - jpeg ==8d
+    - gmp {{CONDA_GMP}}*
 
 test:
   # Python imports

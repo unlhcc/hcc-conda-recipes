@@ -15,12 +15,12 @@ build:
 requirements:
   build:
     - python
-    - numpy
+    - numpy x.x
     - libsamplerate
 
   run:
     - python
-    - numpy
+    - numpy x.x
     - libsamplerate
 
 test:

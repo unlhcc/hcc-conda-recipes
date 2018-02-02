@@ -16,13 +16,13 @@ requirements:
     - python
     - setuptools
     - pyproj
-    - numpy
+    - numpy x.x
     - configobj
 
   run:
     - python
     - pyproj
-    - numpy
+    - numpy x.x
     - configobj
     - scipy
 

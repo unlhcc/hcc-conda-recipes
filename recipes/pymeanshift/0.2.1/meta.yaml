@@ -14,14 +14,16 @@ build:
 requirements:
   build:
     - python
-    - numpy
+    - numpy x.x
     - gcc # [linux]
+    - gmp {{CONDA_GMP}}*
 
   run:
     - python
-    - numpy
+    - numpy x.x
     - opencv
     - libgcc # [linux]
+    - gmp {{CONDA_GMP}}*
 
 test:
   imports:

@@ -1,0 +1,59 @@
+package:
+    name: tensorflow-fma
+    version: 1.5.0
+
+source:
+    fn: v1.5.0.tar.gz
+    url: https://github.com/tensorflow/tensorflow/archive/v1.5.0.tar.gz
+    md5: e087dc1f47dbbda87cf4278acddf785b
+    patches:
+        - librt.patch
+        - no_android.patch
+
+build:
+    number: 0
+    skip: True # [osx]
+
+requirements:
+    build:
+        - gcc # [linux]
+        - llvm # [osx]
+        - python
+        - wheel
+        - numpy x.x
+        - bazel ==0.8.0
+        - protobuf >=3.1.0
+        - perl
+        - binutils >=2.22
+        - futures ==3.1.1 # [py2k]
+        - six >=1.10.0
+        - tensorflow-tensorboard >=1.5.0,<1.6.0
+        - absl-py >=0.1.6
+        - backports.weakref >=1.0rc1 # [py < 34]
+        - enum34 >=1.1.6 # [py < 34]
+        - wheel # [py3k]
+        - mock # [py2k]
+
+    run:
+        - libgcc # [linux]
+        - python
+        - numpy x.x
+        - protobuf >=3.1.0
+        - futures ==3.1.1 # [py2k]
+        - six >=1.10.0
+        - tensorflow-tensorboard >=1.5.0,<1.6.0
+        - absl-py >=0.1.6
+        - backports.weakref >=1.0rc1 # [py < 34]
+        - enum34 >=1.1.6 # [py < 34]
+        - wheel # [py3k]
+        - mock # [py2k]
+
+test:
+    imports:
+        - tensorflow
+
+about:
+    home: https://www.tensorflow.org
+    license: Apache 2.0
+    license_file: LICENSE
+    summary: Computation using data flow graphs for scalable machine learning.

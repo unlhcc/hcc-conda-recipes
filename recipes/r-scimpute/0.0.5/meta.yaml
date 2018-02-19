@@ -1,0 +1,48 @@
+package:
+  name: r-scimpute
+  version: "0.0.5"
+
+source:
+  fn: v0.0.5.tar.gz
+  url: https://github.com/Vivianstats/scImpute/archive/v0.0.5.tar.gz
+  md5: 9e2b806b15f07affd2006f59a7d3672f
+
+build:
+  number: 0
+  skip: True # [osx]
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r >=3.3.2
+    - r-devtools
+    - parallel
+    - r-kernlab
+    - r-penalized
+    - r-doparallel
+    - r-foreach
+    - r-knitr
+    - r-markdown
+
+  run:
+    - r >=3.3.2
+    - r-devtools
+    - parallel
+    - r-kernlab
+    - r-penalized
+    - r-doparallel
+    - r-foreach
+    - r-knitr
+    - r-markdown
+
+test:
+  commands:
+    - $R -e "library('scImpute')"
+
+about:
+  home: https://github.com/Vivianstats/scImpute
+  license: GPL
+  summary: scImpute is accurate and robust imputation of single-cell RNA sequencing data.

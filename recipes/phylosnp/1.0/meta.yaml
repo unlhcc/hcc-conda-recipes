@@ -1,0 +1,39 @@
+package:
+  name: phylosnp
+  version: 1.0
+
+source:
+  fn: PhyloSNP_Unix.zip
+  url: https://hive.biochemistry.gwu.edu/static/phylosnp/PhyloSNP_Unix.zip
+  md5: 4bb701d8b5945afbb040811e6434c936
+  patches:
+    - paths.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - perl
+    - perl-file-which
+    - perl-text-csv
+    - phylip
+
+  run:
+    - perl
+    - perl-file-which
+    - perl-text-csv
+    - phylip
+
+test:
+  source_files:
+    - genome_example.csv
+
+  commands:
+    - phylosnp.pl genome_example.csv
+
+about:
+  home: https://hive.biochemistry.gwu.edu/dna.cgi?cmd=phylosnp
+  icense: Creative Commons Attribution License 3.0
+  summary: "PhyloSNP: An automated generator of phylogenetic trees from SNP data."

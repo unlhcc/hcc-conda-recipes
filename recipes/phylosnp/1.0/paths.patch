@@ -1,0 +1,32 @@
+--- phylosnp.pl	2014-02-03 18:37:16.000000000 +0000
++++ phylosnp.pl.new	2018-02-27 23:30:56.354929550 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl -w
+ 
+ =head1 SYNOPSIS
+ 
+@@ -57,7 +57,6 @@
+ use warnings;
+ 
+ use File::Basename;
+-use lib dirname(__FILE__) . "/inc";
+ 
+ use File::Copy qw(move);
+ use File::Find;
+--- shrunk-genomes.pl	2014-02-03 18:37:16.000000000 +0000
++++ shrunk-genomes.pl.new	2018-02-27 23:31:07.377909701 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl -w
+ 
+ =head1 SYNOPSIS
+ 
+@@ -80,7 +80,6 @@
+ use warnings;
+ 
+ use File::Basename;
+-use lib dirname(__FILE__) . "/inc";
+ 
+ use File::Find;
+ use Getopt::Long;

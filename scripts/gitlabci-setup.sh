@@ -13,22 +13,24 @@ do
 done
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-dockerd -s vfs&
-sleep 5
 if [[ `uname` == Linux ]]
 then
     tag=Linux
+    SUDO=sudo
+    dockerd -s vfs&
+    sleep 5
 else
     tag=MacOSX
+    SUDO=""
 fi
 
 # install conda
 curl -O https://repo.continuum.io/miniconda/Miniconda3-$MINICONDA_VER-$tag-x86_64.sh
-sudo bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p /anaconda
-export PATH=/anaconda/bin:$PATH
+$SUDO bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p $ANACONDA_PREFIX
+export PATH=$ANACONDA_PREFIX/bin:$PATH
 
 $SCRIPT_DIR/../simulate-gitlabci.py --set-channel-order
 $SCRIPT_DIR/../simulate-gitlabci.py --install-requirements
 
-conda index /anaconda/conda-bld/linux-64 /anaconda/conda-bld/osx-64
-conda config --add channels file://anaconda/conda-bld
+conda index $ANACONDA_PREFIX/conda-bld/linux-64 $ANACONDA_PREFIX/conda-bld/osx-64
+conda config --add channels file://$ANACONDA_PREFIX/conda-bld

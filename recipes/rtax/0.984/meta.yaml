@@ -1,5 +1,5 @@
 package:
-  name: rtax [linux64]
+  name: rtax
   version: 0.984
 
 source:

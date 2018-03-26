@@ -1,5 +1,5 @@
 package:
-  name: picard-tools [linux64]
+  name: picard-tools
   version: 1.92
 
 source:

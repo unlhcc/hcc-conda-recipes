@@ -1,5 +1,5 @@
 package:
-  name: sumaclust [linux64]
+  name: sumaclust
   version: 1.0.00
 
 source:

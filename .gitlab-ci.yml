@@ -34,7 +34,8 @@ build-osx:
   script:
     - scripts/gitlabci-run.sh
   after_script:
-    - rm -rf $ANACONDA_PREFIX
+    - echo $ANACONDA_PREFIX
+    - rm -rfv $ANACONDA_PREFIX
 
 deploy-linux:
   stage: deploy

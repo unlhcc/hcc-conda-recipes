@@ -1,3 +1,4 @@
 # Blacklist
 recipes/pegasus-wms/4.7.4
 recipes/r-mxnet/0.9.3a
+recipes/gmp/4.3.2

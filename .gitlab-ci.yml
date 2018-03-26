@@ -9,7 +9,7 @@ stages:
   - build
   - deploy
 
-build:
+build-linux:
   stage: build
   image: unlhcc/docker-glibc
   except:
@@ -17,11 +17,25 @@ build:
   tags:
     - docker
   before_script:
+    - export ANACONDA_PREFIX=/anaconda
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
 
-deploy:
+build-osx:
+  stage: build
+  except:
+    - master
+  tags:
+    - osx
+  before_script:
+    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
+    - scripts/gitlabci-setup.sh
+  script:
+    - scripts/gitlabci-run.sh
+    - rm -rf $ANACONDA_PREFIX
+
+deploy-linux:
   stage: deploy
   image: unlhcc/docker-glibc
   only:
@@ -29,6 +43,20 @@ deploy:
   tags:
     - docker
   before_script:
+    - export ANACONDA_PREFIX=/anaconda
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
+
+deploy-osx:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - osx
+  before_script:
+    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
+    - scripts/gitlabci-setup.sh
+  script:
+    - scripts/gitlabci-run.sh
+    - rm -rf $ANACONDA_PREFIX

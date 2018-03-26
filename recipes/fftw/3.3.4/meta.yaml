@@ -9,13 +9,11 @@ source:
     md5: 2edab8c06b24feeb3b82bbb3ebf3e7b3
 
 build:
+  number: 0
   skip: True # [osx]
 
 # Note: tests are run when building the package, they are not accessible
 # in the installed package.
-
-build:
-  number: 0
 
 about:
     home: http://fftw.org

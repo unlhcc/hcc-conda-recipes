@@ -32,6 +32,8 @@ build:
     - pip uninstall futures -y
   entry_points:
     - tensorboard = tensorboard.main:run_main
+  number: 0
+  skip: True # [osx]
 
 test:
   imports:

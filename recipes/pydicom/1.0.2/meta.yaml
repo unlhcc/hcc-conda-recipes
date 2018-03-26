@@ -1,0 +1,40 @@
+package:
+  name: pydicom
+  version: "1.0.2"
+
+source:
+  fn: pydicom-1.0.2.tar.gz
+  url: https://pypi.python.org/packages/d3/74/f1e9d1b8f86a94a732fed44545e2096580c1719661866bf46df5d0faa3f7/pydicom-1.0.2.tar.gz
+  md5: fc9aa582d108c7da25255f360fd2d7b0
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+test:
+  imports:
+    - pydicom
+    - pydicom.data
+    - pydicom.data.charset_files
+    - pydicom.data.test_files
+    - pydicom.data.tests
+    - pydicom.pixel_data_handlers
+    - pydicom.tests
+    - pydicom.tests.performance
+    - pydicom.util
+
+  requires:
+    - pytest
+
+about:
+  home: https://github.com/pydicom/pydicom
+  license: MIT License
+  summary: 'Pure python package for DICOM medical file reading and writing'
+  license_family: MIT

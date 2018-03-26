@@ -1,5 +1,4 @@
 env_matrix: "env_matrix.yml"
-docker_image: "condaforge/linux-anvil"
 channels: ['hcc']
 upload_channel: "hcc"
 # Channels ordered from highest to lowest priority. This should match the order

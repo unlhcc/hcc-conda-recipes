@@ -1,0 +1,43 @@
+package:
+  name: aiozmq
+  version: "0.7.1"
+
+source:
+  fn: aiozmq-0.7.1.tar.gz
+  url: https://pypi.python.org/packages/e2/8b/319fc94958c387c8ed8ad03b7f235df58a0aef484d74959d10c4e72a750c/aiozmq-0.7.1.tar.gz
+  md5: 8b09d01d5544bbbc12d8a9319a8d7587
+
+build:
+  entry_points:
+    - aiozmq-proxy = aiozmq.cli.proxy:main
+  number: 0
+  skip: True # [py2k]
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - pyzmq >=13.1
+
+  run:
+    - python
+    - pyzmq >=13.1
+
+test:
+  imports:
+    - aiozmq
+    - aiozmq.cli
+    - aiozmq.rpc
+
+  commands:
+    - aiozmq-proxy --help
+
+  requires:
+    - msgpack-python >=0.4.0
+    - pyzmq >=13.1
+
+about:
+  home: http://aiozmq.readthedocs.org
+  license: BSD License
+  summary: 'ZeroMQ integration with asyncio.'
+  license_family: BSD

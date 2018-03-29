@@ -1,0 +1,34 @@
+{% set name = "miniasm" %}
+{% set version = "17d5bd1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+build:
+  number: 0
+
+source:
+  fn: 17d5bd12290e0e8a48a5df5afaeaef4d171aa133.zip
+  url: https://github.com/lh3/miniasm/archive/17d5bd12290e0e8a48a5df5afaeaef4d171aa133.zip
+  md5: 5b0cd4acc35e64dc1281816312f76683
+
+requirements:
+  build:
+  - gcc # [linux]
+  - llvm # [osx]
+  - zlib {{CONDA_ZLIB}}*
+
+  run:
+  - libgcc # [linux]
+  - zlib {{CONDA_ZLIB}}*
+
+test:
+  commands:
+    - miniasm -V
+
+about:
+  home: https://github.com/lh3/miniasm
+  license: MIT
+  license_file: LICENSE.txt
+  summary: Ultrafast de novo assembly for long noisy reads (though having no consensus step)

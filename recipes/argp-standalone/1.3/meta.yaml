@@ -1,0 +1,31 @@
+{% set name = "argp-standalone" %}
+{% set version = "1.3" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+build:
+  number: 0
+  skip: True # [linux]
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://www.lysator.liu.se/~nisse/misc/{{ name }}-{{ version }}.tar.gz
+  md5: 720704bac078d067111b32444e24ba69
+
+requirements:
+  build:
+  - clang_osx-64
+
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libargp.a
+    - test -f ${PREFIX}/include/argp.h
+
+about:
+  home: https://www.lysator.liu.se/~nisse/misc
+  license: GPLv2
+  summary: Standalone version of arguments parsing functions from GLIBC.

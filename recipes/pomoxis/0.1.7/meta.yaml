@@ -1,0 +1,86 @@
+{% set name = "pomoxis" %}
+{% set version = "0.1.7" %}
+{% set sha256 = "2ecc29d3cc0cdf171a6d8a822396fad10103ae38819222797a7309375f82782a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: v0.1.7.tar.gz
+  url: https://github.com/nanoporetech/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - fix.patch
+
+build:
+  number: 0
+  skip: True  # [py27]
+
+requirements:
+  build:
+    - python
+    - pandas
+    - pysam
+    - matplotlib
+    - biopython >=1.63
+    - aiozmq
+    - cffi
+    - fast5-research
+    - mappy
+    - msgpack-python
+    - sphinx
+    - sphinx-argparse
+    - sphinx_rtd_theme
+    - watchdog
+    - miniasm 17d5bd1.*
+    - bwapy
+    - scrappie
+    - bwa 0.7.15.*
+    - minimap2
+    - racon 1.0.0.*
+    - samtools
+    - porechop
+    - sloika 
+    - pyscrap
+  run:
+    - python
+    - pandas
+    - pysam
+    - matplotlib
+    - biopython >=1.63
+    - aiozmq
+    - cffi
+    - fast5-research
+    - mappy
+    - msgpack-python
+    - sphinx
+    - sphinx-argparse
+    - sphinx_rtd_theme
+    - watchdog
+    - ncurses
+    - miniasm 17d5bd1.*
+    - bwapy
+    - scrappie
+    - bwa 0.7.15.*
+    - minimap2
+    - racon 1.0.0.*
+    - samtools
+    - porechop
+    - sloika 
+    - pyscrap
+
+test:
+  commands:
+    - bwa_align -h
+    - mini_align -h
+    - mini_assemble -h
+    - epi3me dealer -h
+    - epi3me router -h
+
+about:
+  home: 'https://github.com/nanoporetech/pomoxis'
+  summary: 'Fast, concurrent and real-time analysis components from Oxford Nanopore Research'
+  license: MPL-2.0
+  license_family: Other
+  license_file: LICENSE.md

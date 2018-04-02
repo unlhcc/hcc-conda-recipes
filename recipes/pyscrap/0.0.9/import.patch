@@ -1,6 +1,6 @@
---- setup.py	2018-04-01 23:49:00.509328511 -0500
-+++ setup.py.new	2018-04-01 23:49:00.509328511 -0500
-@@ -15,9 +15,10 @@
+--- setup.py	2014-01-27 19:07:37.000000000 -0600
++++ setup.py.new	2018-04-02 14:08:59.359088004 -0500
+@@ -15,10 +15,10 @@
  import sys
  import os
  from setuptools import setup
@@ -8,27 +8,15 @@
  
  reload(sys)
 -sys.setdefaultencoding('utf-8')
-+# sys.setdefaultencoding('utf-8')
- 
+-
++#sys.setdefaultencoding('utf-8')
  
  files = ["pyscrap/*"]
---- bin/wscrap	2014-01-27 19:06:36.000000000 -0600
-+++ bin/wscrap.new	2018-04-01 23:50:08.281882304 -0500
-@@ -14,6 +14,7 @@
- #limitations under the License.
- import sys
- import os
-+from importlib import reload
- from pyscrap.templates import createSetup
- from pyscrap.templates import createManifest
- from pyscrap.templates import createGitIgnore
+ 
 --- pyscrap/item.py	2014-01-27 19:06:36.000000000 -0600
-+++ pyscrap/item.py.new	2018-04-01 23:50:48.079207503 -0500
-@@ -14,9 +14,10 @@
- #limitations under the License.
- import sys
++++ pyscrap/item.py.new	2018-04-02 14:14:10.814624755 -0500
+@@ -16,7 +16,7 @@
  #from types import MethodType
-+from importlib import reload
  
  reload(sys)
 -sys.setdefaultencoding('utf-8')
@@ -37,12 +25,9 @@
  
  class FieldNotDefined(Exception):
 --- pyscrap/pipeline.py	2014-01-27 19:06:36.000000000 -0600
-+++ pyscrap/pipeline.py.new	2018-04-01 23:51:16.948443402 -0500
-@@ -13,9 +13,10 @@
- #See the License for the specific language governing permissions and
- #limitations under the License.
++++ pyscrap/pipeline.py.new	2018-04-02 14:14:20.817706236 -0500
+@@ -15,7 +15,7 @@
  import sys
-+from importlib import reload
  
  reload(sys)
 -sys.setdefaultencoding("utf-8")
@@ -51,12 +36,9 @@
  
  def spiderDefaultSave(item):
 --- pyscrap/settings.py	2014-01-27 19:06:36.000000000 -0600
-+++ pyscrap/settings.py.new	2018-04-01 23:51:49.699711023 -0500
-@@ -13,9 +13,10 @@
- #See the License for the specific language governing permissions and
- #limitations under the License.
++++ pyscrap/settings.py.new	2018-04-02 14:14:29.824779597 -0500
+@@ -15,7 +15,7 @@
  import sys
-+from importlib import reload
  
  reload(sys)
 -sys.setdefaultencoding('utf-8')
@@ -65,13 +47,9 @@
  
  def getHeaders():
 --- pyscrap/spiders.py	2014-01-27 19:07:13.000000000 -0600
-+++ pyscrap/spiders.py.new	2018-04-01 23:52:28.011024074 -0500
-@@ -24,10 +24,10 @@
- from settings import getHeaders
- import inspect
- #from IPython import embed
--
-+from importlib import reload
++++ pyscrap/spiders.py.new	2018-04-02 14:14:39.564858935 -0500
+@@ -27,7 +27,7 @@
+ 
  
  reload(sys)
 -sys.setdefaultencoding("utf-8")
@@ -80,12 +58,9 @@
  
  def getHtml(url):
 --- pyscrap/templates.py	2014-01-27 19:06:36.000000000 -0600
-+++ pyscrap/templates.py.new	2018-04-01 23:52:55.495248659 -0500
-@@ -13,9 +13,10 @@
- #See the License for the specific language governing permissions and
- #limitations under the License.
++++ pyscrap/templates.py.new	2018-04-02 14:14:49.163937120 -0500
+@@ -15,7 +15,7 @@
  import sys
-+from importlib import reload
  
  reload(sys)
 -sys.setdefaultencoding('utf-8')

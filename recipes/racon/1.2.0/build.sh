@@ -1,7 +1,8 @@
 #!/bin/bash
 
 mkdir build && cd build
-cmake -D CMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-mno-avx" ..
+cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-mno-avx" -Dracon_build_wrapper=ON ..
 make -j 2
+make install
 
-cp bin/racon ${PREFIX}/bin
+cp bin/racon_wrapper ${PREFIX}/bin

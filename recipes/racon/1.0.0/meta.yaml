@@ -10,6 +10,8 @@ source:
   fn: {{ name|lower }}-v{{ version }}.tar.gz
   url: https://github.com/isovic/racon/releases/download/{{ version }}/{{ name|lower }}-v{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - lib.patch
 
 build:
   number: 0

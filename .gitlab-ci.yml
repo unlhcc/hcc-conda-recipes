@@ -71,6 +71,7 @@ sync-to-github:
   only:
     - master
   script:
+    - eval $(ssh-agent -s) > /dev/null
     - mkdir -p ~/.ssh
     - chown 700 ~/.ssh
     - echo $SSH_KNOWN_HOSTS > ~/.ssh/known_hosts

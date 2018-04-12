@@ -1,0 +1,50 @@
+{% set name = "tensorboard" %}
+{% set version = "1.7.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+build:
+  script:
+    - pip install {{ name }}=={{ version }}
+  entry_points:
+    - tensorboard = tensorboard.main:run_main
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - python
+    - pip
+    - wheel >=0.26 # [py3k]
+    - wheel # [py2k]
+    - bleach ==1.5.0
+    - markdown >=2.6.8
+    - html5lib ==0.9999999
+    - werkzeug >=0.11.10
+    - protobuf >=3.4.0
+    - six >=1.10.0
+    - numpy x.x
+    - futures >=3.1.1 # [py2k]
+  run:
+    - python
+    - wheel >=0.26 # [py3k]
+    - wheel # [py2k]
+    - bleach ==1.5.0
+    - markdown >=2.6.8
+    - html5lib ==0.9999999
+    - werkzeug >=0.11.10
+    - protobuf >=3.4.0
+    - six >=1.10.0
+    - numpy x.x
+    - futures >=3.1.1 # [py2k]
+
+test:
+  imports:
+    - tensorboard
+
+about:
+  home: http://tensorflow.org/
+  license: Apache 2.0
+  summary: TensorBoard lets you watch Tensors Flow

@@ -1,0 +1,80 @@
+{% set name = "tensorflow-gpu" %}
+{% set version = "1.7.0" %}
+{% set sha256 = "c676a96fc8700722816b2b98c85578b2f99fac7a7b2484c9c7f0641484f8d50d" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+    fn: v{{ version }}.tar.gz
+    url: https://github.com/tensorflow/tensorflow/archive/v{{ version }}.tar.gz
+    sha256:  {{ sha256 }}
+    patches:
+        - tf_bzl.patch
+        - cuda_lib_path.patch
+        - cc_flags.patch
+
+build:
+    number: 0
+    skip: True # [osx]
+
+requirements:
+    build:
+        - gcc # [linux]
+        - llvm # [osx]
+        - python
+        - wheel
+        - numpy x.x
+        - bazel ==0.10.0
+        - protobuf ==3.5.0
+        - perl
+        - binutils >=2.22
+        - futures ==3.1.1 # [py2k]
+        - six >=1.10.0
+        - tensorboard >=1.7.0,<1.8.0
+        - absl-py >=0.1.6
+        - backports.weakref >=1.0rc1 # [py < 34]
+        - enum34 >=1.1.6 # [py < 34]
+        - wheel >=0.26 # [py3k]
+        - wheel # [py2k]
+        - mock >=2.0.0 # [py2k]
+        - astor >=0.6.0
+        - gast >=0.2.0
+        - termcolor >=1.1.0
+        - grpcio >=1.8.6
+        - cuda-driver {{ CONDA_CUDA_DRIVER }}*
+        - cudatoolkit {{ CONDA_CUDA_TOOLKIT }}*
+        - cudnn {{ CONDA_CUDA_CUDNN }}*
+
+    run:
+        - libgcc # [linux]
+        - python
+        - numpy x.x
+        - protobuf >=3.4.0
+        - futures ==3.1.1 # [py2k]
+        - six >=1.10.0
+        - tensorboard >=1.5.0,<1.6.0
+        - absl-py >=0.1.6
+        - backports.weakref >=1.0rc1 # [py < 34]
+        - enum34 >=1.1.6 # [py < 34]
+        - wheel >=0.26 # [py3k]
+        - wheel # [py2k]
+        - mock >=2.0.0 # [py2k]
+        - astor >=0.6.0
+        - gast >=0.2.0
+        - termcolor >=1.1.0
+        - grpcio >=1.8.6
+        - cuda-driver {{ CONDA_CUDA_DRIVER }}*
+        - cudatoolkit {{ CONDA_CUDA_TOOLKIT }}*
+        - cudnn {{ CONDA_CUDA_CUDNN }}*
+
+test:
+    imports:
+        - tensorflow
+
+about:
+    home: https://www.tensorflow.org
+    license: Apache 2.0
+    license_file: LICENSE
+    summary: Computation using data flow graphs for scalable machine learning.

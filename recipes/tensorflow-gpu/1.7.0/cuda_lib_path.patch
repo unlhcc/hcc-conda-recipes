@@ -1,0 +1,28 @@
+833c833
+<       cuda_rt_lib_path = 'lib64/libcudart.so.%s' % tf_cuda_version
+---
+>       cuda_rt_lib_path = 'lib/libcudart.so.%s' % tf_cuda_version
+888c888
+<       cuda_dnn_lib_path = 'lib64/libcudnn.so.%s' % tf_cudnn_version
+---
+>       cuda_dnn_lib_path = 'lib/libcudnn.so.%s' % tf_cudnn_version
+--- configure.py	2018-01-25 22:22:10.000000000 +0000
++++ configure.py.new	2018-04-10 18:50:55.096648050 +0000
+@@ -830,7 +830,7 @@
+     if is_windows():
+       cuda_rt_lib_path = 'lib/x64/cudart.lib'
+     elif is_linux():
+-      cuda_rt_lib_path = 'lib64/libcudart.so.%s' % tf_cuda_version
++      cuda_rt_lib_path = 'lib/libcudart.so.%s' % tf_cuda_version
+     elif is_macos():
+       cuda_rt_lib_path = 'lib/libcudart.%s.dylib' % tf_cuda_version
+ 
+@@ -885,7 +885,7 @@
+       cuda_dnn_lib_path = 'lib/x64/cudnn.lib'
+       cuda_dnn_lib_alt_path = 'lib/x64/cudnn.lib'
+     elif is_linux():
+-      cuda_dnn_lib_path = 'lib64/libcudnn.so.%s' % tf_cudnn_version
++      cuda_dnn_lib_path = 'lib/libcudnn.so.%s' % tf_cudnn_version
+       cuda_dnn_lib_alt_path = 'libcudnn.so.%s' % tf_cudnn_version
+     elif is_macos():
+       cuda_dnn_lib_path = 'lib/libcudnn.%s.dylib' % tf_cudnn_version

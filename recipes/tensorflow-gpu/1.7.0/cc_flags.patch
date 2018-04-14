@@ -1,0 +1,28 @@
+--- third_party/gpus/crosstool/CROSSTOOL_nvcc.tpl	2018-01-25 22:22:10.000000000 +0000
++++ third_party/gpus/crosstool/CROSSTOOL_nvcc.tpl.new	2018-04-11 20:36:36.075597295 +0000
+@@ -56,7 +56,8 @@
+   cxx_flag: "-std=c++11"
+   linker_flag: "-Wl,-no-as-needed"
+   linker_flag: "-lstdc++"
+-  linker_flag: "-B/usr/bin/"
++  linker_flag: "-L${PREFIX}/lib"
++  linker_flag: "-B${PREFIX}/bin/"
+ 
+ %{host_compiler_includes}
+   tool_path { name: "gcov" path: "/usr/bin/gcov" }
+@@ -90,7 +91,6 @@
+   compiler_flag: "-D_FORTIFY_SOURCE=1"
+   compiler_flag: "-fstack-protector"
+   compiler_flag: "-fPIE"
+-  linker_flag: "-pie"
+   linker_flag: "-Wl,-z,relro,-z,now"
+ 
+   # Enable coloring even if there's no attached terminal. Bazel removes the
+--- third_party/toolchains/gpus/crosstool/CROSSTOOL	2018-01-25 22:22:10.000000000 +0000
++++ third_party/toolchains/gpus/crosstool/CROSSTOOL.new	2018-04-11 20:36:14.254641789 +0000
+@@ -299,4 +299,5 @@
+   cxx_builtin_include_directory: "/usr/local/lib/clang/6.0.0/include"
+   cxx_builtin_include_directory: "/usr/include/x86_64-linux-gnu"
+   cxx_builtin_include_directory: "/usr/include"
++  cxx_builtin_include_directory: "${PREFIX}/include"
+ }

@@ -1,0 +1,31 @@
+{% set name = "cudatoolkit" %}
+{% set version = "9.0" %}
+{% set sha256 = "96863423feaa50b5c1c5e1b9ec537ef7ba77576a3986652351ae43e66bcd080c" %}
+{% set fn="cuda_9.0.176_384.81_linux-run" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ fn }}
+  url: https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/{{ fn }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+
+  run:
+
+test:
+  commands:
+    - nvcc --version
+
+about:
+  home: https://developer.nvidia.com/cuda-toolkit
+  license: Custom
+  summary: 'NVIDIA CUDA Toolkit'

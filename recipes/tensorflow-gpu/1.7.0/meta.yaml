@@ -16,7 +16,7 @@ source:
         - cc_flags.patch
 
 build:
-    number: 0
+    number: 1
     skip: True # [osx]
 
 requirements:
@@ -54,7 +54,7 @@ requirements:
         - protobuf >=3.4.0
         - futures ==3.1.1 # [py2k]
         - six >=1.10.0
-        - tensorboard >=1.5.0,<1.6.0
+        - tensorboard >=1.7.0,<1.8.0
         - absl-py >=0.1.6
         - backports.weakref >=1.0rc1 # [py < 34]
         - enum34 >=1.1.6 # [py < 34]

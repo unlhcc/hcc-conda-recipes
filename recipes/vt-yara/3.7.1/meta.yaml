@@ -1,0 +1,42 @@
+package:
+  name: vt-yara
+  version: 3.7.1
+
+source:
+  fn: v3.7.1.tar.gz
+  url: https://github.com/VirusTotal/yara/archive/v3.7.1.tar.gz
+  md5: cb3021e36151ed81984301140c066078
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - gcc  # [not osx]
+    - automake
+    - libtool
+    - pandoc
+    - pypandoc
+    - flex
+    - bison
+    - jansson
+    - libmagic
+  run:
+    - libgcc  # [not osx]
+    - pandoc
+    - pypandoc
+    - flex
+    - bison
+    - jansson
+    - libmagic
+
+test:
+  commands:
+    - yara -h
+
+about:
+  home: https://github.com/VirusTotal/yara
+  license: BSD 3
+  license_family: BSD
+  summary: YARA is a tool aimed at (but not limited to) helping malware researchers to identify and classify malware samples.

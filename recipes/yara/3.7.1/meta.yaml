@@ -9,11 +9,11 @@ source:
 
 build:
   number: 0
+  skip: True  # [osx]
 
 requirements:
   build:
     - gcc  # [not osx]
-    - llvm  # [osx]
     - automake
     - libtool
     - pandoc

@@ -36,3 +36,8 @@ about:
   license_file: LICENSE
   license_family: Apache
   summary: Modified Python interface for YARA for APKiD.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

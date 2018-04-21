@@ -1,0 +1,43 @@
+package:
+  name: apkid
+  version: 1.0.0
+
+source:
+  fn: v1.0.0.tar.gz
+  url: https://github.com/rednaga/APKiD/archive/v1.0.0.tar.gz
+  md5: 4a0f2f8a9808ab85dcddb0043eaf361b
+
+build:
+  number: 0
+  skip: True  # [osx or py3k]
+  script: python -m pip install --no-deps --ignore-installed .
+
+requirements:
+  build:
+    - python
+    - gcc  # [linux]
+    - pandoc
+    - vt-yara-python-apkid
+  run:
+    - python
+    - libgcc  # [linux]
+    - pandoc
+    - argparse
+    - vt-yara-python-apkid
+
+test:
+  commands:
+    - apkid -h
+    - python -c "import apkid"
+
+about:
+  home: https://github.com/rednaga/APKiD
+  license: GNU GPL
+  license_file: LICENSE.GPL
+  license_family: LGPL
+  summary: Android Application Identifier for Packers, Protectors, Obfuscators and Oddities - PEiD for Android.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

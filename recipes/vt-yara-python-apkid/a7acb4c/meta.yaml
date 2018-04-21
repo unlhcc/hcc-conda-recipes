@@ -1,0 +1,43 @@
+package:
+  name: vt-yara-python-apkid
+  version: a7acb4c
+
+source:
+  git_url: https://github.com/rednaga/yara-python.git
+  git_rev: a7acb4c  
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - python
+    - vt-yara
+    - gcc  # [not osx]
+    - pandoc
+    - pypandoc
+    - openssl
+  run:
+    - python
+    - vt-yara
+    - libgcc  # [not osx]
+    - pandoc
+    - pypandoc
+    - openssl
+
+test:
+  commands:
+    - python -c "import yara"
+
+about:
+  home: https://github.com/rednaga/yara-python
+  license: Apache 2.0
+  license_file: LICENSE
+  license_family: Apache
+  summary: Modified Python interface for YARA for APKiD.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

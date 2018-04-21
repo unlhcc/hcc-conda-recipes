@@ -1,0 +1,37 @@
+package:
+  name: vt-yara-python
+  version: 3.7.0
+
+source:
+  fn: v3.7.0.tar.gz
+  url: https://github.com/VirusTotal/yara-python/archive/v3.7.0.tar.gz
+  md5: 9db0010299c1aef3d0253302685015e9
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - python
+    - vt-yara
+    - pandoc
+    - pypandoc
+    - openssl
+  run:
+    - python
+    - vt-yara
+    - pandoc
+    - pypandoc
+    - openssl
+
+test:
+  commands:
+    - python -c "import yara"
+
+about:
+  home: https://github.com/VirusTotal/yara-python
+  license: Apache 2.0
+  license_file: LICENSE
+  license_family: Apache
+  summary: The Python interface for YARA.

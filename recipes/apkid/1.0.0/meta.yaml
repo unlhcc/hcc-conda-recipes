@@ -8,9 +8,8 @@ source:
   md5: 4a0f2f8a9808ab85dcddb0043eaf361b
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx or py3k]
-  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   build:
@@ -36,8 +35,3 @@ about:
   license_file: LICENSE.GPL
   license_family: LGPL
   summary: Android Application Identifier for Packers, Protectors, Obfuscators and Oddities - PEiD for Android.
-
-extra:
-  skip-lints:
-    - uses_git_url
-    - missing_hash

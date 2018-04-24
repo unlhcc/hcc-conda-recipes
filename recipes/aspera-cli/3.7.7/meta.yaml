@@ -1,0 +1,33 @@
+{% set name = "aspera-cli" %}
+{% set version = "3.7.7" %}
+{% set sha256 = "83efd03b699bdb1cac6c62befb3812342d6122217f4944f732ae7a135d578966" %}
+{% set fn = "aspera-cli-3.7.7.608.927cce8-linux-64-release.sh" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ fn }}
+  url: https://download.asperasoft.com/download/sw/cli/{{ version }}/{{ fn }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+
+  run:
+
+test:
+  commands:
+    - ascp --help
+    - ascp4 --help
+    - aspera help
+
+about:
+  home: https://developer.asperasoft.com/desktop-advance/command-line-client
+  license: Proprietary
+  summary: 'IBM Aspera Command-Line Interface (the Aspera CLI) is a collection of Aspera tools for performing high-speed, secure data transfers from the command line.'
+  license_family: PROPRIETARY

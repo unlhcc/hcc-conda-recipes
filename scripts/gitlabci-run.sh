@@ -5,7 +5,8 @@ set +u
 [[ -z $DOCKER_ARG ]] && DOCKER_ARG=""
 [[ -z $GITLAB_CI ]] && GITLAB_CI="false"
 [[ -z $BIOCONDA_UTILS_LINT_ARGS ]] && BIOCONDA_UTILS_LINT_ARGS=""
-[[ -z $RANGE_ARG ]] && RANGE_ARG="--git-range master HEAD"
+[[ -z $BIOCONDA_UTILS_BUILD_ARGS ]] && BIOCONDA_UTILS_BUILD_ARGS=""
+[[ -z $RANGE_ARG ]] && RANGE_ARG=""
 [[ -z $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK  ]] && DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK="false"
 set -u
 
@@ -19,9 +20,8 @@ if [[ $GITLAB_CI == "true" ]]
 then
     RANGE="master HEAD"
     RANGE_ARG="--git-range $RANGE"
+    export PATH=$ANACONDA_PREFIX/bin:$PATH
 fi
-
-export PATH=$ANACONDA_PREFIX/bin:$PATH
 
 # On travis we always run on docker for linux. This may not always be the case
 # for local testing.
@@ -40,7 +40,7 @@ else
     LINT_COMMENT_ARG=""
     if [[ $SKIP_LINTING == "false"  ]]
     then
-        set -x; bioconda-utils lint recipes config.yml $RANGE_ARG $BIOCONDA_UTILS_LINT_ARGS $LINT_COMMENT_ARG; set +x
+        set -x; bioconda-utils lint recipes config.yml $RANGE_ARG $BIOCONDA_UTILS_BUILD_ARGS $LINT_COMMENT_ARG; set +x
     fi
 fi
 

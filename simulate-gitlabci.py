@@ -8,7 +8,7 @@ import subprocess as sp
 import shlex
 import argparse
 
-import conda.fetch
+import conda.exports
 
 
 usage = """
@@ -73,7 +73,7 @@ def _remote_or_local(fn, branch='master', remote=False):
             '{branch}/{path}'.format(branch=branch, path=fn)
         )
         print('Using config file {}'.format(url))
-        with conda.fetch.TmpDownload(url) as f:
+        with conda.exports.TmpDownload(url) as f:
             cfg = yaml.load(open(f))
     else:
         cfg = yaml.load(open(os.path.join(HERE, fn)))

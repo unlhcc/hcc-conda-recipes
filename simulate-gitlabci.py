@@ -10,7 +10,6 @@ import argparse
 
 import conda.exports
 
-
 usage = """
 
 This script simulates a gitlab-ci run on the local machine by using the current

@@ -1,0 +1,44 @@
+about:
+  home: http://www-huber.embl.de/users/anders/HTSeq/
+  license:  GNU General Public License (GPL)
+  summary: 'A framework to process and analyze data from high-throughput sequencing (HTS) assays'
+
+build:
+  number: 0
+  skip: True # [py3k or osx]
+
+package:
+  name: htseq
+  version: 0.5.4p5
+
+requirements:
+  build:
+  - python
+  - matplotlib
+  - numpy 1.8*
+  - gcc
+  run:
+  - python
+  - matplotlib
+  - numpy 1.8*
+  - libgcc
+
+source:
+  fn: HTSeq-0.5.4p5.tar.gz
+  md5: b6d7d5c412bf067e6c33ee1550d99a52
+  url: https://pypi.python.org/packages/source/H/HTSeq/HTSeq-0.5.4p5.tar.gz
+
+test:
+  # Python imports
+  imports:
+    - HTSeq._HTSeq_internal
+    - HTSeq.StepVector
+    - HTSeq._version
+    - HTSeq.scripts.qa
+    - HTSeq.scripts.count
+
+  commands:
+    - htseq-count -h
+    - htseq-qa -h
+
+

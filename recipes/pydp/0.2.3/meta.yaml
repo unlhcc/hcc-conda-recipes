@@ -1,0 +1,31 @@
+package:
+  name: pydp
+  version: "0.2.3"
+  
+source:
+  fn: 0.2.3.tar.gz
+  md5: 22689ee72691b949ce7e72174120c060
+  url: https://github.com/aroth85/pydp/archive/0.2.3.tar.gz
+  
+build:
+  number: 0
+  skip: True # [py3k or osx]
+
+requirements:
+  build:
+    - python
+  
+  run:
+    - python
+    - numpy
+    - scipy
+
+test:
+  # Python imports
+  imports: pydp
+
+about:
+  home: https://bitbucket.org/aroth85/pydp
+  license:  GPLv3
+  license_file: LICENSE.txt
+  summary: PyDP is library for implementing Dirichlet Process mixture models (DPMM).

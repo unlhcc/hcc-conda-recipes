@@ -1,0 +1,38 @@
+package:
+  name: pyclone
+  version: "0.13.0_b1"
+  
+source:
+  fn: 0.13.0-b1.tar.gz
+  url: https://github.com/aroth85/pyclone/archive/0.13.0-b1.tar.gz
+  md5: ff3118309d12f913661d7a92a62b2a37
+  
+build:
+  number: 0
+  skip: True  # [osx or py3k]
+
+requirements:
+  build:
+    - python
+    
+  run:
+    - python
+    
+    - matplotlib
+    - numpy
+    - pandas
+    - pydp >=0.2.3
+    - pyyaml
+    - scipy
+    - seaborn
+    
+test:
+  commands:
+    - PyClone -h
+
+about:
+  home: https://bitbucket.org/aroth85/pyclone
+  license:  GPLv3
+  license_file: LICENSE.txt
+  summary: PyClone is statistical model and software tool designed to infer the prevalence of point mutations in heterogeneous cancer samples.
+

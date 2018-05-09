@@ -1,0 +1,40 @@
+package:
+  name: datacache
+  version: "0.5.5"
+
+source:
+  fn: datacache-0.5.5.tar.gz
+  url: https://files.pythonhosted.org/packages/8a/a1/1ecc1253bf39d311e06d034786be65438077ee82d7e1470f8f76a4d5dbe2/datacache-0.5.5.tar.gz
+  md5: 1ea71086e0e0b515a05112925db754e6
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - pandas >=0.15.2
+    - appdirs >=1.4.0
+    - progressbar33 >=2.4
+    - biopython >=1.65
+    - requests >=2.5.1
+    - typechecks >=0.0.2
+    - mock
+
+  run:
+    - python
+    - pandas >=0.15.2
+    - appdirs >=1.4.0
+    - progressbar33 >=2.4
+    - biopython >=1.65
+    - requests >=2.5.1
+    - typechecks >=0.0.2
+    - mock
+
+test:
+  imports:
+    - datacache
+
+about:
+  home: https://github.com/openvax/datacache
+  license: Apache Software License
+  summary: 'Helpers for transparently downloading datasets'
+  license_family: APACHE

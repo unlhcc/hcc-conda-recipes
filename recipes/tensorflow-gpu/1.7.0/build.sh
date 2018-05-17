@@ -50,7 +50,7 @@ cp ${PREFIX}/nvvm/libdevice/libdevice.compute_50.10.bc ${PREFIX}/nvvm/libdevice/
 # including --copt=-mavx2 would be better for AVX2 support, but it throws an illegal op error on Anvil, even though the procs support it (Docker issue maybe??)
 bazel build --verbose_failures \
   --define PREFIX=${PREFIX} --local_resources 2048,4,1.0 -c opt --copt=-mfpmath=both  \
-  --copt=-mavx --copt=-msse4.2 --config=cuda  //tensorflow/tools/pip_package:build_pip_package
+  --copt=-msse4.2 --config=cuda  //tensorflow/tools/pip_package:build_pip_package
 
 bazel-bin/tensorflow/tools/pip_package/build_pip_package ${TMPDIR}
 pip install ${TMPDIR}/tensorflow*.whl

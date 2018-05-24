@@ -1,0 +1,53 @@
+--- system/Make.sys-shared	2014-06-25 15:01:10.000000000 +0000
++++ system/Make.sys-shared.new	2018-05-24 22:14:09.829114228 +0000
+@@ -28,24 +28,27 @@
+ #debug options
+ #CFLAGS = -g
+ #-------------------------------------------
+-
++COMPILE_TCLTK    = no
++COMPILE_MESA     = no
++COMPILE_FFTW     = no
++COMPILE_MESCHACH = no
+ 
+ #------------------------------------------------------------------------
+ # X-libraries & include files
+ #------------------------------------------------------------------------
+-X_LIB     = -lXmu -lX11 
+-X_INCDIR  = 
++X_LIB     = -L${PREFIX}/lib -lXmu -lX11 
++X_INCDIR  = -I${PREFIX}/include
+ 
+ #------------------------------------------------------------------------
+ #
+ # Libraries
+ #
+ 
+-TCL_LIB      = -ltcl8.5
+-TK_LIB       = -ltk8.5
+-GLU_LIB      = -lGLU
+-GL_LIB       = -lGL
+-FFTW3_LIB    = -lfftw3
++TCL_LIB      = -L${PREFIX}/lib -ltcl8.5
++TK_LIB       = -L${PREFIX}/lib -ltk8.5
++GLU_LIB      = -L${PREFIX}/lib -lGLU
++GL_LIB       =  -L${PREFIX}/lib -lGL
++FFTW3_LIB    = -L${PREFIX}/lib -lfftw3
+ # this is only used for some testing purposes
+ #MESCHACH_LIB = -lmeschach
+ 
+@@ -53,10 +56,10 @@
+ # Include directories
+ #
+ 
+-TCL_INCDIR      = -I/usr/include/tcl8.5
+-TK_INCDIR       = 
+-GL_INCDIR       = 
+-FFTW3_INCDIR    =
++TCL_INCDIR      = -I${PREFIX}/include
++TK_INCDIR       = -I${PREFIX}/include
++GL_INCDIR       = -I${PREFIX}/include
++FFTW3_INCDIR    = -I${PREFIX}/include
+ # this is only used for some testing purposes
+ #MESCHACH_INCDIR =
+ 

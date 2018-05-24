@@ -1,0 +1,11 @@
+--- xcrysden	2014-06-25 21:06:11.000000000 +0000
++++ xcrysden.new	2018-05-24 16:48:08.498161978 +0000
+@@ -68,7 +68,7 @@
+ 
+ if test -z $XCRYSDEN_TOPDIR; then
+     # XCRYSDEN_TOPDIR does not exists, guess it from the process
+-    export XCRYSDEN_TOPDIR=`pathdir $0`
++    export XCRYSDEN_TOPDIR=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ fi
+ 
+ 

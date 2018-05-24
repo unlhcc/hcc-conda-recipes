@@ -1,7 +1,7 @@
 {% set name = "xcrysden" %}
 {% set version = "1.5.60" %}
-{% set buildnum = "0" %}
-{% set sha256 = "24e78f984d1ddae6d53f360639202e13782684a186b8a07c83d0c82471698553" %}
+{% set buildnum = "1" %}
+{% set sha256 = "a695729f1bb3e486b86a74106c06a392c8aca048dc6b0f20785c3c311cfb2ef4" %}
 
 package:
   name: {{ name }}
@@ -9,20 +9,21 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}-linux_x86_64-semishared.tar.gz
-  url: http://www.xcrysden.org/download/{{ name }}-{{ version }}-linux_x86_64-semishared.tar.gz
+  url: http://www.xcrysden.org/download/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
     - topdir.patch
+    - makefile.patch
+    - wget.patch
 
 build:
   number: {{ buildnum }}
   skip: True # [osx]
-  rpaths:
-    - share/{{ name }}-{{ version }}-{{ buildnum }}/external/lib/
-    - lib/
 
 requirements:
   build:
+    - gcc # [linux]
+    - wget
     - gettext
     - libxcb
     - libuuid
@@ -46,6 +47,8 @@ requirements:
     - xz {{ CONDA_XZ }}*
     - libpng 1.6*
     - libxml2
+    - tk 8.5*
+    - fftw 3.3*
 
   run:
     - libgcc # [linux]
@@ -71,6 +74,8 @@ requirements:
     - xz {{ CONDA_XZ }}*
     - libpng 1.6*
     - libxml2
+    - tk 8.5*
+    - fftw 3.3*
 
 test:
   commands:

@@ -1,0 +1,18 @@
+--- make.include	2013-08-19 11:43:23.000000000 +0000
++++ make.include.new	2018-05-24 22:38:44.801707165 +0000
+@@ -1,7 +1,7 @@
+ # program for fetching external library sources from the web
+ # (the usage is: $(DOWNLOAD) url)
+ 
+-DOWNLOAD = wget
++DOWNLOAD = wget --no-check-certificate
+ 
+ 
+ # Tcl/Tk version & download info
+@@ -56,4 +56,4 @@
+ MESCHACH_DOWNLOAD = $(MESCHACH_URL)/$(MESCHACH_TGZ)
+ BWIDGET_DOWNLOAD  = $(BWIDGET_URL)/$(BWIDGET_TGZ)
+ 
+-# -----------------------------------------------------------------------
+\ No newline at end of file
++# -----------------------------------------------------------------------

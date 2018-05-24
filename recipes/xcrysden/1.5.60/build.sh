@@ -1,10 +1,9 @@
 #!/bin/bash
 
-outdir=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
-mkdir -p $outdir ${PREFIX}/bin
+sudo yum install -y mesa-libGLU-devel
+export LD_LIBRARY_PATH=${PREFIX}/lib
+export CPATH=${PREFIX}/include
 
-export LD_LIBRARY_PATH=$outdir/external/lib:${PREFIX}/lib
-cp -R ${SRC_DIR}/* $outdir
-envsubst '${PREFIX}:${PKG_NAME}:${PKG_VERSION}:${PKG_BUILDNUM}' < ${SRC_DIR}/xcrysden > $outdir/xcrysden
-chmod +x $outdir/xcrysden
-ln -s $outdir/xcrysden ${PREFIX}/bin
+cp ./system/Make.sys-shared Make.sys
+make xcrysden
+prefix=${PREFIX} make install

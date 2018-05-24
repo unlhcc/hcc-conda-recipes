@@ -1,0 +1,85 @@
+{% set name = "xcrysden" %}
+{% set version = "1.5.60" %}
+{% set buildnum = "0" %}
+{% set sha256 = "24e78f984d1ddae6d53f360639202e13782684a186b8a07c83d0c82471698553" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}-linux_x86_64-semishared.tar.gz
+  url: http://www.xcrysden.org/download/{{ name }}-{{ version }}-linux_x86_64-semishared.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - topdir.patch
+
+build:
+  number: {{ buildnum }}
+  skip: True # [osx]
+  rpaths:
+    - share/{{ name }}-{{ version }}-{{ buildnum }}/external/lib/
+    - lib/
+
+requirements:
+  build:
+    - gettext
+    - libxcb
+    - libuuid
+    - libiconv
+    - icu
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libx11
+    - xorg-libxau
+    - xorg-libxdmcp
+    - xorg-libxext
+    - xorg-libxft
+    - xorg-libxmu
+    - xorg-libxrender
+    - xorg-libxscrnsaver
+    - xorg-libxt
+    - fontconfig
+    - freetype
+    - zlib {{ CONDA_ZLIB }}*
+    - bzip2 {{ CONDA_BZIP2 }}*
+    - xz {{ CONDA_XZ }}*
+    - libpng 1.6*
+    - libxml2
+
+  run:
+    - libgcc # [linux]
+    - libxcb
+    - libuuid
+    - libiconv
+    - icu
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libx11
+    - xorg-libxau
+    - xorg-libxdmcp
+    - xorg-libxext
+    - xorg-libxft
+    - xorg-libxmu
+    - xorg-libxrender
+    - xorg-libxscrnsaver
+    - xorg-libxt
+    - fontconfig
+    - freetype
+    - zlib {{ CONDA_ZLIB }}*
+    - bzip2 {{ CONDA_BZIP2 }}*
+    - xz {{ CONDA_XZ }}*
+    - libpng 1.6*
+    - libxml2
+
+test:
+  commands:
+    - xcrysden --help
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+
+about:
+  home: http://www.xcrysden.org/XCrySDen.html
+  license: GPLv2
+  license_family: GPL
+  license_file: COPYRIGHT
+  summary: 'XCrySDen is a crystalline and molecular structure visualisation program aiming at display of isosurfaces and contours, which can be superimposed on crystalline structures and interactively rotated and manipulated.'

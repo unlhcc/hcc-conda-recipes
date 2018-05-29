@@ -1,0 +1,50 @@
+{% set xorg_name = "libXdamage" %}
+{% set xorg_category = "lib" %}
+{% set name = "xorg-" ~ xorg_name %}
+{% set version = "1.1.4" %}
+{% set sha256 = "7c3fe7c657e83547f4822bfde30a90d84524efb56365448768409b77f05355ad" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.bz2
+  url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - pkg-config
+    - xorg-libx11 1.6.*
+    - xorg-libxext 1.3*
+    - xorg-xextproto 7.3*
+    - xorg-damageproto 1.2*
+    - xorg-fixesproto 5.0*
+    - xorg-libxfixes 5.0*
+    - xorg-libpthread-stubs
+
+  run:
+    - libgcc # [linux]
+    - libxcb
+    - xorg-libx11 1.6.*
+    - xorg-libxext 1.3*
+    - xorg-libxdmcp 1.1*
+    - xorg-libxfixes 5.0*
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+
+about:
+  home: https://www.x.org/
+  license: MIT
+  license_family: MIT
+  license_file: COPYING
+  summary: 'X11 Screen Saver extension client library.'

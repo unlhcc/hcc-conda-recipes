@@ -47,4 +47,4 @@ about:
   license: MIT
   license_family: MIT
   license_file: COPYING
-  summary: 'X11 Screen Saver extension client library.'
+  summary: 'This package contains the library for the X Damage extension.'

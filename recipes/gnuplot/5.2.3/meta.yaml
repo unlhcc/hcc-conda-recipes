@@ -20,8 +20,10 @@ requirements:
   build:
     - gcc # [linux]
     - pkgconfig
-    - ncurses 5.9
-    - readline 7.0
+    - ncurses {{ CONDA_NCURSES }}*
+    - readline {{ CONDA_READLINE }}*
+    - zlib {{ CONDA_ZLIB }}*
+    - xz {{ CONDA_XZ }}*
     - libgd
     - cairo 1.14.*
     - pango 1.40.*
@@ -38,8 +40,10 @@ requirements:
 
   run:
     - libgcc # [linux]
-    - ncurses 5.9
-    - readline 7.0
+    - ncurses {{ CONDA_NCURSES }}*
+    - readline {{ CONDA_READLINE }}*
+    - zlib {{ CONDA_ZLIB }}*
+    - xz {{ CONDA_XZ }}*
     - libgd
     - cairo 1.14.*
     - pango 1.40.*
@@ -67,3 +71,7 @@ about:
   license: Gnuplot
   license_file: Copyright
   summary: Gnuplot, plotting from command line
+
+extra:
+  skip-lints:
+    - in_other_channels

@@ -1,0 +1,77 @@
+{% set pkgname = "gnuplot" %}
+{% set version = "5.2.3" %}
+{% set sha256 = "feb58c9358d9d129e00507f3b34d4b13c4caea3f004325c587f8caafe5dbe724" %}
+
+package:
+  name: {{ pkgname }}
+  version: {{ version }}
+
+source:
+  url: https://sourceforge.net/projects/{{ pkgname }}/files/{{ pkgname }}/{{ version }}/{{ pkgname }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - term_include.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - gcc # [linux]
+    - pkgconfig
+    - ncurses {{ CONDA_NCURSES }}*
+    - readline {{ CONDA_READLINE }}*
+    - zlib {{ CONDA_ZLIB }}*
+    - xz {{ CONDA_XZ }}*
+    - libgd
+    - cairo 1.14.*
+    - pango 1.40.*
+    - qt 5.6.*
+    - freetype 2.8.1
+    - glib 2.55.*
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxrender
+    - xorg-libxfixes
+    - xorg-libxdamage
+    - libpng
+
+  run:
+    - libgcc # [linux]
+    - ncurses {{ CONDA_NCURSES }}*
+    - readline {{ CONDA_READLINE }}*
+    - zlib {{ CONDA_ZLIB }}*
+    - xz {{ CONDA_XZ }}*
+    - libgd
+    - cairo 1.14.*
+    - pango 1.40.*
+    - qt 5.6.*
+    - freetype 2.8.1
+    - glib 2.55.*
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxrender
+    - xorg-libxfixes
+    - xorg-libxdamage
+    - libpng
+
+test:
+  files:
+    - test-data.txt
+  commands:
+    - gnuplot -e "set terminal dumb; set style histogram; p 'test-data.txt'"
+    - gnuplot -e "set terminal png"
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+
+about:
+  home: https://github.com/gnuplot/gnuplot
+  license: Gnuplot
+  license_file: Copyright
+  summary: Gnuplot, plotting from command line
+
+extra:
+  skip-lints:
+    - in_other_channels

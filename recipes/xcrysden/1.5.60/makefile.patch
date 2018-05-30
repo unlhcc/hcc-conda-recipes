@@ -1,12 +1,14 @@
 --- system/Make.sys-shared	2014-06-25 15:01:10.000000000 +0000
-+++ system/Make.sys-shared.new	2018-05-24 22:14:09.829114228 +0000
-@@ -28,24 +28,27 @@
++++ system/Make.sys-shared.new	2018-05-29 21:05:36.205246319 +0000
+@@ -28,24 +28,29 @@
  #debug options
  #CFLAGS = -g
  #-------------------------------------------
 -
 +COMPILE_TCLTK    = no
 +COMPILE_MESA     = no
++MESA_OPTIONS   = --enable-shared
++MESA_TARGET    = linux
 +COMPILE_FFTW     = no
 +COMPILE_MESCHACH = no
  
@@ -36,7 +38,7 @@
  # this is only used for some testing purposes
  #MESCHACH_LIB = -lmeschach
  
-@@ -53,10 +56,10 @@
+@@ -53,10 +58,10 @@
  # Include directories
  #
  

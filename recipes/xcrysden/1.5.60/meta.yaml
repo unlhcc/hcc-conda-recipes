@@ -1,6 +1,6 @@
 {% set name = "xcrysden" %}
 {% set version = "1.5.60" %}
-{% set buildnum = "1" %}
+{% set buildnum = "2" %}
 {% set sha256 = "a695729f1bb3e486b86a74106c06a392c8aca048dc6b0f20785c3c311cfb2ef4" %}
 
 package:
@@ -8,11 +8,10 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}-linux_x86_64-semishared.tar.gz
+  fn: {{ name }}-{{ version }}.tar.gz
   url: http://www.xcrysden.org/download/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - topdir.patch
     - makefile.patch
     - wget.patch
 
@@ -23,6 +22,8 @@ build:
 requirements:
   build:
     - gcc # [linux]
+    - flex
+    - bison
     - wget
     - gettext
     - libxcb
@@ -33,6 +34,7 @@ requirements:
     - xorg-libsm
     - xorg-libx11
     - xorg-libxau
+    - xorg-libxdamage
     - xorg-libxdmcp
     - xorg-libxext
     - xorg-libxft
@@ -49,6 +51,7 @@ requirements:
     - libxml2
     - tk 8.5*
     - fftw 3.3*
+    - expat
 
   run:
     - libgcc # [linux]
@@ -60,6 +63,7 @@ requirements:
     - xorg-libsm
     - xorg-libx11
     - xorg-libxau
+    - xorg-libxdamage
     - xorg-libxdmcp
     - xorg-libxext
     - xorg-libxft
@@ -76,6 +80,7 @@ requirements:
     - libxml2
     - tk 8.5*
     - fftw 3.3*
+    - expat
 
 test:
   commands:

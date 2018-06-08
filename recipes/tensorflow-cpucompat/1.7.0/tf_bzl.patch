@@ -1,0 +1,28 @@
+--- tensorflow/tensorflow.bzl	2018-03-29 04:18:40.000000000 +0000
++++ tensorflow/tensorflow.bzl.new	2018-04-13 19:18:37.581799821 +0000
+@@ -290,7 +290,7 @@
+     name,
+     srcs=[],
+     deps=[],
+-    linkopts=[],
++    linkopts=['-lrt'],
+     framework_so=tf_binary_additional_srcs(),
+     **kwargs):
+   native.cc_binary(
+@@ -1060,6 +1060,7 @@
+   args += [src.path]
+   outputs = [ctx.outputs.cc_out, ctx.outputs.py_out]
+   ctx.action(
++      use_default_shell_env = True,
+       executable=ctx.executable._swig,
+       arguments=args,
+       inputs=list(inputs),
+@@ -1324,7 +1325,7 @@
+ )
+ 
+ def tf_extension_linkopts():
+-  return []  # No extension link opts
++  return ['-lrt']  # No extension link opts
+ 
+ def tf_extension_copts():
+   return []  # No extension c opts

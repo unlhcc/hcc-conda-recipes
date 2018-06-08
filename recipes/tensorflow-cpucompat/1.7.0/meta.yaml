@@ -1,4 +1,4 @@
-{% set name = "tensorflow" %}
+{% set name = "tensorflow-cpucompat" %}
 {% set version = "1.7.0" %}
 {% set sha256 = "c676a96fc8700722816b2b98c85578b2f99fac7a7b2484c9c7f0641484f8d50d" %}
 

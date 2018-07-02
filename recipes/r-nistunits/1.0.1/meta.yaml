@@ -31,5 +31,5 @@ test:
 about:
   home: https://CRAN.R-project.org/package=NISTunits
   license: GPL (>= 3)
-  summary: Fundamental physical constants (Quantity, Value, Uncertainty, Unit) for  SI (International System of Units) and non-SI units, plus unit conversions Based on the data from NIST (National Institute of Standards and Technology, USA)
+  summary: Fundamental physical constants (Quantity, Value, Uncertainty, Unit) for  SI (International System of Units) and non-SI units, plus unit conversions Based on the data from NIST.
   license_family: GPL3

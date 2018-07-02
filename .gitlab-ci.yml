@@ -23,19 +23,19 @@ build-linux:
   script:
     - scripts/gitlabci-run.sh
 
-build-osx:
-  stage: build
-  except:
-    - master
-  tags:
-    - osx
-  before_script:
-    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
-    - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
-    - scripts/gitlabci-setup.sh
-  script:
-    - scripts/gitlabci-run.sh
-    - rm -rf $ANACONDA_PREFIX
+#build-osx:
+#  stage: build
+#  except:
+#    - master
+#  tags:
+#    - osx
+#  before_script:
+#    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
+#    - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
+#    - scripts/gitlabci-setup.sh
+#  script:
+#    - scripts/gitlabci-run.sh
+#    - rm -rf $ANACONDA_PREFIX
 
 deploy-linux:
   stage: deploy
@@ -50,19 +50,19 @@ deploy-linux:
   script:
     - scripts/gitlabci-run.sh
 
-deploy-osx:
-  stage: deploy
-  only:
-    - master
-  tags:
-    - osx
-  before_script:
-    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
-    - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
-    - scripts/gitlabci-setup.sh
-  script:
-    - scripts/gitlabci-run.sh
-    - rm -rf $ANACONDA_PREFIX
+#deploy-osx:
+#  stage: deploy
+#  only:
+#    - master
+#  tags:
+#    - osx
+#  before_script:
+#    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
+#    - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
+#    - scripts/gitlabci-setup.sh
+#  script:
+#    - scripts/gitlabci-run.sh
+#    - rm -rf $ANACONDA_PREFIX
 
 sync-to-github:
   stage: sync-to-github

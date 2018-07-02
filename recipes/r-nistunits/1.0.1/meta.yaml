@@ -13,7 +13,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [osx]
+  skip: true  # [osx]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -31,5 +31,8 @@ test:
 about:
   home: https://CRAN.R-project.org/package=NISTunits
   license: GPL (>= 3)
-  summary: Fundamental physical constants (Quantity, Value, Uncertainty, Unit) for  SI (International System of Units) and non-SI units, plus unit conversions Based on the data from NIST.
+  summary: Fundamental physical constants (Quantity, Value, Uncertainty, Unit) for  SI (International
+    System of Units) and non-SI units, plus unit conversions Based on the data from
+    NIST (National Institute of Standards and Technology, USA)
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [linux]

@@ -1,6 +1,4 @@
 {% set version = '1.0.1' %}
-{% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-nistunits
@@ -15,6 +13,7 @@ source:
 
 build:
   number: 0
+  skip: True  # [osx]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -27,7 +26,7 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('NISTunits')"  # [unix]
+    - $R -e "library('NISTunits')"  # [linux]
 
 about:
   home: https://CRAN.R-project.org/package=NISTunits
@@ -36,4 +35,3 @@ about:
     System of Units) and non-SI units, plus unit conversions Based on the data from
     NIST (National Institute of Standards and Technology, USA)
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]

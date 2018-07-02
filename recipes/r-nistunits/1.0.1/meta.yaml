@@ -35,4 +35,3 @@ about:
     System of Units) and non-SI units, plus unit conversions Based on the data from
     NIST (National Institute of Standards and Technology, USA)
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [linux]

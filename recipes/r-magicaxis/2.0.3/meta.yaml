@@ -1,0 +1,47 @@
+{% set version = '2.0.3' %}
+
+package:
+  name: r-magicaxis
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: magicaxis_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/magicaxis_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/magicaxis/magicaxis_{{ version }}.tar.gz
+  sha256: 72aab6c3a49a34f119a5bbedcbf7e521240f5fe6d131bbbc2895ca286672d322
+
+build:
+  number: 0
+  skip: true  # [osx]
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r-base
+    - r-mass
+    - r-celestial >=1.4.1
+    - r-mapproj
+    - r-plotrix
+    - r-sm
+  run:
+    - r-base
+    - r-mass
+    - r-celestial >=1.4.1
+    - r-mapproj
+    - r-plotrix
+    - r-sm
+
+test:
+  commands:
+    - $R -e "library('magicaxis')"  # [linux]
+
+about:
+  home: https://CRAN.R-project.org/package=magicaxis
+  license: GPL-3
+  summary: Functions to make useful (and pretty) plots for scientific plotting. Additional plotting
+    features are added for base plotting, with particular emphasis on making attractive
+    log axis plots.
+  license_family: GPL3

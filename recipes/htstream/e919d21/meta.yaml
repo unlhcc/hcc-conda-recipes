@@ -1,0 +1,48 @@
+package:
+  name: htstream
+  version: e919d21
+
+source:
+  git_rev: e919d21
+  git_url: https://github.com/ibest/HTStream.git
+
+build:
+  number: 0
+ 
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash
+
+requirements:
+  build:
+    - gcc  # [linux]
+    - llvm  # [osx]
+    - cmake
+    - boost {{ CONDA_BOOST }}*
+    - zlib {{ CONDA_ZLIB }}*
+    - python
+  run:
+    - libgcc  # [linux]
+    - boost {{  CONDA_BOOST }}*
+    - zlib {{ CONDA_ZLIB }}*
+    - python
+
+test:
+  commands:
+    - hts_AdapterTrimmer
+    - hts_CutTrim
+    - hts_NTrimmer
+    - hts_Overlapper
+    - hts_PolyATTrim
+    - hts_QWindowTrim
+    - hts_SeqScreener
+    - hts_Stats
+    - hts_SuperDeduper
+
+about:
+  home: https://github.com/ibest/HTStream
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: "A toolset for high throughput sequence analysis using a streaming approach facilitated by Linux pipes."

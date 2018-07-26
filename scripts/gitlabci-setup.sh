@@ -32,5 +32,5 @@ export PATH=$ANACONDA_PREFIX/bin:$PATH
 $SCRIPT_DIR/../simulate-gitlabci.py --set-channel-order
 $SCRIPT_DIR/../simulate-gitlabci.py --install-requirements
 
-conda index $ANACONDA_PREFIX/conda-bld/linux-64 $ANACONDA_PREFIX/conda-bld/osx-64
+conda index $ANACONDA_PREFIX/conda-bld/linux-64 $ANACONDA_PREFIX/conda-bld/osx-64 $ANACONDA_PREFIX/conda-bld/noarch
 conda config --add channels file://$ANACONDA_PREFIX/conda-bld

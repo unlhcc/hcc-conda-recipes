@@ -109,13 +109,13 @@ if args.install_requirements:
         [
             'conda', 'install', '-q', '-y', '--file',
             'https://raw.githubusercontent.com/acaprez/bioconda-utils/'
-            '{0}/bioconda_utils/bioconda_utils-requirements.txt'.format(env['BIOCONDA_UTILS_TAG'])
+            '{0}/bioconda_utils/bioconda_utils-requirements.txt'.format(env['HCC_BIOCONDA_UTILS_TAG'])
         ], check=True)
 
     sp.run(
         [
             'pip', 'install', '-q',
-            'git+https://github.com/acaprez/bioconda-utils.git@{0}'.format(env['BIOCONDA_UTILS_TAG'])
+            'git+https://github.com/acaprez/bioconda-utils.git@{0}'.format(env['HCC_BIOCONDA_UTILS_TAG'])
         ],
         check=True)
     sys.exit(0)

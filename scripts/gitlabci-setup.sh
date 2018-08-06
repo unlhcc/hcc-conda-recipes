@@ -17,8 +17,8 @@ if [[ `uname` == Linux ]]
 then
     tag=Linux
     SUDO=sudo
-    dockerd -s vfs&
-    sleep 5
+    dockerd &
+    sleep 10
 else
     tag=MacOSX
     SUDO=""

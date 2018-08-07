@@ -3,14 +3,13 @@ package:
   version: 0.1.8
 
 source:
-  fn: libsamplerate-0.1.8.tar.gz
   url: http://www.mega-nerd.com/SRC/libsamplerate-0.1.8.tar.gz
-  sha1:	e5fe82c4786be2fa33ca6bd4897db4868347fe70
+  sha1: e5fe82c4786be2fa33ca6bd4897db4868347fe70
 
 build:
     number: 0
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - libsndfile

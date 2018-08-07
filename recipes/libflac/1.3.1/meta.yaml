@@ -3,14 +3,13 @@ package:
   version: 1.3.1
 
 source:
-  fn: flac-1.3.1.tar.xz
   url: http://downloads.xiph.org/releases/flac/flac-1.3.1.tar.xz
   sha1: 38e17439d11be26207e4af0ff50973815694b26f
-	
+
 build:
     number: 0
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - libogg
@@ -21,3 +20,8 @@ about:
   home: https://xiph.org/flac
   license: "BSD-STYLE SOURCE LICENSE"
   summary: FLAC is an Open Source lossless audio codec developed by Josh Coalson from 2001 to 2009.
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - missing_tests

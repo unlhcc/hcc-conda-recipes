@@ -3,10 +3,9 @@ package:
   version: 1.1.1
 
 source:
-  fn: libtheora-1.1.1.tar.bz2
   url: http://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.bz2
   md5: 292ab65cedd5021d6b7ddd117e07cd8e
-	
+
 build:
     number: 0
     skip: True # [osx]
@@ -36,3 +35,8 @@ about:
   home: https://theora.org
   license: BSD
   summary: "Theora is a free and open video compression format from the Xiph.org Foundation."
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_use_compilers

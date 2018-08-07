@@ -3,13 +3,12 @@ package:
   version: 1.5.2
 
 source:
-  fn: version.1.5.2.tar.gz
   url: https://github.com/uclouvain/openjpeg/archive/version.1.5.2.tar.gz
   md5: 545f98923430369a6b046ef3632ef95c
-	
+
 build:
     number: 0
-    skip: True # [osx]	  
+    skip: True # [osx] 
 requirements:
   build:
     - gcc
@@ -36,3 +35,7 @@ about:
   license: Simplified BSD License
   license_file: LICENSE
   summary: "An open-source JPEG 2000 codec written in C."
+
+extra:
+  skip-lints:
+    - should_use_compilers

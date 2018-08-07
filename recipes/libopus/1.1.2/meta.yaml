@@ -3,14 +3,13 @@ package:
   version: 1.1.2
 
 source:
-  fn: opus-1.1.2.tar.gz
   url: http://downloads.xiph.org/releases/opus/opus-1.1.2.tar.gz
   md5: 1f08a661bc72930187893a07f3741a91
-	
+
 build:
     number: 1
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - gcc
@@ -28,3 +27,7 @@ about:
   license: BSD
   license_file: COPYING
   summary: "Opus is a codec for interactive speech and audio transmission over the Internet."
+
+extra:
+  skip-lints:
+    - should_use_compilers

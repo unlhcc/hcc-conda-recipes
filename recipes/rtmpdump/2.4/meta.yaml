@@ -6,11 +6,11 @@ source:
   git_url: git://git.ffmpeg.org/rtmpdump
   patches:
     - makefile.patch
-	
+
 build:
     number: 1
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - gcc
@@ -32,3 +32,9 @@ about:
   home: https://rtmpdump.mplayerhq.hu
   license: GPLv2
   summary: "rtmpdump is a toolkit for RTMP streams."
+
+extra:
+  skip-lints:
+    - should_use_compilers
+    - missing_hash
+    - uses_git_url

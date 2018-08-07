@@ -3,16 +3,15 @@ package:
   version: 0.1.2
 
 source:
-  fn: soxr-0.1.2-Source.tar.xz
   url: http://downloads.sourceforge.net/project/soxr/soxr-0.1.2-Source.tar.xz
   md5: 0866fc4320e26f47152798ac000de1c0
   patches:
     - installpath.patch
-	
+
 build:
     number: 0
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - gcc
@@ -32,4 +31,8 @@ about:
   home: https://sourceforge.net/projects/soxr
   license: GPL
   license_file: LICENCE
-  summary: "The SoX Resampler library `libsoxr' performs one-dimensional sample-rate conversion—it may be used, for example, to resample PCM-encoded audio."
+  summary: "The SoX Resampler library libsoxr performs one-dimensional sample-rate conversion-it may be used, for example, to resample PCM-encoded audio."
+
+extra:
+  skip-lints:
+    - should_use_compilers

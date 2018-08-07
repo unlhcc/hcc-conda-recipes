@@ -3,14 +3,13 @@ package:
   version: 1.5.0
 
 source:
-  fn: libvpx-1.5.0.tar.bz2
   url: http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.5.0.tar.bz2
   md5: 49e59dd184caa255886683facea56fca
-	
+
 build:
     number: 0
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - gcc
@@ -30,3 +29,8 @@ about:
   license: BSD
   license_file: LICENSE
   summary: "This package, from the WebM project, provides the reference implementations of the VP8 Codec, used in most current html5 video, and of the next-generation VP9 Codec."
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_use_compilers

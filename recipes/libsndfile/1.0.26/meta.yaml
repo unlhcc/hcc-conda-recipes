@@ -3,14 +3,13 @@ package:
   version: 1.0.26
 
 source:
-  fn: libsndfile-1.0.26.tar.gz
   url: http://www.mega-nerd.com/libsndfile/files/libsndfile-1.0.26.tar.gz
-  sha1:	c9092c06f6ed51034c9e809e150083ff1f55e79e
+  sha1: c9092c06f6ed51034c9e809e150083ff1f55e79e
 
 build:
     number: 0
     skip: True # [osx]
-	  
+
 requirements:
   build:
     - libogg

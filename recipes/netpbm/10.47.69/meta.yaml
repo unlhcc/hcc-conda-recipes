@@ -1,0 +1,59 @@
+{% set name = "netpbm" %}
+{% set version = "10.47.69" %}
+{% set sha256 = "52f69fb7cee8ecd0393df7260426fbb415cdb67b6c0ee73643a02e5742eb6581" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://downloads.sourceforge.net/project/{{ name }}/super_stable/{{ version }}/{{ name }}-{{ version }}.tgz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - pkg-config
+    - flex
+    - gettext
+
+  host:
+    - perl
+    - jpeg
+    - libtiff
+    - zlib
+    - libpng <=1.5
+    - libxml2
+    - xorg-libx11
+
+  run:
+    - perl
+    - jpeg
+    - libtiff
+    - zlib
+    - libpng <=1.5
+    - libxml2
+    - xorg-libx11
+
+test:
+  commands:
+    - pnmtopng -version
+    - pnmtops -version
+    - ppmtogif -version
+    - pamscale -version
+    - tifftopnm -version
+    - jpegtopnm -version
+    - ppmtopgm -version
+    - pamcut -version
+    - bmptopnm -version
+
+about:
+  home: http://netpbm.sourceforge.net
+  license: GPLv2
+  license_family: GPL
+  license_file: doc/copyright_summary
+  summary: 'Netpbm is a toolkit for manipulation of graphic images, including conversion of images between a variety of different formats.'

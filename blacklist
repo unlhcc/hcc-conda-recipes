@@ -2,7 +2,6 @@
 recipes/pegasus-wms/4.7.4
 recipes/r-mxnet/0.9.3a
 recipes/gmp/4.3.2
-recipes/mro/3.5.0
 
 recipes/abayesqr/1.0
 recipes/absl-py/0.1.10
@@ -80,7 +79,6 @@ recipes/md-cogent/3.1
 recipes/microbiomeutil/2010-04-49
 recipes/miniasm/17d5bd1
 recipes/mro/3.4.4
-recipes/mro/3.5.0
 recipes/music/1.0
 recipes/mxnet/0.9.3a
 recipes/opencore-amr/0.1.3

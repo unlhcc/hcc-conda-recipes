@@ -1,0 +1,41 @@
+{% set name = "GEOparse" %}
+{% set version = "1.0.5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://files.pythonhosted.org/packages/f9/1f/0c9b1c19ab8428b6c090c1603599383375f5c9b233601aa3cc695c210fb0/{{ name }}-{{ version }}.tar.gz
+  sha256: a9f77a43a13a56212a98b620740fdd87a3bb75f38527440ccd803d40a39ec215
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed ."
+
+requirements:
+  host:
+    - numpy >=1.7
+    - pandas >=0.17
+    - pip
+    - python
+    - wgetter >=0.6
+  run:
+    - numpy >=1.7
+    - pandas >=0.17
+    - python
+    - wgetter >=0.6
+
+test:
+  imports:
+    - GEOparse
+  requires:
+    - tox
+
+about:
+  home: https://github.com/guma44/GEOparse
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Python library to access Gene Expression Omnibus Database (GEO)

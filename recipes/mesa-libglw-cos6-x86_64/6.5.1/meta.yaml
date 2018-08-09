@@ -1,0 +1,36 @@
+package:
+  name: mesa-libglw-cos6-x86_64
+  version: 6.5.1
+
+source:
+  - url: http://vault.centos.org/6.9/os/x86_64/Packages/mesa-libGLw-6.5.1-10.el6.x86_64.rpm
+    sha256: 4a217ad5e52a834bb0ec2f74a20393e3ddf66f1a14b2ab99de4631589103cac9
+    folder: binary
+  - url: http://vault.centos.org/6.9/os/Source/SPackages/mesa-libGLw-6.5.1-10.el6.src.rpm
+    folder: source
+
+requirements:
+  build:
+    - libx11-cos6-x86_64 >1.6
+    - libdrm-cos6-x86_64 >=2.4.24
+
+
+outputs:
+  - name: mesa-libglw-cos6-x86_64
+    requirements:
+      run:
+        - libx11-cos6-x86_64 >1.6
+        - libdrm-cos6-x86_64 >=2.4.24
+
+    about:
+      home: http://www.mesa3d.org
+      license: MIT
+      license_family: MIT
+      summary: "(CDT) Mesa libGLw runtime libraries and DRI drivers"
+      description: |
+        Mesa libGLw runtime library.
+
+extra:
+  skip-lints:
+    - missing_tests
+    - missing_hash

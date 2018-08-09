@@ -1,0 +1,34 @@
+package:
+  name: mesa-libglw-devel-cos6-x86_64
+  version: 6.5.1
+
+source:
+  - url: http://vault.centos.org/6.9/os/x86_64/Packages/mesa-libGLw-devel-6.5.1-10.el6.x86_64.rpm
+    sha256: 76decb8d4071988cd770a434accd6e64e6ba7706b860830f11b60786eaac819b
+    folder: binary
+  - url: http://vault.centos.org/6.9/os/Source/SPackages/mesa-libGLw-6.5.1-10.el6.src.rpm
+    folder: source
+
+requirements:
+  build:
+    - mesa-libglw-cos6-x86_64 ==6.5.1
+
+
+outputs:
+  - name: mesa-libglw-devel-cos6-x86_64
+    requirements:
+      run:
+        - mesa-libglw-cos6-x86_64 ==6.5.1
+
+    about:
+      home: http://www.mesa3d.org
+      license: MIT
+      license_family: MIT
+      summary: "(CDT) Mesa libGLw development package"
+      description: |
+        Mesa libGLw development package
+
+extra:
+  skip-lints:
+    - missing_tests
+    - missing_hash

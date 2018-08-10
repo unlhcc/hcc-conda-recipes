@@ -1,0 +1,93 @@
+{% set name = "afni" %}
+{% set version = "18.2.06" %}
+{% set sha256 = "fc9767bbc8221fcdb0a14bbeecee13bfb4054c74fc32ecf66957ae3ef701292a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url:  https://github.com/{{ name }}/{{ name }}/archive/AFNI_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+    - suma_makefile.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+  skip: True # [py3k]
+
+requirements:
+  build:
+    - gcc_linux-64
+    - gxx_linux-64
+    - gfortran_linux-64
+    - autoconf
+    - {{ cdt('mesa-libglw-devel') }}
+    - {{ cdt('mesa-libgl-devel') }}
+
+  host:
+    - python
+    - libpng
+    - jpeg
+    - zlib
+    - openssl
+    - openmp
+    - freetype
+    - mesa
+    - libglu
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxmu
+    - xorg-libxpm
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - expat
+    - gsl
+    - openmotif
+    - openmotif-dev
+    - glib
+    - netpbm
+
+  run:
+    - python
+    - libpng
+    - jpeg
+    - zlib
+    - openssl
+    - openmp
+    - freetype
+    - mesa
+    - libglu
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxmu
+    - xorg-libxpm
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - expat
+    - gsl
+    - openmotif
+    - glib
+    - netpbm
+
+test:
+  commands:
+    - afni --help
+
+about:
+  home: https://afni.nimh.nih.gov/afni
+  summary: "AFNI is a suite of programs for looking at and analyzing 3D brain images."
+  license: GPL-2.0
+  license_family: GPL
+  license_file: doc/README/README.copyright
+  dev_url: https://github.com/afni/afni
+
+extra:
+  container:
+    extended-base: True

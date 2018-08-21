@@ -1,0 +1,46 @@
+{% set name = "minc-tools" %}
+{% set version = "2.3.00" %}
+{% set sha256 = "b505e9666706ac2e7f58febb1e5fcda24fc858b0dc7625d433d409cff33e85b4" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/BIC-MNI/{{ name|lower }}/archive/{{ name }}-{{ version|replace(".","-") }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - bison=3.0.4
+    - zlib
+    - m4
+
+  host:
+    - libminc 2.3*
+    - flex
+
+  run:
+    - libminc 2.3*
+    - flex
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+    - mincinfo -version
+    - minccalc -version
+    - mincgen -version
+
+about:
+  home: https://github.com/BIC-MNI/minc-tools
+  license: Custom OSS
+  license_family: OTHER
+  license_file: COPYING
+  summary: "Basic minc-tools from former minc repository"

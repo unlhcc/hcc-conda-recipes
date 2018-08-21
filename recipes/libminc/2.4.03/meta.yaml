@@ -1,0 +1,42 @@
+{% set name = "libminc" %}
+{% set version = "2.4.03" %}
+{% set sha256 = "138eded8a4958e2735178ce41e687af25d4c7a4127b67b853a40165d5d1962f5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/BIC-MNI/{{ name|lower }}/archive/release-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+
+  host:
+    - hdf5 1.8*
+    - libnetcdf 4.*
+    - zlib
+
+  run:
+    - hdf5 1.8*
+    - libnetcdf 4.*
+    - zlib
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+
+about:
+  home:  https://github.com/BIC-MNI/libminc
+  license: Custom OSS
+  license_family: OTHER
+  license_file: COPYING
+  summary: "libminc is the core library and API of the MINC toolkit"

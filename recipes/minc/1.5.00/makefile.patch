@@ -1,0 +1,5 @@
+--- volume_io/Makefile.am	2006-11-14 04:28:35.000000000 +0000
++++ volume_io/Makefile.am.new	2018-08-22 19:29:03.555435456 +0000
+@@ -1 +1 @@
+-SUBDIRS = Documentation Testing
++SUBDIRS = Documentation 

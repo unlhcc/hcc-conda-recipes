@@ -1,0 +1,24 @@
+--- libsrc/minc_error.c	2006-11-14 04:28:35.000000000 +0000
++++ libsrc/minc_error.c.new	2018-08-22 18:54:57.941820653 +0000
+@@ -61,6 +61,7 @@
+ 
+ SEMIPRIVATE int MI_save_routine_name(char *name)
+ {
++   int MI_CALLERS_NCOPTS;
+    MI_ROUTINE_VAR = name; 
+    MI_CALLERS_NCOPTS = ncopts; 
+    ncopts &= ~(NC_FATAL); 
+@@ -68,11 +69,13 @@
+ }
+ SEMIPRIVATE int MI_return(void)
+ { 
++   int MI_CALLERS_NCOPTS;
+    ncopts = MI_CALLERS_NCOPTS; 
+    return(TRUE); 
+ }
+ SEMIPRIVATE int MI_return_error(void)
+ { 
++   int MI_CALLERS_NCOPTS;
+    ncopts = MI_CALLERS_NCOPTS; 
+    MI_LOG_PKG_ERROR2(ncerr, "MINC package entry point"); 
+    return(TRUE);

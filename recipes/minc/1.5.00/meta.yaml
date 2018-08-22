@@ -1,0 +1,51 @@
+{% set name = "minc" %}
+{% set version = "1.5.00" %}
+{% set sha256 = "df2166466ff131ded23dae91e55126754c3905415023909e3442f179c1049096" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/BIC-MNI/{{ name }}/archive/release-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+    patches:
+      - patch-MAX_NC_OPEN.diff
+      - minc_error.patch
+      - makefile.patch
+  - url: https://github.com/BIC-MNI/mni-acmacros/archive/release-0.4.41.tar.gz
+    sha256: b8046ac0644fa3f5612180d95ddcf01242c5bf05e9ae5c82fedb5e4b7fb2c4c9
+    folder: m4
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - libtool
+    - automake
+    - bison
+
+  host:
+    - libnetcdf 4.*
+    - zlib
+
+  run:
+    - libnetcdf 4.*
+    - zlib
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+    - mincinfo -version
+
+about:
+  home:  https://github.com/BIC-MNI/minc
+  license: Custom OSS
+  license_family: OTHER
+  license_file: COPYING
+  summary: "Basic minc-tools from former minc repository"

@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-    number: 0
+    number: 1
     skip: True # [osx]
 
 requirements:
@@ -27,14 +27,14 @@ requirements:
     - libpng 1.2*
     - jpeg
     - zlib
-    - hdf5 1.8*
+    - hdf5 >=1.8.18,<1.8.19.0a0
 
   run:
     - libtiff
     - libpng 1.2*
     - jpeg
     - zlib
-    - hdf5 1.8*
+    - hdf5 >=1.8.18,<1.8.19.0a0
 
 test:
   commands:

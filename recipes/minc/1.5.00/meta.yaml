@@ -18,7 +18,7 @@ source:
     folder: m4
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:
@@ -31,12 +31,14 @@ requirements:
     - bison
 
   host:
-    - libnetcdf 4.*
+    - libnetcdf 4.5*
     - zlib
+    - hdf5 >=1.8.18,<1.8.19.0a0
 
   run:
-    - libnetcdf 4.*
+    - libnetcdf 4.5*
     - zlib
+    - hdf5 >=1.8.18,<1.8.19.0a0
 
 test:
   commands:

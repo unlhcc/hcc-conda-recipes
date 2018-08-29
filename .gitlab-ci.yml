@@ -1,5 +1,5 @@
 variables:
-  HCC_BIOCONDA_UTILS_TAG: "gitlabci-cb3-migration"
+  HCC_BIOCONDA_UTILS_TAG: "gitlabci-master"
   BIOCONDA_UTILS_BUILD_ARGS: "--loglevel=info"
   MINICONDA_VER: "4.3.21"
   SUBDAGS: "1"

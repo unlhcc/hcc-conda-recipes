@@ -1,0 +1,59 @@
+{% set name = "petsc" %}
+{% set version = "2.3.3_p13" %}
+{% set sha256 = '5d12e7d879fa162113f62769cd627823f3c3be45ca83ccee07f368303d8a1ba3' %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-{{ version|replace("_","-") }}.tar.gz
+    sha256: {{ sha256 }}
+    patches:
+    - allow_root.patch
+  - url: http://ftp.mcs.anl.gov/pub/petsc/externalpackages/MUMPS_4.7.3.tar.gz
+    sha256: 129f29e693a6836227b0e405cddbbed37445cc46320b6b9814606dfcf679fe26
+    folder: externalpackages/MUMPS
+  - url: http://ftp.mcs.anl.gov/pub/petsc/externalpackages/ParMetis-dev-p1.tar.gz
+    sha256: 748d0e72df2fc8e470715235dd91fa4d7abd02feb213d64dff6687af8a41090e
+    folder: externalpackages/ParMetis
+
+build:
+  skip: True  # [osx]
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('petsc', max_pin='x.x')}}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - python 2.7.*
+
+  host:
+    - cmake
+    - openblas
+    - {{ mpi }}
+    - hypre
+    - scalapack
+
+  run:
+    - openblas
+    - {{ mpi }}
+    - hypre
+    - scalapack
+
+test:
+  commands:
+    - conda inspect linkages petsc
+
+about:
+  home: http://www.mcs.anl.gov/petsc/
+  summary: 'PETSc: Portable, Extensible Toolkit for Scientific Computation'
+  license: BSD 2-Clause
+  license_family: BSD
+
+extra:
+  skip_lints:
+    - in_other_channels

@@ -1,0 +1,46 @@
+{% set name = "vxl" %}
+{% set version = "1.14.0" %}
+{% set sha256 = "784611ab9fb9f0cccf45a0ab4aa36aefea1dd68d66dce0e50a2162c368bae129" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version}}.tar.gz
+    sha256: {{ sha256 }}
+    patches:
+      - gcc48.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  host:
+    - zlib
+    - cmake
+    - bzip2
+    - expat 2.1*
+    - libpng 1.2*
+
+  run:
+    - zlib
+    - bzip2
+    - expat 2.1*
+    - libpng 1.2*
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+
+about:
+  home: http://vxl.sourceforge.net
+  license: Custom OSS
+  license_family: OTHER
+  license_file: core/vxl_copyright.h
+  summary: "VXL (the Vision-something-Libraries) is a collection of C++ libraries designed for computer vision research and implementation."

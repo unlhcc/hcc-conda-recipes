@@ -1,0 +1,27 @@
+{% set name = "cub" %}
+{% set version = "1.7.2" %}
+{% set sha256 = '928aaebef6be7ae87e45ad2aed800827e4f7c00192763fa13aeb8a5d990e2d6c' %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/NVlabs/{{ name }}/archive/v{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  skip: True  # [osx]
+  number: 0
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/cub/cub.cuh
+
+about:
+  home: http://nvlabs.github.com/cub
+  summary: 'CUB is a flexible library of cooperative threadblock primitives and other utilities for CUDA kernel programming.'
+  license: BSD-3
+  license_family: BSD
+  license_file: LICENSE.TXT
+  dev_url: https://github.com/NVlabs/cub

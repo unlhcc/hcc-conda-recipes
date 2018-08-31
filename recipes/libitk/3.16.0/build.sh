@@ -1,0 +1,26 @@
+mkdir build
+cd build
+
+export INCLUDE_PATH="${PREFIX}/include"
+export LIBRARY_PATH="${PREFIX}/lib"
+export LD_LIBRARY_PATH="${PREFIX}/lib"
+export LDFLAGS="-L${PREFIX}/lib"
+export CPPFLAGS="-I${PREFIX}/include"
+export CXXFLAGS="-fpermissive $CXXFLAGS"
+
+cmake \
+    ${CMAKE_ARGS} \
+    -D BUILD_TESTING:BOOL=OFF \
+    -D BUILD_EXAMPLES:BOOL=OFF \
+    -D ITK_USE_SYSTEM_PNG:BOOL=OFF \
+    -D ITK_USE_SYSTEM_TIFF:BOOL=OFF \
+    -D ITK_USE_SYSTEM_ZLIB:BOOL=OFF \
+    -D ITK_USE_KWSTYLE:BOOL=OFF \
+    -D ITK_USE_REVIEW:BOOL=ON \
+    -D CMAKE_BUILD_TYPE:STRING=RELEASE \
+    -D "CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=${PREFIX}" \
+    -D "CMAKE_INSTALL_PREFIX=${PREFIX}" \
+    "${SRC_DIR}"
+
+make -j$CPU_COUNT
+make install

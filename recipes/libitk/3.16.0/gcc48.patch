@@ -1,0 +1,51 @@
+--- Code/IO/itkConvertPixelBuffer.txx	2009-09-15 02:00:06.000000000 +0000
++++ Code/IO/itkConvertPixelBuffer.txx.new	2018-08-28 19:48:00.199806099 +0000
+@@ -252,7 +252,7 @@
+     // http://www.inforamp.net/~poynton/notes/colour_and_gamma/ColorFAQ.html
+     // NOTE: The scale factors are converted to whole numbers for
+     // precision
+-    ptrdiff_t diff = inputNumberOfComponents - 4;
++    std::ptrdiff_t diff = inputNumberOfComponents - 4;
+     InputPixelType* endInput = inputData + size*inputNumberOfComponents;
+     while(inputData != endInput)
+       {
+@@ -381,7 +381,7 @@
+   // just skip the rest of the data
+   else
+     {
+-    ptrdiff_t diff = inputNumberOfComponents - 3;
++    std::ptrdiff_t diff = inputNumberOfComponents - 3;
+     InputPixelType* endInput = inputData + size * inputNumberOfComponents;
+     while(inputData != endInput)
+       {
+@@ -519,7 +519,7 @@
+     }
+   else
+     {
+-    ptrdiff_t diff = inputNumberOfComponents - 4;
++    std::ptrdiff_t diff = inputNumberOfComponents - 4;
+     InputPixelType* endInput = inputData + size * inputNumberOfComponents;
+     while(inputData != endInput)
+       {
+@@ -661,7 +661,7 @@
+                               OutputPixelType* outputData , 
+                               size_t size)
+ {
+-  ptrdiff_t diff = inputNumberOfComponents - 2;
++  std::ptrdiff_t diff = inputNumberOfComponents - 2;
+   InputPixelType* endInput = inputData + size * inputNumberOfComponents;
+   while(inputData != endInput)
+     {
+--- Code/IO/itkImageIORegion.h	2018-08-28 19:47:13.610792463 +0000
++++ Code/IO/itkImageIORegion.h.new	2018-08-28 19:48:49.226820449 +0000
+@@ -59,8 +59,8 @@
+ 
+   /** these types correspond to those of itk::Size, itk::Offset and itk::Index */
+   typedef size_t                  SizeValueType;
+-  typedef ptrdiff_t               IndexValueType;
+-  typedef ptrdiff_t               OffsetValueType;
++  typedef std::ptrdiff_t               IndexValueType;
++  typedef std::ptrdiff_t               OffsetValueType;
+ 
+ 
+   /** Index typedef support. An index is used to access pixel values. */

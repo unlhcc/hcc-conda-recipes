@@ -1,0 +1,49 @@
+{% set name = "libitk" %}
+{% set version = "3.16.0" %}
+{% set sha256 = "98755d521f694f8b520e23c5e4bd079f24df418739e64c7992e8fe2d0fbdc0e9" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/InsightSoftwareConsortium/ITK/archive/v{{version}}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - gcc48.patch
+
+build:
+    number: 0
+    skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - python
+    - perl
+
+  host:
+    - cmake
+    - jpeg
+    - hdf5 >=1.8.18,<1.8.19.0a0
+
+  run:
+    - jpeg
+    - hdf5 >=1.8.18,<1.8.19.0a0
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+    - itkTestDriver --help
+
+about:
+  home: http://www.itk.org/
+  license_family: Apache
+  license: Apache 2.0
+  license_file: Copyright/Copyright.txt 
+  summary: ITK is an open-source, cross-platform system that provides developers with an extensive suite of software tools for image analysis.
+
+extra:
+  skip-lints:
+    - in_other_channels

@@ -1,0 +1,37 @@
+{% set name="RarefactionAnalyzer" %}
+{% set version="2018.09.06" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/cdeanj/{{ name|lower }}.git
+  git_tag: de06630986c10c03b8540fd53925075baca5d38e
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  run:
+  host:
+
+test:
+  commands:
+    - rarefaction 2>&1 | grep "rarefaction" > /dev/null
+
+about:
+  home: https://github.com/cdeanj/rarefactionanalyzer
+  license: Custom
+  license_family: Other
+  summary: Rarefaction analyzer is a simple program that can be used to perform rarefaction analysis.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

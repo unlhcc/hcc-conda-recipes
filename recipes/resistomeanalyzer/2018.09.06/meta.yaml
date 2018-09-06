@@ -1,0 +1,37 @@
+{% set name="ResistomeAnalyzer" %}
+{% set version="2018.09.06" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/cdeanj/{{ name|lower }}.git
+  git_tag: c6b097ad054e0620560f3bcd22e2a63b896ab33a 
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  run:
+  host:
+
+test:
+  commands:
+    - resistome 2>&1 | grep "resistome" > /dev/null
+
+about:
+  home: https://github.com/cdeanj/resistomeanalyzer
+  license: Custom
+  license_family: Other
+  summary: Resistome Analyzer is a simple tool for analyzing the resistome of large metagenomic datasets.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

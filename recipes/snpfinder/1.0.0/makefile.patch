@@ -1,0 +1,23 @@
+--- Makefile	2016-10-28 11:39:09.000000000 -0500
++++ Makefile.new	2018-09-06 00:58:31.911918148 -0500
+@@ -1,16 +1,16 @@
+-CC=g++
++CXX ?= g++
+ TARGET := snpfinder
+ CXX_SRCS := $(wildcard *.cpp)
+ CXX_OBJS := ${CXX_SRCS:.cpp=.o}
+-CFLAGS := -c -std=c++11
++CXXFLAGS += -c -std=c++11
+ 
+ all: $(TARGET)
+ 
+ $(TARGET): $(CXX_OBJS)
+-	$(CC) $(CXX_OBJS) -o $(TARGET)
++	$(CXX) $(CXX_OBJS) -o $(TARGET)
+ 
+ %.o: %.cpp
+-	$(CC) $(CFLAGS) $<
++	$(CXX) $(CXXFLAGS) $<
+ 
+ clean:
+ 	$(RM) $(TARGET)

@@ -1,0 +1,33 @@
+{% set name="SNPFinder" %}
+{% set version="1.0.0" %}
+{% set sha256="01bc59fa19f56ebfb0f9d39dc169701f2490731e40a45d8f82ac363669edaacf" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/cdeanj/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  run:
+  host:
+
+test:
+  commands:
+    - snpfinder 2>&1 | grep "snpfinder" > /dev/null
+
+about:
+  home: https://github.com/cdeanj/snpfinder
+  license: Custom
+  license_family: Other
+  summary: SNPFinder is a simple alignment-based haplotype variant caller that can be used with metagenomic sequence data.

@@ -17,7 +17,7 @@ if [[ `uname` == Linux ]]
 then
     tag=Linux
     SUDO=sudo
-    dockerd --storage-opt dm.basesize=50G &
+    dockerd &
     sleep 10
 else
     tag=MacOSX

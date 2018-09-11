@@ -1,0 +1,27 @@
+protobuf:
+  - 3.5.1
+opencv:
+  - 3.1.0
+cub:
+  - 1.7.2
+eigen:
+  - 3.3.5
+pybind11:
+  - 2.2.3
+pin_run_as_build:
+  protobuf:
+    min_pin: x.x
+    max_pin: x.x
+  opencv:
+    min_pin: x.x.x
+    max_pin: x.x.x
+  cub:
+    min_pin: x.x.x
+    max_pin: x.x.x
+  eigen:
+    min_pin: x.x.x
+    max_pin: x.x.x
+  pybind11:
+    min_pin: x.x.x
+    max_pin: x.x.x
+

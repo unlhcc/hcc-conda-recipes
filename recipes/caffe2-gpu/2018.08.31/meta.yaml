@@ -1,0 +1,82 @@
+{% set basename = "caffe2" %}
+{% set version = "2018.08.31" %}
+{% set sha256 = "6ab03fa707909e5fb6209a3a98d24c25cd64d9590f3e05d6e8490e4d07b3a765" %}
+
+package:
+  name: {{ basename }}-gpu
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/pytorch/pytorch.git
+  git_rev: d95e68c8cc9b1dbc4011740309f12fe6a6a8cf4b
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+# The compiler version via {{ compiler('c') }} etc. is 4.8.2.
+# It has a bug the build hits.  Use 'gcc' which is 4.8.5 instead.
+  build:
+    - gcc
+    - cmake
+    - future
+    - glog
+    - gflags
+    - leveldb
+    - lmdb
+    - numpy >1.11  # [py3k]
+    - numpy >1.9  # [not py3k]
+    - typing  # [not py3k]
+    - opencv
+    - python
+    - protobuf {{ protobuf }}
+    - six
+    - cudatoolkit
+    - cuda_driver
+    - cudnn
+    - cub
+    - eigen
+    - pybind11
+    - pyyaml
+    - blas
+  run:
+    - libgcc
+    - future
+    - glog
+    - gflags
+    - leveldb
+    - lmdb
+    - numpy >1.11  # [py3k]
+    - numpy >1.9  # [not py3k]
+    - typing  # [not py3k]
+    - opencv
+    - protobuf
+    - python
+    - six
+    - cudatoolkit
+    - cuda_driver
+    - cudnn
+    - cub
+    - eigen
+    - pybind11
+    - pyyaml
+    - blas
+
+test:
+  imports:
+    - caffe2.python.core
+
+about:
+  home: https://caffe2.ai/
+  license: BSD
+  license_family: BSD
+  license_file: LICENSE
+  summary: Caffe2 is a lightweight, modular, and scalable deep learning framework.
+  dev_url: https://github.com/pytorch/pytorch
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash
+    - should_use_compilers

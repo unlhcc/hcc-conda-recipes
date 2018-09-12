@@ -1,0 +1,11 @@
+--- xml2/Makefile.am	2017-01-18 21:22:18.000000000 +0000
++++ xml2/Makefile.am.new	2018-08-24 18:46:17.940149634 +0000
+@@ -138,7 +138,7 @@
+ 
+ # trick to get test data into build dir
+ foo_SOURCES=
+-foo:
++foo$(EXEEXT):
+ 	if ! test -f "$(top_builddir)/xml2/test/threads/abc.xml"; then \
+ 		ln -s $(top_srcdir)/xml2/test \
+ 					$(top_builddir)/xml2/; fi;

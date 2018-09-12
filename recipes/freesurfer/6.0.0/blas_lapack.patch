@@ -1,0 +1,23 @@
+--- configure.in	2017-01-18 21:22:18.000000000 +0000
++++ configure.in.new	2018-08-28 22:20:18.342280255 +0000
+@@ -388,6 +388,9 @@
+ # use of a static libg2c.a, so find the static libblas and liblapack.
+ # the fem_elastic build dir uses LIB_BLAS_A and LIB_LAPACK_A
+ LIB_BLAS=""
++if test -e ${PREFIX}/lib/libblas.a ; then
++  LIB_BLAS="${PREFIX}/lib/libblas.a"
++fi
+ if test -e /usr/local/lib/libblas.a ; then
+   LIB_BLAS="/usr/local/lib/libblas.a"
+ fi
+@@ -405,7 +408,9 @@
+ AC_SUBST(LIB_BLAS)
+ 
+ LIB_LAPACK=""
+-if test -e /usr/local/lib/liblapack.a ; then
++if test -e ${PREFIX}/lib/liblapack.a ; then
++  LIB_LAPACK="${PREFIX}/lib/liblapack.a"
++elif test -e /usr/local/lib/liblapack.a ; then
+   LIB_LAPACK="/usr/local/lib/liblapack.a"
+ elif test -e /usr/lib/liblapack.a ; then
+   LIB_LAPACK="/usr/lib/liblapack.a"

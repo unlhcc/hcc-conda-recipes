@@ -1,0 +1,77 @@
+{% set name = "detectron" %}
+{% set version = "2018.09.11" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/facebookresearch/Detectron.git
+  git_rev: 3a38b7bcfc728dbe0ea7923af8ca77d7afbdb7ba
+  patches:
+    - setup.py.patch
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv "
+  skip: True # [py3k]
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+  host:
+    - pip
+    - python
+    - numpy >=1.13
+    - pyyaml
+    - matplotlib
+    - opencv
+    - cython
+    - mock
+    - scipy
+    - pycocotools
+    - caffe2-gpu
+    - openblas
+    - networkx
+    - enum34 # [py2k]
+
+  run:
+    - python
+    - {{ pin_compatible('numpy', lower_bound='1.13', upper_bound=None) }}
+    - {{ pin_compatible('pyyaml', lower_bound='3.12', upper_bound=None) }}
+    - {{ pin_compatible('opencv', lower_bound='3.2', upper_bound=None) }}
+    - matplotlib
+    - mock
+    - scipy
+    - pycocotools
+    - caffe2-gpu
+    - openblas
+    - networkx
+    - enum34 # [py2k]
+
+test:
+  imports:
+    - detectron
+    - detectron.core
+    - detectron.datasets
+    - detectron.modeling
+
+  commands:
+    - infer.py -h
+    - infer_simple.py -h
+    - test_net.py -h
+    - train_net.py -h
+
+about:
+  home: https://github.com/facebookresearch/Detectron
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: "FAIR's research platform for object detection research, implementing popular algorithms like Mask R-CNN and RetinaNet."
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

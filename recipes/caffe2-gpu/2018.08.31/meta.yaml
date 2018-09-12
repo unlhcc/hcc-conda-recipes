@@ -11,7 +11,7 @@ source:
   git_rev: d95e68c8cc9b1dbc4011740309f12fe6a6a8cf4b
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
 requirements:
@@ -25,17 +25,16 @@ requirements:
     - gflags
     - leveldb
     - lmdb
-    - numpy >1.11  # [py3k]
-    - numpy >1.9  # [not py3k]
+    - numpy 1.14*
     - typing  # [not py3k]
     - opencv
     - python
     - protobuf {{ protobuf }}
     - six
     - cudatoolkit
-    - cuda_driver
+    - cuda_driver # [linux]
     - cudnn
-    - cub
+    - cub # [linux]
     - eigen
     - pybind11
     - pyyaml
@@ -47,17 +46,16 @@ requirements:
     - gflags
     - leveldb
     - lmdb
-    - numpy >1.11  # [py3k]
-    - numpy >1.9  # [not py3k]
+    - {{ pin_compatible('numpy', lower_bound='1.14', upper_bound='1.15') }}
     - typing  # [not py3k]
-    - opencv
+    - {{ pin_compatible('opencv', min_pin='x.x.x', max_pin='x.x') }}
     - protobuf
     - python
     - six
     - cudatoolkit
-    - cuda_driver
+    - cuda_driver # [linux]
     - cudnn
-    - cub
+    - cub # [linux]
     - eigen
     - pybind11
     - pyyaml

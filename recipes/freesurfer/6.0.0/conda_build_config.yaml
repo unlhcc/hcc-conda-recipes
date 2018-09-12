@@ -1,0 +1,23 @@
+minc:
+  - 1.5.*
+petsc:
+  - 2.3.3
+vxl:
+  - 1.14.*
+libitk:
+  - 3.16.*
+
+pin_run_as_build:
+  minc:
+    min_pin: x.x.x
+    max_pin: x.x
+  petsc:
+    min_pin: x.x.x
+    max_pin: x.x
+  vxl:
+    min_pin: x.x.x
+    max_pin: x.x
+  libitk:
+    min_pin: x.x.x
+    max_pin: x.x
+

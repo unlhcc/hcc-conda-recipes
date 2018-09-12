@@ -1,0 +1,31 @@
+--- setup.py	2018-09-11 17:09:37.810128314 +0000
++++ setup.py.new	2018-09-12 18:42:20.359023715 +0000
+@@ -25,6 +25,7 @@
+ 
+ _NP_INCLUDE_DIRS = np.get_include()
+ 
++import setuptools
+ 
+ # Extension modules
+ ext_modules = [
+@@ -56,6 +57,18 @@
+ 
+ setup(
+     name='Detectron',
+-    packages=['detectron'],
+-    ext_modules=cythonize(ext_modules)
++    packages=setuptools.find_packages(),
++    ext_modules=cythonize(ext_modules),
++    scripts=['tools/convert_cityscapes_to_coco.py',
++             'tools/convert_coco_model_to_cityscapes.py',
++             'tools/convert_pkl_to_pb.py',
++             'tools/convert_selective_search.py',
++             'tools/generate_testdev_from_test.py',
++             'tools/infer.py',
++             'tools/infer_simple.py',
++             'tools/pickle_caffe_blobs.py',
++             'tools/reval.py',
++             'tools/test_net.py',
++             'tools/train_net.py',
++             'tools/visualize_results.py']
+ )

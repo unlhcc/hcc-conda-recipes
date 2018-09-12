@@ -1,5 +1,5 @@
 {% set name = "petsc" %}
-{% set version = "2.3.3_p13" %}
+{% set version = "2.3.3.13" %}
 {% set sha256 = '5d12e7d879fa162113f62769cd627823f3c3be45ca83ccee07f368303d8a1ba3' %}
 
 package:
@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-{{ version|replace("_","-") }}.tar.gz
+  - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-2.3.3-p13.tar.gz
     sha256: {{ sha256 }}
     patches:
     - allow_root.patch

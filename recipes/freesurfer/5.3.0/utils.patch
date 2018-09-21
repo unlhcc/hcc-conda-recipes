@@ -1,0 +1,395 @@
+--- utils/test/Makefile.am	2013-05-13 19:03:38.000000000 +0000
++++ utils/test/Makefile.am.new	2018-09-13 18:31:34.942654908 +0000
+@@ -30,7 +30,7 @@
+ 
+ # trick to get test data into the build directory
+ foo_SOURCES=
+-foo:
++foo$(EXEEXT):
+ 	if ! test -f "$(top_builddir)/utils/test/test_data.tar.gz"; then \
+ 		cp -v $(top_srcdir)/utils/test/test_data.tar.gz \
+ 					$(top_builddir)/utils/test/; fi;
+--- utils/afni.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/afni.c.new	2018-09-13 20:04:47.572112580 +0000
+@@ -747,7 +747,8 @@
+   header = MRIallocHeader(af.dataset_dimensions[0],
+                           af.dataset_dimensions[1],
+                           af.dataset_dimensions[2],
+-                          MRI_UCHAR);
++                          MRI_UCHAR,
++                          af.dataset_rank[1]);
+   // set number of frames
+   header->nframes = af.dataset_rank[1];
+ 
+--- utils/class_array.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/class_array.c.new	2018-09-13 20:12:23.348178874 +0000
+@@ -322,7 +322,7 @@
+ 
+   ca->c1_label = target_label ;
+   ca->c2_label = source_label ;
+-  VLSTtransformCoords(vl, ca->m_vox2index, 0) ;
++  VLSTtransformCoords(vl, ca->m_vox2index) ;
+   mri_normals = caComputeSurfaceNormals(mri_aseg, NULL, source_label) ;
+ 
+   for (i = 0 ; i < vl->nvox ; i++)
+--- utils/mri_conform.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/mri_conform.c.new	2018-09-17 16:50:39.757489287 +0000
+@@ -49,7 +49,7 @@
+     setDirectionCosine(mri, MRI_CORONAL);
+   }
+ 
+-  templ = MRIallocHeader(256, 256, 256, MRI_UCHAR);
++  templ = MRIallocHeader(256, 256, 256, MRI_UCHAR, mri->nframes);
+ 
+   templ->imnr0 = 1;
+   templ->imnr1 = 256;
+@@ -88,7 +88,7 @@
+     setDirectionCosine(res, MRI_CORONAL);
+   }
+ 
+-  templ = MRIallocHeader(256, 256, 256, MRI_UCHAR);
++  templ = MRIallocHeader(256, 256, 256, MRI_UCHAR, mri->nframes);
+ 
+   templ->imnr0 = 1;
+   templ->imnr1 = 256;
+--- include/macros.h	2013-05-13 19:03:38.000000000 +0000
++++ ../freesurfer-release_6_0_0/include/macros.h	2017-01-18 21:22:18.000000000 +0000
+@@ -6,21 +6,19 @@
+ /*
+  * Original Author: Bruce Fischl
+  * CVS Revision Info:
+- *    $Author: fischl $
+- *    $Date: 2009/01/22 12:20:57 $
+- *    $Revision: 1.36 $
++ *    $Author: greve $
++ *    $Date: 2014/04/03 01:14:24 $
++ *    $Revision: 1.39 $
+  *
+- * Copyright (C) 2002-2008,
+- * The General Hospital Corporation (Boston, MA). 
+- * All rights reserved.
++ * Copyright © 2011 The General Hospital Corporation (Boston, MA) "MGH"
+  *
+- * Distribution, usage and copying of this software is covered under the
+- * terms found in the License Agreement file named 'COPYING' found in the
+- * FreeSurfer source code root directory, and duplicated here:
+- * https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferOpenSourceLicense
++ * Terms and conditions for use, reproduction, distribution and contribution
++ * are found in the 'FreeSurfer Software License Agreement' contained
++ * in the file 'LICENSE' found in the FreeSurfer distribution, and here:
+  *
+- * General inquiries: freesurfer@nmr.mgh.harvard.edu
+- * Bug reports: analysis-bugs@nmr.mgh.harvard.edu
++ * https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferSoftwareLicense
++ *
++ * Reporting: freesurfer@nmr.mgh.harvard.edu
+  *
+  */
+ 
+@@ -74,7 +72,12 @@
+ #define ISSMALL(f)   (fabs(f) < 0.000001f)
+ #define ISTINY(f)    (fabs(f) < 0.00000001f)
+ 
+-#define FZERO(f)     (fabs(f) < 0.0000001F)
++#ifndef FLT_EPSILON
++#define FLT_EPSILON 1e-5
++#endif
++
++#define FZERO(f)     (fabs(f) < FLT_EPSILON)
++#define FZEROTHR(f,thr)     (fabs(f) < thr)
+ #define DZERO(d)     (fabs(d) < 1e-15)
+ #define iszero(f)   (FZERO(f))
+ #define FEQUAL(f1,f2) (FZERO(f1-f2))
+--- utils/mriSurface.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/mriSurface.c.new	2018-09-17 17:07:49.873600654 +0000
+@@ -796,7 +796,7 @@
+   DebugNote( ("Allocting fake header.") );
+   mri = MRIallocHeader( iVolumeGeometry->width,
+                         iVolumeGeometry->height,
+-                        iVolumeGeometry->depth, MRI_VOLUME_TYPE_UNKNOWN);
++                        iVolumeGeometry->depth, MRI_VOLUME_TYPE_UNKNOWN, 1);
+   DebugAssertThrowX( (NULL != mri),
+                      eResult, Surf_tErr_AllocationFailed );
+ 
+--- utils/mrisurf.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/mrisurf.c.new	2018-09-17 17:22:05.095671018 +0000
+@@ -23430,11 +23430,11 @@
+   y = v->y ;
+   z = v->z ;     // store old coordinates
+   old_fno = v->fno ;                   // store old face
+-  MHTfindClosestFaceGeneric(mht, mris, cx, cy, cz, 4, 4, 1, &face, &fno, &fdist) ;
++  MHTfindClosestFaceGeneric(mht, mris, cx, cy, cz, 4, 4, &face, &fno, &fdist) ;
+   if (fno < 0)
+   {
+     MHTfindClosestFaceGeneric(mht, mris, cx, cy, cz, 
+-                              1000, -1, -1, &face, &fno, &fdist) ;
++                              1000, -1, &face, &fno, &fdist) ;
+   }
+   v->fno = fno ;
+ 
+@@ -23521,11 +23521,11 @@
+   z = v->z ;     // store old coordinates
+   old_fno = v->fno ;                   // store old face
+   MHTfindClosestFaceGeneric(mht, mris, cx, cy, cz, 
+-                            4, 4, 1, &face, &fno, &fdist) ;
++                            4, 4, &face, &fno, &fdist) ;
+   if (fno < 0)
+   {
+     MHTfindClosestFaceGeneric(mht, mris, cx, cy, cz, 
+-                              1000, -1, -1, &face, &fno, &fdist) ;
++                              1000, -1, &face, &fno, &fdist) ;
+   }
+   v->fno = fno ;
+ 
+@@ -24049,10 +24049,10 @@
+       DiagBreak() ;
+     }
+     project_point_onto_sphere(v->x, v->y, v->z, mris->radius, &v->x, &v->y, &v->z) ;
+-    MHTfindClosestFaceGeneric(mht, mris, v->x, v->y, v->z, 8, 8, 1, &face, &fno, &fdist) ;
++    MHTfindClosestFaceGeneric(mht, mris, v->x, v->y, v->z, 8, 8, &face, &fno, &fdist) ;
+     if (fno < 0)
+     {
+-      MHTfindClosestFaceGeneric(mht, mris, v->x, v->y, v->z, 1000, -1, -1, &face, &fno, &fdist) ;
++      MHTfindClosestFaceGeneric(mht, mris, v->x, v->y, v->z, 1000, -1, &face, &fno, &fdist) ;
+     }
+     v->fno = fno ;
+   }
+@@ -80721,7 +80721,7 @@
+       continue ;
+     }
+ 
+-    MHTfindClosestFaceGeneric(mht, mris, v->cx, v->cy, v->cz, 1000, -1, 1, &face, &fno, &fdist) ;
++    MHTfindClosestFaceGeneric(mht, mris, v->cx, v->cy, v->cz, 1000, -1, &face, &fno, &fdist) ;
+     if (face == NULL)
+     {
+       DiagBreak() ;
+@@ -80881,11 +80881,11 @@
+   }
+ 
+   xv = yv = zv = 0.0 ; // to get rid of mac warnings
+-  MHTfindClosestFaceGeneric(mht, mris, x, y, z, 8, 8, 1, &face, &fno, &fdist) ;
++  MHTfindClosestFaceGeneric(mht, mris, x, y, z, 8, 8, &face, &fno, &fdist) ;
+   if (fno < 0)
+   {
+     DiagBreak() ;
+-    MHTfindClosestFaceGeneric(mht, mris, x, y, z, 1000, -1, -1, &face, &fno, &fdist) ;
++    MHTfindClosestFaceGeneric(mht, mris, x, y, z, 1000, -1, &face, &fno, &fdist) ;
+     lambda[0] = lambda[1] = lambda[2] = 1.0/3.0;
+   }
+   else
+@@ -81867,14 +81867,14 @@
+     {
+       DiagBreak() ;
+     }
+-    MHTfindClosestFaceGeneric((MHT *)(mris->mht), mris, v->x, v->y, v->z, 8.0, 8, 1, &face, &fno, &fdist);
++    MHTfindClosestFaceGeneric((MHT *)(mris->mht), mris, v->x, v->y, v->z, 8.0, 8, &face, &fno, &fdist);
+     if (face == NULL || fdist > 0.5)  // current coord doesn't project easily into a nearby face
+     {
+       double lambda[3], xv, yv, zv, norm ;
+       int    n ;
+ 
+       // no projection in this call - it will find a face
+-      MHTfindClosestFaceGeneric((MHT *)(mris->mht), mris, v->x, v->y, v->z, 1000, -1, -1, &face,&fno,&fdist);
++      MHTfindClosestFaceGeneric((MHT *)(mris->mht), mris, v->x, v->y, v->z, 1000, -1, &face,&fno,&fdist);
+ 
+       // crop barycentric coords to [0 1] so that it is in face (on border) and recompute coords
+       face_barycentric_coords(mris, fno, which_vertices, v->x, v->y, v->z,
+--- utils/mrivoxel.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/mrivoxel.c.new	2018-09-17 17:44:16.841822397 +0000
+@@ -181,7 +181,7 @@
+         Description
+ ------------------------------------------------------*/
+ float
+-MRIvoxelMean(MRI *mri, int x0, int y0, int z0, int wsize, int frame)
++MRIvoxelMean(const MRI *mri, int x0, int y0, int z0, int wsize, int frame)
+ {
+   float   mean, total  ;
+   int     whalf, width, height, depth, x, y, z, npix, xmin, xmax,
+--- utils/talairachex.c	2013-05-13 19:03:38.000000000 +0000
++++ utils/talairachex.c.new	2018-09-17 17:50:58.557859399 +0000
+@@ -155,7 +155,7 @@
+ 
+   talRASFromVoxel = MtalairachFromVoxel(mri_src, lta);
+   // use lta->xform[0].dst to construct the talairach volume matrix
+-  mri_talvol = MRIallocHeader(mri_src->width, mri_src->height, mri_src->depth, mri_src->type);
++  mri_talvol = MRIallocHeader(mri_src->width, mri_src->height, mri_src->depth, mri_src->type,1);
+   MRIcopyHeader(mri_src,mri_talvol);
+   ModifyTalairachCRAS(mri_talvol, lta);
+ 
+@@ -190,7 +190,7 @@
+   MATRIX *res = 0;
+   MRI *mri_talvol = 0;
+ 
+-  mri_talvol = MRIallocHeader(mri_dst->width, mri_dst->height, mri_dst->depth, mri_dst->type);
++  mri_talvol = MRIallocHeader(mri_dst->width, mri_dst->height, mri_dst->depth, mri_dst->type,1);
+   MRIcopyHeader(mri_dst,mri_talvol);
+   ModifyTalairachCRAS(mri_talvol, lta);
+ 
+@@ -210,7 +210,7 @@
+   MATRIX *RASfromTalRAS = 0;
+   MATRIX *res = 0;
+ 
+-  mriTal = MRIallocHeader(mri->width, mri->height, mri->depth, mri->type);
++  mriTal = MRIallocHeader(mri->width, mri->height, mri->depth, mri->type,1);
+   MRIcopyHeader(mri, mriTal);
+   ModifyTalairachCRAS(mriTal, lta);
+ 
+--- utils/tritri.c	2013-05-13 19:03:38.000000000 +0000
++++ ../freesurfer-release_6_0_0/utils/tritri.c	2017-01-18 21:22:18.000000000 +0000
+@@ -8,20 +8,18 @@
+  * Original Author: REPLACE_WITH_FULL_NAME_OF_CREATING_AUTHOR 
+  * CVS Revision Info:
+  *    $Author: nicks $
+- *    $Date: 2006/12/29 01:49:40 $
+- *    $Revision: 1.5 $
++ *    $Date: 2011/03/02 00:04:55 $
++ *    $Revision: 1.8 $
+  *
+- * Copyright (C) 2002-2007,
+- * The General Hospital Corporation (Boston, MA). 
+- * All rights reserved.
++ * Copyright © 2011 The General Hospital Corporation (Boston, MA) "MGH"
+  *
+- * Distribution, usage and copying of this software is covered under the
+- * terms found in the License Agreement file named 'COPYING' found in the
+- * FreeSurfer source code root directory, and duplicated here:
+- * https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferOpenSourceLicense
++ * Terms and conditions for use, reproduction, distribution and contribution
++ * are found in the 'FreeSurfer Software License Agreement' contained
++ * in the file 'LICENSE' found in the FreeSurfer distribution, and here:
+  *
+- * General inquiries: freesurfer@nmr.mgh.harvard.edu
+- * Bug reports: analysis-bugs@nmr.mgh.harvard.edu
++ * https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferSoftwareLicense
++ *
++ * Reporting: freesurfer@nmr.mgh.harvard.edu
+  *
+  */
+ 
+@@ -480,3 +478,126 @@
+   }
+   return(1) ;
+ }
++
++// from http://www.softsurfer.com/Archive/algorithm_0105/algorithm_0105.htm#intersect_RayTriangle()
++// intersect_RayTriangle(): intersect a ray with a 3D triangle
++ //    Input:  a ray n, and a triangle T
++ //    Output: *I = intersection point (when it exists)
++ //    Return: -1 = triangle is degenerate (a segment or point)
++ //             0 = disjoint (no intersect)
++ //             1 = intersect in unique point I1
++ //             2 = are in the same plane
++ int
++ intersect_RayTriangle( double ray[2][3], double V0[3], double V1[3], double V2[3], double I[3] )
++ {
++     double    u[3], v[3], n[3];             // triangle vectors
++     double    dir[3], w0[3], w[3];          // ray vectors
++     float     r, a, b;             // params to calc ray-plane intersect
++     float     uu, uv, vv, wu, wv, D;
++     float     s, t;
++ 
++     // get triangle edge vectors and plane normal
++     SUB(u, V1, V0) ;
++     SUB(v, V2, V0) ;
++     CROSS(n, u, v);             // cross product
++     if (VLEN(n) == 0)            // triangle is degenerate
++         return -1;                 // do not deal with this case
++ 
++     SUB(dir, ray[1], ray[0]);             // ray direction vector
++     SUB(w0, ray[0], V0);
++     a = -DOT(n,w0);
++     b = DOT(n,dir);
++#define SMALL_NUM 1e-8
++     if (fabs(b) < SMALL_NUM) {     // ray is parallel to triangle plane
++         if (a == 0)                // ray lies in triangle plane
++             return 2;
++         else return 0;             // ray disjoint from plane
++     }
++ 
++     // get intersect point of ray with triangle plane
++     r = a / b;
++     if (r < 0.0)                   // ray goes away from triangle
++         return 0;                  // => no intersect
++     // for a segment, also test if (r > 1.0) => no intersect
++
++     SCALAR_MUL(dir, r, dir) ;
++     ADD(I, ray[0], dir) ;
++
++     // is I inside T?
++     uu = DOT(u,u);
++     uv = DOT(u,v);
++     vv = DOT(v,v);
++     SUB(w, I, V0) ;
++     wu = DOT(w,u);
++     wv = DOT(w,v);
++     D = uv * uv - uu * vv;
++ 
++     // get and test parametric coords
++     s = (uv * wv - vv * wu) / D;
++     if (s < 0.0 || s > 1.0)        // I is outside T
++       return 0;
++     t = (uv * wu - uu * wv) / D;
++     if (t < 0.0 || (s + t) > 1.0)  // I is outside T
++       return 0;
++     
++     return 1;                      // I is in T
++ }
++int
++project_point_to_plane(double point[3], double V0[3], double V1[3], double V2[3], double proj[3], 
++                       double pe1[3], double pe2[3])
++{
++  double  e1[3], e2[3], norm, d1, d2, tmp[3] ;
++
++  // first basis vector
++  SUB(e1, V1, V0) ;
++  norm = VLEN(e1) ;
++  SCALAR_MUL(e1, 1.0/norm, e1) ;
++  if (DZERO(norm))
++  {
++    ADD(point, V0, V1) ;
++    ADD(proj, point, V2) ;
++    SCALAR_MUL(proj, 1.0/3.0, proj) ;
++    return(-1) ;
++  }
++
++  // project 1st basis vector out of 2nd to orthonormalize it
++  SUB(e2, V2, V0) ;
++  norm = VLEN(e2) ;
++  SCALAR_MUL(e2, 1.0/norm, e2) ;
++  if (DZERO(norm))
++  {
++    ADD(point, V0, V1) ;
++    ADD(proj, point, V2) ;
++    SCALAR_MUL(proj, 1.0/3.0, proj) ;
++    return(-2) ;
++  }
++
++  d1 = DOT(e1, e2) ;
++  SCALAR_MUL(tmp, d1, e1) ;
++  SUB(e2, e2, tmp) ;
++  norm = VLEN(e2) ;
++  if (DZERO(norm))
++  {
++    ADD(point, V0, V1) ;
++    ADD(proj, point, V2) ;
++    SCALAR_MUL(proj, 1.0/3.0, proj) ;
++    return(-1) ;
++  }
++  SCALAR_MUL(e2, 1.0/norm, e2) ;
++
++  if (pe1)  // return coordinate basis
++  {
++    memmove(pe1, e1, sizeof(e1)) ;
++    memmove(pe2, e2, sizeof(e2)) ;
++  }
++
++  SUB(point, point, V0) ;
++  d1 = DOT(e1, point) ;
++  d2 = DOT(e2, point) ;
++  SCALAR_MUL(e1, d1, e1) ;
++  SCALAR_MUL(e2, d2, e2) ;
++  ADD(proj, e1, e2) ;
++  ADD(proj, V0, proj) ;
++  return(0) ;
++}
++

@@ -1,0 +1,92 @@
+--- distribution/average/Makefile.am	2013-05-13 19:03:38.000000000 +0000
++++ distribution/average/Makefile.am.new	2018-09-17 22:31:48.022786376 +0000
+@@ -1,10 +1,7 @@
+ #
+ # Makefile.am
+ #
+-SUBDIRS=surf \
+-	Yeo_JNeurophysiol11_MNI152 \
+-	Buckner_JNeurophysiol11_MNI152 \
+-	Choi_JNeurophysiol12_MNI152
++SUBDIRS=surf 
+ 
+ foodir=$(prefix)/average
+ 
+@@ -93,77 +90,7 @@
+ 
+ install: install-fooDATA
+ 	mkdir -p $(DESTDIR)$(prefix)/subjects
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/cvs_avg35
+-	rm -Rf $(top_builddir)/distribution/average/cvs_avg35
+-	gunzip -c $(top_srcdir)/distribution/average/cvs_avg35.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/cvs_avg35 \
+-		$(DESTDIR)$(prefix)/subjects
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/cvs_avg35_inMNI152
+-	rm -Rf $(top_builddir)/distribution/average/cvs_avg35_inMNI152
+-	gunzip -c $(top_srcdir)/distribution/average/cvs_avg35_inMNI152.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/cvs_avg35_inMNI152 \
+-		$(DESTDIR)$(prefix)/subjects
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/fsaverage
+-	rm -Rf $(top_builddir)/distribution/average/fsaverage
+-	gunzip -c $(top_srcdir)/distribution/average/fsaverage.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/fsaverage \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/fsaverage
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/fsaverage_sym
+-	rm -Rf $(top_builddir)/distribution/average/fsaverage_sym
+-	gunzip -c $(top_srcdir)/distribution/average/fsaverage_sym.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/fsaverage_sym \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/fsaverage_sym
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/V1_average
+-	rm -Rf $(top_builddir)/distribution/average/V1_average
+-	gunzip -c $(top_srcdir)/distribution/average/V1_average.tar.gz | tar xvf -
+-	cp -f $(top_builddir)/distribution/average/V1_average/scripts/predict_v1.sh \
+-		$(DESTDIR)$(bindir)
+-	mv $(top_builddir)/distribution/average/V1_average \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/V1_average
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/fsaverage3
+-	rm -Rf $(top_builddir)/distribution/average/fsaverage3
+-	gunzip -c $(top_srcdir)/distribution/average/fsaverage3.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/fsaverage3 \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/fsaverage3
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/fsaverage4
+-	rm -Rf $(top_builddir)/distribution/average/fsaverage4
+-	gunzip -c $(top_srcdir)/distribution/average/fsaverage4.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/fsaverage4 \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/fsaverage4
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/fsaverage5
+-	rm -Rf $(top_builddir)/distribution/average/fsaverage5
+-	gunzip -c $(top_srcdir)/distribution/average/fsaverage5.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/fsaverage5 \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/fsaverage5
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/fsaverage6
+-	rm -Rf $(top_builddir)/distribution/average/fsaverage6
+-	gunzip -c $(top_srcdir)/distribution/average/fsaverage6.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/fsaverage6 \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/fsaverage6
+-	rm -Rf $(DESTDIR)$(prefix)/subjects/?h.EC_average
+-	rm -Rf $(top_builddir)/distribution/average/?h.EC_average
+-	gunzip -c $(top_srcdir)/distribution/average/EC_average.tar.gz | tar xvf -
+-	mv $(top_builddir)/distribution/average/?h.EC_average \
+-		$(DESTDIR)$(prefix)/subjects
+-	chmod -R 775 $(DESTDIR)$(prefix)/subjects/?h.EC_average
+-	rm -Rf $(DESTDIR)$(prefix)/average/mult-comp-cor
+-	rm -Rf $(top_builddir)/distribution/average/mult-comp-cor
+-	gunzip -c $(top_srcdir)/distribution/average/mult-comp-cor.tar.gz | tar xvf -
+-	pwd
+-	mv $(top_builddir)/distribution/average/mult-comp-cor \
+-		$(DESTDIR)$(prefix)/average
+-	chmod -R 775 $(DESTDIR)$(prefix)/average/mult-comp-cor
+ 	cd surf; make install
+-	cd Yeo_JNeurophysiol11_MNI152; make install
+-	cd Buckner_JNeurophysiol11_MNI152; make install
+-	cd Choi_JNeurophysiol12_MNI152; make install
+ 
+ uninstall-hook:
+ 	rm -Rf $(DESTDIR)$(prefix)/subjects/cvs_avg35

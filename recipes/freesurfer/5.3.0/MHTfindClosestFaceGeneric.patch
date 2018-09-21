@@ -1,0 +1,10 @@
+--- mris_make_face_parcellation/mris_make_face_parcellation.c	2013-05-13 19:03:38.000000000 +0000
++++ mris_make_face_parcellation/mris_make_face_parcellation.c.new	2018-09-20 19:12:30.108195624 +0000
+@@ -409,7 +409,6 @@
+                                 v->x, v->y, v->z, 
+                                 mris_ico->avg_vertex_dist/10, 
+                                 mris_ico->avg_vertex_dist/10, 
+-                                0,
+                                 &face, &fno, &fdist) ;
+       if (fno < 0)
+       {

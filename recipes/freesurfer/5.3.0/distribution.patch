@@ -1,0 +1,41 @@
+--- distribution/Makefile.am	2013-05-13 19:03:38.000000000 +0000
++++ distribution/Makefile.am.new	2018-09-13 18:55:59.717710890 +0000
+@@ -2,8 +2,8 @@
+ # Makefile.am
+ #
+ 
+-SUBDIRS=average lib docs grad_unwarp_tables \
+-	fsafd subjects sessions diffusion fsl-extra trctrain
++SUBDIRS=average lib docs \
++	fsafd subjects sessions diffusion fsl-extra
+ 
+ foodir=$(prefix)
+ foo_DATA= \
+--- mris_decimate/Makefile.am	2013-05-13 19:03:38.000000000 +0000
++++ mris_decimate/Makefile.am.new	2018-09-13 19:01:19.444724967 +0000
+@@ -2,7 +2,6 @@
+ ## Makefile.am 
+ ##
+ 
+-SUBDIRS=gui
+ 
+ AM_CFLAGS=-I$(top_srcdir)/include
+ AM_CXXFLAGS=-I$(top_srcdir)/include $(VTK_CXXFLAGS) -Wno-deprecated
+--- Makefile.am	2013-05-13 19:03:38.000000000 +0000
++++ Makefile.am.new	2018-09-13 19:05:31.368738138 +0000
+@@ -97,7 +97,6 @@
+ 	mri_make_bem_surfaces \
+ 	mri_make_register \
+ 	mri_make_template \
+-	mri_map_cpdat \
+ 	mri_mark_temporal_lobe \
+ 	mri_mask mri_ms_fitparms \
+ 	mri_mcsim \
+@@ -258,7 +257,6 @@
+ 	mris_surface_to_vol_distances \
+ 	mrisp_paint \
+ 	mris_talairach \
+-	mris_surface_change \
+ 	mris_thickness \
+ 	mris_BA_segment \
+ 	mris_compute_optimal_kernel \

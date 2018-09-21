@@ -1,0 +1,70 @@
+--- mri_ca_train/mri_ca_train.c	2013-05-13 19:03:38.000000000 +0000
++++ mri_ca_train/mri_ca_train.c.new	2018-09-18 18:22:50.051137232 +0000
+@@ -1318,7 +1318,7 @@
+   mri_buf = MRIallocHeader(mri_inputs->width,
+                            mri_inputs->height,
+                            mri_inputs->depth,
+-                           mri_inputs->type);
++                           mri_inputs->type,1);
+   MRIcopyHeader(mri_inputs, mri_buf);
+ 
+   //////////////////////////////////////////////////////////////////////////
+--- mri_gcab_train/mri_gcab_train.c	2013-05-13 19:03:38.000000000 +0000
++++ mri_gcab_train/mri_gcab_train.c.new	2018-09-18 18:46:19.516142082 +0000
+@@ -623,7 +623,7 @@
+   mri_buf = MRIallocHeader(mri_inputs->width,
+                            mri_inputs->height,
+                            mri_inputs->depth,
+-                           mri_inputs->type);
++                           mri_inputs->type,1);
+   MRIcopyHeader(mri_inputs, mri_buf);
+ 
+   //////////////////////////////////////////////////////////////////////////
+--- mri_cc/mri_cc.c	2013-05-13 19:03:38.000000000 +0000
++++ mri_cc/mri_cc.c.new	2018-09-18 19:06:59.332269322 +0000
+@@ -290,7 +290,7 @@
+       MRIallocHeader(mri_wm->width,
+                      mri_wm->height,
+                      mri_wm->depth,
+-                     mri_wm->type);
++                     mri_wm->type,1);
+     MRIcopyHeader(mri_wm, mri_talheader); // not allocate memory, though
+ 
+     ModifyTalairachCRAS(mri_talheader, lta);
+@@ -335,7 +335,7 @@
+     mri_header = MRIallocHeader(mri_wm->width,
+                                 mri_wm->height,
+                                 mri_wm->depth,
+-                                mri_wm->type);
++                                mri_wm->type,1);
+     MRIcopyHeader(mri_wm, mri_header);
+     ModifyTalairachCRAS(mri_header, lta2);
+     mri_cc = MRIcopy(mri_wm, NULL) ;
+--- mri_fill/mri_fill.c	2013-05-13 19:03:38.000000000 +0000
++++ mri_fill/mri_fill.c.new	2018-09-18 21:04:25.864877977 +0000
+@@ -1696,7 +1696,7 @@
+   // set up mri_talheader
+   ////////////////////////////////////////////////////////////////////////////
+   mri_talheader = MRIallocHeader
+-                  (mri_im->width, mri_im->height, mri_im->depth, mri_im->type);
++                  (mri_im->width, mri_im->height, mri_im->depth, mri_im->type,mri_im->nframes);
+   MRIcopyHeader(mri_im, mri_talheader); // not allocate memory, though
+   // modify c_(r,a,s) depending on the xfm dst value
+ 
+--- mri_concatenate_lta/mri_concatenate_lta.c	2013-05-13 19:03:38.000000000 +0000
++++ mri_concatenate_lta/mri_concatenate_lta.c.new	2018-09-19 18:13:56.435021401 +0000
+@@ -612,12 +612,12 @@
+     src = MRIallocHeader(lt->src.width, 
+                          lt->src.height, 
+                          lt->src.depth, 
+-                         MRI_UCHAR);
++                         MRI_UCHAR,1);
+     useVolGeomToMRI(&lt->src, src);
+     dst = MRIallocHeader(lt->dst.width, 
+                          lt->dst.height, 
+                          lt->dst.depth, 
+-                         MRI_UCHAR);
++                         MRI_UCHAR,1);
+     useVolGeomToMRI(&lt->dst, dst);
+     voxFromRAS = extract_r_to_i(src);
+     tmp = MatrixMultiply(lta->xforms[0].m_L, voxFromRAS, NULL);

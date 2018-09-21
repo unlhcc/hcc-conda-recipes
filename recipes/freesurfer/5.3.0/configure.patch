@@ -1,0 +1,67 @@
+--- configure.in	2013-05-13 19:03:38.000000000 +0000
++++ configure.in.new	2018-09-19 17:08:07.107940205 +0000
+@@ -163,7 +163,7 @@
+ AC_SUBST(build_vendor)
+ AC_SUBST(host_vendor)
+ AC_SUBST(host)
+-AM_INIT_AUTOMAKE(tar-ustar)
++AM_INIT_AUTOMAKE([tar-ustar no-exeext])
+ AC_CONFIG_SRCDIR([config.h.in])
+ AM_CONFIG_HEADER([config.h])
+ 
+@@ -349,6 +349,9 @@
+ # use of a static libg2c.a, so find the static libblas and liblapack.
+ # the fem_elastic build dir uses LIB_BLAS_A and LIB_LAPACK_A
+ LIB_BLAS_A=""
++if test -e ${PREFIX}/lib/libblas.a ; then
++  LIB_BLAS_A="${PREFIX}/lib/libblas.a"
++fi
+ if test -e /usr/local/lib/libblas.a ; then
+   LIB_BLAS_A="/usr/local/lib/libblas.a"
+ fi
+@@ -366,6 +369,9 @@
+ AC_SUBST(LIB_BLAS_A)
+ 
+ LIB_LAPACK_A=""
++if test -e ${PREFIX}/lib/liblapack.a ; then
++  LIB_LAPACK_A="${PREFIX}/lib/liblapack.a"
++fi
+ if test -e /usr/local/lib/liblapack.a ; then
+   LIB_LAPACK_A="/usr/local/lib/liblapack.a"
+ fi
+@@ -2087,9 +2093,6 @@
+ QT_PATH=""
+ if test "$disable_gui_build" = "YES"; then
+   QT_PATH=""
+-else
+-  m4_include([m4/autotroll.m4])
+-  AT_WITH_QT([opengl])
+ fi
+ 
+ AM_CONDITIONAL(ENABLE_QT_APPS, ! test "x$QT_PATH" = "x")
+@@ -3445,9 +3448,7 @@
+            distribution/docs/Makefile
+            distribution/diffusion/Makefile
+            distribution/diffusion/mgh-dti-seqpack/Makefile
+-           distribution/trctrain/Makefile
+            distribution/fsafd/Makefile
+-           distribution/grad_unwarp_tables/Makefile
+            distribution/lib/Makefile
+            distribution/lib/bem/Makefile
+            distribution/sessions/Makefile
+@@ -3572,7 +3573,6 @@
+            mri_make_density_map/Makefile
+            mri_make_register/Makefile
+            mri_make_template/Makefile
+-           mri_map_cpdat/Makefile
+            mri_mark_temporal_lobe/Makefile
+            mri_mask/Makefile
+            mri_matrix_multiply/Makefile
+@@ -3724,7 +3724,6 @@
+            mris_surface_to_vol_distances/Makefile
+            mris_talairach/Makefile
+            mris_thickness/Makefile
+-           mris_surface_change/Makefile
+            mris_BA_segment/Makefile
+            mris_compute_optimal_kernel/Makefile
+            mris_thickness_comparison/Makefile

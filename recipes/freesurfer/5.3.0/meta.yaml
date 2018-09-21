@@ -1,0 +1,89 @@
+{% set name = "freesurfer" %}
+{% set version = "5.3.0" %}
+{% set sha256 = "6c9560724bc80a154f2304e319e881c332cc9e844698eb3759e51937a614e9b6" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/{{ name }}/{{ name }}/archive/release_{{ version|replace(".","_") }}.tar.gz
+    sha256: {{ sha256 }}
+    patches:
+      - utils.patch
+      - configure.patch
+      - no_tarballs.patch
+      - distribution.patch
+      - mri_alloc.patch
+      - MHTfindClosestFaceGeneric.patch
+      - gems.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - autoconf
+    - automake
+    - libtool
+
+  host:
+    - freetype 2.4*
+    - libpng 1.2*
+    - libglu
+    - libuuid
+    - xorg-libxmu
+    - xorg-libxi
+    - xorg-libxaw
+    - blas
+    - lapack
+    - zlib
+    - minc
+    - petsc
+    - jpeg
+    - libtiff
+    - expat 2.1*
+    - vxl
+    - cppunit
+    - libitk
+    - vtk 5.10*
+    - xz 5.2.3
+    - boost
+
+  run:
+    - freetype 2.4*
+    - libpng 1.2*
+    - libglu
+    - libuuid
+    - xorg-libxmu
+    - xorg-libxi
+    - xorg-libxaw
+    - blas
+    - lapack
+    - zlib
+    - minc
+    - petsc
+    - jpeg
+    - libtiff
+    - expat 2.1*
+    - vxl
+    - cppunit
+    - libitk
+    - vtk 5.10*
+    - xz=5.2.3
+    - boost
+
+test:
+  commands:
+    - export FREESURFER_HOME=${PREFIX} && recon-all --help | grep recon-all
+
+about:
+  home:  https://surfer.nmr.mgh.harvard.edu/
+  license: Custom OSS
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "An open source software suite for processing and analyzing (human) brain MRI images."

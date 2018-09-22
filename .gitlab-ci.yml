@@ -70,6 +70,8 @@ sync-to-github:
   allow_failure: yes
   only:
     - master
+  tags:
+    - docker
   script:
     - eval $(ssh-agent -s) > /dev/null
     - mkdir -p ~/.ssh

@@ -1,0 +1,31 @@
+{% set name = "selecton" %}
+{% set version = "2.4" %}
+{% set sha256 = "1433fdc082b8be18e5afd0ffe83807be44322d3a9dc6ffed32416e3072789f0a" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://selecton.tau.ac.il/sources/selecton.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+
+test:
+  commands:
+    - selecton -h
+    - mec -h
+    - selecton.doubleRep -h
+
+about:
+  home: http://selecton.tau.ac.il/index.html
+  license: Custom OSS
+  license_family: OTHER
+  summary: "Selecton 2007: advanced models for detecting positive and purifying selection using a Bayesian inference approach."

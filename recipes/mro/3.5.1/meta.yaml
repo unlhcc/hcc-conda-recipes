@@ -1,0 +1,69 @@
+{% set pkgname = "mro" %}
+{% set version = "3.5.1" %}
+{% set sha256 = "9791aafb94844544930a1d896f2bf1404205dbf2ec059c51ae75ebb3a31b3792" %}
+
+package:
+  name: {{ pkgname }}
+  version: {{ version }}
+
+source:
+  url: https://mran.blob.core.windows.net/install/mro/{{ version }}/microsoft-r-open-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+  rpaths:
+    - lib/R/lib/
+    - lib/
+    - lib/lib64/R/lib
+
+requirements:
+  host:
+    - libpng
+    - pango
+    - fontconfig
+    - cairo
+    - expat
+    - bzip2
+    - zlib
+    - xorg-libx11
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxau
+    - xorg-libxext
+    - xorg-libxft
+    - xorg-libxrender
+    - xorg-libxt
+    - xorg-libxcb
+
+  run:
+    - libpng
+    - pango
+    - fontconfig
+    - cairo
+    - expat
+    - bzip2
+    - zlib
+    - xorg-libx11
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxau
+    - xorg-libxext
+    - xorg-libxft
+    - xorg-libxrender
+    - xorg-libxt
+    - xorg-libxcb
+
+test:
+  commands:
+    - R --version
+    - Rscript --version
+
+about:
+  home: https://mran.microsoft.com/open
+  license: GPLv2
+  license_family: GPL
+  license_file: MRO_EULA.txt
+  summary: "Microsoft R Open is the enhanced distribution of R from Microsoft Corporation."

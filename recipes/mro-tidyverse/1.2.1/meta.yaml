@@ -1,0 +1,50 @@
+{% set version = '1.2.1' %}
+
+package:
+  name: mro-tidyverse
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/tidyverse_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/tidyverse/tidyverse_{{ version }}.tar.gz
+  sha256: ad67a27bb4e89417a15338fe1a40251a7b5dedba60e9b72637963d3de574c37b
+
+build:
+  number: 0
+  skip: True # [osx]
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+    - lib/lib64/R/lib
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+
+  host:
+    - mro
+    - openssl
+    - zlib
+
+  run:
+    - {{ pin_compatible('mro', min_pin='x.x.x', max_pin='x.x') }}
+    - {{ pin_compatible('openssl', min_pin='x.x', max_pin='x.x') }}
+    - zlib
+
+test:
+  commands:
+    - R -e "library('tidyverse')"
+
+about:
+  home: http://tidyverse.tidyverse.org, https://github.com/tidyverse/tidyverse
+  license: GPL-3 | file LICENSE
+  license_file: LICENSE
+  summary: The 'tidyverse' is a set of packages that work in harmony because they share common
+    data representations and 'API' design. This package is designed to make it easy
+    to install and load multiple 'tidyverse' packages in a single step. Learn more about
+    the 'tidyverse' at <https://tidyverse.org>.
+  license_family: GPL3

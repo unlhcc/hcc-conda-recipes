@@ -1,0 +1,23 @@
+--- lazarus.py	2018-09-27 23:01:04.891804503 -0500
++++ lazarus.py.new	2018-09-27 23:22:05.969532572 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python
+ 
+ ######################################################
+ #
+--- lazarus_gui.py	2018-09-27 23:01:04.891804503 -0500
++++ lazarus_gui.py.new	2018-09-27 23:21:55.486476709 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python
+ 
+ #########################################################
+ #
+@@ -413,4 +413,4 @@
+     crossCheckOutgroupAlignment()
+     
+     workspace.save
+-    
+\ No newline at end of file
++    

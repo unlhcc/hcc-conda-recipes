@@ -1,0 +1,42 @@
+{% set name = "project-lazarus" %}
+{% set version = "2014.04.09" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/cxhernandez/project-lazarus.git
+  git_rev: af18ac2b4c9b52f4945b31fb3ff82bbfd9670ef5
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  skip: True  # [py3k]
+  script: 
+    - cp *.py ${PREFIX}/bin
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+    - cogent
+    - paml
+
+test:
+  commands:
+    - lazarus.py
+
+about:
+  home: https://github.com/cxhernandez/project-lazarus, code.google.com/p/project-lazarus
+  license: GNU GPL v3
+  license_family: GPL
+  license_file: ''
+  summary: Lazarus is a collection of Python scripts for running the programs codeml and baseml in the PAML software suite.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

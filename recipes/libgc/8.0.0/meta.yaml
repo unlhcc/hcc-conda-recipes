@@ -1,0 +1,34 @@
+{% set name = "libgc" %}
+{% set version = "8.0.0" %}
+{% set sha256 = "8f23f9a20883d00af2bff122249807e645bdf386de0de8cbd6cce3e0c6968f04" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: http://www.hboehm.info/gc/gc_source/gc-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libgc.so
+    - test -f ${PREFIX}/lib/libcord.so
+    - test -f ${PREFIX}/include/gc.h
+    - test -f ${PREFIX}/lib/pkgconfig/bdw-gc.pc
+
+about:
+  home: http://www.hboehm.info/gc
+  license: Custom OSS
+  license_family: OTHER
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: "The Boehm-Demers-Weiser conservative garbage collector can be used as a garbage collecting replacement for C malloc or C++ new."

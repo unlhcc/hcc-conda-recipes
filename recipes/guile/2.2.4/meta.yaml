@@ -1,0 +1,50 @@
+{% set name = "guile" %}
+{% set version = "2.2.4" %}
+{% set sha256 = "33b904c0bf4e48e156f3fb1d0e6b0392033bd610c6c9d9a0410c6e0ea96a3e5c" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://ftp.gnu.org/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+  host:
+    - gmp
+    - libtool
+    - libiconv
+    - libunistring
+    - readline
+    - gettext
+    - libffi
+    - libgc
+
+  run:
+    - gmp
+    - libtool
+    - libiconv
+    - libunistring
+    - readline
+    - gettext
+    - libffi
+    - libgc
+
+test:
+  commands:
+    - guile --help
+
+about:
+  home: https://www.gnu.org/software/guile
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: "Guile is designed to help programmers create flexible applications that can be extended by users or other programmers with plug-ins, modules, or scripts."

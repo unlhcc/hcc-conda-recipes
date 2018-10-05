@@ -1,0 +1,46 @@
+--- a/tensorflow/tensorflow.bzl
++++ b/tensorflow/tensorflow.bzl
+@@ -296,7 +296,7 @@ def tf_cc_shared_object(
+     name,
+     srcs=[],
+     deps=[],
+-    linkopts=[],
++    linkopts=["-lrt"],
+     framework_so=tf_binary_additional_srcs(),
+     **kwargs):
+   native.cc_binary(
+@@ -327,7 +327,7 @@ register_extension_info(
+ def tf_cc_binary(name,
+                  srcs=[],
+                  deps=[],
+-                 linkopts=[],
++                 linkopts=["-lrt"],
+                  copts=tf_copts(),
+                  **kwargs):
+   native.cc_binary(
+@@ -535,7 +535,7 @@ def tf_gen_op_wrapper_py(name,
+                          hidden_file=None,
+                          generated_target_name=None,
+                          op_whitelist=[],
+-                         cc_linkopts=[],
++                         cc_linkopts=["-lrt"],
+                          api_def_srcs=[],
+                          gen_locally=False):
+   if (hidden or hidden_file) and op_whitelist:
+@@ -1288,7 +1288,7 @@ check_deps = rule(
+ 
+ # Helper to build a dynamic library (.so) from the sources containing
+ # implementations of custom ops and kernels.
+-def tf_custom_op_library(name, srcs=[], gpu_srcs=[], deps=[], linkopts=[]):
++def tf_custom_op_library(name, srcs=[], gpu_srcs=[], deps=[], linkopts=["-lrt"]):
+   cuda_deps = [
+       clean_dep("//tensorflow/core:stream_executor_headers_lib"),
+       "@local_config_cuda//cuda:cuda_headers",
+@@ -1321,6 +1321,7 @@ def tf_custom_op_library(name, srcs=[], gpu_srcs=[], deps=[], linkopts=[]):
+       linkopts=linkopts + select({
+           "//conditions:default": [
+               "-lm",
++              "-lrt",
+           ],
+           clean_dep("//tensorflow:windows"): [],
+           clean_dep("//tensorflow:windows_msvc"): [],

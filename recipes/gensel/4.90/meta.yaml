@@ -1,0 +1,32 @@
+{% set name = "GenSel" %}
+{% set version = "4.90" %}
+{% set sha256 = "81d55310cc1faff6f6b3f51d1ccfe6566f11b1c0879e4ffd029d01e478016696" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+    url: https://unl.box.com/shared/static/srful6y84782c7j3grh3972nn3l6p468.tgz
+    sha256:  {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script: cp GenSel ${PREFIX}/bin
+
+requirements:
+  build:
+  host:
+  run:
+
+test:
+  commands:
+    - GenSel 2>&1 | grep "GenSel"
+
+about:
+  home: https://github.com/austin-putz/GenSel
+  license: GPL-2
+  license_family: GPL2
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: 'Genomic selection and GWAS analysis for linear and categorical traits.'

@@ -1,0 +1,38 @@
+{% set name = "libmatheval" %}
+{% set version = "1.1.11" %}
+{% set sha256 = "474852d6715ddc3b6969e28de5e1a5fbaff9e8ece6aebb9dc1cc63e9e88e89ab" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://ftp.gnu.org/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+    patches:
+      - no_tests.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - bison
+    - guile
+
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libmatheval.so
+    - test -f ${PREFIX}/lib/libmatheval.a
+    - test -f ${PREFIX}/lib/pkgconfig/libmatheval.pc
+    - test -f ${PREFIX}/include/matheval.h
+
+about:
+  home: https://www.gnu.org/software/libmatheval
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: "GNU libmatheval is a library (callable from C and Fortran) to parse and evaluate symbolic expressions input as text."

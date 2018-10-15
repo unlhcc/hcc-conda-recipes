@@ -1,0 +1,16 @@
+--- tests/Makefile	2017-06-10 23:07:42.000000000 +0200
++++ tests/Makefile_new	2017-06-11 15:48:43.000000000 +0200
+@@ -1,9 +1,9 @@
+ 
+-LIB_FLAGS = -larmadillo
+-#LIB_FLAGS = -lblas -llapack 
+-#LIB_FLAGS = -lopenblas -llapack 
++LIB_FLAGS = -larmadillo -L${PREFIX}/lib
++#LIB_FLAGS = -lblas -llapack
++#LIB_FLAGS = -lopenblas -llapack
+ 
+-CXX_FLAGS = -std=c++11 -Wshadow -Wall -pedantic -O0
++CXX_FLAGS = -std=c++11 -Wshadow -Wall -pedantic -O0 -I${PREFIX}/include
+ #CXX_FLAGS = -std=c++11 -Wshadow -Wall -pedantic -O0 -fopenmp
+ #CXX_FLAGS = -std=c++11 -Wshadow -Wall -pedantic -O0 -DARMA_DONT_USE_WRAPPER
+ #CXX_FLAGS = -std=c++11 -Wshadow -Wall -pedantic -O2

@@ -1,0 +1,53 @@
+{% set version = "9.100.5" %}
+{% set variant = "openblas" %}
+{% set sha256 = "7e7dc6f1e876b8243c27a003b037559663371b42885436b1087757e652db41cd" %}
+
+package:
+    name: armadillo
+    version: {{ version }}
+
+source:
+    url: http://sourceforge.net/projects/arma/files/armadillo-{{ version }}.tar.xz
+    sha256: {{ sha256 }}
+    patches:
+        # have to add additional ${PREFIX}/lib etc... to tests/Makefile
+        - make_tests.patch  # [linux]
+        - make_tests_osx.patch  # [osx]
+        # modify CMakeLists to use OpenBLAS rather than Accelrate on OS X
+        # and to use OpenBLAS as the LAPACK library on linux
+        - CMakeLists.patch  # [unix]
+
+build:
+  number: 0
+  skip: true  # [osx]
+  features:
+    - blas_{{ variant }}
+
+requirements:
+  build:
+    - cmake
+    - {{ compiler('c') }}
+    - pkg-config  # [unix]
+  host:
+    # optional items below here
+    - blas 1.1 {{ variant }}
+    - openblas
+    - arpack  # [unix]
+    - superlu 5.2  # [unix]
+  run:
+    - blas 1.1 {{ variant }}
+    - openblas
+    - arpack  # [unix]
+    - superlu 5.2  # [unix]
+
+test:
+  commands:
+    - test -f "${PREFIX}/include/armadillo"  # [unix]
+    - test -d "${PREFIX}/include/armadillo_bits"  # [unix]
+    - test -f "${PREFIX}/lib/libarmadillo${SHLIB_EXT}"  # [unix]
+
+about:
+    home: http://arma.sourceforge.net
+    license: Apache 2.0
+    license_file: LICENSE.txt
+    summary: Armadillo C++ linear algebra library

@@ -1,0 +1,7 @@
+pin_run_as_build:
+  pandas:
+    min_pin: x.x.x
+    max_pin: x.x
+  armadillo:
+    min_pin: x.x.x
+    max_pin: x.x

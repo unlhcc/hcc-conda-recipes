@@ -1,0 +1,60 @@
+{% set name = "doom-py" %}
+{% set version = "0.0.14" %}
+
+package:
+    name: {{ name }}
+    version: {{ version }}
+
+source:
+    git_url: https://github.com/openai/doom-py.git
+    git_rev: 2c057269a02c752a3ca9b589227d7dd66f623d20
+    patches:
+      - iostream.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - cmake
+    - wget
+    - unzip
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  host:
+    - boost <1.65.*
+    - python
+    - pip
+    - setuptools
+    - numpy
+    - sdl2
+    - bzip2
+    - zlib
+    - jpeg
+
+  run:
+    - boost
+    - python
+    - numpy
+    - sdl2
+    - bzip2
+    - zlib
+    - jpeg
+
+test:
+  imports:
+    - doom_py
+
+about:
+    home: https://github.com/openai/doom-py
+    license: MIT
+    license_family: MIT
+    license_file: LICENSE
+    summary: 'Python wrappers for ViZDoom. Contains a modified version of the bleeding-edge ViZDoom source code.'
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

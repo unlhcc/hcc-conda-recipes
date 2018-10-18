@@ -1,0 +1,10 @@
+--- doom_py/src/lib/ViZDoomGame.cpp	2018-10-18 16:30:22.870931823 +0000
++++ doom_py/src/lib/ViZDoomGame.cpp.new	2018-10-18 16:31:13.643919900 +0000
+@@ -33,6 +33,7 @@
+ #include <cstdlib>
+ #include <ctime>
+ #include <fstream>
++#include <iostream>
+ 
+ namespace vizdoom {
+ 

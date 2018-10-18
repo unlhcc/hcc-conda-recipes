@@ -1,0 +1,30 @@
+{% set name = "cuda_driver" %}
+{% set version = "410.66" %}
+{% set sha256 = "cd4d9bd6f1fc532d98e0b02417e069840288006a63320d721a16b127dfddc500" %}
+{% set fn="l1zs36znlufikwicsifiarng33uxuknu.tgz" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://unl.box.com/shared/static/{{ fn }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+
+  run:
+
+test:
+  commands:
+    - nvidia-settings -v
+
+about:
+  home: http://www.nvidia.com/drivers
+  license: Custom
+  summary: 'NVIDIA linux driver'

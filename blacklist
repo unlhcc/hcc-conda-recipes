@@ -103,8 +103,6 @@ recipes/pyresample/1.1.6
 recipes/pyscrap/0.0.9
 recipes/python-mxnet/0.9.3a
 recipes/quasr/v6.09
-recipes/racon/1.0.0
-recipes/racon/1.2.0
 recipes/r-batchjobs/1.6
 recipes/r-bbmisc/1.9
 recipes/r-bindr/0.1

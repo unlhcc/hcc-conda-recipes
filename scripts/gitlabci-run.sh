@@ -34,7 +34,7 @@ fi
 if [[  $CI_BUILD_REF_NAME == "master"  ]]
 then
         UPLOAD_ARG="--anaconda-upload"
-        RANGE_ARG=""
+        RANGE_ARG="--git-range ${CI_COMMIT_BEFORE_SHA} ${CI_COMMIT_SHA}"
 else
     UPLOAD_ARG=""
     LINT_COMMENT_ARG=""

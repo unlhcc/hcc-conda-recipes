@@ -1,0 +1,32 @@
+{% set name = "rclone" %}
+{% set version = "1.44" %}
+{% set sha256 = "8152bedf08976f433473a83e9408c48482f3e3edace464a3f463fd8820f6267f" %}
+
+package:
+  name: "{{ name }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/ncw/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  folder:  src/github.com/ncw/rclone
+
+build:
+  number: 0
+  
+requirements:
+  build:
+    - go >=1.7
+
+test:
+  commands:
+    - rclone --help
+
+about:
+  home: https://rclone.org
+  license: MIT
+  license_family: MIT
+  license_file: src/github.com/ncw/rclone/COPYING
+  summary: "Rclone - rsync for cloud storage."
+  doc_url: https://rclone.org/install
+  dev_url: https://github.com/ncw/rclone

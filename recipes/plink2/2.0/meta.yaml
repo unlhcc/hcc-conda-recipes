@@ -1,0 +1,44 @@
+{% set name = "PLINK2" %}
+{% set version = "2.0" %}
+{% set md5 = "7319a933cf503aa55ba076ffcac32217" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/chrchang/plink-ng/archive/b0cec5e.tar.gz
+  md5: {{ md5 }}
+  patches: 
+    - Makefile.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - atlas
+    - lapack
+    - mkl
+    - mkl-include
+    - zlib
+  run:
+    - zlib
+    - atlas
+    - mkl
+    - lapack
+
+test:
+  commands:
+    - plink2 | grep plink2 > /dev/null
+    - pgen_compress | grep pgen_compress > /dev/null
+
+about:
+  home: https://www.cog-genomics.org/plink/2.0/
+  license: GNU GPL
+  license_family: GPL
+  license_file: 2.0/LICENSE
+  summary: "This is a comprehensive update to Shaun Purcell's PLINK command-line program, developed by Christopher Chang with support from the NIH-NIDDK's Laboratory of Biological Modeling, the Purcell Lab at Mount Sinai School of Medicine, and others."

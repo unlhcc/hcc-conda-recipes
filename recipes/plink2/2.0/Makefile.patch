@@ -1,0 +1,53 @@
+--- ./2.0/build_dynamic/Makefile	2018-02-12 01:56:29.000000000 +0000
++++ ./2.0/build_dynamic/Makefile.new	2018-11-01 21:12:57.464066136 +0000
+@@ -17,7 +17,7 @@
+ PREFER_CBLAS_F77 =
+ ZSTD_O2 = 1
+ STATIC_ZLIB =
+-DYNAMIC_MKL =
++DYNAMIC_MKL =1
+ MKLROOT = /home/ubuntu/intel/mkl
+ MKL_IOMP5_DIR = /home/ubuntu/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64
+ FORCE_32BIT =
+@@ -60,9 +60,9 @@
+ 
+ ifdef FORCE_CBLAS_F77
+   BASEFLAGS += -DFORCE_CBLAS_F77
+-  BLASFLAGS=-llapack -lf77blas -latlas
++  BLASFLAGS = -L${PREFIX}/lib -llapack -lf77blas -latlas
+ else
+-  BLASFLAGS=-llapack -lblas -lcblas -latlas
++  BLASFLAGS = -L${PREFIX}/lib -llapack -lblas -lcblas -latlas
+ endif
+ 
+ ifdef STATIC_ZLIB
+@@ -89,8 +89,8 @@
+     ifdef FORCE_32BIT
+       $(error DYNAMIC_MKL + FORCE_32BIT not supported)
+     endif
+-    BASEFLAGS += -DDYNAMIC_MKL -DLAPACK_ILP64 -I${MKLROOT}/include
+-    BLASFLAGS = -L${MKLROOT}/lib/intel64 -L${MKL_IOMP5_DIR} -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5
++    BASEFLAGS += -DDYNAMIC_MKL -DLAPACK_ILP64 -I${PREFIX}/include
++    BLASFLAGS = -L${PREFIX}/lib -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5
+     LINKFLAGS += -ldl
+   endif
+ endif
+@@ -110,13 +110,13 @@
+ all: plink2 pgen_compress
+ 
+ plink2: $(CSRC2) $(ZCSRC2) $(CCSRC2)
+-	gcc $(CFLAGS) $(CSRC2) -c
+-	gcc $(ZCFLAGS) $(ZCSRC2) -c
+-	g++ $(CXXFLAGS) $(CCSRC2) -c
+-	g++ $(OBJ2) $(ARCH32) -o plink2 $(BLASFLAGS) $(LINKFLAGS)
++	${CC} $(CFLAGS) $(CSRC2) -c
++	${CC} $(ZCFLAGS) $(ZCSRC2) -c
++	${CXX} $(CXXFLAGS) $(CCSRC2) -c
++	${CXX} $(OBJ2) $(ARCH32) -o plink2 $(BLASFLAGS) $(LINKFLAGS)
+ 
+ pgen_compress: ../plink2_base.cc ../pgenlib_internal.cc ../pgen_compress.cc
+-	g++ $(CXXFLAGS) ../plink2_base.cc ../pgenlib_internal.cc ../pgen_compress.cc -o pgen_compress
++	${CXX} $(CXXFLAGS) ../plink2_base.cc ../pgenlib_internal.cc ../pgen_compress.cc -o pgen_compress
+ 
+ .PHONY: clean
+ clean:

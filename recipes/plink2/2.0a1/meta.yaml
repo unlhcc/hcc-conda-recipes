@@ -1,5 +1,5 @@
 {% set name = "PLINK2" %}
-{% set version = "2.0" %}
+{% set version = "2.0a1" %}
 {% set md5 = "7319a933cf503aa55ba076ffcac32217" %}
 
 package:

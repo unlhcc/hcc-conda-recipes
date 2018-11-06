@@ -1,0 +1,53 @@
+{% set version = "2.2.5" %}
+{% set sha256 = "e24e64d8451a3db23eafb7c94f9fa075dd540f5ac04953c82260a9d4d9fc4fcf" %}
+{% set variant = "openblas" %}
+
+
+package:
+    name: mlpack
+    version: {{ version }}
+
+source:
+    url: http://www.mlpack.org/files/mlpack-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  features:
+    - blas_{{ variant }}
+
+requirements:
+  build:
+    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - pkg-config
+  host:
+    - boost
+    - armadillo >=6.500.0
+    - blas 1.1 {{ variant }}
+    - openblas
+  run:
+    - boost
+    - armadillo  >=6.500.0
+    - blas 1.1 {{ variant }}
+    - openblas
+test:
+  commands:
+    - mlpack_knn --help
+
+about:
+    home: http://www.mlpack.org
+    license: BSD-3.0
+    license_file: LICENSE.txt
+    summary: 'mlpack a fast, flexible machine learning library'
+    description: |
+      mlpack is an intuitive, fast, and flexible C++ machine learning library
+      with bindings to other languages. It is meant to be a machine learning analog
+      to LAPACK, and aims to implement a wide array of machine learning methods and
+      functions as a "swiss army knife" for machine learning researchers. In addition
+      to its powerful C++ interface, mlpack also provides command-line programs and
+      Python bindings.
+    doc_url: http://www.mlpack.org/docs.html
+    dev_url: https://github.com/mlpack/mlpack

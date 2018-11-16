@@ -1,0 +1,35 @@
+{% set name = "gurobi-python" %}
+{% set version = "8.1.0" %}
+{% set sha256 = "bf0d8369ab5fb69b2fb027c41814c8b8e6d1de32a39960aa9c52126cf15f58fa" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://packages.gurobi.com/8.1/gurobi8.1.0_linux64.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - gurobi.sh.patch
+
+build:
+  number: 0
+  skip: True  # [ osx ]
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+
+test:
+  commands:
+    - gurobi_cl -v
+    - gurobi.sh -V
+
+about:
+  home: http://www.gurobi.com
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: linux64/EULA.pdf
+  summary: "The Gurobi Optimizer is the state-of-the-art math programming solver able to handle all major problem types."

@@ -11,7 +11,7 @@ source:
   git_rev: d95e68c8cc9b1dbc4011740309f12fe6a6a8cf4b
 
 build:
-  number: 1
+  number: 2
   skip: True  # [osx]
 
 requirements:
@@ -31,9 +31,8 @@ requirements:
     - python
     - protobuf {{ protobuf }}
     - six
-    - cudatoolkit
-    - cuda_driver # [linux]
-    - cudnn
+    - cudatoolkit 8.0*
+    - cudnn 7.0.5
     - cub # [linux]
     - eigen
     - pybind11
@@ -53,7 +52,6 @@ requirements:
     - python
     - six
     - cudatoolkit
-    - cuda_driver # [linux]
     - cudnn
     - cub # [linux]
     - eigen
@@ -64,6 +62,8 @@ requirements:
 test:
   imports:
     - caffe2.python.core
+  requires:
+    - cuda_driver
 
 about:
   home: https://caffe2.ai/

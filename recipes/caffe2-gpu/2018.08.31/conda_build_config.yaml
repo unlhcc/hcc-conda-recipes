@@ -19,4 +19,9 @@ pin_run_as_build:
   pybind11:
     min_pin: x.x.x
     max_pin: x.x
-
+  cudatoolkit:
+    min_pin: x.x.x
+    max_pin: x.x
+  cudnn:
+    min_pin: x.x.x
+    max_pin: x.x.x

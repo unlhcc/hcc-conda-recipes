@@ -7,7 +7,6 @@ package:
   version: {{ version }}
 
 source:
-    fn: v{{ version }}.tar.gz
     url: https://github.com/tensorflow/tensorflow/archive/v{{ version }}.tar.gz
     sha256:  {{ sha256 }}
     patches:
@@ -16,7 +15,7 @@ source:
         - cc_flags.patch
 
 build:
-    number: 2
+    number: 3
     skip: True # [osx]
 
 requirements:
@@ -25,7 +24,7 @@ requirements:
         - llvm # [osx]
         - python
         - wheel
-        - numpy x.x
+        - numpy
         - bazel ==0.10.0
         - protobuf ==3.5.0
         - perl
@@ -43,14 +42,14 @@ requirements:
         - gast >=0.2.0
         - termcolor >=1.1.0
         - grpcio >=1.8.6
-        - cuda-driver {{ CONDA_CUDA_DRIVER }}*
-        - cudatoolkit {{ CONDA_CUDA_TOOLKIT }}*
-        - cudnn {{ CONDA_CUDA_CUDNN }}*
+        - cudatoolkit 8.0*
+        - cudnn 7.0.5
+        - cuda_driver
 
     run:
         - libgcc # [linux]
         - python
-        - numpy x.x
+        - numpy
         - protobuf >=3.4.0
         - futures ==3.1.1 # [py2k]
         - six >=1.10.0
@@ -65,16 +64,21 @@ requirements:
         - gast >=0.2.0
         - termcolor >=1.1.0
         - grpcio >=1.8.6
-        - cuda-driver {{ CONDA_CUDA_DRIVER }}*
-        - cudatoolkit {{ CONDA_CUDA_TOOLKIT }}*
-        - cudnn {{ CONDA_CUDA_CUDNN }}*
+        - cudatoolkit 8.0*
+        - cudnn 7.0.5
 
 test:
     imports:
         - tensorflow
+    requires:
+        - cuda_driver
 
 about:
     home: https://www.tensorflow.org
     license: Apache 2.0
     license_file: LICENSE
     summary: Computation using data flow graphs for scalable machine learning.
+
+extra:
+  skip-lints:
+    - should_use_compilers

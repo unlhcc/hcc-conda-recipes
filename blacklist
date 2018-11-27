@@ -164,7 +164,6 @@ recipes/tensorflow-fma/1.3.1
 recipes/tensorflow-fma/1.4.0
 recipes/tensorflow-fma/1.5.0
 recipes/tensorflow-gpu/1.5.0
-recipes/tensorflow-gpu/1.7.0
 recipes/tensorflow-tensorboard/1.5.0
 recipes/vid.stab/1.10
 recipes/vo-amrwbenc/0.1.3

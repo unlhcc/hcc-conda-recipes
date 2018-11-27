@@ -54,3 +54,5 @@ bazel build --verbose_failures \
 
 bazel-bin/tensorflow/tools/pip_package/build_pip_package ${TMPDIR}
 pip install ${TMPDIR}/tensorflow*.whl
+
+rm -rf ~/.cache

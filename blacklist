@@ -4,7 +4,6 @@ recipes/r-mxnet/0.9.3a
 recipes/gmp/4.3.2
 
 recipes/abayesqr/1.0
-recipes/absl-py/0.1.10
 recipes/age/2016.01.18.1
 recipes/aiozmq/0.7.1
 recipes/apkid/1.0.0

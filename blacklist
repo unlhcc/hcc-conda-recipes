@@ -35,8 +35,6 @@ recipes/cutadapt/1.4.2
 recipes/dm-sonnet/1.13
 recipes/dm-sonnet/1.19
 recipes/dm-sonnet/1.23
-recipes/dm-sonnet-gpu/1.19
-recipes/dm-sonnet-gpu/1.23
 recipes/fast5-research/1.0.9
 recipes/fftw/2.1.5
 recipes/frei0r/1.4

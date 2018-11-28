@@ -1,0 +1,7 @@
+tensorflow_gpu:
+  - 1.7.0
+
+pin_run_as_build:
+  tensorflow_gpu:
+    min_pin: x.x
+    max_pin: x.x.x

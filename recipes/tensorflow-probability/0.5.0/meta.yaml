@@ -1,0 +1,45 @@
+{% set name = "tensorflow-probability" %}
+{% set version = "0.5.0" %}
+{% set sha256 = "6e0e21b40555cbc1725f2fde96fa7705c160d856ae67f84107ad889896314694" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+    url: https://github.com/tensorflow/probability/archive/v{{ version }}.tar.gz
+    sha256:  {{ sha256 }}
+    patches:
+      - pip_pkg.patch
+
+build:
+    number: 0
+    skip: True # [osx or py35]
+
+requirements:
+    build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - bazel
+    host:
+        - python
+        - six >=1.10.3
+        - numpy >=1.13.3
+    run:
+        - python
+        - six
+        - numpy
+
+test:
+    requires:
+        - tensorflow >=1.12.0
+    imports:
+        - tensorflow_probability
+
+about:
+    home: https://www.tensorflow.org/probability
+    dev_url: https://github.com/tensorflow/probability
+    doc_url: https://www.tensorflow.org/probability/overview
+    license: Apache 2.0
+    license_file: LICENSE
+    summary: TensorFlow Probability is a library for probabilistic reasoning and statistical analysis.

@@ -1,0 +1,11 @@
+--- pip_pkg.sh	2018-11-06 17:35:32.000000000 +0000
++++ pip_pkg.sh.new	2018-11-29 21:11:32.511675516 +0000
+@@ -38,7 +38,7 @@
+ # specifies the output dir) to setup.py, e.g.,
+ #  ./pip_pkg /tmp/tensorflow_probability_pkg --gpu --release
+ # passes `--gpu --release` to setup.py.
+-python setup.py bdist_wheel --universal ${@:2} --dist-dir="$DEST" >/dev/null
++python setup.py install --release
+ 
+ set +x
+ echo -e "\nBuild complete. Wheel files are in $DEST"

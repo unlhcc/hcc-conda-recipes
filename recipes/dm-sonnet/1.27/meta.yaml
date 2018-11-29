@@ -1,0 +1,51 @@
+{% set name = "dm-sonnet" %}
+{% set version = "1.27" %}
+{% set sha256 = "b3ea44d75e2466bb016a17023b3afa2e50c9de91f5357d1b299ced51f848f4aa" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+    url: https://github.com/deepmind/sonnet/archive/v{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+    number: 0
+    skip: True # [osx or py35]
+
+requirements:
+    build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - bazel
+    host:
+        - python
+        - wheel
+        - tensorflow
+        - tensorflow-probability
+        - six
+        - absl-py
+        - semantic_version
+        - contextlib2
+        - wrapt
+    run:
+        - python
+        - tensorflow
+        - tensorflow-probability
+        - six
+        - absl-py
+        - semantic_version
+        - contextlib2
+        - wrapt
+
+test:
+    imports:
+        - sonnet
+
+about:
+    home: https://deepmind.github.io/sonnet
+    dev_url: https://github.com/deepmind/sonnet
+    license: Apache 2.0
+    license_file: LICENSE
+    summary: Sonnet is a library built on top of TensorFlow for building complex neural networks.

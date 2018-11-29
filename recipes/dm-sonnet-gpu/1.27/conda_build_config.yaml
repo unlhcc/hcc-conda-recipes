@@ -1,0 +1,9 @@
+tensorflow_gpu:
+  - 1.12.0
+bazel:
+  - 0.19.1
+
+pin_run_as_build:
+  tensorflow-gpu:
+    min_pin: x.x
+    max_pin: x.x.x

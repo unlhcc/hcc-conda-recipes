@@ -1,0 +1,41 @@
+{% set version = "1.0" %}
+{% set commit = "ea80c1b" %}
+{% set sha256 = "d80ff8f262b38e00cf0cf054fe83747da471e625e4b249fdce2660308d4f73c4" %}
+
+package:
+  name: ima3
+  version: {{ version }}
+
+source:
+  url:  https://github.com/jodyhey/ima3/archive/{{ commit }}.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler("c") }}
+    - {{ compiler("cxx") }}
+  host:
+    - openmpi
+  run:
+    - openmpi
+
+test:
+  commands:
+    - IMa3_singlecpu
+    - mpirun -n 1 --allow-run-as-root IMa3
+
+about:
+  home: https://github.com/jodyhey/IMa3
+  license: Custom OSS
+  license_family: Other
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: "IMa3 provides for estimation of the posterior probability of the population phylogenetic topology by using a new kind of data augmentation called a 'hidden genealogy'."
+
+extra:
+  identifiers:
+    - doi:10.1093/molbev/msy162
+  notes: "The package includes both the 'IMa3' MPI-enabled executable and the 'IMa3_singlecpu' single-processor version."

@@ -1,15 +1,17 @@
+{% set name = "r-depmixs4" %}
+{% set version = "1.3.3" %}
+{% set sha256 = "62428236e818e1d665ad08eafe088ea89618f0f36a28c20932cd7f98ca064353" %}
+
 package:
-  name: r-depmixs4
-  version: "1.3.3"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  fn: depmixS4_1.3-3.tar.gz
-  url:
-    - https://cran.r-project.org/src/contrib/depmixS4_1.3-3.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/depmixS4/depmixS4_1.3-3.tar.gz
+  url: https://cran.r-project.org/src/contrib/Archive/depmixS4/depmixS4_1.3-3.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -18,17 +20,17 @@ build:
 
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - r >=3.0.1
     - r-nnet
     - r-mass
     - r-rsolnp
-    - gcc
   run:
     - r >=3.0.1
     - r-nnet
     - r-mass
     - r-rsolnp
-    - libgcc
 
 test:
   commands:

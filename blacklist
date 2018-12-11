@@ -105,7 +105,6 @@ recipes/r-bbmisc/1.9
 recipes/r-bindr/0.1
 recipes/r-bindrcpp/0.2
 recipes/r-celestial/1.4.1
-recipes/r-depmixs4/1.3.3
 recipes/r-diagrammer/0.9.0
 recipes/rdp-classifier/2.2
 recipes/readline/5.2

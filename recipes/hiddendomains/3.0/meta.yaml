@@ -13,10 +13,17 @@ source:
      - scripts_location.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:
+  host:
+     - r
+     - r-depmixs4
+     - r-hiddenmarkov
+     - perl
+     - samtools
+     - bedtools
   run:
      - r
      - r-depmixs4

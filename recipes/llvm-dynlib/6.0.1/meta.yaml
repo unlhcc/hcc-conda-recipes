@@ -1,0 +1,48 @@
+{% set name = "llvm-dynlib" %}
+{% set version = "6.0.1" %}
+{% set sha256 = "b6d6c324f9c71494c0ccaf3dac1f16236d970002b42bb24a6c9e1634f7d0f4e2" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://releases.llvm.org/{{ version }}/llvm-{{ version }}.src.tar.xz
+  sha256: {{ sha256 }}
+  patches:
+    - cmakelist.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:        
+    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - libxml2
+    - zlib
+    - ncurses
+    - go
+  run:
+    - python
+    - libxml2
+    - zlib
+    - ncurses
+
+test:
+  commands:
+     - llvm-config --version
+
+about:
+  home: http://llvm.org
+  license: OTHER
+  license_type: OTHER
+  license_file: LICENSE.TXT
+  summary: "The LLVM Compiler Infrastructure"
+
+extra:
+  notes: "This is a shared-library build (-DLLVM_BUILD_LLVM_DYLIB=ON) of llvm."

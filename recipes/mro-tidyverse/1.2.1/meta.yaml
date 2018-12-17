@@ -11,13 +11,12 @@ source:
   sha256: ad67a27bb4e89417a15338fe1a40251a7b5dedba60e9b72637963d3de574c37b
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
   # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
-    - lib/lib64/R/lib
 
 requirements:
   build:

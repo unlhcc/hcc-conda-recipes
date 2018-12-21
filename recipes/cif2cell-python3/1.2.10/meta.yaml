@@ -1,0 +1,40 @@
+{% set name = "cif2cell" %}
+{% set version = "1.2.10" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/kmu/cif2cell.git
+  git_rev: 478e6970dce758a33a172bbae9108da6117c1587
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv; chmod +x *.py; cp *.py ${PREFIX}/bin/"
+  skip: True  #[osx or py2k]
+
+requirements:
+  host:
+    - python
+    - pip
+    - pycifrw
+  run:
+    - python
+    - pycifrw
+
+test:
+  commands:
+    - cif2cell -h
+
+about:
+  home: https://sourceforge.net/projects/cif2cell/
+  license: GNU GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'CIF2Cell is a tool to generate the geometrical setup for various electronic structure codes from a CIF (Crystallographic Information Framework) file.'
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

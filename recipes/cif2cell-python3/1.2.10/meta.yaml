@@ -1,4 +1,4 @@
-{% set name = "cif2cell" %}
+{% set name = "cif2cell-python3" %}
 {% set version = "1.2.10" %}
 
 package:
@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv; chmod +x *.py; cp *.py ${PREFIX}/bin/"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   skip: True  #[osx or py2k]
 
 requirements:

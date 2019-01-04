@@ -1,0 +1,106 @@
+{% set name = "pymatgen" %}
+{% set version = "2018.12.12" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/d6/b9/f386300f232c8523f562e39bf07bae0d9c4e6379f423f71df7cd622ddae7/{{ name }}-{{ version }}.tar.gz
+  md5: 609ea8a7103519fc0a9a5128d7971104
+
+build:
+  skip: True  # [osx or py27]
+  number: 0
+  entry_points:
+    - pmg = pymatgen.cli.pmg:main
+    - feff_input_generation = pymatgen.cli.feff_input_generation:main
+    - feff_plot_cross_section = pymatgen.cli.feff_plot_cross_section:main
+    - feff_plot_dos = pymatgen.cli.feff_plot_dos:main
+    - gaussian_analyzer = pymatgen.cli.gaussian_analyzer:main
+    - get_environment = pymatgen.cli.get_environment:main
+
+requirements:
+  host:
+    - python
+    - pip
+    - cython <0.29
+    - numpy >=1.14.3
+  run:
+    - python
+    - numpy >=1.14.3
+    - six
+    - cython <0.29
+    - requests
+    - ruamel.yaml >=0.15.6
+    - monty >=0.9.6
+    - scipy >=1.0.1
+    - pydispatcher >=2.0.5
+    - tabulate
+    - spglib >=1.9.9.44
+    - networkx >=2.1
+    - matplotlib >=1.5
+    - sympy
+    - pandas
+    - pyyaml
+    - pyqt >=5
+    - qt
+    - pybtex
+    - palettable >=2.1.1
+
+test:
+  imports:
+    - pymatgen
+    - pymatgen.alchemy
+    - pymatgen.analysis
+    - pymatgen.analysis.chemenv
+    - pymatgen.analysis.chemenv.coordination_environments
+    - pymatgen.analysis.chemenv.coordination_environments.coordination_geometries_files
+    - pymatgen.analysis.chemenv.coordination_environments.strategy_files
+    - pymatgen.analysis.chemenv.utils
+    - pymatgen.analysis.cost
+    - pymatgen.analysis.defects
+    - pymatgen.analysis.diffraction
+    - pymatgen.analysis.elasticity
+    - pymatgen.analysis.ferroelectricity
+    - pymatgen.analysis.gb
+    - pymatgen.analysis.hhi
+    - pymatgen.analysis.magnetism
+    - pymatgen.analysis.structure_prediction
+    - pymatgen.analysis.xas
+    - pymatgen.apps
+    - pymatgen.apps.battery
+    - pymatgen.apps.borg
+    - pymatgen.cli
+    - pymatgen.command_line
+    - pymatgen.core
+    - pymatgen.electronic_structure
+    - pymatgen.entries
+    - pymatgen.ext
+    - pymatgen.io
+    - pymatgen.io.abinit
+    - pymatgen.io.exciting
+    - pymatgen.io.feff
+    - pymatgen.io.lammps
+    - pymatgen.io.qchem
+    - pymatgen.io.vasp
+    - pymatgen.optimization
+    - pymatgen.phonon
+    - pymatgen.symmetry
+    - pymatgen.transformations
+    - pymatgen.util
+    - pymatgen.vis
+  commands:
+    - pmg --help
+    - export MPLBACKEND="agg" && feff_input_generation --help
+    - feff_plot_cross_section --help
+    - feff_plot_dos --help
+    - gaussian_analyzer --help
+    - get_environment --help
+
+about:
+  home: http://www.pymatgen.org
+  license: MIT
+  summary: 'Python Materials Genomics is a robust materials analysis code that defines core object representations for structures and molecules with support for many electronic structure codes.'
+  license_family: MIT
+  license_file: LICENSE.rst

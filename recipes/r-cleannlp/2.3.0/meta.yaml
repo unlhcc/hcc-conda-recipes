@@ -1,0 +1,71 @@
+{% set version = '2.3.0' %}
+
+package:
+  name: r-cleannlp
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/cleanNLP_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/cleanNLP/cleanNLP_{{ version }}.tar.gz
+  sha256: ad6fe1b8d257222de6a0bdac2580677c2881c80eccf1d2cd9b7d974bfd417b34
+
+build:
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: udpipe (>= 0.3), reticulate (>= 1.4), rJava (>= 0.9-8), RCurl (>= 1.95), knitr (>= 1.15), rmarkdown (>= 1.4), testthat (>= 1.0.1), covr (>= 2.2.2)
+requirements:
+  host:
+    - r-base
+    - r-matrix >=1.2
+    - r-dplyr >=0.7.4
+    - r-stringi
+    - r-rcurl
+    - r-covr
+    - r-reticulate
+    - r-testthat
+    - r-knitr
+    - r-rjava
+    - r-rmarkdown
+    - r-udpipe
+    - python
+    - spacy
+
+  run:
+    - r-base
+    - r-matrix >=1.2
+    - r-dplyr >=0.7.4
+    - r-stringi
+    - r-rcurl
+    - r-covr
+    - r-reticulate
+    - r-testthat
+    - r-knitr
+    - r-rjava
+    - r-rmarkdown
+    - r-udpipe
+    - python
+    - spacy
+    - openjdk 8.0*
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('cleanNLP')"           # [not win]
+
+about:
+  home: https://statsmaths.github.io/cleanNLP/
+  license: LGPL-2
+  summary: Provides a set of fast tools for converting a textual corpus into a set of normalized
+    tables. Users may make use of the 'udpipe' back end with no external dependencies,
+    a Python back end with 'spaCy' <https://spacy.io> or the Java back end 'CoreNLP'
+    <http://stanfordnlp.github.io/CoreNLP/>. Exposed annotation tasks include tokenization,
+    part of speech tagging, named entity recognition, entity linking, sentiment analysis,
+    dependency parsing, coreference resolution, and word embeddings. Summary statistics
+    regarding token unigram, part of speech tag, and dependency type frequencies are
+    also included to assist with analyses.
+  license_family: LGPL

@@ -1,0 +1,23 @@
+--- pyemto/system.py	2019-01-07 22:03:36.964699918 -0600
++++ pyemto/system.py.new	2019-01-07 22:06:16.729698827 -0600
+@@ -3560,17 +3560,18 @@
+         import subprocess
+ 
+         if jobids is None:
+-            sacct_return = subprocess.Popen(
++            sacct_return_binary = subprocess.Popen(
+                 'sacct -p -l', shell=True, stdout=subprocess.PIPE).stdout.readlines()
+         else:
+             if isinstance(jobids, dict):
+                 qjobs = jobids.keys()
+             else:
+                 qjobs = jobids
+-            sacct_return = subprocess.Popen(
++            sacct_return_binary = subprocess.Popen(
+                 'sacct -j %s -p -l' % (
+                     ','.join(qjobs),), shell=True, stdout=subprocess.PIPE).stdout.readlines()
+ 
++        sacct_return = [x.decode('utf8') for x in sacct_return_binary]
+         jobs_status = {}
+         for el in sacct_return[1:]:
+             d = dict(

@@ -1,0 +1,56 @@
+{% set name = "pyemto" %}
+{% set version = "0.9.5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/hpleva/pyemto.git
+  git_rev: 1e1f503dc2eb3d46a851a37c6a0ff32a5403ac15
+  patches:
+    - encode.patch  # [py3k]
+
+build:
+  number: 0
+  skip: True  # [osx or py27]
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - pip
+    - python
+    - numpy >=1.10.3
+    - scipy >=0.17.1
+    - matplotlib >=1.5.1
+    - pandas >=0.20.3
+    - pymatgen >=4.4.0
+    - cython
+  run:
+    - python
+    - numpy >=1.10.3
+    - scipy >=0.17.1
+    - matplotlib >=1.5.1
+    - pandas >=0.20.3
+    - pymatgen >=4.4.0
+    - cython
+
+test:
+  imports:
+    - pyemto
+
+about:
+  home: https://github.com/hpleva/pyemto
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.rst
+  summary: "Easily generate input files and corresponding batch scripts for the EMTO (Exact Muffin-Tin Orbitals) solid-state physics software."
+  doc_url: https://readthedocs.org/projects/pyemto/
+  dev_url: https://github.com/hpleva/pyemto
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

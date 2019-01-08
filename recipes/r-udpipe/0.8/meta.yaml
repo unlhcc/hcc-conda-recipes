@@ -1,0 +1,54 @@
+{% set version = '0.8' %}
+
+package:
+  name: r-udpipe
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/udpipe_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/udpipe/udpipe_{{ version }}.tar.gz
+  sha256: 079a4f34b4f59ac73680df279e5cf895bd8aa280b552fef260d43896bf02ab3d
+
+build:
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: knitr, topicmodels, lattice
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+
+  host:
+    - r-base
+    - r-matrix
+    - r-rcpp >=0.11.5
+    - r-data.table >=1.9.6
+
+  run:
+    - r-base
+    - r-matrix
+    - r-rcpp >=0.11.5
+    - r-data.table >=1.9.6
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('udpipe')"
+
+about:
+  home: https://bnosac.github.io/udpipe/en/index.html, https://github.com/bnosac/udpipe
+  license: MPL-2.0
+  summary: 'This natural language processing toolkit provides language-agnostic ''tokenization'',
+    ''parts of speech tagging'', ''lemmatization'' and ''dependency parsing'' of raw
+    text. Next to text parsing, the package also allows you to train annotation models
+    based on data of ''treebanks'' in ''CoNLL-U'' format as provided at <http://universaldependencies.org/format.html>.
+    The techniques are explained in detail in the paper: ''Tokenizing, POS Tagging,
+    Lemmatizing and Parsing UD 2.0 with UDPipe'', available at <doi:10.18653/v1/K17-3009>.'
+
+  license_family: OTHER

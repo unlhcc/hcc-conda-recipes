@@ -1,0 +1,84 @@
+{% set name = "srtools" %}
+{% set version = "2017.02.22" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/carringtonlab/srtools.git
+  git_rev: 15aa7008aacdad6ca74ccd10e91954bf5b403a6e
+  patches:
+    - perl_path.patch
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - perl =5.26.2
+    - perl-config-tiny
+    - perl-dbi
+    - perl-html-parser
+    - perl-gd
+    - perl-statistics-r =0.34=pl526r351_3
+    - perl-statistics-descriptive
+    - bowtie
+    - samtools
+    - bedtools
+
+test:
+  commands:
+    - Align.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - LibParse.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - Merge.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - PopulateDB.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - clusterReads.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - countLibraryHits.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - dumpLib2BAM.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - dumpLib2gff3.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - exonIntronReads.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - exportSIDdata.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - extractRegion.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - fastqDemultiplexer.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - featureMetaCov2.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - featureMetaCov.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - hitsPerSeqHist.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - IPenrichmentTable.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - library2BigWig.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - library2geo.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - library_size_distribution_byStrand.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - library_size_distribution.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - makeSAMfeatureDB.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - multi_library_featureClass_hits.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - multi_library_featureClass_size_distribution2.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - multi_library_featureClass_size_distribution.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - multi_library_read_count_table.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - multi_library_size_distribution.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - perFeatureSizeDistribution.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - plotRegionProcessingAC.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - plotRegionProcessingAC_sameScale.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - plotRegionProcessing.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - plotRegionSmallRNAdensity.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - plotRegionSmallRNAdensitySingleNT.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - readsPerFeature.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - regionSize5ntDistribution.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - rnaseq_butter_genecounts.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - samstats.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - seqsToReadsTable.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - sidsToReadsTable.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - standardAnalysis.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - syntasiRNA_register_table.pl 2>&1 | grep -i 'Usage' > /dev/null
+    - uniReadsPerFeature.pl 2>&1 | grep -i 'Usage' > /dev/null
+
+about:
+  home: https://github.com/carringtonlab/srtools
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "srtools is the toolkit used by members of the Carrington lab for processing and analyzing small RNA sequencing data."
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

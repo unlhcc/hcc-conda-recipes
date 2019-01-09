@@ -1,0 +1,664 @@
+--- bin/Align.pl	2019-01-08 22:47:17.043235360 -0600
++++ bin/Align.pl.new	2019-01-08 23:12:22.042054730 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -10,7 +10,7 @@
+ 
+ my (%opt, $seqFile, $confFile, $species, $verbose, $method);
+ our (%stats, $conf, $outfile);
+-my $defaultConf = "$Bin/../include/default.conf";
++my $defaultConf = "";
+ getopts('f:o:c:s:a:vh', \%opt);
+ var_check();
+ 
+@@ -140,7 +140,7 @@
+   print STDERR "   -f     Input sequence file\n\n";
+   print STDERR "   -o     Output file name.\n\n";
+   print STDERR "   -s     Species code. Example: A_THALIANA\n\n";
+-  print STDERR "   -c     Configuration file. Default = $defaultConf\n\n";
++  print STDERR "   -c     Configuration file.\n\n";
+   print STDERR "   -a     Alignment method. Default = bowtie.\n";
+   print STDERR "               Current methods: bowtie\n\n";
+   print STDERR "   -v     Verbose output. Prints program status to terminal. Default is quiet.\n\n";
+--- bin/LibParse.pl	2019-01-08 22:47:17.044235360 -0600
++++ bin/LibParse.pl.new	2019-01-08 23:12:58.626051228 -0600
+@@ -1,10 +1,9 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+ use Cwd;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseFileList);
+ 
+ ############## Begin variables ##############
+--- bin/Merge.pl	2019-01-08 22:47:17.044235360 -0600
++++ bin/Merge.pl.new	2019-01-08 23:13:24.219048779 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,13 +6,12 @@
+ use Cwd;
+ use DBI;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ ############## Begin variables ##############
+ 
+ my (%opt, $file, $verbose, $confFile, $species, $samFile);
+-my $defaultConf = "$Bin/../include/default.conf";
++my $defaultConf = "";
+ my $readsTable = 'reads.csv';
+ my $sequencesTable = 'sequences.csv';
+ getopts('f:r:o:l:c:s:vh', \%opt);
+@@ -115,7 +114,7 @@
+   print STDERR " Usage: Merge.pl -f <SAM file> -s <species>\n\n";
+   print STDERR "   -f     Input sequence file\n\n";
+   print STDERR "   -s     Species code. Example: A_THALIANA\n\n";
+-  print STDERR "   -c     Configuration file. Default = $defaultConf\n\n";
++  print STDERR "   -c     Configuration file.\n\n";
+   print STDERR "   -v     Verbose output. Prints program status to terminal. Default is quiet.\n\n";
+   print STDERR "   -h     Print this menu\n\n";
+   exit 1;
+--- bin/PopulateDB.pl	2019-01-08 22:47:17.044235360 -0600
++++ bin/PopulateDB.pl.new	2019-01-08 23:13:45.536046738 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,13 +6,12 @@
+ use Cwd;
+ use DBI;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ ############## Begin variables ##############
+ 
+ my (%opt, %stats, $file, $verbose, $confFile, $species, $libID, $outfile, %checked, %new);
+-my $defaultConf = "$Bin/../include/default.conf";
++my $defaultConf = "";
+ my $readsTable = 'reads.csv';
+ my $sequencesTable = 'sequences.csv';
+ my $newBAM = 0;
+--- toolkit/clusterReads.pl	2019-01-08 22:47:17.044235360 -0600
++++ toolkit/clusterReads.pl.new	2019-01-08 23:20:46.926006403 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -7,7 +7,6 @@
+ use Config::Tiny;
+ use HTML::Entities qw(decode_entities);
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/countLibraryHits.pl	2019-01-08 22:47:17.044235360 -0600
++++ toolkit/countLibraryHits.pl.new	2019-01-08 23:21:20.496003190 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/dumpLib2BAM.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/dumpLib2BAM.pl.new	2019-01-08 23:22:07.838998658 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/dumpLib2gff3.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/dumpLib2gff3.pl.new	2019-01-08 23:23:04.524993232 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/exonIntronReads.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/exonIntronReads.pl.new	2019-01-08 23:23:59.967987925 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -7,7 +7,6 @@
+ use Config::Tiny;
+ use HTML::Entities qw(decode_entities);
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/exportSIDdata.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/exportSIDdata.pl.new	2019-01-08 23:24:39.740984126 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray txt_file_check);
+ 
+ #########################################################
+--- toolkit/extractRegion.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/extractRegion.pl.new	2019-01-08 23:25:34.442978883 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/fastqDemultiplexer.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/fastqDemultiplexer.pl.new	2019-01-08 23:26:07.390976642 -0600
+@@ -1,11 +1,10 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+ use Cwd;
+ use FileHandle;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseFileList);
+ 
+ ############## Begin variables ##############
+--- toolkit/featureMetaCov2.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/featureMetaCov2.pl.new	2019-01-08 23:26:46.799974099 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/featureMetaCov.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/featureMetaCov.pl.new	2019-01-08 23:27:20.919971899 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/hitsPerSeqHist.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/hitsPerSeqHist.pl.new	2019-01-08 23:28:09.546968762 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/IPenrichmentTable.pl	2019-01-08 22:47:17.044235360 -0600
++++ toolkit/IPenrichmentTable.pl.new	2019-01-08 23:18:18.601020606 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+--- toolkit/library2BigWig.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/library2BigWig.pl.new	2019-01-08 23:29:07.144965046 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/library2geo.pl	2019-01-08 22:47:17.045235359 -0600
++++ toolkit/library2geo.pl.new	2019-01-08 23:29:46.429962512 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+--- toolkit/library_size_distribution_byStrand.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/library_size_distribution_byStrand.pl.new	2019-01-08 23:30:14.338960713 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/library_size_distribution.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/library_size_distribution.pl.new	2019-01-08 23:30:46.650958627 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/makeSAMfeatureDB.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/makeSAMfeatureDB.pl.new	2019-01-08 23:31:38.972955259 -0600
+@@ -1,8 +1,7 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseFileList);
+ use Getopt::Std;
+ 
+--- toolkit/multi_library_featureClass_hits.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/multi_library_featureClass_hits.pl.new	2019-01-08 23:32:24.565952311 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/multi_library_featureClass_size_distribution2.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/multi_library_featureClass_size_distribution2.pl.new	2019-01-08 23:33:04.559949731 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/multi_library_featureClass_size_distribution.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/multi_library_featureClass_size_distribution.pl.new	2019-01-08 23:33:35.631947725 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/multi_library_read_count_table.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/multi_library_read_count_table.pl.new	2019-01-08 23:34:12.629945340 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/multi_library_size_distribution.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/multi_library_size_distribution.pl.new	2019-01-08 23:34:45.698943210 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/perFeatureSizeDistribution.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/perFeatureSizeDistribution.pl.new	2019-01-08 23:35:40.159939695 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -7,7 +7,6 @@
+ use Config::Tiny;
+ use HTML::Entities qw(decode_entities);
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/plotRegionProcessingAC.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/plotRegionProcessingAC.pl.new	2019-01-08 23:36:27.425936645 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ use GD::Simple;
+ 
+--- toolkit/plotRegionProcessingAC_sameScale.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/plotRegionProcessingAC_sameScale.pl.new	2019-01-08 23:37:12.588933734 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ use GD::Simple;
+ 
+--- toolkit/plotRegionProcessing.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/plotRegionProcessing.pl.new	2019-01-08 23:38:13.768929783 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ use GD::Simple;
+ 
+--- toolkit/plotRegionSmallRNAdensity.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/plotRegionSmallRNAdensity.pl.new	2019-01-08 23:38:57.655926954 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -9,7 +9,6 @@
+ use Statistics::Descriptive;
+ use Cwd;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/plotRegionSmallRNAdensitySingleNT.pl	2019-01-08 22:47:17.046235359 -0600
++++ toolkit/plotRegionSmallRNAdensitySingleNT.pl.new	2019-01-08 23:39:38.455924326 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -9,7 +9,6 @@
+ use Statistics::Descriptive;
+ use Cwd;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/readsPerFeature.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/readsPerFeature.pl.new	2019-01-08 23:40:32.596920833 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -7,7 +7,6 @@
+ use Config::Tiny;
+ use HTML::Entities qw(decode_entities);
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################
+--- toolkit/regionSize5ntDistribution.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/regionSize5ntDistribution.pl.new	2019-01-08 23:41:06.960918617 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/rnaseq_butter_genecounts.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/rnaseq_butter_genecounts.pl.new	2019-01-08 23:41:28.993917193 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -75,4 +75,4 @@
+   ";
+   print STDERR $usage;
+   exit 1;
+-}
+\ No newline at end of file
++}
+--- toolkit/samstats.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/samstats.pl.new	2019-01-08 23:42:43.361912399 -0600
+@@ -1,11 +1,10 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+ use threads;
+ use Thread::Queue;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseFileList);
+ 
+ my (%opt, $outfile);
+--- toolkit/seqsToReadsTable.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/seqsToReadsTable.pl.new	2019-01-08 23:43:09.757910962 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/sidsToReadsTable.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/sidsToReadsTable.pl.new	2019-01-08 23:43:32.101909862 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/standardAnalysis.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/standardAnalysis.pl.new	2019-01-08 23:43:59.887908505 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ #########################################################
+--- toolkit/syntasiRNA_register_table.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/syntasiRNA_register_table.pl.new	2019-01-08 23:44:30.659906997 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -6,7 +6,6 @@
+ use DBI;
+ use Config::Tiny;
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray);
+ 
+ my (%opt, $ref_id, $tasi_id, $accession, $confFile, $outfile, $species, $range, $sth, %rpm, %reads, %registers, %pos, $start, $end);
+--- toolkit/uniReadsPerFeature.pl	2019-01-08 22:47:17.047235359 -0600
++++ toolkit/uniReadsPerFeature.pl.new	2019-01-08 23:42:19.062913967 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Std;
+@@ -7,7 +7,6 @@
+ use Config::Tiny;
+ use HTML::Entities qw(decode_entities);
+ use FindBin qw($Bin);
+-use lib "$Bin/../lib";
+ use CommonFunctions qw(parseListToArray parseFileList);
+ 
+ #########################################################

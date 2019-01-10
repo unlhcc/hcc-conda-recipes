@@ -108,17 +108,14 @@ recipes/r-celestial/1.4.1
 recipes/r-diagrammer/0.9.0
 recipes/rdp-classifier/2.2
 recipes/readline/5.2
-recipes/r-glue/1.1.1
 recipes/r-influencer/0.1.0
 recipes/r-magicaxis/2.0.3
 recipes/r-mxnet/0.9.3a
 recipes/r-nistunits/1.0.1
 recipes/root/6-10-02
 recipes/r-pinfsc50/1.1.0
-recipes/r-pkgconfig/2.0.1
 recipes/r-regresshaplo/1.0
 recipes/r-rgexf/0.15.3
-recipes/r-rlang/0.1.2
 recipes/r-rmutil/1.1
 recipes/r-rook/1.1_1
 recipes/r-rstudioapi/0.6

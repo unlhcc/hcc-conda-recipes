@@ -7,12 +7,12 @@ package:
 
 source:
   git_url: https://github.com/hpleva/pyemto.git
-  git_rev: 1e1f503dc2eb3d46a851a37c6a0ff32a5403ac15
+  git_rev: 9787fcbca9e6da69a50ded9ef0d2de8a0381fff9
   patches:
     - encode.patch  # [py3k]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx or py27]
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
@@ -54,3 +54,4 @@ extra:
   skip-lints:
     - uses_git_url
     - missing_hash
+    - in_other_channels

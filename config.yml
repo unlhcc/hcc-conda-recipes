@@ -7,6 +7,7 @@ upload_channel: "hcc"
 channels:
     - hcc
     - conda-forge
+    - conda-forge/label/cf201901
     - bioconda
     - defaults
 docker_client_version: '1.20'

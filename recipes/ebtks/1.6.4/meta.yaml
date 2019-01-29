@@ -1,0 +1,35 @@
+{% set name = "ebtks" %}
+{% set version = "1.6.4" %}
+{% set sha256 = "f20dccce3f93750ae295180743d042e65e6e927aea44ffd1a2661c36fe953992" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: http://packages.bic.mni.mcgill.ca/tgz/{{ name }}-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+    - test -f ${PREFIX}/include/EBTKS/amoeba.h
+    - test -f ${PREFIX}/lib/libEBTKS.so
+    - test -f ${PREFIX}/lib/libEBTKS.a
+
+about:
+  home: http://www.bic.mni.mcgill.ca/software/distribution/
+  license: Custom OSS
+  license_family: OTHER
+  license_file: COPYING
+  summary: "EBTKS - stands for Everything But The Kitchen Sink - is Alex Zijdenbos library of numerical types and algorithms, and is needed by classify and inormalize."

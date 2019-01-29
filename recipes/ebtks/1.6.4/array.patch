@@ -1,0 +1,126 @@
+--- templates/Array.cc	2004-12-08 16:43:44.000000000 +0000
++++ templates/Array.cc.new	2019-01-29 22:32:07.840508046 +0000
+@@ -25,6 +25,7 @@
+ #include <math.h>
+ //#include <string>		// (bert) changed from string.h
+ using namespace std;		// (bert) added
++#include <cstring>
+ 
+ /******************
+  * Array base class
+--- templates/CachedArray.cc	2004-12-08 17:02:18.000000000 +0000
++++ templates/CachedArray.cc.new	2019-01-29 22:41:27.720963683 +0000
+@@ -866,7 +866,7 @@
+   }
+ 
+   Type floor, ceil;
+-  extrema(&floor, &ceil);
++  this->extrema(&floor, &ceil);
+ 
+   if (this->_debug)
+       cout << "Floor and Ceiling: " << floor << " : " << ceil << endl;
+@@ -893,7 +893,7 @@
+       cout << "(" << bin << " : " << hist[bin] << " : " << histMedian << ") " << flush;
+ 
+   unsigned nBelow2, nAbove2;
+-  removeAllNotIn(Type(hist.binStart(bin)), Type(hist.binStart(bin + 1)), 
++  this->removeAllNotIn(Type(hist.binStart(bin)), Type(hist.binStart(bin + 1)), 
+ 		 &nBelow2, &nAbove2);
+ 
+   if (this->_debug)
+@@ -948,8 +948,8 @@
+ // Swap elements p and i
+ 
+   Type temp = getElConst(p);
+-  setEl(p, getElConst(i));
+-  setEl(i, temp);
++  this->setEl(p, getElConst(i));
++  this->setEl(i, temp);
+ 
+   return _partition(p, r);
+ }
+@@ -968,8 +968,8 @@
+     
+     if (i < j) {
+       Type temp = getElConst(i);
+-      setEl(i, getElConst(j));
+-      setEl(j, temp);
++      this->setEl(i, getElConst(j));
++      this->setEl(j, temp);
+     }
+     else
+       return j;
+--- templates/SimpleArray.cc	2004-12-08 17:05:18.000000000 +0000
++++ templates/SimpleArray.cc.new	2019-01-29 22:43:56.090853251 +0000
+@@ -503,7 +503,7 @@
+     Type el = this->getElConst(i);
+     if (el != value) {
+       if (i != j)
+-	setEl(j, el);
++	this->setEl(j, el);
+       j++;
+     }
+   }
+@@ -532,7 +532,7 @@
+       n++;
+     else {
+       if (i != j)
+-	setEl(j, value);
++	this->setEl(j, value);
+       j++;
+     }
+   }
+@@ -566,7 +566,7 @@
+       aboveCtr++;
+     else {
+       if (i != j)
+-        setEl(j, value);
++        this->setEl(j, value);
+       j++;
+     }
+   }
+@@ -633,7 +633,7 @@
+     double value = double(this->getElConst(i));
+     if (FINITE(value)) {
+       if (i != j)
+-	setEl(j, Type(value));
++	this->setEl(j, Type(value));
+       j++;
+     }
+   }
+@@ -650,7 +650,7 @@
+   double range = max - min;
+ 
+   for (unsigned i = 0; i < this->_size; i++)
+-    setEl(i, Type(drand48() * range + min));
++    this->setEl(i, Type(drand48() * range + min));
+   
+   return *this;
+ }
+@@ -660,7 +660,7 @@
+ SimpleArray<Type>::randnormal(double mean, double std)
+ {
+   for (unsigned i = 0; i < this->_size; i++)
+-    setEl(i, Type(gauss(mean, std)));
++    this->setEl(i, Type(gauss(mean, std)));
+ 
+   return *this;
+ }
+@@ -996,7 +996,7 @@
+   this->resetIterator();
+   for (register unsigned i = 0; i < this->_size; i++)
+     if ((*this)++ > ceil)
+-      setEl(i, ceil);
++      this->setEl(i, ceil);
+ }
+ 
+ template <class Type>
+@@ -1006,7 +1006,7 @@
+   this->resetIterator();
+   for (register unsigned i = 0; i < this->_size; i++)
+     if ((*this)++ < floor)
+-      setEl(i, floor);
++      this->setEl(i, floor);
+ }
+ 
+ //

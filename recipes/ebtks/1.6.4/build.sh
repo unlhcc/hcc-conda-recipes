@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export CXXFLAGS="-fpermissive $CXXFLAGS"
-./configure --prefix=${PREFIX} --enable-shared=yes
+./configure --prefix=${PREFIX}
 make
 make install

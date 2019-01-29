@@ -1,0 +1,33 @@
+{% set name = "perl-mni" %}
+{% set version = "0.08" %}
+{% set sha256 = "e5dba59674be4ef9144f7805f74f64ce98c10cfdeedddcb7468d9993abd58662" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://packages.bic.mni.mcgill.ca/tgz/mni_perllib-0.08.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  host:
+    - perl
+
+  run:
+    - perl
+
+test:
+  imports:
+    - MNI
+
+about:
+  home: https://github.com/BIC-MNI/mni-perllib
+  license: perl_5
+  summary: 'The MNI Perl Library is a collection of Perl modules originally designed to help writing glorified shell scripts -- that is, programs that (mainly) run other programs.'

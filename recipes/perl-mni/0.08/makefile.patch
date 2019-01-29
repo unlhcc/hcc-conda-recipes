@@ -1,0 +1,11 @@
+--- Makefile.PL	1999-05-12 22:29:58.000000000 +0000
++++ Makefile.PL.new	2019-01-29 19:12:27.539116276 +0000
+@@ -32,7 +32,7 @@
+ MNI_DATAPATH environment variable.
+ 
+ MSG
+-   my $dir;
++   my $dir = "TARGET";
+ 
+    while (! defined $dir)
+    {

@@ -1,0 +1,58 @@
+{% set name = "mni-n3" %}
+{% set version = "1.12.0" %}
+{% set sha256 = "9aab180f388bbba57a807b6497eca31037b26b692eb5cab2a28039d530643af7" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://packages.bic.mni.mcgill.ca/tgz/N3-1.12.0.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - perl.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+
+  host:
+    - perl-mni
+    - perl-getopt-tabular
+    - ebtks
+    - libnetcdf 4.5*
+    - zlib
+    - hdf5 1.8.18*
+    - minc
+
+  run:
+    - perl-mni
+    - perl-getopt-tabular
+    - ebtks
+    - libnetcdf 4.5*
+    - zlib
+    - hdf5 1.8.18*
+    - minc
+
+test:
+  commands:
+    - nu_correct -version
+    - nu_estimate -version
+    - nu_evaluate -version
+    - imp2field -version
+    - field2imp -version
+    - volume_stats -version || [[ "$?" == "255" ]]
+    - volume_hist -version || [[ "$?" == "255" ]]
+    - spline_smooth -version || [[ "$?" == "255" ]]
+
+about:
+  home: http://www.bic.mni.mcgill.ca/software/N3/readme.html
+  license: Custom OSS
+  license_file: COPYING
+  summary: 'A non-parametric method for correction of intensity non-uniformity in MRI data.'

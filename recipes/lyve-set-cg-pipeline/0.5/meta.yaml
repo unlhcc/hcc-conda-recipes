@@ -1,0 +1,47 @@
+{% set name = "CG-Pipeline" %}
+{% set version = "0.5" %}
+{% set sha256 = "868dec94351c461b7ff5245525640b7c3286db40a6e783b55550230c28a3b3fd" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/lskatz/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  script:
+   - cp scripts/run_assembly_isFastqPE.pl ${PREFIX}/bin
+   - cp scripts/run_assembly_trimClean.pl ${PREFIX}/bin
+   - cp scripts/run_assembly_shuffleReads.pl ${PREFIX}/bin
+   - cp scripts/run_assembly_removeDuplicateReads.pl ${PREFIX}/bin
+   - cp scripts/run_assembly_readMetrics.pl ${PREFIX}/bin
+   - cp scripts/run_assembly_metrics.pl ${PREFIX}/bin
+
+requirements:
+  run:
+    - perl
+    - perl-cg-pipeline
+    - perl-getopt-long
+    - perl-posix
+    - perl-io-compress
+    - perl-statistics-descriptive
+
+test:
+  commands:
+    - run_assembly_isFastqPE.pl 2>&1 | grep "run_assembly_isFastqPE.pl" > /dev/null
+    - run_assembly_trimClean.pl 2>&1 | grep "run_assembly_trimClean.pl" > /dev/null
+    - run_assembly_shuffleReads.pl 2>&1 | grep "run_assembly_shuffleReads.pl" > /dev/null
+    - run_assembly_removeDuplicateReads.pl 2>&1 | grep "run_assembly_removeDuplicateReads.pl" > /dev/null
+    - run_assembly_readMetrics.pl 2>&1 | grep "run_assembly_readMetrics.pl" > /dev/null
+    - run_assembly_metrics.pl 2>&1 | grep "run_assembly_metrics.pl" > /dev/null
+
+about:
+  home: https://github.com/lskatz/CG-Pipeline
+  license: GNU GPL
+  license_family: GPL
+  license_file: doc/LICENSE
+  summary: Genome assembly/prediction/annotation pipeline for the Linux command line

@@ -1,0 +1,30 @@
+{% set name = "perl-getopt-tabular" %}
+{% set version = "0.3" %}
+{% set sha256 = "9bdf067633b5913127820f4e8035edc53d08372faace56ba6bfa00c968a25377" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/G/GW/GWARD/Getopt-Tabular-0.3.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - perl
+
+  run:
+    - perl
+
+test:
+  imports:
+    - Getopt::Tabular
+
+about:
+  home: http://metacpan.org/pod/Getopt::Tabular
+  license: perl_5
+  summary: 'table-driven argument parsing for Perl 5'

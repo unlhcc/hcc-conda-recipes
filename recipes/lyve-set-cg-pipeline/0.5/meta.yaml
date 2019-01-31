@@ -1,4 +1,4 @@
-{% set name = "CG-Pipeline" %}
+{% set name = "lyve-set-cg-pipeline" %}
 {% set version = "0.5" %}
 {% set sha256 = "868dec94351c461b7ff5245525640b7c3286db40a6e783b55550230c28a3b3fd" %}
 
@@ -7,11 +7,11 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://github.com/lskatz/{{ name }}/archive/v{{ version }}.tar.gz
+  url: https://github.com/lskatz/CG-Pipeline/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
   script:
    - cp scripts/run_assembly_isFastqPE.pl ${PREFIX}/bin

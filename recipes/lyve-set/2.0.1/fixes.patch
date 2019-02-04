@@ -1,0 +1,23 @@
+--- scripts/varscan.sh	2018-02-27 15:13:55.000000000 -0600
++++ scripts/varscan.sh.new	2019-02-02 03:20:02.772236505 -0600
+@@ -4,7 +4,8 @@
+ # adapted from Seth Sims <xzy3@cdc.gov> September 26, 2014
+ # Lee Katz <lkatz@cdc.gov>
+ 
+-JAR=$(dirname $0)"/../lib/varscan.v2.3.7.jar"
++# JAR=$(dirname $0)"/../lib/varscan.v2.3.7.jar"
++JAR=`find $CONDA_PREFIX -name VarScan.jar`
+ JAVA=$(\which java 2>/dev/null || /usr/bin/java);
+ GREP=$(\which grep 2>/dev/null || /bin/grep);
+ 
+--- scripts/launch_varscan.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_varscan.pl.new	2019-02-02 03:21:57.247225518 -0600
+@@ -185,7 +185,7 @@
+ 
+     my $newVcfLoc="$$settings{tempdir}/$samplename/".basename($vcf);
+     system("mv -v $fixedVcf $newVcfLoc >&2"); die if $?;
+-    system("bgzip $newVcfLoc && tabix $newVcfLoc.gz");
++    system("bgzip $newVcfLoc && tabix -h $newVcfLoc.gz");
+     die if $?;
+     $vcfCounter++;
+   }

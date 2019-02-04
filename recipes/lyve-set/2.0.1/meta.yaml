@@ -1,0 +1,99 @@
+{% set name = "lyve-SET" %}
+{% set version = "2.0.1" %}
+{% set sha256 = "a593a9aa54253c9d6ac67da07061f49e5d0dddc30f3e08a21e048ea0c8f6b68e" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/lskatz/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - fixes.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  host:
+    - perl 5.26
+    - perl-bioperl 1.7.2
+    - perl-vcftools-vcf 0.1.16
+    - perl-file-slurp
+    - perl-string-escape
+    - perl-config-simple
+    - perl-math-round
+    - perl-number-range
+    - perl-statistics-distributions
+    - perl-statistics-basic
+    - perl-statistics-linefit
+    - perl-array-intspan
+    - perl-graph-centrality-pagerank
+    - perl-schedule-sgelk
+    - perl-net-ftp
+    - perl-lyve-set
+    - lyve-set-cg-pipeline
+    - freebayes
+    - samtools
+    - blast
+    - htslib
+    - wgsim
+    - tabix
+    - vcftools
+    - varscan
+    - bcftools
+    - snpeff
+    - smalt
+    - bwa
+    - snap-aligner
+    - raxml
+    - phyml
+    - entrez-direct
+    - wget
+  run:
+    - perl 5.26
+    - perl-bioperl 1.7.2
+    - perl-vcftools-vcf 0.1.16
+    - perl-file-slurp
+    - perl-string-escape
+    - perl-config-simple
+    - perl-math-round
+    - perl-number-range
+    - perl-statistics-distributions
+    - perl-statistics-basic
+    - perl-statistics-linefit
+    - perl-array-intspan
+    - perl-graph-centrality-pagerank
+    - perl-schedule-sgelk
+    - perl-net-ftp
+    - perl-lyve-set
+    - lyve-set-cg-pipeline
+    - freebayes
+    - samtools
+    - blast
+    - htslib
+    - wgsim
+    - tabix
+    - vcftools
+    - varscan
+    - bcftools
+    - snpeff
+    - smalt
+    - bwa
+    - snap-aligner
+    - raxml
+    - phyml
+    - entrez-direct
+
+test:
+  commands:
+    - launch_set.pl 2>&1 | grep "launch_set.pl" > /dev/null
+
+about:
+  home: https://github.com/lskatz/lyve-SET
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "LYVE version of the Snp Extraction Tool (SET), a method of using hqSNPs to create a phylogeny."

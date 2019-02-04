@@ -1,0 +1,377 @@
+--- src/NUcorrect/imp2field.in	2010-02-11 00:36:13.000000000 +0000
++++ src/NUcorrect/imp2field.in.new	2019-02-04 22:24:23.049720669 +0000
+@@ -204,7 +204,7 @@
+               ." $output_volume\n"));
+ 
+    # check that appropriate files and directories exist
+-   if (defined $like_volume) {
++   if ($like_volume) {
+       !(-r $like_volume) &&
+          die("Cannot read like volume: $like_volume\n");
+    }
+--- src/NUcorrect/make_template.in	2007-03-29 05:07:58.000000000 +0000
++++ src/NUcorrect/make_template.in.new	2019-02-04 22:24:38.636705098 +0000
+@@ -198,7 +198,7 @@
+ 
+    # check that appropriate files and directories exist
+    (-r $input_volume) || die("Cannot read input file: $input_volume\n");
+-   (defined $user_mask_volume && !(-r $user_mask_volume)) &&
++   ($user_mask_volume && !(-r $user_mask_volume)) &&
+       die("Cannot read mask volume file: $user_mask_volume\n");
+    
+    ($shrink_factor < 1) &&
+--- src/NUcorrect/nu_estimate.in	2010-12-10 01:42:19.000000000 +0000
++++ src/NUcorrect/nu_estimate.in.new	2019-02-04 22:25:26.582657200 +0000
+@@ -55,7 +55,7 @@
+ }
+ else { #run nu_correct
+    @Imps = &replace_ext('imp', @Outputs);
+-   (defined $mapping_dir) && (@Imps = &replace_dir($mapping_dir,@Imps));
++   ($mapping_dir) && (@Imps = &replace_dir($mapping_dir,@Imps));
+ 
+    Spawn("$nu_estimate $estimation_options @Inputs @Imps");
+    for($i = 0; $i < $#Inputs+1; $i++) {
+@@ -491,11 +491,11 @@
+          [qw(-parzen -log -sharpen), $user_options{'sharpen'}, 0.01, ]);
+      foreach $option_name (@option_names) {
+        AddDefaultArgs('nu_estimate_np_and_em', ["-$option_name", 
+-         ((defined $user_options{$option_name})? 
++         (($user_options{$option_name})? 
+                $user_options{$option_name} :
+                $defaults{"np:$option_name:$version_number"})]);
+          }
+-     (defined $user_options{'normalize_field'}) and 
++     ($user_options{'normalize_field'}) and 
+        AddDefaultArgs('nu_estimate_np_and_em','-normalize_field');
+    }
+    # assemble options for EM method
+@@ -505,11 +505,11 @@
+       foreach $option_name (@option_names) {
+          AddDefaultArgs('nu_estimate_np_and_em',
+                         ["-$option_name",  
+-                         (defined $user_options{$option_name})? 
++                         ($user_options{$option_name})? 
+                           $user_options{$option_name} :
+                           $defaults{"em:$option_name"}]);
+       }
+-      (defined $user_options{'normalize_field'}) and 
++      ($user_options{'normalize_field'}) and 
+         AddDefaultArgs('nu_estimate_np_and_em','-normalize_field');
+    }
+    # assemble options for WM method
+@@ -517,7 +517,7 @@
+       AddDefaultArgs('nu_estimate_wm', 
+             ['-spline', "-b_spline -extrapolate "
+              ."-distance $user_options{'distance'}"]);
+-      (defined $user_options{'iterations'}) &&
++      ($user_options{'iterations'}) &&
+                AddDefaultArgs('nu_estimate_wm', 
+                               ['-N', $user_options{'iterations'}]); 
+    }
+@@ -527,7 +527,7 @@
+                    '-b_spline', $user_options{'lambda'},
+                    '-distance', $user_options{'distance'}]);
+    # add common options
+-   if(defined $user_options{'mask'}) {
++   if($user_options{'mask'}) {
+       AddDefaultArgs('nu_estimate_np_and_em',['-mask', $user_options{'mask'}]);
+       AddDefaultArgs('nu_estimate_wm',['-mask', $user_options{'mask'}])
+         unless $N3_only_flag;
+--- src/NUcorrect/nu_estimate_np_and_em.in	2010-02-11 00:36:14.000000000 +0000
++++ src/NUcorrect/nu_estimate_np_and_em.in.new	2019-02-04 22:27:28.208535690 +0000
+@@ -87,7 +87,7 @@
+ # check that volume is not empty
+ 
+ # create initial field estimate
+-if(defined $initial_volume) {
++if($initial_volume) {
+    &verbose("# using $initial_volume as initial field estimate");
+    Spawn(['mincmath', '-zero', '-log', $initial_volume, $residue_volume]);
+ }
+@@ -119,12 +119,12 @@
+ 
+    if($distance > 0)
+    {
+-      if((defined $scale_factor) || $differential_flag) 
++      if(($scale_factor) || $differential_flag) 
+       {
+          # estimate the difference in field
+          Spawn(['mincmath', '-sub', $corrected, $estimate_volume, $working]);
+ 
+-         if(defined $scale_factor)  {
++         if($scale_factor)  {
+             &verbose("# scaling differential field estimate by $scale_factor");
+             Spawn(['mincmath',  '-mult', '-const', $scale_factor,
+                    $working, $estimate_volume]);
+@@ -162,12 +162,12 @@
+          else {
+             &filter_volume($working, $norm_volume, $distance, $residue_volume);
+          }
+-         (defined @stopping_threshold) &&  # use ratio for stopping condition
++         (@stopping_threshold) &&  # use ratio for stopping condition
+             (Spawn(['mincmath', '-sub', '-zero', $estimate_volume,
+                      $residue_volume, $working]));
+       }
+       # check stopping condition
+-      if(defined @stopping_threshold) {
++      if(@stopping_threshold) {
+          $field_difference = &field_CV($working, $mask_volume);
+          ($debug_flag) && print RECORD "CV for change in field estimate"
+             ." at iteration $iter: $field_difference\n";
+@@ -208,7 +208,7 @@
+    close(RECORD);
+ }
+ 
+-print "Number of iterations: $iter \n" . ((defined @stopping_threshold)? 
++print "Number of iterations: $iter \n" . ((@stopping_threshold)? 
+    "CV of field change: $field_difference\n"  : "\n"); 
+ &verbose("# NU estimation complete.");
+ 
+@@ -257,11 +257,11 @@
+    my ($input_volume, $log_volume) = @_;
+    my @tag_option = ();
+ 
+-   if(defined $mean_file) {
++   if($mean_file) {
+       $tissue_stats = $mean_file;
+    }
+    else {
+-      if(defined $tag_file) {
++      if($tag_file) {
+          ($tag_file =~ /^default$/i) || (@tag_option = ('-tag', $tag_file));
+       }
+       if($real_flag) {
+@@ -300,7 +300,7 @@
+    my (@spacetype, @VolumeStatsCmd, $output);
+    my ($talairach_flag) = 0;
+ 
+-   if(!defined $user_mask_volume) {
++   if(!$user_mask_volume) {
+       if($auto_mask_flag) { # determine if brain is in talairach space
+          Spawn(['mincinfo', '-attvalue', 'xspace:spacetype',
+               qw(-attvalue yspace:spacetype -attvalue zspace:spacetype),
+@@ -317,7 +317,7 @@
+       {
+          # Obtain BG threshold
+          @VolumeStatsCmd = (qw(volume_stats -quiet -biModalT), $input_volume);
+-         if (defined($Mask)) {
++         if (($Mask)) {
+             push(@VolumeStatsCmd, ('-mask', $Mask));
+          }
+          Spawn(\@VolumeStatsCmd, stdout => \$background_threshold);
+@@ -338,7 +338,7 @@
+       Spawn(['mv', "$mask_volume.short", $bkg_volume]);
+    }
+ 
+-   if(defined $user_mask_volume) {  # if user supplied a mask
++   if($user_mask_volume) {  # if user supplied a mask
+       # Fix a problem we see occasionally when the user_mask_volume
+       # happens to be the same file as the mask_volume
+       #
+@@ -791,7 +791,7 @@
+          ($input_volume = &ShrinkVolume($input_volume, $shrink_workspace)) || 
+                die("Failed to shrink input volume.\n"); 
+          # use shrunk volume as a model
+-         if(defined $mask_volume) {
++         if($mask_volume) {
+             ($mask_volume = &CheckSampling($mask_volume, $input_volume, 1)) ||
+                die("Failed to shrink mask volume.\n"); 
+          }
+@@ -856,7 +856,7 @@
+       
+       my($resampledFile) = &UniqueMincFile(replace_dir($TmpDir, $file));
+       
+-      if (defined($isLabelVolume) && $isLabelVolume) {
++      if (($isLabelVolume) && $isLabelVolume) {
+          Spawn(['resample_labels', '-resample', "-like $model",
+                 $file, "$resampledFile.temp"]);
+          # this to work around a bug in resample labels, remove as soon as 
+@@ -1022,7 +1022,7 @@
+    print RECORD "Uncorrected volume (input): $input_volume\n";
+    print RECORD "Intensity mapping (output): $output_mapping\n";
+    if(not $sharpen_flag) {
+-      if (defined $mean_file) {
++      if ($mean_file) {
+          print RECORD "\nUsing parametric tissue model specified in file:"
+             ." $mean_file\n";
+       }
+@@ -1030,10 +1030,10 @@
+          print RECORD "\nUsing parametric tissue model estimated using"
+             ." tag file:\n";
+       }
+-      (defined @variance_override) &&
++      (@variance_override) &&
+          print RECORD "Tissue variances overridden with values:"
+             ." @variance_override\n";
+-      if((not defined @probability_maps) || 
++      if((not @probability_maps) || 
+          ($probability_maps[0] =~ /default/)) {
+          print RECORD "Using default tissue probability maps. \n";
+       }
+@@ -1060,7 +1060,7 @@
+       print RECORD "\nIntensity estimation is done on non-log"
+          ." transformed data\n";
+    }
+-   if(defined $user_mask_volume) {
++   if($user_mask_volume) {
+       if($background_threshold <= 1) {
+          print RECORD "\nUsing background mask specified in: "
+             ."$user_mask_volume\n";
+@@ -1430,15 +1430,15 @@
+ sub ValidateArgs
+ {
+    if($sharpen_flag) {
+-      (defined @probability_option) && 
++      (@probability_option) && 
+          die("-probability option not compatible with -sharpen\n");
+-      (defined $mean_file) && 
++      ($mean_file) && 
+          die("-mean option not compatible with -sharpen\n");
+-      (defined $tag_file) && 
++      ($tag_file) && 
+          die("-tag option not compatible with -sharpen\n");
+-      (defined @variance_override) && 
++      (@variance_override) && 
+          die("-variance option not compatible with -sharpen\n");
+-      (defined @reduce_flag) &&
++      (@reduce_flag) &&
+          die("-reduce option not compatible with -sharpen\n");
+       ($sharpen_options[0] > 0 && $sharpen_options[1] > 0) || 
+         die("Invalid sharpen parameters: $sharpen_options[0]".
+@@ -1454,15 +1454,15 @@
+       die("Islands parameter should be in range [0,1].\n");
+    ($iterations < 0) &&
+       die("Iterations parameter cannot be negative.\n");
+-   (defined $mean_file && defined $tag_file) &&
++   ($mean_file && $tag_file) &&
+       die("-mean and -tag options are not compatible.\n");
+    ($spline_lambda <= 0) &&
+       die("Smoothing parameter for splines should be positive.\n");
+    ($spline_subsample <= 0) &&
+       die("Subsampling factor for splines should be positive.\n");
+-   (defined $workspace && $shrink_workspace != 1.0) &&
++   ($workspace && $shrink_workspace != 1.0) &&
+       die("-workspace and -shrink options are not compatible\n");
+-   (defined @stopping_threshold && 
++   (@stopping_threshold && 
+     ($#stopping_threshold != $#iteration_stages)) &&
+       die("Number of arguments to -iterations and -stop must match\n");
+ 
+@@ -1473,11 +1473,11 @@
+ 
+    # check that appropriate files and directories exist
+    (-r $input_volume) || die("Cannot read input file: $input_volume\n");
+-   (defined $workspace && !(-r $workspace)) &&
++   ($workspace && !(-r $workspace)) &&
+       die("Cannot read workspace template: $workspace\n");
+-   (defined $user_mask_volume && !(-r $user_mask_volume)) &&
++   ($user_mask_volume && !(-r $user_mask_volume)) &&
+       die("Cannot read mask volume: $user_mask_volume\n");
+-   (defined $initial_volume && !(-r $initial_volume)) &&
++   ($initial_volume && !(-r $initial_volume)) &&
+       die("Cannot read initial field volume: $initial_volume\n");
+    (-r $average_brain_mask) || 
+       (print "Warning: Cannot read average brain mask: $average_brain_mask\n");
+@@ -1569,7 +1569,7 @@
+    if( ! (-r $average_brain_mask) && (-r "$average_brain_mask.gz")) {
+         $average_brain_mask .= ".gz";
+    }
+-   if(defined $tag_file && ($tag_file =~ /default/i)) {
++   if($tag_file && ($tag_file =~ /default/i)) {
+       $tag_file = "$default_model_data/class_statistics.tag";
+    }
+    undef $scale_factor;
+@@ -1614,15 +1614,15 @@
+    ($input_volume, $output_mapping) = @reducedARGV;
+ 
+    # expand some arguments
+-   (defined @iteration_stages) && 
++   (@iteration_stages) && 
+       ($iterations = $iteration_stages[$#iteration_stages]);
+-   (defined @sharpen_options) && ($sharpen_flag = 1);
+-   (defined $workspace || $shrink_workspace != 1.0) && ($workspace_flag = 1);
+-   @variance_option  = (defined @variance_override) ? 
++   (@sharpen_options) && ($sharpen_flag = 1);
++   ($workspace || $shrink_workspace != 1.0) && ($workspace_flag = 1);
++   @variance_option  = (@variance_override) ? 
+       ('-variance', @variance_override) : ();
+-   @reduce_option = (defined @reduce_threshold) ? 
++   @reduce_option = (@reduce_threshold) ? 
+       ('-reduce', @reduce_threshold) : ();
+-    if(defined @probability_maps) {
++    if(@probability_maps) {
+       if($probability_maps[0] =~ /^default$/i) {
+          @probability_option = ('-probability', 
+             join(',', @default_probability_maps));
+@@ -1644,7 +1644,7 @@
+    
+    # check that we are using the np method as progs for em method 
+    # are not longer included in the N3 distribution - Andrew 6/10/2008
+-   if(defined($mean_file) || defined($tag_file)){
++   if(($mean_file) || ($tag_file)){
+       die("The EM method is no longer supported, please desist from using -mean and -tag..\n\n");
+       }
+    # check for -sharpen for the same reason as above (sort of).
+--- src/NUcorrect/nu_evaluate.in	2010-12-10 01:42:19.000000000 +0000
++++ src/NUcorrect/nu_evaluate.in.new	2019-02-04 22:28:02.872501063 +0000
+@@ -46,7 +46,7 @@
+ 
+ # Obtain some crude mask if none is given.
+ 
+-if( !( defined $user_mask_volume ) || !( -e $user_mask_volume ) ) {
++if( !( $user_mask_volume ) || !( -e $user_mask_volume ) ) {
+   my $threshold = 0;
+   &Spawn(['mincstats', '-quiet', '-biModalT', $input_volume],
+            err_action => 'ignore', stdout => \$threshold );
+@@ -253,9 +253,9 @@
+ 
+    # check that appropriate files and directories exist
+    (-r $input_volume) || die("Cannot read input file: $input_volume");
+-   (defined $user_mask_volume && !(-r $user_mask_volume)) &&
++   ($user_mask_volume && !(-r $user_mask_volume)) &&
+       die("Cannot read mask volume file: $user_mask_volume");
+-   if (defined $mapping_name) {
++   if ($mapping_name) {
+       !(-r $mapping_name) &&
+          die("Cannot read mapping file: $mapping_name");
+    }
+@@ -263,7 +263,7 @@
+       die("No mapping specified.  Nothing to do.");
+    }
+    
+-   if( defined $shrink_factor ) {
++   if( $shrink_factor ) {
+      print "Shrink factor is now obsolete.";
+    }
+ 
+@@ -320,7 +320,7 @@
+    # expand some arguments
+    ($output_directory, $basename) = split_path($output_volume, 
+                                                'last', [qw(gz z Z)]);
+-   if( defined $output_field ) {
++   if( $output_field ) {
+      $field_volume = $output_field;
+    } else {
+      $field_volume = "$TmpDir/$basename" ."_field.mnc";
+--- src/NUcorrect/resample_labels.in	2007-03-29 05:07:58.000000000 +0000
++++ src/NUcorrect/resample_labels.in.new	2019-02-04 22:28:20.841483112 +0000
+@@ -233,7 +233,7 @@
+    RegisterPrograms([qw(mincresample mincextract extracttag mincmath)])
+               || exit 1;
+ 
+-   if (defined $LabelsUsed)
++   if ($LabelsUsed)
+    {
+       (@LabelsUsed = &parse_num_list ($LabelsUsed)) || exit 1;
+       $BinaryVolume = 0;
+--- src/NUcorrect/sharpen_volume.in	2007-03-29 05:07:58.000000000 +0000
++++ src/NUcorrect/sharpen_volume.in.new	2019-02-04 22:28:34.328469636 +0000
+@@ -57,7 +57,7 @@
+ &Spawn(['minclookup', '-continuous', '-range', $min_bin, $max_bin, '-clobber',
+        '-lookup_table', "$base_name.sharp", $source_volume, $output_volume]);
+ 
+-(defined $save_histogram) && &Spawn("cp $base_name.hist $save_histogram");
++($save_histogram) && &Spawn("cp $base_name.hist $save_histogram");
+ 
+ 
+ # ------------------------------ MNI Header ----------------------------------

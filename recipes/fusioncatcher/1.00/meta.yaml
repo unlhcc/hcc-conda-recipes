@@ -17,7 +17,7 @@ build:
   skip: True  # [py3k or osx]
 
 requirements:
-  host:
+  build:
     - python
     - biopython >=1.50
     - bowtie
@@ -44,6 +44,7 @@ requirements:
     - lzop
     - java-jdk
     - sra-tools=2.6.2
+    - zip
   run:
     - python
     - biopython >=1.50
@@ -71,6 +72,7 @@ requirements:
     - lzop
     - java-jdk
     - sra-tools=2.6.2
+    - zip
 
 test:
   commands:

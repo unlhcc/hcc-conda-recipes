@@ -1,0 +1,43 @@
+{% set version = '0.2-1' %}
+
+package:
+  name: r-phia
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/phia_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/phia/phia_{{ version }}.tar.gz
+  sha256: 00e402f19d857e497df771bccaf62690d5624eb73c354dbada081155e8546267
+
+build:
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: nlme, lme4
+requirements:
+  host:
+    - r-base
+    - r-matrix
+    - r-car
+
+  run:
+    - r-base
+    - r-matrix
+    - r-car
+
+test:
+  commands:
+    - $R -e "library('phia')"
+
+about:
+  home: https://github.com/heliosdrm/phia
+  license: GPL (>= 3)
+  summary: Analysis of terms in linear, generalized and mixed linear models,  on the basis of
+    multiple comparisons of factor contrasts.  Specially suited  for the analysis of
+    interaction terms.
+  license_family: GPL3

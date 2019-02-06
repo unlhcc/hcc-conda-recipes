@@ -1,6 +1,6 @@
 {% set name = "afni" %}
 {% set version = "18.2.06" %}
-{% set sha256 = "fc9767bbc8221fcdb0a14bbeecee13bfb4054c74fc32ecf66957ae3ef701292a" %}
+{% set sha256 = "dee033d8435740e844308415f73ce674c60f53ed42a52085bd706b05f2218042" %}
 
 package:
   name: {{ name }}
@@ -14,7 +14,7 @@ source:
     - suma_makefile.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
   skip: True # [py3k]
 
@@ -29,7 +29,7 @@ requirements:
 
   host:
     - python
-    - libpng
+    - libpng 1.6*
     - jpeg
     - zlib
     - openssl
@@ -49,12 +49,22 @@ requirements:
     - gsl
     - openmotif
     - openmotif-dev
-    - glib
+    - glib 2.56*
     - netpbm
+    - r
+    - r-rmpi
+    - r-afex
+    - r-phia
+    - r-snow
+    - r-nlme
+    - r-lme4
+    - r-paran
+    - r-psych
+    - r-brms
 
   run:
     - python
-    - libpng
+    - libpng 1.6*
     - jpeg
     - zlib
     - openssl
@@ -73,8 +83,18 @@ requirements:
     - expat
     - gsl
     - openmotif
-    - glib
+    - glib 2.56*
     - netpbm
+    - r
+    - r-rmpi
+    - r-afex
+    - r-phia
+    - r-snow
+    - r-nlme
+    - r-lme4
+    - r-paran
+    - r-psych
+    - r-brms
 
 test:
   commands:

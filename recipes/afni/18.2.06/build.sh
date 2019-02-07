@@ -9,5 +9,5 @@ yum install -y tcsh
 
 cd src
 cp Makefile.linux_centos_7_64 Makefile
-make programs
+make all
 make install

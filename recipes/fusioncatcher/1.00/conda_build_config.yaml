@@ -1,7 +1,5 @@
 bowtie:
   - 1.2.0
-seqtk:
-  - 1.2
 bowtie2:
   - 2.3.0
 blat:
@@ -33,9 +31,6 @@ pin_run_as_build:
   bowtie:
     min_pin: x.x.x
     max_pin: x.x.x
-  seqtk:
-    min_pin: x.x
-    max_pin: x.x
   bowtie2:
     min_pin: x.x.x
     max_pin: x.x.x

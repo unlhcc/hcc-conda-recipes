@@ -1,0 +1,27 @@
+{% set name = "usearch" %}
+{% set version = "11.0.667" %}
+{% set sha256 = '127c71bdbd799b307d0f8783f91fbd77f6055ce5cd3febbafc76d5b75ac1e63f' %}
+{% set filename = "tos8rnd9neuxt9as3ushb44pe7q7fezb.667_i86linux32" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://unl.box.com/shared/static/{{ filename }}
+    sha256: {{ sha256 }}
+
+build:
+  skip: True  # [osx]
+  number: 0
+  script:  "mkdir -p ${PREFIX}/bin && cp {{ filename }} ${PREFIX}/bin/usearch && chmod 111 ${PREFIX}/bin/usearch"
+
+test:
+  commands:
+    - usearch -version
+
+about:
+  home: https://www.drive5.com/usearch
+  summary: 'USEARCH is a unique sequence analysis tool with thousands of users world-wide.'
+  license: PROPRIETARY
+  license_family: PROPRIETARY

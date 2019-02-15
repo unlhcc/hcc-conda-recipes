@@ -12,8 +12,6 @@ openpyxl:
   - 2.5.0a2
 xlrd:
   - 1.0.0
-coreutils:
-  - 8.29
 pigz:
   - 2.3
 samtools:
@@ -22,8 +20,6 @@ picard:
   - 2.10.6
 numpy:
   - 1.13.1
-setuptools:
-  - 36.3.0
 parallel:
   - 20171222
 
@@ -49,9 +45,6 @@ pin_run_as_build:
   xlrd:
     min_pin: x.x.x
     max_pin: x.x.x
-  coreutils:
-    min_pin: x.x
-    max_pin: x.x
   pigz:
     min_pin: x.x
     max_pin: x.x
@@ -62,9 +55,6 @@ pin_run_as_build:
     min_pin: x.x.x
     max_pin: x.x.x
   numpy:
-    min_pin: x.x.x
-    max_pin: x.x.x
-  setuptools:
     min_pin: x.x.x
     max_pin: x.x.x
   parallel:

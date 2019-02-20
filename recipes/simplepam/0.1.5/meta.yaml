@@ -1,0 +1,32 @@
+{% set name = "simplepam" %}
+{% set version = "0.1.5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 9b4dd50da41a04dd6afff932b8b7e33c015af05beb3b3e5bcd323b64c2390a5f
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - simplepam
+
+about:
+  home: https://github.com/leonnnn/python3-simplepam
+  license: MIT
+  license_family: MIT
+  summary: An interface to the Pluggable Authentication Modules (PAM) library on linux, written in pure python (using ctypes).

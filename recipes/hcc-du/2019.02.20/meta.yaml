@@ -1,0 +1,44 @@
+{% set name="hcc-du" %}
+{% set version="2019.02.20" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/unlhcc/{{ name }}
+  git_tag: cac676b0d0ecbdd1ef5e729e0c85a74c457f1134
+
+build:
+  number: 0
+  skip: True  # [py3k or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  commands:
+    - du
+  imports:
+    - hccdu
+    - hccdu.rquota
+    - hccdu.lquota
+    - hccdu.du
+    - hccdu.colors
+
+about:
+  home: https://github.com/unlhcc/hcc-du
+  license: GNU GPL v3
+  license_family: GPL
+  license_file: LICENSE
+  summary: HCC utility to query quota and file purge status.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

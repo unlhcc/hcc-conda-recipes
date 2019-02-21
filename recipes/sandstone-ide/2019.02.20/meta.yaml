@@ -1,0 +1,57 @@
+{% set name="sandstone-ide" %}
+{% set version="2019.02.20" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/unlhcc/{{ name }}.git
+  git_tag: 35fceca4d70f09d44955846a00b2641b4b2b6f39
+
+build:
+  number: 0
+  skip: True  # [py3k or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+  entry_points:
+    - sandstone=sandstone:run_server
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - tornado 4.3.*
+    - singledispatch
+    - terminado
+    - pydispatcher
+    - python-magic
+    - cerberus
+    - bitmath
+    - hcc-du
+    - peewee
+    - watchdog
+    - simplepam
+    - backports_abc
+
+test:
+  commands:
+    - sandstone -h
+  imports:
+    - sandstone
+    - sandstone.urls
+    - sandstone.global_settings
+    - sandstone.app
+
+about:
+  home: https://github.com/unlhcc/sandstone-ide
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: This is modified Sandstone IDE for HCC resources.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

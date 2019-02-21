@@ -1,0 +1,39 @@
+{% set name="batchspawner" %}
+{% set version="2019.02.20" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/unlhcc/{{ name }}.git
+  git_tag: faa5ed9b41f30e51666d846a4a742472f9940f41
+
+build:
+  number: 0
+  skip: True  # [py27 or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - tornado
+    - jupyterhub
+
+test:
+  imports:
+    - batchspawner
+
+about:
+  home: https://github.com/unlhcc/batchspawner
+  license: BSD-3-Clause
+  license_family: BSD
+  summary: This is modified batchspawner for Jupyterhub on HCC resources.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

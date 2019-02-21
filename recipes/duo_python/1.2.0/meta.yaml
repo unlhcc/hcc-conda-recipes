@@ -1,0 +1,34 @@
+{% set name="duo_python" %}
+{% set version="1.2.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/duosecurity/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: e5090d5b9911665a99c82bdc23613bb81e989d476bea7a80b29a8d4b0c0d8ca7
+
+build:
+  number: 0
+  skip: True  # [osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - flake8
+
+test:
+  imports:
+    - duo_web
+
+about:
+  home: https://github.com/duosecurity/duo_python
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: Duo two-factor authentication for Python web applications.

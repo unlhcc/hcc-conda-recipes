@@ -1,0 +1,40 @@
+{% set name="wrapspawner" %}
+{% set version="2019.02.20" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/jupyterhub/{{ name }}.git
+  git_tag: 5f2b7075f77d0c1c49066682a8e8adad0dab76db
+
+build:
+  number: 0
+  skip: True  # [py27 or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - tornado
+    - jupyterhub
+
+test:
+  imports:
+    - wrapspawner
+
+about:
+  home: https://github.com/jupyterhub/wrapspawner
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Mechanism for runtime configuration of spawners for JupyterHub.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

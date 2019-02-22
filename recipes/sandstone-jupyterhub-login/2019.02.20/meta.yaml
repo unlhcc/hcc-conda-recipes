@@ -1,0 +1,44 @@
+{% set name="sandstone-jupyterhub-login" %}
+{% set version="2019.02.20" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/unlhcc/{{ name }}.git
+  git_tag: e469c19eb4ba01093700ac1369943912a2f1de33
+
+build:
+  number: 0
+  skip: True  # [py3k or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+  entry_points:
+    - sandstone-jupyterhub=sandstone_jupyterhub_login:run_server
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - requests
+    - sandstone-ide
+
+test:
+  imports:
+    - sandstone_jupyterhub_login.handlers
+  commands:
+    - export SANDSTONE_PREFIX="test" && export JUPYTERHUB_API_URL="test" && sandstone-jupyterhub -h
+
+about:
+  home: https://github.com/unlhcc/sandstone-jupyterhub-login
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: This is modified JupyterHub multi-user spawner for Sandstone IDE on HCC resources.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

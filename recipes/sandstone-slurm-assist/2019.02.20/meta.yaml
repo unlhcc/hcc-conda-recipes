@@ -1,0 +1,46 @@
+{% set name="sandstone-slurm-assist" %}
+{% set version="2019.02.20" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/unlhcc/{{ name }}.git
+  git_tag: 1e4a746a7aef81b953e38f5047162889cc2887f7
+
+build:
+  number: 0
+  skip: True  # [py3k or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - tornado
+    - jsonschema
+    - sandstone-ide
+
+test:
+  imports:
+    - sandstone_slurm.mixins.slurm_mixin
+    - sandstone_slurm.urls
+    - sandstone_slurm.settings
+    - sandstone_slurm.handlers
+    - sandstone_slurm.config_utils
+    - sandstone_slurm
+
+about:
+  home: https://github.com/unlhcc/sandstone-slurm-assist
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: This is modified Slurm scheduler assist app for Sandstone IDE on HCC resources.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

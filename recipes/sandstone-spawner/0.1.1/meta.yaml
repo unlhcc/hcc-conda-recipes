@@ -1,0 +1,35 @@
+{% set name = "sandstone-spawner" %}
+{% set version = "0.1.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: ae4f9181a3599bb0341bc7d7f982b6f75cd9118f3664e3323566ea2b329acade
+
+build:
+  number: 0
+  skip: True  # [py27 or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+    - jupyterhub <=0.9.4
+  run:
+    - python
+    - jupyterhub <=0.9.4
+
+test:
+  imports:
+    - sandstone_spawner
+
+about:
+  home: https://github.com/SandstoneHPC/sandstone-spawner
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: JupyterHub Spawner class for starting Sandstone HPC user instances.

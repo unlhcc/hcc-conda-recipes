@@ -1,0 +1,42 @@
+{% set name="defiant" %}
+{% set version="2019.03.02" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/hhg7/{{ name }}.git
+  git_tag: 37e9bd9d5eb6a352582139c93f7e20f417dc225a
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - openmp
+    - mpc
+    - unzip
+  run:
+    - openmp
+    - mpc
+
+test:
+  commands:
+    - defiant -h
+    - roi -h
+
+about:
+  home: https://github.com/hhg7/defiant
+  license: GPL-2.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: Differential methylation, Easy, Fast, Identification and ANnoTation.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

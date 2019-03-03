@@ -1,0 +1,62 @@
+{% set name="sports1.0" %}
+{% set version="2019.03.02" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/junchaoshi/{{ name }}.git
+  git_tag: 956bb85b809bad049c76ebea9182c4b2a7ce1995
+
+build:
+  number: 0
+  script: 
+    - chmod +x source/*
+    - cp source/* ${PREFIX}/bin
+  patches:
+    - paths.patch
+
+requirements:
+  host:
+    - perl
+  run:
+    - perl
+    - bowtie
+    - sra-tools
+    - cutadapt
+    - r-base
+    - r-ggplot2
+    - r-stringr
+    - r-data.table
+    - mirdeep2
+
+test:
+  commands:
+    - annotation.pl 2>&1 | grep "annotation.pl"
+    - combine_reads.pl 2>&1 | grep "combine_reads.pl"
+    - fastaparse.pl 2>&1 | grep "fastaparse.pl"
+    - fastq2fasta.pl 2>&1 | grep "fastq2fasta.pl"
+    - mismatch_stat.R 2>&1 | grep "input"
+    - mismatch_summary.pl 2>&1 | grep "mismatch_summary.pl"
+    - overall_RNA_length_distribution.R 2>&1 | grep "input"
+    - rRNA_length_distribution.R 2>&1 | grep "input"
+    - rRNA_mapping.R 2>&1 | grep "input"
+    - sports.pl 2>&1 | grep "sports.pl"
+    - tRNA_db_processing.pl 2>&1 | grep "tRNA_db_processing.pl"
+    - tRNA_mapping.pl 2>&1 | grep "tRNA_mapping.pl"
+    - tRNA_mapping.R 2>&1 | grep "input"
+
+about:
+  home: https://github.com/junchaoshi/sports1.0
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: Small non-coding RNA annotation Pipeline Optimized for rRNA- and tRNA-Derived Small RNAs.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash
+  identifiers:
+    - doi:10.1016/j.gpb.2018.04.004

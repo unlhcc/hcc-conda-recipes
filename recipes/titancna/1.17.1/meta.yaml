@@ -1,0 +1,53 @@
+{% set name = "TitanCNA" %}
+{% set version = "1.17.1" %}
+{% set sha256 = "c010a60dfe38a9b7e24d8dc0fd3ed15c561bdb8d9b1b99b56059f4c96e623dcc" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/gavinha/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - python >=3.4
+    - r-base >=3
+    - wget=1.19.4
+    - openssl=1.0.2
+    - samtools=1.4.1
+    - bcftools=1.4.1
+    - pysam=0.11.2.1
+    - pyyaml=3.12
+    - bioconductor-titancna=1.15.0 
+    - r-ichorcna=0.1.0.20180710
+    - snakemake=3.12.0
+    - snakemake-minimal
+    - bioconductor-genomeinfodbdata   
+    - bioconductor-snpchip
+    - bioconductor-hmmcopy
+    - hmmcopy
+    - r-optparse
+    - r-stringr 
+
+test:
+  commands:
+    - readCounter -h 
+    - selectSolution.R -h
+    - titanCNA.R -h
+    - runIchorCNA.R -h
+    - countPysam.py 2>&1 | grep "countPysam.py" > /dev/null
+
+about:
+  home: https://github.com/gavinha/TitanCNA
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: Analysis of subclonal copy number alterations (CNA) and loss of heterozygosity (LOH) in cancer.

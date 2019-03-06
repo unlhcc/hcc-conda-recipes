@@ -1,0 +1,197 @@
+--- scripts/R_scripts/selectSolution.R	2018-03-22 12:01:25.000000000 -0500
++++ scripts/R_scripts/selectSolution.R.new	2019-03-06 01:30:42.009058120 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
++
+ #' selectSolutions.R
+ #' author: Gavin Ha 
+ #' Dana-Farber Cancer Institute
+--- scripts/R_scripts/titanCNA.R	2018-03-22 12:01:25.000000000 -0500
++++ scripts/R_scripts/titanCNA.R.new	2019-03-06 01:26:35.754097495 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ #' titanCNA.R
+ #' author: Gavin Ha
+@@ -107,11 +107,11 @@
+ 
+ libdir <- opt$libdir
+ if (!is.null(libdir) & libdir != "None"){
+-  source(paste0(libdir, "R/plotting.R"))
+-  source(paste0(libdir, "R/utils.R"))
+-  source(paste0(libdir, "R/hmmClonal.R"))
+-  source(paste0(libdir, "R/paramEstimation.R"))
+-  source(paste0(libdir, "R/correction.R"))
++  source(paste0(libdir, "plotting.R"))
++  source(paste0(libdir, "utils.R"))
++  source(paste0(libdir, "hmmClonal.R"))
++  source(paste0(libdir, "paramEstimation.R"))
++  source(paste0(libdir, "correction.R"))
+ }
+ 
+ id <- opt$id
+--- scripts/snakemake/getAlleleCounts.snakefile	2018-03-22 12:01:25.000000000 -0500
++++ scripts/snakemake/getAlleleCounts.snakefile.new	2019-03-06 13:19:29.713925576 -0600
+@@ -38,7 +38,7 @@
+ 	log:
+ 		"logs/titan/tumCounts/{tumor}/{tumor}.chr{chr}.log"
+ 	shell:
+-		"python {params.countScript} {wildcards.chr} {input.hetSites} {input.tumBam} {params.baseQ} {params.mapQ} {params.vcfQ} > {output} 2> {log}"
++		"{params.countScript} {wildcards.chr} {input.hetSites} {input.tumBam} {params.baseQ} {params.mapQ} {params.vcfQ} > {output} 2> {log}"
+ 
+ rule catAlleleCountFiles:
+ 	input:
+--- scripts/snakemake/ichorCNA.snakefile	2018-03-22 12:01:25.000000000 -0500
++++ scripts/snakemake/ichorCNA.snakefile.new	2019-03-06 13:20:39.474919491 -0600
+@@ -63,4 +63,4 @@
+ 	log:
+ 		"logs/ichorCNA/{tumor}.log"	
+ 	shell:
+-		"Rscript {params.rscript} --id {params.id} --WIG {input.tum} --gcWig {params.gcwig} --mapWig {params.mapwig} --NORMWIG {input.norm} --ploidy \"{params.ploidy}\" --normal \"{params.normal}\" --maxCN {params.maxCN} --includeHOMD {params.includeHOMD} --chrs \"{params.chrs}\" --chrTrain \"{params.chrTrain}\" --estimateNormal {params.estimateNormal} --estimatePloidy {params.estimatePloidy} --estimateScPrevalence {params.estimateClonality} --scStates \"{params.scStates}\" --centromere {params.centromere} --exons.bed {params.exons} --txnE {params.txnE} --txnStrength {params.txnStrength} --fracReadsInChrYForMale {params.fracReadsChrYMale} --plotFileType {params.plotFileType} --plotYLim \"{params.plotYlim}\" --outDir {output.outDir} > {log} 2> {log}"
++		"{params.rscript} --id {params.id} --WIG {input.tum} --gcWig {params.gcwig} --mapWig {params.mapwig} --NORMWIG {input.norm} --ploidy \"{params.ploidy}\" --normal \"{params.normal}\" --maxCN {params.maxCN} --includeHOMD {params.includeHOMD} --chrs \"{params.chrs}\" --chrTrain \"{params.chrTrain}\" --estimateNormal {params.estimateNormal} --estimatePloidy {params.estimatePloidy} --estimateScPrevalence {params.estimateClonality} --scStates \"{params.scStates}\" --centromere {params.centromere} --exons.bed {params.exons} --txnE {params.txnE} --txnStrength {params.txnStrength} --fracReadsInChrYForMale {params.fracReadsChrYMale} --plotFileType {params.plotFileType} --plotYLim \"{params.plotYlim}\" --outDir {output.outDir} > {log} 2> {log}"
+--- scripts/snakemake/TitanCNA.snakefile	2018-03-22 12:01:25.000000000 -0500
++++ scripts/snakemake/TitanCNA.snakefile.new	2019-03-06 13:22:03.982912119 -0600
+@@ -50,7 +50,7 @@
+ 	log:
+ 		"logs/titan/hmm/titanCNA_ploidy{ploidy}/{tumor}_cluster{clustNum}.log"
+ 	shell:
+-		"Rscript {params.titanRscript} --hetFile {input.alleleCounts} --cnFile {input.corrDepth} --outFile {output.titan} --outSeg {output.segTxt} --outParam {output.param} --outIGV {output.seg} --outPlotDir {output.outRoot} --libdir {params.libdir} --id {wildcards.tumor} --numClusters {wildcards.clustNum} --numCores {params.numCores} --normal_0 {params.normal} --ploidy_0 {wildcards.ploidy} --chrs \"{params.chrs}\" --estimateNormal {params.estimateNormal} --estimatePloidy {params.estimatePloidy} --estimateClonality {params.estimateClonality}  --centromere {params.centromere} --alphaK {params.alphaK} --txnExpLen {params.txnExpLen} --plotYlim \"{params.plotYlim}\" > {log} 2> {log}"
++		"{params.titanRscript} --hetFile {input.alleleCounts} --cnFile {input.corrDepth} --outFile {output.titan} --outSeg {output.segTxt} --outParam {output.param} --outIGV {output.seg} --outPlotDir {output.outRoot} --libdir {params.libdir} --id {wildcards.tumor} --numClusters {wildcards.clustNum} --numCores {params.numCores} --normal_0 {params.normal} --ploidy_0 {wildcards.ploidy} --chrs \"{params.chrs}\" --estimateNormal {params.estimateNormal} --estimatePloidy {params.estimatePloidy} --estimateClonality {params.estimateClonality}  --centromere {params.centromere} --alphaK {params.alphaK} --txnExpLen {params.txnExpLen} --plotYlim \"{params.plotYlim}\" > {log} 2> {log}"
+ 	
+ #--alleleModel {params.alleleModel} --alphaR {params.alphaR}
+ 	
+@@ -78,7 +78,7 @@
+ 		else
+ 			ploidyRun4=NULL
+ 		fi
+-		Rscript {params.solutionRscript} --ploidyRun2 {input.ploidyDirs[0]} --ploidyRun3 $ploidyRun3 --ploidyRun4 $ploidyRun4 --threshold {params.threshold} --outFile {output} > {log} 2> {log}
++		{params.solutionRscript} --ploidyRun2 {input.ploidyDirs[0]} --ploidyRun3 $ploidyRun3 --ploidyRun4 $ploidyRun4 --threshold {params.threshold} --outFile {output} > {log} 2> {log}
+ 		"""
+ #	run:
+ #		if "results/titan/hmm/titanCNA_ploidy3" in input:
+@@ -89,6 +89,6 @@
+ #			ploidyRun4 = input[2]
+ #		else:
+ #			ploidyRun4 = "NULL"	
+-#		os.system("Rscript params.solutionRscript --ploidyRun2 input[0] --ploidyRun3 ploidyRun3 --ploidyRun4 ploidyRun4 --threshold params.threshold --outFile output")
++#		os.system("params.solutionRscript --ploidyRun2 input[0] --ploidyRun3 ploidyRun3 --ploidyRun4 ploidyRun4 --threshold params.threshold --outFile output")
+ 	
+-		
+\ No newline at end of file
++		
+--- scripts/snakemake/code/countPysam.py	2018-03-22 12:01:25.000000000 -0500
++++ scripts/snakemake/code/countPysam.py.new	2019-03-06 01:34:55.036017664 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ # requires python3
+ # requires pysam-0.11.2.1
+ import sys
+--- scripts/snakemake/config/config.yaml	2018-03-22 12:01:25.000000000 -0500
++++ scripts/snakemake/config/config.yaml.new	2019-03-06 13:22:48.758908215 -0600
+@@ -1,12 +1,11 @@
+ ## path to tools ##
+-readCounterScript:  /path/to/readCounter
+-ichorCNA_rscript:  /path/to/ichorCNA.R
+-ichorCNA_libdir:
+-  /path/to/ichorCNA_code
+-pyCountScript:  code/countPysam.py
+-TitanCNA_rscript: ../R_scripts/titanCNA.R
+-TitanCNA_selectSolutionRscript: ../R_scripts/selectSolution.R
+-TitanCNA_libdir:  ../../R/
++readCounterScript: ${CONDA_PREFIX}/bin/readCounter
++ichorCNA_rscript: ${CONDA_PREFIX}/runIchorCNA.R
++ichorCNA_libdir: ${CONDA_PREFIX}/bin
++pyCountScript: ${CONDA_PREFIX}/bin/countPysam.py
++TitanCNA_rscript: ${CONDA_PREFIX}/bin/titanCNA.R
++TitanCNA_selectSolutionRscript: ${CONDA_PREFIX}/bin/selectSolution.R
++TitanCNA_libdir: ${CONDA_PREFIX}/bin
+ 
+ ## path to reference files ##
+ ichorCNA_exons:
+--- scripts/TenX_scripts/getMoleculeCoverage.R	2018-03-22 12:01:25.000000000 -0500
++++ scripts/TenX_scripts/getMoleculeCoverage.R.new	2019-03-06 01:43:17.726968687 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
++
+ # file:   ichorCNA.R
+ # author: Gavin Ha, Ph.D.
+ #               Dana-Farber Cancer Institute
+@@ -109,7 +111,7 @@
+ maxiter <- 50
+ 
+ if (!is.null(libdir)){
+-	source(paste0(libdir,"/haplotype.R"))
++	source(paste0(libdir,"haplotype.R"))
+ }
+ 
+ ## FILTER BY EXONS IF PROVIDED ##
+--- scripts/TenX_scripts/getPhasedHETSitesFromLLRVCF.R	2018-03-22 12:01:25.000000000 -0500
++++ scripts/TenX_scripts/getPhasedHETSitesFromLLRVCF.R.new	2019-03-06 01:44:02.064966047 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
++
+ #' getPhasedHETsitesFromLRVCF.R
+ #' author: Gavin Ha 
+ #' Dana-Farber Cancer Institute
+@@ -38,7 +40,7 @@
+ altCountField <- opt$altCountField
+ 
+ if (!is.null(libdir)){
+-  source(paste0(libdir, "R/haplotype.R"))
++  source(paste0(libdir, "haplotype.R"))
+ }
+ 
+ #dir.create(outDir, showWarnings = FALSE)
+@@ -69,4 +71,4 @@
+ #	outFile <- paste0(outDir, "/", id, "_phasedGR.rds")
+ #	saveRDS(hap$geno, file = outFile)
+ 								
+-#}
+\ No newline at end of file
++#}
+--- scripts/TenX_scripts/getTumourAlleleCountsAtHETSites.py	2018-03-22 12:01:25.000000000 -0500
++++ scripts/TenX_scripts/getTumourAlleleCountsAtHETSites.py.new	2019-03-06 01:47:41.723952950 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ # requires python3
+ # requires pysam-0.11.2.1
+ 
+--- scripts/TenX_scripts/titanCNA_v1.15.0_TenX.R	2018-03-22 12:01:25.000000000 -0500
++++ scripts/TenX_scripts/titanCNA_v1.15.0_TenX.R.new	2019-03-06 01:46:23.715957603 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
++
+ #' titanCNA_v1.15.0_TenX.R
+ #' author: Gavin Ha 
+ #' Dana-Farber Cancer Institute
+@@ -64,12 +66,12 @@
+ libdir <- opt$libdir
+ #libdir = "~/home_unix/code/git/TitanCNA/"
+ if (!is.null(libdir)){
+-	source(paste0(libdir, "/R/plotting.R"))
+-	source(paste0(libdir, "/R/utils.R"))
+-  source(paste0(libdir, "/R/hmmClonal.R"))
+-  source(paste0(libdir, "/R/paramEstimation.R"))
+-  source(paste0(libdir, "/R/correction.R"))
+-  source(paste0(libdir, "/R/haplotype.R"))
++	source(paste0(libdir, "plotting.R"))
++	source(paste0(libdir, "utils.R"))
++  source(paste0(libdir, "hmmClonal.R"))
++  source(paste0(libdir, "paramEstimation.R"))
++  source(paste0(libdir, "correction.R"))
++  source(paste0(libdir, "haplotype.R"))
+ }
+ 
+ dyn.load(paste0(libdir, "src/TitanCNA.so"))
+@@ -257,7 +259,7 @@
+ 	#}
+ 	#source("/home/unix/gavinha/software/code/git/scripts/10XGenomics/utils.R")
+ 	#source("/Volumes/software/code/git/scripts/10XGenomics/utils.R")
+-	source(paste0(libdir, "R/plotting.R"))
++	source(paste0(libdir, "plotting.R"))
+ 	plotCNlogRByChr(results, chr, segs = NULL, ploidy=ploidy, normal = norm, geneAnnot=NULL,  cex.axis=1.5, 
+ 					cex.lab=1.5, ylim=plotYlim, cex=0.5, xlab="", main=paste("Chr ",chr,sep=""))
+ 	plotAllelicRatio(results, chr, geneAnnot=NULL, spacing=4, cex.axis=1.5, cex.lab=1.5, 

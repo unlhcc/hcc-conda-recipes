@@ -1,0 +1,38 @@
+{% set name = "MSPKmerCounter" %}
+{% set version = "0.10.0" %}
+{% set sha256 = "30306eca65c83e13bf5400a65881191b2da47101842cea54539c81d4b43394b2" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: http://grafia.cs.ucsb.edu/msp/package/{{ name }}-{{ version }}.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - openjdk
+
+test:
+  commands:
+    - Count32 --help    
+    - Count64 --help
+    - Dump64 --help
+    - Partition --help
+    - Query64 --help
+    - Stat64 --help
+
+about:
+  home: http://grafia.cs.ucsb.edu/msp/download.html
+  license: Proprietary
+  license_family: PROPRIETARY
+  summary: 'MSPKmerCounter is a k-mer counter based on the minimum substring partitioning technique.'
+
+extra:
+  identifiers:
+    - doi:10.14778/2535569.2448951
+  notes: "This package contains a wrapper script for each .jar file. The wrapper scripts are named the same as the .jar files, omitting the extension (i.e. Count32, Count64, Dump64, Partition, Query64, Stat64)."

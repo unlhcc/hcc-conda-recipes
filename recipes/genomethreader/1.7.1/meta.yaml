@@ -1,0 +1,39 @@
+{% set name = "GenomeThreader" %}
+{% set version = "1.7.1" %}
+{% set sha256_linux = "7c7b05d0a88a13a83918a7e209bf38195238b93b93684e0f4c2ed48ecbaf8718" %}
+{% set sha256_osx = "e955692b7b208fa3a52a212acb354b1ada2f6bbd1c5e7bb117003f9c166987b8" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://genomethreader.org/distributions/gth-1.7.1-Linux_x86_64-64bit.tar.gz # [linux]
+  url: http://genomethreader.org/distributions/gth-1.7.1-Darwin_i386-64bit.tar.gz # [osx]
+  sha256: {{ sha256_linux }} # [linux]
+  sha256: {{ sha256_osx }} # [osx]
+
+build:
+  number: 0
+
+requirements:
+  host:
+  run:
+
+test:
+  commands:
+    - gth -version
+    - gthbssmbuild -version
+    - gthbssmfileinfo -version
+    - gthbssmrmsd -version
+    - gthbssmtrain -version
+    - gthconsensus -version
+    - gthfilestat -version
+    - gthgetseq -version
+    - gthsplit -version
+
+about:
+  home: http://genomethreader.org
+  license: Proprietary
+  license_family: PROPRIETARY
+  summary: "GenomeThreader is a software tool to compute gene structure predictions."

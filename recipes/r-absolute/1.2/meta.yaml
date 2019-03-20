@@ -1,0 +1,46 @@
+{% set name = "r-absolute" %}
+{% set version = "1.2" %}
+{% set sha256 = "fd341f4c556be83d259aad8a6a4669a67f13505bccdf8596f9e3dd73c3066a55" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://bcb.dfci.harvard.edu/~scarter/clonalevolutionsuite/ABSOLUTEv{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  patches:
+    - path.patch
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base
+    - bioconductor-genomicranges
+    - r-data.table
+    - r-matrixstats
+    - r-reshape2
+    - r-domc
+  run:
+    - r-base
+    - bioconductor-genomicranges
+    - r-data.table
+    - r-matrixstats
+    - r-reshape2
+    - r-domc
+
+test:
+  commands:
+    - $R -e "library('ABSOLUTE')"  # [unix]
+
+about:
+  home: http://bcb.dfci.harvard.edu/~scarter/clonalevolutionsuite/
+  license: PROPRIETARY
+  license_family: PROPRIETARY
+  summary: "ABSOLUTE can estimate purity/ploidy, and from that compute absolute copy-number and mutation multiplicities."

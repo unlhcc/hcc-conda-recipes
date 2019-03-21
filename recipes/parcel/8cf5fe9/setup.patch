@@ -1,0 +1,23 @@
+--- setup.py	2018-11-06 16:10:15.000000000 -0600
++++ setup.py.new	2019-03-20 19:55:17.741090976 -0500
+@@ -60,10 +60,10 @@
+         'develop': ParcelDevelop,
+     },
+     install_requires=[
+-        'requests==2.7.0',
+-        'progressbar==2.3',
+-        'intervaltree==2.0.4',
+-        'termcolor==1.1.0',
++        'requests',
++        'progressbar',
++        'intervaltree',
++        'termcolor',
+         # 'cmd2==0.6.8',
+     ],
+     package_data={
+@@ -77,5 +77,4 @@
+         'bin/parcel-tcp2udt',
+         'bin/parcel-udt2tcp',
+     ],
+-    **extra_args
+ )

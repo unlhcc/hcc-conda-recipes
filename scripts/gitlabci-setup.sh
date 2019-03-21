@@ -35,3 +35,4 @@ $SCRIPT_DIR/../simulate-gitlabci.py --install-requirements
 mkdir -p $ANACONDA_PREFIX/conda-bld/{noarch,linux-64,osx-64}
 conda index $ANACONDA_PREFIX/conda-bld
 conda config --add channels file://$ANACONDA_PREFIX/conda-bld
+$(set +x; conda config --add channels https://conda.anaconda.org/t/${PRIVATE_PACKAGE_TOKEN}/hcc)

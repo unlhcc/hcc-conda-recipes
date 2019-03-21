@@ -1,0 +1,58 @@
+{% set name = "parcel" %}
+{% set version = "8cf5fe9" %}
+{% set git_rev = "8cf5fe9922f3f3f1f9930c47783fc18c512d6b6a" %}
+{% set sha256 = "d0e923f936a218b050e88cf88917ba87fc27794aae0ae6952d3ed8a0700667c2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/LabAdvComp/{{ name|lower }}/archive/{{ git_rev }}.zip
+  sha256: {{ sha256 }}
+  patches:
+    - setup.patch
+
+build:
+  number: 0
+  skip: True  # [py3k or osx]
+  script: make && python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+  host:
+    - python
+    - setuptools
+    - requests ==2.5.1
+    - progressbar ==2.3
+    - flask ==0.10.1
+    - intervaltree >=2,<3
+    - termcolor ==1.1.0
+    - cmd2 ==0.6.8
+  run:
+    - python
+    - requests ==2.5.1
+    - progressbar ==2.3
+    - flask ==0.10.1
+    - intervaltree >=2,<3
+    - termcolor ==1.1.0
+    - cmd2 ==0.6.8
+
+test:
+  imports:
+    - parcel
+  commands:
+    - parcel --help
+    - parcel-server --help
+    - parcel-tcp2udt --help
+    - parcel-udt2tcp --help
+
+about:
+  home: https://github.com/LabAdvComp/parcel
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: "A high performance HTTP download client that leverages the speed of UDP without sacrificing reliability."

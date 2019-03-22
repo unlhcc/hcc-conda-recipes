@@ -1,0 +1,42 @@
+{% set name = "PhyloPhlAn" %}
+{% set version = "1.0" %}
+{% set sha256 = "a0ae1e7322aedb78ed62c08c0163bd3cb8a7f44238505a2d9b6ef76cb44213b1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://bitbucket.org/nsegata/{{ name|lower }}/get/f2d78771d71d074b9694c5b16ef5301368c8a7e3.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+   - modules.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  run:
+   - python <3
+   - scipy
+   - numpy
+   - muscle >=3.8.31
+   - usearch >=5.2.32
+   - fasttree >=2.1
+   - biopython
+
+test:
+  commands:
+    - phylophlan.py -h
+
+about:
+  home: http://huttenhower.sph.harvard.edu/phylophlan
+  license: Custom OSS
+  license_family: Other
+  license_file: license.txt
+  summary: "PhyloPhlAn is a computational pipeline for reconstructing highly accurate and resolved phylogenetic trees based on whole-genome sequence information."
+
+extra:
+  skip-lints:
+    - should_be_noarch

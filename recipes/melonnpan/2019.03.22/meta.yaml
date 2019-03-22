@@ -1,0 +1,50 @@
+{% set name = "melonnpan" %}
+{% set version = "2019.03.22" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/biobakery/melonnpan.git
+  git_rev: ff89e1c
+
+build:
+  number: 0
+  noarch: generic
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base
+    - r-glmnet
+    - r-vegan
+    - r-data.table
+    - r-doparallel
+    - r-getopt
+  run:
+    - r-base
+    - r-glmnet
+    - r-vegan
+    - r-data.table
+    - r-doparallel
+    - r-getopt
+
+test:
+  commands:
+    - $R -e "library('melonnpan')"
+
+about:
+  home: http://huttenhower.sph.harvard.edu/melonnpan
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  summary: "MelonnPan is a computational method for predicting metabolite compositions from shotgun metagenomic sequencing data."
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

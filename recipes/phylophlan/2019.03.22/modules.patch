@@ -1,0 +1,12 @@
+--- phylophlan.py	2014-08-22 08:20:37.000000000 -0500
++++ phylophlan.py.new	2019-03-22 16:51:01.667763990 -0500
+@@ -21,9 +21,6 @@
+ from contextlib import closing
+ from glob import glob
+ 
+-#sys.path.insert(0,'pyphlan/')
+-#import pyphlan as circ
+-sys.path.insert(0,'taxcuration/')
+ import taxcuration as taxc 
+ 
+ from Bio import SeqIO

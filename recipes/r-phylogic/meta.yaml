@@ -1,0 +1,55 @@
+{% set name = "r-phylogic" %}
+{% set version = "0.67" %}
+{% set sha256 = "a3f244c5886ad1aeb3f9315bf9679b673f14821f4101deb1b8dcc665a09c67ea" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://bcb.dfci.harvard.edu/~scarter/clonalevolutionsuite/Phylogic.v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  patches:
+    - library.patch
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base
+    - r-devtools
+    - r-optparse
+    - r-absolute
+    - r-vegan
+    - igraph
+    - r-domc
+    - r-reshape2
+    - r-phytools
+    - r-absolute
+  run:
+    - r-base
+    - r-devtools
+    - r-optparse
+    - r-absolute
+    - r-vegan
+    - igraph
+    - r-domc
+    - r-reshape2
+    - r-phytools
+    - r-absolute
+
+test:
+  commands:
+    - $R -e "library('Phylogic')"  # [unix]
+
+about:
+  home: http://bcb.dfci.harvard.edu/~scarter/clonalevolutionsuite/
+  license: Custom OSS
+  license_family: Other 
+  license_file: '{{ environ["RECIPE_DIR"] }}/license.txt'
+  summary: "Phylogenetic analysis of subclones across multiple cancer-tissue samples."

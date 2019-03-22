@@ -1,0 +1,50 @@
+--- "scarter/Google Drive/Software/Phylogic.v0.67/Phylogic_2D_ABS2_stub.R"	2015-12-28 18:47:57.000000000 -0600
++++ "scarter/Google Drive/Software/Phylogic.v0.67/Phylogic_2D_ABS2_stub.R.new"	2019-03-18 22:56:01.590197618 -0500
+@@ -1,9 +1,4 @@
+ library(devtools)
+-pkg_loc = "/home/unix/scarter/Software/Phylogic.v0.67/library"
+-load_all(pkg_loc, export_all=TRUE )
+-
+-#library(Phylogic)
++library(Phylogic)
+ 
+ run_2D_ABS2_Phylogic( model_type, N_iter, CGA_DIR, SEED, filter_sites_FN, USE_SCNA, min_SNVs, use_fixed, Pi_k_r, Pi_k_mu, clonal_threshold, FILTER_NULL_SC, driver_SSNV_FN, DAT_FN_1, DAT_FN_2, SID_1, SID_2, PDF_OUT_FN, RDATA_OUT_FN, MAF_OUT_FN, curated_SCNA_FN )
+-
+-
+--- "scarter/Google Drive/Software/Phylogic.v0.67/Phylogic_ND_stub.R"	2016-01-02 19:06:04.000000000 -0600
++++ "scarter/Google Drive/Software/Phylogic.v0.67/Phylogic_ND_stub.R.new"	2019-03-18 22:57:08.520199598 -0500
+@@ -1,13 +1,6 @@
+-#library(Phylogic)
+-
++library(Phylogic)
+ library(devtools)
+-pkg_loc = "/home/unix/scarter/Software/Phylogic.v0.67/library"
+-load_all(pkg_loc, export_all=TRUE )
+-load_all( "/home/unix/scarter/Projects/ABSv1.3/library/", export_all=FALSE )
+ 
+ #call_ND_phylogic( Phylogic_SIF_FN, patient, ABSOLUTE_DIR, out.dir, model_type, cluster_private_SSNVs, amp.CN.threshold, H.amp.CN.threshold, N_iter, SEED, filter_sites_FN, USE_SCNA, min_SNVs, Pi_k_r, Pi_k_mu, clonal_threshold )
+ 
+-
+-
+ call_Phylogic( R_ENV_FN )
+-
+--- "scarter/Google Drive/Software/Phylogic.v0.67/Phylogic_rscript.R"	2015-12-31 16:22:15.000000000 -0600
++++ "scarter/Google Drive/Software/Phylogic.v0.67/Phylogic_rscript.R.new"	2019-03-18 22:58:31.334202048 -0500
+@@ -1,11 +1,5 @@
+-#library(Phylogic)
+-
++library(Phylogic)
+ library(devtools)
+-load_all( "/home/unix/scarter/Projects/ABSv1.3/library/", export_all=FALSE )
+-pkg_loc = "/home/unix/scarter/Software/Phylogic.v0.67/library"
+-load_all(pkg_loc, export_all=TRUE )
+-
+-
+ library(optparse)
+ 
+ option.list <- list(
+@@ -20,4 +14,3 @@
+ R_ENV_FN =  file.path( opt[["R_DIR"]], paste( opt[["job_num"]], ".RData", sep=""))
+ 
+ call_Phylogic( R_ENV_FN )
+-

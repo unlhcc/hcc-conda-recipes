@@ -5,7 +5,7 @@ upload_channel: "hcc"
 # of .condarc, but when adding channels using conda config --add, they should
 # be added in reverse (from low to high priority).
 channels:
-    - https://conda.anaconda.org/t/TOKEN/hcc
+    - t/TOKEN/hcc
     - hcc
     - conda-forge
     - conda-forge/label/cf201901

@@ -1,0 +1,41 @@
+{% set name = "GeneMark-ET" %}
+{% set version = "4.3.3" %}
+{% set sha256 = "dacf642068c93cd87b41f5b0e1482509fb8a99bbb80e0f210c5bf17da2d1fd4d" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://unl.box.com/shared/static/xbeoo0h4lqsoxq2ret8u5ui1hvc2tljq.tgz
+  sha256: {{ sha256 }}
+  patches:
+    - perlpaths.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  host:
+    - perl
+  run:
+    - perl
+    - perl-yaml
+    - perl-hash-merge
+    - perl-parallel-forkmanager
+    - perl-data-dumper
+    - perl-logger-simple
+    - perl-findbin
+    - perl-file-spec
+
+test:
+  commands:
+    - gmes_petap.pl | grep GeneMark-ES 2>&1
+    
+about:
+  home: http://exon.gatech.edu/GeneMark
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: gmes_petap/LICENSE
+  summary: "GeneMark-ES Suite."

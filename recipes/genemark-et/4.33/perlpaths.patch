@@ -1,0 +1,184 @@
+--- gmes_petap/bet_to_gff.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/bet_to_gff.pl.new	2019-03-22 21:16:11.002148162 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/bp_seq_select.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/bp_seq_select.pl.new	2019-03-22 21:16:11.003148162 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ---------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/build_mod.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/build_mod.pl.new	2019-03-22 21:16:11.004148161 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/calc_introns_from_gtf.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/calc_introns_from_gtf.pl.new	2019-03-22 21:16:11.005148160 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology
+--- gmes_petap/gc_distr.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/gc_distr.pl.new	2019-03-22 21:16:11.005148160 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/get_sequence_from_GTF.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/get_sequence_from_GTF.pl.new	2019-03-22 21:16:11.006148159 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #-------------------------------------------------
+ # Alex Lomsadze
+ # December 23, 2008
+--- gmes_petap/gmes_petap.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/gmes_petap.pl.new	2019-03-22 21:16:11.009148157 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ #
+--- gmes_petap/histogram.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/histogram.pl.new	2019-03-22 21:16:11.010148157 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/hmm_to_gtf.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/hmm_to_gtf.pl.new	2019-03-22 21:16:11.011148156 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #=================================
+ # Move files from eukaryotic GeneMark.hmm LST format to GTF format.
+ #
+--- gmes_petap/make_nt_freq_mat.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/make_nt_freq_mat.pl.new	2019-03-22 21:16:11.012148155 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/parse_by_introns.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/parse_by_introns.pl.new	2019-03-22 21:16:11.013148154 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/parse_ET.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/parse_ET.pl.new	2019-03-22 21:16:11.016148152 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/parse_gibbs.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/parse_gibbs.pl.new	2019-03-22 21:16:11.016148152 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ---------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/parse_set.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/parse_set.pl.new	2019-03-22 21:16:11.018148151 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/predict_genes.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/predict_genes.pl.new	2019-03-22 21:16:11.018148151 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/reformat_fasta.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/reformat_fasta.pl.new	2019-03-22 21:16:11.020148149 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2015
+--- gmes_petap/reformat_gff.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/reformat_gff.pl.new	2019-03-22 21:16:11.020148149 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/rescale_gff.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/rescale_gff.pl.new	2019-03-22 21:16:11.020148149 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/rnaseq_introns_to_gff.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/rnaseq_introns_to_gff.pl.new	2019-03-22 21:16:11.021148149 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/run_hmm_pbs.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/run_hmm_pbs.pl.new	2019-03-22 21:16:11.021148149 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ===========================================
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/scan_for_bp.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/scan_for_bp.pl.new	2019-03-22 21:16:11.022148148 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ---------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- gmes_petap/star_to_gff.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/star_to_gff.pl.new	2019-03-22 21:16:11.022148148 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2015
+--- gmes_petap/verify_evidence_gmhmm.pl	2018-05-10 13:41:25.000000000 +0000
++++ gmes_petap/verify_evidence_gmhmm.pl.new	2019-03-22 21:16:11.023148147 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2018

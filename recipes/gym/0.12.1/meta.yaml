@@ -11,9 +11,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install '.[all]' --no-deps --ignore-installed --no-cache-dir -vvv "
-  skip: True # [py36 or py37]
 
 requirements:
   host:
@@ -64,3 +63,7 @@ about:
   summary: "The OpenAI Gym: A toolkit for developing and comparing your reinforcement learning agents."
   doc_url: https://gym.openai.com/docs
   dev_url: https://github.com/openai/gym
+
+extra:
+  skip-lints:
+    - should_be_noarch

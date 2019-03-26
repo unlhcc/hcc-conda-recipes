@@ -1,0 +1,66 @@
+{% set name = "gym" %}
+{% set version = "0.12.1" %}
+{% set sha256 = "f8bee3672759aeec4271169dcbb2afc069b898c7f92882d965c59be8085f2b35" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install '.[all]' --no-deps --ignore-installed --no-cache-dir -vvv "
+  skip: True # [py36 or py37]
+
+requirements:
+  host:
+    - numpy >=1.10.4
+    - pip
+    - pyglet >=1.2.0
+    - python
+    - requests >=2.0
+    - scipy
+    - six
+    - pyglet
+
+  run:
+    - numpy >=1.10.4
+    - pyglet >=1.2.0
+    - python
+    - requests >=2.0
+    - scipy
+    - six
+    - pyglet
+
+test:
+  imports:
+    - gym
+    - gym.envs
+    - gym.envs.algorithmic
+    - gym.envs.algorithmic.tests
+    - gym.envs.classic_control
+    - gym.envs.tests
+    - gym.envs.toy_text
+    - gym.envs.unittest
+    - gym.spaces
+    - gym.spaces.tests
+    - gym.utils
+    - gym.wrappers
+    - gym.wrappers.monitoring
+    - gym.wrappers.monitoring.tests
+    - gym.wrappers.tests
+  requires:
+    - mock
+    - pytest
+
+about:
+  home: https://gym.openai.com
+  license: MIT
+  license_family: MIT
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: "The OpenAI Gym: A toolkit for developing and comparing your reinforcement learning agents."
+  doc_url: https://gym.openai.com/docs
+  dev_url: https://github.com/openai/gym

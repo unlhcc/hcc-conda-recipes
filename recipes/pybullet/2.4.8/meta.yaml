@@ -1,0 +1,54 @@
+{% set name = "pybullet" %}
+{% set version = "2.4.8" %}
+{% set sha256 = "89334e330becb819be75ba9d633364be465d15ec4720971deecdffc2549ecd2c" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -v"
+  skip: True # [py==37]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - pip
+    - python
+    - numpy >=1.10.4
+    - gym
+
+  run:
+    - python
+    - numpy >=1.10.4
+    - gym
+    - tensorflow
+    - ruamel
+    - ruamel_yaml
+    - ruamel.yaml
+
+test:
+  imports:
+    - pybullet
+    - pybullet_data
+    - pybullet_envs
+    - pybullet_envs.examples
+    - pybullet_envs.minitaur
+    - pybullet_envs.prediction
+    - pybullet_utils
+    - pybullet_utils.examples
+
+about:
+  home: http://bulletphysics.org
+  license: zlib/libpng
+  license_family: OTHER
+  license_file: LICENSE.txt
+  summary: Official Python Interface for the Bullet Physics SDK specialized for Robotics Simulation and Reinforcement Learning
+  doc_url: https://pybullet.org/wordpress/index.php/forum-2
+  dev_url: https://github.com/bulletphysics/bullet3

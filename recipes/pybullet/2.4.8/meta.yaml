@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -v"
   skip: True # [py==37]
 
@@ -28,7 +28,6 @@ requirements:
     - python
     - numpy >=1.10.4
     - gym
-    - tensorflow
     - ruamel
     - ruamel_yaml
     - ruamel.yaml
@@ -43,6 +42,8 @@ test:
     - pybullet_envs.prediction
     - pybullet_utils
     - pybullet_utils.examples
+  requires:
+    - tensorflow
 
 about:
   home: http://bulletphysics.org

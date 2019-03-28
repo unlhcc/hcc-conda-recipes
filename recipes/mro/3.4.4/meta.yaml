@@ -1,27 +1,41 @@
 {% set pkgname = "mro" %}
 {% set version = "3.4.4" %}
-{% set sha256 = "bf13b714f2d3fe803239bcb96f5fc514e04d50c561ce097f9ba198c872b5a87d" %}
+{% set sha256 = "7baf891830a73616eda4f6b3035204ceb6218ab0e085aca9b4d74558712bf0d6" %}
 
 package:
   name: {{ pkgname }}
   version: {{ version }}
 
 source:
-  fn: microsoft-r-open-{{ version }}.tar.gz
   url: https://mran.blob.core.windows.net/install/mro/{{ version }}/microsoft-r-open-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
   rpaths:
     - lib/R/lib/
     - lib/
-    - lib/lib64/R/lib
 
 requirements:
-  build:
+  host:
+    - libpng
+    - pango
+    - fontconfig
+    - cairo
+    - expat
+    - bzip2
+    - zlib
+    - xorg-libx11
+    - xorg-libice
+    - xorg-libsm
+    - xorg-libxau
+    - xorg-libxext
+    - xorg-libxft
+    - xorg-libxrender
+    - xorg-libxt
+    - xorg-libxcb
 
   run:
     - libpng
@@ -29,8 +43,8 @@ requirements:
     - fontconfig
     - cairo
     - expat
-    - bzip2 {{ CONDA_BZIP2 }}*
-    - zlib {{ CONDA_ZLIB }}*
+    - bzip2
+    - zlib
     - xorg-libx11
     - xorg-libice
     - xorg-libsm

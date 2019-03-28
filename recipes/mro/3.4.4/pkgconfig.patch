@@ -1,0 +1,16 @@
+--- opt/microsoft/ropen/3.4.4/lib64/pkgconfig/libR.pc	2018-06-26 23:25:58.000000000 +0000
++++ opt/microsoft/ropen/3.4.4/lib64/pkgconfig/libR.pc.new	2019-03-28 19:49:03.468817700 +0000
+@@ -1,10 +1,10 @@
+-rhome=/builddir/target/R/Linux/lib64/R
++rhome=/opt/anaconda1anaconda2anaconda3/lib/R
+ rlibdir=${rhome}/lib
+-rincludedir=/builddir/target/R/Linux/lib64/R/include
++rincludedir=${rhome}/include
+ 
+ Name: libR
+ Description: R as a library
+ Version: 3.4.4
+-Libs: -Wl,--export-dynamic -fopenmp  -L/builddir/vendor/build/lib -L${rlibdir} -lR
++Libs: -Wl,--export-dynamic -fopenmp -L${rlibdir} -lR
+ Cflags: -I${rincludedir} -I${rincludedir}
+ Libs.private:

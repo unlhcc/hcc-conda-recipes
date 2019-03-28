@@ -1,7 +1,6 @@
 {% set name = "mro-data.table" %}
 {% set version = "1.12.0" %}
 
-
 package:
   name: {{ name }}
   version: {{ version|replace("-", "_") }}
@@ -15,7 +14,7 @@ source:
 build:
   skip: True  # [osx]
   # If this is a new build for the same version, increment the build number.
-  number: 0
+  number: 1
   # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
@@ -28,7 +27,7 @@ requirements:
   host:
     - mro
   run:
-    - {{ pin_compatible('mro', min_pin='x.x.x', max_pin='x.x') }}
+    - mro
 
 test:
   commands:

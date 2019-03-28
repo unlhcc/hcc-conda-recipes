@@ -1,0 +1,43 @@
+{% set name = "mro-data.table" %}
+{% set version = "1.12.0" %}
+
+
+package:
+  name: {{ name }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/data.table_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/data.table/data.table_{{ version }}.tar.gz
+  sha256: 611b112123dbd4ebd5200770fcdfaaeaab622adeb2b290d36018d3092742e3f7
+
+build:
+  skip: True  # [osx]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - mro
+  run:
+    - {{ pin_compatible('mro', min_pin='x.x.x', max_pin='x.x') }}
+
+test:
+  commands:
+    - R -e "library('data.table')"
+
+about:
+  home: http://r-datatable.com
+  license: MPL-2.0 | file LICENSE
+  summary: Fast aggregation of large data (e.g. 100GB in RAM), fast ordered joins, fast add/modify/delete
+    of columns by group using no copies at all, list columns, friendly and fast character-separated-value
+    read/write. Offers a natural and flexible syntax, for faster development.
+  license_family: OTHER

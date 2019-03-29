@@ -1,0 +1,41 @@
+{% set name = "mro-asreml" %}
+{% set version = "4.1.0.98" %}
+{% set sha256 = "37cc3a7c797fae09a3fcf9f4e0e28201d07401a454a3bbe394beeddf97f09982" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://downloads.vsni.digital/c6d7d6e9626a3591096378a6de36620b0e8668e4/asreml_4.1.0.93.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    # Their R 3.5 version requires CentOS 7 for the GLIBC version
+    - mro =3.4
+    - mro-tidyverse
+    - mro-data.table
+
+  run:
+    - {{ pin_compatible('mro', min_pin='x.x.x', max_pin='x.x') }}
+    - mro-tidyverse
+    - mro-data.table
+
+test:
+  commands:
+    - R -e "library('asreml')"
+
+about:
+  home: https://www.vsni.co.uk/software/asreml-r
+  license: Proprietary
+  license_family: PROPRIETARY
+  summary: "ASReml estimates variance components under a general linear mixed model by residual maximum likelihood (REML)"

@@ -11,7 +11,7 @@ source:
   sha256: ad67a27bb4e89417a15338fe1a40251a7b5dedba60e9b72637963d3de574c37b
 
 build:
-  number: 1
+  number: 2
   skip: True # [osx]
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -30,7 +30,7 @@ requirements:
     - zlib
 
   run:
-    - {{ pin_compatible('mro', min_pin='x.x.x', max_pin='x.x') }}
+    - mro
     - {{ pin_compatible('openssl', min_pin='x.x', max_pin='x.x') }}
     - zlib
 

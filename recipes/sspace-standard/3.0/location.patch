@@ -1,0 +1,92 @@
+--- tools/estimate_insert_size.pl	2012-07-20 03:59:25.000000000 -0500
++++ tools/estimate_insert_size.pl.new	2019-03-29 16:51:21.145205631 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
++
+ ########################################################################################################################################
+ #Marten Boetzer BaseClear B.v. 14-07-2012                                                                                              #
+ #perl subscript estimate_insert_size_v2.pl                                                                                             #
+--- tools/fastq_qualitytrim_pairs.pl	2012-07-20 03:59:25.000000000 -0500
++++ tools/fastq_qualitytrim_pairs.pl.new	2019-03-29 16:52:00.068211048 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- tools/qseq2fasta.pl	2012-07-20 03:59:25.000000000 -0500
++++ tools/qseq2fasta.pl.new	2019-03-29 16:54:00.900227874 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ 
+--- tools/qseq2fastq.pl	2012-07-20 03:59:25.000000000 -0500
++++ tools/qseq2fastq.pl.new	2019-03-29 16:53:27.092223165 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- tools/sam_bam2tab.pl	2012-07-20 03:59:25.000000000 -0500
++++ tools/sam_bam2tab.pl.new	2019-03-29 16:54:31.324232111 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
++
+ ########################################################################
+ #Marten Boetzer BaseClear B.v. 26-07-2011                              #
+ #SSPACE perl sam_bam2Tab.pl                                            #
+@@ -96,4 +98,4 @@
+   my $countingMessager = shift;
+   print "\r$countingMessager";
+   $|++;
+-}
+\ No newline at end of file
++}
+
+--- SSPACE_Standard_v3.0.pl	2014-04-01 02:28:45.000000000 -0500
++++ SSPACE_Standard_v3.0.pl.new	2019-03-29 18:07:58.492708556 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #AUTHORS
+ # Marten Boetzer and Walter Pirovano (c) 2010-2011
+@@ -125,9 +125,8 @@
+   use File::Path;
+   use File::Basename;
+ 
+-  #Specify path to DotLib
++  # Specify path to DotLib
+   use FindBin qw($Bin);
+-  use lib "$Bin/dotlib/";
+   use DotLib;
+   use Text::Wrap;
+   $Text::Wrap::columns = 61;
+@@ -298,13 +297,13 @@
+ 
+ #-------------------------------------------------READING AND CONVERTING INPUT SEQUENCES
+   if(!$skip){
+-    system("perl $Bin/bin/readLibFiles.pl $libraryfile $base_name $threads");
++    system("perl $Bin/readLibFiles.pl $libraryfile $base_name $threads");
+     checkStatus("reading files");
+   }else{
+     &printMessage("\n=>".getDate().": Skipping reading of input files\n");
+   }
+ #-------------------------------------------------FORMATTING OR EXTENDING CONTIGS
+-  system("perl $Bin/bin/ExtendOrFormatContigs.pl $contig $base_name $extending $filecontig $min_coverage $min_overlap $min_base_ratio $Bin $minContigLength $gaps $threads");
++  system("perl $Bin/ExtendOrFormatContigs.pl $contig $base_name $extending $filecontig $min_coverage $min_overlap $min_base_ratio $Bin $minContigLength $gaps $threads");
+   checkStatus("extend/format contigs");
+ #--------------------------------------------------UPDATE SUMMARY FILE
+   open (SUMFILE, ">>$summaryfile") || die "Can't open $summaryfile -- fatal\n";
+@@ -360,7 +359,7 @@
+ #-------------------------------------------------MAPPING READ PAIRS USING FILTERED FASTA FILE
+     mkpath("$base_name/tmp.$base_name");
+ #-------------------------------------------------Scaffold the contigs and generate .scaffold file
+-    system("perl $Bin/bin/PairingAndScaffolding.pl $Bin $gaps $contig $base_name $verbose $lib $insert_size $min_allowed $scaffold $min_links $max_link_ratio $orientation $threads $tabfile $fileA $filecontig $evidencefile");
++    system("perl $Bin/PairingAndScaffolding.pl $Bin $gaps $contig $base_name $verbose $lib $insert_size $min_allowed $scaffold $min_links $max_link_ratio $orientation $threads $tabfile $fileA $filecontig $evidencefile");
+     checkStatus("mapping reads");
+ 
+     #retrieve the contigs that were stored

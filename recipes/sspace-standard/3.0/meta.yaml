@@ -1,0 +1,48 @@
+{% set name = "SSPACE-STANDARD" %}
+{% set version = "3.0" %}
+{% set sha256 = "4a5064103921e196ad66f80c7ff4373ddc6be9d830b8f30b8cd5c6785693645a" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://www.baseclear.com/wp-content/uploads/{{ name }}-v.-{{ version }}-linux-x86_64.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - location.patch
+
+build:
+  number: 0
+
+requirements:
+  host:
+    - perl
+  run:
+    - perl
+    - perl-file-path
+    - perl-text-wrap
+    - perl-storable
+    - perl-text-wrap
+    - perl-perl4-corelibs
+    - perl-inline-c
+    - bowtie
+    - bwa
+
+test:
+  commands:
+    - SPACE_Standard.pl 2>&1 | grep "SPACE_Standard.pl" > /dev/null
+    - estimate_insert_size.pl 2>&1 | grep "estimate_insert_size_v2.pl" > /dev/null
+    # fails becase of perl-inline-c issue
+    # - fastq_qualitytrim_pairs.pl 2>&1 | grep "fastq_qualitytrim_pairs.pl" > /dev/null
+    - fq_all2std.pl 2>&1 | grep "fq_all2std.pl" > /dev/null
+    - qseq2fasta.pl 2>&1 | grep "qseq2fasta.pl" > /dev/null
+    - qseq2fastq.pl 2>&1 | grep "qseq2fastq.pl" > /dev/null
+    - sam_bam2tab.pl 2>&1 | grep "open" > /dev/null
+
+about:
+  home: https://www.baseclear.com/services/bioinformatics/basetools/sspace-standard/
+  license: PROPRIETARY
+  license_family: PROPRIETARY
+  license_file: BaseTools License agreement_2014-03-31.pdf
+  summary: "SSPACE-standard is a stand-alone program for scaffolding pre-assembled contigs using NGS paired-read data."

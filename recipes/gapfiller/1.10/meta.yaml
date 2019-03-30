@@ -1,0 +1,34 @@
+{% set name = "GapFiller" %}
+{% set version = "1.10" %}
+{% set sha256 = "f5f3eeaba1c392db26c82b6e88057e3d532cdb5cbfa4f3b9798a3af4eebffa93" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://www.baseclear.com/wp-content/uploads/{{ name }}-v.1-10-linux-x86_64.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - perl_dos2unix.patch
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - perl
+    - perl-perl4-corelibs
+    - bowtie
+    - bwa
+
+test:
+  commands:
+    - GapFiller.pl 2>&1 | grep "GapFiller.pl" > /dev/null
+
+about:
+  home: https://www.baseclear.com/services/bioinformatics/basetools/gapfiller/
+  license: PROPRIETARY
+  license_family: PROPRIETARY
+  license_file: BaseTools License agreement_2014-03-31.pdf
+  summary: "GapFiller is a stand-alone program for closing gaps within pre-assembled scaffolds."

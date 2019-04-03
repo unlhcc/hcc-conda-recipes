@@ -1,0 +1,38 @@
+{% set name = "jvarkit-vcf2bam" %}
+{% set version = "2018.04.05" %}
+{% set sha256 = "401ebf333d2237ad3df9a51f8c8fe1693b170a1a978350a1b0fd4d6e5cc26dab" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/lindenb/jvarkit/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - cmake
+    - java-jdk
+  run:
+    - java-jdk
+
+test:
+  commands:
+    - vcf2bam -h
+
+about:
+  home: http://lindenb.github.io/jvarkit/VcfToBam.html
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  summary: "Converts VCF to BAM files"
+  doc_url: http://lindenb.github.io/jvarkit/
+
+extra:
+  skip-lints:
+    - uses_javajdk

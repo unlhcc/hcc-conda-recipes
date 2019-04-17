@@ -1,0 +1,53 @@
+{% set name = "MORGAN" %}
+{% set version = "3.4" %}
+{% set sha256 = "195a84d877413a83de15a20da45d92d2441303b8373b47727ed2e3ab92dc2e6a" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://faculty.washington.edu/eathomp/Anonftp/PANGAEA/MORGAN/{{ name|lower }}_v34_release.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+test:
+  commands:
+    - ibd_class
+    - kin 2>&1 | grep "kin" > /dev/null
+    - pedcheck 2>&1 | grep "pedcheck" > /dev/null
+    - translink 2>&1 | grep "translink" > /dev/null
+    - genedrop 2>&1 | grep "genedrop" > /dev/null
+    - ibddrop 2>&1 | grep "ibddrop" > /dev/null
+    - markerdrop 2>&1 | grep "markerdrop" > /dev/null
+    - bivar 2>&1 | grep "bivar" > /dev/null
+    - multivar 2>&1 | grep "multivar" > /dev/null
+    - unibig 2>&1 | grep "unibig" > /dev/null
+    - univar 2>&1 | grep "univar" > /dev/null
+    - civil 2>&1 | grep "civil" > /dev/null
+    - gl_auto 2>&1 | grep "gl_auto" > /dev/null
+    - lm_auto 2>&1 | grep "lm_auto" > /dev/null
+    - lm_ibdtests 2>&1 | grep "lm_ibdtests" > /dev/null
+    - lm_map 2>&1 | grep "lm_map" > /dev/null
+    - lm_pval 2>&1 | grep "lm_pval" > /dev/null
+    - base_trait_lods 2>&1 | grep "base_trait_lods" > /dev/null
+    - gl_lods 2>&1 | grep "gl_lods" > /dev/null
+    - lm_bayes 2>&1 | grep "lm_bayes" > /dev/null
+    - lm_linkages 2>&1 | grep "lm_linkage" > /dev/null
+    - lm_twoqtl 2>&1 | grep "lm_twoqtl" > /dev/null
+    - ibd_create
+    - ibd_haplo 2>&1 | grep "ibd_haplo" > /dev/null
+    - ibd_trios 2>&1 | grep "ibd_trios" > /dev/null
+
+about:
+  home: https://www.stat.washington.edu/thompson/Genepi/MORGAN/Morgan.shtml
+  license: Custom
+  license_family: Other
+  summary: "MORGAN is part of our software for Markov chain Monte Carlo in Genetic Analysis."

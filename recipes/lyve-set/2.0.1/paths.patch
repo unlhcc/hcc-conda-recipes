@@ -1,0 +1,313 @@
+--- scripts/applyFstToTree.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/applyFstToTree.pl.new	2019-04-26 18:23:51.415702679 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Applies the fixation index to a tree
+ 
+ use strict;
+--- scripts/cladeDistancesFromTree.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/cladeDistancesFromTree.pl.new	2019-04-26 18:24:27.974705257 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Labels nodes with significant bootstrap values and returns useful pairwise distance statistics
+ 
+ use strict;
+--- scripts/clusterPairwise.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/clusterPairwise.pl.new	2019-04-26 18:24:46.827706556 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # clusters genomes based on distances.  Uses hierarchical bottom-up clustering.
+ 
+--- scripts/convertAlignment.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/convertAlignment.pl.new	2019-04-26 18:25:04.190707762 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Converts an alignment to another alignment format
+ # Run with no arguments or with -h for help.
+--- scripts/downloadDataset.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/downloadDataset.pl.new	2019-04-26 18:26:09.637712292 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Downloads a test set directory
+ # 
+--- scripts/errorProneRegions.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/errorProneRegions.pl.new	2019-04-26 18:26:26.220713441 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/filterMatrix.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/filterMatrix.pl.new	2019-04-26 18:26:41.335714486 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ require 5.12.0;
+ use strict;
+--- scripts/filterVcf.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/filterVcf.pl.new	2019-04-26 18:26:52.710715273 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/genomeDist.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/genomeDist.pl.new	2019-04-26 18:27:15.302716834 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Finds the kmer jaccard distance between any two sets of raw reads
+ # Author: Lee Katz <lkatz@cdc.gov>
+ 
+--- scripts/launch_bwa.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_bwa.pl.new	2019-04-26 18:29:43.784727109 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/launch_set.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_set.pl.new	2019-04-26 18:30:11.731729048 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ require 5.12.0;  # includes the "not implemented/yadda yadda operator (...)"
+ 
+--- scripts/launch_smalt.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_smalt.pl.new	2019-04-26 18:30:28.988730233 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # qsub -N 'q$b' -cwd -V -o $log/$b.out -e $log/$b.out $scriptsdir/launch_smalt.sh $ref $fastq $bamdir/$b.bam $tmpdir
+ 
+--- scripts/launch_snap.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_snap.pl.new	2019-04-26 18:30:41.183731081 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/launch_snpeff.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_snpeff.pl.new	2019-04-26 18:31:23.621734021 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Author: Lee Katz, Eishita Tyagi
+ ##########################################
+--- scripts/launch_varscan.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/launch_varscan.pl.new	2019-04-26 18:32:14.597737546 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Author: Lee Katz <lkatz@cdc.gov>
+ # Creates a vcf using varscan
+ 
+@@ -185,7 +185,7 @@
+ 
+     my $newVcfLoc="$$settings{tempdir}/$samplename/".basename($vcf);
+     system("mv -v $fixedVcf $newVcfLoc >&2"); die if $?;
+-    system("bgzip $newVcfLoc && tabix $newVcfLoc.gz");
++    system("bgzip $newVcfLoc && tabix -h $newVcfLoc.gz");
+     die if $?;
+     $vcfCounter++;
+   }
+--- scripts/makeRegions.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/makeRegions.pl.new	2019-04-26 18:32:28.126738483 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/matrixToAlignment.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/matrixToAlignment.pl.new	2019-04-26 18:32:42.754739492 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Convert a bcfquery matrix to an alignment
+ 
+--- scripts/pairwiseDistances.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/pairwiseDistances.pl.new	2019-04-26 18:33:00.041740724 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/pairwiseTo2d.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/pairwiseTo2d.pl.new	2019-04-26 18:33:13.677741714 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # turns a 3-column pairwise distance into a 2d matrix/spreadsheet
+ 
+--- scripts/removeUninformativeSitesFromMatrix.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/removeUninformativeSitesFromMatrix.pl.new	2019-04-26 18:33:27.651742732 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Removes uninformative sites from a matrix: Ns, gaps, and invariant sites
+ # Removes uninformative sites
+--- scripts/removeUninformativeSites.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/removeUninformativeSites.pl.new	2019-04-26 18:33:48.838744278 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Removes uninformative sites from a fasta multiple sequence alignment: Ns, gaps, and invariant sites
+ # Author: Lee Katz
+--- scripts/set_bayesHammer.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_bayesHammer.pl.new	2019-04-26 18:34:02.407745268 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ ## Simple version of the BayesHammer wrapper script.
+ ## Assumes user provides only paired-end Illumina reads as input.
+--- scripts/set_diagnose_msa.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_diagnose_msa.pl.new	2019-04-26 18:20:01.854686389 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Diagnoses potential problems in a SET multiple sequence alignment
+ # Author: Lee Katz <lkatz@cdc.gov>
+ 
+--- scripts/set_diagnose.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_diagnose.pl.new	2019-04-26 18:20:01.856686389 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/set_downloadTestData.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_downloadTestData.pl.new	2019-04-26 18:20:01.857686390 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Download all the test data for Lyve-SET
+ # Author: Lee Katz <lkatz@cdc.gov>
+ 
+--- scripts/set_findCliffs.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_findCliffs.pl.new	2019-04-26 18:20:01.859686390 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/set_findPhages.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_findPhages.pl.new	2019-04-26 18:20:01.861686390 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Author:Lee Katz <lkatz@cdc.gov>
+ # Thanks: Darlene Wagner for giving me this idea
+ 
+--- scripts/set_indexCase.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_indexCase.pl.new	2019-04-26 18:20:01.863686390 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Infer the index case of a cluster using Eigenvectors
+ 
+ use strict;
+--- scripts/set_manage.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_manage.pl.new	2019-04-26 18:20:01.865686391 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Manage a Lyve-SET project
+ # Author: Lee Katz <lkatz@cdc.gov>
+ 
+--- scripts/set_processPooledVcf.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_processPooledVcf.pl.new	2019-04-26 18:20:01.866686391 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Process a resulting VCF: make an MSA; remove uninformative sites; find pairwise distances;
+ # find Fst; make a tree; calculate the eigenvector
+ # Author: Lee Katz <lkatz@cdc.gov>
+--- scripts/set_samtools_depth.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_samtools_depth.pl.new	2019-04-26 18:20:01.868686391 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/set_test.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/set_test.pl.new	2019-04-26 18:20:01.869686391 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Tests SET
+ # Author: Lee Katz <lkatz@cdc.gov>
+ 
+--- scripts/shuffleSplitReads.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/shuffleSplitReads.pl.new	2019-04-26 18:20:01.871686391 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- scripts/snpDistribution.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/snpDistribution.pl.new	2019-04-26 18:20:01.873686392 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # Find the distribution of distances between SNPs in a set of VCF files
+ 
+ use strict;
+--- scripts/vcfToAlignment.pl	2018-02-27 15:13:55.000000000 -0600
++++ scripts/vcfToAlignment.pl.new	2019-04-26 18:20:01.874686392 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- scripts/cpanm	2018-02-27 15:13:55.000000000 -0600
++++ scripts/cpanm.new	2019-04-26 18:25:26.290709291 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #
+ # This is a pre-compiled source code for the cpanm (cpanminus) program.
+ # For more details about how to install cpanm, go to the following URL:
+--- scripts/getgbk	2018-02-27 15:13:55.000000000 -0600
++++ scripts/getgbk.new	2019-04-26 18:29:31.077726232 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl/
+ 
+ # Authors: Peter Fisher Hallin, Matloob Qureshi
+ # For license see /usr/biotools/CMG-biotools.license
+--- plugins/tinsel/set_plugin_tinsel.pl	2018-02-27 15:13:55.000000000 -0600
++++ plugins/tinsel/set_plugin_tinsel.pl.new	2019-04-26 18:38:31.243764882 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;

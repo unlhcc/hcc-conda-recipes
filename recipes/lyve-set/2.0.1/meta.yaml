@@ -10,17 +10,17 @@ source:
   url: https://github.com/lskatz/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - fixes.patch
+    - paths.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
 requirements:
   host:
     - perl 5.26
-    - perl-bioperl 1.7.2
-    - perl-vcftools-vcf 0.1.16
+    - perl-bioperl ==1.7.2
+    - perl-vcftools-vcf ==0.1.16
     - perl-file-slurp
     - perl-string-escape
     - perl-config-simple
@@ -38,6 +38,7 @@ requirements:
     - freebayes
     - samtools
     - blast
+    - spades
     - htslib
     - wgsim
     - tabix
@@ -54,8 +55,8 @@ requirements:
     - wget
   run:
     - perl 5.26
-    - perl-bioperl 1.7.2
-    - perl-vcftools-vcf 0.1.16
+    - perl-bioperl ==1.7.2
+    - perl-vcftools-vcf ==0.1.16
     - perl-file-slurp
     - perl-string-escape
     - perl-config-simple
@@ -73,6 +74,7 @@ requirements:
     - freebayes
     - samtools
     - blast
+    - spades
     - htslib
     - wgsim
     - tabix
@@ -86,6 +88,7 @@ requirements:
     - raxml
     - phyml
     - entrez-direct
+    - wget
 
 test:
   commands:

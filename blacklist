@@ -56,7 +56,6 @@ recipes/intervaltree/2.0.4
 recipes/jbio/0.1
 recipes/jvarkit-msa2vcf/1.0
 recipes/jvarkit-sam2tsv/1.0
-recipes/kalign/2.0
 recipes/keras-gpu/2.1.5
 recipes/ksnp/3.1
 recipes/lame/3.99.5

@@ -1,0 +1,42 @@
+{% set name = "JustOrthologs" %}
+{% set version = "0.0.20190308" %}
+{% set sha256 = "48958cc16b3209b24b1a42c9dadc331a1c35b9ebcf08e7bfcf3494b52c867cdd" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/ridgelab/justorthologs/archive/022ebb4.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [py3k]
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+    - biopython
+
+test:
+  commands:
+    - justOrthologs.py -h
+    - combineOrthoGroups.py -h
+    - getNoException.py -h
+    - gff3_parser.py -h
+    - run_multiple_species.sh -h
+    - sortFastaBySeqLen.sh -h
+    - wrapper.py -h
+
+about:
+  home: https://github.com/ridgelab/JustOrthologs
+  license: Custom OSS
+  license_family: PUBLIC-DOMAIN
+  summary: "JustOrthologs: a fast, accurate and user-friendly ortholog identification algorithm."
+
+extra:
+  skip-lints:
+    - missing_license

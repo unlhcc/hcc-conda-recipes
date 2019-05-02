@@ -1,0 +1,33 @@
+{% set name = "stockfish" %}
+{% set version = "10" %}
+{% set sha256 = "c19c5377daa6f92d798849a1295441d987d25a1b9ae44256e19907ee10c63dd3" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/official-stockfish/Stockfish/archive/sf_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+test:
+  commands:
+    - stockfish -h
+
+about:
+  home: https://stockfishchess.org
+  dev_url: https://github.com/official-stockfish/Stockfish
+  license: GPLv3
+  license_family: GPL
+  license_file: Copying.txt
+  summary: "Stockfish is a free, powerful UCI chess engine derived from Glaurung 2.1."

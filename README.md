@@ -1,7 +1,7 @@
 HCC Conda Recipes
 =================
 
-Recipes for the [conda] (http://conda.pydata.org) build system.
+Recipes for the [conda](https://conda.io) build system.
 
 How to use:
 -----------

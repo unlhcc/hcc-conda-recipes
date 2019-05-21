@@ -1,0 +1,34 @@
+{% set name = "MaxQuant" %}
+{% set version = "1.6.6.0" %}
+{% set sha256 = "597cde711bebefd4b507697fa881eb0a67282fd6e6e00464c0d99dfc83438e92" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://unl.box.com/shared/static/gkp8h9szg10oqf9rjhaejed4unb3s15f.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script:
+    - cp -r * $PREFIX
+    - cp $RECIPE_DIR/maxquant $PREFIX/bin/maxquant
+    - chmod +x $PREFIX/bin/maxquant
+
+requirements:
+  run:
+    - mono >=5.4.1
+
+test:
+  commands:
+    #- maxquant --help 2>&1 | grep "USAGE" > /dev/null  # returns 1
+    # It seem that the way conda is running the tests will yield to a crashing maxquant, its works locally if you do not use pipes or subshell
+    - which maxquant
+
+about:
+  home: http://www.coxdocs.org/doku.php?id=maxquant:start
+  license: http://www.coxdocs.org/lib/exe/fetch.php?media=license_agreement.pdf
+  summary: MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets. License restricted.

@@ -1,0 +1,31 @@
+{% set name = "tcllib" %}
+{% set version = "1.19" %}
+{% set sha256 = "01fe87cf1855b96866cf5394b6a786fd40b314022714b34110aeb6af545f6a9c" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://core.tcl.tk/{{ name }}/uv/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  host:
+    - tk
+  run:
+    - tk
+
+test:
+  commands:
+    - page -V 2>&1 | grep page
+
+about:
+  home: http://www.tcl.tk/software/tcllib
+  summary: "This package is intended to be a collection of Tcl packages that provide utility functions useful to large collection of Tcl programmers."
+  license: Custom
+  license_family: OTHER
+  license_file: license.terms

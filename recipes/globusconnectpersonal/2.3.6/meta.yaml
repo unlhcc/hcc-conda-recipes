@@ -1,0 +1,37 @@
+{% set name = "globusconnectpersonal" %}
+{% set version = "2.3.6" %}
+{% set sha256 = "71f84e46cf1b0607d0db45ee98542dd1ffd6745fdc49ce0fa8b7bd9a264088ca" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://downloads.globus.org/globus-connect-personal/linux/stable/{{ name }}-{{ version }}.tgz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [py3k] or [osx]
+
+requirements:
+  build:
+    - python
+    - tk
+    - tcllib
+
+  run:
+    - python
+    - tk
+    - tcllib
+
+test:
+  commands:
+    - ${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/gc-ctrl.py -version
+
+about:
+  home: https://www.globus.org/globus-connect-personal
+  summary: "Globus Connect Personal"
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE

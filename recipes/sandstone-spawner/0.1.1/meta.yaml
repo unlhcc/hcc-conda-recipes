@@ -10,18 +10,18 @@ source:
   sha256: ae4f9181a3599bb0341bc7d7f982b6f75cd9118f3664e3323566ea2b329acade
 
 build:
-  number: 0
-  skip: True  # [py27 or osx]
+  number: 1
+  noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
 
 requirements:
   host:
     - pip
-    - python
-    - jupyterhub <=0.9.4
+    - python >2
+    - jupyterhub
   run:
-    - python
-    - jupyterhub <=0.9.4
+    - python >2
+    - jupyterhub
 
 test:
   imports:

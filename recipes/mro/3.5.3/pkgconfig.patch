@@ -11,6 +11,6 @@
  Description: R as a library
  Version: 3.5.3
 -Libs: -Wl,--export-dynamic -fopenmp  -L/builddir/vendor/build/lib -L${rlibdir} -lR
-+Libs: -Wl,--export-dynamic -fopenmp -L${rlibdir} -lR
++Libs: -Wl,--export-dynamic -Wl,-rpath=${rlibdir} -Wl,-rpath=/opt/anaconda1anaconda2anaconda3/lib -fopenmp -L${rlibdir} -lR
  Cflags: -I${rincludedir} -I${rincludedir}
  Libs.private:

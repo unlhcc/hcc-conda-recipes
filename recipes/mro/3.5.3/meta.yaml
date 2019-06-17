@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
   rpaths:
@@ -52,6 +52,7 @@ requirements:
     - xorg-libxrender
     - xorg-libxt
     - xorg-libxcb
+    - ncurses=5.9
 
 test:
   commands:

@@ -1,0 +1,4 @@
+CC=${BUILD_PREFIX}/bin/x86_64-conda_cos6-linux-gnu-cc
+CXX=${BUILD_PREFIX}/bin/x86_64-conda_cos6-linux-gnu-c++
+FC=${BUILD_PREFIX}/bin/x86_64-conda_cos6-linux-gnu-gfortran
+CXX11=${BUILD_PREFIX}/bin/x86_64-conda_cos6-linux-gnu-c++

@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# The RHEL/CentOS MRO is linked against libpng12, but we can't
-# install that via conda as freetype/fontconfig need newer versions.
-# So we install it via yum instead.  Ick.
-sudo yum -y -q install libpng
-
 export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig
 export CPATH=${PREFIX}/include
 export LD_LIBRARY_PATH=${PREFIX}/lib

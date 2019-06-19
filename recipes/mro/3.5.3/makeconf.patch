@@ -1,0 +1,31 @@
+--- opt/microsoft/ropen/3.5.3/lib64/R/etc/Makeconf	2019-05-10 22:42:12.000000000 +0000
++++ opt/microsoft/ropen/3.5.3/lib64/R/etc/Makeconf.new	2019-06-19 01:20:30.674503288 +0000
+@@ -13,12 +13,12 @@
+ BLAS_LIBS = -L$(R_HOME)/lib$(R_ARCH) -lRblas
+ C_VISIBILITY = -fvisibility=hidden
+ CC = gcc -std=gnu99
+-CFLAGS = -DU_STATIC_IMPLEMENTATION -O2 -g $(LTO)
++CFLAGS = -DU_STATIC_IMPLEMENTATION -O2 -g $(LTO) -I/opt/anaconda1anaconda2anaconda3/include -L/opt/anaconda1anaconda2anaconda3/lib
+ CPICFLAGS = -fpic
+ CPPFLAGS = -DU_STATIC_IMPLEMENTATION
+ CXX = g++ 
+ CXXCPP = $(CXX) -E
+-CXXFLAGS = -DU_STATIC_IMPLEMENTATION -O2 -g $(LTO)
++CXXFLAGS = -DU_STATIC_IMPLEMENTATION -O2 -g $(LTO) -I/opt/anaconda1anaconda2anaconda3/include -L/opt/anaconda1anaconda2anaconda3/lib
+ CXXPICFLAGS = -fpic
+ CXX98 = g++
+ CXX98FLAGS = -DU_STATIC_IMPLEMENTATION -O2 -g
+@@ -78,11 +78,11 @@
+ ## needed by R CMD config
+ LIBnn = lib64
+ LIBTOOL = $(SHELL) "$(R_HOME)/bin/libtool"
+-LDFLAGS = 
++LDFLAGS = -L/opt/anaconda1anaconda2anaconda3/lib -Wl,-rpath=/opt/anaconda1anaconda2anaconda3/lib
+ LTO = 
+ ## needed to build applications linking to static libR
+ MAIN_LD = $(CC)
+-MAIN_LDFLAGS = -Wl,--export-dynamic -fopenmp
++MAIN_LDFLAGS = -Wl,--export-dynamic -fopenmp -L/opt/anaconda1anaconda2anaconda3/lib -Wl,-rpath=/opt/anaconda1anaconda2anaconda3/lib
+ MAIN_LINK = $(MAIN_LD) $(MAIN_LDFLAGS) $(LDFLAGS)
+ MKINSTALLDIRS = $(R_HOME)/bin/mkinstalldirs
+ OBJC = 

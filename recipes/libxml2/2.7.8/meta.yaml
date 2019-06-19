@@ -1,0 +1,47 @@
+{% set name = "libxml2" %}
+{% set version = "2.7.8" %}
+{% set sha256 = "cda23bc9ebd26474ca8f3d67e7d1c4a1f1e7106364b690d822e009fdc3c417ec" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://xmlsoft.org/sources/libxml2-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - autoconf
+    - automake
+    - libtool
+    - pkg-config
+    - make
+  host:
+    - icu
+    - libiconv
+    - xz
+    - zlib
+  run:
+    - icu
+    - libiconv
+    - xz
+    - zlib
+
+test:
+  files:
+    - test.xml
+  commands:
+    - xmllint test.xml
+
+about:
+  home: http://xmlsoft.org/
+  license: MIT
+  license_family: MIT
+  license_file: Copyright
+  summary: The XML C parser and toolkit of Gnome.

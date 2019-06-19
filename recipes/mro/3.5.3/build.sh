@@ -6,6 +6,7 @@ do
 done
 
 patch -p0 < ${RECIPE_DIR}/pkgconfig.patch
+patch -p0 < ${RECIPE_DIR}/makeconf.patch
 mkdir -p ${PREFIX}/bin ${PREFIX}/lib ${PREFIX}/lib/pkgconfig
 
 cp -aR opt/microsoft/ropen/${PKG_VERSION}/share ${PREFIX}

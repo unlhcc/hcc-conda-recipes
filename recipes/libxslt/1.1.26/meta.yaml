@@ -1,0 +1,35 @@
+{% set name = "libxslt" %}
+{% set version = "1.1.26" %}
+{% set sha256 = "55dd52b42861f8a02989d701ef716d6280bfa02971e967c285016f99c66e3db1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: ftp://xmlsoft.org/libxml2/libxslt-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - libxml2 <2.8
+  run: 
+    - libxml2 <2.8
+
+test:
+  commands:
+    - xsltproc --version
+
+about:
+  home: http://xmlsoft.org/XSLT/
+  license: MIT
+  license_family: MIT
+  license_file: COPYING
+  summary: The XSLT C library developed for the GNOME project.

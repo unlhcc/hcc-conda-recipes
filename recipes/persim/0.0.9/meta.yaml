@@ -1,0 +1,45 @@
+{% set name = "persim" %}
+{% set version = "0.0.9" %}
+{% set sha256 = "52ce59856de25eec74c6f20951301b13e7d98c434e712d2225653e2087d54fbc" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv "
+
+requirements:
+  host:
+    - hopcroftkarp
+    - matplotlib
+    - numpy
+    - pip
+    - python
+    - scikit-learn
+    - scipy
+  run:
+    - hopcroftkarp
+    - matplotlib
+    - numpy
+    - python
+    - scikit-learn
+    - scipy
+
+about:
+  home: https://persim.scikit-tda.org
+  license: MIT
+  license_family: MIT
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: Distances and representations of persistence diagrams
+  dev_url: https://github.com/scikit-tda/persim
+
+extra:
+  skip-lints:
+    - should_be_noarch

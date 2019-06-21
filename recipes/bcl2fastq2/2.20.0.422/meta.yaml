@@ -1,0 +1,42 @@
+{% set name = "bcl2fastq2" %}
+{% set version = "2.20.0.422" %}
+{% set sha256 = "367ce0cfae9c7eba11579493146db1bf12884f391ea8b39f1d1eaff6f69b6731" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # https://github.com/conda/conda/issues/7003
+  url: https://unl.box.com/shared/static/lhk0vmu88xh8r1gnmkfjrxnxt0cyna75.tgz
+  sha256: {{ sha256 }} 
+  patches:
+    - logger.patch
+    - boost_xml.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+  host:
+    - icu
+    - libboost
+  run:
+    - libboost
+
+test:
+  commands:
+    - bcl2fastq --help
+
+about:
+  home: https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html
+  license: Other
+  license_family: Other
+  license_file: COPYRIGHT
+  summary: The Illumina bcl2fastq2 Conversion Software v2.20 demultiplexes sequencing data and converts base call (BCL) files into FASTQ files.
+  doc_url: https://support.illumina.com/content/dam/illumina-support/documents/documentation/software_documentation/bcl2fastq/bcl2fastq2-v2-20-software-guide-15051736-03.pdf

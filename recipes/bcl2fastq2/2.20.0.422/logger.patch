@@ -1,0 +1,11 @@
+--- src/cxx/include/common/Logger.hh	2017-06-22 12:14:50.000000000 -0500
++++ src/cxx/include/common/Logger.hh.new	2019-06-21 00:40:27.666274392 -0500
+@@ -17,7 +17,7 @@
+ 
+ #include <ios>
+ #include <string>
+-
++#include <iostream>
+ #include <boost/atomic.hpp>
+ #include <boost/lexical_cast.hpp>
+ #include <boost/thread.hpp>

@@ -8,6 +8,8 @@ cp adapters/python/*.py ${PREFIX}/bin/
 # create folder for additional files
 target=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}
 mkdir -p ${target}/jobmanagers
+mkdir -p ${target}/adapters
 
 # copy additional folders
-cp jobmanagers/* ${target}/jobmanagers/
+cp -r jobmanagers/* ${target}/jobmanagers/
+cp -r adapters/* ${target}/adapters/

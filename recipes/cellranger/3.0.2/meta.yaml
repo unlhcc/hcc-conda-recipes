@@ -1,0 +1,78 @@
+{% set name = "CellRanger" %}
+{% set version = "3.0.2" %}
+{% set sha256 = "882c9170703f9c57c3e1970b0bd7d679f511683c65ce8c63fcad3fcb88733f38" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://unl.box.com/shared/static/e8q5qu177y6nzqn0r7iztfarbe724b7p.tar
+  sha256: {{ sha256 }}
+  patches:
+    - tenx_script.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - martian
+  run:
+    - python <3
+    - martian
+    - lz4
+    - star
+    - bcftools 1.9
+    - bedtools 2.27.*
+    - cutadapt 1.16
+    - xopen 0.3.5
+    - samtools 1.7
+    - pyvcf 0.6.8
+    - pyfasta 0.5.2
+    - pybedtools 0.7.10
+    - pysam 0.14.1
+    - htslib 1.7
+    - libdeflate 1.0
+    - pytables 3.4.3
+    - ipaddress 1.0.18
+    - numexpr 2.6.8
+    - lzo 2.10
+    - blas 1.0
+    - mkl 2018.0.3
+    - mkl_fft 1.0.10
+    - mkl_random 1.0.2
+    - h5py 2.8.0
+    - scikit-learn 0.19.1
+      #    - tenxpy 0.0.1
+    - et_xmlfile 1.0.1
+    - tsne >=0.1.5
+    - jdcal 1.4
+    - pyopenssl 17.0.0
+    - jinja2 2.10
+    - packaging 16.8
+    - snappy 1.1.7
+    - blosc 1.14.4
+    - yaml 0.1.6
+    - unittest2 1.1.0
+    - cython 0.28.2
+    - illuminate 0.6.3
+    - future 0.16.0
+    - pytest 3.5.1
+      #    - pythton-louvain
+    - bcl2fastq2
+
+test:
+  commands:
+    - cellranger mkfastq --help
+    - cellranger count --help
+    - cellranger aggr --help
+    - cellranger reanalyze --help
+
+about:
+  home: https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger
+  license: Proprietary
+  license_family: PROPRIETARY
+  #  license_file: "https://support.10xgenomics.com/docs/license"
+  summary: "Cell Ranger is a set of analysis pipelines that process Chromium single-cell RNA-seq output to align reads, generate feature-barcode matrices and perform clustering and gene expression analysis."

@@ -10,8 +10,7 @@ source:
   md5: 609ea8a7103519fc0a9a5128d7971104
 
 build:
-  skip: True  # [osx or py27]
-  number: 0
+  number: 1
   entry_points:
     - pmg = pymatgen.cli.pmg:main
     - feff_input_generation = pymatgen.cli.feff_input_generation:main
@@ -21,15 +20,20 @@ build:
     - get_environment = pymatgen.cli.get_environment:main
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
-    - python
+    - python >=3,<3.7
     - pip
     - cython <0.29
     - numpy >=1.14.3
   run:
-    - python
+    - python >=3,<3.7
     - numpy >=1.14.3
     - six
+    - decorator <4.3  # [osx]
+    - decorator  # [linux]
     - cython <0.29
     - requests
     - ruamel.yaml >=0.15.6

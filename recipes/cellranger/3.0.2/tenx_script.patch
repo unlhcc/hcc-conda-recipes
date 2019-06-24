@@ -1,0 +1,116 @@
+--- ./cellranger-cs/3.0.2/bin/common/_includes.old	2019-06-23 17:32:16.301975949 -0500
++++ ./cellranger-cs/3.0.2/bin/common/_includes	2019-06-23 17:32:28.529982637 -0500
+@@ -5,7 +5,7 @@
+ # Cell Ranger common docopt strings and options processing functions.
+ #
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_includes
++source $TENX_SCRIPTDIR/tenkit/bin/common/_includes
+ 
+ function process_options_sample_info {
+     # --description
+--- ./cellranger-cs/3.0.2/bin/count.old	2019-06-23 17:28:33.847854556 -0500
++++ ./cellranger-cs/3.0.2/bin/count	2019-06-23 17:29:11.618875120 -0500
+@@ -201,4 +201,4 @@
+ EOF
+ }
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_subcmd_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_subcmd_mrp
+--- ./cellranger-cs/3.0.2/bin/vdj.old	2019-06-23 17:27:49.376830340 -0500
++++ ./cellranger-cs/3.0.2/bin/vdj	2019-06-23 17:28:10.370841770 -0500
+@@ -100,4 +100,4 @@
+ EOF
+ }
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_subcmd_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_subcmd_mrp
+--- ./cellranger-cs/3.0.2/bin/aggr.old	2019-06-23 17:26:53.905800136 -0500
++++ ./cellranger-cs/3.0.2/bin/aggr	2019-06-23 17:27:31.027820349 -0500
+@@ -81,4 +81,4 @@
+ EOF
+ }
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_subcmd_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_subcmd_mrp
+--- ./cellranger-cs/3.0.2/bin/testrun.old	2019-06-23 17:32:45.006991640 -0500
++++ ./cellranger-cs/3.0.2/bin/testrun	2019-06-23 17:33:16.079008628 -0500
+@@ -88,4 +88,4 @@
+ EOF
+ }
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_subcmd_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_subcmd_mrp
+--- ./cellranger-cs/3.0.2/bin/reanalyze.old	2019-06-23 17:31:35.348953563 -0500
++++ ./cellranger-cs/3.0.2/bin/reanalyze	2019-06-23 17:31:51.277962271 -0500
+@@ -141,4 +141,4 @@
+ EOF
+ }
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_subcmd_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_subcmd_mrp
+--- ./cellranger-cs/3.0.2/tenkit/bin/common/_master.old	2019-06-23 17:25:44.813762557 -0500
++++ ./cellranger-cs/3.0.2/tenkit/bin/common/_master	2019-06-23 17:26:27.294785647 -0500
+@@ -5,8 +5,8 @@
+ # Master command template.
+ #
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_includes
+-$TENX_SCRIPTDIR/../tenkit/bin/common/_deprecation || exit 1
++source $TENX_SCRIPTDIR/tenkit/bin/common/_includes
++$TENX_SCRIPTDIR/tenkit/bin/common/_deprecation || exit 1
+ 
+ # Source 10x environment for this product
+ sourceme
+--- ./cellranger-cs/3.0.2/tenkit/bin/common/_subcmd_mrp.old	2019-06-23 17:25:11.571744722 -0500
++++ ./cellranger-cs/3.0.2/tenkit/bin/common/_subcmd_mrp	2019-06-23 17:25:34.007756751 -0500
+@@ -75,4 +75,4 @@
+     implement_generate_mro
+ fi
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_mrp
+--- ./cellranger-cs/3.0.2/tenkit/bin/_mkfastq.old	2019-06-23 17:21:07.804614063 -0500
++++ ./cellranger-cs/3.0.2/tenkit/bin/_mkfastq	2019-06-23 17:23:03.208675847 -0500
+@@ -9,7 +9,7 @@
+ # option.  Trapping args that are handled by bcl2fastq.
+ #
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_includes
++source $TENX_SCRIPTDIR/tenkit/bin/common/_includes
+ 
+ sourceme
+ 
+@@ -550,4 +550,4 @@
+ )
+ EOF
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_mrp
+--- ./cellranger-cs/3.0.2/tenkit/bin/demux.old	2019-06-23 17:23:51.814701922 -0500
++++ ./cellranger-cs/3.0.2/tenkit/bin/demux	2019-06-23 17:24:29.944722380 -0500
+@@ -5,7 +5,7 @@
+ # Run BCL_PROCESSOR_CS with mrp.
+ #
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_includes
++source $TENX_SCRIPTDIR/tenkit/bin/common/_includes
+ 
+ DOCOPT_SPEC="$(cat <<EOF
+ The commands below should be preceded by '$TENX_PRODUCT':
+@@ -75,4 +75,4 @@
+ EOF
+ }
+ 
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_subcmd_mrp
++source $TENX_SCRIPTDIR/tenkit/bin/common/_subcmd_mrp
+--- cellranger-cs/3.0.2/bin/cellranger.old	2019-06-23 17:29:26.624883291 -0500
++++ cellranger-cs/3.0.2/bin/cellranger	2019-06-23 18:45:01.113409366 -0500
+@@ -26,6 +26,4 @@
+     sitecheck
+ )
+ 
+-export TENX_SCRIPTDIR=$(dirname `readlink -f $0`)
+-echo $TENX_SCRIPTDIR
+-source $TENX_SCRIPTDIR/../tenkit/bin/common/_master
++source $TENX_SCRIPTDIR/tenkit/bin/common/_master

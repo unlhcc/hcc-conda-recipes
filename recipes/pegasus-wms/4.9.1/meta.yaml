@@ -1,0 +1,58 @@
+{% set name = "pegasus-wms" %}
+{% set version = "4.9.1" %}
+{% set sha256 = "b070b7a552074b24b9240224f4658f59fca392d350a013a1e4aebc24ae05e3f1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://download.pegasus.isi.edu/pegasus/4.9.1/pegasus-4.9.1.tar.gz
+  sha256:  {{ sha256 }}
+  patches:
+    - conda_build_fixes.patch
+
+build:
+  number: 0
+  skip: True # [py3k]
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - r
+    - openjdk
+    - ant
+    - mysql
+    - postgresql
+    - openmpi
+    - cppcheck
+    - ctags
+
+  host:
+    - python
+    - perl
+    - openjdk
+    - graphviz
+
+  run:
+    - python
+    - perl
+    - openjdk
+    - graphviz
+
+test:
+  commands:
+    - pegasus-plan --help
+    - pegasus-version
+  imports:
+    - Pegasus.DAX3
+
+about:
+  home: "https://pegasus.isi.edu"
+  dev_url: "https://github.com/pegasus-isi/pegasus"
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: "Pegasus WMS is a configurable system for mapping and executing scientific workflows over a wide range of computational infrastructures including laptops, campus clusters, supercomputers, grids, and commercial and academic clouds."

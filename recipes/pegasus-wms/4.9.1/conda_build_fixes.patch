@@ -1,0 +1,92 @@
+--- release-tools/determine-lib-dir	2017-02-24 19:54:18.000000000 +0000
++++ release-tools/determine-lib-dir.new	2017-03-17 19:09:17.900046136 +0000
+@@ -6,16 +6,5 @@
+ 
+ LIB_DIR="lib"
+ 
+-# limit this check to RHEL based systems - those are the only ones
+-# we know of which have this problem
+-if [ -e "/etc/redhat-release" ] || [ -e "/etc/SuSE-release" ]; then
+-    if [ -d "/usr/lib64" ]; then
+-        # ok, but only if it is not a symlink
+-        if [ ! -L "/usr/lib64" ]; then
+-            LIB_DIR="lib64"
+-        fi
+-    fi
+-fi
+-
+ echo $LIB_DIR
+ 
+--- release-tools/python-modules-dir	2017-02-24 19:54:18.000000000 +0000
++++ release-tools/python-modules-dir.new	2017-03-17 19:08:43.718119517 +0000
+@@ -19,7 +19,7 @@
+ 
+ for LOCATION in \
+     "/usr/$SYSLIB/python$VERSION/dist-packages" \
+-    "/usr/$SYSLIB/python$VERSION/site-packages" \
++    "$PREFIX/$SYSLIB/python$VERSION/site-packages" \
+     "/Library/Python/$VERSION/site-packages" \
+ ; do
+     if [ -e "$LOCATION" ]; then
+@@ -29,7 +29,7 @@
+ done
+ 
+ # remote the prefix
+-FINAL_LOCATION=`echo "$FINAL_LOCATION" | sed -e 's/^\/usr//' | sed -e 's:^/*::'`
++FINAL_LOCATION=`echo "$FINAL_LOCATION" | sed -e "s#^$PREFIX##" | sed -e 's:^/*::'`
+ 
+ echo $FINAL_LOCATION
+ 
+--- src/tools/pegasus-cluster/Makefile	2019-03-06 23:20:41.000000000 +0000
++++ src/tools/pegasus-cluster/Makefile.new	2019-07-01 23:41:27.210525101 +0000
+@@ -1,4 +1,4 @@
+-CC = gcc
++CC ?= gcc
+ LOADLIBES = -lm
+ CFLAGS = -Wall -O2 -ggdb -std=gnu99
+ 
+--- src/tools/pegasus-keg/Makefile	2019-03-06 23:20:41.000000000 +0000
++++ src/tools/pegasus-keg/Makefile.new	2019-07-01 23:42:32.875517017 +0000
+@@ -3,8 +3,8 @@
+ #
+ INSTALL = install
+ RM      = rm -f
+-CXX	= g++ -ffor-scope 
+-CXXFLAGS += -O -Wall
++CXX	?= g++
++CXXFLAGS += -O -Wall -ffor-scope
+ LD      = $(CXX)
+ LOADLIBES = -lm
+ SYSTEM  = $(shell uname -s | tr '[a-z]' '[A-Z]' | tr -d '_ -/')
+--- src/tools/pegasus-kickstart/Makefile	2019-07-01 23:36:50.022559195 +0000
++++ src/tools/pegasus-kickstart/Makefile.new	2019-07-01 23:41:10.891527110 +0000
+@@ -1,6 +1,6 @@
+ INSTALL = install
+ RM = rm -f
+-CC = gcc
++CC ?= gcc
+ CFLAGS = -Wall -O2 -ggdb -std=gnu99
+ LD = $(CC)
+ LDLIBS = -lm
+--- src/tools/pegasus-mpi-cluster/Makefile	2019-03-06 23:20:41.000000000 +0000
++++ src/tools/pegasus-mpi-cluster/Makefile.new	2019-07-01 23:48:37.277301976 +0000
+@@ -121,7 +121,7 @@
+ 	$(RM) *.o $(TESTS) version.h depends.mk
+ 
+ depends.mk: version.h $(shell ls *.cpp)
+-	g++ -MM *.cpp > depends.mk
++	$(CC) -MM *.cpp > depends.mk
+ 
+ version.h:
+ 	$(CURDIR)/../../../release-tools/getversion --header > $(CURDIR)/version.h
+--- lib/pegasus/python/setup.py	2019-03-06 23:20:41.000000000 +0000
++++ lib/pegasus/python/setup.py.new	2019-07-02 00:23:10.904947387 +0000
+@@ -105,7 +105,7 @@
+ 
+ setup(
+     name="pegasus-wms",
+-    version=read_version(),
++    version=read_version().decode("utf-8"),
+     author="Pegasus Team",
+     author_email="pegasus@isi.edu",
+     description="Pegasus Workflow Management System Python API",

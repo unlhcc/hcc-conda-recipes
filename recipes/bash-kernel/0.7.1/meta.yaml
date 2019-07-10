@@ -1,0 +1,35 @@
+{% set name = "bash-kernel" %}
+{% set version = "0.7.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name | replace("-", "_") }}/{{ name | replace("-", "_") }}-{{ version }}.tar.gz
+  sha256: 29f895819e076e3f225e37034b70b5265a559e2964e020c942024f51ea6153e8
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - pexpect >=4.0
+    - ipykernel
+    - python
+
+test:
+  imports:
+    - bash_kernel
+
+about:
+  home: https://github.com/takluyver/bash_kernel
+  license: BSD
+  license_family: BSD
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: A bash kernel for Jupyter

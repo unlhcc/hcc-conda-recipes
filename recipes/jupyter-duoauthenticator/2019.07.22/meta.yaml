@@ -1,0 +1,41 @@
+{% set name="jupyter-duoauthenticator" %}
+{% set version="2019.07.22" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/unlhcc/{{ name }}.git
+  git_tag: 95f6acf0db4e288d77e025e31b259858cd5551f1
+
+build:
+  number: 0
+  skip: True  # [py27 or osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - tornado
+    - jupyterhub
+    - duo_python
+
+test:
+  imports:
+    - duoauthenticator
+
+about:
+  home: https://github.com/unlhcc/jupyter-duoauthenticator
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: Simple Duo Authenticator Plugin for JupyterHub.
+
+extra:
+  skip-lints:
+    - uses_git_url
+    - missing_hash

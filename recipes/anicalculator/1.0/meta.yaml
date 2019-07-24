@@ -1,0 +1,37 @@
+{% set name = "ANIcalculator" %}
+{% set version = "1.0" %}
+{% set sha256 = "7b26280e99b0345b0cba090cef4ab375b92cb1d938da0592df7389d25cd7f98c" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://unl.box.com/shared/static/4onmnr3z6ys1zrsfdxu9nnxlyvcpv9gy.tgz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  run:
+    - perl
+    - perl-log-log4perl
+
+test:
+  commands:
+    - ANIcalculator -help
+    - nsimscan -h
+
+about:
+  home: https://ani.jgi-psf.org/html/home.php
+  license: Lawrence Berkeley National Lab
+  license_family: PROPRIETARY
+  #  license_file: "https://ani.jgi-psf.org/html/download.php?"
+  summary: "This tool will calculate the bidirectional average nucleotide identity (gANI) and Alignment Fraction (AF) between two genomes."
+
+# libstdc++ is needed
+extra:
+  container:
+    extended-base: True

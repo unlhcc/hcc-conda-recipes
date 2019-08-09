@@ -1,0 +1,58 @@
+{% set version = '1.1.2' %}
+
+package:
+  name: r-rhierbaps
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/rhierbaps_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rhierbaps/rhierbaps_{{ version }}.tar.gz
+  sha256: 581fe43259bc35c6e47c83f06ba6d7a6af9cd915de3cea483c90eb4d3a172576
+
+build:
+  noarch: generic
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base <3.6
+    - r-ape
+    - r-ggplot2
+    - r-gmp
+    - r-matrixstats
+    - r-purrr
+    - r-knitr
+    - r-markdown
+    - r-phytools
+    - r-testthat
+    - r-formatr
+    - bioconductor-ggtree
+  run:
+    - r-base <3.6
+    - r-ape
+    - r-ggplot2
+    - r-gmp
+    - r-matrixstats
+    - r-purrr
+    - r-knitr
+    - r-markdown
+    - r-phytools
+    - r-testthat
+    - r-formatr
+    - bioconductor-ggtree
+
+test:
+  commands:
+    - $R -e "library('rhierbaps')"
+
+about:
+  home: https://github.com/gtonkinhill/rhierbaps
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "rhierbaps is R implementation of hierBAPS."

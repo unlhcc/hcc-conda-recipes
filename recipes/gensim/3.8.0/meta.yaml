@@ -1,0 +1,75 @@
+{% set name = "gensim" %}
+{% set version = "3.8.0" %}
+{% set sha256 = "ec5de7ff2bfa8692fa96a846bb5aae52f267fc322fbbe303c1f042d258af5766" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: true  # [osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+    - numpy >=1.11.3,<=1.16.1
+    - scipy >=0.18.1
+    - six >=1.5.0
+    - smart_open >=1.7.0
+  run:
+    - python
+    - {{ pin_compatible('numpy') }}
+    - scipy >=0.18.1
+    - six >=1.5.0
+    - smart_open >=1.7.0
+
+test:
+  requires:
+    - nose
+    - testfixtures
+    - morfessor
+    - scikit-learn
+    - pyemd
+    - mock
+    - boto3
+    - python-Levenshtein
+  imports:
+    - gensim
+    - gensim.corpora
+    - gensim.models
+    - gensim.models.wrappers
+    - gensim.parsing
+    - gensim.scripts
+    - gensim.similarities
+    - gensim.sklearn_api
+    - gensim.summarization
+    - gensim.test
+    - gensim.topic_coherence
+
+about:
+  home: http://github.com/RaRe-Technologies/gensim
+  license: LGPL-2.1
+  license_file: COPYING
+  license_family: LGPL
+  summary: 'Topic Modelling for Humans'
+  description: |
+    Gensim is a Python library for topic modelling, document indexing
+    and similarity retrieval with large corpora.
+    Target audience is the natural language processing (NLP)
+    and information retrieval (IR) community.
+  doc_url: http://radimrehurek.com/gensim/
+  dev_url: https://github.com/RaRe-Technologies/gensim
+
+extra:
+  skip-lints:
+    - in_other_channels

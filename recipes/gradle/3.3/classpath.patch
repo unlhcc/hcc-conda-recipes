@@ -1,0 +1,11 @@
+--- bin/gradle	2017-01-03 15:32:30.000000000 +0000
++++ bin/gradle.new	2019-08-27 23:15:44.796826664 +0000
+@@ -64,7 +64,7 @@
+     ;;
+ esac
+ 
+-CLASSPATH=$APP_HOME/lib/gradle-launcher-3.3.jar
++CLASSPATH=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/lib/gradle-launcher-3.3.jar
+ 
+ # Determine the Java command to use to start the JVM.
+ if [ -n "$JAVA_HOME" ] ; then

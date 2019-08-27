@@ -13,8 +13,8 @@ source:
     - tenx_script.patch
 
 build:
-  number: 0
-  noarch: generic
+  number: 1
+  skip: True # [osx or win]
 
 requirements:
   host:

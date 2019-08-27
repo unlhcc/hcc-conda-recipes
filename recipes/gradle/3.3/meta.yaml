@@ -1,0 +1,37 @@
+{% set name = "gradle" %}
+{% set version = "3.3" %}
+{% set sha256 = "c58650c278d8cf0696cab65108ae3c8d95eea9c1938e0eb8b997095d5ca9a292" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://services.gradle.org/distributions/gradle-3.3-bin.zip
+  sha256: {{ sha256 }}
+  patches:
+    - classpath.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gettext
+  host:
+    - openjdk 8.0*
+  run:
+    - openjdk 8.0*
+
+test:
+  commands:
+    - gradle -v
+
+about:
+  home: https://gradle.org/
+  license: Apache 2.0
+  license_file: LICENSE
+  license_family: Apache
+  summary: "Gradle is an open-source build automation tool focused on flexibility and performance."
+  doc_url: https://docs.gradle.org
+  dev_url: https://github.com/gradle/gradle

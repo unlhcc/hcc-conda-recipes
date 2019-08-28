@@ -1,0 +1,27 @@
+{% set name = "smrtlink-tools" %}
+{% set version = "7.0.1.66975" %}
+{% set sha256 = "205cdca1488c506c7889e3f4443e6704546fed0884a9ac69a891d80fb2af4881" %}
+{% set fn = "pl2436ck2r1maqpaw6beky0d3rd47u7q.run" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://unl.box.com/shared/static/{{ fn }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+test:
+  commands:
+    - arrow --help
+    - ccs --help
+
+about:
+  home: https://www.pacb.com/support/software-downloads
+  license: Proprietary
+  summary: "PacBio's open-source SMRT Analysis software suite is designed for use with Single Molecule, Real-Time (SMRT) Sequencing data."
+  license_family: PROPRIETARY

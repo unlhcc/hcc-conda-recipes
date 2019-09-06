@@ -1,0 +1,29 @@
+{% set name = "GramDist" %}
+{% set version = "1.0" %}
+{% set sha256 = "0dce402636c26ee856539dbd5812fe61842c2153fc2ba28f625c374b04f24126" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://bioinfo.unl.edu/downloads/GramDist1_00.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+test:
+  commands:
+    - GramDist -h
+
+about:
+  home: http://bioinfo.unl.edu/gramdist.php
+  license: Custom OSS
+  license_family: OTHER
+  summary: GramDist is a utility for generating dissimilarity matrices using the relative complexity measure, a computationally efficient and alignment free evolutionary distance metric.

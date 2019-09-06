@@ -1,0 +1,29 @@
+{% set name = "GramAlign" %}
+{% set version = "3.0" %}
+{% set sha256 = "0dcb4a777a221e2d4d88a89b4e0ea729946fe3a505b99a5c31807d07939f08e5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://bioinfo.unl.edu/downloads/GramAlign3_00.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+test:
+  commands:
+    - GramAlign -h
+
+about:
+  home: http://bioinfo.unl.edu/gramalign.php
+  license: Custom OSS
+  license_family: OTHER
+  summary: GramAlign is a time-efficient progressive Multiple Sequence Alignment (MSA) algorithm.

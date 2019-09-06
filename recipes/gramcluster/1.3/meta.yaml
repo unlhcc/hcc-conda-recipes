@@ -1,0 +1,29 @@
+{% set name = "GramCluster" %}
+{% set version = "1.3" %}
+{% set sha256 = "5d85bcf2c02af93c4768b76d61f65b07762ceb86a7c4f243701e533ac815a7ed" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://bioinfo.unl.edu/downloads/GramCluster1_3.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+test:
+  commands:
+    - GramCluster -h
+
+about:
+  home: http://bioinfo.unl.edu/gramcluster.php
+  license: Custom OSS
+  license_family: OTHER
+  summary: GramCluster is a fast and accurate progressive clustering algorithm that relies on a grammar-based sequence distance and is particularly useful in clustering large datasets.

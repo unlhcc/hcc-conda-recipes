@@ -1,0 +1,36 @@
+{% set name = "Apache-Batik" %}
+{% set version = "1.11" %}
+{% set sha256 = "ba84f10c52e5471ddde1a1db8b2af9a056b31fd600dea803150fe9567b7426d1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: http://apache.cs.utah.edu/xmlgraphics/batik/binaries/batik-bin-{{ version }}.tar.gz 
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - openjdk
+    - python
+ 
+test:
+  commands:
+    - batik-rasterizer
+    - batik-slideshow
+    # Requires X11 forwarding
+    # - batik-squiggle
+    - batik-svgpp
+    - batik-ttf2svg
+
+about:
+  home: https://xmlgraphics.apache.org/batik/
+  license: Apache
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "Batik is a Java-based toolkit for applications or applets that want to use images in the Scalable Vector Graphics (SVG) format for various purposes, such as display, generation or manipulation."

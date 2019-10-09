@@ -18,3 +18,6 @@ else
     exit 1
 fi
 
+# copy necessary configuration directory
+mkdir -p ${PREFIX}/share/circleator
+cp -r ./conf/ ${PREFIX}/share/circleator/

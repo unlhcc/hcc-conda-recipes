@@ -1,0 +1,61 @@
+{% set name = "Circleator" %}
+{% set version = "1.0.2" %}
+{% set sha256 = "8679f3dedbe028ab474778b30b448b5921b88d49201f2be434f3e1893e263e09" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/jonathancrabtree/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - perl >=5.6
+    - perl-bioperl-core
+    - perl-json
+    - perl-log-log4perl
+    - perl-svg
+    - perl-text-csv
+    - perl-sanger-cgp-vcf           
+    - perl-vcftools-vcf
+    - perl-bio-featureio 
+    - apache-batik
+    - samtools
+    - vcftools
+  run:
+    - perl >=5.6
+    - perl-bioperl-core
+    - perl-json
+    - perl-log-log4perl
+    - perl-svg
+    - perl-text-csv
+    - perl-sanger-cgp-vcf           
+    - perl-vcftools-vcf 
+    - perl-bio-featureio
+    - apache-batik
+    - samtools
+    - vcftools
+
+test:
+  commands:
+    - circleator --help
+    - rasterize-svg 2>&1 | grep "svg_file" > /dev/null
+
+about:
+  home: https://github.com/jonathancrabtree/Circleator
+  license: Artistic-2.0
+  license_family: OTHER
+  license_file: LICENSE
+  summary: Flexible circular visualization of genome-associated data with BioPerl and SVG.
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/btu505

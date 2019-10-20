@@ -1,0 +1,87 @@
+{% set name = "phono3py" %}
+{% set version = "1.18.1" %}
+{% set sha256 = "d40909d4a7026a238a11f6de86c15fcb08e1f8e0590b5523f1a3f7f2084f5e4f" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/atztogo/phono3py/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - lapack
+    - numpy >=1.11.1
+    - pyyaml >=3.11
+    - matplotlib >=1.5.3
+    - h5py >=2.6.0
+    - phonopy >=1.12.8
+    - openmp
+    - openblas
+    - scikit-plot
+    - scikit-learn
+    - libgfortran
+    - xorg-libxrender
+    - xorg-libsm
+    - xorg-libxext
+  run:
+    - python
+    - lapack
+    - numpy >=1.11.1
+    - pyyaml >=3.11
+    - matplotlib >=1.5.3
+    - h5py >=2.6.0
+    - phonopy >=1.12.8
+    - openmp
+    - openblas
+    - scikit-plot
+    - scikit-learn
+    - libgfortran
+    - xorg-libxrender 
+    - xorg-libsm
+    - xorg-libxext
+
+test:
+  imports:
+    - phono3py
+  commands:
+    - phono3py -h
+    - phono3py-coleigplot -h
+    - phono3py-kaccum -h
+    - phono3py-kdeplot -h
+    - phonopy -h
+    - phonopy-bandplot -h
+    - phonopy-crystal-born -h
+    - phonopy-dispmanager -h
+    - phonopy-FHI-aims -h
+    - phonopy-gruneisen -h
+    - phonopy-gruneisenplot -h
+    - phonopy-pdosplot -h
+    - phonopy-propplot -h
+    - phonopy-qha -h
+    - phonopy-tdplot -h
+    - phonopy-vasp-born -h
+    - phonopy-vasp-efe -h
+
+about:
+  home: http://atztogo.github.io/phono3py/
+  license: BSD-3 Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: "A simulation package of phonon-phonon interaction related properties."
+  doc_url: http://atztogo.github.io/phono3py/#documentation
+  dev_url: https://github.com/atztogo/phono3py
+
+extra:
+  skip-lints:
+    - should_use_compilers

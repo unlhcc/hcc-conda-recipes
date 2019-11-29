@@ -1,0 +1,53 @@
+{% set name = "LocARNA" %}
+{% set version = "1.7.2" %}
+{% set sha256 = "a61f007e265dd8b271cbb52d521a698b4a554dba980dc3b5ca8df875c76f69be" %}
+{% set vrnaversion = "2.4.13" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/s-will/LocARNA/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - remove_man.patch
+    - perl.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - autoconf
+    - automake
+    - libtool
+  host:
+    - viennarna =={{ vrnaversion }}
+    - perl
+    - libtool
+  run:
+    - viennarna =={{ vrnaversion }}
+    - perl
+    - libtool
+
+test:
+  commands:
+    - export PERL5LIB=$PREFIX/lib/perl/:$PERL5LIB && mlocarna --version
+    - locarna --version
+    - locarna_p --version
+    - echo -e ">D10744\nGGAAAAUUGAUCAUCGGCAAGAUAAGUUAUUUACUAAAUAAUAGGAUUUAAUAACCUGGUGAGUUCGAAUCUCACAUUUUCCG" | locarna_rnafold_pp --in-loop --stacking --noLP -p0.5 |head -n3
+
+about:
+  home: http://www.bioinf.uni-freiburg.de/Software/LocARNA/
+  license: GPL2
+  license_family: GPL
+  license_file: COPYING
+  summary: "LocARNA is a collection of alignment tools for the structural analysis of RNA."
+
+extra:
+  identifiers:
+    - biotools:locarna
+    - doi:10.1371/journal.pcbi.0030065

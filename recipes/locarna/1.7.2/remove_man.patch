@@ -1,0 +1,10 @@
+--- Makefile.am	2012-06-18 07:55:02.000000000 -0500
++++ Makefile.am.new	2019-11-28 04:18:59.363663438 -0600
+@@ -1,6 +1,6 @@
+ ACLOCAL_AMFLAGS=-I m4
+ 
+-SUBDIRS = src Utils lib man
++SUBDIRS = src Utils lib
+ 
+ 
+ matrices_DATA=\

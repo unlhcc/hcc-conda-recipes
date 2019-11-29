@@ -1,0 +1,363 @@
+--- src/calculate_clust_thresh.py	2014-02-25 15:30:25.000000000 -0600
++++ src/calculate_clust_thresh.py.new	2019-11-21 00:32:00.816532469 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+@@ -41,8 +43,8 @@
+ 
+ # advanced args -- currently set to be consistent with the clustering 
+ # linkage/distance measure used for clustering real datasets
+-RRT_FILE = "../thresh/bgDinucWT_50.zNorm.pcNorm100.zNorm.bitscore"
+-OUT_FILE = "../thresh/bounds"
++RRT_FILE = "$NOFOLD_DATA/thresh/bgDinucWT_50.zNorm.pcNorm100.zNorm.bitscore"
++OUT_FILE = "$NOFOLD_DATA/thresh/bounds"
+ SCALING = "prescaled"
+ SCALE = "FALSE"
+ CLUST_METHOD = "average"
+@@ -57,14 +59,14 @@
+ 
+ 
+ # temp output
+-if not os.path.exists("../thresh/tmp"):
+-	os.makedirs("../thresh/tmp")
++if not os.path.exists("$NOFOLD_DATA/thresh/tmp"):
++	os.makedirs("$NOFOLD_DATA/thresh/tmp")
+ timestamp = int(time.time())
+-tmpSubset = "../thresh/tmp/%s_subset" % timestamp
+-tmpHclustOut = "../thresh/tmp/%s_hclust" % timestamp
+-tmpClusters = "../thresh/tmp/%s_hclust.clusters" % timestamp
+-tmpDist = "../thresh/tmp/%s_hclust.distMatrix" % timestamp
+-tmpHeights = "../thresh/tmp/%s_hclust.heights" % timestamp
++tmpSubset = "$NOFOLD_DATA/thresh/tmp/%s_subset" % timestamp
++tmpHclustOut = "$NOFOLD_DATA/thresh/tmp/%s_hclust" % timestamp
++tmpClusters = "$NOFOLD_DATA/thresh/tmp/%s_hclust.clusters" % timestamp
++tmpDist = "$NOFOLD_DATA/thresh/tmp/%s_hclust.distMatrix" % timestamp
++tmpHeights = "$NOFOLD_DATA/thresh/tmp/%s_hclust.heights" % timestamp
+ 
+ 
+ # read in random seq bitscore lines
+@@ -94,7 +96,7 @@
+ 	# cluster subset
+ 	print "  Clustering subset... This may take a while, depending on the size of your subset."
+ 	start = time.time()
+-	command = "Rscript get_clusters.r %s %s %s %s %s %s" % (tmpSubset, tmpHclustOut, SCALE, CLUST_METHOD, SCALE_VALS, DIST_METHOD)
++	command = "get_clusters.r %s %s %s %s %s %s" % (tmpSubset, tmpHclustOut, SCALE, CLUST_METHOD, SCALE_VALS, DIST_METHOD)
+ 	print "  ", command
+ 	p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 	retval = p.wait()
+--- src/expand_clusters.py	2014-02-27 10:51:08.000000000 -0600
++++ src/expand_clusters.py.new	2019-11-20 21:30:52.177334796 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+@@ -381,7 +383,7 @@
+ 			#fn = (fgTotal - oldClusterSize) - tp
+ 			fn = fgTotal - tp
+ 			tn = bgTotal - fp
+-			command = "Rscript get_enrichment.r %s %s %s %s %s %s" % (tp, fp, fn, tn, "greater", tmpFisher)
++			command = "get_enrichment.r %s %s %s %s %s %s" % (tp, fp, fn, tn, "greater", tmpFisher)
+ 			p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 			retval = p.wait()
+ 			ins = open(tmpFisher, 'r')
+@@ -423,7 +425,7 @@
+ 						tp += 1
+ 				fn = fgTotal - tp
+ 				tn = bgTotal - fp
+-				command = "Rscript get_enrichment.r %s %s %s %s %s %s" % (tp, fp, fn, tn, "greater", tmpFisher)
++				command = "get_enrichment.r %s %s %s %s %s %s" % (tp, fp, fn, tn, "greater", tmpFisher)
+ 				p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 				retval = p.wait()
+ 				ins = open(tmpFisher, 'r')
+--- src/filter_clusters2.py	2014-02-26 15:15:10.000000000 -0600
++++ src/filter_clusters2.py.new	2019-11-20 19:23:22.911472992 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+--- src/functional_analysis_clusters.py	2014-02-26 15:31:31.000000000 -0600
++++ src/functional_analysis_clusters.py.new	2019-11-20 19:23:43.327470131 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+--- src/get_clusters.r	2014-02-26 15:51:58.000000000 -0600
++++ src/get_clusters.r.new	2019-11-20 19:22:20.988481678 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+--- src/nofold_pipeline.py	2014-02-26 15:42:51.000000000 -0600
++++ src/nofold_pipeline.py.new	2019-11-21 00:33:08.587560551 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+@@ -246,7 +248,7 @@
+ 	print "Step 1: 'cluster'"
+ 	stepStart = time.time()
+ 	if opts.CLUST_METHOD == "hierarchical":
+-		command = 'Rscript get_clusters.r "%s" "%s" "%s" "%s" "%s" "%s"' % (BITSCORE_FILE, CLUSTER_FILE, opts.SCALE, opts.HCLUST_METHOD, opts.SCALE_FILE, opts.HCLUST_DIST)
++		command = 'get_clusters.r "%s" "%s" "%s" "%s" "%s" "%s"' % (BITSCORE_FILE, CLUSTER_FILE, opts.SCALE, opts.HCLUST_METHOD, opts.SCALE_FILE, opts.HCLUST_DIST)
+ 		(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 		if error:
+ 			print ">>Error detected. Exiting."
+@@ -264,7 +266,7 @@
+ 	print "---------------------"
+ 	print "Step 2: 'filter1'"
+ 	stepStart = time.time()
+-	command = "python filter_clusters2.py %s %s %s %s %s %s %s %s %s" % (CLUSTER_FILE+".clusters", CLUSTER_FILE+".distMatrix", BOUNDS_FILE, FILTERED_1, opts.MIN_CLUST_SIZE, opts.FILTER, FASTA_FILE, ADV_SCI, ADV_RATIO)
++	command = "filter_clusters2.py %s %s %s %s %s %s %s %s %s" % (CLUSTER_FILE+".clusters", CLUSTER_FILE+".distMatrix", BOUNDS_FILE, FILTERED_1, opts.MIN_CLUST_SIZE, opts.FILTER, FASTA_FILE, ADV_SCI, ADV_RATIO)
+ 	(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 	if error:
+ 		print ">>Error detected. Exiting."
+@@ -279,7 +281,7 @@
+ 	print "---------------------"
+ 	print "Step 3: 'annotate1'"
+ 	stepStart = time.time()
+-	command = 'python functional_analysis_clusters.py %s %s %s --seqsOut=%s --struct="%s" --cmA --maxSize=%s %s --aln --locarna-path=%s --rnaz-path=%s' % (FILTERED_1_EXT, FASTA_FILE, ORIG_BS, STRUCT_FOLDER, STRUCT_OPTS, MAX_SIZE_ANNOT, RNAZ, LOCARNA_PATH, RNAZ_PATH)
++	command = 'functional_analysis_clusters.py %s %s %s --seqsOut=%s --struct="%s" --cmA --maxSize=%s %s --aln --locarna-path=%s --rnaz-path=%s' % (FILTERED_1_EXT, FASTA_FILE, ORIG_BS, STRUCT_FOLDER, STRUCT_OPTS, MAX_SIZE_ANNOT, RNAZ, LOCARNA_PATH, RNAZ_PATH)
+ 	(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 	if error:
+ 		print ">>Error detected. Exiting."
+@@ -294,7 +296,7 @@
+ 	print "---------------------"
+ 	print "Step 4: 'makeCM1'"
+ 	stepStart = time.time()
+-	command = "python train_cms.py %s --cpu=%s --build %s --infernal-path=%s" % (FILTERED_1_EXT, opts.MAX_CPUS, CALIB_ARGS, INFERNAL_PATH)
++	command = "train_cms.py %s --cpu=%s --build %s --infernal-path=%s" % (FILTERED_1_EXT, opts.MAX_CPUS, CALIB_ARGS, INFERNAL_PATH)
+ 	(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 	if error:
+ 		print ">>Error detected. Exiting."
+@@ -310,7 +312,7 @@
+ 	print "---------------------"
+ 	print "Step 5: 'expandMerge'"
+ 	stepStart = time.time()
+-	command = "python expand_clusters.py %s %s --dist-matrix=%s --cpu=%s %s --merge=%s --glocal --infernal-path=%s" % (FILTERED_1_EXT, FASTA_FILE, CLUSTER_FILE+".distMatrix", opts.MAX_CPUS, THRESH_ARG, opts.MERGE_FRAC, INFERNAL_PATH)
++	command = "expand_clusters.py %s %s --dist-matrix=%s --cpu=%s %s --merge=%s --glocal --infernal-path=%s" % (FILTERED_1_EXT, FASTA_FILE, CLUSTER_FILE+".distMatrix", opts.MAX_CPUS, THRESH_ARG, opts.MERGE_FRAC, INFERNAL_PATH)
+ 	(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 	if error:
+ 		print ">>Error detected. Exiting."
+@@ -326,7 +328,7 @@
+ 	print "---------------------"
+ 	print "Step 6: 'annotate2'"
+ 	stepStart = time.time()
+-	command = 'python functional_analysis_clusters.py %s %s %s --seqsOut=%s --struct="%s" --cmA --maxSize=%s %s --aln --locarna-path=%s --rnaz-path=%s' % (FILTERED_2, FASTA_FILE, ORIG_BS, STRUCT_FOLDER, STRUCT_OPTS, MAX_SIZE_ANNOT, RNAZ, LOCARNA_PATH, RNAZ_PATH)
++	command = 'functional_analysis_clusters.py %s %s %s --seqsOut=%s --struct="%s" --cmA --maxSize=%s %s --aln --locarna-path=%s --rnaz-path=%s' % (FILTERED_2, FASTA_FILE, ORIG_BS, STRUCT_FOLDER, STRUCT_OPTS, MAX_SIZE_ANNOT, RNAZ, LOCARNA_PATH, RNAZ_PATH)
+ 	(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 	if error:
+ 		print ">>Error detected. Exiting."
+@@ -341,7 +343,7 @@
+ 	print "---------------------"
+ 	print "Step 7: 'makeCM2'"
+ 	stepStart = time.time()
+-	command = "python train_cms.py %s --cpu=%s --build %s --infernal-path=%s" % (FILTERED_2+".summary", opts.MAX_CPUS, CALIB_ARGS, INFERNAL_PATH)
++	command = "train_cms.py %s --cpu=%s --build %s --infernal-path=%s" % (FILTERED_2+".summary", opts.MAX_CPUS, CALIB_ARGS, INFERNAL_PATH)
+ 	(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 	if error:
+ 		print ">>Error detected. Exiting."
+@@ -358,7 +360,7 @@
+ 	print "Step 8: 'testEnrich'"
+ 	stepStart = time.time()
+ 	if DO_ENRICH == True:
+-		command = "python expand_clusters.py %s %s --cpu=%s %s --bg=%s --bg-id=%s --glocal --infernal-path=%s" % (FILTERED_2+".summary", FASTA_FILE, opts.MAX_CPUS, THRESH_ARG, opts.BG_DB, opts.BG_ID, INFERNAL_PATH)
++		command = "expand_clusters.py %s %s --cpu=%s %s --bg=%s --bg-id=%s --glocal --infernal-path=%s" % (FILTERED_2+".summary", FASTA_FILE, opts.MAX_CPUS, THRESH_ARG, opts.BG_DB, opts.BG_ID, INFERNAL_PATH)
+ 		(output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ 		if error:
+ 			print ">>Error detected. Exiting."
+@@ -377,4 +379,4 @@
+ 	print "Analysis completed."
+ 	print "Total time: %.3f seconds (%.3f hours)" % ((endAll - startAll), float(endAll - startAll) / 60 / 60)
+ 	
+-	
+\ No newline at end of file
++	
+--- src/parse_cmscore_output.py	2013-08-04 18:52:00.000000000 -0500
++++ src/parse_cmscore_output.py.new	2019-11-20 19:24:30.617463500 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+--- src/pca_normalize_pipeline.py	2013-08-04 22:32:07.000000000 -0500
++++ src/pca_normalize_pipeline.py.new	2019-11-21 00:27:46.893427230 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+@@ -28,10 +30,10 @@
+ 
+ parser.add_option("--num-pc", action="store", dest="NUM_PC", default="100", help="Number of PC axes to retain. Default is [%default].")
+ parser.add_option("--out-prefix", action="store", dest="OUT_PREFIX", default=None, help="Prefix to use for output files. Default is to use the name of the input bitscore file up to the first period.")
+-parser.add_option("--mean-scale", action="store", dest="SCALE_MEANS", default="../norm/varlen2.scale_means.txt", help="File containing mean values of each original feature. Default is [%default].")
+-parser.add_option("--sd-scale", action="store", dest="SCALE_SDS", default="../norm/varlen2.scale_sds.txt", help="File containing SD values of each original feature. Default is [%default].")
+-parser.add_option("--pc-scale", action="store", dest="SCALE_PCS", default="../norm/varlen2.zNorm.pcNorm.scale_pc.txt", help="File containing scaling constants for PC axes. Default is [%default].")
+-parser.add_option("--eigs", action="store", dest="EIGS", default="../norm/varlen2.eigs_subset.txt", help="File containing mean values of each original feature. Default is [%default].")
++parser.add_option("--mean-scale", action="store", dest="SCALE_MEANS", default="$NOFOLD_DATA/norm/varlen2.scale_means.txt", help="File containing mean values of each original feature. Default is [%default].")
++parser.add_option("--sd-scale", action="store", dest="SCALE_SDS", default="$NOFOLD_DATA/norm/varlen2.scale_sds.txt", help="File containing SD values of each original feature. Default is [%default].")
++parser.add_option("--pc-scale", action="store", dest="SCALE_PCS", default="$NOFOLD_DATA/norm/varlen2.zNorm.pcNorm.scale_pc.txt", help="File containing scaling constants for PC axes. Default is [%default].")
++parser.add_option("--eigs", action="store", dest="EIGS", default="$NOFOLD_DATA/norm/varlen2.eigs_subset.txt", help="File containing mean values of each original feature. Default is [%default].")
+ parser.add_option("--verbose", action="store_true", default=False, dest="VERBOSE", help="Print output from called scripts. May give better indications of progress.")
+ 
+ 
+@@ -63,7 +65,7 @@
+ print ""
+ print "---------------------"
+ print "Step 1: Get seq info."
+-command = "python varlen_seq_info.py %s %s %s" % (DB_FILE, BITSCORE_FILE, SEQINFO_FILE)
++command = "varlen_seq_info.py %s %s %s" % (DB_FILE, BITSCORE_FILE, SEQINFO_FILE)
+ (output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ if error:
+ 	print ">>Error detected. Exiting."
+@@ -75,7 +77,7 @@
+ print ""
+ print "---------------------"
+ print "Step 2: Standardize raw bitscore file, taking into account sequence length effects."
+-command = "python varlen_z_normalize.py %s %s %s %s %s" % (BITSCORE_FILE, SEQINFO_FILE, opts.SCALE_MEANS, opts.SCALE_SDS, NORM1_FILE)
++command = "varlen_z_normalize.py %s %s %s %s %s" % (BITSCORE_FILE, SEQINFO_FILE, opts.SCALE_MEANS, opts.SCALE_SDS, NORM1_FILE)
+ (output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ if error:
+ 	print ">>Error detected. Exiting."
+@@ -87,7 +89,7 @@
+ print ""
+ print "---------------------"
+ print "Step 3: Convert to PCA space, retain top axes."
+-command = "python varlen_pc_normalize.py %s %s %s %s" % (NORM1_FILE, opts.EIGS, NORM2_FILE, opts.NUM_PC)
++command = "varlen_pc_normalize.py %s %s %s %s" % (NORM1_FILE, opts.EIGS, NORM2_FILE, opts.NUM_PC)
+ (output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ if error:
+ 	print ">>Error detected. Exiting."
+@@ -99,7 +101,7 @@
+ print ""
+ print "---------------------"
+ print "Step 4: Standardize PC axes."
+-command = "python varlen_z_normalize_pc.py %s %s %s" % (NORM2_FILE, opts.SCALE_PCS, NORM3_FILE)
++command = "varlen_z_normalize_pc.py %s %s %s" % (NORM2_FILE, opts.SCALE_PCS, NORM3_FILE)
+ (output, res, error) = run_command(command, verbose=opts.VERBOSE)
+ if error:
+ 	print ">>Error detected. Exiting."
+--- src/score_and_normalize.py	2014-02-26 15:47:51.000000000 -0600
++++ src/score_and_normalize.py.new	2019-11-21 00:25:30.147370696 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+@@ -56,7 +58,7 @@
+ 	parser = OptionParser(usage=usageMsg)
+ 	parser.add_option("--cpus", action="store", type='int', default=1, dest="MAX_CPU", help="Maximum number of CPUs to use. Default is [%default].")
+ 	parser.add_option("--infernal-path", action="store", default=None, dest="INFERNAL_PATH", help="Path to folder containing Infernal executables. Default is to assume they have been added to your PATH and can be called by name.")
+-	parser.add_option("--cm-folder", action="store", default="../models/rfam_cms/", dest="CM_FOLDER", help="Folder containing the covariance models you would like to use. Default is to use the 1,973 Rfam CMs included in [%default].")
++	parser.add_option("--cm-folder", action="store", default="$NOFOLD_DATA/models/rfam_cms/", dest="CM_FOLDER", help="Folder containing the covariance models you would like to use. Default is to use the 1,973 Rfam CMs included in [%default].")
+ 	
+ 	
+ 	# read/process args
+@@ -72,7 +74,7 @@
+ 			PROG_PATH = "cmscore"
+ 		else:
+ 			PROG_PATH = os.path.expanduser(opts.INFERNAL_PATH).rstrip('/') + "/cmscore"
+-		if opts.CM_FOLDER == "../models/rfam_cms/":
++		if opts.CM_FOLDER == "$NOFOLD_DATA/models/rfam_cms/":
+ 			CM_FOLDER = os.path.abspath("%s%s" % (scriptDir, opts.CM_FOLDER))
+ 		else:
+ 			CM_FOLDER = os.path.abspath(os.path.expanduser(opts.CM_FOLDER))
+@@ -179,7 +181,7 @@
+ 	print ""
+ 	print "======================================================"
+ 	print "Printing score table (bitscore file)..."
+-	command = "python parse_cmscore_output.py %s %s" % (scoresOut, bitOut)
++	command = "parse_cmscore_output.py %s %s" % (scoresOut, bitOut)
+ 	result = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 	for line in result.stdout.readlines():
+ 		print "   ", line
+@@ -190,7 +192,7 @@
+ 	print ""
+ 	print "======================================================"
+ 	print "Normalizing bitscore file..."
+-	command = "python pca_normalize_pipeline.py %s %s --verbose" % (bitOut, DB_FILE)
++	command = "pca_normalize_pipeline.py %s %s --verbose" % (bitOut, DB_FILE)
+ 	result = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 	for line in result.stdout.readlines():
+ 		print line,
+--- src/train_cms.py	2014-01-30 13:42:29.000000000 -0600
++++ src/train_cms.py.new	2019-11-20 19:25:34.263454572 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #=================================================================================================
+ # Sarah Middleton
+ # 
+--- src/utils_analysis.py	2014-02-26 15:50:15.000000000 -0600
++++ src/utils_analysis.py.new	2019-11-20 21:31:52.636346398 -0600
+@@ -599,7 +599,7 @@
+ 		os.makedirs(outPath)
+ 	outFile = outPath + os.path.basename(bitscoreFile) + "_subgroup_pval"
+ 	
+-	command = "Rscript get_signif_features.r %s %s %s" % (bitscoreFile, outFile, idStr)
++	command = "get_signif_features.r %s %s %s" % (bitscoreFile, outFile, idStr)
+ 	p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ 	retval = p.wait()
+ 	if retval != 0:
+--- src/varlen_pc_normalize.py	2013-08-04 20:31:11.000000000 -0500
++++ src/varlen_pc_normalize.py.new	2019-11-20 19:26:55.735443151 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+--- src/varlen_seq_info.py	2013-08-04 22:32:24.000000000 -0500
++++ src/varlen_seq_info.py.new	2019-11-20 19:27:16.374440255 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+--- src/varlen_z_normalize_pc.py	2013-08-04 20:35:17.000000000 -0500
++++ src/varlen_z_normalize_pc.py.new	2019-11-20 19:27:40.389436889 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+@@ -75,4 +77,4 @@
+ 	
+ 	
+ 	
+-	
+\ No newline at end of file
++	
+--- src/varlen_z_normalize.py	2013-12-20 23:17:12.000000000 -0600
++++ src/varlen_z_normalize.py.new	2019-11-20 19:28:04.643433485 -0600
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #====================================================================
+ # Sarah Middleton
+ # 
+@@ -110,4 +112,4 @@
+ 	
+ 	
+ 	
+-	
+\ No newline at end of file
++	

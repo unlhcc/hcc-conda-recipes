@@ -1,0 +1,55 @@
+{% set name = "NoFold" %}
+{% set version = "1.0.1" %}
+{% set sha256 = "c98536ed7210043a1c06abc2fc0969d0ba4b24761f336f143ec4092072722150" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://kim.bio.upenn.edu/software/nofold/nofold_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - python <3
+    - infernal =1.0.2
+    - r-base
+    - r-fastcluster
+    - locarna =1.7.2
+    - rnaz
+
+test:
+  commands:
+    - expand_clusters.py -h
+    - functional_analysis_clusters.py -h
+    - nofold_pipeline.py -h
+    - pca_normalize_pipeline.py -h
+    - score_and_normalize.py -h
+    - train_cms.py -h
+    - varlen_pc_normalize.py -h
+    - varlen_seq_info.py -h
+    - varlen_z_normalize_pc.py -h
+    - varlen_z_normalize.py -h
+    - parse_cmscore_output.py 2>&1 | grep "Exiting" > /dev/null
+    - filter_clusters2.py 2>&1 | grep "Exiting" > /dev/null
+    - calculate_clust_thresh.py 2>&1 | grep "Exiting" > /dev/null
+    - get_clusters.r 2>&1 | grep "Error" > /dev/null
+
+about:
+  home: https://kim.bio.upenn.edu/software/nofold.shtml
+  license: Other
+  license_family: OTHER
+  license_file: LICENSE
+  summary: NoFold is an approach for characterizing and clustering RNA secondary structures without computational folding or alignment.
+
+extra:
+  identifiers:
+    - doi:10.1261/rna.041913.113
+  notes: The variable NOFOLD_DATA contains the Rfam covariance models and pre-made threshold files available in the source tarball.

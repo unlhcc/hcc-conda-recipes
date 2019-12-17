@@ -1,0 +1,184 @@
+--- bin/alncut	2015-02-03 22:06:43.000000000 -0600
++++ bin/alncut.new	2019-12-17 02:38:45.032332866 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/alnpi	2015-04-21 02:59:17.000000000 -0500
++++ bin/alnpi.new	2019-12-17 02:38:45.034332865 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fascodon	2015-04-09 15:56:13.000000000 -0500
++++ bin/fascodon.new	2019-12-17 02:38:45.037332863 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fascomp	2015-04-06 16:32:16.000000000 -0500
++++ bin/fascomp.new	2019-12-17 02:38:45.039332862 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fasconvert	2015-01-14 18:12:19.000000000 -0600
++++ bin/fasconvert.new	2019-12-17 02:38:45.041332861 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fascut	2015-02-07 06:14:50.000000000 -0600
++++ bin/fascut.new	2019-12-17 02:38:45.044332860 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fasfilter	2015-02-10 12:24:56.000000000 -0600
++++ bin/fasfilter.new	2019-12-17 02:38:45.046332859 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fasgrep	2015-01-14 19:03:50.000000000 -0600
++++ bin/fasgrep.new	2019-12-17 02:38:45.048332858 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -wT
++#!/opt/anaconda1anaconda2anaconda3/bin/perlT
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fashead	2015-01-14 18:48:48.000000000 -0600
++++ bin/fashead.new	2019-12-17 02:38:45.050332857 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/faslen	2015-03-24 18:32:26.000000000 -0500
++++ bin/faslen.new	2019-12-17 02:38:45.052332856 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/faspaste	2015-02-04 16:24:19.000000000 -0600
++++ bin/faspaste.new	2019-12-17 02:38:45.054332855 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fasrc	2015-01-14 19:03:29.000000000 -0600
++++ bin/fasrc.new	2019-12-17 02:38:45.055332855 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fassort	2015-04-21 02:24:14.000000000 -0500
++++ bin/fassort.new	2019-12-17 02:38:45.057332854 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ ## April 23, 2014: DHA completed new implementation of fassort
+ ## uses Mergesort when going over a memory limit
+--- bin/fassub	2015-01-14 19:03:05.000000000 -0600
++++ bin/fassub.new	2019-12-17 02:38:45.059332853 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fastail	2015-02-07 05:57:52.000000000 -0600
++++ bin/fastail.new	2019-12-17 02:38:45.061332852 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fastax	2015-01-14 19:02:46.000000000 -0600
++++ bin/fastax.new	2019-12-17 02:38:45.063332851 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fastaxsort	2015-01-14 19:02:37.000000000 -0600
++++ bin/fastaxsort.new	2019-12-17 02:38:45.065332850 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fastr	2015-04-06 22:35:20.000000000 -0500
++++ bin/fastr.new	2019-12-17 02:38:45.067332849 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fasuniq	2015-04-06 16:41:12.000000000 -0500
++++ bin/fasuniq.new	2019-12-17 02:38:45.069332848 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/faswc	2015-01-14 19:01:57.000000000 -0600
++++ bin/faswc.new	2019-12-17 02:38:45.139332820 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/fasxl	2015-01-14 19:01:35.000000000 -0600
++++ bin/fasxl.new	2019-12-17 02:38:45.142332819 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/gbfalncut	2015-04-06 15:28:16.000000000 -0500
++++ bin/gbfalncut.new	2019-12-17 02:38:45.144332818 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;
+--- bin/gbfcut	2015-04-06 20:18:59.000000000 -0500
++++ bin/gbfcut.new	2019-12-17 02:38:45.146332817 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use POSIX;
+ use Getopt::Long qw(:config bundling require_order auto_version);
+ use Pod::Usage;

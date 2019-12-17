@@ -1,0 +1,30 @@
+{% set name = "perl-sort-mergesort" %}
+{% set version = "0.31" %}
+{% set sha256 = "ad25e7c8d9a9ac8417d6de96c764ced9f477108490dfb960ae02a3db0a9c6efe" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/M/MU/MUIR/modules/Sort-MergeSort-0.31.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+    - perl
+    - perl-extutils-makemaker
+    - perl-test-nowarnings
+  run:
+    - perl
+    - perl-extutils-makemaker
+    - perl-test-nowarnings
+
+about:
+  home: http://metacpan.org/pod/Sort::MergeSort
+  license: perl_5
+  summary: "Merge sorted streams to create a new stream"

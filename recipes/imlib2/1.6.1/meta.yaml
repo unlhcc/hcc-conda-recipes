@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -26,6 +26,8 @@ requirements:
     - libtiff
     - giflib
     - libwebp
+    - xorg-libx11
+    - xorg-libxext
   run:
     - jpeg
     - libpng
@@ -35,6 +37,8 @@ requirements:
     - libtiff
     - giflib
     - libwebp
+    - xorg-libx11
+    - xorg-libxext
 
 test:
   commands:

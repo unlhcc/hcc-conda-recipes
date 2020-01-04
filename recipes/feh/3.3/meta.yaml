@@ -1,0 +1,46 @@
+{% set name = "feh" %}
+{% set version = "3.3" %}
+{% set sha256 = "f3959958258111d5f7c9fbe2e165c52b9d5987f07fd1f37540a4abf9f9638811" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://feh.finalrewind.org/{{ name|lower}}-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - libcurl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxinerama
+    - imlib2
+    - libexif
+    - libpng
+  run:
+    - libcurl
+    - xorg-libx11
+    - xorg-libxinerama
+    - imlib2
+    - libexif
+    - libpng
+    - imagemagick
+
+test:
+  commands:
+    - feh --version
+
+about:
+  home: https://feh.finalrewind.org
+  license: MIT
+  license_family: MIT
+  license_file: COPYING
+  summary: "feh is an X11 image viewer aimed mostly at console users."

@@ -30,6 +30,7 @@ build-osx:
   tags:
     - osx
   before_script:
+    - git fetch origin +master:master
     - export ANACONDA_PREFIX=`mktemp -d`/anaconda
     - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
     - scripts/gitlabci-setup.sh
@@ -57,6 +58,7 @@ deploy-osx:
   tags:
     - osx
   before_script:
+    - git fetch origin +master:master
     - export ANACONDA_PREFIX=`mktemp -d`/anaconda
     - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
     - scripts/gitlabci-setup.sh

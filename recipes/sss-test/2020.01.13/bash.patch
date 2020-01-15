@@ -1,0 +1,57 @@
+--- local.sh	2020-01-13 19:26:52.000000000 -0600
++++ local.sh.new	2020-01-15 16:09:48.187622162 -0600
+@@ -1,9 +1,7 @@
+-#!/usr/bin/bash
++#!/usr/bin/env bash
+ 
+ #To get the usage just run the script with no arguments.
+ 
+-export LD_LIBRARY_PATH=$HOME/libs
+-
+ if [ $# == 0 ] ; then
+     echo "Local structure pipeline: finds conserved local structures"
+     echo "Maria Beatriz Walter Costa (bia@bioinf.uni-leipzig.de)"
+@@ -44,7 +42,7 @@
+ filename=${input##*/} 
+ file=${filename%.*} 
+ 
+-script_dir="../${program_folder}scripts"
++script_dir="${CONDA_PREFIX}/bin"
+ 
+ NUM_OF_SEQ=`cat $input | grep '>' | wc -l`
+ #Testing if there is a minimum number of species in the input so that the pipeline is applicable
+@@ -154,5 +152,3 @@
+ 
+ cd ../
+ rmdir tmp_${file}_local
+-
+-
+--- SSS.sh	2020-01-13 19:26:52.000000000 -0600
++++ SSS.sh.new	2020-01-15 16:12:36.678107058 -0600
+@@ -1,9 +1,8 @@
+-#!/usr/bin/bash
++#!/usr/bin/env bash
+ 
+ #To get the usage just run the script with no arguments.
+ 
+-export RNASNPPATH=/usr/local/RNAsnp-1.1;
+-export LD_LIBRARY_PATH=$HOME/libs
++export RNASNPPATH=${CONDA_PREFIX}/bin
+ 
+ if [ $# == 0 ] ; then
+     echo "Selection on the Secondary Structure test"
+@@ -92,7 +91,7 @@
+ 
+ # make sure to always get the full path (on linux, BSD not supported)
+ program_folder=`readlink -f $(dirname $0)`
+-script_dir="${program_folder}/scripts"
++script_dir="${CONDA_PREFIX}/bin"
+ 
+ if [[ -d "tmp_$familyID" ]]
+    then
+@@ -433,5 +432,3 @@
+ rm species-$familyID.txt 
+ cd ../
+ rmdir tmp_$familyID
+-
+-

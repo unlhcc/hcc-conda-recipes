@@ -1,0 +1,296 @@
+--- scripts/add-median.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/add-median.pl.new	2019-12-17 03:08:38.242661201 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/add-scores.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/add-scores.pl.new	2019-12-17 03:08:38.243661201 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #This script adds the indel scoring to the base-to-base sd-ss scoring and outputs the corrected score.
+--- scripts/alignment_changes-nogap2.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/alignment_changes-nogap2.pl.new	2019-12-17 03:08:38.246661199 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/alignment-without-species.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/alignment-without-species.pl.new	2019-12-17 03:08:38.246661199 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Script by Bia Walter
+ 
+--- scripts/analyse-RNAsnp.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/analyse-RNAsnp.pl.new	2019-12-17 03:08:38.249661198 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/assign-orthologous.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/assign-orthologous.pl.new	2019-12-17 03:08:38.251661198 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Script by Bia Walter
+ 
+--- scripts/best-substructures.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/best-substructures.pl.new	2019-12-17 03:08:38.252661197 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Script by Bia Walter
+ 
+--- scripts/check-muscle-output.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/check-muscle-output.pl.new	2019-12-17 03:08:38.253661197 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Maria Beatriz Walter Costa
+ 
+--- scripts/compensatory.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/compensatory.pl.new	2019-12-17 03:08:38.256661196 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #This script checks if any of the changed bases from the species form compensatory pairings when compared to the structure of the consensus. If so, it re-evaluates the number of changes (new_ch = old_ch - compensatory). 
+--- scripts/convertAlignment.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/convertAlignment.pl.new	2019-12-17 03:10:13.525625479 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Converts an alignment to another alignment format
+ # Run with no arguments or with -h for help.
+--- scripts/convert-format.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/convert-format.pl.new	2019-12-17 03:08:38.259661195 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/ensemble-distance.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/ensemble-distance.pl.new	2019-12-17 03:08:38.259661195 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #This script compares two dot plots and outputs a distance score between the whole structural space. It analyses the upper box of the dot plot, which means the whole ensemble, and doesn't compute the MFE separately, since it is also contained in the ensemble.
+--- scripts/evolve.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/evolve.pl.new	2019-12-17 03:09:03.852651609 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl - w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #Script takes a FASTA sequence as input and outputs an evolved sequence, containing one gap. The user chooses the gap start base, the gap length and a number that corresponds to the ID of the evolved sequence.
+--- scripts/extract-subsequences.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/extract-subsequences.pl.new	2019-12-17 03:08:38.263661193 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/filterDuplicatedSpecies.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/filterDuplicatedSpecies.pl.new	2019-12-17 03:08:38.265661193 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Maria Beatriz Walter Costa
+ #To get the usage, run the script with the help option: perl filterDuplicatedSpecies.pl --help
+--- scripts/filter-output.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/filter-output.pl.new	2019-12-17 03:08:38.266661192 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/format-output.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/format-output.pl.new	2019-12-17 03:08:38.267661192 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/get-species.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/get-species.pl.new	2019-12-17 03:08:38.269661191 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/get-structure.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/get-structure.pl.new	2019-12-17 03:09:46.906635466 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl - w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #Script takes as input a RNAfold.out file and outputs the MFE structure in a one line dot-bracket format.
+--- scripts/indel-extended.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/indel-extended.pl.new	2019-12-17 03:08:38.346661164 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #This script processes the pairwise alignment of two sequences, a sequence of interest and a consensus. It detects insertions or deletions in the species sequence in relation to the consensus and returns several files, each one containing the species sequence mutated with one indel. The indel is detected in the following manner: each row is compared and when both sequences disagree, one containing a gap and the other a base, an indel is detected. After the detection, a gap extension is accounted for. The returned files contain each an individual indel. The script also returns the total number of indels and their length.
+--- scripts/indel-impact.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/indel-impact.pl.new	2019-12-17 03:08:38.348661163 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/indels-bonferroni.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/indels-bonferroni.pl.new	2019-12-17 03:08:38.350661162 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/indel-score.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/indel-score.pl.new	2019-12-17 03:08:38.350661162 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/input-k.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/input-k.pl.new	2019-12-17 03:08:38.353661161 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #This script adds the indel scoring to the base-to-base sd-ss scoring, and then outputs two values: (i) number of synonymous changes and (ii) number of non-synonymous changes.
+--- scripts/intersect-changes-rnasnp.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/intersect-changes-rnasnp.pl.new	2019-12-17 03:08:38.354661161 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/IO.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/IO.pl.new	2019-12-17 03:09:24.623643819 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl - w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #Script takes a multi-FASTA file and prints each FASTA sequence in a separate file. FORMAT is also given by the user (example: fa or alg)
+--- scripts/local-files.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/local-files.pl.new	2019-12-17 03:09:18.151646240 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl - w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #Script for taking a FASTA file already classified for local-structures and printing each local-structure in a separate file.
+--- scripts/median.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/median.pl.new	2019-12-17 03:08:38.359661159 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/multipleObsCorrAlt.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/multipleObsCorrAlt.pl.new	2019-12-17 03:08:38.360661159 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Maria Beatriz Walter Costa
+ 
+--- scripts/multipleObservationCorrection.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/multipleObservationCorrection.pl.new	2019-12-17 03:08:38.362661158 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Maria Beatriz Walter Costa
+ 
+--- scripts/nogap.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/nogap.pl.new	2019-12-17 03:09:11.534648726 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl - w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #Script takes an aligned FASTA file and outputs a no-gap FASTA sequence.
+--- scripts/output.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/output.pl.new	2019-12-17 03:08:38.365661157 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ #This script gets as input k.txt, containing non_syn as well as syn densities, along with sdss scores and prints it in the final format of the sd-ss pipeline.
+--- scripts/pvalues-bonferroni.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/pvalues-bonferroni.pl.new	2019-12-17 03:08:38.365661157 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/sub-table.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/sub-table.pl.new	2019-12-17 03:08:38.368661156 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Script by Bia Walter
+ 
+--- scripts/sum-all.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/sum-all.pl.new	2019-12-17 03:08:38.369661155 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/tmp0_aligned.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/tmp0_aligned.pl.new	2019-12-17 03:08:38.371661155 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Bia Walter
+ 
+--- scripts/twoline-fasta.pl	2019-07-21 11:57:01.000000000 -0500
++++ scripts/twoline-fasta.pl.new	2019-12-17 03:08:38.372661154 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Script by Bia Walter
+ 

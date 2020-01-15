@@ -1,0 +1,46 @@
+{% set name = "SSS-test" %}
+{% set version = "2019.07.21" %}
+{% set revision = "ad4c84ff1d9588258c34e321282746e8c6674fd1" %}
+{% set sha256 = "c4ea1dc5582d95ebd7d245af6f06cb6fd60b29e1e2e06e168b9937417da6172e" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/waltercostamb/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - perl.patch
+    - bash.patch
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+    - viennarna
+  run:
+    - perl-bioperl
+    - rnasnp
+    - muscle
+    - viennarna
+    - perl-fast
+    - perl-statistics-r
+ 
+test:
+  commands:
+    - local.sh | grep "Usage"
+    - SSS.sh | grep "Usage"
+
+about:
+  home: https://github.com/waltercostamb/SSS-test
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "Selection on the Secondary Structure-test: a test that detects positive and negative selection from a set of orthologs, either small or long ncRNAs."
+
+extra:
+  identifiers:
+    - doi:10.1186/s12859-019-2711-y

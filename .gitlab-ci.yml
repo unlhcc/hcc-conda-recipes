@@ -4,6 +4,8 @@ variables:
   MINICONDA_VER: "4.3.21"
   SUBDAGS: "1"
   SUBDAG: "0"
+  LANG: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
 
 stages:
   - build

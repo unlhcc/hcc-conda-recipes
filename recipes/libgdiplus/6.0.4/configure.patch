@@ -1,0 +1,11 @@
+--- configure.ac	2019-10-03 11:36:31.000000000 +0000
++++ configure.ac.new	2020-02-06 23:29:46.861341400 +0000
+@@ -64,7 +64,7 @@
+   PKG_CHECK_MODULES(PANGO, pango >= $PANGO_REQUIRED_VERSION)
+ fi
+ if test $text_v = "default"; then
+-  PKG_CHECK_MODULES(PANGO, pango >= $PANGO_REQUIRED_VERSION && pango <= $PANGO_MAX_VERSION,
++  PKG_CHECK_MODULES(PANGO, "pango >= $PANGO_REQUIRED_VERSION && pango <= $PANGO_MAX_VERSION",
+ 	  [text_v=pango], [text_v=cairo])
+ fi
+ if test $text_v = "pango"; then

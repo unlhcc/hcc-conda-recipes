@@ -1,0 +1,34 @@
+{% set name = "MaxQuant" %}
+{% set version = "1.6.10.43" %}
+{% set sha256 = "b2d54f7d6b56265040c8825d94fc3ac0e770ea4ce3c71c2ac4061d42c60eafc6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://unl.box.com/shared/static/lvanoiqu9r5nb0r2n32stvaskpke85me.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 1
+  skip: True # [osx]
+  script:
+    - cp -r bin/ MaxQuant.exe ${PREFIX}
+    - cp ${RECIPE_DIR}/maxquant ${RECIPE_DIR}/maxquantgui ${PREFIX}/bin
+    - chmod +x ${PREFIX}/bin/maxquant ${PREFIX}/bin/maxquantgui
+
+requirements:
+  run:
+    - mono >=5.4.1
+    - libgdiplus
+
+test:
+  commands:
+    - maxquant --version 2>&1 | grep MaxQuantCmd
+
+about:
+  home: http://www.coxdocs.org/doku.php?id=maxquant:start
+  license: http://www.coxdocs.org/lib/exe/fetch.php?media=license_agreement.pdf
+  license_family: OTHER
+  summary: MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets. License restricted.

@@ -1,0 +1,44 @@
+{% set name = "mumax3" %}
+{% set version = "3.9.3" %}
+{% set sha256 = "122f9f8b2804fa1558677c696b4424108d5ff68d5a1aaaa99d4fd247bbe84b23" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/mumax/3/archive/v{{ version }}.tar.gz
+  sha256:  {{ sha256 }}
+  folder: src/github.com/mumax/3
+  patches:
+    # https://github.com/mumax/3/issues/181
+    # https://github.com/mumax/3/issues/246
+    - cuda.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - cuda_driver
+    - go-cgo
+  host:
+    - cudatoolkit <=8.0
+  run:
+    - cudatoolkit <=8.0
+    - gnuplot
+
+test:
+  commands:
+    - mumax3 -h 2>&1 | grep mumax3 > /dev/null
+  requires:
+    - cuda_driver
+
+about:
+  home: http://mumax.github.io
+  license: GPLv3
+  license_family: GPL
+  license_file: src/github.com/mumax/3/LICENSE
+  summary: "GPU-accelerated micromagnetic simulator"

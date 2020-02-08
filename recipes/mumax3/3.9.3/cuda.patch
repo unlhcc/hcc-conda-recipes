@@ -1,0 +1,34 @@
+--- cuda/cufft/mode.go	2016-09-30 03:00:03.000000000 -0500
++++ cuda/cufft/mode.go.new	2020-02-07 12:23:28.494928101 -0600
+@@ -11,10 +11,7 @@
+ type CompatibilityMode int
+ 
+ const (
+-	COMPATIBILITY_NATIVE          CompatibilityMode = C.CUFFT_COMPATIBILITY_NATIVE
+-	COMPATIBILITY_FFTW_PADDING    CompatibilityMode = C.CUFFT_COMPATIBILITY_FFTW_PADDING
+-	COMPATIBILITY_FFTW_ASYMMETRIC CompatibilityMode = C.CUFFT_COMPATIBILITY_FFTW_ASYMMETRIC
+-	COMPATIBILITY_FFTW_ALL        CompatibilityMode = C.CUFFT_COMPATIBILITY_FFTW_ALL
++	COMPATIBILITY_FFTW_PADDING CompatibilityMode = C.CUFFT_COMPATIBILITY_FFTW_PADDING
+ )
+ 
+ func (t CompatibilityMode) String() string {
+@@ -25,7 +22,4 @@
+ }
+ 
+ var compatibilityModeString map[CompatibilityMode]string = map[CompatibilityMode]string{
+-	COMPATIBILITY_NATIVE:          "CUFFT_COMPATIBILITY_NATIVE",
+-	COMPATIBILITY_FFTW_PADDING:    "CUFFT_COMPATIBILITY_FFTW_PADDING",
+-	COMPATIBILITY_FFTW_ASYMMETRIC: "CUFFT_COMPATIBILITY_FFTW_ASYMMETRIC",
+-	COMPATIBILITY_FFTW_ALL:        "CUFFT_COMPATIBILITY_FFTW_ALL"}
++	COMPATIBILITY_FFTW_PADDING: "CUFFT_COMPATIBILITY_FFTW_PADDING"}
+--- cuda/curand/generator.go	2016-09-30 03:00:03.000000000 -0500
++++ cuda/curand/generator.go.new	2020-02-07 12:23:39.177962817 -0600
+@@ -43,7 +43,7 @@
+ }
+ 
+ func (g Generator) SetSeed(seed int64) {
+-	err := Status(C.curandSetPseudoRandomGeneratorSeed(C.curandGenerator_t(unsafe.Pointer(uintptr(g))), _Ctype_ulonglong(seed)))
++	err := Status(C.curandSetPseudoRandomGeneratorSeed(C.curandGenerator_t(unsafe.Pointer(uintptr(g))), C.ulonglong(seed)))
+ 	if err != SUCCESS {
+ 		panic(err)
+ 	}

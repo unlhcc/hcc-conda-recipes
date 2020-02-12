@@ -1,0 +1,38 @@
+{% set name = "duo-client" %}
+{% set version = "4.2.3" %}
+{% set sha256 = "99122a632108a46ee7285c12e4cc6269f5b2614e4be99fe55d6a044fd0d6f278" %}
+{% set fn = "duo_client-4.2.3-py2.py3-none-any.whl" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  # The github repo doesn't have the 4.2.3 version tag/tarball, so do this instead.
+  url: "https://files.pythonhosted.org/packages/ec/59/3004e16195d59f895aaa917b4c82fd6677f5391db2fd5e781431c133759f/{{ fn }}"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install {{ fn }} --no-deps -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+    - six
+  run:
+    - python
+    - six
+
+test:
+  imports:
+    - duo_client
+
+about:
+  home: "https://github.com/duosecurity/duo_client_python"
+  license: Custom OSS
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "Reference client for Duo Security APIs"

@@ -1,0 +1,51 @@
+{% set name = "gethogs" %}
+{% set version = "20200225" %}
+{% set oma_version = "2.4.1" %}
+{% set sha256 = "a01f6f6ef219f53bfa1a48386ecaa7fdec022da6efb6cafed8778d65e0107a11" %}
+{% set commit = "b43aa462b6ddad293fa5a5a7b02d95a263fbed23" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://omabrowser.org/standalone/OMA.{{ oma_version }}.tgz
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  noarch: python
+
+requirements:
+  host:
+    - python
+    - pip
+    - numpy
+    - biopython
+    - lxml
+  run:
+    - python
+    - numpy
+    - biopython
+    - lxml
+
+test:
+  imports:
+    - gethogs
+  commands:
+    - warthogs.py -h 
+
+about:
+  # The home url is empty
+  home: https://github.com/DessimozLab/gethogs
+  license: MIT
+  license_family: MIT
+  license_file: "hog_bottom_up/LICENSE.txt"
+  summary: "GETHOGs is a library to infer hierarchical orthologous groups from pairwise evolutionary relationship and its related reference species tree."
+  note: "This version of GETHOGs is a Python dependency needed for OMA."
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/btx229

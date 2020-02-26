@@ -1,0 +1,8 @@
+--- hog_bottom_up/bin/warthogs.py	2019-12-10 09:52:33.000000000 -0600
++++ hog_bottom_up/bin/warthogs.py.new	2020-02-25 14:27:30.276258181 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import sys
+ import argparse
+ import time as time

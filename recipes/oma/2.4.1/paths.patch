@@ -1,0 +1,32 @@
+--- install.sh.old	2019-12-10 09:52:44.000000000 -0600
++++ install.sh	2020-02-26 17:27:33.039691197 -0600
+@@ -4,9 +4,10 @@
+ os=$(uname -s)
+ 
+ DARWIN_BINARY="omadarwin.linux32"
+-install_prefix="${1:-/usr/local}"
+-data_dir="${2:-${HOME}/.oma}"
++install_prefix="${1}"
++data_dir="${2}"
+ not_create_venv="$3"
++tgt="${4}"
+ 
+ current_dir=`dirname $0`
+ versionnr="2.4.1"
+@@ -15,12 +16,13 @@
+ then
+     if [ $1 = "--help" -o $1 = "-h" -o $1 = "-help" ]
+     then
+-        echo "usage: ./install.sh [install_prefix]"
++        echo "usage: ./install.sh [install_prefix] [data_prefix] [empty|anything] [omadir]"
+         exit 0
+     fi
+ fi
+-omadir=$install_prefix/OMA/OMA.$versionnr
+-linkdir=$install_prefix/OMA/bin
++
++omadir=$tgt
++linkdir=$install_prefix/bin
+ if ! mkdir -p $omadir/bin 2>/dev/null
+ then
+     echo "Could not create $omadir . 

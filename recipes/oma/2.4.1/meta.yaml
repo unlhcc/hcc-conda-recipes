@@ -1,0 +1,47 @@
+{% set name = "OMA" %}
+{% set version = "2.4.1" %}
+{% set sha256 = "a01f6f6ef219f53bfa1a48386ecaa7fdec022da6efb6cafed8778d65e0107a11" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://omabrowser.org/standalone/OMA.2.4.1.tgz
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - python
+    - numpy
+    - biopython
+    - lxml
+    - gethogs
+  run:
+    - python
+    - {{ pin_compatible('numpy') }}
+    - biopython
+    - lxml
+    - gethogs
+
+test:
+  commands:
+    - OMA -h
+
+about:
+  home: https://omabrowser.org/standalone/
+  license: Mozilla Public License 2.0 (MPL 2.0)
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "OMA standalone is a standalone package that can infer orthologs using the OMA algorithm on custom genomes."
+  doc_url: https://omabrowser.org/standalone/#usage
+
+extra:
+  identifiers:
+    - doi:10.1101/gr.243212.118

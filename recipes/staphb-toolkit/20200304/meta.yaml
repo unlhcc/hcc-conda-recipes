@@ -1,0 +1,43 @@
+{% set name = "staphb-toolkit" %}
+{% set version = "20200304" %}
+{% set sha256 = "16a0a8a7d3a1beccb6baf1a92bf7849ec53484754cee04a2c71ce4880e10d0c3" %}
+{% set commit = "9161802ea6edd532eb85ab1aa8efff57ea36bceb" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  # we're using our modified version that supports a proper install, etc.
+  url: https://github.com/unlhcc/staphb_toolkit/archive/{{ commit }}.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [py<37]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+    - docker-py >=4.1.0
+    - spython >=0.0.73
+    - psutil >=5.6.3
+  run:
+    - python
+    - docker-py >=4.1.0
+    - spython >=0.0.73
+    - psutil >=5.6.3
+
+test:
+  commands:
+    - staphb_toolkit | grep "Singularity"
+
+about:
+  home: https://staph-b.github.io/staphb_toolkit/
+  dev_url: https://github.com/StaPH-B/staphb_toolkit/
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "The StaPH-B ToolKit is a Python library of commonly used bioinformatics tools that help to inform public health action. The StaPH-B ToolKit utilizes the StaPH-B Docker Images to enable easy access of open-source software without the need of local installation and/or dependency maintenance."

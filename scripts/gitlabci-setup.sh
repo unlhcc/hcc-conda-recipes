@@ -2,6 +2,10 @@
 set -e
 set -x
 
+git checkout master
+git fetch
+git checkout $CI_COMMIT_BRANCH
+
 for dir in . recipes
 do
     if [ -e $dir/meta.yaml ]
@@ -29,8 +33,16 @@ curl -O https://repo.continuum.io/miniconda/Miniconda3-$MINICONDA_VER-$tag-x86_6
 $SUDO bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p $ANACONDA_PREFIX
 export PATH=$ANACONDA_PREFIX/bin:$PATH
 
-$SCRIPT_DIR/../simulate-gitlabci.py --set-channel-order
-$SCRIPT_DIR/../simulate-gitlabci.py --install-requirements
+# set channels
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --add channels hcc
+
+# install bioconda-utils required pacakges
+conda install -q -y --file https://raw.githubusercontent.com/acaprez/bioconda-utils/${HCC_BIOCONDA_UTILS_TAG}/bioconda_utils/bioconda_utils-requirements.txt
+
+# install HCC-ized bioconda-utils
+pip install -q git+https://github.com/acaprez/bioconda-utils.git@${HCC_BIOCONDA_UTILS_TAG}
 
 mkdir -p $ANACONDA_PREFIX/conda-bld/{noarch,linux-64,osx-64}
 conda index $ANACONDA_PREFIX/conda-bld

@@ -40,7 +40,7 @@ else
     LINT_COMMENT_ARG=""
     if [[ $SKIP_LINTING == "false"  ]]
     then
-        set -x; bioconda-utils lint recipes config.yml $RANGE_ARG $BIOCONDA_UTILS_BUILD_ARGS $LINT_COMMENT_ARG; set +x
+        set -x; bioconda-utils lint recipes config.yml $RANGE_ARG $BIOCONDA_UTILS_LINT_ARGS $LINT_COMMENT_ARG; set +x
     fi
 fi
 

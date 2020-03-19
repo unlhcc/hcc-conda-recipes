@@ -1,0 +1,37 @@
+{% set name = "BaseSpace-CLI" %}
+{% set version = "1.1.0" %}
+{% set sha256 = "6ef2b6fd51a34da4656495f4d2f6778d0d8375a974c22568589af25a2e2d914d" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://unl.box.com/shared/static/w2yvuso6q4hzun2wxn2jg2zv6jgwvmsm.tar
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  run:
+    - wget
+    - grep
+    - coreutils
+
+test:
+  commands:
+    - bs --help
+    - bs-cp --help
+
+about:
+  home: https://developer.basespace.illumina.com
+  license: Other
+  license_family: OTHER
+  summary: Toolkit to perform regulatory genomics data analysis
+  doc_url: https://developer.basespace.illumina.com/docs/content/documentation/cli/cli-overview
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

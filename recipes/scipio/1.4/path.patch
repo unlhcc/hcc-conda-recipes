@@ -1,0 +1,24 @@
+--- scipio.1.4.1.pl.old	2020-03-24 11:14:16.370724175 -0500
++++ scipio.1.4.1.pl	2020-03-24 11:17:02.084288527 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ################################################################################
+ #
+ #   Name:    SCIPIO - Eukaryotic Gene Identification
+--- yaml2log.1.4.pl.old	2020-03-24 11:14:29.060767394 -0500
++++ yaml2log.1.4.pl	2020-03-24 11:17:24.450364688 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ################################################################################
+ #
+ #   Name:    SCIPIO - Eukaryotic Gene Identification
+--- yaml2gff.1.4.pl.old	2020-03-24 11:14:22.974746664 -0500
++++ yaml2gff.1.4.pl	2020-03-24 11:17:10.969318787 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ################################################################################
+ #
+ #   Project: Gene Prediction with Protein Family Patterns 

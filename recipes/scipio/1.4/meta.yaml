@@ -1,0 +1,49 @@
+{% set name = "Scipio" %}
+{% set version = "1.4" %}
+{% set sha256 = "cc6769c24a0b4930acb26c58c1c3125189648e83fcdc8f32e9c207a48f346b1b" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://www.webscipio.org/webscipio/download_scipio_1_4
+  fn: scipio-1.4.zip
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - perl
+    - perl-bioperl
+    - perl-yaml
+    - blat
+  run:
+    - perl
+    - perl-bioperl
+    - perl-yaml
+    - blat
+
+test:
+  commands:
+    - scipio.pl --help 2>&1 | grep "scipio.pl" > /dev/null
+#    - yaml2gff.pl
+#    - yaml2log.pl
+
+about:
+  home: https://www.webscipio.org
+  license: Other
+  license_family: OTHER
+  summary: "Scipio locates the regions coding for a query protein sequence in a DNA target sequence."
+  doc_url: https://www.webscipio.org/help/scipio
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+  identifiers:
+    - doi:10.1186/1471-2105-9-278

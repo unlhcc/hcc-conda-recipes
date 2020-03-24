@@ -1,0 +1,43 @@
+{% set name = "igs-portal-client" %}
+{% set version = "1.4.4" %}
+{% set sha256 = "3fa39c24e19e8c10eae1a13de0c581951892098c436628371d419ec236130090" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/IGS/portal_client/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+    - google-cloud-storage
+    - google-auth-oauthlib
+    - boto
+
+  run:
+    - python >=3.6
+    - pip
+    - google-cloud-storage
+    - google-auth-oauthlib
+    - boto
+    - aspera-cli
+
+test:
+  commands:
+    - portal_client --help
+
+about:
+  home: https://github.com/IGS/portal_client
+  license: MIT
+  license_file: LICENSE
+  summary: 'Python-based client for downloading data made available through portals powered by the GDC-based portal system.'
+  license_family: MIT

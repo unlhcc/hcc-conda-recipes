@@ -1,0 +1,54 @@
+{% set name = "lftp" %}
+{% set version = "4.9.1" %}
+{% set sha256 = "02336d4ffc617b453e7cfd335f3a424758408ff31a10720d59add86e3737966a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://lftp.yar.ru/ftp/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - pkgconfig
+
+  host:
+    - readline
+    - ncurses
+    - zlib
+    - openssl
+    - bison
+    - expat
+    - libiconv
+    - libidn2
+
+  run:
+    - readline
+    - ncurses
+    - zlib
+    - openssl
+    - expat
+    - libiconv
+    - libidn2
+
+test:
+  commands:
+    - lftp --help
+
+about:
+  home: http://lftp.yar.ru
+  dev_url: https://github.com/lavv17/lftp
+  license: GPLv3
+  license_file: COPYING
+  summary: 'LFTP is a sophisticated file transfer program supporting a number of network protocols (ftp, http, sftp, fish, torrent).'
+  license_family: BSD
+
+extra:
+  skip-lints:
+    - in_other_channels

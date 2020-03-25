@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
@@ -19,16 +19,16 @@ requirements:
   host:
     - python >=3.6
     - pip
-    - google-cloud-storage
-    - google-auth-oauthlib
-    - boto
+    - google-cloud-storage >=1.13.2
+    - google-auth-oauthlib >=0.2.0
+    - boto >=2.49.0
 
   run:
     - python >=3.6
     - pip
-    - google-cloud-storage
-    - google-auth-oauthlib
-    - boto
+    - google-cloud-storage >=1.13.2
+    - google-auth-oauthlib >=0.2.0
+    - boto >=2.49.0
     - aspera-cli
 
 test:

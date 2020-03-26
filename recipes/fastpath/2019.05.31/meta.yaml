@@ -1,0 +1,34 @@
+{% set name = "fastpath" %}
+{% set version = "2019.05.31" %}
+{% set revision = "1494ed4016098e528f645c6406c0cd5885034819" %}
+{% set sha256 = "b70968df56fcd7b6a4314794d80b1322aa31d6442faef475eac53e4851c857c2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/deprekate/fastpath/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c')}}
+
+test:
+  commands:
+    - fastpath | grep "fastpath" > /dev/null
+    - fastpathz | grep "fastpathz" > /dev/null
+
+about:
+  home: https://github.com/deprekate/fastpath
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "Fastpath is a fast and lightweight tool for finding the shortest path in a weighted graph."
+  dev_url: https://github.com/deprekate/fastpath

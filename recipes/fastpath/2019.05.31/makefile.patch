@@ -1,0 +1,17 @@
+--- Makefile.old	2020-03-25 21:35:13.410357944 -0500
++++ Makefile	2020-03-25 21:36:00.378526553 -0500
+@@ -1,5 +1,4 @@
+ IDIR =./include
+-CC=gcc
+ CFLAGS=-I$(IDIR)
+ 
+ SDIR=./src/
+@@ -9,6 +8,6 @@
+ all: fastpath fastpathz
+ 
+ fastpath: $(SDIR)fastpath.c
+-	gcc -o $@ $^ $(CFLAGS)
++	$(CC) -o $@ $^ $(CFLAGS)
+ fastpathz: $(SDIR)fastpathz.c $(SDIR)mini-gmp.c
+-	gcc -o $@ $^ $(CFLAGS) -g
++	$(CC) -o $@ $^ $(CFLAGS) -g

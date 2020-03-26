@@ -1,0 +1,48 @@
+--- phanotate.py.old	2020-03-25 22:27:23.091560075 -0500
++++ phanotate.py	2020-03-26 01:14:58.838542719 -0500
+@@ -1,19 +1,12 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1/anaconda2anaconda3/bin/python
+ import os
+ import sys
+ import getopt
+-
+ from subprocess import Popen, PIPE, STDOUT
+-
+-sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/lib')
+ import file_handling
+ import functions
+ from nodes import Node
+ 
+-# Test if FastPath was compliled
+-if(not os.path.dirname(os.path.realpath(__file__))+'/fastpath/fastpathz'):
+-		sys.stderr.write("Error: fastpathz binary not found, did you type 'make'?\n")
+-		sys.exit()
+ #--------------------------------------------------------------------------------------------------#
+ #                               ARGUMENTS                                                          #
+ #--------------------------------------------------------------------------------------------------#
+@@ -42,7 +35,7 @@
+ 	source = "Node('source','source',0,0)"
+ 	target = "Node('target','target',0," + str(len(seq)+1) + ")"
+ 	try:
+-		proc = Popen([os.path.dirname(os.path.realpath(__file__))+'/fastpath/fastpathz', '-s', source, '-t', target], stdout=PIPE, stdin=PIPE, stderr=PIPE)
++		proc = Popen(['fastpathz', '-s', source, '-t', target], stdout=PIPE, stdin=PIPE, stderr=PIPE)
+ 	except:
+ 		sys.stdout.write("Error running fastpathz. Did you run make to compile the binary?\n")
+ 		sys.exit()
+--- lib/edges.py.old	2020-03-25 22:29:26.763000255 -0500
++++ lib/edges.py	2020-03-25 22:29:33.912025711 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1/anaconda2anaconda3/bin/python
+ 
+ class Edge:
+     def __init__(self, source, target, weight):
+--- lib/graphs.py.old	2020-03-25 22:29:58.475113137 -0500
++++ lib/graphs.py	2020-03-25 22:30:06.734142534 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1/anaconda2anaconda3/bin/python
+ 
+ import random
+ from edges import Edge

@@ -1,7 +1,7 @@
 {% set name = "Cenote-Taker2" %}
-{% set version = "2020.03.26" %}
-{% set revision = "2c64f61a4902c80e7556211dc8320938b33c5082" %}
-{% set sha256 = "01e4dc5c8a2653203afeb03dc5e6cd641bc30ee42661e758d96c49dc4b52254f" %}
+{% set version = "2020.04.01" %}
+{% set revision = "fe6076f55042b3c64ada6286a49b5b1cff22c64b" %}
+{% set sha256 = "fce4594cfd662d80defe808e4f46167d6a4a2d903f34bc3f5808c5fd75e346e9" %}
 
 package:
   name: {{ name|lower }}
@@ -33,7 +33,7 @@ requirements:
     - bowtie2=2.3.5
     - trnascan-se=2.0.5
     - bbmap=37.62
-    - tbl2asn=25.7
+    - tbl2asn-forever=25.7.1f
     - emboss=6.6.0
     - numpy=1.18.1
     - pandas=1.0.0

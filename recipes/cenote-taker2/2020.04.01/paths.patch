@@ -1,5 +1,5 @@
---- apc_cenote1.pl.old	2020-03-26 13:31:54.978599942 -0500
-+++ apc_cenote1.pl	2020-03-26 13:33:50.096997492 -0500
+--- apc_cenote1.pl.old	2020-04-01 17:28:21.035382039 -0500
++++ apc_cenote1.pl	2020-04-01 17:30:32.065815186 -0500
 @@ -1,4 +1,4 @@
 -#!/bin/perl
 +#!/opt/anaconda1anaconda2anaconda3/bin/perl
@@ -19,8 +19,8 @@
      system($command);
      print "done\n";
      # pull in output of current contig's LAST self-alignment
---- blastpreport2tbl_mt_annotation_pipe_biowulf2.pl.old	2020-03-26 13:34:28.689130758 -0500
-+++ blastpreport2tbl_mt_annotation_pipe_biowulf2.pl	2020-03-26 13:35:04.316253782 -0500
+--- blastpreport2tbl_mt_annotation_pipe_biowulf2.pl.old	2020-04-01 17:28:21.036382042 -0500
++++ blastpreport2tbl_mt_annotation_pipe_biowulf2.pl	2020-04-01 17:31:14.489955425 -0500
 @@ -1,4 +1,4 @@
 -#!/bin/perl
 +#!/opt/anaconda1anaconda2anaconda3/bin/perl
@@ -34,8 +34,233 @@
 -}
 \ No newline at end of file
 +}
---- cenote-fixer1.sh.old	2020-03-26 14:11:04.123709663 -0500
-+++ cenote-fixer1.sh	2020-03-26 14:21:53.684948965 -0500
+--- hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl.old	2020-04-01 17:28:21.038382049 -0500
++++ hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl	2020-04-01 17:32:26.356193002 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+--- rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl.old	2020-04-01 17:28:21.039382052 -0500
++++ rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl	2020-04-01 17:33:14.895353458 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -43,4 +43,4 @@
+ 			print OUTPUT "\n\t\t\tinference\tprotein motif:$1";			
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- rpsblastreport2tbl_mt_sketch_contigs1.pl.old	2020-04-01 17:28:21.041382059 -0500
++++ rpsblastreport2tbl_mt_sketch_contigs1.pl	2020-04-01 17:34:15.406553485 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -43,4 +43,4 @@
+ 			print OUTPUT "\n\t\t\tinference\tprotein motif:$1";			
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- rpsblastreport_to_table1.pl.old	2020-04-01 17:28:21.042382062 -0500
++++ rpsblastreport_to_table1.pl	2020-04-01 17:34:54.218681791 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -38,4 +38,4 @@
+ 			print OUTPUT "$2\t$4\n";
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- cenote_virus_segments_V6.py.old	2020-04-01 17:28:26.017398511 -0500
++++ cenote_virus_segments_V6.py	2020-04-01 17:37:45.087246627 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import itertools, sys, os
+ import csv
+ import glob
+--- run_cenote-taker2.0.1.py.old	2020-04-01 17:28:26.019398517 -0500
++++ run_cenote-taker2.0.1.py	2020-04-01 17:39:09.462525551 -0500
+@@ -1,5 +1,4 @@
+-#!/usr/bin/env python
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ import sys, os
+ import subprocess
+--- annotation_of_linear_contigs_prune_seg2.0.1.sh.old	2020-04-01 17:28:30.791414290 -0500
++++ annotation_of_linear_contigs_prune_seg2.0.1.sh	2020-04-01 18:38:21.213518861 -0500
+@@ -49,7 +49,7 @@
+ 
+ 			MDYT=$( date +"%m-%d-%y---%T" )
+ 			echo "time update: HMMSCAN of common viral domains beginning" $MDYT
+-			hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.sorted.fasta
++			hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.sorted.fasta
+ 			grep -v "^#" ${NO_END%.fna}.AA.hmmscan2.out | sed 's/ \+/	/g' | sort -u -k3,3 > ${NO_END%.fna}.AA.hmmscan2.sort.out
+ 			if [ ! -z "${NO_END%.fna}.AA.hmmscan2.sort.out" ] ; then
+ 				cut -f3 ${NO_END%.fna}.AA.hmmscan2.sort.out | awk '{ print $0" " }' > ${NO_END%.fna}.AA.called_hmmscan2.txt ; 
+@@ -77,14 +77,14 @@
+ 	done
+ 	MDYT=$( date +"%m-%d-%y---%T" )
+ 	echo "time update: running RPSBLAST on each sequence " $MDYT
+-	time ls *.no_hmmscan2.fasta | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -query {} -line_length 200 -out {}.rpsb.out ; echo "$(tput setaf 5)RPS-BLAST of "{}" complete.$(tput sgr 0)"
++	time ls *.no_hmmscan2.fasta | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -query {} -line_length 200 -out {}.rpsb.out ; echo "$(tput setaf 5)RPS-BLAST of "{}" complete.$(tput sgr 0)"
+ 
+ 	for RPSB in *.no_hmmscan2.fasta.rpsb.out ; do 
+ 		mv $RPSB ${RPSB%.no_hmmscan2.fasta.rpsb.out}.rotate.AA.rpsblast.out
+ 	done
+ 
+ 
+-	perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
++	rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
+ 
+ 	MDYT=$( date +"%m-%d-%y---%T" )
+ 	echo "time update: making tables for hmmscan and rpsblast outputs " $MDYT
+@@ -109,7 +109,7 @@
+ 		fi
+ 	done
+ 
+-	perl ${CENOTE_SCRIPT_DIR}/rpsblastreport_to_table1.pl
++	rpsblastreport_to_table1.pl
+ 
+ 
+ 	MDYT=$( date +"%m-%d-%y---%T" )
+@@ -139,7 +139,7 @@
+ 						echo "$counter_r	X" ; 
+ 					done >> ${TABLE1%.HMMSCAN_TABLE.txt}.virus_signal.tab 
+ 				fi
+-			elif [[ $INFER == *"PHA0"* ]] || grep -q "$INFER" ${CENOTE_SCRIPT_DIR}/viral_cdds_and_pfams_191028.txt ; then
++			elif [[ $INFER == *"PHA0"* ]] || grep -q "$INFER" ${CT2_DIR}/viral_cdds_and_pfams_191028.txt ; then
+ 				if [[ "$RPS_END" -gt "$RPS_START" ]] ; then 
+ 					for ((counter_f=(( $RPS_START ));counter_f<=$RPS_END;counter_f++)); do 
+ 						echo "$counter_f	V" ; 
+@@ -191,7 +191,7 @@
+ 
+ else
+ 	for VSEQ in *virus_signal.seq ; do
+-		python ${CENOTE_SCRIPT_DIR}/cenote_virus_segments_V6.py $VSEQ
++		cenote_virus_segments_V6.py $VSEQ
+ 	done
+ 
+ 	# reformat .fastas to get viral segments of prophage
+@@ -259,7 +259,7 @@
+ 		fi
+ 	fi
+ 
+-	blastx -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query $vd_fa -out ${vd_fa%.fna}.tax_guide.blastx.out ;
++	blastx -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query $vd_fa -out ${vd_fa%.fna}.tax_guide.blastx.out ;
+ 	if [ ! -s "${vd_fa%.fna}.tax_guide.blastx.out" ]; then
+ 		echo "No homologues found" > ${vd_fa%.fna}.tax_guide.blastx.out ;
+ 	elif grep -i -q "circovir\|genomovir\|geminivir\|nanovir\|redondovir\|bacilladnavir\|smacovir" ${vd_fa%.fna}.tax_guide.blastx.out ; then 
+@@ -294,7 +294,7 @@
+ for NO_END in $virus_seg_fastas ; do
+ 	if grep -i -q "Caudovir\|Ackermannvir\|Herellevir\|Corticovir\|Levivir\|Tectivir\|crAss-like virus\|CrAssphage\|Cyanophage\|Microvir\microphage\|Siphoviridae\|Myoviridae\|phage\|Podovir\|Halovir\|sphaerolipovir\|pleolipovir\|plasmid\|Inovir\|Ampullavir\|Bicaudavir\|Fusellovir\|Guttavir\|Ligamenvir\|Plasmavir\|Salterprovir\|Cystovir" ${NO_END%.fna}.tax_guide.blastx.out ; then
+ 
+-		${CENOTE_SCRIPT_DIR}/PHANOTATE/phanotate.py -f fasta -o ${NO_END%.fna}.phan.fasta $NO_END ; 
++		phanotate.py -f fasta -o ${NO_END%.fna}.phan.fasta $NO_END ; 
+ 		if [ "$ENFORCE_START_CODON" == "True" ] ; then
+ 			sed 's/ /@/g' ${NO_END%.fna}.phan.fasta | bioawk -c fastx '{ print }' | awk '{ if ($2 ~ /^[ATCG]TG/) { print ">"$1 ; print $2 }}' | sed 's/@/ /g' > ${NO_END%.fna}.phan.sort.fasta
+ 		else
+@@ -331,7 +331,7 @@
+ 			echo ">"${ORF_NAME} "["$START_BASE" - "$END_BASE"]" ; echo $AA_SEQ ; 
+ 		done > ${NO_END%.fna}.AA.fasta
+ 	fi
+-	hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.fasta
++	hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.fasta
+ 	grep -v "^#" ${NO_END%.fna}.AA.hmmscan2.out | sed 's/ \+/	/g' | sort -u -k3,3 > ${NO_END%.fna}.AA.hmmscan2.sort.out
+ 		echo $NO_END "contains at least one viral or plasmid domain"
+ 	if [ ! -z "${NO_END%.fna}.AA.hmmscan2.sort.out" ] ; then
+@@ -363,7 +363,7 @@
+ 	if [ -s "${vd_fa%.fna}.no_hmmscan2.fasta" ]; then
+ 
+ 		echo "$(tput setaf 5)"$vd_fa" Continuing to RPS-BLAST NCBI CDD domains database for each ORF...$(tput sgr 0)" 
+-		rpsblast -evalue 1e-4 -num_descriptions 5 -num_threads $CPU -line_length 100 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -query ${vd_fa%.fna}.no_hmmscan2.fasta -out ${vd_fa%.fna}.rotate.AA.rpsblast.out ;
++		rpsblast -evalue 1e-4 -num_descriptions 5 -num_threads $CPU -line_length 100 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -query ${vd_fa%.fna}.no_hmmscan2.fasta -out ${vd_fa%.fna}.rotate.AA.rpsblast.out ;
+ 		echo "$(tput setaf 5)RPS-BLAST of "${vd_fa%.fna}.no_hmmscan2.fasta" complete.$(tput sgr 0)"
+ 		echo " "
+ 	else
+@@ -372,7 +372,7 @@
+ 	fi
+ done
+ 
+-perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
++rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
+ for vd_fa in $virus_seg_fastas ; do
+ if [ -s "${vd_fa%.fna}.NT.tbl" ]; then
+ 	echo "$(tput setaf 5)"$vd_fa" tbl made from RPS-BLAST hits...$(tput sgr 0)"
+@@ -399,7 +399,7 @@
+ 	fi		
+ done
+ 
+-perl ${CENOTE_SCRIPT_DIR}/blastpreport2tbl_mt_annotation_pipe_biowulf2.pl ;
++blastpreport2tbl_mt_annotation_pipe_biowulf2.pl ;
+ for feat_tbl1 in *_vs[0-9].NT.tbl ; do
+ if [ -s "${feat_tbl1%.NT.tbl}.BLASTP.tbl" ]; then
+ 	echo "$(tput setaf 5)"${feat_tbl1%.NT.tbl}": tbl made from BLASTP hits. Splitting fasta files for HHsearch...$(tput sgr 0)"
+@@ -575,14 +575,14 @@
+ 	if  [[ $HHSUITE_TOOL = "hhsearch" ]] ; then
+ 
+ 		echo "$(tput setaf 5)Running HHsearch on "$dark_orf" now.$(tput sgr 0)"
+-		${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhsearch -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
++		hhsearch -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
+ 		cat ${dark_orf%.for_hhpred.fasta}.out.hhr >> ${dark_orf%.*.for_hhpred.fasta}.rotate.out_all.hhr ;
+ 		rm -f ${dark_orf%.for_hhpred.fasta}.out.hhr 
+ 		cat $dark_orf >> ${dark_orf%.*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
+ 		rm -f $dark_orf
+ 	elif [[ $HHSUITE_TOOL = "hhblits" ]] ; then
+ 		echo "$(tput setaf 5)Running HHblits on "$dark_orf" now.$(tput sgr 0)"
+-		${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhblits -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
++		hhblits -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
+ 		cat ${dark_orf%.for_hhpred.fasta}.out.hhr >> ${dark_orf%.*.for_hhpred.fasta}.rotate.out_all.hhr ;
+ 		rm -f ${dark_orf%.for_hhpred.fasta}.out.hhr 
+ 		cat $dark_orf >> ${dark_orf%.*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
+@@ -597,7 +597,7 @@
+ rm -f *.out.hhr
+ 
+ # Generating tbl file from HHpred results
+-perl ${CENOTE_SCRIPT_DIR}/hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl ;
++hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl ;
+ 
+ for HH_tbl1 in *.HH.tbl ; do 
+ sed 's/OS=.*//g; s/ ;//g; s/similar to AA sequence:UniProtKB:>\([0-9][A-Z].*\)/protein motif:PDB:\1/g; s/UniProtKB:>tr|.*|\(.\)/UniProtKB:\1/g; s/similar to AA sequence:UniProtKB:>\([a-z].*\)/protein motif:Scop:\1/g; s/similar to AA sequence:UniProtKB:>\(PF.*\)/protein motif:PFAM:\1/g; s/ is .*//g; s/ are .*//g' $HH_tbl1 | sed '/product/ s/; [a-zA-Z0-9_]\{1,20\}//g; s/;.*//g' > ${HH_tbl1%.HH.tbl}.HH2.tbl
+@@ -621,7 +621,7 @@
+ 	else
+ 		CONJ_COUNT=$( grep -i "virb\|type-IV\|secretion system\|conjuga\|transposon\|tra[a-z] \|trb[b-z]\|pilus" $feat_tbl2 | wc -l )
+ 		STRUCTURAL_COUNT=$( grep -i "capsid\|terminase\|portal\|baseplate\|base plate\|tail\|collar\|zot\|zonular\|minor coat\|packaging\|	virion protein" $feat_tbl2 | wc -l )
+-		if [[ $CONJ_COUNT -gt 0 ]] && [[ $STRUCTURAL_COUNT == 0 ]] ; then
++		if [[ $CONJ_COUNT -gt 0 ]] && [[ "$STRUCTURAL_COUNT" == 0 ]] ; then
+ 			TAX_ORF="Conjugative Transposon"
+ 		elif grep -i -q "zot\|zonular" $feat_tbl2 ; then
+ 			TAX_ORF="Inoviridae"
+@@ -653,9 +653,9 @@
+ 
+ 			grep -A1 "$TAX_ORF " ${feat_tbl2%.comb3.tbl}.AA.fasta | sed '/--/d' > ${feat_tbl2%.comb3.tbl}.tax_orf.fasta
+ 			if [[ $STRUCTURAL_COUNT == 1 ]] || [[ $STRUCTURAL_COUNT -gt 1 ]] ; then
+-				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
++				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
+ 			else
+-				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
++				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
+ 			fi
+ 			if [ ! -s "${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out" ]; then
+ 				echo "unclassified virus" > ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
+--- cenote-fixer1.sh.old	2020-04-01 17:28:30.793414297 -0500
++++ cenote-fixer1.sh	2020-04-01 18:03:16.753404880 -0500
 @@ -9,7 +9,7 @@
  	cp *.fsa cenote_fixer_sequin/
  	cp *.cmt cenote_fixer_sequin/
@@ -54,8 +279,8 @@
  
  	done
  fi
---- cenote-taker2.0.1.sh.old	2020-03-26 14:11:04.125709669 -0500
-+++ cenote-taker2.0.1.sh	2020-03-26 15:30:58.505931447 -0500
+--- cenote-taker2.0.1.sh.old	2020-04-01 17:28:30.794414300 -0500
++++ cenote-taker2.0.1.sh	2020-04-01 18:38:00.888450064 -0500
 @@ -88,9 +88,9 @@
  
  if [ "${SCRATCH_DIR}" == "none" ] ; then
@@ -108,7 +333,7 @@
  	cd $run_title
 -	perl ${CENOTE_SCRIPT_DIR}/apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta ;
 +	apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta ;
- 	rm apc_aln*
+ 	rm -f apc_aln*
  	for fa1 in $run_title*.fa ; do 
  		mv $fa1 $run_title${fa1#$run_title.}sta ; 
 @@ -191,7 +184,7 @@
@@ -117,7 +342,7 @@
  	cd $run_title
 -	perl ${CENOTE_SCRIPT_DIR}/apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta ;
 +	apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta ;
- 	rm apc_aln*
+ 	rm -f apc_aln*
  	for fa1 in $run_title*.fa ; do 
  		mv $fa1 $run_title${fa1#$run_title.}sta ; 
 @@ -292,7 +285,7 @@
@@ -145,8 +370,8 @@
 +		echo "$CONTIGS_NON_CIRCULAR" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.AA.sorted.fasta
  	else
  		echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try -standard, -with_rdrp_retro, -all_common as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
- 		rm ./*{0..9}.fasta
-@@ -459,7 +452,7 @@
+ 		rm -f ./*{0..9}.fasta
+@@ -460,7 +453,7 @@
  for nucl_fa in $CIRCLES_AND_ITRS ; do
  if [ -s "${nucl_fa%.fasta}.rotate.fasta" ]; then
  	echo "$(tput setaf 5)Guessing taxonomy for sequence "${nucl_fa%.fasta}.rotate.fasta" by BLASTX against virus and plasmid protein database.$(tput sgr 0)"
@@ -155,7 +380,7 @@
  	if [ ! -s "${nucl_fa%.fasta}.tax_guide.blastx.out" ]; then
  		echo "No homologues found" > ${nucl_fa%.fasta}.tax_guide.blastx.out ;
  	elif grep -i -q "circovir\|genomovir\|geminivir\|nanovir\|redondovir\|bacilladnavir\|smacovir" ${nucl_fa%.fasta}.tax_guide.blastx.out ; then 
-@@ -502,7 +495,7 @@
+@@ -503,7 +496,7 @@
  
  	if grep -i -q "Caudovir\|Ackermannvir\|Herellevir\|Corticovir\|Levivir\|Tectivir\|crAss-like virus\|CrAssphage\|Cyanophage\|Microvir\microphage\|Siphoviridae\|Myoviridae\|phage\|Podovir\|Halovir\|sphaerolipovir\|pleolipovir\|plasmid\|Inovir\|Ampullavir\|Bicaudavir\|Fusellovir\|Guttavir\|Ligamenvir\|Plasmavir\|Salterprovir\|Cystovir" ${nucl_fa%.fasta}.tax_guide.blastx.out ; then
  
@@ -164,7 +389,7 @@
  		if [ "$ENFORCE_START_CODON" == "True" ] ; then
  			sed 's/ /@/g' ${nucl_fa%.fasta}.phan.fasta | bioawk -c fastx '{ print }' | awk '{ if ($2 ~ /^[ATCG]TG/) { print ">"$1 ; print $2 }}' | sed 's/@/ /g' > ${nucl_fa%.fasta}.phan.sort.fasta
  		else
-@@ -550,12 +543,12 @@
+@@ -551,12 +544,12 @@
  if [ -n "$CIRCLES_AND_ITRS" ]; then
  	echo "$(tput setaf 5)Continuing to HMMSCAN (HMMER) of circular/ITR contigs on custom viral conserved protein model database for each ORF...$(tput sgr 0)" 
  	if  [[ $virus_domain_db = "standard" ]] ; then
@@ -180,8 +405,8 @@
 +		echo "$CIRCLES_AND_ITRS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.rotate.AA.hmmscan.out --cpu 1 -E 1e-8 ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.rotate.AA.sorted.fasta
  	else
  		echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, rna_virus, all_common as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
- 		rm ./*{0..9}.fasta
-@@ -606,7 +599,7 @@
+ 		rm -f ./*{0..9}.fasta
+@@ -607,7 +600,7 @@
  			echo "$(tput setaf 4)ORF file for "$nucl_fa" is empty. This circle might have no ORFS over 100AA.$(tput sgr 0)"
  		fi
  		if [ $CIRC_VIRAL_HALLMARK_COUNT -gt $CIRC_MINIMUM_DOMAINS ] || [ $CIRC_VIRAL_HALLMARK_COUNT == $CIRC_MINIMUM_DOMAINS ] ; then
@@ -190,7 +415,7 @@
  
  			grep -v "^#" ${nucl_fa%.fasta}.rotate.AA.hmmscan2.out | sed 's/ \+/	/g' | sort -u -k3,3 > ${nucl_fa%.fasta}.rotate.AA.hmmscan2.sort.out
  			if [ ! -z "${nucl_fa%.fasta}.rotate.AA.hmmscan2.sort.out" ] ; then
-@@ -712,7 +705,7 @@
+@@ -713,7 +706,7 @@
  if [ -n "$PROTEIN_NO_HMMSCAN2" ]; then
  
  	echo "$(tput setaf 5) Continuing to RPS-BLAST NCBI CDD domains database for each ORF in viral circular/ITR contigs...$(tput sgr 0)" 
@@ -199,7 +424,7 @@
  	echo "$(tput setaf 5)RPS-BLAST of viral circular/ITR contigs complete.$(tput sgr 0)"
  	echo " "
  else
-@@ -725,7 +718,7 @@
+@@ -726,7 +719,7 @@
  # Generating tbl file from RPS-BLAST results
  echo "$(tput setaf 5) Starting perl script to make tbl from RPS-BLAST output $(tput sgr 0)"
  
@@ -208,7 +433,7 @@
  
  for nucl_fa in $NEW_FASTAS ; do 
  if [ -s "${nucl_fa%.fasta}.NT.tbl" ]; then
-@@ -746,13 +739,13 @@
+@@ -747,13 +740,13 @@
  		if grep -q "(plasmid)" ${feat_tbl1%.NT.tbl}.tax_guide.blastx.out ; then
  			if [ -s "${feat_tbl1%.NT.tbl}.rotate.rps_nohits.fasta" ]; then
  				echo "$(tput setaf 5)"$nucl_fa" is likely a plasmid... Continuing to BLASTP NCBI nr database for each ORF that had no hits in CDD...$(tput sgr 0)" 
@@ -224,7 +449,7 @@
  				echo "$(tput setaf 5)BLASTP of "${feat_tbl1%.NT.tbl}.rotate.rps_nohits.fasta" complete.$(tput sgr 0)"
  			fi
  		fi
-@@ -764,7 +757,7 @@
+@@ -765,7 +758,7 @@
  # Generating tbl file from BLASTP results
  echo "$(tput setaf 5) Starting perl script to make tbl from BLASTP output $(tput sgr 0)"
  
@@ -233,24 +458,24 @@
  for feat_tbl1 in *.NT.tbl ; do
  if [ -s "${feat_tbl1%.NT.tbl}.BLASTP.tbl" ]; then
  	echo "$(tput setaf 5)"${feat_tbl1%.NT.tbl}": tbl made from BLASTP hits. Splitting fasta files for HHsearch...$(tput sgr 0)"
-@@ -971,14 +964,14 @@
+@@ -972,14 +965,14 @@
  for dark_orf in $dark_orf_list ; do
  	if  [[ $HHSUITE_TOOL = "hhsearch" ]] ; then
  		echo "$(tput setaf 5)Running HHsearch on "$dark_orf" now.$(tput sgr 0)"
 -		${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhsearch -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
 +		hhsearch -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
  		cat ${dark_orf%.for_hhpred.fasta}.out.hhr >> ${dark_orf%.rotate*.for_hhpred.fasta}.rotate.out_all.hhr ;
- 		rm ${dark_orf%.for_hhpred.fasta}.out.hhr 
+ 		rm -f ${dark_orf%.for_hhpred.fasta}.out.hhr 
  		cat $dark_orf >> ${dark_orf%.rotate*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
- 		rm $dark_orf
+ 		rm -f $dark_orf
  	elif [[ $HHSUITE_TOOL = "hhblits" ]] ; then
  		echo "$(tput setaf 5)Running HHblits on "$dark_orf" now.$(tput sgr 0)"
 -		${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhblits -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
 +		hhblits -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
  		cat ${dark_orf%.for_hhpred.fasta}.out.hhr >> ${dark_orf%.rotate*.for_hhpred.fasta}.rotate.out_all.hhr ;
- 		rm ${dark_orf%.for_hhpred.fasta}.out.hhr 
+ 		rm -f ${dark_orf%.for_hhpred.fasta}.out.hhr 
  		cat $dark_orf >> ${dark_orf%.rotate*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
-@@ -995,7 +988,7 @@
+@@ -996,7 +989,7 @@
  # Generating tbl file from HHsearch results
  echo "$(tput setaf 5) Starting perl script to make tbl from HHsearch output $(tput sgr 0)"
  
@@ -259,7 +484,16 @@
  
  for HH_tbl1 in *.HH.tbl ; do 
  sed 's/OS=.*//g; s/ ;//g; s/similar to AA sequence:UniProtKB:>\([0-9][A-Z].*\)/protein motif:PDB:\1/g; s/UniProtKB:>tr|.*|\(.\)/UniProtKB:\1/g; s/similar to AA sequence:UniProtKB:>\([a-z].*\)/protein motif:Scop:\1/g; s/similar to AA sequence:UniProtKB:>\(PF.*\)/protein motif:PFAM:\1/g; s/ is .*//g; s/ are .*//g' $HH_tbl1 | sed '/product/ s/; [a-zA-Z0-9_]\{1,20\}//g; s/;.*//g' > ${HH_tbl1%.HH.tbl}.HH2.tbl
-@@ -1089,9 +1082,9 @@
+@@ -1056,7 +1049,7 @@
+ 	else
+ 		CONJ_COUNT=$( grep -i "virb\|type-IV\|secretion system\|conjuga\|transposon\|tra[a-z] \|trb[b-z]\|pilus" $feat_tbl2 | wc -l )
+ 		STRUCTURAL_COUNT=$( grep -i "capsid\|terminase\|portal\|baseplate\|base plate\|tail\|collar\|zot\|zonular\|minor coat\|packaging\|	virion protein" $feat_tbl2 | wc -l )
+-		if [[ $CONJ_COUNT -gt 0 ]] && [[ $STRUCTURAL_COUNT == 0 ]] ; then
++		if [[ $CONJ_COUNT -gt 0 ]] && [[ "$STRUCTURAL_COUNT" == 0 ]] ; then
+ 			TAX_ORF="Conjugative Transposon"
+ 		elif grep -i -q "zot\|zonular" $feat_tbl2 ; then
+ 			TAX_ORF="Inoviridae"
+@@ -1090,9 +1083,9 @@
  
  			grep -A1 "$TAX_ORF " ${feat_tbl2%.comb3.tbl}.rotate.AA.sorted.fasta | sed '/--/d' > ${feat_tbl2%.comb3.tbl}.tax_orf.fasta
  			if [[ $STRUCTURAL_COUNT == 1 ]] || [[ $STRUCTURAL_COUNT -gt 1 ]] ; then
@@ -271,7 +505,7 @@
  			fi
  			if [ ! -s "${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out" ]; then
  				echo "unclassified virus" > ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
-@@ -1631,18 +1624,18 @@
+@@ -1632,18 +1625,18 @@
  if [ ! -z "$LIST_OF_VIRAL_DOMAIN_CONTIGS" ] ;then
  	echo "$(tput setaf 3) Starting annotation of contigs with viral domains but are neither circular nor have ITRs $(tput sgr 0)"
  
@@ -293,120 +527,8 @@
  else
  	echo "$(tput setaf 3) No recognized sketch option was used, contigs without detectable virus domains or circularity or ITRs will not be sketched $(tput sgr 0)"
  fi
---- hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl.old	2020-03-26 13:35:13.283284750 -0500
-+++ hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl	2020-03-26 13:35:39.687375930 -0500
-@@ -1,4 +1,4 @@
--#!/bin/perl
-+#!/opt/anaconda1anaconda2anaconda3/bin/perl
- use strict;
- use warnings;
- use File::Find;
---- quick_annotation_of_known_seqs1_200207.sh.old	2020-03-26 14:11:04.127709676 -0500
-+++ quick_annotation_of_known_seqs1_200207.sh	2020-03-26 15:12:51.505193837 -0500
-@@ -13,7 +13,7 @@
- 	if [ -s ${nucl_fa%.fna}.starting_orf.1.fa ] ; then
- 		circlator fixstart --genes_fa ${nucl_fa%.fna}.starting_orf.1.fa $nucl_fa ${nucl_fa%.fna}.rotate ;
- 	else
--		/data/tiszamj/mike_tisza/EMBOSS-6.6.0/emboss/getorf -circular -minsize 240 -find 3 -sequence $nucl_fa -outseq ${nucl_fa%.fna}.nucl_orfs.fa ; 
-+		getorf -circular -minsize 240 -find 3 -sequence $nucl_fa -outseq ${nucl_fa%.fna}.nucl_orfs.fa ; 
- 
- 		grep ">" ${nucl_fa%.fna}.nucl_orfs.fa > ${nucl_fa%.fna}.nucl_orfs.txt
- 		cat "${nucl_fa%.fna}.nucl_orfs.txt" | while read liner ; do
-@@ -54,10 +54,10 @@
- 
- 	taxid=$( tail -n1 ${nucl_fa%.known_species.fna}.tax_guide.blastn.tab | cut -f2 )
- 	if grep -q "Inovir" ${nucl_fa%.known_species.fna}.tax_guide.blastn.out ; then
--		/data/tiszamj/mike_tisza/EMBOSS-6.6.0/emboss/getorf -find 1 -minsize 90 -sequence ${nucl_fa%.fna}.rotate.fasta -outseq ${nucl_fa%.fna}.rotate.AA.fasta ;
-+		getorf -find 1 -minsize 90 -sequence ${nucl_fa%.fna}.rotate.fasta -outseq ${nucl_fa%.fna}.rotate.AA.fasta ;
- 		echo "getorf for AA sequence done"
- 	else
--		/data/tiszamj/mike_tisza/EMBOSS-6.6.0/emboss/getorf -find 1 -minsize 150 -sequence ${nucl_fa%.fna}.rotate.fasta -outseq ${nucl_fa%.fna}.rotate.AA.fasta ;
-+		getorf -find 1 -minsize 150 -sequence ${nucl_fa%.fna}.rotate.fasta -outseq ${nucl_fa%.fna}.rotate.AA.fasta ;
- 		echo "getorf for AA sequence done"
- 
- 	fi
-@@ -66,7 +66,7 @@
- 	blastp -evalue 1e-10 -num_descriptions 5 -num_threads $CPU -num_alignments 1 -db /fdb/blastdb/nr -query ${nucl_fa%.fna}.rotate.AA.sorted.fasta -out ${nucl_fa%.known_species.fna}.rotate.blastp.out ;
- 
- done 
--perl ${CENOTE_SCRIPT_DIR}/blastpreport2tbl_mt_annotation_pipe_biowulf2.pl ;
-+blastpreport2tbl_mt_annotation_pipe_biowulf2.pl ;
- 
- for GENOME_NAME in $novel_fastas ; do
- 	if grep -i -q "caudovir\|podovir\|siphovir\|myovir\|ackermannvir\|mimivir\|pandoravir\|pithovir\|marseillevir\|plasmid\|" ${GENOME_NAME%.known_species.fna}.tax_guide.blastn.out ; then
-@@ -183,7 +183,7 @@
- 	fi
- done
- 
--${CENOTE_SCRIPT_DIR}/linux64.tbl2asn -V vb -t $base_directory/$template_file -X C -p sequin_directory/ ;
-+tbl2asn -V vb -t $base_directory/$template_file -X C -p sequin_directory/ ;
- 
- for fsa_file in sequin_directory/*.fsa ; do
- 	fsa_name2=$( echo ${fsa_file#sequin_directory/} ) ; 
-@@ -193,7 +193,7 @@
- 	mv $fsa_file.temp $fsa_file
- done
- 
--${CENOTE_SCRIPT_DIR}/linux64.tbl2asn -V vb -t $base_directory/$template_file -X C -p sequin_directory/ ;
-+tbl2asn -V vb -t $base_directory/$template_file -X C -p sequin_directory/ ;
- 
- rm *.all_start_stop.txt *.bad_starts.txt *.comb.tbl *.comb2.tbl *.good_start_orfs.txt *.hypo_start_stop.txt *.nucl_orfs.fa *.remove_hypo.txt *.log *.promer.contigs_with_ends.fa *.promer.promer *.out.hhr *.starting_orf.1.fa *.starting_orf.txt *.used_positions.txt
- echo "$(tput setaf 3) DONE WITH KNOWN VIRUSES $(tput sgr 0)"
---- rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl.old	2020-03-26 13:36:00.263446988 -0500
-+++ rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl	2020-03-26 13:36:22.453523617 -0500
-@@ -1,4 +1,4 @@
--#!/bin/perl
-+#!/opt/anaconda1anaconda2anaconda3/bin/perl
- use strict;
- use warnings;
- use File::Find;
-@@ -43,4 +43,4 @@
- 			print OUTPUT "\n\t\t\tinference\tprotein motif:$1";			
- 		}
- 	}
--}
-\ No newline at end of file
-+}
---- rpsblastreport2tbl_mt_sketch_contigs1.pl.old	2020-03-26 13:36:37.718576332 -0500
-+++ rpsblastreport2tbl_mt_sketch_contigs1.pl	2020-03-26 13:36:57.388644256 -0500
-@@ -1,4 +1,4 @@
--#!/bin/perl
-+#!/opt/anaconda1anaconda2anaconda3/bin/perl
- use strict;
- use warnings;
- use File::Find;
-@@ -43,4 +43,4 @@
- 			print OUTPUT "\n\t\t\tinference\tprotein motif:$1";			
- 		}
- 	}
--}
-\ No newline at end of file
-+}
---- rpsblastreport_to_table1.pl.old	2020-03-26 13:37:11.029691363 -0500
-+++ rpsblastreport_to_table1.pl	2020-03-26 13:37:30.228757659 -0500
-@@ -1,4 +1,4 @@
--#!/bin/perl
-+#!/opt/anaconda1anaconda2anaconda3/bin/perl
- use strict;
- use warnings;
- use File::Find;
-@@ -38,4 +38,4 @@
- 			print OUTPUT "$2\t$4\n";
- 		}
- 	}
--}
-\ No newline at end of file
-+}
---- run_cenote-taker2.0.1.py.old	2020-03-26 13:39:20.238137551 -0500
-+++ run_cenote-taker2.0.1.py	2020-03-26 13:58:24.609088178 -0500
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/opt/anaconda1anaconda2anaconda3/bin/python
- 
- import argparse
- import sys, os
---- sketching_nonviral_contigs_200207.sh.old	2020-03-26 14:11:04.129709683 -0500
-+++ sketching_nonviral_contigs_200207.sh	2020-03-26 14:25:18.909641220 -0500
+--- sketching_nonviral_contigs_2.0.1.sh.old	2020-04-01 17:28:30.796414307 -0500
++++ sketching_nonviral_contigs_2.0.1.sh	2020-04-01 18:01:48.001105121 -0500
 @@ -24,12 +24,12 @@
  	done
  
@@ -422,167 +544,3 @@
  
  	echo "$(tput setaf 5) Looking for tRNAs in contigs; non-circular/non-ITR contigs without viral domains  $(tput sgr 0)"
  	for GENOME_NAME in $NUCL_FILES_LIST ; do
---- sketching_nonviral_contigs_2.0.1.sh.old	2020-03-26 14:11:04.131709690 -0500
-+++ sketching_nonviral_contigs_2.0.1.sh	2020-03-26 14:23:52.370349306 -0500
-@@ -24,12 +24,12 @@
- 	done
- 
- 
--	time ls *.AA.fasta | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -query {} -line_length 100 -out {}.rpsblast1.out
-+	time ls *.AA.fasta | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -query {} -line_length 100 -out {}.rpsblast1.out
- 
- 		echo "$(tput setaf 5)RPS-BLAST of putative non-viral contigs complete.$(tput sgr 0)"
- 		echo " "
- 
--	perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_sketch_contigs1.pl ;
-+	rpsblastreport2tbl_mt_sketch_contigs1.pl ;
- 
- 	echo "$(tput setaf 5) Looking for tRNAs in contigs; non-circular/non-ITR contigs without viral domains  $(tput sgr 0)"
- 	for GENOME_NAME in $NUCL_FILES_LIST ; do
---- annotation_of_linear_contigs_prune_seg2.0.1.sh.old	2020-03-26 15:36:20.367035015 -0500
-+++ annotation_of_linear_contigs_prune_seg2.0.1.sh	2020-03-26 19:45:00.993898547 -0500
-@@ -49,7 +49,7 @@
- 
- 			MDYT=$( date +"%m-%d-%y---%T" )
- 			echo "time update: HMMSCAN of common viral domains beginning" $MDYT
--			hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.sorted.fasta
-+			hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.sorted.fasta
- 			grep -v "^#" ${NO_END%.fna}.AA.hmmscan2.out | sed 's/ \+/	/g' | sort -u -k3,3 > ${NO_END%.fna}.AA.hmmscan2.sort.out
- 			if [ ! -z "${NO_END%.fna}.AA.hmmscan2.sort.out" ] ; then
- 				cut -f3 ${NO_END%.fna}.AA.hmmscan2.sort.out | awk '{ print $0" " }' > ${NO_END%.fna}.AA.called_hmmscan2.txt ; 
-@@ -77,14 +77,14 @@
- 	done
- 	MDYT=$( date +"%m-%d-%y---%T" )
- 	echo "time update: running RPSBLAST on each sequence " $MDYT
--	time ls *.no_hmmscan2.fasta | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -query {} -line_length 200 -out {}.rpsb.out ; echo "$(tput setaf 5)RPS-BLAST of "{}" complete.$(tput sgr 0)"
-+	time ls *.no_hmmscan2.fasta | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -query {} -line_length 200 -out {}.rpsb.out ; echo "$(tput setaf 5)RPS-BLAST of "{}" complete.$(tput sgr 0)"
- 
- 	for RPSB in *.no_hmmscan2.fasta.rpsb.out ; do 
- 		mv $RPSB ${RPSB%.no_hmmscan2.fasta.rpsb.out}.rotate.AA.rpsblast.out
- 	done
- 
- 
--	perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
-+	rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
- 
- 	MDYT=$( date +"%m-%d-%y---%T" )
- 	echo "time update: making tables for hmmscan and rpsblast outputs " $MDYT
-@@ -109,7 +109,7 @@
- 		fi
- 	done
- 
--	perl ${CENOTE_SCRIPT_DIR}/rpsblastreport_to_table1.pl
-+	rpsblastreport_to_table1.pl
- 
- 
- 	MDYT=$( date +"%m-%d-%y---%T" )
-@@ -139,7 +139,7 @@
- 						echo "$counter_r	X" ; 
- 					done >> ${TABLE1%.HMMSCAN_TABLE.txt}.virus_signal.tab 
- 				fi
--			elif [[ $INFER == *"PHA0"* ]] || grep -q "$INFER" ${CENOTE_SCRIPT_DIR}/viral_cdds_and_pfams_191028.txt ; then
-+			elif [[ $INFER == *"PHA0"* ]] || grep -q "$INFER" ${CT2_DIR}/viral_cdds_and_pfams_191028.txt ; then
- 				if [[ "$RPS_END" -gt "$RPS_START" ]] ; then 
- 					for ((counter_f=(( $RPS_START ));counter_f<=$RPS_END;counter_f++)); do 
- 						echo "$counter_f	V" ; 
-@@ -190,7 +190,7 @@
- 	echo "prophages not being pruned"
- 
- else
--	python ${CENOTE_SCRIPT_DIR}/cenote_virus_segments_V6.py
-+	cenote_virus_segments_V6.py
- 
- 	# reformat .fastas to get viral segments of prophage
- 	VIR_COUNTER=0 
-@@ -257,7 +257,7 @@
- 		fi
- 	fi
- 
--	blastx -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query $vd_fa -out ${vd_fa%.fna}.tax_guide.blastx.out ;
-+	blastx -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query $vd_fa -out ${vd_fa%.fna}.tax_guide.blastx.out ;
- 	if [ ! -s "${vd_fa%.fna}.tax_guide.blastx.out" ]; then
- 		echo "No homologues found" > ${vd_fa%.fna}.tax_guide.blastx.out ;
- 	elif grep -i -q "circovir\|genomovir\|geminivir\|nanovir\|redondovir\|bacilladnavir\|smacovir" ${vd_fa%.fna}.tax_guide.blastx.out ; then 
-@@ -292,7 +292,7 @@
- for NO_END in $virus_seg_fastas ; do
- 	if grep -i -q "Caudovir\|Ackermannvir\|Herellevir\|Corticovir\|Levivir\|Tectivir\|crAss-like virus\|CrAssphage\|Cyanophage\|Microvir\microphage\|Siphoviridae\|Myoviridae\|phage\|Podovir\|Halovir\|sphaerolipovir\|pleolipovir\|plasmid\|Inovir\|Ampullavir\|Bicaudavir\|Fusellovir\|Guttavir\|Ligamenvir\|Plasmavir\|Salterprovir\|Cystovir" ${NO_END%.fna}.tax_guide.blastx.out ; then
- 
--		${CENOTE_SCRIPT_DIR}/PHANOTATE/phanotate.py -f fasta -o ${NO_END%.fna}.phan.fasta $NO_END ; 
-+		phanotate.py -f fasta -o ${NO_END%.fna}.phan.fasta $NO_END ; 
- 		if [ "$ENFORCE_START_CODON" == "True" ] ; then
- 			sed 's/ /@/g' ${NO_END%.fna}.phan.fasta | bioawk -c fastx '{ print }' | awk '{ if ($2 ~ /^[ATCG]TG/) { print ">"$1 ; print $2 }}' | sed 's/@/ /g' > ${NO_END%.fna}.phan.sort.fasta
- 		else
-@@ -329,7 +329,7 @@
- 			echo ">"${ORF_NAME} "["$START_BASE" - "$END_BASE"]" ; echo $AA_SEQ ; 
- 		done > ${NO_END%.fna}.AA.fasta
- 	fi
--	hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.fasta
-+	hmmscan --tblout ${NO_END%.fna}.AA.hmmscan2.out --cpu $CPU -E 1e-6 ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a ${NO_END%.fna}.AA.fasta
- 	grep -v "^#" ${NO_END%.fna}.AA.hmmscan2.out | sed 's/ \+/	/g' | sort -u -k3,3 > ${NO_END%.fna}.AA.hmmscan2.sort.out
- 		echo $NO_END "contains at least one viral or plasmid domain"
- 	if [ ! -z "${NO_END%.fna}.AA.hmmscan2.sort.out" ] ; then
-@@ -361,7 +361,7 @@
- 	if [ -s "${vd_fa%.fna}.no_hmmscan2.fasta" ]; then
- 
- 		echo "$(tput setaf 5)"$vd_fa" Continuing to RPS-BLAST NCBI CDD domains database for each ORF...$(tput sgr 0)" 
--		rpsblast -evalue 1e-4 -num_descriptions 5 -num_threads $CPU -line_length 100 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -query ${vd_fa%.fna}.no_hmmscan2.fasta -out ${vd_fa%.fna}.rotate.AA.rpsblast.out ;
-+		rpsblast -evalue 1e-4 -num_descriptions 5 -num_threads $CPU -line_length 100 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -query ${vd_fa%.fna}.no_hmmscan2.fasta -out ${vd_fa%.fna}.rotate.AA.rpsblast.out ;
- 		echo "$(tput setaf 5)RPS-BLAST of "${vd_fa%.fna}.no_hmmscan2.fasta" complete.$(tput sgr 0)"
- 		echo " "
- 	else
-@@ -370,7 +370,7 @@
- 	fi
- done
- 
--perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
-+rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
- for vd_fa in $virus_seg_fastas ; do
- if [ -s "${vd_fa%.fna}.NT.tbl" ]; then
- 	echo "$(tput setaf 5)"$vd_fa" tbl made from RPS-BLAST hits...$(tput sgr 0)"
-@@ -397,7 +397,7 @@
- 	fi		
- done
- 
--perl ${CENOTE_SCRIPT_DIR}/blastpreport2tbl_mt_annotation_pipe_biowulf2.pl ;
-+blastpreport2tbl_mt_annotation_pipe_biowulf2.pl ;
- for feat_tbl1 in *_vs[0-9].NT.tbl ; do
- if [ -s "${feat_tbl1%.NT.tbl}.BLASTP.tbl" ]; then
- 	echo "$(tput setaf 5)"${feat_tbl1%.NT.tbl}": tbl made from BLASTP hits. Splitting fasta files for HHsearch...$(tput sgr 0)"
-@@ -573,14 +573,14 @@
- 	if  [[ $HHSUITE_TOOL = "hhsearch" ]] ; then
- 
- 		echo "$(tput setaf 5)Running HHsearch on "$dark_orf" now.$(tput sgr 0)"
--		${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhsearch -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
-+		hhsearch -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
- 		cat ${dark_orf%.for_hhpred.fasta}.out.hhr >> ${dark_orf%.*.for_hhpred.fasta}.rotate.out_all.hhr ;
- 		rm ${dark_orf%.for_hhpred.fasta}.out.hhr 
- 		cat $dark_orf >> ${dark_orf%.*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
- 		rm $dark_orf
- 	elif [[ $HHSUITE_TOOL = "hhblits" ]] ; then
- 		echo "$(tput setaf 5)Running HHblits on "$dark_orf" now.$(tput sgr 0)"
--		${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhblits -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
-+		hhblits -i $dark_orf -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o ${dark_orf%.for_hhpred.fasta}.out.hhr -cpu $CPU -maxmem $MEM -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1  ;
- 		cat ${dark_orf%.for_hhpred.fasta}.out.hhr >> ${dark_orf%.*.for_hhpred.fasta}.rotate.out_all.hhr ;
- 		rm ${dark_orf%.for_hhpred.fasta}.out.hhr 
- 		cat $dark_orf >> ${dark_orf%.*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
-@@ -595,7 +595,7 @@
- rm *.out.hhr
- 
- # Generating tbl file from HHpred results
--perl ${CENOTE_SCRIPT_DIR}/hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl ;
-+hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl ;
- 
- for HH_tbl1 in *.HH.tbl ; do 
- sed 's/OS=.*//g; s/ ;//g; s/similar to AA sequence:UniProtKB:>\([0-9][A-Z].*\)/protein motif:PDB:\1/g; s/UniProtKB:>tr|.*|\(.\)/UniProtKB:\1/g; s/similar to AA sequence:UniProtKB:>\([a-z].*\)/protein motif:Scop:\1/g; s/similar to AA sequence:UniProtKB:>\(PF.*\)/protein motif:PFAM:\1/g; s/ is .*//g; s/ are .*//g' $HH_tbl1 | sed '/product/ s/; [a-zA-Z0-9_]\{1,20\}//g; s/;.*//g' > ${HH_tbl1%.HH.tbl}.HH2.tbl
-@@ -651,9 +651,9 @@
- 
- 			grep -A1 "$TAX_ORF " ${feat_tbl2%.comb3.tbl}.AA.fasta | sed '/--/d' > ${feat_tbl2%.comb3.tbl}.tax_orf.fasta
- 			if [[ $STRUCTURAL_COUNT == 1 ]] || [[ $STRUCTURAL_COUNT -gt 1 ]] ; then
--				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
-+				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
- 			else
--				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
-+				blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
- 			fi
- 			if [ ! -s "${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out" ]; then
- 				echo "unclassified virus" > ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;

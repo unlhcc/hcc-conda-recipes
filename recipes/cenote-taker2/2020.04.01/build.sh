@@ -15,7 +15,7 @@ chmod +x ${PREFIX}/bin/irf307.linux.exe
 # create folder for database download
 target=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}
 mkdir -p ${target}/db/
-touch ${target}/db/.empty
+cp viral_cdds_and_pfams_191028.txt ${target}/db/
 
 
 # Krona database files needs to be in CT2

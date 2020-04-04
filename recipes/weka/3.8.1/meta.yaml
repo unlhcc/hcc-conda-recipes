@@ -1,0 +1,39 @@
+{% set name = "weka" %}
+{% set version = "3.8.1" %}
+{% set sha256 = "b3f242984e9b8abdfdaaef184fca883fa213778cfe0ba1c0bd3ab2d0c851c19a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://prdownloads.sourceforge.net/{{ name }}/{{ name }}-{{ version|replace('.','-') }}.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - openjdk >=6
+    - python
+
+test:
+  commands:
+    - weka weka.classifiers.bayes.NaiveBayes -h
+
+about:
+  home: https://www.cs.waikato.ac.nz/ml/weka/
+  dev_url: https://sourceforge.net/projects/weka/
+  doc_url: https://waikato.github.io/weka-wiki/
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: "The workbench for machine learning."
+  description: "Weka is tried and tested open source machine learning software that can be accessed through a graphical user interface, standard terminal applications, or a Java API."
+
+extra:
+  identifiers:
+    - doi:10.1016/C2015-0-02071-8
+  notes: "This package includes a 'weka' wrapper script for running Weka."

@@ -1,0 +1,41 @@
+{% set name = "effector-p" %}
+{% set version = "2.0" %}
+{% set sha256 = "3ddf7c0fe4b423024e88c175845ad8a642376b64b0b5da9d932127701c72b8c8" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://effectorp.csiro.au/EffectorP_2.0.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - python <3
+    - emboss 6.5.7*
+    - weka 3.8.1*
+    - numpy
+test:
+  commands:
+    - EffectorP.py -i Scripts/Effector_Testing.fasta
+  source_files:
+    - Scripts/Effector_Testing.fasta
+
+about:
+  home: http://effectorp.csiro.au/index.html
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENCE.txt
+  summary: "EffectorP is a machine learning method for fungal effector prediction in secretomes."
+
+extra:
+  identifiers:
+    - doi:10.1111/nph.13794
+  skip-lints:
+    - should_be_noarch_generic

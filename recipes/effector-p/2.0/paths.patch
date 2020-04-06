@@ -1,0 +1,45 @@
+--- Scripts/functions.py.org	2020-04-04 03:19:01.284748743 +0000
++++ Scripts/functions.py	2020-04-04 03:19:25.291737395 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+     Improved prediction of fungal effector proteins from secretomes with EffectorP 2.0
+     Copyright (C) 2017-2018 Jana Sperschneider	
+--- Scripts/EffectorP.py.org	2020-04-04 03:17:19.867796692 +0000
++++ Scripts/EffectorP.py	2020-04-04 05:37:07.616360089 +0000
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+     Improved prediction of fungal effector proteins from secretomes with EffectorP 2.0
+     Copyright (C) 2017-2018 Jana Sperschneider	
+@@ -43,8 +43,8 @@
+     # -----------------------------------------------------------------------------------------------------------
+     SCRIPT_PATH = sys.path[0]
+     # Change the path to WEKA to the appropriate location on your computer
+-    WEKA_PATH = SCRIPT_PATH + '/weka-3-8-1/weka.jar'
+-    PEPSTATS_PATH = SCRIPT_PATH + '/EMBOSS-6.5.7/emboss/'
++    WEKA_PATH = SCRIPT_PATH + '/weka'
++    PEPSTATS_PATH = SCRIPT_PATH + '/'
+     # -----------------------------------------------------------------------------------------------------------
+     # Check that the path to the WEKA software exists
+     path_exists = os.access(WEKA_PATH, os.F_OK)
+@@ -151,7 +151,7 @@
+     print 'Ensemble classification'
+     for model in functions.models_bayes:
+         #--------------------------------------------------------------
+-        ParamList = ['java', '-cp', WEKA_PATH, 'weka.classifiers.bayes.NaiveBayes', '-l', SCRIPT_PATH + model, '-T', RESULTS_PATH + 'weka.arff', '-p', 'first-last']
++        ParamList = [WEKA_PATH, 'weka.classifiers.bayes.NaiveBayes', '-l', SCRIPT_PATH + model, '-T', RESULTS_PATH + 'weka.arff', '-p', 'first-last']
+ 
+         with open(RESULTS_PATH + 'Predictions.txt', 'wb') as out:
+             try:
+@@ -186,7 +186,7 @@
+         #-------------------------------------------------------------- 
+     for model in functions.models_J48:
+         #--------------------------------------------------------------
+-        ParamList = ['java', '-cp', WEKA_PATH, 'weka.classifiers.trees.J48', '-l', SCRIPT_PATH + model, '-T', RESULTS_PATH + 'weka.arff', '-p', 'first-last']
++        ParamList = [WEKA_PATH, 'weka.classifiers.trees.J48', '-l', SCRIPT_PATH + model, '-T', RESULTS_PATH + 'weka.arff', '-p', 'first-last']
+ 
+         with open(RESULTS_PATH + 'Predictions.txt', 'wb') as out:
+             try:

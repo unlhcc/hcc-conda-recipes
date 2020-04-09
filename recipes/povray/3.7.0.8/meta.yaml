@@ -1,0 +1,59 @@
+{% set name = "povray" %}
+{% set version = "3.7.0.8" %}
+{% set sha256 = "53d11ebd2972fc452af168a00eb83aefb61387662c10784e81b63e44aa575de4" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/POV-Ray/povray/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - autoconf >=2.59
+    - automake >=1.9
+    - pkg-config
+  host:
+    - boost >=1.37*
+    - zlib >=1.2.1
+    - libpng >=1.2.5
+    - jpeg >=6b
+    - libtiff >=3.6.1
+    - openexr >=1.2*
+    - sdl >=1.2*
+    - mkl-devel
+    - xorg-libx11
+    - xorg-libxpm
+  run:
+    - boost-cpp
+    - ilmbase
+    - zlib
+    - libpng
+    - jpeg
+    - libtiff
+    - openexr
+    - sdl
+    - xorg-libx11
+    - xorg-libxpm
+
+test:
+  commands:
+    - povray --version
+
+about:
+  home: https://www.povray.org/
+  dev_url: https://github.com/POV-Ray/povray
+  doc_url: http://www.povray.org/documentation/
+  license: AGPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "The Persistence of Vision Raytracer."
+  description: " The Persistence of Vision Raytracer is a high-quality, Free Software tool for creating stunning three-dimensional graphics. The source code is available for those wanting to do their own ports. "

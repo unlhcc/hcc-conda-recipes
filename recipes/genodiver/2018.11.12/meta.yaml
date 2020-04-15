@@ -1,0 +1,43 @@
+{% set name = "GenoDiver" %}
+{% set version = "2018.11.12" %}
+{% set sha256 = "9310e9150a2de4104ece3d18b72ba56ea4ecd451b1b1a3ffd001ef942098a459" %}
+{% set commit = "a8c418c8e6363a98534ff80259d693241399157c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/jeremyhoward/Geno-Diver/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  # issues with gcc and wchar
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - mkl-devel
+    - eigen
+    - openmp
+    - zlib
+  run:
+    - eigen
+    - openmp
+    - zlib
+
+test:
+  commands:
+    - GenoDiver 2>&1 | grep "GENO-DIVER" > /dev/null 
+
+about:
+  home: https://jeremyhoward.github.io/Geno_Diver_Website/
+  license: LGPL-2.1
+  license_family: LGPL
+  license_file: LICENSE.txt
+  summary: "Geno-Diver is a complex animal genetic simulation tool that is able to simulate quantitative and/or fitness characters."
+  doc_url: https://jeremyhoward.github.io/Geno_Diver_Website/
+  dev_url: https://github.com/jeremyhoward/Geno-Diver

@@ -10,9 +10,11 @@ package:
 source:
   url: https://github.com/jeremyhoward/Geno-Diver/archive/{{ commit }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - paths.patch
 
 build:
-  number: 0
+  number: 1
   # issues with gcc and wchar
   skip: True  # [osx]
 
@@ -28,6 +30,8 @@ requirements:
     - eigen
     - openmp
     - zlib
+    - macs-simulator
+    - r-base
 
 test:
   commands:

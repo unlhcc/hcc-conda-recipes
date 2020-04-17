@@ -1,0 +1,37 @@
+{% set name = "MaCS-simulator" %}
+{% set version = "2019.10.17" %}
+{% set sha256 = "18d995511c559a89342d71b181922fc26da3fa65906608d614d741a57459603b" %}
+{% set commit = "85b0475231fb32dab70e7ae0c81b0603151b4da7" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/gchen98/macs/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - boost
+  run:
+    - boost
+
+test:
+  commands:
+    - macs 2>&1 | grep "Usage"
+    - echo | msformatter
+
+about:
+  home: https://github.com/gchen98/macs
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE-2.0.txt
+  summary: "MaCS is a simulator of the coalescent process that simulates geneologies spatially across chromosomes as a Markovian process."
+  dev_url: https://github.com/gchen98/macs

@@ -1,0 +1,39 @@
+{% set name = "MACS" %}
+{% set version = "1.4.3" %}
+{% set sha256 = "a9116d38075434aa5ef62ddd66ce10dedab82fe111392e2dec59c7f9cc718b9e" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://files.pythonhosted.org/packages/86/da/1e57f6e130b732160d87d96f2cc1771b9de24ce16522a4f73a8528166b87/MACS-1.4.3.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - pip
+    - python <3
+  run:
+    - python <3
+
+test:
+  commands:
+    - macs -h
+    - wignorm -h
+    - elandexport2bed 2>&1 | grep "Convert" > /dev//null
+    - elandmulti2bed 2>&1 | grep "Filter" > /dev/null
+    - elandresult2bed 2>&1 | grep "Filter" > /dev/null
+    - sam2bed 2>&1 | grep "Convert" > /dev/null
+
+about:
+  home: https://github.com/taoliu/MACS/
+  license: Artistic License
+  license_family: OTHER
+  license_file: COPYING
+  summary: "Model Based Analysis for ChIP-Seq data."

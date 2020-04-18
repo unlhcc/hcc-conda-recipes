@@ -1,0 +1,10 @@
+--- tsne/bh_sne_src/quadtree.h.old	2020-04-16 20:40:07.320812622 -0500
++++ tsne/bh_sne_src/quadtree.h	2020-04-16 20:40:23.193864132 -0500
+@@ -14,7 +14,6 @@
+ 
+ static inline double min(double x, double y) { return (x <= y ? x : y); }
+ static inline double max(double x, double y) { return (x <= y ? y : x); }
+-static inline double abs(double x) { return (x < .0 ? -x : x); }
+ 
+ class Cell {
+     

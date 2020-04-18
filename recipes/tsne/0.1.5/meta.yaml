@@ -1,0 +1,47 @@
+{% set name = "tsne" %}
+{% set version = "0.1.5" %}
+{% set sha256 = "bda7e18e48fbe8f88aeb4b361b7a434076312b2c2cdaf81afb76c8960ff1084c" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - remove_abs.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - pip
+    - python <3
+    - cython >=0.19.1
+    - numpy >=1.7.1
+    - scipy >=0.12.0
+    - libcblas
+    - openblas
+  run:
+    - python <3
+    - numpy >=1.7.1
+    - scipy >=0.12.0
+    - openblas
+
+test:
+  imports:
+    - tsne
+
+about:
+  home: https://github.com/danielfrg/py_tsne
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE.txt
+  summary: "TSNE implementations for Python."

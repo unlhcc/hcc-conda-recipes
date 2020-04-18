@@ -1,0 +1,40 @@
+{% set name = "adfr-suite" %}
+{% set version = "1.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://ccsb.scripps.edu/adfr/download/1038/{{ name }}-{{ version }}.tar.gz   # [linux]
+    sha256: 66539864ffb7ba87728d52ee50dde78586f551c7ca96aa455dae761875faf7e4     # [linux]
+  - url: https://ccsb.scripps.edu/adfr/download/1033/{{ name }}-{{ version }}.tar.gz   # [osx]
+    sha256: 9556680809c76859b159b7709fa1a6e84716e2cb41a0ab8bd72aecbb7960b413     # [osx]
+
+build:
+  number: 0
+  preserve_egg_dir: True
+
+requirements:
+  build:
+  run:
+    - libstdcxx-ng # [linux]
+    - xorg-libsm # [linux]
+    - xorg-libx11 # [linux]
+    - xorg-libice # [linux]
+
+test:
+  commands:
+    - adfr --help
+    - prepare_ligand4.py
+    - prepare_receptor4.py
+
+about:
+  home: https://ccsb.scripps.edu/adfr/
+  license: OTHER
+  summary: "AutoDockFR (or ADFR in short) is a protein-ligand docking program developed in the Sanner laboratory at Scripps Research under the AutoDock umbrella"
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
+    - should_not_be_noarch_source

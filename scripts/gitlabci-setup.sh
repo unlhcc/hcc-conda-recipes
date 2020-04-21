@@ -23,6 +23,10 @@ then
     SUDO=sudo
     dockerd &
     sleep 10
+    # completely remove existing conda install to avoid strange cross-contamination issues
+    rm -rf /opt/conda
+    export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin
+
 else
     tag=MacOSX
     SUDO=""
@@ -31,7 +35,8 @@ fi
 # install conda
 curl -L -O https://repo.continuum.io/miniconda/Miniconda3-$MINICONDA_VER-$tag-x86_64.sh
 $SUDO bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p $ANACONDA_PREFIX
-export PATH=$ANACONDA_PREFIX/bin:$PATH
+source $ANACONDA_PREFIX/etc/profile.d/conda.sh
+conda activate base
 
 # set channels
 conda config --add channels bioconda

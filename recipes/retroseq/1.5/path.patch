@@ -1,0 +1,16 @@
+--- bin/retroseq.pl.old	2020-04-23 12:54:53.661515421 -0500
++++ bin/retroseq.pl	2020-04-23 12:55:17.398593664 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ =pod
+ This file is part of RetroSeq.
+ 
+@@ -23,7 +23,6 @@
+ use Cwd;
+ use File::Basename;
+ 
+-use lib dirname(__FILE__).'/..';
+ use RetroSeq::Vcf;
+ use RetroSeq::Utilities;
+ 

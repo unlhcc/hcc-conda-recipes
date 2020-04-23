@@ -1,0 +1,37 @@
+{% set name = "RetroSeq" %}
+{% set version = "1.5" %}
+{% set sha256 = "f88780e2994f83aaacc8f6fc5ec90783e362c45f0c0c38a095bd78b1643fb5e4" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/tk2/RetroSeq/archive/v1.5.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - perl 5.26.2
+  run:
+    - perl 5.26.2
+    - bedtools
+    - samtools
+    - exonerate
+    - coreutils
+
+test:
+  commands:
+    - retroseq.pl --help
+
+about:
+  home: https://github.com/tk2/RetroSeq
+  license: GPL-3.0-or-later
+  license_family: GPL
+  summary: RetroSeq is a bioinformatics tool that searches for mobile element insertions from aligned reads in a BAM file and a library of reference transposable elements.

@@ -10,6 +10,9 @@ set +u
 [[ -z $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK  ]] && DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK="false"
 set -u
 
+source $ANACONDA_PREFIX/etc/profile.d/conda.sh
+conda activate base
+
 export HOST_USER_ID=`id -u`
 SKIP_LINTING=false
 

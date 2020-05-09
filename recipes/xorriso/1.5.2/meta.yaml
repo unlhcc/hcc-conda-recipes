@@ -1,0 +1,43 @@
+{% set name = "xorriso" %}
+{% set version = "1.5.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://www.gnu.org/software/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 3b69f5c93ae7c40c5bbe4a847fa3963f5efc9c565551622f77121c5792fc17e7
+  patches:
+    - wish.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - zlib
+    - bzip2
+    - readline
+    - tk
+  run:
+    - zlib
+    - bzip2
+    - readline
+    - tk
+
+test:
+  commands:
+    - xorriso -help
+
+about:
+  home: https://www.gnu.org/software/xorriso/
+  dev_url: https://dev.lovelyhq.com/libburnia
+  doc_url: https://dev.lovelyhq.com/libburnia/web/-/wikis/Xorriso
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: "ISO 9660 Rock Ridge Filesystem Manipulator"

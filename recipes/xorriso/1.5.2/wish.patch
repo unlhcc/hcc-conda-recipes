@@ -1,0 +1,8 @@
+--- frontend/xorriso-tcltk	2019-10-26 18:22:45.000000000 +0000
++++ frontend/xorriso-tcltk.new	2020-05-09 02:56:28.571827939 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/wish 
++#!/opt/anaconda1anaconda2anaconda3/bin/wish
+ #
+ # xorriso-tcltk
+ # Copyright (C) 2012 - 2019

@@ -10,7 +10,7 @@ source:
   sha256: d1cccefb6356f60d8ba3bb49f9fa66abeb57dcb9fd72f844b9cb6da52a3c977f
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:
@@ -24,6 +24,9 @@ requirements:
 
 test:
   commands:
+    - test -f ${PREFIX}/bin/autodock_gpu_8wi
+    - test -f ${PREFIX}/bin/autodock_gpu_16wi
+    - test -f ${PREFIX}/bin/autodock_gpu_32wi
     - test -f ${PREFIX}/bin/autodock_gpu_64wi
     - test -f ${PREFIX}/bin/autodock_gpu_128wi
     - test -f ${PREFIX}/bin/autodock_gpu_256wi

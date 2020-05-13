@@ -1,0 +1,37 @@
+{% set name = "cuda_driver" %}
+{% set version = "440.64" %}
+{% set sha256 = "3c887ffa87905d22172fd4a6e65e3c42139c63d17991f4ca4205d1ca722e7f38" %}
+{% set fn="0f9ck2sbzg81mmp60z4izumij9lbnioo.tgz" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://unl.box.com/shared/static/{{ fn }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+
+  run:
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-libxau
+
+test:
+  commands:
+    - nvidia-settings -v
+
+about:
+  home: http://www.nvidia.com/drivers
+  license: Custom
+  summary: 'NVIDIA linux driver'
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

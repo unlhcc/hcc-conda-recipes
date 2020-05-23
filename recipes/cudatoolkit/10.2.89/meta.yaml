@@ -1,20 +1,22 @@
 {% set name = "cudatoolkit" %}
 {% set version = "10.2.89" %}
-{% set sha256 = "6402aaa0c3a6bcc5c085d9ba1bb88caaa2bdce56bac815600466ed2b915ae56d" %}
+{% set sha256 = "add33ea33a8db6a543a643f12e2247e7d0657c29219a3d4d9727f6ae76a7129d" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://unl.box.com/shared/static/la9zf9s9rygp5nyvj5enlpfyr1vpmqyr.run
+  - url: https://unl.box.com/shared/static/qp8hkfd2kk57d8320ufmaj5u1g358is0.run
 # The nvidia site is dog slow, so use a copy on Box instead.
 #  url: http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_rhel6.run
     sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
+  detect_binary_files_with_prefix: False
+  binary_relocation: False
 
 test:
   commands:

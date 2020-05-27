@@ -1,5 +1,5 @@
 variables:
-  HCC_BIOCONDA_UTILS_TAG: "gitlabci-test"
+  HCC_BIOCONDA_UTILS_TAG: "gitlabci-master"
   BIOCONDA_UTILS_BUILD_ARGS: "--loglevel=info --keep-old-work"
   BIOCONDA_UTILS_LINT_ARGS: "--loglevel=info"
   MINICONDA_VER: "4.6.14"

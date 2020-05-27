@@ -1,0 +1,6 @@
+blas_impl:
+  - openblas
+opencv:
+  - 4.2
+cub:
+  - 1.9

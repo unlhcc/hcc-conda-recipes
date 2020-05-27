@@ -10,6 +10,7 @@ set +u
 [[ -z $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK  ]] && DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK="false"
 set -u
 
+export PS1="[\u@\h \W]\$ "
 source $ANACONDA_PREFIX/etc/profile.d/conda.sh
 conda activate base
 
@@ -23,14 +24,6 @@ if [[ $GITLAB_CI == "true" ]]
 then
     RANGE="master HEAD"
     RANGE_ARG="--git-range $RANGE"
-    export PATH=$ANACONDA_PREFIX/bin:$PATH
-fi
-
-# On travis we always run on docker for linux. This may not always be the case
-# for local testing.
-if [[ `uname` == Linux && $GITLAB_CI == "true" ]]
-then
-    DOCKER_ARG="--docker"
 fi
 
 # When building master or bulk, upload packages to anaconda and quay.io.

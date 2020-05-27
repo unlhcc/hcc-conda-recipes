@@ -10,5 +10,8 @@ chmod +x $FN
 rm -rf ${PREFIX}/samples
 mv ${PREFIX}/lib64 ${PREFIX}/lib
 
+# remove unneeded bits to get the size more manageable
+rm -rf ${PREFIX}/{doc,extras,libnsight,nsight-compute-2019.5.0,nsightee_plugins,nsight-systems-2019.5.2}
+
 # pkgconfig dir seems to no longer be there
 #sed -i s/lib64/lib/g ${PREFIX}/pkgconfig/*.pc

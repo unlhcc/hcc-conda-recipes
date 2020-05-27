@@ -1,5 +1,5 @@
 variables:
-  HCC_BIOCONDA_UTILS_TAG: "gitlabci-master"
+  HCC_BIOCONDA_UTILS_TAG: "gitlabci-test"
   BIOCONDA_UTILS_BUILD_ARGS: "--loglevel=info --keep-old-work"
   BIOCONDA_UTILS_LINT_ARGS: "--loglevel=info"
   MINICONDA_VER: "4.6.14"
@@ -15,13 +15,13 @@ stages:
 
 build-linux:
   stage: build
-  image: unlhcc/docker-glibc
+  image: bioconda/bioconda-utils-build-env:latest
   except:
     - master
   tags:
     - docker
   before_script:
-    - export ANACONDA_PREFIX=/anaconda
+    - export ANACONDA_PREFIX=/opt/conda
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
@@ -43,13 +43,13 @@ build-osx:
 
 deploy-linux:
   stage: deploy
-  image: unlhcc/docker-glibc
+  image: bioconda/bioconda-utils-build-env:latest
   only:
     - master
   tags:
     - docker
   before_script:
-    - export ANACONDA_PREFIX=/anaconda
+    - export ANACONDA_PREFIX=/opt/conda
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh

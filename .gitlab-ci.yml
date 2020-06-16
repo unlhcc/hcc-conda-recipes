@@ -25,6 +25,11 @@ build-linux:
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
+  cache:
+    key: conda_build_src
+    paths:
+      - .cache/conda_build_src
+      - .cache/conda_pkgs
 
 build-osx:
   stage: build
@@ -53,6 +58,11 @@ deploy-linux:
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
+  cache:
+    key: conda_build_src
+    paths:
+      - .cache/conda_build_src
+      - .cache/conda_pkgs
 
 deploy-osx:
   stage: deploy

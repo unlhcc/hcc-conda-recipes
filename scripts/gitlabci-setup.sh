@@ -19,6 +19,13 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [[ `uname` == Linux ]]
 then
     tag=Linux
+    mkdir -p /ramdisk/conda-bld
+    ln -s /ramdisk/conda-bld $ANACONDA_PREFIX/conda-bld
+    mkdir -p .cache/conda_build_src .cache/conda_pkgs
+    ln -s ${CI_PROJECT_DIR}/.cache/conda_build_src /ramdisk/conda-bld/src_cache
+    conda config --system --add pkgs_dirs /opt/conda/pkgs
+    conda config --system --add pkgs_dirs ${CI_PROJECT_DIR}/.cache/conda_pkgs
+
 else
     tag=MacOSX
     SUDO=""

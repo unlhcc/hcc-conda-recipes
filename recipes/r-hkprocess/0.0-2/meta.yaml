@@ -1,0 +1,45 @@
+{% set name = 'r-hkprocess' %}
+{% set version = '0.0-2' %}
+{% set sha256 = '651ea1b9139cc63b8161aca2a938a764aaa358eae602d73eb5c47d34cf825ec8' %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/HKprocess_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/HKprocess/HKprocess_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+
+  host:
+    - r-base {{ r_base }}
+    - r-mcmcpack >=1.3_3
+    - r-gtools >=3.5.0
+
+  run:
+    - r-base
+    - r-mcmcpack >=1.3_3
+    - r-gtools >=3.5.0
+
+test:
+  commands:
+    - $R -e "library('HKprocess')"
+
+about:
+  home: www.itia.ntua.gr/en/softinfo/31/
+  license: GPL-3
+  summary: Methods to make inference about the Hurst-Kolmogorov and the AR(1) process.
+  license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'

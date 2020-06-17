@@ -1,0 +1,109 @@
+{% set name = "r-inla" %}
+{% set version = "20.03.17" %}
+{% set sha256 = "44db45e79a5ecad89b209f13df008915b177028bb4f28de6a620beb2fec250f8" %}
+
+package:
+  name: {{ name }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - https://inla.r-inla-download.org/R/stable/src/contrib/INLA_20.03.17.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+  skip: True # [osx]
+
+requirements:
+  build:
+    - make
+
+  host:
+    - xorg-libxt
+    - r-base
+    - r-matrix
+    - r-sp
+    - parallel
+    - r-foreach
+    - bioconductor-graph
+    - bioconductor-rgraphviz
+    - r-rgdal
+    - r-rmarkdown
+    - r-rgeos
+    - r-shiny
+    - r-units
+    - r-dplyr
+    - r-doparallel
+    - r-deriv
+    - r-devtools
+    - r-fields
+    - r-gridextra
+    - r-hkprocess
+    - r-knitr
+    - r-markdown
+    - r-matrixmodels
+    - r-matrixstats
+    - r-mvtnorm
+    - r-numderiv
+    - r-orthopolynom
+    - r-pixmap
+    - r-rgl
+    - r-sn
+    - r-splancs
+    - r-spdep
+
+  run:
+    - xorg-libxt
+    - r-base
+    - r-matrix
+    - r-sp
+    - parallel
+    - r-foreach
+    - bioconductor-graph
+    - bioconductor-rgraphviz
+    - r-rgdal
+    - r-rmarkdown
+    - r-rgeos
+    - r-shiny
+    - r-units
+    - r-dplyr
+    - r-doparallel
+    - r-deriv
+    - r-devtools
+    - r-fields
+    - r-gridextra
+    - r-hkprocess
+    - r-knitr
+    - r-markdown
+    - r-matrixmodels
+    - r-matrixstats
+    - r-mvtnorm
+    - r-numderiv
+    - r-orthopolynom
+    - r-pixmap
+    - r-rgl
+    - r-sn
+    - r-splancs
+    - r-spdep
+
+test:
+  commands:
+    - $R -e "library('INLA')"
+
+about:
+  home: http://www.r-inla.org/
+  dev_url: http://bitbucket.org/hrue/r-inla
+  license: GPL-2
+  summary: "Full Bayesian Analysis of Latent Gaussian Models using Integrated Nested Laplace Approximations"
+  license_family: GPL2
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

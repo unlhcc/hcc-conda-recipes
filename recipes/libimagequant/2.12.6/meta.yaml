@@ -1,0 +1,34 @@
+{% set name = "libimagequant" %}
+{% set version = "2.12.6" %}
+{% set sha256 = "b34964512c0dbe550c5f1b394c246c42a988cd73b71a76c5838aa2b4a96e43a0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/ImageOptim/libimagequant/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libimagequant.so
+    - ldd ${PREFIX}/lib/libimagequant.so
+
+about:
+  home: https://pngquant.org/lib/
+  dev_url: https://github.com/ImageOptim/libimagequant
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYRIGHT
+  summary: "Palette quantization library that powers pngquant and other PNG optimizers."

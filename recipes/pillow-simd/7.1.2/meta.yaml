@@ -1,0 +1,57 @@
+{% set name = "pillow-simd" %}
+{% set version = "7.1.2" %}
+{% set sha256 = "72e1c9d48543531f5fc04594fa330d1111ecc2ac04a9bcda0c6ad3abe6a616aa" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://github.com/uploadcare/{{ name }}/archive/{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - pip
+    - python
+    - jpeg
+    - zlib
+    - libtiff
+    - freetype
+    - openjpeg
+    - libwebp
+    - tk
+    - libxcb
+    - libimagequant
+    - lcms2
+  run:
+    - python
+    - jpeg
+    - zlib
+    - libtiff
+    - freetype
+    - openjpeg
+    - libwebp
+    - tk
+    - libxcb
+    - libimagequant
+    - lcms2
+
+test:
+  imports:
+    - PIL
+  requires:
+    - pytest
+
+about:
+  home: "https://github.com/uploadcare/pillow-simd"
+  license: "Historical Permission Notice and Disclaimer (HPND)"
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "Python Imaging Library (Fork)"

@@ -1,0 +1,45 @@
+{% set name = "pyMLST" %}
+{% set version = "0.0.2020.06.19" %}
+{% set commit = "c637f6ceecf52255917fedc783866442242367c2" %}
+{% set sha256 = "a69d7954004511628b58430243a1cc7b1b6a489c40610a964e0ffa8a2cae59ff" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/bvalot/pyMLST/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - biopython >=1.68
+    - mafft >=7.307
+    - blat >=35
+  run:
+    - biopython >=1.68
+    - mafft >=7.307
+    - blat >=35
+
+test:
+  commands:
+    - claMLST_create_database.py --help
+    - claMLST_search_ST.py --help
+    - mlst_add_strain.py --help
+    - mlst_create_database.py --help
+    - mlst_extract_sequence.py --help
+    - mlst_extract_table.py --help
+    - mlst_remove_gene.py --help
+    - mlst_remove_strain.py --help
+
+about:
+  home: https://github.com/bvalot/pyMLST
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "python Mlst Local Search Tool"
+  dev_url: https://github.com/bvalot/pyMLST

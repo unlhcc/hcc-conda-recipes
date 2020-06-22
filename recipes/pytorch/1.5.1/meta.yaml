@@ -1,0 +1,88 @@
+{% set name = "pytorch" %}
+{% set version = "1.5.1" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/pytorch/pytorch.git
+  git_rev: v{{ version }}
+  patches:
+    - openblas.patch
+
+build:
+  number: 0
+  skip: True # [osx or py<37]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}  # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('libxext') }}     # [linux]
+    - cmake
+    - git
+  host:
+    - python
+    - gflags
+    - glog
+    - pybind11
+    - fftw
+    - mpfr
+    - pyyaml
+    - cffi
+    - setuptools
+    - numpy
+    - cudatoolkit
+    - cudnn
+    - cub
+    - nccl
+    - lmdb
+    - leveldb
+    - ffmpeg
+    - opencv
+    - {{ blas_impl }}
+    - xorg-libxfixes  # [linux]
+  run:
+    - python
+    - pybind11
+    - gflags
+    - glog
+    - fftw
+    - mpfr
+    - pyyaml
+    - cffi
+    - numpy
+    - cudatoolkit
+    - cudnn
+    - nccl
+    - lmdb
+    - leveldb
+    - ffmpeg
+    - opencv
+    - libblas * *{{ blas_impl }}
+    - {{ blas_impl }}
+
+test:
+  imports:
+    - torch
+
+about:
+  home: https://pytorch.org/
+  dev_url: https://github.com/pytorch/pytorch
+  license: OTHER
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "Tensors and Dynamic neural networks in Python with strong GPU acceleration"
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - uses_vcs_url
+    - missing_hash
+    - setup_py_install_args

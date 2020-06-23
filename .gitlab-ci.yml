@@ -26,7 +26,7 @@ build-linux:
   script:
     - scripts/gitlabci-run.sh
   cache:
-    key: conda_build_src
+    key: ${CI_COMMIT_REF_SLUG}
     paths:
       - .cache/conda_build_src
       - .cache/conda_pkgs
@@ -59,10 +59,11 @@ deploy-linux:
   script:
     - scripts/gitlabci-run.sh
   cache:
-    key: conda_build_src
+    key: ${CI_COMMIT_REF_SLUG}
     paths:
       - .cache/conda_build_src
       - .cache/conda_pkgs
+    policy: pull
 
 deploy-osx:
   stage: deploy

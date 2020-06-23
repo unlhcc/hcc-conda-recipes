@@ -1,4 +1,4 @@
-{% set name = "pillow-simd" %}
+{% set name = "pillow" %}
 {% set version = "7.1.2" %}
 {% set sha256 = "72e1c9d48543531f5fc04594fa330d1111ecc2ac04a9bcda0c6ad3abe6a616aa" %}
 
@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:
@@ -55,3 +55,7 @@ about:
   license_family: OTHER
   license_file: LICENSE
   summary: "Python Imaging Library (Fork)"
+
+extra:
+  skip-lints:
+    - in_other_channels

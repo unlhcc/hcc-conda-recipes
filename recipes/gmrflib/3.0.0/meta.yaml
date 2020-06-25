@@ -1,0 +1,54 @@
+{% set name = "gmrflib" %}
+{% set version = "3.0.0" %}
+{% set sha256 = "0d594b78aefefce05c6693f89e1af725a9164eecc825d3e85cee7860b108d1fc" %}
+
+package:
+  name: {{ name }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - https://github.com/unlhcc/r-inla/archive/Version_20.03.17.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - make
+    - rsync
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
+
+  host:
+    - gsl
+    - zlib
+    - taucs
+    - metis
+    - suitesparse
+    - libblas
+    - libcblas
+    - liblapack
+    - liblapacke
+
+  run:
+    - gsl
+    - zlib
+    - taucs
+    - metis
+    - suitesparse
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libGMRFLib.a
+    - test -f ${PREFIX}/include/GMRFLib/GMRFLib.h
+
+about:
+  home: http://www.r-inla.org/
+  dev_url: http://bitbucket.org/hrue/r-inla
+  license: GPL-2
+  summary: "Full Bayesian Analysis of Latent Gaussian Models using Integrated Nested Laplace Approximations"
+  license_family: GPL2
+  license_file: r-inla.org/license/license.txt

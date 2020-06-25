@@ -1,0 +1,42 @@
+{% set name = "taucs" %}
+{% set version = "2.2" %}
+{% set sha256 = "0465d18469506fb0d4611205cfd4bcd4aaec6236ad5933aab9dc3a6509095bb1" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://www.tau.ac.il/~stoledo/taucs/2.2/taucs.tgz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
+
+  host:
+    - libblas
+    - libcblas
+    - liblapack
+    - liblapacke
+    - metis
+
+  run:
+    - metis
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libtaucs.a
+    - test -f ${PREFIX}/include/taucs.h
+
+about:
+  home: https://www.tau.ac.il/~stoledo/taucs/
+  license: LGPL
+  license_family: LGPL
+  license_file: LICENSE
+  summary: 'A library of sparse linear solvers.'

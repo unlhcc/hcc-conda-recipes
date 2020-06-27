@@ -1,0 +1,127 @@
+{% set name = "r-mathlib" %}
+{% set version = "3.6.3" %}
+{% set sha256 = "89302990d8e8add536e12125ec591d6951022cf8475861b3690bc8bf1cefaa8f" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://cran.r-project.org/src/base/R-3/R-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 0001-Darwin-Remove-unicode-elipsis-character-from-grDevic.patch
+    - 0002-Fix-trio-config.h-include-depth-issue.patch
+    - 0003-Win32-Do-not-link-static-libgcc.patch
+    - 0004-Win32-Extend-sqrt-NA_real_-hack-to-all-GCC-versions.patch
+    - 0005-Win32-Prevent-conversion-of-R_ARCH-to-abs-Windows-pa.patch
+    - 0006-Darwin-Avoid-setting-DYLD_FALLBACK_LIBRARY_PATH.patch
+    - 0007-Use-AC_SEARCH_LIBS-to-search-for-ncursesw-then-ncurs.patch
+    - 0008-Linux-Do-not-modify-LD_LIBRARY_PATH.patch
+    - 0009-macOS-include-cairo.h-not-cairo-xlib.h.patch
+    - 0010-javareconf-Do-not-fail-on-compile-fail.patch
+    - 0011-Revert-part-of-9b818c6dc00143ff18775a4015a3f43b5196f.patch
+    - 0012-javareconf-macOS-Continue-to-allow-system-Java-lt-9-.patch
+    - 0013-Allow-rpath-in-tcltk-dylib-LC_LOAD_DYLIB-command.patch
+    - 0014-Add-luuid-to-X_PRE_LIBS.patch
+    - 0015-link-Xt-to-uuid.patch
+    - 0017-Check-for-changes-then-forcibly-mv-in-javareconf.in.patch
+    - 0018-Use-LAPACK_LDFLAGS-in-Rlapack_la_LIBADD.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+  rpaths:
+    - lib/R/lib/
+    - lib/
+  detect_binary_files_with_prefix: true
+  ignore_run_exports:
+    - jpeg
+    - libgfortran-ng
+    - readline
+    - gsl
+    - freetype
+    - libpng
+    - libuuid
+    - libblas
+    - bzip2
+    - glib
+    - libcurl
+    - libtiff
+    - icu
+    - cairo
+    - libxml2
+    - zlib
+    - liblapack
+    - krb5
+    - xz
+    - libssh2
+    - pcre2
+    - libstdcxx-ng
+    - tk
+    - libgcc-ng
+
+requirements:
+  build:
+    - {{ compiler('c') }}                # [not win]
+    - {{ compiler('cxx') }}              # [not win]
+    - {{ compiler('fortran') }}          # [not win]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libxrender') }}            # [linux]
+    - {{ cdt('libxext') }}               # [linux]
+    - {{ cdt('libsm-devel') }}           # [linux]
+    - {{ cdt('libice-devel') }}          # [linux]
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxt') }}                 # [linux]
+    - {{ cdt('libxt-devel') }}           # [linux]
+    - {{ cdt('libxcb') }}                # [linux]
+    - {{ cdt('libxau') }}                # [linux]
+    - {{ cdt('java-1.7.0-openjdk') }}    # [linux]
+    - pkg-config
+    - texlive-core                       # [unix]
+    - autoconf
+    - automake                  # [not win]
+    - make                               # [not win]
+    - libcurl                            # [not win]
+  host:
+    - freetype                           # [not win]
+    - readline                           # [not win]
+    - ncurses                            # [not win]
+    - libcurl                            # [not win]
+    - xz                                 # [not win]
+    - libpng                             # [not win]
+    - bzip2                              # [not win]
+    - cairo                              # [not win]
+    - jpeg                               # [not win]
+    - libuuid                            # [linux]
+    - glib                               # [linux]
+    - bwidget
+    - tktable
+    - pango                              # [not win]
+    - icu                                # [not win]
+    - pcre2                              # [not win]
+    - tk                                 # [not win]
+    - zlib                               # [not win]
+    - gsl                                # [not win]
+    - libtiff                            # [not win]
+    - libxml2                            # [not win]
+    - libssh2                            # [not win]
+    - krb5                               # [not win]
+    - libblas
+    - liblapack
+    - sed                                # [linux]
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libRmath.so
+    - test -f ${PREFIX}/lib/libRmath.a
+    - test -f ${PREFIX}/include/Rmath.h
+
+about:
+  home: http://www.r-project.org/
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: 'GNU R standalone mathematics library.'

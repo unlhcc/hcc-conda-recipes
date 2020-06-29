@@ -30,8 +30,7 @@ source:
     - 0018-Use-LAPACK_LDFLAGS-in-Rlapack_la_LIBADD.patch
 
 build:
-  number: 0
-  skip: True # [osx]
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -85,6 +84,8 @@ requirements:
     - make                               # [not win]
     - libcurl                            # [not win]
   host:
+    - llvm-openmp                        # [osx]
+    - libiconv                           # [osx]
     - freetype                           # [not win]
     - readline                           # [not win]
     - ncurses                            # [not win]
@@ -115,8 +116,9 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libRmath.so
-    - test -f ${PREFIX}/lib/libRmath.a
+    - test -f ${PREFIX}/lib/libRmath.so    # [linux]
+    - test -f ${PREFIX}/lib/libRmath.a     # [linux]
+    - test -f ${PREFIX}/lib/libRmath.dylib # [osx]
     - test -f ${PREFIX}/include/Rmath.h
 
 about:

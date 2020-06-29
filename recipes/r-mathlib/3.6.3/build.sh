@@ -91,6 +91,67 @@ Linux() {
     make install
 }
 
+Darwin() {
+    unset JAVA_HOME
+
+    # --without-internal-tzcode to avoid warnings:
+    # unknown timezone 'Europe/London'
+    # unknown timezone 'GMT'
+    # https://stat.ethz.ch/pipermail/r-devel/2014-April/068745.html
+
+    # May want to strip these from Makeconf at the end.
+    CFLAGS="-isysroot ${CONDA_BUILD_SYSROOT} "${CFLAGS}
+    LDFLAGS="-Wl,-dead_strip_dylibs -isysroot ${CONDA_BUILD_SYSROOT} "${LDFLAGS}
+    CPPFLAGS="-isysroot ${CONDA_BUILD_SYSROOT} "${CPPFLAGS}
+
+    # Our libuuid causes problems:
+    # In file included from qdPDF.c:29:
+    # In file included from ./qdPDF.h:3:
+    # In file included from ../../../../include/R_ext/QuartzDevice.h:103:
+    # In file included from /opt/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.h:23:
+    # In file included from /opt/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Headers/CoreServices.h:23:
+    # In file included from /opt/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/AE.framework/Headers/AE.h:20:
+    # In file included from /opt/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/CarbonCore.h:208:
+    # In file included from /opt/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/HFSVolumes.h:25:
+    # .. apart from this issue there seems to be a segfault:
+    # https://rt.cpan.org/Public/Bug/Display.html?id=104394
+    # http://openradar.appspot.com/radar?id=6069753579831296
+    # .. anyway, uuid is part of libc on Darwin, so let's just try to use that.
+    rm -f "${PREFIX}"/include/uuid/uuid.h
+
+    # Make sure curl is found from PREFIX instead of BUILD_PREFIX
+    rm "${BUILD_PREFIX}/bin/curl-config"
+
+    ./configure --prefix=${PREFIX}                  \
+                --host=${HOST}                      \
+                --build=${BUILD}                    \
+                --with-sysroot=${CONDA_BUILD_SYSROOT}  \
+                --enable-shared                     \
+                --enable-R-shlib                    \
+                --with-tk-config=${TK_CONFIG}       \
+                --with-tcl-config=${TCL_CONFIG}     \
+                --with-blas=-lblas                  \
+                --with-lapack=-llapack              \
+                --enable-R-shlib                    \
+                --enable-memory-profiling           \
+                --without-x                         \
+                --without-internal-tzcode           \
+                --enable-R-framework=no             \
+                --with-included-gettext=yes         \
+                --with-recommended-packages=no || (cat config.log; false)
+
+    # Horrendous hack to make up for what seems to be bugs (or over-cautiousness?) in ld64's -dead_strip_dylibs (and/or -no_implicit_dylibs)
+    sed -i'.bak' 's|-lgobject-2.0 -lglib-2.0 -lintl||g' src/library/grDevices/src/cairo/Makefile
+    rm src/library/grDevices/src/cairo/Makefile.bak
+
+    pushd src/nmath/standalone
+    make
+    make install
+}
 
 
-Linux
+if [[ $target_platform == osx-64 ]]; then
+  Darwin
+elif [[ $target_platform =~ .*linux.* ]]; then
+  Linux
+fi

@@ -1,0 +1,11 @@
+--- inlaprog/src/eval.c.org	2020-06-27 06:05:41.507413836 +0000
++++ inlaprog/src/eval.c	2020-06-27 06:05:51.864414966 +0000
+@@ -41,7 +41,7 @@
+ #include <string.h>
+ #include <stdio.h>
+ 
+-#include <muParser/muParserDLL.h>
++#include <muParserDLL.h>
+ 
+ #include "GMRFLib/GMRFLib.h"
+ #include "inla.h"

@@ -1,0 +1,84 @@
+{% set name = "suitesparse" %}
+{% set version = "5.7.2" %}
+{% set sha256 = "fe3bc7c3bd1efdfa5cffffb5cebf021ff024c83b5daf0ab445429d3d741bd3ad" %}
+{% set build = 100 %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ version }}.tar.gz
+  sha256: fe3bc7c3bd1efdfa5cffffb5cebf021ff024c83b5daf0ab445429d3d741bd3ad
+
+build:
+  number: {{ build }}
+  string: "nometis_h{{ PKG_HASH }}_{{ build }}"
+  run_exports:
+    - {{ pin_subpackage("suitesparse") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - make
+  host:
+    - libblas
+    - libcblas
+    - liblapack
+    - tbb-devel
+  run:
+
+test:
+  commands:
+    # graphblas and mongoose are omitted
+    - test ! -f ${PREFIX}/bin/mongoose
+    - test ! -f ${PREFIX}/include/GraphBLAS.h
+    - test ! -f ${PREFIX}/include/Mongoose.hpp
+    - test ! -f ${PREFIX}/lib/libgraphblas${SHLIB_EXT}
+    - test ! -f ${PREFIX}/lib/libmongoose${SHLIB_EXT}
+    - test ! -f ${PREFIX}/lib/libgraphblas.a
+    - test ! -f ${PREFIX}/lib/libmongoose.a
+
+    - test -f ${PREFIX}/include/amd.h
+    - test -f ${PREFIX}/include/umfpack.h
+    - test -f ${PREFIX}/lib/libamd${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libbtf${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libcamd${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libccolamd${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libcholmod${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libcolamd${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libcxsparse${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libklu${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libldl${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/librbio${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libspqr${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libsuitesparseconfig${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libumfpack${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libumfpack${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libamd.a
+    - test -f ${PREFIX}/lib/libbtf.a
+    - test -f ${PREFIX}/lib/libcamd.a
+    - test -f ${PREFIX}/lib/libccolamd.a
+    - test -f ${PREFIX}/lib/libcholmod.a
+    - test -f ${PREFIX}/lib/libcolamd.a
+    - test -f ${PREFIX}/lib/libcxsparse.a
+    - test -f ${PREFIX}/lib/libklu.a
+    - test -f ${PREFIX}/lib/libldl.a
+    - test -f ${PREFIX}/lib/librbio.a
+    - test -f ${PREFIX}/lib/libspqr.a
+    - test -f ${PREFIX}/lib/libsuitesparseconfig.a
+    - test -f ${PREFIX}/lib/libumfpack.a
+
+about:
+  home: http://faculty.cse.tamu.edu/davis/suitesparse.html
+  license: LGPL-2.1-or-later (AMD, BTF, etc.), BSD-3-clause (UFget), GPL-2.0-or-later (UMFPACK, RBIO, SPQR, GPUQRENGINE), Apache-2.0 (Metis)
+  license_file: LICENSE.txt
+  summary: A suite of sparse matrix algorithms
+  dev_url: https://github.com/DrTimothyAldenDavis/SuiteSparse
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - build_number_needs_bump

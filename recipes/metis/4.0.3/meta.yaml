@@ -1,0 +1,50 @@
+{% set name = "metis" %}
+{% set version = "4.0.3" %}
+{% set sha256 = "5efa35de80703c1b2c4d0de080fafbcf4e0d363a21149a1ad2f96e0144841a55" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  binary_relocation: true
+  run_exports:
+    - {{ pin_subpackage('metis', max_pin='x.x') }}
+
+requirements:
+  build:
+    - make
+    - {{ compiler('c') }}
+  host:
+  run:
+
+test:
+  commands:
+    - graphchk
+    - pmetis -h
+    - kmetis -h
+    - test -f $PREFIX/include/metis.h
+    - test -f $PREFIX/lib/libmetis.a
+    - conda inspect linkages -p ${PREFIX} metis
+
+about:
+  home: http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
+  license: Apache
+  license_file: LICENSE
+  summary: 'METIS - Serial Graph Partitioning and Fill-reducing Matrix Ordering'
+  description: |
+    METIS is a set of serial programs for partitioning graphs, partitioning
+    finite element meshes, and producing fill reducing orderings for sparse
+    matrices. The algorithms implemented in METIS are based on the multilevel
+    recursive-bisection, multilevel k-way, and multi-constraint partitioning
+    schemes developed in our lab.
+  doc_url: http://glaros.dtc.umn.edu/gkhome/metis/metis/faq
+
+extra:
+  skip-lints:
+    - in_other_channels

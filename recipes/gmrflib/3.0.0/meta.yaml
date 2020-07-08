@@ -10,9 +10,11 @@ source:
   url:
     - https://github.com/unlhcc/r-inla/archive/Version_20.03.17.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - smtp.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:

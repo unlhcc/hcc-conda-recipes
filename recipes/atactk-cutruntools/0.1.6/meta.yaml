@@ -1,0 +1,57 @@
+{% set name = "atactk-cutruntools" %}
+{% set version = "0.1.6" %}
+{% set sha256 = "887363209d556ee5fb4969f39bab1b747cca56b6bd1c0fd9e48d69208e7a5f74" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ParkerLab/atactk/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - make_cut_matrix.patch
+    - metrics.py.patch
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed .
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - python
+    - pip
+  run:
+    - python
+    - pysam
+    - python-levenshtein
+    - sexpdata
+    - r-base
+    - r-rcolorbrewer
+    - r-ggplot2
+    - r-gtools
+
+test:
+  commands:
+    - trim_adapters --help
+    - make_cut_matrix --help
+    - R -e "library('RColorBrewer')"
+    - R -e "library('ggplot2')"
+    - R -e "library('grid')"
+    - R -e "library('gtools')"
+
+about:
+  home: http://theparkerlab.org/
+  doc_url: http://atactk.readthedocs.org/en/latest/
+  dev_url: https://github.com/ParkerLab/atactk
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'A patched version of the atactk package for use with cutruntools.'
+
+extra:
+  notes: Adds 3 scripts, namely "trim_adapters", "make_cut_matrix" and "plot_aggregate_matrix.R"

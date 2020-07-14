@@ -1,0 +1,35 @@
+{% set name = "r-centipede" %}
+{% set version = "1.2" %}
+{% set sha256 = "899aae80acce1a6b8b8aeb4928e065f65ea08ffca788e4a13b2682cc1f365dc3" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://download.r-forge.r-project.org/src/contrib/CENTIPEDE_1.2.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - r-base
+  run:
+    - r-base
+
+test:
+  commands:
+    - $R -e "library('CENTIPEDE')"
+
+about:
+  home: http://r-forge.r-project.org/projects/centipede/
+  license: GPL
+  license_family: GPL
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  summary: "CENTIPEDE learns a DNaseI footprint of a transcription factor and predicts its binding sites."

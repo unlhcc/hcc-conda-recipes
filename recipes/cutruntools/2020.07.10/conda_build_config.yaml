@@ -1,0 +1,49 @@
+trimmomatic:
+  - 0.36
+bowtie2:
+  - 2.2.8
+samtools:
+  - 1.3.1
+picard:
+  - 2.9.0
+macs2:
+  - 2.1.3.3
+meme:
+  - 4.12.0
+bedops:
+  - 2.4.30
+bedtools:
+  - 2.26.0
+atactk_cutruntools:
+  - 0.1.6
+icu:
+  - 58.2
+
+pin_run_as_build:
+  trimmomatic:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  bowtie2:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  picard:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  macs2:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  meme:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  bedops:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  bedtools:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  atactk_cutruntools:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  icu:
+    max_pin: x.x.x
+    min_pin: x.x.x

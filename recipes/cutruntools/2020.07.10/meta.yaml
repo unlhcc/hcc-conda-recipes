@@ -1,0 +1,70 @@
+{% set name = "cutruntools" %}
+{% set version = "2020.07.10" %}
+{% set rev = "49ddd24" %}
+{% set sha256 = "b848daf70e8c1019d8a9be891499d33b73551fd3d3559b0a63a2bcb498a79bf0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://bitbucket.org/qzhudfci/cutruntools/get/{{ rev }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - pythonpath.patch
+    - config.patch
+    - seacr.patch
+
+build:
+  number: 0
+  skip: True # [py3k] or [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - gettext
+  host:
+    - trimmomatic
+    - bowtie2
+    - samtools
+    - picard
+    - macs2
+    - meme
+    - bedops
+    - bedtools
+    - atactk-cutruntools
+    - ucsc-fetchchromsizes
+    - ucsc-bedgraphtobigwig
+    - r-centipede
+    - zlib
+    - python 2.7*
+    - icu
+  run:
+    - trimmomatic
+    - bowtie2
+    - samtools
+    - picard
+    - macs2
+    - meme
+    - bedops
+    - bedtools
+    - atactk-cutruntools
+    - ucsc-fetchchromsizes
+    - ucsc-bedgraphtobigwig
+    - r-centipede
+    - zlib
+    - python 2.7*
+    - icu
+
+test:
+  commands:
+      - validate.py ${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/config.json --ignore-input-output --software
+
+
+about:
+  home: https://bitbucket.org/qzhudfci/cutruntools
+  license: GPLv2
+  license_family: GPL
+  license_file: LICENSE.md
+  summary: "This package contains the pipeline for conducting a CUT&RUN analysis. The pipeline comprises of read trimming, alignment steps, motif finding steps, and finally the motif footprinting step."

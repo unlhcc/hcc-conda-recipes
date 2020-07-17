@@ -1,0 +1,81 @@
+--- change.bdg.py.org	2020-07-15 19:05:59.286941235 +0000
++++ change.bdg.py	2020-07-15 19:08:00.115990017 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- check_coordinate.py.org	2020-07-15 19:05:59.289941236 +0000
++++ check_coordinate.py	2020-07-15 19:08:00.115990017 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- create_scripts.py.org	2020-07-15 19:05:59.291941237 +0000
++++ create_scripts.py	2020-07-15 19:08:00.118990018 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+@@ -806,7 +806,7 @@
+ 		bamdir = "dup.marked.120bp"
+ 
+ 
+-	script="""#!/usr/bin/python
++	script="""#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import shutil
+ import sys
+ import os
+--- generate.py.org	2020-07-15 19:05:59.294941238 +0000
++++ generate.py	2020-07-15 19:08:00.118990018 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import sys
+ import math
+ import os
+--- get_summits_broadPeak.py.org	2020-07-15 19:05:59.296941239 +0000
++++ get_summits_broadPeak.py	2020-07-15 19:08:00.118990018 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- get_summits_seacr.py.org	2020-07-15 19:05:59.298941239 +0000
++++ get_summits_seacr.py	2020-07-15 19:08:00.119990018 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- quantify.py.org	2020-07-15 19:05:59.300941240 +0000
++++ quantify.py	2020-07-15 19:08:00.119990018 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- quantify_separate.py.org	2020-07-15 19:05:59.303941241 +0000
++++ quantify_separate.py	2020-07-15 19:08:00.119990018 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- validate.py.org	2020-07-15 19:05:59.305941242 +0000
++++ validate.py	2020-07-15 19:08:00.120990019 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (C) 2019 Qian Zhu
+ #
+ # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.

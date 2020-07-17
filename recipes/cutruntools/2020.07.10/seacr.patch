@@ -1,0 +1,8 @@
+--- SEACR_1.1.R.org	2020-07-17 05:51:18.909744612 +0000
++++ SEACR_1.1.R	2020-07-17 05:51:34.924751035 +0000
+@@ -1,4 +1,4 @@
+-#!usr/bin/Rscript
++#!/usr/bin/env Rscript
+ 
+ ## Collect arguments
+ args <- commandArgs(TRUE)

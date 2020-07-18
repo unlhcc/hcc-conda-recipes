@@ -1,5 +1,5 @@
 --- config.json.org	2020-07-15 22:27:52.828914237 +0000
-+++ config.json	2020-07-17 20:15:40.107796880 +0000
++++ config.json	2020-07-18 06:59:49.947803280 +0000
 @@ -1,26 +1,27 @@
  {
 -    "Rscriptbin": "/n/app/R/3.3.3/bin", 
@@ -36,7 +36,7 @@
 +    "picardbin": "${PREFIX}/share/picard-2.9.0-0", 
 +    "picardjarfile": "picard.jar", 
 +    "macs2bin": "${PREFIX}/bin", 
-+    "macs2pythonlib": "${SP}",
++    "macs2pythonlib": "${SP_DIR}",
 +    "kseqbin": "${PREFIX}/bin", 
 +    "memebin": "${PREFIX}/bin", 
 +    "bedopsbin": "${PREFIX}/bin", 

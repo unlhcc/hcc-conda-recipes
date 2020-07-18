@@ -15,4 +15,4 @@ do
 done
 
 chmod +x ${PREFIX}/bin/*.py ${PREFIX}/bin/*.sh
-envsubst '${PREFIX}:${PKG_NAME}:${PKG_VERSION}:${PKG_BUILDNUM}:${SP}' < config.json > $outdir/config.json
+envsubst '${PREFIX}:${PKG_NAME}:${PKG_VERSION}:${PKG_BUILDNUM}:${SP_DIR}' < config.json > $outdir/config.json

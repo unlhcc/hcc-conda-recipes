@@ -47,3 +47,6 @@ pin_run_as_build:
   icu:
     max_pin: x.x.x
     min_pin: x.x.x
+  samtools:
+    max_pin: x.x
+    min_pin: x.x.x

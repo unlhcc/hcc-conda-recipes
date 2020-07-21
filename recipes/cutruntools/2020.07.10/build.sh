@@ -13,6 +13,7 @@ for f in `ls -1 $outdir/*.py $outdir/*.sh $outdir/*.R`
 do
   ln -s $f ${PREFIX}/bin
 done
+ln -s $outdir/macs2.narrow.aug18 ${PREFIX}/bin/macs2.narrow.aug18
 
 chmod +x ${PREFIX}/bin/*.py ${PREFIX}/bin/*.sh
 envsubst '${PREFIX}:${PKG_NAME}:${PKG_VERSION}:${PKG_BUILDNUM}:${SP_DIR}' < config.json > $outdir/config.json

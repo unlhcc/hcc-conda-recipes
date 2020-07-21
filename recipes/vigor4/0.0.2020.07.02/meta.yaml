@@ -1,0 +1,36 @@
+{% set name = "VIGOR4" %}
+{% set version = "0.0.2020.07.02" %}
+{% set commit = "c8994f8c0b7be99bbfa7d875102b808ec985ac82" %}
+{% set sha256 = "d6a183ae77e0d78d9f7bc74062a8708e25e79aa553b5ceb0f309fae9e5351c25" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/JCVenterInstitute/VIGOR4/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+    - maven
+    - unzip
+  run:
+    - openjdk >=8
+    - exonerate
+
+test:
+  commands:
+    - vigor4 --help
+
+about:
+  home: https://github.com/JCVenterInstitute/VIGOR4
+  license: GPL3
+  license_family: GPL
+  license_file: LICENSE.txt 
+  summary: "VIGOR4 (Viral Genome ORF Reader) is a Java application to predict protein sequences encoded in viral genomes."
+  dev_url: https://github.com/JCVenterInstitute/VIGOR4

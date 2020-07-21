@@ -1,5 +1,5 @@
---- config.json.org	2020-07-15 22:27:52.828914237 +0000
-+++ config.json	2020-07-18 06:59:49.947803280 +0000
+--- config.json.org	2020-07-21 13:48:46.048650405 -0500
++++ config.json	2020-07-21 15:14:04.289064627 -0500
 @@ -1,26 +1,27 @@
  {
 -    "Rscriptbin": "/n/app/R/3.3.3/bin", 
@@ -31,8 +31,7 @@
 +    "trimmomaticbin": "${PREFIX}/share/trimmomatic", 
 +    "trimmomaticjarfile": "trimmomatic.jar", 
 +    "bowtie2bin": "${PREFIX}/bin", 
-+    "samtoolsbin": "${PREFIX}/bin", 
-+    "adapterpath": "${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/adapters", 
++    "samtoolsbin": "${PREFIX}/bin",
 +    "picardbin": "${PREFIX}/share/picard-2.9.0-0", 
 +    "picardjarfile": "picard.jar", 
 +    "macs2bin": "${PREFIX}/bin", 
@@ -43,10 +42,41 @@
 +    "bedtoolsbin": "${PREFIX}/bin", 
 +    "makecutmatrixbin": "${PREFIX}/bin", 
 +    "extratoolsbin": "${PREFIX}/bin", 
-+    "extrasettings": "${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}", 
-+    "__USER_SETTINGS_BELOW__": "DO NOT EDIT ABOVE THIS LINE",
-+    "bt2idx": "/n/groups/shared_databases/bowtie2_indexes",
++    "extrasettings": "${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}",
++    "__USER_SETTINGS_BELOW__": "DO NOT EDIT ABOVE THIS LINE", 
++    "adapterpath": "${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/adapters",
 +    "genome_sequence": "/home/qz64/chrom.hg19/hg19.fa",
++    "bt2idx": "/n/groups/shared_databases/bowtie2_indexes",
      "input/output": {
          "fastq_directory": "/n/scratch2/qz64/Nan_18_demo/sorted.chr11", 
          "workdir": "/n/scratch2/qz64/workdir", 
+@@ -35,24 +36,24 @@
+         "num_motifs": 10
+     }, 
+     "cluster": {
+-        "email": "bernardzhu@gmail.com", 
++        "email": "user@gmail.com", 
+         "step_alignment": {
+-            "queue": "short", 
++            "queue": "batch", 
+             "memory": 32000, 
+             "time_limit": "0-12:00"
+         }, 
+         "step_process_bam": {
+-            "queue": "short", 
++            "queue": "batch", 
+             "memory": 32000, 
+             "time_limit": "0-12:00"
+         }, 
+         "step_motif_find": {
+-            "queue": "short", 
++            "queue": "batch", 
+             "memory": 32000, 
+             "time_limit": "0-12:00"
+         }, 
+         "step_footprinting": {
+-            "queue": "short", 
++            "queue": "batch", 
+             "memory": 32000, 
+             "time_limit": "0-12:00"
+         }

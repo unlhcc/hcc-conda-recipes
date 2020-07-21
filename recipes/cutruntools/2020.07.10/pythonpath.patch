@@ -79,3 +79,27 @@
  # Copyright (C) 2019 Qian Zhu
  #
  # CUT&RUNTools is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+--- macs2.narrow.aug18/filter.py.org	2020-07-21 15:16:58.294723215 -0500
++++ macs2.narrow.aug18/filter.py	2020-07-21 15:17:14.944786233 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import sys
+ #should be sequence centered at the peak summit
+ #check the middle part (100-200) if there are significant presence of repeats (N or a,g,c,t)
+--- macs2.narrow.aug18/fix_sequence.py.org	2020-07-21 15:17:28.271836674 -0500
++++ macs2.narrow.aug18/fix_sequence.py	2020-07-21 15:17:36.446867619 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import sys
+ 
+--- macs2.narrow.aug18/read.meme.py.org	2020-07-21 15:21:14.767693933 -0500
++++ macs2.narrow.aug18/read.meme.py	2020-07-21 15:21:36.095774657 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import sys
+ import os
+ import re

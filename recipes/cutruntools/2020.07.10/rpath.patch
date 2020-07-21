@@ -1,0 +1,16 @@
+--- SEACR_1.1.R.org	2020-07-21 15:25:05.447567023 -0500
++++ SEACR_1.1.R	2020-07-21 15:25:14.111599816 -0500
+@@ -1,4 +1,4 @@
+-#!usr/bin/Rscript
++#!/usr/bin/env Rscript
+ 
+ ## Collect arguments
+ args <- commandArgs(TRUE)
+--- macs2.narrow.aug18/run_centipede_parker.R.org	2020-07-21 15:24:23.451408073 -0500
++++ macs2.narrow.aug18/run_centipede_parker.R	2020-07-21 15:24:33.181444902 -0500
+@@ -1,4 +1,4 @@
+-#!/n/app/R/3.3.3/bin/Rscript
++#!/usr/bin/env Rscript
+ cut_file<-commandArgs(trailingOnly = T)[1]
+ anno_file<-commandArgs(trailingOnly = T)[2]
+ png_file<-commandArgs(trailingOnly = T)[3]

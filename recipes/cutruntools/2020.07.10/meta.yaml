@@ -13,10 +13,10 @@ source:
   patches:
     - pythonpath.patch
     - config.patch
-    - seacr.patch
+    - rpath.patch
 
 build:
-  number: 1
+  number: 2
   skip: True # [py3k] or [osx]
 
 requirements:
@@ -40,6 +40,7 @@ requirements:
     - zlib
     - python 2.7*
     - icu
+    - coreutils
   run:
     - trimmomatic
     - bowtie2
@@ -56,11 +57,11 @@ requirements:
     - zlib
     - python 2.7*
     - icu
+    - coreutils
 
 test:
   commands:
       - validate.py ${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/config.json --ignore-input-output --software
-
 
 about:
   home: https://bitbucket.org/qzhudfci/cutruntools
@@ -68,3 +69,4 @@ about:
   license_family: GPL
   license_file: LICENSE.md
   summary: "This package contains the pipeline for conducting a CUT&RUN analysis. The pipeline comprises of read trimming, alignment steps, motif finding steps, and finally the motif footprinting step."
+  notes: "The required genome databases can be downloaded following steps in https://bitbucket.org/qzhudfci/cutruntools/src/master/assemblies.install."

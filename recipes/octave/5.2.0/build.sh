@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-sudo yum install -y mesa-libGLU-devel mesa-libGL-devel
+sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
 
 export CPPFLAGS="-I${PREFIX}/include ${CPPFLAGS}"
+export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig
 
 chmod +x configure
 chmod +x build-aux/mk-opts.pl
@@ -13,7 +14,6 @@ chmod +x build-aux/mk-opts.pl
     --enable-readline \
     --enable-shared \
     --with-lapack="-lopenblas" \
-    --without-fltk \
     --without-qrupdate \
     --with-qt=5 \
     --with-magick=GraphicsMagick \
@@ -31,3 +31,6 @@ do
     mkdir -p "${PREFIX}/etc/conda/${CHANGE}.d"
     cp "${RECIPE_DIR}/scripts/${CHANGE}.sh" "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.sh"
 done
+
+# Custom startup file for Octave to fix compilers
+cp ${RECIPE_DIR}/octaverc ${PREFIX}/share/octave/site/m/startup

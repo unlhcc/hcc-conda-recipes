@@ -12,8 +12,8 @@ ln -s $TGT/vigor-4.*/bin/vigor4 $PREFIX/bin/vigor4
 
 
 # Set correct path in config file
-echo "reference_database_path=\${VIGOR_DB}" >> $TGT/vigor-4.*/config/vigor.ini
-echo "exonerate_path=${PREFIX}/bin/" >> $TGT/vigor-4.*/config/vigor.ini
+echo "reference_database_path=${VIGOR_DB}" >> $TGT/vigor-4.*/config/vigor.ini
+echo "exonerate_path=${PREFIX}/bin/exonerate" >> $TGT/vigor-4.*/config/vigor.ini
 echo "temporary_directory=/tmp" >> $TGT/vigor-4.*/config/vigor.ini
 
 

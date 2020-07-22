@@ -1,0 +1,43 @@
+{% set name = "VGAS" %}
+{% set version = "0.0.2020.07.22" %}
+{% set sha256 = "0350c3926735d5115b277d506fb30a984901e717c2111eb753e5dbc64952322e" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://unl.box.com/shared/static/0qmh6rrnnxlk3mdpcpr1hye39xw6i215.tgz
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  run:
+    - libgcc
+    - libcxx
+    - python
+    - biopython
+    - blast
+
+test:
+  commands:
+    - vgas --help | grep "vgas"
+
+about:
+  home: http://cefg.uestc.cn/vgas
+  license: Other
+  license_family: OTHER
+  summary: "VGAS (viral genome annotation system) is a system combing ab initio method and similarity-based method, which can perform the functions of virus gene finding and function annotating merely depending on the gene sequence itself."
+  doc_url: http://cefg.uestc.cn/vgas/introduction.php
+
+extra:
+  identifiers:
+    - doi:10.3389/fmicb.2019.00184
+  skip-lints:
+    - should_be_noarch_generic
+    - should_use_compilers

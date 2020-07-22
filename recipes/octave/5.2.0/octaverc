@@ -15,4 +15,5 @@ setenv("CXXFLAGS", cstrcat("-fvisibility-inlines-hidden -std=c++17 -fmessage-len
 setenv("FFLAGS", cstrcat("-fopenmp -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I",include));
 setenv("CPPFLAGS", cstrcat("-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -I",include));
 setenv("LDFLAGS", cstrcat("-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,",lib," -Wl,-rpath-link,",lib," -L",lib));
+setenv("AR", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-ar"));
 setenv("OCTAVE_PREFIX", base);

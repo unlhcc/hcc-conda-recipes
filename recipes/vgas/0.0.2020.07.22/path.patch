@@ -1,0 +1,8 @@
+--- handle.py.org	2020-07-22 00:43:28.764772882 -0500
++++ handle.py	2020-07-22 00:43:57.072877404 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ from Bio.Blast import NCBIWWW
+ from Bio.Blast import NCBIXML
+ import os

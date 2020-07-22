@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: generic
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -34,3 +34,6 @@ about:
   license_file: LICENSE.txt 
   summary: "VIGOR4 (Viral Genome ORF Reader) is a Java application to predict protein sequences encoded in viral genomes."
   dev_url: https://github.com/JCVenterInstitute/VIGOR4
+
+extra:
+  notes: "reference_database_path should be manually set in vigor.ini"

@@ -1,0 +1,790 @@
+--- a/libinterp/corefcn/defaults.cc
++++ b/libinterp/corefcn/defaults.cc
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <algorithm>
+ #include <iostream>
+--- a/libinterp/corefcn/dirfns.cc
++++ b/libinterp/corefcn/dirfns.cc
+@@ -27,7 +27,7 @@ along with Octave; see the file COPYING.
+ #include <cerrno>
+ #include <cstdio>
+ #include <cstddef>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <sstream>
+--- a/libinterp/corefcn/graphics.cc
++++ b/libinterp/corefcn/graphics.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ 
+ #include <cctype>
+ #include <cfloat>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <ctime>
+ 
+ #include <algorithm>
+--- a/libinterp/corefcn/help.cc
++++ b/libinterp/corefcn/help.cc
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <algorithm>
+--- a/libinterp/corefcn/input.cc
++++ b/libinterp/corefcn/input.cc
+@@ -27,7 +27,7 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cstdio>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ #include <cassert>
+ 
+--- a/libinterp/corefcn/mex.cc
++++ b/libinterp/corefcn/mex.cc
+@@ -25,7 +25,7 @@ along with Octave; see the file COPYING.
+ #include <cfloat>
+ #include <csetjmp>
+ #include <cstdarg>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ #include <cctype>
+ 
+--- a/libinterp/corefcn/mexproto.h
++++ b/libinterp/corefcn/mexproto.h
+@@ -49,7 +49,7 @@ SUCH DAMAGE.
+ #define MEXPROTO_H
+ 
+ #if defined (__cplusplus)
+-#include <cstdlib>
++#include <stdlib.h>
+ extern "C" {
+ #else
+ #include <stdlib.h>
+--- a/libinterp/corefcn/oct-hist.cc
++++ b/libinterp/corefcn/oct-hist.cc
+@@ -35,7 +35,7 @@ Software Foundation, Inc.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <string>
+--- a/libinterp/corefcn/sighandlers.cc
++++ b/libinterp/corefcn/sighandlers.cc
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iostream>
+ #include <new>
+--- a/libinterp/corefcn/sparse.cc
++++ b/libinterp/corefcn/sparse.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <string>
+ 
+ #include "variables.h"
+--- a/libinterp/corefcn/sysdep.cc
++++ b/libinterp/corefcn/sysdep.cc
+@@ -27,7 +27,7 @@ along with Octave; see the file COPYING.
+ #include <cfloat>
+ #include <cstddef>
+ #include <cstdio>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <iostream>
+--- a/libinterp/corefcn/toplev.cc
++++ b/libinterp/corefcn/toplev.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ 
+ #include <cassert>
+ #include <cerrno>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ #include <new>
+ 
+--- a/libinterp/corefcn/xnorm.cc
++++ b/libinterp/corefcn/xnorm.cc
+@@ -28,7 +28,7 @@ along with Octave; see the file COPYING.
+ 
+ #include <cassert>
+ #include <cfloat>
+-#include <cmath>
++#include <math.h>
+ 
+ #include "oct-norm.h"
+ 
+--- a/libinterp/dldfcn/amd.cc
++++ b/libinterp/dldfcn/amd.cc
+@@ -27,7 +27,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <string>
+ #include <vector>
+--- a/libinterp/dldfcn/ccolamd.cc
++++ b/libinterp/dldfcn/ccolamd.cc
+@@ -27,7 +27,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <string>
+ #include <vector>
+--- a/libinterp/dldfcn/colamd.cc
++++ b/libinterp/dldfcn/colamd.cc
+@@ -28,7 +28,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <string>
+ #include <vector>
+--- a/libinterp/octave.cc
++++ b/libinterp/octave.cc
+@@ -28,7 +28,7 @@ along with Octave; see the file COPYING.
+ 
+ #include <cassert>
+ #include <clocale>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ #include <ctime>
+ 
+--- a/libinterp/octave-value/ov-base-diag.h
++++ b/libinterp/octave-value/ov-base-diag.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_base_diag_h)
+ #define octave_ov_base_diag_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-base.h
++++ b/libinterp/octave-value/ov-base.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_base_h)
+ #define octave_ov_base_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <list>
+--- a/libinterp/octave-value/ov-base-int.h
++++ b/libinterp/octave-value/ov-base-int.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_base_int_h)
+ #define octave_ov_base_int_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-base-mat.h
++++ b/libinterp/octave-value/ov-base-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_base_mat_h)
+ #define octave_ov_base_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-base-scalar.h
++++ b/libinterp/octave-value/ov-base-scalar.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_base_scalar_h)
+ #define octave_ov_base_scalar_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-base-sparse.h
++++ b/libinterp/octave-value/ov-base-sparse.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_base_sparse_h)
+ #define octave_ov_base_sparse_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-bool.h
++++ b/libinterp/octave-value/ov-bool.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_bool_h)
+ #define octave_ov_bool_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-bool-mat.h
++++ b/libinterp/octave-value/ov-bool-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_bool_mat_h)
+ #define octave_ov_bool_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-bool-sparse.h
++++ b/libinterp/octave-value/ov-bool-sparse.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_bool_sparse_h)
+ #define octave_ov_bool_sparse_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-cell.h
++++ b/libinterp/octave-value/ov-cell.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_cell_h)
+ #define octave_ov_cell_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-ch-mat.h
++++ b/libinterp/octave-value/ov-ch-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_ch_mat_h)
+ #define octave_ov_ch_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-class.h
++++ b/libinterp/octave-value/ov-class.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_class_h)
+ #define octave_ov_class_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-colon.h
++++ b/libinterp/octave-value/ov-colon.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_colon_h)
+ #define octave_ov_colon_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-complex.h
++++ b/libinterp/octave-value/ov-complex.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_complex_h)
+ #define octave_ov_complex_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-cs-list.h
++++ b/libinterp/octave-value/ov-cs-list.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_cs_list_h)
+ #define octave_ov_cs_list_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-cx-mat.h
++++ b/libinterp/octave-value/ov-cx-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_cx_mat_h)
+ #define octave_ov_cx_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-cx-sparse.h
++++ b/libinterp/octave-value/ov-cx-sparse.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_cx_sparse_h)
+ #define octave_ov_cx_sparse_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-float.h
++++ b/libinterp/octave-value/ov-float.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_float_h)
+ #define octave_ov_float_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-flt-complex.h
++++ b/libinterp/octave-value/ov-flt-complex.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_flt_complex_h)
+ #define octave_ov_flt_complex_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-flt-cx-mat.h
++++ b/libinterp/octave-value/ov-flt-cx-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_flt_cx_mat_h)
+ #define octave_ov_flt_cx_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-flt-re-mat.h
++++ b/libinterp/octave-value/ov-flt-re-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_flt_re_mat_h)
+ #define octave_ov_flt_re_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov.h
++++ b/libinterp/octave-value/ov.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_h)
+ #define octave_ov_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-intx.h
++++ b/libinterp/octave-value/ov-intx.h
+@@ -21,7 +21,7 @@ along with Octave; see the file COPYING.
+ 
+ */
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-range.h
++++ b/libinterp/octave-value/ov-range.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_range_h)
+ #define octave_ov_range_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-re-mat.h
++++ b/libinterp/octave-value/ov-re-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_re_mat_h)
+ #define octave_ov_re_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-re-sparse.h
++++ b/libinterp/octave-value/ov-re-sparse.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_re_sparse_h)
+ #define octave_ov_re_sparse_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-scalar.h
++++ b/libinterp/octave-value/ov-scalar.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_scalar_h)
+ #define octave_ov_scalar_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-str-mat.h
++++ b/libinterp/octave-value/ov-str-mat.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_str_mat_h)
+ #define octave_ov_str_mat_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/libinterp/octave-value/ov-struct.h
++++ b/libinterp/octave-value/ov-struct.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_ov_struct_h)
+ #define octave_ov_struct_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iosfwd>
+ #include <string>
+--- a/liboctave/array/DiagArray2.h
++++ b/liboctave/array/DiagArray2.h
+@@ -27,7 +27,7 @@ along with Octave; see the file COPYING.
+ #define octave_DiagArray2_h 1
+ 
+ #include <cassert>
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include "Array.h"
+ 
+--- a/liboctave/array/idx-vector.cc
++++ b/liboctave/array/idx-vector.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iostream>
+ 
+--- a/liboctave/cruft/Faddeeva/Faddeeva.cc
++++ b/liboctave/cruft/Faddeeva/Faddeeva.cc
+@@ -160,7 +160,7 @@
+ #  include "Faddeeva.hh"
+ 
+ #  include <cfloat>
+-#  include <cmath>
++#  include <math.h>
+ #  include <limits>
+ using namespace std;
+ 
+--- a/liboctave/numeric/DET.h
++++ b/liboctave/numeric/DET.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_DET_h)
+ #define octave_DET_h 1
+ 
+-#include <cmath>
++#include <math.h>
+ #include "oct-cmplx.h"
+ #include "lo-mappers.h"
+ 
+--- a/liboctave/numeric/eigs-base.cc
++++ b/liboctave/numeric/eigs-base.cc
+@@ -25,7 +25,7 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cfloat>
+-#include <cmath>
++#include <math.h>
+ #include <vector>
+ #include <iostream>
+ 
+--- a/liboctave/numeric/oct-norm.cc
++++ b/liboctave/numeric/oct-norm.cc
+@@ -28,7 +28,7 @@ along with Octave; see the file COPYING.
+ 
+ #include <cassert>
+ #include <cfloat>
+-#include <cmath>
++#include <math.h>
+ 
+ #include <iostream>
+ #include <vector>
+--- a/liboctave/operators/mx-inlines.cc
++++ b/liboctave/operators/mx-inlines.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ #define octave_mx_inlines_h 1
+ 
+ #include <cstddef>
+-#include <cmath>
++#include <math.h>
+ #include <cstring>
+ #include <memory>
+ 
+--- a/liboctave/system/dir-ops.cc
++++ b/liboctave/system/dir-ops.cc
+@@ -25,7 +25,7 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cerrno>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <list>
+--- a/liboctave/system/file-ops.cc
++++ b/liboctave/system/file-ops.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ 
+ #include <cerrno>
+ #include <cstdio>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <iostream>
+--- a/liboctave/system/oct-env.cc
++++ b/liboctave/system/oct-env.cc
+@@ -41,7 +41,7 @@ Free Software Foundation, Inc.
+ #endif
+ 
+ #include <cctype>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <string>
+--- a/liboctave/system/oct-syscalls.cc
++++ b/liboctave/system/oct-syscalls.cc
+@@ -25,7 +25,7 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cerrno>
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <string.h>
+ 
+--- a/liboctave/util/base-list.h
++++ b/liboctave/util/base-list.h
+@@ -23,7 +23,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_base_list_h)
+ #define octave_base_list_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <list>
+ 
+--- a/liboctave/util/cmd-edit.cc
++++ b/liboctave/util/cmd-edit.cc
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <string>
+@@ -57,7 +57,7 @@ static octave_mutex event_hook_lock;
+ #if defined (USE_READLINE)
+ 
+ #include <cstdio>
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include "oct-rl-edit.h"
+ 
+--- a/liboctave/util/cmd-hist.cc
++++ b/liboctave/util/cmd-hist.cc
+@@ -41,7 +41,7 @@ command_history *command_history::instan
+ 
+ #if defined (USE_READLINE)
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <sys/types.h>
+ #include <unistd.h>
+--- a/liboctave/util/data-conv.cc
++++ b/liboctave/util/data-conv.cc
+@@ -25,7 +25,7 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cctype>
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <iostream>
+ #include <limits>
+--- a/liboctave/util/kpse.cc
++++ b/liboctave/util/kpse.cc
+@@ -132,7 +132,7 @@ extern "C" {
+    NULL being defined multiple times.  */
+ #include <cstdio>
+ #include <cstdarg>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cerrno>
+ #include <cassert>
+ 
+--- a/liboctave/util/lo-ieee.cc
++++ b/liboctave/util/lo-ieee.cc
+@@ -25,8 +25,8 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cfloat>
+-#include <cmath>
+-#include <cstdlib>
++#include <math.h>
++#include <stdlib.h>
+ 
+ #include <limits>
+ 
+--- a/liboctave/util/lo-math.h
++++ b/liboctave/util/lo-math.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #define octave_lo_math_h 1
+ 
+ #if defined (__cplusplus)
+-#include <cmath>
++#include <math.h>
+ // if #undef log2 is missing in cmath, undef it here
+ #if defined (log2)
+ #undef log2
+--- a/liboctave/util/lo-utils.cc
++++ b/liboctave/util/lo-utils.cc
+@@ -26,7 +26,7 @@ along with Octave; see the file COPYING.
+ #endif
+ 
+ #include <cctype>
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstdio>
+ #include <cstring>
+ #include <cfloat>
+--- a/liboctave/util/oct-inttypes.h
++++ b/liboctave/util/oct-inttypes.h
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #if !defined (octave_oct_inttypes_h)
+ #define octave_oct_inttypes_h 1
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <limits>
+ #include <iosfwd>
+--- a/liboctave/util/pathsearch.cc
++++ b/liboctave/util/pathsearch.cc
+@@ -24,7 +24,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <string>
+ 
+--- a/src/main.in.cc
++++ b/src/main.in.cc
+@@ -32,7 +32,7 @@ along with Octave; see the file COPYING.
+ #include <config.h>
+ #endif
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ #include <cstring>
+ 
+ #include <algorithm>
+@@ -61,7 +61,7 @@ along with Octave; see the file COPYING.
+ #include "display-available.h"
+ #include "shared-fcns.h"
+ 
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #if (defined (HAVE_OCTAVE_GUI) \
+      && ! defined (__WIN32__) || defined (__CYGWIN__))
+--- a/src/mkoctfile.in.cc
++++ b/src/mkoctfile.in.cc
+@@ -33,7 +33,7 @@ along with Octave; see the file COPYING.
+ #include <iostream>
+ #include <fstream>
+ #include <vector>
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #include <unistd.h>
+ 
+--- a/src/octave-config.in.cc
++++ b/src/octave-config.in.cc
+@@ -29,7 +29,7 @@ along with Octave; see the file COPYING.
+ #include <map>
+ #include <iostream>
+ #include <algorithm>
+-#include <cstdlib>
++#include <stdlib.h>
+ 
+ #ifndef OCTAVE_PREFIX
+ #define OCTAVE_PREFIX %OCTAVE_PREFIX%

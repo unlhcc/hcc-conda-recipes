@@ -1,0 +1,58 @@
+{% set name = "VFTools" %}
+{% set version = "0.0.2020.05.17" %}
+{% set commit = "8afba5e133c936bb14b0a0371b111c80f759a414" %}
+{% set sha256 = "25292c512ebd7e079f3ada35e21d5621c390cecfe74d9784757a86f3180c3dae" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/VirtualFlow/VFTools/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - typo.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - openbabel
+  run:
+    - openbabel
+    - coreutils
+    - gawk
+    - tar
+
+test:
+  commands:
+    - vflp_pp_length.sh | grep "vflp_pp_length.sh" > /dev/null
+    - vflp_prepare_inputdb_smi2indtar.sh | grep "vflp_prepare_inputdb_smi2indtar.sh" > /dev/null
+    - vflp_prepare_inputdb_splitting.sh | grep "vflp_prepare_inputdb_splitting.sh" > /dev/null
+    - vflp_prepare_inputdb_tranches.sh | grep "vflp_prepare_inputdb_tranches.sh" > /dev/null
+    - vfvs_pp_all.sh | grep "vfvs_pp_all.sh" > /dev/null
+    - vfvs_pp_firstposes_compare.sh | grep "vfvs_pp_firstposes_compare.sh" > /dev/null
+    - vfvs_pp_firstposes_compute_min.sh | grep "vfvs_pp_firstposes_compute_min.sh" > /dev/null
+    - vfvs_pp_firstposes_filter_ranking.sh | grep "vfvs_pp_firstposes_filter_ranking.sh" > /dev/null
+    - vfvs_pp_firstposes_prepare_ranking.sh | grep "vfvs_pp_firstposes_prepare_ranking.sh" > /dev/null
+    - vfvs_pp_prepare_dwar.sh | grep "vfvs_pp_prepare_dwar.sh" > /dev/null
+    - vfvs_pp_ranking_all.sh | grep "vfvs_pp_ranking_all.sh" > /dev/null
+    - vfvs_pp_ranking_single.sh | grep "vfvs_pp_ranking_single.sh" > /dev/null
+    - vfvs_prepare_newcollections.sh | grep "vfvs_prepare_newcollections.sh" > /dev/null
+    - vfvs_prepare_zincids2smiles.sh | grep "vfvs_prepare_zincids2smiles.sh" > /dev/null
+    - vfvs_pp_extract_best_poses.sh | grep "vfvs_pp_extract_bestposes.sh" > /dev/null
+    - vfvs_pp_firstposes_all_unite.sh | grep "vfvs_pp_firstposes_all_unite" > /dev/null
+    - vfvs_pp_prepare_dockingposes.sh | grep "vfvs_pp_prepare_docking_poses.sh" > /dev/null
+    - vfvs_prepare_compoundids2smiles.sh | grep "vfvs_prepare_zincids2smiles.sh" > /dev/null
+    - vfvs_prepare_newcollections2.sh | grep "vfvs_prepare_newcollections.sh" > /dev/null
+    - vflp_prepare_ZINC-txt.sh
+
+about:
+  home: https://github.com/VirtualFlow/VFTools
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "VFTools is a a loose collection of additional tools and scripts which can be useful when using VirtualFlow."
+  dev_url: https://github.com/VirtualFlow/VFTools

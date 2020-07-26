@@ -1,0 +1,8 @@
+--- bin/vfvs_pp_firstposes_filter_ranking.sh.org	2020-07-25 19:27:33.034652788 -0500
++++ bin/vfvs_pp_firstposes_filter_ranking.sh	2020-07-25 19:27:41.542685307 -0500
+@@ -1,4 +1,4 @@
+-d#!/usr/bin/env bash
++#!/usr/bin/env bash
+ usage="vfvs_pp_firstposes_filter_ranking.sh <ranking file> <energie file> <max obabel energy> <collection regex> <output filename>
+ 
+ The ranking file needs to have in

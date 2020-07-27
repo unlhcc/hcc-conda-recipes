@@ -11,13 +11,12 @@ chmod +x build-aux/mk-opts.pl
 
 ./configure --help
 ./configure --prefix=$PREFIX \
-    --disable-docs \
+    --enable-docs \
     --enable-readline \
     --enable-shared \
     --with-lapack="-lopenblas" \
     --enable-dl \
     --without-qrupdate \
-    --with-qt=5 \
     --with-magick=GraphicsMagick \
     --without-framework-carbon \
     --with-hdf5-includedir=${PREFIX}/include \

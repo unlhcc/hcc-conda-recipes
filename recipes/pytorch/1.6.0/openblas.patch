@@ -1,0 +1,11 @@
+--- cmake/Modules/FindLAPACK.cmake.org	2020-05-26 01:43:45.787813175 +0000
++++ cmake/Modules/FindLAPACK.cmake	2020-05-26 01:46:40.764858091 +0000
+@@ -121,7 +121,7 @@
+ 
+   # OpenBlas
+   IF((NOT LAPACK_INFO) AND (BLAS_INFO STREQUAL "open"))
+-    SET(CMAKE_REQUIRED_LIBRARIES ${BLAS_LIBRARIES})
++    SET(CMAKE_REQUIRED_LIBRARIES ${BLAS_LIBRARIES} -lm -lgfortran)
+     check_function_exists("cheev_" OPEN_LAPACK_WORKS)
+     set(CMAKE_REQUIRED_LIBRARIES)
+     if(OPEN_LAPACK_WORKS)

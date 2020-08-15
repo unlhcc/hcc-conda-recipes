@@ -1,0 +1,10 @@
+blas_impl:
+  - openblas
+opencv:
+  - 4.3
+cub:
+  - 1.9
+
+pin_run_as_build:
+  opencv:
+    max_pin: x.x

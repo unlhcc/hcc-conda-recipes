@@ -1,0 +1,60 @@
+{% set name = "torchvision" %}
+{% set version = "0.7.0" %}
+{% set sha256 = "fa0a6f44a50451115d1499b3f2aa597e0092a07afce1068750260fa7dd2c85cb" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/pytorch/vision/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx or py<37]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - git
+  host:
+    - python
+    - pip
+    - setuptools
+    - cudatoolkit
+    - pytorch
+    - ffmpeg
+  run:
+    - python
+    - pillow >=4.1.1
+    - numpy >=1.11
+    - cudatoolkit
+    - pytorch
+    - ffmpeg
+
+test:
+  imports:
+    - torchvision
+    - torchvision.datasets
+    - torchvision.transforms
+  source_files:
+    - test
+  requires:
+    - pytest
+    - scipy
+    - av
+    - ca-certificates
+
+about:
+  home: https://github.com/pytorch/vision
+  license: BSD
+  license_family: BSD
+  license_file: LICENSE
+  summary: 'image and video datasets and models for torch deep learning'
+
+extra:
+  skip-lints:
+    - in_other_channels

@@ -9,8 +9,8 @@ How to use:
 ### Setup your build environment
 
 Create a VM on Anvil to use.  Since Docker is required, it needs to
-be EL7 or better.  Here, Fedora 25 is used as an example since it's
-the most recent and has a relatively new version of Docker in the
+be EL7 or better.  Here, Fedora is used as an example since it's
+more modern and has a relatively new version of Docker in the
 default repo.
 
 To avoid a multitude of problems, disable SELinux by editing 
@@ -33,15 +33,14 @@ and then type `source ~/.bashrc`.
 #### Install Docker
 
 An EL6-based Docker container is used for the builds.  In order to
-test builds locally before pushing, a `simulate-gitlabci.py` script
-is provided in the repo which will do the build within the same
-EL6-based container.
+test builds locally before pushing, the `bioconda-utils` package
+can be used to do the build within the same EL6-based container.
 
 Docker is provided in the standard Fedora repo, so install via dnf:
 
 `sudo dnf install docker`
 
-By default in F25, Docker is only runable as root or via sudo.  To run as the
+By default in Fedora, Docker is only runable as root or via sudo.  To run as the
 `fedora` user, do:
 
 ```
@@ -68,19 +67,28 @@ If you don't have a copy of the repo, clone it first:
 Install Conda via the MiniConda installer:
 
 ```
-curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+curl -OL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sudo bash Miniconda3-latest-Linux-x86_64.sh -b -p /anaconda
 sudo chown -R $USER /anaconda
-export PATH=/anaconda/bin:$PATH
+source /anaconda/etc/profile.d/conda.sh
+conda init bash
 ```
 
-Add the last line to the fedora user's `~/.bashrc` so the `PATH` setting is 
-persistent.  The `simulate-gitlabci.py` script can then be run to install needed 
-dependencies and set the correct channel order.
+Close and re-open your shell for the changes to take effect.
+Next, set the channel order and install the `bioconda-utils`
+dependencies:
 
 ```
-./simulate-gitlabci.py --set-channel-order
-./simulate-gitlabci.py --install-requirements
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --add channels hcc
+conda install -y --file https://raw.githubusercontent.com/acaprez/bioconda-utils/gitlabci-master/bioconda_utils/bioconda_utils-requirements.txt
+```
+
+Finally, install the HCC-modified `bioconda-utils` package:
+
+```
+pip install --force-reinstall git+https://github.com/acaprez/bioconda-utils.git@gitlabci-master
 ```
 
 ### Build and test a recipe
@@ -99,18 +107,26 @@ To build a package without using Docker for initial testing, run:
 
 `conda build <recipe directory>`
 
-*See http://docs.continuum.io/conda/build.html for details on how to 
+*See [this link](https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html) for details on how to 
 create a recipe.  Be sure to include an adequate test section in the recipe.
-For packages that need compiled, be sure to include `gcc` in the build section
-and `libgcc` in the run section of the recipe.*
+The [bioconda documentation](https://bioconda.github.io/contributor/index.html) may also
+be helpful for creating the recipe.*
 
 To test a particular recipe (package) using Docker, run
 
-`./simulate-gitlabci.py --loglevel=debug --packages=<package name>/<package version>`
+`bioconda-utils build recipes config.yml --docker --loglevel=debug --packages=<package name>/<package version>`
 
 i.e.,
 
-`./simulate-gitlabci.py --loglevel=debug --packages=mypackage/1.0`
+`bioconda-utils build recipes config.yml --docker --loglevel=debug --packages=mypackage/1.0`
+
+Once your recipe builds, but before you add it to git, you should *lint* it.  Linting
+checks the recipe for form and consistency. To lint it, run
+
+`bioconda-utils lint recipes config.yml --docker --loglevel=debug --packages=mypackage/1.0`
+
+If there are issues, the output will list them along with a suggested fix.  For more details,
+see https://bioconda.github.io/contributor/linting.html.
 
 ### Create a new branch and add your recipe
 

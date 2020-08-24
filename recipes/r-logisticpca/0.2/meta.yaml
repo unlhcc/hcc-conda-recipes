@@ -1,0 +1,42 @@
+{% set version = '0.2' %}
+{% set sha256 = "818ce9df944e1ab89d8be0b34509bf9863ae330f21f5c39b74a0d12382f5331e" %}
+
+package:
+  name: r-logisticpca
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/logisticPCA_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/logisticPCA/logisticPCA_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - r-base
+    - r-ggplot2
+  run:
+    - r-base
+    - r-ggplot2
+
+test:
+  commands:
+    - $R -e "library('logisticPCA')"
+
+about:
+  home: https://github.com/andland/logisticPCA
+  summary: Dimensionality reduction techniques for binary data including logistic PCA.
+  license: MIT
+  license_family: MIT
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE

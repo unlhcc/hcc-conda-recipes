@@ -10,3 +10,20 @@ icu:
   - 58.2*
 qt:
   - 4.8.*
+
+pin_run_as_build:
+  c_compiler_version:
+    max_pin: x.x
+    min_pin: x.x.x
+  cxx_compiler_version:
+    max_pin: x.x
+    min_pin: x.x.x
+  fortran_compiler_version:
+    max_pin: x.x
+    min_pin: x.x.x
+  icu:
+    max_pin: x.x
+    min_pin: x.x.x
+  qt:
+    max_pin: x.x
+    min_pin: x.x.x

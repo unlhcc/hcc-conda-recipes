@@ -1,0 +1,7 @@
+octave:
+  - 4.0.*
+
+pin_run_as_build:
+  octave:
+    max_pin: x.x
+    min_pin: x.x.x

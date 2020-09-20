@@ -1,0 +1,43 @@
+{% set prefix = "octave" %}
+{% set name = "io" %}
+{% set version = "2.4.5" %}
+{% set sha256 = "ff350de1f431588e44c146c64ea56bba16076095161161cea86ca75e1335456e" %}
+
+package:
+  name: {{ prefix }}-{{ name }}
+  version: {{ version }}
+
+source:
+  url: https://octave.sourceforge.io/download.php?package={{ name }}-{{ version }}.tar.gz
+  folder: {{ name }}-{{ version }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script:
+    - sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
+    - tar -czf {{ name }}-{{ version }}.tar.gz {{ name }}-{{ version }}
+    - octave -W -H --eval "pkg install -verbose {{ name }}-{{ version }}.tar.gz"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+  host:
+    - octave
+  run:
+    - octave
+
+test:
+  commands:
+    - octave -W -H --eval 'pkg load {{ name }}'
+
+about:
+  home: https://octave.sourceforge.io/{{ name }}/index.html
+  license: GPLv3
+  license_family: GPL
+  license_file: {{ name }}-{{ version }}/COPYING
+  doc_url: https://octave.sourceforge.io/{{ name }}/overview.html
+  summary: 'Input/Output in external formats.'

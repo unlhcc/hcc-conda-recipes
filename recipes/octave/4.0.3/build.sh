@@ -33,5 +33,9 @@ do
     cp "${RECIPE_DIR}/scripts/${CHANGE}.sh" "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.sh"
 done
 
-# Custom startup file for Octave to fix compilers
+# Custom startup file for Octave to fix compilers and package handling
 cp ${RECIPE_DIR}/octaverc ${PREFIX}/share/octave/site/m/startup
+
+# Ensure package directories are kept even though empty
+mkdir -p ${PREFIX}/share/octave/packages ${PREFIX}/lib/octave/packages
+touch ${PREFIX}/share/octave/packages/.empty ${PREFIX}/lib/octave/packages/.empty

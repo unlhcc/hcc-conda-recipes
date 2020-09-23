@@ -1,0 +1,93 @@
+--- shortbred_identify.py.org	2020-09-23 01:36:43.574287082 -0500
++++ shortbred_identify.py	2020-09-23 01:37:29.667469658 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #
+--- shortbred_quantify.py.org	2020-09-23 01:36:53.731327321 -0500
++++ shortbred_quantify.py	2020-09-23 01:37:41.742517489 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #
+--- utils/AdjustFastaHeadersForShortBRED.py.org	2020-09-23 01:51:37.997814476 -0500
++++ utils/AdjustFastaHeadersForShortBRED.py	2020-09-23 01:51:44.905841360 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #########################################################################
+ # Jim Kaminski
+ # Huttenhower Lab
+@@ -46,4 +47,4 @@
+         print(">" + strHeader)
+     else:
+         print(strLine)
+-        
+\ No newline at end of file
++        
+--- shortbred_src/check_sequences.py.org	2020-09-23 01:58:45.082476945 -0500
++++ shortbred_src/check_sequences.py	2020-09-23 01:59:12.075582014 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #
+--- shortbred_src/check_windows.py.org	2020-09-23 01:58:45.083476949 -0500
++++ shortbred_src/check_windows.py	2020-09-23 01:59:22.193621399 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #
+--- shortbred_src/fastq2fasta.py.org	2020-09-23 01:58:45.085476956 -0500
++++ shortbred_src/fastq2fasta.py	2020-09-23 01:59:30.447653534 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #
+@@ -39,4 +39,4 @@
+ #print len(aseqGenes)
+ 
+ #for seq in aseqGenes:
+-SeqIO.write(aseqGenes, sys.stdout, "fasta")
+\ No newline at end of file
++SeqIO.write(aseqGenes, sys.stdout, "fasta")
+--- shortbred_src/make_windows.py.org	2020-09-23 01:58:45.088476968 -0500
++++ shortbred_src/make_windows.py	2020-09-23 01:59:40.351692085 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #
+--- shortbred_src/process_blast.py.org	2020-09-23 01:58:45.090476976 -0500
++++ shortbred_src/process_blast.py	2020-09-23 02:00:20.087846763 -0500
+@@ -255,11 +255,11 @@
+         assert (mtchBad == None),("\n\nOne or more of the sequences in your "+
+         "input file has an id that ShortBRED cannot use as a valid folder "+
+         "name during the clustering step, so ShortBRED has stopped. Please edit  ** "+
+-        fileFasta + " ** to remove any slashes,asterisks, etc. from the fasta ids. The program utils/AdjustFastaHeadersForShortBRED.py "+
++        fileFasta + " ** to remove any slashes,asterisks, etc. from the fasta ids. The program AdjustFastaHeadersForShortBRED.py "+
+         "in the ShortBRED folder can do this for you.  ShortBRED halted on this gene/protein:" + gene.id)
+         assert (gene.id not in setProtNames),("\n\nShortBRED uses the first word of the seq id to identify each "+
+         "input sequence, and two or more of your sequences share the same starting word. Please edit ** "+
+-        fileFasta + " ** to avoid duplicate ids. The program utils/AdjustFastaHeadersForShortBRED.py can add unique identifiers to your data if needed. ShortBRED halted on this gene/protein: " + gene.id)
++        fileFasta + " ** to avoid duplicate ids. The program AdjustFastaHeadersForShortBRED.py can add unique identifiers to your data if needed. ShortBRED halted on this gene/protein: " + gene.id)
+         assert (mtchMarkerType == None),("\n\nShortBRED uses the strings '_TM','_QM',and '_JM' in the headers for markers, "+
+         "and their presence in the original protein ID may cause issues downstream. Please edit ** "+
+         fileFasta + " ** . ShortBRED halted on this gene/protein: " + gene.id)
+--- shortbred_src/quantify_functions.py.org	2020-09-23 01:58:45.092476983 -0500
++++ shortbred_src/quantify_functions.py	2020-09-23 02:00:39.539922479 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #####################################################################################
+ #Copyright (C) <2013> Jim Kaminski and the Huttenhower Lab
+ #

@@ -1,0 +1,44 @@
+{% set name = "ShortBRED" %}
+{% set version = "0.9.5" %}
+{% set sha256 = "3cb4de82f83a46d3d4ef5a6de76615c26dd81c82ca29ad37406ec6a1ffa699d1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/biobakery/shortbred/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - python_path.patch
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - python 2.7
+    - biopython <1.70
+    - blast <2.3
+      # - usearch  # proprietary license
+    - muscle <3.9
+    - cd-hit <4.7
+
+test:
+  commands:
+    - shortbred_identify.py --help
+    - shortbred_quantify.py --help
+    - AdjustFastaHeadersForShortBRED.py --help
+
+about:
+  home: https://huttenhower.sph.harvard.edu/shortbred
+  license: MIT
+  license_family: MIT
+  summary: "ShortBRED is a system for profiling protein families of interest at very high specificity in shotgun meta’omic sequencing data."
+  dev_url: https://github.com/biobakery/shortbred
+
+extra:
+  identifiers:
+    - doi:10.1371/journal.pcbi.1004557
+  notes: "ShortBRED-Identify uses a comprehensive background protein reference database to screen for protein family-specific peptide sequencesrequires database, such as UniRef90."

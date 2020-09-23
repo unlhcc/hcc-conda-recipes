@@ -17,3 +17,6 @@ setenv("CPPFLAGS", cstrcat("-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -I",include));
 setenv("LDFLAGS", cstrcat("-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,",lib," -Wl,-rpath-link,",lib," -L",lib));
 setenv("AR", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-ar"));
 setenv("OCTAVE_PREFIX", base);
+pkg prefix "/opt/anaconda1anaconda2anaconda3/share/octave/packages" "/opt/anaconda1anaconda2anaconda3/lib/octave/packages";
+pkg local_list "/opt/anaconda1anaconda2anaconda3/share/octave/octave_packages";
+pkg global_list "/opt/anaconda1anaconda2anaconda3/share/octave/octave_packages";

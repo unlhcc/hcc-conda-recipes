@@ -1,0 +1,11 @@
+octave:
+  - 4.0.*
+octave_control:
+  - 3.0.*
+pin_run_as_build:
+  octave:
+    max_pin: x.x
+    min_pin: x.x.x
+  octave_control:
+    max_pin: x.x
+    min_pin: x.x.x

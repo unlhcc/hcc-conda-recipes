@@ -13,10 +13,9 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
   script:
-    - sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
     - tar -czf {{ name }}-{{ version }}.tar.gz {{ name }}-{{ version }}
     - octave -W -H --eval "pkg install -verbose {{ name }}-{{ version }}.tar.gz"
 

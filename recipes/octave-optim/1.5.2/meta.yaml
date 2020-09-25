@@ -1,0 +1,46 @@
+{% set prefix = "octave" %}
+{% set name = "optim" %}
+{% set version = "1.5.2" %}
+{% set sha256 = "7b36033c5581559dc3e7616f97d402bc44dde0dfd74c0e3afdf47d452a76dddf" %}
+
+package:
+  name: {{ prefix }}-{{ name }}
+  version: {{ version }}
+
+source:
+  url: https://octave.sourceforge.io/download.php?package={{ name }}-{{ version }}.tar.gz
+  folder: {{ name }}-{{ version }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script:
+    - tar -czf {{ name }}-{{ version }}.tar.gz {{ name }}-{{ version }}
+    - octave -W -H --eval "pkg install -verbose {{ name }}-{{ version }}.tar.gz"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+  host:
+    - octave
+    - octave-struct
+    - octave-statistics
+  run:
+    - octave
+    - octave-struct
+    - octave-statistics
+
+test:
+  commands:
+    - octave -W -H --eval 'pkg load {{ name }}'
+
+about:
+  home: https://octave.sourceforge.io/{{ name }}/index.html
+  license: GPLv3
+  license_family: GPL
+  license_file: {{ name }}-{{ version }}/COPYING
+  doc_url: https://octave.sourceforge.io/{{ name }}/overview.html
+  summary: 'Non-linear optimization toolkit.'

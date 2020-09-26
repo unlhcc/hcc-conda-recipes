@@ -1,0 +1,110 @@
+{% set name = "qt" %}
+{% set version = "4.8.7" %}
+{% set sha256 = "e2882295097e47fe089f8ac741a95fef47e0a73a3f3cdf21b56990638f626ea0" %}
+
+package:
+  name: qt
+  version: {{ version }}
+
+source:
+  url:
+    - https://unl.box.com/shared/static/bnv2i3oppwe29t4z8u16v1au42m301tf.tgz
+    - https://download.qt.io/archive/qt/4.8/{{ version }}/qt-everywhere-opensource-src-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    # Make Qt accept its open source license without user interaction
+    - acceptance.patch
+    # Make the paths in config.cpp longer so they work with conda-build 2.x
+    - config.cpp.longpath.patch  # [unix]
+    # Enabling our test to set the rpath by making Qt aware
+    # Make Qt work with Ubuntu modifications to scrollbars for Gtk
+    - ubuntu_disable_scrollbars.patch  # [linux]
+    # Build QtWebkit with gcc-6, on platform linux-g++
+    - qtwebkit-gcc-6.patch  # [linux]
+    # OpenSSL 1.1 fixes
+    - qt4-openssl-1.1.0pre-3.patch
+    - Qt-4.8.7_no-ssl3.patch
+
+build:
+  number: 0
+  skip: true  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}  # [linux]
+    - {{ cdt('libxfixes') }}  # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('libx11-devel') }}  # [linux]
+    - {{ cdt('libxext-devel') }}  # [linux]
+    - perl
+    - python  2.7  # [unix]
+    - xz
+
+  host:
+    - freetype  # [unix]
+    - fontconfig # [linux]
+    - freeglut  # [linux]
+    - openssl
+    - jpeg
+    - libtiff
+    - zlib
+    - libpng>=1.6.28,<1.7
+    - icu
+    - xorg-libice      # [linux]
+    - xorg-libsm       # [linux]
+    - xorg-libx11      # [linux]
+    - xorg-libxext     # [linux]
+    - xorg-libxrender  # [linux]
+    - xorg-libxt       # [linux]
+    - xorg-inputproto  # [linux]
+    - expat  # [unix]
+    - sqlite
+    - ncurses
+
+  run:
+    - freetype # [unix]
+    - fontconfig  # [linux]
+    - pango  # [linux]
+    - openssl
+    - libpng>=1.6.28,<1.7
+    - jpeg
+    - libtiff
+    - zlib
+    - icu
+    - xorg-libice      # [linux]
+    - xorg-libsm       # [linux]
+    - xorg-libx11      # [linux]
+    - xorg-libxext     # [linux]
+    - xorg-libxrender  # [linux]
+    - xorg-libxt       # [linux]
+    - sqlite
+    - ncurses
+
+test:
+  requires:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+    
+  files:
+    - test
+
+about:
+  home: http://qt-project.org
+  license: LGPL
+  license_file: LICENSE.txt
+  summary: 'Qt is a cross-platform application and UI framework.'
+  description: |
+    Qt helps you create connected devices, UIs & applications that run
+    anywhere on any device, on any operating system at any time.
+  doc_url: http://doc.qt.io/
+  dev_url: https://github.com/qtproject
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - build_number_needs_bump

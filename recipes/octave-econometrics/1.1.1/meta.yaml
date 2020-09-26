@@ -1,0 +1,44 @@
+{% set prefix = "octave" %}
+{% set name = "econometrics" %}
+{% set version = "1.1.1" %}
+{% set sha256 = "b982f842273935c2e3441d09512611e03d4fee6a7c45532909594d41593ff3ee" %}
+
+package:
+  name: {{ prefix }}-{{ name }}
+  version: {{ version }}
+
+source:
+  url: https://octave.sourceforge.io/download.php?package={{ name }}-{{ version }}.tar.gz
+  folder: {{ name }}-{{ version }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script:
+    - tar -czf {{ name }}-{{ version }}.tar.gz {{ name }}-{{ version }}
+    - octave -W -H --eval "pkg install -verbose {{ name }}-{{ version }}.tar.gz"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+  host:
+    - octave
+    - octave-optim
+  run:
+    - octave
+    - octave-optim
+
+test:
+  commands:
+    - octave -W -H --eval 'pkg load {{ name }}'
+
+about:
+  home: https://octave.sourceforge.io/{{ name }}/index.html
+  license: GPLv3
+  license_family: GPL
+  license_file: {{ name }}-{{ version }}/COPYING
+  doc_url: https://octave.sourceforge.io/{{ name }}/overview.html
+  summary: 'Econometrics functions including MLE and GMM based techniques.'

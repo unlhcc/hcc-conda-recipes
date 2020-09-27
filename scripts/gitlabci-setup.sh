@@ -39,21 +39,21 @@ else
     conda install -y -q --freeze-installed conda=4.8.2
 
     # set channels
-    conda config --add channels bioconda
-    conda config --add channels conda-forge
+    conda config --system --add channels bioconda
+    conda config --system --add channels conda-forge
 fi
 
 # install bioconda-utils required packages
 conda install -q -y --file https://raw.githubusercontent.com/acaprez/bioconda-utils/${HCC_BIOCONDA_UTILS_TAG}/bioconda_utils/bioconda_utils-requirements.txt
 
 # add HCC channel
-conda config --add channels hcc
+conda config --system --add channels hcc
 
 # install HCC-ized bioconda-utils
 pip install -q --force-reinstall git+https://github.com/acaprez/bioconda-utils.git@${HCC_BIOCONDA_UTILS_TAG}
 
 mkdir -p $ANACONDA_PREFIX/conda-bld/{noarch,linux-64,osx-64}
 conda index $ANACONDA_PREFIX/conda-bld
-conda config --add channels file://$ANACONDA_PREFIX/conda-bld
+conda config --system --add channels file://$ANACONDA_PREFIX/conda-bld
 $(set +x; sed -i -e s/TOKEN/${PRIVATE_PACKAGE_TOKEN}/g $SCRIPT_DIR/../config.yml)
-conda config --set changeps1 False
+conda config --system --set changeps1 False

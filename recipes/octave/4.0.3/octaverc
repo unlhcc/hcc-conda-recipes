@@ -9,6 +9,7 @@ setenv("LD_CXX", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
 setenv("DL_LD", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
 setenv("CC", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-cc"));
 setenv("CXX", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
+setenv("LD_CXX", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
 setenv("F77", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-gfortran"));
 setenv("CFLAGS", cstrcat("-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I", include));
 setenv("CXXFLAGS", cstrcat("-fvisibility-inlines-hidden -std=c++11 -fpermissive -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I",include));

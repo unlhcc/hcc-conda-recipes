@@ -14,7 +14,7 @@ source:
     - gcc-6-include-math-stdlib.patch 
 
 build:
-  number: 3
+  number: 4
   skip: True # [osx]
   detect_binary_files_with_prefix: False
 
@@ -79,6 +79,8 @@ requirements:
     - texinfo
     - gl2ps
     - fltk
+    - qrupdate
+    - xorg-libxft
   run:
     - openmp
     - texinfo
@@ -114,6 +116,8 @@ requirements:
     - glib
     - qt
     - openssl
+    - {{ pin_compatible("qrupdate", max_pin="x.x") }}
+    - xorg-libxft
 
 test:
   requires:

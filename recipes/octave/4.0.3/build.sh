@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
-
 export CPPFLAGS="-I${PREFIX}/include ${CPPFLAGS}"
 export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig
 export CXXFLAGS="${CXXFLAGS} --std=c++11 -fpermissive"
@@ -16,7 +14,7 @@ chmod +x build-aux/mk-opts.pl
     --enable-shared \
     --with-lapack="-lopenblas" \
     --enable-dl \
-    --without-qrupdate \
+    --with-qrupdate-libdir=${PREFIX}/lib \
     --with-magick=GraphicsMagick \
     --without-framework-carbon \
     --with-hdf5-includedir=${PREFIX}/include \

@@ -1,0 +1,66 @@
+{% set name = "detectron2" %}
+{% set version = "0.2.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/facebookresearch/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: ee3e404f534c03883423846876522d6b1e3e64796abd12caf51e8f8648bd5a63
+
+build:
+  number: 1
+  skip: True  # [osx]
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python >=3.7
+    - pip
+    - pytorch >=1.6
+    - cudatoolkit
+    - cudnn
+  run:
+    - python >=3.7
+    - cloudpickle
+    - future
+    - fvcore
+    - matplotlib-base
+    - pillow
+    - pycocotools
+    - pydot
+    - tensorboard
+    - termcolor >=1.1
+    - tqdm >4.29.0
+    - yacs >=0.1.6
+    - torchvision >=0.7
+    - cudatoolkit
+    - cudnn
+
+test:
+  imports:
+    - detectron2
+  requires:
+    - black ==19.3b0
+    - flake8
+    - flake8-bugbear
+    - flake8-comprehensions
+    - isort
+    - pytorch
+
+about:
+  home: https://github.com/facebookresearch/detectron2
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: Detectron2 is FAIR's next-generation platform for object detection and segmentation.
+  doc_url: https://github.com/facebookresearch/detectron2
+  dev_url: https://github.com/facebookresearch/detectron2
+
+extra:
+  skip-lints:
+    - in_other_channels

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir build && pushd build
+cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DNO_SHIBBOLETH=1 -DWITH_PROVIDERS=OFF \
+  -DCMAKE_BUILD_TYPE=Release -DBUILD_SHELL_INTEGRATION=OFF -DCMAKE_INSTALL_LIBDIR=lib  ..
+make -j 4
+make install

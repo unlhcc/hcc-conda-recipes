@@ -1,0 +1,15 @@
+--- linux64/bin/gurobi.sh	2020-08-27 00:04:59.000000000 +0000
++++ linux64/bin/gurobi.sh.new	2020-10-02 01:54:02.919132181 +0000
+@@ -7,11 +7,8 @@
+   echo
+ fi
+ 
+-PATH=$GUROBI_HOME/bin:$PATH;export PATH
+-LD_LIBRARY_PATH=$GUROBI_HOME/lib:$LD_LIBRARY_PATH;export LD_LIBRARY_PATH
+ PYTHONHOME=$GUROBI_HOME;export PYTHONHOME
+-PYTHONPATH=$GUROBI_HOME:$PYTHONPATH;export PYTHONPATH
+ 
+ PYTHONSTARTUP=$PYTHONHOME/lib/gurobi.py;export PYTHONSTARTUP
+ 
+-$PYTHONHOME/bin/python3.7 "$@"
++/opt/anaconda1anaconda2anaconda3/bin/python "$@"

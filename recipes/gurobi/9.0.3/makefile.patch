@@ -1,0 +1,19 @@
+--- linux64/src/build/Makefile.org	2020-10-06 18:47:54.885494019 +0000
++++ linux64/src/build/Makefile	2020-10-06 18:48:19.154496157 +0000
+@@ -1,5 +1,5 @@
+-C++      = g++
+-C++FLAGS = -m64 -fPIC -O
++CXX      ?= g++
++CXXFLAGS = -m64 -fPIC -O
+ 
+ C++OBJS = Env.o Model.o attrprivate.o Var.o Constr.o LinExpr.o QuadExpr.o \
+           Exception.o Callback.o Column.o SOS.o QConstr.o GenConstr.o \
+@@ -8,7 +8,7 @@
+ c++: libgurobi_c++.a
+ 
+ %.o: ../cpp/%.cpp ../cpp/%.h
+-	$(C++) $(C++FLAGS) -I../../include -c $<
++	$(CXX) $(CXXFLAGS) -I../../include -c $<
+ 
+ libgurobi_c++.a: $(C++OBJS)
+ 	ar rv libgurobi_c++.a $(C++OBJS)

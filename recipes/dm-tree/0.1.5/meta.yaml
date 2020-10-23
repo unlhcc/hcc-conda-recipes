@@ -1,0 +1,47 @@
+{% set name = "dm-tree" %}
+{% set version = "0.1.5" %}
+{% set sha256 = "a951d2239111dfcc468071bc8ff792c7b1e3192cab5a3c94d33a8b2bda3127fa" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script:
+    - export HOME=`mktemp -d`
+    - "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - bazel >3
+  host:
+    - pip
+    - python
+    - six >=1.12.0
+  run:
+    - python
+    - six >=1.12.0
+
+test:
+  imports:
+    - tree
+  requires:
+    - absl-py >=0.6.1
+    - attrs >=18.2.0
+    - numpy >=1.15.4,<1.17.0
+    - wrapt >=1.11.2
+
+about:
+  home: "https://github.com/deepmind/tree"
+  license: Apache 2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "Tree is a library for working with nested data structures."
+  dev_url: https://github.com/deepmind/tree

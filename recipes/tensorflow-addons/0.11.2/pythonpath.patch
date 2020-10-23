@@ -1,0 +1,21 @@
+--- build_deps/build_pip_pkg.sh.org	2020-10-23 07:14:49.539094709 +0000
++++ build_deps/build_pip_pkg.sh	2020-10-23 07:15:15.352092177 +0000
+@@ -82,9 +82,9 @@
+ 
+   if [[ -z ${NIGHTLY_FLAG} ]]; then
+     # Windows has issues with locking library files for deletion so do not fail here
+-    python ${BUILD_CMD} || true
++    ${PYTHON} ${BUILD_CMD} || true
+   else
+-    python ${BUILD_CMD} ${NIGHTLY_FLAG} || true
++    ${PYTHON} ${BUILD_CMD} ${NIGHTLY_FLAG} || true
+   fi
+ 
+   cp dist/*.whl "${DEST}"
+@@ -93,4 +93,4 @@
+   echo $(date) : "=== Output wheel file is in: ${DEST}"
+ }
+ 
+-main "$@"
+\ No newline at end of file
++main "$@"

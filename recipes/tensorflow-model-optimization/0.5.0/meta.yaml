@@ -1,0 +1,47 @@
+{% set name = "tensorflow-model-optimization" %}
+{% set version = "0.5.0" %}
+{% set sha256 = "1099064766145eee93100e7ce5391a6856ec1abbf493766db68909021145894a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+    url: https://github.com/tensorflow/model-optimization/archive/{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+    number: 0
+    skip: True # [py2k]
+
+requirements:
+    build:
+      - {{ compiler('c') }}
+      - {{ compiler('cxx') }}
+      - bazel >=3
+    host:
+      - python
+      - pip
+      - six >=1.10
+      - numpy >=1.14
+      - dm-tree >=0.1.1
+    run:
+      - python
+      - six >=1.10
+      - numpy >=1.14
+      - dm-tree >=0.1.1
+
+test:
+    requires:
+      - tensorflow >=1.14.0
+    imports:
+      - tensorflow_model_optimization
+
+about:
+    home: https://www.tensorflow.org/model_optimization
+    dev_url: https://github.com/tensorflow/model-optimization
+    doc_url: https://www.tensorflow.org/model_optimization/guide
+    license: Apache 2.0
+    license_family: APACHE
+    license_file: LICENSE
+    summary: "The TensorFlow Model Optimization Toolkit is a suite of tools that users, both novice and advanced, can use to optimize machine learning models for deployment and execution."

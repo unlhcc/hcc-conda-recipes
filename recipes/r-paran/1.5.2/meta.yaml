@@ -1,17 +1,20 @@
+{% set name = "r-paran" %}
 {% set version = '1.5.2' %}
+{% set sha256 = "7a089af1db4fb7ca13b588a106ce12725ce6ca6480289c5d7beeba5e07523435" %}
 
 package:
-  name: r-paran
+  name: {{ name }}
   version: {{ version|replace("-", "_") }}
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/paran_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/paran/paran_{{ version }}.tar.gz
-  sha256: 7a089af1db4fb7ca13b588a106ce12725ce6ca6480289c5d7beeba5e07523435
+  sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
+  noarch: generic
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -32,15 +35,8 @@ test:
     - $R -e "library('paran')"
 
 about:
-  home: http://alexisdinno.com/Software/files/PA_for_PCA_vs_FA.pdf
-  license: GPL-2
-  summary: An implementation of Horn's technique for numerically and graphically evaluating the
-    components or factors retained in a principle components analysis (PCA) or common
-    factor analysis (FA). Horn's method contrasts eigenvalues produced through a PCA
-    or FA on a number of random data sets of uncorrelated variables with the same number
-    of variables and observations as the experimental or observational data set to produce
-    eigenvalues for components or factors that are adjusted for the sample error-induced
-    inflation. Components with adjusted eigenvalues greater than one are retained. paran
-    may also be used to conduct parallel analysis following Glorfeld's (1995) suggestions
-    to reduce the likelihood of over-retention.
-  license_family: GPL2
+  home: https://cran.r-project.org/package=paran
+  license: GPLv2
+  summary: "paran: Horn's Test of Principal Components/Factors"
+  license_family: GPL
+  license_file: LICENSE.txt

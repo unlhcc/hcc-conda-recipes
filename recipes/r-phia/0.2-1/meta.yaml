@@ -1,17 +1,20 @@
+{% set name = "r-phia" %}
 {% set version = '0.2-1' %}
+{% set sha256 = "00e402f19d857e497df771bccaf62690d5624eb73c354dbada081155e8546267" %}
 
 package:
-  name: r-phia
+  name: {{ name }}
   version: {{ version|replace("-", "_") }}
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/phia_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/phia/phia_{{ version }}.tar.gz
-  sha256: 00e402f19d857e497df771bccaf62690d5624eb73c354dbada081155e8546267
+  sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
+  noarch: generic
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -36,8 +39,7 @@ test:
 
 about:
   home: https://github.com/heliosdrm/phia
-  license: GPL (>= 3)
-  summary: Analysis of terms in linear, generalized and mixed linear models,  on the basis of
-    multiple comparisons of factor contrasts.  Specially suited  for the analysis of
-    interaction terms.
-  license_family: GPL3
+  license: GPLv3
+  summary: "phia: Post-Hoc Interaction Analysis"
+  license_family: GPL
+  license_file: LICENSE.txt

@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script:
     - export HOME=`mktemp -d`
     - "{{ PYTHON }} -m pip install . -vv"

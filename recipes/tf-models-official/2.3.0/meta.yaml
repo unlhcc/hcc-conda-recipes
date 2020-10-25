@@ -1,0 +1,102 @@
+{% set name = "tf-models-official" %}
+{% set version = "2.3.0" %}
+{% set sha256 = "c7efead2bc7bfff959d243c22476408e042f4de6573cc1fbb38da97703593dcf" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/tensorflow/models/archive/v{{ version }}.tar.gz
+  sha256:  {{ sha256 }}
+  patches:
+    - requirements.patch
+
+build:
+  number: 0
+  skip: True # [py<37 or osx]
+  script:
+    - cp official/pip_package/setup.py .
+    - cp official/requirements.txt .
+    - "{{ PYTHON }} -m pip install . --no-deps -vv -b ."
+
+requirements:
+  host:
+    - python
+    - pip
+    - six
+    - google-api-python-client >=1.6.7
+    - google-cloud-bigquery >=0.31.0
+    - kaggle >=1.3.9
+    - numpy >=1.15.4
+    - oauth2client
+    - pandas >=0.22.0
+    - psutil >=5.4.3
+    - py-cpuinfo >=3.3.0
+    - scipy >=0.19.1
+    - tensorflow-hub >=0.6.0
+    - tensorflow-model-optimization >=0.4.1
+    - tensorflow-datasets
+    - tensorflow-addons
+    - dataclasses
+    - gin-config
+    - tf_slim >=1.1.0
+    - matplotlib
+    - pyyaml >=5.1
+    - opencv
+    - pillow >=8
+    - pycocotools
+    - seqeval
+    - sentencepiece
+  run:
+    - python
+    - six
+    - google-api-python-client >=1.6.7
+    - google-cloud-bigquery >=0.31.0
+    - kaggle >=1.3.9
+    - numpy >=1.15.4
+    - oauth2client
+    - pandas >=0.22.0
+    - psutil >=5.4.3
+    - py-cpuinfo >=3.3.0
+    - scipy >=0.19.1
+    - tensorflow-hub >=0.6.0
+    - tensorflow-model-optimization >=0.4.1
+    - tensorflow-datasets
+    - tensorflow-addons
+    - dataclasses
+    - gin-config
+    - tf_slim >=1.1.0
+    - matplotlib
+    - pyyaml >=5.1
+    - opencv
+    - pillow >=8
+    - pycocotools
+    - seqeval
+    - sentencepiece
+  run_constrained:
+    - tensorflow >=2.3.0,<=2.4.0
+    - tensorflow-gpu >=2.3.0,<=2.4.0
+
+test:
+  imports:
+    - official.core
+    - official.nlp
+    - official.recommendation
+    - official.staging
+    - official.utils
+    - official.vision
+
+about:
+  home: https://github.com/tensorflow/models/tree/master/official
+  dev_url: https://github.com/tensorflow/models/
+  doc_url: https://github.com/tensorflow/models/tree/master/official
+  license: Apache 2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "The TensorFlow official models are a collection of models that use TensorFlow’s high-level APIs."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
+    - uses_matplotlib

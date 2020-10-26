@@ -20,6 +20,7 @@ if [[ `uname` == Linux ]]
 then
     tag=Linux
     sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
+    mv -f ~/.condarc $ANACONDA_PREFIX
     mkdir -p /ramdisk/conda-bld
     ln -s /ramdisk/conda-bld $ANACONDA_PREFIX/conda-bld
     mkdir -p .cache/conda_build_src .cache/conda_pkgs

@@ -1,0 +1,33 @@
+{% set name = "cudatoolkit" %}
+{% set version = "10.1.243" %}
+{% set sha256 = "cc74bd0a9c6f44e9a1f46bdb903ff3fb2c52f393cfca24ce2409603515a9ecc9" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+# The nvidia site is dog slow, so use a copy on Box instead.
+  - url: https://unl.box.com/shared/static/wd504k333f5gg18gycrk7a9t9t8zv19o.run
+#    url: http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.243_418.87.00_rhel6.run
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  binary_relocation: False
+
+test:
+  commands:
+    - nvcc --version
+
+about:
+  home: https://developer.nvidia.com/cuda-toolkit
+  license: Custom
+  summary: 'NVIDIA CUDA Toolkit'
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_be_noarch_generic
+    - build_number_needs_bump

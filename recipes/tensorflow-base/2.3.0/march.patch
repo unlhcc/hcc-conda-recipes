@@ -1,0 +1,13 @@
+--- configure.py	2020-10-31 06:00:53.109998377 +0000
++++ configure.py.new	2020-11-01 09:38:08.424902299 +0000
+@@ -538,8 +538,8 @@
+   for opt in cc_opt_flags.split():
+     write_to_bazelrc('build:opt --copt=%s' % opt)
+   # It should be safe on the same build host.
+-  if not is_ppc64le() and not is_windows():
+-    write_to_bazelrc('build:opt --host_copt=-march=native')
++#  if not is_ppc64le() and not is_windows():
++#    write_to_bazelrc('build:opt --host_copt=-march=native')
+   write_to_bazelrc('build:opt --define with_default_optimizations=true')
+ 
+ 

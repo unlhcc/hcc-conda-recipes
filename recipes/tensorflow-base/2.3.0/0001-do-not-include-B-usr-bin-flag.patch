@@ -1,0 +1,53 @@
+From a4fdfe2c56d30e5edf56cac230dc19ff9efdf9c9 Mon Sep 17 00:00:00 2001
+From: Mike Sarahan <msarahan@gmail.com>
+Date: Fri, 18 Oct 2019 16:18:49 -0500
+Subject: [PATCH] do not include -B/usr/bin/ flag
+
+---
+ third_party/gpus/cuda_configure.bzl               | 10 ++++++----
+ third_party/sycl/crosstool/CROSSTOOL.tpl          |  4 +---
+ third_party/toolchains/cpus/arm/cc_config.bzl.tpl |  1 -
+ 3 files changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/third_party/sycl/crosstool/CROSSTOOL.tpl b/third_party/sycl/crosstool/CROSSTOOL.tpl
+index f8e50efcc6..304b98aa58 100755
+--- a/third_party/sycl/crosstool/CROSSTOOL.tpl
++++ b/third_party/sycl/crosstool/CROSSTOOL.tpl
+@@ -41,7 +41,6 @@ toolchain {
+   cxx_flag: "%{c++_std}"
+   linker_flag: "-Wl,-no-as-needed"
+   linker_flag: "-lstdc++"
+-  linker_flag: "-B/usr/bin/"
+ 
+   # TODO(bazel-team): In theory, the path here ought to exactly match the path
+   # used by gcc. That works because bazel currently doesn't track files at
+@@ -152,7 +151,6 @@ toolchain {
+   cxx_flag: "-std=c++11"
+   linker_flag: "-Wl,-no-as-needed"
+   linker_flag: "-lstdc++"
+-  linker_flag: "-B/usr/bin/"
+ 
+   # TODO(bazel-team): In theory, the path here ought to exactly match the path
+   # used by gcc. That works because bazel currently doesn't track files at
+@@ -214,4 +212,4 @@ toolchain {
+     compiler_flag: "-O2"
+     compiler_flag: "-DNDEBUG"
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/third_party/toolchains/cpus/arm/cc_config.bzl.tpl b/third_party/toolchains/cpus/arm/cc_config.bzl.tpl
+index bfe91e711b..58b504eebd 100644
+--- a/third_party/toolchains/cpus/arm/cc_config.bzl.tpl
++++ b/third_party/toolchains/cpus/arm/cc_config.bzl.tpl
+@@ -450,7 +450,6 @@ def _impl(ctx):
+                         flag_group(
+                             flags = [
+                                 "-lstdc++",
+-                                "-B/usr/bin/",
+                                 "-Wl,-z,relro,-z,now",
+                                 "-no-canonical-prefixes",
+                                 "-pass-exit-codes",
+-- 
+2.20.1
+

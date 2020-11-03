@@ -1,0 +1,114 @@
+{% set version = "2.3.0" %}
+
+# This is the recipe for the "gpu" variant of tensorflow-base
+package:
+  name: tensorflow-base
+  version: {{ version }}
+
+source:
+  url: https://github.com/tensorflow/tensorflow/archive/v{{ version }}.tar.gz
+  sha256: 2595a5c401521f20a2734c4e5d54120996f8391f00bb62a57267d930bce95350
+  patches:
+    - 0001-do-not-include-B-usr-bin-flag.patch             # [linux]
+    - march.patch
+    - absl_gcc54.patch
+
+build:
+  number: 1
+  string: gpu_py{{ CONDA_PY }}h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
+  skip: True # [py<37 or osx]
+  entry_points:
+    - toco_from_protos = tensorflow.lite.toco.python.toco_from_protos:main
+    - tflite_convert = tensorflow.lite.python.tflite_convert:main
+    - toco = tensorflow.lite.python.tflite_convert:main
+    - saved_model_cli = tensorflow.python.tools.saved_model_cli:main
+    # The tensorboard package adds this entry point.
+    # - tensorboard = tensorboard.main:run_main
+    - tf_upgrade_v2 = tensorflow.tools.compatibility.tf_upgrade_v2_main:main
+    - estimator_ckpt_converter = tensorflow_estimator.python.estimator.tools.checkpoint_converter:main
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - bazel {{ bazel }}
+    - coreutils
+    - binutils
+  host:
+    - python
+ #   - absl-py
+ #   - astunparse
+ #   - gast
+ #   - google-pasta
+ #   - grpcio
+ #   - h5py
+    - keras-preprocessing
+    - mklml       
+    - numpy
+#    - opt_einsum
+    - pip
+    - setuptools
+#    - scipy
+#    - six
+    - swig
+    - termcolor
+    - wheel
+    - wrapt
+    - zlib
+    - cudatoolkit 10.1
+    - cudnn
+    - nccl
+
+  run:
+    - python
+    # pin_compatible here is just to be lazy and define the dep versions in only one place.  These
+    #    don't have binary compatibility issues.
+    - {{ pin_compatible('absl-py', max_pin=None) }}
+    - {{ pin_compatible('astunparse', max_pin='x.x.x') }}
+    - {{ pin_compatible('gast', max_pin='x.x.x') }}
+    - {{ pin_compatible('google-pasta', max_pin=None) }}
+    - {{ pin_compatible('grpcio', max_pin=None) }}
+    - {{ pin_compatible('h5py', max_pin='x.x') }}
+    - {{ pin_compatible('keras-preprocessing', max_pin=None) }}
+    - {{ pin_compatible('numpy') }}
+    - {{ pin_compatible('opt_einsum', max_pin=None)}}
+    - {{ pin_compatible('scipy', max_pin=None) }}
+    - {{ pin_compatible('six', max_pin=None) }}
+    - {{ pin_compatible('termcolor', max_pin=None) }}
+    - {{ pin_compatible('wrapt', max_pin=None) }}
+    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
+    - {{ pin_compatible('cudnn') }}
+    - {{ pin_compatible('nccl') }}
+    - {{ pin_compatible('protobuf') }}
+
+test:
+  # the tensorflow import is tested by the run_test.sh script
+  #imports:
+  #  - tensorflow
+  files:
+    - gpu_test.py
+  commands:
+    - freeze_graph --help
+    - saved_model_cli --help
+    - tflite_convert --help     
+    - toco_from_protos --help   
+    - toco --help               
+
+
+about:
+  home: http://tensorflow.org/
+  license: Apache 2.0
+  license_family: Apache
+  summary: TensorFlow is a machine learning library, base GPU package, tensorflow only.
+  description: |
+    TensorFlow provides multiple APIs.The lowest level API, TensorFlow Core
+    provides you with complete programming control.
+    Base GPU package contains only tensorflow, not tensorflow-tensorboard.
+  dev_url: https://github.com/tensorflow/tensorflow
+  doc_url: https://www.tensorflow.org/get_started/get_started
+  doc_source_url: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/docs_src
+
+extra:
+  tflow_variant: {{ tflow_variant }}
+  skip-lints:
+    - in_other_channels

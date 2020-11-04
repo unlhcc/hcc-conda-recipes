@@ -1,0 +1,7 @@
+variant:
+  - "gpu"
+select_version:
+  - "2.1.0 gpu"
+zip_keys:
+  - variant
+  - select_version

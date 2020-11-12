@@ -13,7 +13,7 @@ source:
 
 build:
   number: 2
-  string: no_avx2fma_{{PKG_BUILD_STRING}}
+  string: no_avx2fma_h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
 
 requirements:
   build:

@@ -1,0 +1,55 @@
+{% set name = "RLScore" %}
+{% set version = "0.8.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0]|lower }}/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz"
+  sha256: d49adb84f8a5eaabff7cf5ad18b21c1f8cc8edbdf86f7f91a65cd172f74189a2
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - pip
+    # there are some files built with Cython 0.28.2, the build fails if the version is not pinned
+    - cython ==0.28.2
+    - python >=3.5
+    - numpy
+  run:
+    - python >=3.5
+    - numpy
+    - scipy
+
+test:
+  imports:
+    - rlscore
+    - rlscore.kernel
+    - rlscore.learner
+    - rlscore.measure
+    - rlscore.predictor
+    - rlscore.test
+    - rlscore.test.test_kernel
+    - rlscore.test.test_learner
+    - rlscore.test.test_measure
+    - rlscore.test.test_utility
+    - rlscore.utilities
+
+about:
+  home: https://github.com/aatapa/RLScore
+  license: MIT
+  license_family: MIT
+  license_file: LICENCE.TXT
+  summary: RLScore - regularized least-squares machine learning algorithms package.
+  doc_url: http://staff.cs.utu.fi/~aatapa/software/RLScore/index.html
+  dev_url: https://github.com/aatapa/RLScore
+
+extra:
+  skip-lints:
+    - cython_must_be_in_host

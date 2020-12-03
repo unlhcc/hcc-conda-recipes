@@ -1,0 +1,114 @@
+{% set name = "deeplabcut" %}
+{% set version = "2.2b8" %}
+{% set sha256 = "af81d9f5deb79558b23a9e8f5c76d85c43ac487453dc4f2357b7e30cb479ea30" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  entry_points:
+    - dlc=deeplabcut.cli:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - python 3.7
+    - pip
+    - bayesian-optimization
+    - certifi
+    - chardet
+    - click
+    - cython
+    - easydict
+    - filterpy
+    - h5py
+    - imgaug
+    - intel-openmp
+    - ipython
+    - ipython_genutils
+    - matplotlib-base 3.1
+    - moviepy <=1.0.1
+    - numba 0.51
+    - numpy 1.16
+    - opencv
+    - pandas >=1.0.1
+    - patsy
+    - python-dateutil
+    - pyyaml
+    - requests
+    - ruamel.yaml >=0.15.0
+    - scikit-image
+    - scikit-learn
+    - scipy >=1.4
+    - setuptools
+    - six
+    - statsmodels >=0.11
+    - pytables
+    - tensorpack ==0.9.8
+    - tqdm
+    - wheel
+  run:
+    - python 3.7
+    - bayesian-optimization
+    - certifi
+    - chardet
+    - click
+    - easydict
+    - filterpy
+    - h5py
+    - imgaug
+    - intel-openmp
+    - ipython
+    - ipython_genutils
+    - matplotlib-base 3.1
+    - moviepy <=1.0.1
+    - numba 0.51
+    - numpy 1.16
+    - opencv
+    - pandas >=1.0.1
+    - patsy
+    - python-dateutil
+    - pyyaml
+    - requests
+    - ruamel.yaml >=0.15.0
+    - scikit-image
+    - scikit-learn
+    - scipy >=1.4
+    - six
+    - statsmodels >=0.11
+    - pytables
+    - tensorpack ==0.9.8
+    - tqdm
+    - wheel
+    - wxpython <4.1.0
+    - jupyter
+    - nb_conda
+  run_constrained:
+    - tensorflow ==1.13.1
+    - tensorflow-gpu ==1.13.1
+
+
+test:
+  requires:
+    - tensorflow ==1.13.1
+    - libxxf86vm-cos6-x86_64
+  commands:
+    - export LD_LIBRARY_PATH=${PREFIX}/x86_64-conda-linux-gnu/sysroot/usr/lib && python -c 'import deeplabcut'
+    - dlc --help
+
+about:
+  home: "http://www.mousemotorlab.org/deeplabcut"
+  license: "GNU Lesser General Public v3 (LGPLv3)"
+  license_family: LGPL
+  license_file:  LICENSE
+  summary: "Markerless pose-estimation of user-defined features with deep learning"
+  doc_url:  "https://github.com/DeepLabCut/DeepLabCut/tree/master/docs"
+  dev_url: "https://github.com/AlexEMG/DeepLabCut"

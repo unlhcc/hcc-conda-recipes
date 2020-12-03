@@ -19,6 +19,8 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [[ `uname` == Linux ]]
 then
     tag=Linux
+    # hack to make yum work again
+    sed -i -e s/^mirrorlist/#mirrorlist/g -e s/#baseurl/baseurl/g -e s/mirror.centos.org/vault.centos.org/ /etc/yum.repos.d/CentOS-Base.repo
     sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
     mv -f -v /root/.condarc $ANACONDA_PREFIX
     mkdir -p /ramdisk/conda-bld

@@ -1,0 +1,35 @@
+{% set name = "py-rouge" %}
+{% set version = "1.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b6caf2f031c45f699a9481c8962b8c33688165a3f2a22e1bfbaede8e073d6bb0
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - python
+    - nltk
+
+test:
+  imports:
+    - rouge
+
+about:
+  home: https://github.com/Diego999/py-rouge
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "Full Python implementation of the ROUGE metric, producing same results as in the official perl implementation."
+  dev_url: https://github.com/Diego999/py-rouge

@@ -1,0 +1,96 @@
+{% set name = "allennlp" %}
+{% set version = "1.2.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - folder: {{ name }}
+    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: 878e7b35c1818e93f5959630d29367f96190a89a60b9962493cdbb396f5c5288
+
+build:
+  entry_points:
+    - allennlp=allennlp.__main__:run
+  number: 0
+  script: "{{ PYTHON }} -m pip install ./{{ name }} -vv"
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - python 3.7
+    - pip
+    - mesa
+    - libglu
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-libxfixes
+    - xorg-libxcb
+    - xorg-libxau
+    - xorg-libxdmcp
+  run:
+    - python 3.7
+    - pytorch >=1.6.0,<1.8.0
+    - jsonnet >=0.10.0
+    - overrides ==3.1.0
+    - nltk
+    - spacy >=2.1.0,<2.4
+    - numpy
+    - tensorboardx >=1.2
+    - boto3 >=1.14,<2.0
+    - requests >=2.18
+    - tqdm >=4.19
+    - h5py
+    - scikit-learn
+    - scipy
+    - transformers >=3.4,<3.6
+    - jsonpickle
+    - dataclasses
+    - filelock >=3.0,<3.1
+    - mesa
+    - libglu
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-libxfixes
+    - xorg-libxcb
+    - xorg-libxau
+    - xorg-libxdmcp
+    - spacy
+    - spacy-model-en_core_web_sm
+
+test:
+  requires:
+    - pytest
+  commands:
+    - allennlp --help
+  imports:
+    - allennlp
+    - allennlp.commands
+    - allennlp.common
+    - allennlp.data
+    - allennlp.models
+    - allennlp.modules
+    - allennlp.nn
+    - allennlp.tools
+    - allennlp.training
+
+about:
+  home: https://allennlp.org/
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: {{ name }}/LICENSE
+  summary: An open-source NLP research library, built on PyTorch.
+  description: |
+    An Apache 2.0 NLP research library, built on PyTorch, for developing state-of-the-art 
+    deep learning models on a wide variety of linguistic tasks.
+  doc_url: https://docs.allennlp.org/master/
+  dev_url: https://github.com/allenai/allennlp
+
+extra:
+  container:
+    extended-base: True
+  skip-lints:
+    - in_other_channels

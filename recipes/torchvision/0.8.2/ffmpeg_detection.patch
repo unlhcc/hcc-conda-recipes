@@ -1,0 +1,11 @@
+--- setup.py	2020-12-14 18:45:52.256394738 +0000
++++ setup.py.new	2020-12-14 18:57:28.643390267 +0000
+@@ -331,7 +331,7 @@
+ 
+     ffmpeg_exe = distutils.spawn.find_executable('ffmpeg')
+     # Disable ffmpeg by default
+-    no_ffmpeg = os.environ.get("NO_FFMPEG", True)
++    no_ffmpeg = os.environ.get("NO_FFMPEG", "")
+     has_ffmpeg = ffmpeg_exe is not None and not no_ffmpeg
+     print("FFmpeg found: {}".format(has_ffmpeg))
+ 

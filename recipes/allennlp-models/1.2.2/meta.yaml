@@ -1,0 +1,53 @@
+{% set name = "allennlp-models" %}
+{% set version = "1.2.2" %}
+{% set sha256 = "b7773ada00eafe09894439f7a230c5cefb8214978a8cff48f57b8809304926b1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+    url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+  noarch: python
+
+requirements:
+  host:
+    - python 3.7
+    - pip
+    - allennlp {{ version }}
+    - pytorch >=1.7.0,<1.8.0
+    - conllu 4.2.1
+    - word2number >=1.1
+    - py-rouge 1.1
+    - nltk
+    - ftfy
+  run:
+    - {{ pin_compatible('python', max_pin='x.x') }}
+    - {{ pin_compatible('allennlp', max_pin='x.x.x') }}
+    - {{ pin_compatible('pytorch', max_pin='x.x') }}
+    - {{ pin_compatible('conllu', max_pin='x.x.x') }}
+    - {{ pin_compatible('word2number', max_pin='x.x') }}
+    - {{ pin_compatible('py-rouge', max_pin='x.x') }}
+    - nltk
+    - ftfy
+
+test:
+  imports:
+    - allennlp_models
+
+about:
+  home: https://allennlp.org/
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: Officially supported models for the AllenNLP framework.
+  description: |
+    An Apache 2.0 NLP research library, built on PyTorch, for developing state-of-the-art 
+    deep learning models on a wide variety of linguistic tasks.
+  doc_url: https://docs.allennlp.org/master/
+  dev_url: https://github.com/allenai/allennlp-models

@@ -1,0 +1,32 @@
+{% set name = "jwt-cli" %}
+{% set version = "3.3.0" %}
+{% set sha256 ="1b00501db589a56fdcb8181674f333fb911b695a43fde770d975ad2072053ff5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/mike-engel/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - rust
+    - {{ compiler('c') }}
+  host:
+  run:
+
+test:
+  commands:
+    - jwt -V
+
+about:
+  home: https://github.com/mike-engel/jwt-cli
+  dev_url: https://github.com/mike-engel/jwt-cli
+  license: MIT
+  license_file: LICENSE.md
+  summary: "A super fast CLI tool to decode and encode JWTs built in Rust."

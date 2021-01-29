@@ -1,0 +1,19 @@
+## Custom startup file for Octave to force the use of the compilers
+## installed in the env.
+##
+
+base = "/opt/anaconda1anaconda2anaconda3";
+include = fullfile(base,"/include");
+lib = fullfile(base,"/lib");
+setenv("LD_CXX", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
+setenv("DL_LD", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
+setenv("CC", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-cc"));
+setenv("CXX", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-c++"));
+setenv("F77", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-gfortran"));
+setenv("CFLAGS", cstrcat("-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I", include));
+setenv("CXXFLAGS", cstrcat("-fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I",include));
+setenv("FFLAGS", cstrcat("-fopenmp -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I",include));
+setenv("CPPFLAGS", cstrcat("-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -I",include));
+setenv("LDFLAGS", cstrcat("-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,",lib," -Wl,-rpath-link,",lib," -L",lib));
+setenv("AR", fullfile(base,"bin/x86_64-conda_cos6-linux-gnu-ar"));
+setenv("OCTAVE_PREFIX", base);

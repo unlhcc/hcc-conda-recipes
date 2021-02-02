@@ -1,0 +1,46 @@
+{% set name = "pyicoteo" %}
+{% set version = "2.0.7" %}
+{% set sha256 = "4acfe201948f7212e124accb3878047bff178170ddbb92c6b5d689a660ee9d87" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://bitbucket.org/regulatorygenomicsupf/pyicoteo/get/v2.0.7.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - imports.patch
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps -vvv"
+
+requirements:
+  host:
+    - python <3
+    - pip
+  run:
+    - python <3
+    - matplotlib-base
+    - samtools
+
+test:
+  imports:
+    - pyicoteolib
+  commands:
+    - pyicoclip -h
+    - pyicoller -h
+    - pyicos -h
+    - pyicoenrich -h
+    - pyicoregion -h
+    - pyicotrocol -h
+
+about:
+  home: http://regulatorygenomics.upf.edu/Software/Pyicoteo/
+  dev_url: https://bitbucket.org/regulatorygenomicsupf/pyicoteo/
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "Analysis and manipulation of mapped reads coming from High Throughput Sequencing tool and library."

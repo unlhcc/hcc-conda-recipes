@@ -1,0 +1,121 @@
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/bam.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/bam.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/bam.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/bam.py	2021-02-02 00:54:03.619383074 +0000
+@@ -18,7 +18,7 @@
+ from math import ceil, floor
+ import subprocess
+ 
+-from defaults import *
++from pyicoteolib.defaults import *
+ from pyicoteolib.core import Cluster, InvalidLine
+ 
+ 
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/common.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/common.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/common.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/common.py	2021-02-02 00:56:52.621385260 +0000
+@@ -26,8 +26,8 @@
+ 
+ import argparse
+ import ConfigParser
+-from ..turbomix import Turbomix, OperationFailed
+-from ..defaults import *
++from pyicoteolib.turbomix import Turbomix, OperationFailed
++from pyicoteolib.defaults import *
+ 
+ __version__ = VERSION
+ 
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoclip.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoclip.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoclip.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoclip.py	2021-02-02 00:36:38.393377668 +0000
+@@ -1,5 +1,5 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+ 
+ def create_parser():
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoenrich.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoenrich.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoenrich.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoenrich.py	2021-02-02 00:36:38.393377668 +0000
+@@ -1,5 +1,5 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+ 
+ def create_parser():
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoller.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoller.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoller.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoller.py	2021-02-02 00:36:38.394377668 +0000
+@@ -1,5 +1,5 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+ 
+ def create_parser():
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoregion.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoregion.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicoregion.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicoregion.py	2021-02-02 00:36:38.394377668 +0000
+@@ -1,5 +1,5 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+ 
+ def create_parser():
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicos.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicos.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicos.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicos.py	2021-02-02 00:36:38.394377668 +0000
+@@ -1,5 +1,5 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+ 
+ def create_parser():
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicotrocol.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicotrocol.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicotrocol.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicotrocol.py	2021-02-02 00:36:38.394377668 +0000
+@@ -1,5 +1,5 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+ import ConfigParser
+ 
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicount.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicount.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/parser/pyicount.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/parser/pyicount.py	2021-02-02 00:57:10.437385491 +0000
+@@ -1,7 +1,7 @@
+ from pyicoteolib.defaults import *
+-from common import *
++from pyicoteolib.parser.common import *
+ import argparse
+-from ..counter import count_all
++from pyicoteolib.counter import count_all
+ 
+ 
+ def create_parser():
+diff -r -u regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/turbomix.py regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/turbomix.py
+--- regulatorygenomicsupf-pyicoteo-dd9b07132732/pyicoteolib/turbomix.py	2014-02-19 16:42:50.000000000 +0000
++++ regulatorygenomicsupf-pyicoteo-dd9b07132732.new/pyicoteolib/turbomix.py	2021-02-02 00:55:09.193383920 +0000
+@@ -23,12 +23,12 @@
+ from datetime import datetime
+ from tempfile import gettempdir
+ 
+-from core import Cluster, Region, InvalidLine, InsufficientData, ConversionNotSupported
+-from defaults import *
+-import utils
+-import bam
+-import enrichment
+-from regions import RegionWriter
++from pyicoteolib.core import Cluster, Region, InvalidLine, InsufficientData, ConversionNotSupported
++from pyicoteolib.defaults import *
++import pyicoteolib.utils
++import pyicoteolib.bam
++import pyicoteolib.enrichment
++from pyicoteolib.regions import RegionWriter
+ 
+ try:
+     from shutil import move

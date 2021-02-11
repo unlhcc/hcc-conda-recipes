@@ -1,0 +1,58 @@
+{% set name = "boris2" %}
+{% set version = "3.0" %}
+{% set sha256 = "b9ee7f4b854fe793f275bcb45f7858fc2c622680eff8d63de911050806aa15f6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/SerbanL/Boris2/archive/3.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('libudev-devel') }}
+    - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-libegl-devel') }}
+    - {{ cdt('mesa-dri-drivers') }}
+    - {{ cdt('libselinux') }}
+    - {{ cdt('libxdamage') }}
+    - {{ cdt('libxfixes') }}
+    - {{ cdt('libxxf86vm') }}
+    - {{ cdt('expat-devel') }}
+  host:
+    - cudatoolkit
+    - fftw
+    - tbb-devel
+    - tbb
+    - sfml
+    - xorg-libx11
+
+  run:
+    - cudatoolkit
+    - fftw
+    - tbb
+    - sfml
+    - xorg-libx11
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+    - echo "exit" | BorisLin
+
+about:
+  home: http://www.boris-spintronics.uk/
+  dev_url: https://github.com/SerbanL/Boris2
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "Boris Computational Spintronics."

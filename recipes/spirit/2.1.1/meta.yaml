@@ -1,0 +1,47 @@
+{% set name = "spirit" %}
+{% set version = "2.1.1" %}
+{% set sha256 = "2ba7aaee9aa29b59ff3506c0fc8ec3a0a1f780f0f3bb75dec620a209ec9379ea" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/spirit-code/spirit/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+  host:
+    - numpy
+    - pip
+    - python
+    - fftw
+    - openmp
+  run:
+    - numpy
+    - python
+    - fftw
+    - openmp
+
+test:
+  commands:
+    - spirit --version
+  imports:
+    - spirit
+    - spirit.parameters
+
+about:
+  home: https://spirit-code.github.io
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  summary: "Optimizations and Dynamics Framework for atomistic Spin systems"
+  doc_url: https://spirit-docs.readthedocs.io
+  dev_url: https://github.com/spirit-code/spirit

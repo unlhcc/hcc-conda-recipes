@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir build && pushd build
+cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_PREFIX_PATH=${PREFIX} -DCMAKE_BUILD_TYPE="Release" \
+  -DSPIRIT_UI_CXX_USE_QT=OFF -DSPIRIT_USE_CUDA=ON -DSPIRIT_USE_FFTW=OFF -DSPIRIT_USE_OPENMP=OFF \
+  -DSPIRIT_ENABLE_PINNING=ON -DSPIRIT_ENABLE_DEFECTS=ON -DSPIRIT_SCALAR_TYPE="float" -DSPIRIT_BUILD_FOR_PYTHON=ON \
+  -DSPIRIT_CUDA_ARCH=sm_35 -DCMAKE_CUDA_FLAGS="-ccbin ${CC} --allow-unsupported-compiler -L${PREFIX}/lib" \
+  -DCUDA_TOOLKIT_ROOT_DIR=${PREFIX} -DCMAKE_C_COMPILER=${CC} \
+  -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_LINKER=${LD} ..
+
+make -j 4
+make install
+popd && pushd core/python
+${PYTHON} -m pip install . --no-deps -vvv

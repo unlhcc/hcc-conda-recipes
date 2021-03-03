@@ -1,0 +1,31 @@
+--- source_code/Methods.h.org	2021-03-03 03:23:29.371828501 +0000
++++ source_code/Methods.h	2021-03-03 03:23:58.594030747 +0000
+@@ -167,7 +167,7 @@
+     return true;
+ }
+ 
+-float abs(float value){
++float myabs(float value){
+     if(value<0) return -1*value;
+     return value;
+ }
+--- source_code/Cluster.h.org	2021-03-03 03:23:34.674865201 +0000
++++ source_code/Cluster.h	2021-03-03 03:24:09.282104720 +0000
+@@ -124,7 +124,7 @@
+     for (long i = 0; i < dimension - 1; i++) {
+ //        cout<<i<<":\t"<<matrix[i][dimension-1]<<endl;
+         if (clustered[i]) continue;
+-        if(abs(max-matrix[i][dimension-1])<=MERGE_CORRELATION) clustered[i]=true;
++        if(myabs(max-matrix[i][dimension-1])<=MERGE_CORRELATION) clustered[i]=true;
+     }
+ //    for(long i=0;i<dimension;i++) if(clustered[i]) cout<<"set2 "<<i<<endl;
+ }
+--- Makefile.org	2021-03-03 03:33:31.290994403 +0000
++++ Makefile	2021-03-03 03:34:28.186388177 +0000
+@@ -1,5 +1,5 @@
+ CC        = g++
+-COMPILE.C = $(CC) -c
++COMPILE.C = $(CC) -c -std=gnu++98 -w -fcompare-debug-second
+ VPATH     = ./source_code/
+ MAKEEXE   = $(CC) 
+ 

@@ -1,0 +1,31 @@
+{% set name = "metacv" %}
+{% set version = "2.3.0" %}
+{% set sha256 = "443bff27832d74cea085093df04cde4e12f7f17542bd9bb1e82451800c4e05ce" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://downloads.sourceforge.net/project/metacv/metacv_2_3_0.tgz
+  sha256: {{ sha256 }}
+  patches:
+    - cppfixes.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+  run:
+
+test:
+  commands:
+    - metacv
+
+about:
+  home: http://metacv.sourceforge.net/
+  license: NONE
+  summary: "Composition based classification for short metagenomic sequences"

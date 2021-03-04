@@ -1,0 +1,43 @@
+{% set name = "perl-sub-exporter-simple" %}
+{% set version = "1.103210" %}
+{% set sha256 = "6f24381b7c5da1945e54a169c93cd0dc837433d45e0698c50ab395c902fe892d" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/M/MI/MITHALDU/Sub-Exporter-Simple-1.103210.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    weak:
+      - {{ name }} ={{ version }}
+
+requirements:
+  build:
+
+  # Run exports are used now
+  host:
+    - perl
+    - perl-sub-exporter
+    - perl-test-most
+    - perl-test-fatal
+
+  run:
+    - perl
+    - perl-sub-exporter
+
+test:
+  # Perl 'use' tests
+  imports:
+    - Sub::Exporter::Simple
+
+about:
+  home: https://metacpan.org/pod/Sub::Exporter::Simple
+  license: perl_5
+  license_family: PUBLIC-DOMAIN
+  summary: 'just export some subs'

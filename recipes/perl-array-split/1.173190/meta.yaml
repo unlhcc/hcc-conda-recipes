@@ -1,0 +1,44 @@
+{% set name = "perl-array-split" %}
+{% set version = "1.173190" %}
+{% set sha256 = "2dc88d9a743475ce6f661f7d7b869f1d1af73bbfd5e710cd2d85631b003ca867" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/M/MI/MITHALDU/Array-Split-1.173190.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    weak:
+      - {{ name }} ={{ version }}
+
+requirements:
+  build:
+
+  # Run exports are used now
+  host:
+    - perl
+    - perl-sub-exporter
+    - perl-sub-exporter-simple
+    - perl-test-most
+
+  run:
+    - perl
+    - perl-sub-exporter
+    - perl-sub-exporter-simple
+
+test:
+  # Perl 'use' tests
+  imports:
+    - Array::Split
+
+about:
+  home: https://metacpan.org/pod/Array::Split
+  license: perl_5
+  license_family: PUBLIC-DOMAIN
+  summary: 'split an array into sub-arrays'

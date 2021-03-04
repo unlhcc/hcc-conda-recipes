@@ -1,0 +1,40 @@
+{% set name = "signalp" %}
+{% set version = "5.0b" %}
+{% set sha256 = "7be9a40cebe7d7d8828466f10cb43e8ff69691675308a1c8740b274ca54f7c4b" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: s.tar.gz
+  url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/ETGt_ym6flNHjgi_n66lO5kBr1Fq2OxyfzTGDP8799sfeQ?e=41CTHJ&download=1
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+
+  host:
+   - libstdcxx-ng
+
+  run:
+    - libstdcxx-ng
+
+test:
+  commands:
+    - test -f ${PREFIX}/bin/signalp
+
+about:
+  home: http://www.cbs.dtu.dk/services/SignalP
+  license: Custom
+  license_family: OTHER
+  summary: 'signalp  predicts  the presence and location of signal peptide cleavage sites in amino acid sequences from different  organisms:  Gram-positive bacteria,  Gram-negative  bacteria, and eukaryotes.'
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+    - should_be_noarch_generic

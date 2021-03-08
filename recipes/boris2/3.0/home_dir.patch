@@ -1,0 +1,18 @@
+--- BorisLib/Funcs_Files_Linux.h.org	2021-03-06 00:44:53.848110647 +0000
++++ BorisLib/Funcs_Files_Linux.h	2021-03-06 00:45:16.098259214 +0000
+@@ -71,7 +71,7 @@
+     pw = getpwuid(uid);
+ 	if (pw) {
+ 		
+-		return std::string("/home/") + std::string(pw->pw_name) + std::string("/Documents/");
++		return std::string(pw->pw_dir) + std::string("/Documents/");
+ 	}
+ 	else return "";
+ }
+@@ -166,4 +166,4 @@
+ 	//TO DO
+ }
+ 
+-#endif
+\ No newline at end of file
++#endif

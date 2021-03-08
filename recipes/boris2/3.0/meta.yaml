@@ -11,9 +11,10 @@ source:
   sha256: {{ sha256 }}
   patches:
     - makefile.patch
+    - home_dir.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:

@@ -1,0 +1,50 @@
+--- METABOLIC-G.pl.org	2021-03-04 01:42:28.909961789 +0000
++++ METABOLIC-G.pl	2021-03-16 21:28:20.367269204 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ ###########################
+ 
+@@ -43,6 +43,7 @@
+ use Parallel::ForkManager;
+ use File::Spec;
+ use File::Basename;
++use Cwd 'abs_path';
+ 
+ =head1 DESCRIPTION
+ 
+@@ -90,7 +91,7 @@
+ =cut
+ 
+ #Intake the address of METABOLIC directory:
+-my $METABOLIC_dir = dirname(File::Spec->rel2abs(__FILE__));
++my $METABOLIC_dir = dirname(abs_path(__FILE__));
+ 
+ #The options 
+ # option variables with default value
+--- METABOLIC-C.pl.org	2021-03-04 01:42:24.156929481 +0000
++++ METABOLIC-C.pl	2021-03-16 21:29:18.952699566 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ ###########################
+ 
+@@ -42,6 +42,7 @@
+ use Parallel::ForkManager;
+ use File::Spec;
+ use File::Basename;
++use Cwd 'abs_path';
+ 
+ =head1 DESCRIPTION
+ 
+@@ -90,7 +91,7 @@
+ =cut
+ 
+ #Intake the address of METABOLIC directory:
+-my $METABOLIC_dir = dirname(File::Spec->rel2abs(__FILE__));
++my $METABOLIC_dir = dirname(abs_path(__FILE__));
+ 
+ #The options 
+ # option variables with default value

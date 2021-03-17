@@ -9,6 +9,7 @@ export LIBRARY_PATH="${PREFIX}/lib:$LIBRARY_PATH"
 
 unset CXXFLAGS
 export CXXFLAGS="-L${PREFIX}/lib -fpermissive -march=nocona -mtune=haswell -fPIC -isystem $PREFIX/include -O2 -D__STDC_FORMAT_MACROS -Wno-deprecated-declarations"
+export CUDA_NVCC_FLAGS="--allow-unsupported-compiler"
 
 export CMAKE_PREFIX_PATH=${PREFIX}
 export USE_CUDA=1

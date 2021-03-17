@@ -4,6 +4,14 @@ opencv:
   - 4.3
 cub:
   - 1.9
+cudatoolkit:
+  - 10.1
+#  - 10.2
+
+c_compiler_version:
+  - 7.*
+cxx_compiler_version:
+  - 7.*
 
 pin_run_as_build:
   opencv:

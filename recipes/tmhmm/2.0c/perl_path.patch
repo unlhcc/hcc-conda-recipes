@@ -1,0 +1,16 @@
+--- bin/tmhmm.org	2021-03-18 21:20:54.038287808 +0000
++++ bin/tmhmm	2021-03-18 21:21:20.207485025 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # This is version 2.0c of tmhmm
+ 
+--- bin/tmhmmformat.pl.org	2021-03-18 21:21:02.973355145 +0000
++++ bin/tmhmmformat.pl	2021-03-18 21:21:58.625774557 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl -w
+ 
+ # This is version 2.0c of tmhmmformat.pl
+ 

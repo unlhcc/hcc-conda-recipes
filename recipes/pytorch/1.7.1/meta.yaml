@@ -12,7 +12,7 @@ source:
     - openblas.patch
 
 build:
-  number: 0
+  number: 1000
   skip: True # [osx or py<37]
 
 requirements:
@@ -68,6 +68,7 @@ requirements:
     - opencv
     - libblas * *{{ blas_impl }}
     - {{ blas_impl }}
+    - mkl 2020.4
 
 test:
   imports:

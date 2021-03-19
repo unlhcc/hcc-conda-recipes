@@ -1,0 +1,42 @@
+{% set name = "tmhmm" %}
+{% set version = "2.0c" %}
+{% set sha256 = "09b1f01e7262f6f531714ed77dbfd7fe6227635f0f22ec136650946197ef88fb" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: t.tar.gz
+  url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EQjWXer6UUdFgTlaNaTY0BIB6Se5gv-Gv93YQ4-Ot-RHNA?e=EQU7PB&download=1
+  sha256: {{ sha256 }}
+  patches:
+    - perl_path.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+  binary_relocation: False
+
+requirements:
+  host:
+  run:
+    - perl 5.*
+
+test:
+  files:
+    - test.fasta
+  commands:
+    - tmhmm test.fasta
+
+about:
+  home: http://www.cbs.dtu.dk/services/TMHMM
+  license: OTHER
+  license_family: OTHER
+  license_file: README
+  summary: "TMHMM 2.0 predicts transmembrane helices in proteins."
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+    - should_be_noarch_generic

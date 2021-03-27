@@ -1,0 +1,40 @@
+{% set name = "mcr" %}
+{% set version = "8.3" %}
+{% set sha256 = "fba9cf6dc896bf613d92b4c1cbdb50708b1bef8514bf52a5ad14527c38824a15" %}
+
+package:
+  name: {{ name | lower}}
+  version: {{ version }}
+
+source:
+  url: https://www.mathworks.com/supportfiles/downloads/R2014a/deployment_files/R2014a/installers/glnxa64/MCR_R2014a_glnxa64_installer.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+# The binary relocation logic corrupts the .mex files somehow, so we disable it.
+  binary_relocation: False
+
+requirements:
+  host:
+  run:
+    - xorg-libxt
+    - xorg-libxmu
+    - xorg-libsm
+    - xorg-libice
+
+test:
+  commands:
+    - test -f $PREFIX/share/$PKG_NAME-$PKG_VERSION-$PKG_BUILDNUM/v{{ version | replace('.','') }}/bin/matopts.sh
+
+about:
+  home: https://www.mathworks.com/products/compiler/matlab-runtime.html
+  license: OTHER
+  license_family: OTHER
+  license_file: MCR_license.txt
+  summary: "Run compiled MATLAB applications or components without installing MATLAB."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

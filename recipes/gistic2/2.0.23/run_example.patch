@@ -1,0 +1,20 @@
+--- run_gistic_example.org	2021-03-26 23:21:31.683907604 +0000
++++ run_gistic_example	2021-03-26 23:22:35.241347732 +0000
+@@ -8,11 +8,11 @@
+ 
+ echo --- running GISTIC ---
+ ## input file definitions
+-segfile=`pwd`/examplefiles/segmentationfile.txt
+-markersfile=`pwd`/examplefiles/markersfile.txt
+-refgenefile=`pwd`/refgenefiles/hg16.mat
+-alf=`pwd`/examplefiles/arraylistfile.txt
+-cnvfile=`pwd`/examplefiles/cnvfile.txt
++segfile=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/examplefiles/segmentationfile.txt
++markersfile=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/examplefiles/markersfile.txt
++refgenefile=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/refgenefiles/hg16.mat
++alf=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/examplefiles/arraylistfile.txt
++cnvfile=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/examplefiles/cnvfile.txt
+ ## call script that sets MCR environment and calls GISTIC executable 
+-./gistic2 -b $basedir -seg $segfile -mk $markersfile -refgene $refgenefile -alf $alf -cnv $cnvfile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme
++gistic2 -b $basedir -seg $segfile -mk $markersfile -refgene $refgenefile -alf $alf -cnv $cnvfile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme
+ 

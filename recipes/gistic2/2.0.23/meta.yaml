@@ -1,0 +1,41 @@
+{% set name = "gistic2" %}
+{% set version = "2.0.23" %}
+{% set sha256 = "d6a5485ef73f6671a804dec30b617d608830e9d05b6dade8940496e67148eac5" %}
+
+package:
+  name: {{ name | lower}}
+  version: {{ version }}
+
+source:
+  url: ftp://ftp.broadinstitute.org/pub/GISTIC2.0/GISTIC_2_0_23.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - gistic2.patch
+    - run_example.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - gettext
+  host:
+  run:
+    - mcr 8.3*
+
+test:
+  commands:
+    - export HOME=/tmp && gistic2
+
+about:
+  home: http://portals.broadinstitute.org/cgi-bin/cancer/publications/pub_paper.cgi?mode=view&paper_id=216&p=t
+  license: OTHER
+  license_family: OTHER
+  license_file: LICENSE.txt
+  summary: "GISTIC2.0 facilitates sensitive and confident localization of the targets of focal somatic copy-number alteration in human cancers."
+  dev_url: ftp://ftp.broadinstitute.org/pub/GISTIC2.0
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

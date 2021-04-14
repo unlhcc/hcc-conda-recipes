@@ -1,0 +1,53 @@
+{% set name = "midnight-commander" %}
+{% set version = "4.8.26" %}
+{% set sha256 = "9d6358d0a351a455a1410aab57f33b6b48b0fcf31344b9a10b0ff497595979d1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://ftp.midnight-commander.org/mc-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - libtool
+    - perl
+    - python
+  host:
+    - slang
+    - gettext
+    - glib
+    - libssh2
+    - zip
+    - unzip
+    - gpm
+    - zlib
+    - libiconv
+  run:
+    - slang
+    - gettext
+    - glib
+    - libssh2
+    - zip
+    - unzip
+    - zlib
+    - libiconv
+
+test:
+  commands:
+    - export HOME=`mktemp -d` && mc --version
+
+about:
+  home: https://midnight-commander.org
+  dev_url: https://github.com/MidnightCommander/mc
+  summary: "GNU Midnight Commander is a visual file manager, licensed under GNU General Public License and therefore qualifies as Free Software. It's a feature rich full-screen text mode application that allows you to copy, move and delete files and whole directory trees, search for files and run commands in the subshell. Internal viewer and editor are included."
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING

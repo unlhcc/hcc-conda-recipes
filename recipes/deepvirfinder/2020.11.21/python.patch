@@ -1,0 +1,33 @@
+--- dvf.py.old	2021-04-13 22:45:47.347298045 -0500
++++ dvf.py	2021-04-13 22:50:25.780424387 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # title             :dvf.py
+ # description       :Identifying viral sequences from metagenomic data by deep learning
+ # author            :Jie Ren renj@usc.edu
+@@ -18,7 +18,7 @@
+ parser.add_option("-i", "--in", action = "store", type = "string", dest = "input_fa", 
+                   help = "input fasta file")
+ parser.add_option("-m", "--mod", action = "store", type = "string", dest = "modDir",
+-									default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "models"), 
++									default=os.path.join(os.path.dirname(__file__), "../share/deepvirfinder/models"), 
+                   help = "model directory (default ./models)")
+ parser.add_option("-o", "--out", action = "store", type = "string", dest = "output_dir",
+ 									default='./', help = "output directory")
+--- encode.py.old	2021-04-13 22:45:47.348298049 -0500
++++ encode.py	2021-04-13 22:46:32.536480849 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # title             :encode.py
+ # description       :Fragment genomes into fixed length sequences, and one-hot encode it into matrix.
+ # author            :Jie Ren renj@usc.edu
+--- training.py.old	2021-04-13 22:45:47.350298057 -0500
++++ training.py	2021-04-13 22:46:21.051434381 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # title             :training.py
+ # description       :Training deep learning for distinguishing viruses from hosts
+ # author            :Jie Ren renj@usc.edu

@@ -1,0 +1,56 @@
+{% set name = "DeepVirFinder" %}
+{% set version = "2020.11.21" %}
+{% set revision = "6a823fb" %}
+{% set sha256 = "2c1a831f8857e8d7c16a955b4542f3f729d6ac92760a067ee52d1972a9c5a664" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/jessieren/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - python.patch
+
+build:
+  noarch: generic
+  number: 0
+  script:
+    - mkdir -p ${PREFIX}/bin ${PREFIX}/share/${PKG_NAME}
+    - cp *.py ${PREFIX}/bin/
+    - chmod +x ${PREFIX}/bin/*.py
+    - cp -r models ${PREFIX}/share/${PKG_NAME}/
+
+requirements:
+  host:
+    - python ==3.6
+    - numpy <1.17
+    - theano ==1.0.3
+    - keras ==2.2.4
+    - scikit-learn
+    - biopython
+    - h5py ==2.10.0
+    - mkl-service
+  run:
+    - python ==3.6
+    - numpy <1.17
+    - theano ==1.0.3
+    - keras ==2.2.4
+    - scikit-learn
+    - biopython
+    - h5py ==2.10.0
+    - mkl-service
+ 
+test:
+  commands:
+    - dvf.py -h
+    - encode.py -h
+    - training.py -h
+
+about:
+  home: https://github.com/jessieren/DeepVirFinder
+  license: Other
+  license_family: Other
+  license_file: licence.md
+  summary: "Identifying viruses from metagenomic data by deep learning."

@@ -15,14 +15,14 @@ stages:
 
 build-linux:
   stage: build
-  image: bioconda/bioconda-utils-build-env:latest
+  image: quay.io/bioconda/bioconda-utils-build-env-cos7:latest
   except:
     - master
   tags:
     - docker
   before_script:
     - export ANACONDA_PREFIX=/opt/conda
-    - export HOME=/root
+    - export HOME=/home/conda
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
@@ -49,14 +49,14 @@ build-linux:
 
 deploy-linux:
   stage: deploy
-  image: bioconda/bioconda-utils-build-env:latest
+  image: quay.io/bioconda/bioconda-utils-build-env-cos7:latest
   only:
     - master
   tags:
     - docker
   before_script:
     - export ANACONDA_PREFIX=/opt/conda
-    - export HOME=/root
+    - export HOME=/home/conda
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh

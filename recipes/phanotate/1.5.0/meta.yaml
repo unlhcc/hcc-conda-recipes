@@ -1,0 +1,38 @@
+{% set name = "PHANOTATE" %}
+{% set version = "1.5.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0]|lower }}/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz"
+  sha256: 589e441d2369e5550aef98b8d99fd079d130363bf881a70ac862fc7a8e0d2c88
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - pip
+    - python >=3.9
+  run:
+    - python >=3.9
+    - fastpath=1.6
+
+test:
+  imports:
+    - phanotate_modules
+  commands:
+    - phanotate.py -h
+
+about:
+  home: https://github.com/deprekate/phanotate
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file: LICENSE
+  summary: "PHANOTATE is a tool to annotate phage genomes."
+  dev_url: https://github.com/deprekate/phanotate

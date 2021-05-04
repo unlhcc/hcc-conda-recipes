@@ -1,0 +1,596 @@
+--- cenote_virus_segments_V6.py.old	2021-04-27 21:04:01.190097064 -0500
++++ cenote_virus_segments_V6.py	2021-04-27 21:05:09.994395186 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import itertools, sys, os
+ import csv
+ import glob
+--- run_cenote-taker2.py.old	2021-04-27 21:09:33.399536636 -0500
++++ run_cenote-taker2.py	2021-04-27 21:11:42.650096746 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import argparse
+ import sys, os
+@@ -174,5 +174,5 @@
+ 	quit()
+ 
+ 
+-subprocess.call(['bash', str(cenote_script_path) + '/cenote-taker2.1.1.sh', str(args.original_contigs), str(args.F_READS), str(args.R_READS), str(args.run_title), str(args.isolation_source), str(args.collection_date), str(args.metagenome_type), str(args.srr_number), str(args.srx_number), str(args.biosample), str(args.bioproject),  str(args.template_file), str(args.circ_length_cutoff), str(args.linear_length_cutoff), str(args.virus_domain_db), str(args.LIN_MINIMUM_DOMAINS), str(args.handle_knowns), str(args.ASSEMBLER), str(args.MOLECULE_TYPE), str(args.HHSUITE_TOOL), str(args.DATA_SOURCE), str(args.BLASTP), str(args.PROPHAGE), str(args.FILTER_PLASMIDS), str(args.BLASTN_DB), str(cenote_script_path), str(args.CIRC_MINIMUM_DOMAINS), str(args.SCRATCH_DIR), str(args.MEM), str(args.CPU), str(args.ENFORCE_START_CODON), str(args.ORF_WITHIN), str(args.ANNOTATION_MODE), str(args.CRISPR_FILE)])
++subprocess.call(['cenote-taker2.1.1.sh', str(args.original_contigs), str(args.F_READS), str(args.R_READS), str(args.run_title), str(args.isolation_source), str(args.collection_date), str(args.metagenome_type), str(args.srr_number), str(args.srx_number), str(args.biosample), str(args.bioproject),  str(args.template_file), str(args.circ_length_cutoff), str(args.linear_length_cutoff), str(args.virus_domain_db), str(args.LIN_MINIMUM_DOMAINS), str(args.handle_knowns), str(args.ASSEMBLER), str(args.MOLECULE_TYPE), str(args.HHSUITE_TOOL), str(args.DATA_SOURCE), str(args.BLASTP), str(args.PROPHAGE), str(args.FILTER_PLASMIDS), str(args.BLASTN_DB), str(cenote_script_path), str(args.CIRC_MINIMUM_DOMAINS), str(args.SCRATCH_DIR), str(args.MEM), str(args.CPU), str(args.ENFORCE_START_CODON), str(args.ORF_WITHIN), str(args.ANNOTATION_MODE), str(args.CRISPR_FILE)])
+ 
+--- unlimited_breadsticks.py.old	2021-04-27 21:05:30.444483801 -0500
++++ unlimited_breadsticks.py	2021-04-27 21:06:38.259777663 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import argparse
+ import sys, os
+@@ -74,5 +74,5 @@
+ 
+ 
+ 
+-subprocess.call(['bash', str(cenote_script_path) + '/unlimited_breadsticks_0.1.sh', str(args.original_contigs), str(args.run_title), str(args.circ_length_cutoff), str(args.linear_length_cutoff), str(args.virus_domain_db), str(args.LIN_MINIMUM_DOMAINS), str(args.PROPHAGE), str(args.FILTER_PLASMIDS), str(cenote_script_path), str(args.CIRC_MINIMUM_DOMAINS), str(args.MEM), str(args.CPU)])
++subprocess.call(['unlimited_breadsticks_0.1.sh', str(args.original_contigs), str(args.run_title), str(args.circ_length_cutoff), str(args.linear_length_cutoff), str(args.virus_domain_db), str(args.LIN_MINIMUM_DOMAINS), str(args.PROPHAGE), str(args.FILTER_PLASMIDS), str(cenote_script_path), str(args.CIRC_MINIMUM_DOMAINS), str(args.MEM), str(args.CPU)])
+ 
+--- update_ct2_databases.py.old	2021-04-27 21:07:02.502882720 -0500
++++ update_ct2_databases.py	2021-04-27 21:08:07.924166231 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import argparse
+ import sys, os
+--- apc_cenote1.pl.old	2021-04-27 20:47:18.899754086 -0500
++++ apc_cenote1.pl	2021-04-27 20:49:15.633259976 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # AUTHOR: Joseph Fass
+ # 
+@@ -61,10 +61,10 @@
+     print SEQ $block;
+     close SEQ;
+     print "formatting LAST db ... ";
+-    $command = "$opt_c/last-1047/src/lastdb temp.apc temp.apc.fa";  # format lastdb for current contig
++    $command = "lastdb temp.apc temp.apc.fa";  # format lastdb for current contig
+     system($command);
+     print "running LAST self-alignment ... ";
+-    $command = "$opt_c/last-1047/src/lastal -s 1 -x 300 -f 0 -T 1 temp.apc temp.apc.fa > temp.apc.lastal";  # self align current contig
++    $command = "lastal -s 1 -x 300 -f 0 -T 1 temp.apc temp.apc.fa > temp.apc.lastal";  # self align current contig
+     system($command);
+     print "done\n";
+     # pull in output of current contig's LAST self-alignment
+--- blastpreport2tbl_mt_annotation_pipe_biowulf2.pl.old	2021-04-27 20:51:19.085794897 -0500
++++ blastpreport2tbl_mt_annotation_pipe_biowulf2.pl	2021-04-27 20:51:51.067933470 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -39,4 +39,4 @@
+ 
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl.old	2021-04-27 20:52:51.104193603 -0500
++++ hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl	2021-04-27 20:53:41.252410893 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+--- rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl.old	2021-04-27 20:53:54.838469766 -0500
++++ rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl	2021-04-27 20:54:21.349584632 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -43,4 +43,4 @@
+ 			print OUTPUT "\n\t\t\tinference\tprotein motif:$1";			
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- rpsblastreport_to_table1.pl.old	2021-04-27 20:52:06.500000334 -0500
++++ rpsblastreport_to_table1.pl	2021-04-27 20:52:36.647130967 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -38,4 +38,4 @@
+ 			print OUTPUT "$2\t$4\n";
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- rpsblastreport_to_table2.pl.old	2021-04-27 20:50:32.730594036 -0500
++++ rpsblastreport_to_table2.pl	2021-04-27 20:50:58.897707416 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use File::Find;
+@@ -38,4 +38,4 @@
+ 			print OUTPUT "$2\t$4\n";
+ 		}
+ 	}
+-}
+\ No newline at end of file
++}
+--- annotate_linear_contigs_2.1.1.sh.old	2021-04-28 00:33:04.273747575 -0500
++++ annotate_linear_contigs_2.1.1.sh	2021-04-28 21:28:13.522538204 -0500
+@@ -18,7 +18,7 @@
+ if [ -n "$LINEAR_HALLMARK_CONTIGS" ] ; then
+ 	MDYT=$( date +"%m-%d-%y---%T" )
+ 	echo "time update: running BLASTX, annotate linear contigs " $MDYT
+-	echo "$LINEAR_HALLMARK_CONTIGS" | sed 's/.fna//g' | xargs -n 1 -I {} -P $CPU -t blastx -evalue 1e-4 -outfmt "6 qseqid stitle pident evalue length" -num_threads 1 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query {}.fna -out {}.tax_guide.blastx.out >/dev/null 2>&1
++	echo "$LINEAR_HALLMARK_CONTIGS" | sed 's/.fna//g' | xargs -n 1 -I {} -P $CPU -t blastx -evalue 1e-4 -outfmt "6 qseqid stitle pident evalue length" -num_threads 1 -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query {}.fna -out {}.tax_guide.blastx.out >/dev/null 2>&1
+ 	echo "$LINEAR_HALLMARK_CONTIGS" | while read nucl_fa ; do
+ 		if [ ! -s "${nucl_fa%.fna}.tax_guide.blastx.out" ]; then
+ 			echo "No homologues found" > ${nucl_fa%.fna}.tax_guide.blastx.out ;
+@@ -58,7 +58,7 @@
+ 	if [ -s LIN_seqs_for_phanotate.txt ] ; then
+ 		MDYT=$( date +"%m-%d-%y---%T" )
+ 		echo "time update: running PHANOTATE, annotate linear contigs " $MDYT
+-		cat LIN_seqs_for_phanotate.txt | sed 's/.fna//g' | xargs -n 1 -I {} -P $CPU ${CENOTE_SCRIPT_DIR}/PHANOTATE/phanotate.py -f fasta -o {}.phan.fasta {}.fna
++		cat LIN_seqs_for_phanotate.txt | sed 's/.fna//g' | xargs -n 1 -I {} -P $CPU phanotate.py -f fasta -o {}.phan.fasta {}.fna
+ 		for PHAN in *.phan.fasta ; do 
+ 			if [ "$ENFORCE_START_CODON" == "True" ] ; then
+ 				sed 's/ /@/g' ${PHAN} | bioawk -c fastx '{ print }' | awk '{ if ($2 ~ /^[ATCG]TG/) { print ">"$1 ; print $2 }}' | sed 's/@/ /g' > ${PHAN%.fasta}.sort.fasta
+@@ -145,12 +145,12 @@
+ 	MDYT=$( date +"%m-%d-%y---%T" )
+ 	echo "time update: running hmmscan1, annotating linear contigs " $MDYT
+ 	if  [[ $virus_domain_db = "standard" ]] ; then
+-		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
+ 	elif [[ $virus_domain_db = "virion" ]]; then
+-		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
++		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
+ 	elif [[ $virus_domain_db = "rna_virus" ]]; then
+-		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 	else
+ 		echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 		rm -f ./*{0..9}.fasta
+@@ -201,7 +201,7 @@
+ 			SPLIT_LIN_HMM2=$( find * -maxdepth 0 -type f -name "SPLIT_LIN_HMM2_GENOME_AA_*.fasta" )
+ 			MDYT=$( date +"%m-%d-%y---%T" )
+ 			echo "time update: running hmmscan2, annotating linear contigs " $MDYT
+-			echo "$SPLIT_LIN_HMM2" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan2.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_LIN_HMM2" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan2.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.fasta >/dev/null 2>&1
+ 			cat SPLIT_LIN_HMM2_GENOME_AA_*AA.hmmscan2.out | grep -v "^#" | sed 's/ \+/	/g' | sort -u -k3,3 > SPLIT_LIN_HMM2_COMBINED.AA.hmmscan2.sort.out
+ 		else
+ 			echo "no AA seqs for hmmscan2, annotating linear contigs"
+@@ -265,7 +265,7 @@
+ 		echo "$LINEAR_HALLMARK_CONTIGS" | sed 's/.fna//g' | xargs -n 1 -I {} -P $CPU blastn -query {}.fna -db ${BLASTN_DB} -outfmt '6 std qlen slen' -max_target_seqs 100 -perc_identity 90 -num_threads 1 -out {}.blastn.out >/dev/null 2>&1
+ 		for nucl_fa in $LINEAR_HALLMARK_CONTIGS ; do
+ 			if [ -s "${nucl_fa%.fna}.blastn.out" ]; then
+-				python ${CENOTE_SCRIPT_DIR}/anicalc/anicalc.py -i ${nucl_fa%.fna}.blastn.out -o ${nucl_fa%.fna}.blastn_anicalc.out
++				anicalc.py -i ${nucl_fa%.fna}.blastn.out -o ${nucl_fa%.fna}.blastn_anicalc.out
+ 				awk '{OFS="\t"}{FS="\t"}{ if (NR==1) {print $1, $2, $4, $5} else if ($4>=95 && $5>=85) {print $1, $2, $4, $5}}' ${nucl_fa%.fna}.blastn_anicalc.out | head -n2 > ${nucl_fa%.fna}.blastn_intraspecific.out
+ 			fi
+ 			if [ -s "${nucl_fa%.fna}.blastn_intraspecific.out" ]; then
+@@ -307,9 +307,9 @@
+ 		SPLIT_LIN_AA_RPS=$( find * -maxdepth 0 -type f -name "SPLIT_LIN_RPS_AA_*.fasta" )
+ 		MDYT=$( date +"%m-%d-%y---%T" )
+ 		echo "time update: running RPSBLAST, annotating linear contigs " $MDYT
+-		echo "$SPLIT_LIN_AA_RPS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -seg yes -query {}.fasta -line_length 200 -out {}.rpsb.out >/dev/null 2>&1
++		echo "$SPLIT_LIN_AA_RPS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -seg yes -query {}.fasta -line_length 200 -out {}.rpsb.out >/dev/null 2>&1
+ 		cat *rpsb.out | awk '{ if ($0 ~ /^>/) {printf $0 ; getline; print $0} else { print $0}}' > COMBINED_RESULTS.rotate.AA.rpsblast.out
+-		perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
++		rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
+ 		grep "protein_id	" COMBINED_RESULTS.NT.tbl | sed 's/.*protein_id	lcl|//g' | sed 's/[^_]*$//' | sed 's/\(.*\)_/\1/' | sort -u | while read CONTIG ; do
+ 			#echo "${CONTIG}"
+ 			echo ">Feature ${CONTIG} Table1" > ${CONTIG}.NT.tbl
+@@ -525,13 +525,13 @@
+ #-#- can this be parallelized?
+ if [ -n "$dark_orf_list" ] ; then
+ 	if  [[ $HHSUITE_TOOL = "hhsearch" ]] ; then
+-		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU ${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhsearch -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
++		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU hhsearch -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
+ 		for dark_orf in $dark_orf_list ; do	
+ 			cat $dark_orf >> ${dark_orf%*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
+ 			rm -f $dark_orf
+ 		done		
+ 	elif [[ $HHSUITE_TOOL = "hhblits" ]] ; then
+-		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU ${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhblits -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
++		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU hhblits -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
+ 		for dark_orf in $dark_orf_list ; do	
+ 			cat $dark_orf >> ${dark_orf%*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
+ 			rm -f $dark_orf
+@@ -552,7 +552,7 @@
+ 
+ rm -f *[0-9].AA.fasta
+ 
+-perl ${CENOTE_SCRIPT_DIR}/hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl
++hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl
+ if [ -s ${run_title}.HH.tbl ] ; then
+ 	grep "protein_id	" ${run_title}.HH.tbl | sed 's/.*protein_id	lcl|//g' | sed 's/[^_]*$//' | sed 's/\(.*\)_/\1/' | sort -u | while read CONTIG ; do
+ 		echo ">Feature ${CONTIG} Table1" > ${CONTIG}.HH.tbl
+@@ -709,9 +709,9 @@
+ 
+ 				grep -A1 "$TAX_ORF " ${feat_tbl2%.comb3.tbl}.AA.sorted.fasta | sed '/--/d' > ${feat_tbl2%.comb3.tbl}.tax_orf.fasta
+ 				if [[ $STRUCTURAL_COUNT == 1 ]] || [[ $STRUCTURAL_COUNT -gt 1 ]] ; then
+-					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
++					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
+ 				else
+-					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
++					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
+ 				fi
+ 				if [ ! -s "${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out" ]; then
+ 					echo "unclassified virus" > ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
+@@ -734,4 +734,4 @@
+ fi
+ 
+ MDYT=$( date +"%m-%d-%y---%T" )
+-echo "time update: finished annotating linear contigs " $MDYT
+\ No newline at end of file
++echo "time update: finished annotating linear contigs " $MDYT
+--- cenote-taker2.1.1.sh.old	2021-04-28 00:43:02.292340825 -0500
++++ cenote-taker2.1.1.sh	2021-04-28 21:30:48.296210194 -0500
+@@ -101,9 +101,9 @@
+ 
+ if [ "${SCRATCH_DIR}" == "none" ] ; then
+ 	echo "scratch space will not be used in this run"
+-	CD_HHSUITE="${CENOTE_SCRIPT_DIR}/NCBI_CD/NCBI_CD"
+-	PFAM_HHSUITE="${CENOTE_SCRIPT_DIR}/pfam_32_db/pfam"
+-	PDB_HHSUITE="${CENOTE_SCRIPT_DIR}/pdb70/pdb70"
++	CD_HHSUITE="${CT2_DIR}/NCBI_CD/NCBI_CD"
++	PFAM_HHSUITE="${CT2_DIR}/pfam_32_db/pfam"
++	PDB_HHSUITE="${CT2_DIR}/pdb70/pdb70"
+ 	echo "HHsuite database locations:"
+ 	echo $CD_HHSUITE
+ 	echo $PFAM_HHSUITE
+@@ -113,15 +113,15 @@
+ 	echo "time update: setting up lscratch databases: " $MDYT
+ 	if [ ! -s ${SCRATCH_DIR}/NCBI_CD/NCBI_CD_a3m.ffdata ] ; then
+ 		mkdir ${SCRATCH_DIR}/NCBI_CD
+-		cp ${CENOTE_SCRIPT_DIR}/NCBI_CD/NCBI_CD* ${SCRATCH_DIR}/NCBI_CD/
++		cp ${CT2_DIR}/NCBI_CD/NCBI_CD* ${SCRATCH_DIR}/NCBI_CD/
+ 	fi
+ 	if [ ! -s ${SCRATCH_DIR}/pfam_32_db/pfam_a3m.ffdata ] ; then	
+ 		mkdir ${SCRATCH_DIR}/pfam_32_db
+-		cp ${CENOTE_SCRIPT_DIR}/pfam_32_db/pfam* ${SCRATCH_DIR}/pfam_32_db/
++		cp ${CT2_DIR}/pfam_32_db/pfam* ${SCRATCH_DIR}/pfam_32_db/
+ 	fi
+ 	if [ ! -s ${SCRATCH_DIR}/pdb70/pdb70_a3m.ffdata ] ; then		
+ 		mkdir ${SCRATCH_DIR}/pdb70
+-		cp ${CENOTE_SCRIPT_DIR}/pdb70/pdb70* ${SCRATCH_DIR}/pdb70/
++		cp ${CT2_DIR}/pdb70/pdb70* ${SCRATCH_DIR}/pdb70/
+ 	fi
+ 	CD_HHSUITE="${SCRATCH_DIR}/NCBI_CD/NCBI_CD"
+ 	PFAM_HHSUITE="${SCRATCH_DIR}/pfam_32_db/pfam"
+@@ -133,12 +133,6 @@
+ 	exit
+ fi
+ 
+-if [[ ":$PATH:" == *":${CENOTE_SCRIPT_DIR}/hh-suite/build/scripts:"* ]] && [[ ":$PATH:" == *":${CENOTE_SCRIPT_DIR}/hh-suite/build/bin:"* ]] ; then 
+-	echo "hhsuite is in path" 
+-else 
+-	export PATH="${CENOTE_SCRIPT_DIR}/hh-suite/build/bin:${CENOTE_SCRIPT_DIR}/hh-suite/build/scripts:$PATH" 
+-fi
+-
+ # looking for template file and contigs in working directory, or else copying them there
+ if [ -s ${base_directory}/${template_file} ] ; then 
+ 	echo ${base_directory}/${template_file} ; 
+@@ -224,7 +218,7 @@
+ 	bioawk -v run_var="$run_title" -v contig_cutoff="$LENGTH_MINIMUM" -c fastx '{ if(length($seq) > contig_cutoff) { print ">"run_var NR" "$name; print $seq }}' $original_contigs > ${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta ;
+ 	cd $run_title
+ 	echo "cenote_shortcut" > ${run_title}_CONTIG_SUMMARY.tsv
+-	perl ${CENOTE_SCRIPT_DIR}/apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta >/dev/null 2>&1
++	apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta >/dev/null 2>&1
+ 	rm -f apc_aln*
+ 	APC_CIRCS=$( find * -maxdepth 0 -type f -name "${run_title}*.fa" )
+ 	if [ -n "$APC_CIRCS" ] ;then
+@@ -242,7 +236,7 @@
+ 	bioawk -v contig_cutoff="$LENGTH_MINIMUM" -c fastx '{ if(length($seq) > contig_cutoff) {print }}' $original_contigs | grep "[a-zA-Z0-9]:\|[a-zA-Z0-9];" | grep -v "':" | awk '{ print ">"$1 ; print $2 }' | sed 's/:.*//g; s/;.*//g' | bioawk -v run_var="$run_title" -c fastx '{ print ">"run_var NR" "$name; print $seq }' > ${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta
+ 	cd $run_title
+ 	echo "cenote_shortcut" > ${run_title}_CONTIG_SUMMARY.tsv
+-	perl ${CENOTE_SCRIPT_DIR}/apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta >/dev/null 2>&1
++	apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta >/dev/null 2>&1
+ 	rm -f apc_aln*
+ 	APC_CIRCS=$( find * -maxdepth 0 * -type f -name "${run_title}*.fa" )
+ 	if [ -n "$APC_CIRCS" ] ;then
+@@ -361,7 +355,7 @@
+ 	for NONCIR in $CONTIGS_NON_CIRCULAR ; do
+ 		LEN_CHECKQ=$( cat $NONCIR | bioawk -c fastx '{ if(length($seq) > 4000) { print $name }}' ) ; 
+ 		if [ ! -z "$LEN_CHECKQ" ] ; then
+-			${CENOTE_SCRIPT_DIR}/irf307.linux.exe $NONCIR 2 3 5 80 10 40 500000 10000 -d -h >/dev/null 2>&1
++			irf307.linux.exe $NONCIR 2 3 5 80 10 40 500000 10000 -d -h >/dev/null 2>&1
+ 		fi
+ 	done
+ 	mkdir ../ITR_containing_contigs
+@@ -438,12 +432,12 @@
+ 			awk -v seq_per_file="$AA_SEQS_PER_FILE" 'BEGIN {n_seq=0;} /^>/ {if(n_seq%seq_per_file==0){file=sprintf("SPLIT_LARGE_GENOME_AA_%d.fasta",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < all_large_genome_proteins.AA.fasta
+ 			SPLIT_AA_LARGE=$( find * -maxdepth 0 -type f -name "SPLIT_LARGE_GENOME_AA_*.fasta" )
+ 			if  [[ $virus_domain_db = "standard" ]] ; then
+-				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
++				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
+ 			elif [[ $virus_domain_db = "virion" ]]; then
+-				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
++				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
+ 			elif [[ $virus_domain_db = "rna_virus" ]]; then
+-				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++				echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 			else
+ 				echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 				rm -f ./*{0..9}.fasta
+@@ -542,12 +536,12 @@
+ 			echo "time update: running hmmscan on circular/DTR contigs " $MDYT
+ 			SPLIT_AA_CIRC=$( find * -maxdepth 0 -type f -name "SPLIT_CIRCULAR_AA_*.fasta" )
+ 			if  [[ $virus_domain_db = "standard" ]] ; then
+-				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta	>/dev/null 2>&1
++				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta	>/dev/null 2>&1
+ 			elif [[ $virus_domain_db = "virion" ]]; then
+-				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta	>/dev/null 2>&1	
++				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta	>/dev/null 2>&1	
+ 			elif [[ $virus_domain_db = "rna_virus" ]]; then
+-				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++				echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 			else
+ 				echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 				rm -f ./*{0..9}.fasta
+@@ -637,12 +631,12 @@
+ 		echo "time update: running hmmscan on ITR contigs " $MDYT
+ 		SPLIT_AA_CIRC=$( find * -maxdepth 0 -type f -name "SPLIT_ITR_AA_*.fasta" )
+ 		if  [[ $virus_domain_db = "standard" ]] ; then
+-			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
+ 		elif [[ $virus_domain_db = "virion" ]]; then
+-			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
++			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
+ 		elif [[ $virus_domain_db = "rna_virus" ]]; then
+-			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 		else
+ 			echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 			rm -f ./*{0..9}.fasta
+@@ -708,7 +702,7 @@
+ if [ ! -z "$LIST_OF_VIRAL_DOMAIN_CONTIGS" ] && [ "$PROPHAGE" == "True" ] ;then
+ 	echo "$(tput setaf 3) Starting pruning of non-DTR/circular contigs with viral domains $(tput sgr 0)"
+ 
+-	. ${CENOTE_SCRIPT_DIR}/prune_linear_contigs_0.1.sh
++	prune_linear_contigs_0.1.sh
+ fi
+ 
+ cd ${base_directory}/${run_title}
+@@ -771,7 +765,7 @@
+ if [ -n "$ROTATED_DTR_CONTIGS" ] ; then
+ 	MDYT=$( date +"%m-%d-%y---%T" )
+ 	echo "time update: running BLASTX, DTR contigs " $MDYT
+-	echo "$ROTATED_DTR_CONTIGS" | sed 's/.rotate.fasta//g' | xargs -n 1 -I {} -P $CPU -t blastx -evalue 1e-4 -outfmt "6 qseqid stitle pident evalue length" -num_threads 1 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query {}.rotate.fasta -out {}.tax_guide.blastx.out >/dev/null 2>&1
++	echo "$ROTATED_DTR_CONTIGS" | sed 's/.rotate.fasta//g' | xargs -n 1 -I {} -P $CPU -t blastx -evalue 1e-4 -outfmt "6 qseqid stitle pident evalue length" -num_threads 1 -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query {}.rotate.fasta -out {}.tax_guide.blastx.out >/dev/null 2>&1
+ 	echo "$ROTATED_DTR_CONTIGS" | sed 's/.rotate.fasta/.fasta/g' | while read nucl_fa ; do
+ 		if [ ! -s "${nucl_fa%.fasta}.tax_guide.blastx.out" ]; then
+ 			echo "No homologues found" > ${nucl_fa%.fasta}.tax_guide.blastx.out ;
+@@ -811,7 +805,7 @@
+ 	if [ -s DTR_seqs_for_phanotate.txt ] ; then
+ 		MDYT=$( date +"%m-%d-%y---%T" )
+ 		echo "time update: running PHANOTATE, annotate DTR contigs " $MDYT
+-		cat DTR_seqs_for_phanotate.txt | sed 's/.rotate.fasta//g' | xargs -n 1 -I {} -P $CPU ${CENOTE_SCRIPT_DIR}/PHANOTATE/phanotate.py -f fasta -o {}.phan.fasta {}.rotate.fasta
++		cat DTR_seqs_for_phanotate.txt | sed 's/.rotate.fasta//g' | xargs -n 1 -I {} -P $CPU phanotate.py -f fasta -o {}.phan.fasta {}.rotate.fasta
+ 		for PHAN in *.phan.fasta ; do 
+ 			if [ "$ENFORCE_START_CODON" == "True" ] ; then
+ 				sed 's/ /@/g' ${PHAN} | bioawk -c fastx '{ print }' | awk '{ if ($2 ~ /^[ATCG]TG/) { print ">"$1 ; print $2 }}' | sed 's/@/ /g' > ${PHAN%.fasta}.sort.fasta
+@@ -898,12 +892,12 @@
+ 		MDYT=$( date +"%m-%d-%y---%T" )
+ 		echo "time update: running hmmscan1, annotate DTR contigs " $MDYT
+ 		if  [[ $virus_domain_db = "standard" ]] ; then
+-			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
+ 		elif [[ $virus_domain_db = "virion" ]]; then
+-			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
++			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1		
+ 		elif [[ $virus_domain_db = "rna_virus" ]]; then
+-			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_AA_DTR_sort" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 		else
+ 			echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 			rm -f ./*{0..9}.fasta
+@@ -952,7 +946,7 @@
+ 			SPLIT_DTR_HMM2=$( find * -maxdepth 0 -type f -name "SPLIT_DTR_HMM2_GENOME_AA_*.fasta" )
+ 			MDYT=$( date +"%m-%d-%y---%T" )
+ 			echo "time update: running hmmscan2, annotate DTR contigs " $MDYT
+-			echo "$SPLIT_DTR_HMM2" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan2.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.fasta >/dev/null 2>&1
++			echo "$SPLIT_DTR_HMM2" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan2.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.fasta >/dev/null 2>&1
+ 			cat SPLIT_DTR_HMM2_GENOME_AA_*AA.hmmscan2.out | grep -v "^#" | sed 's/ \+/	/g' | sort -u -k3,3 > SPLIT_DTR_HMM2_COMBINED.AA.hmmscan2.sort.out
+ 		else
+ 			echo "no AA seqs found for hmmscan2, annotate DTR contigs"
+@@ -1009,7 +1003,7 @@
+ 		echo "$ROTATED_DTR_CONTIGS" | sed 's/.rotate.fasta//g' | xargs -n 1 -I {} -P $CPU blastn -query {}.rotate.fasta -db ${BLASTN_DB} -outfmt '6 std qlen slen' -max_target_seqs 100 -perc_identity 90 -num_threads 1 -out {}.blastn.out >/dev/null 2>&1
+ 		for circle in $ROTATED_DTR_CONTIGS ; do
+ 			if [ -s "${circle%.rotate.fasta}.blastn.out" ]; then
+-				python ${CENOTE_SCRIPT_DIR}/anicalc/anicalc.py -i ${circle%.rotate.fasta}.blastn.out -o ${circle%.rotate.fasta}.blastn_anicalc.out
++				anicalc.py -i ${circle%.rotate.fasta}.blastn.out -o ${circle%.rotate.fasta}.blastn_anicalc.out
+ 				awk '{OFS="\t"}{FS="\t"}{ if (NR==1) {print $1, $2, $4, $5} else if ($4>=95 && $5>=85) {print $1, $2, $4, $5}}' ${circle%.rotate.fasta}.blastn_anicalc.out | head -n2 > ${circle%.rotate.fasta}.blastn_intraspecific.out
+ 			fi
+ 			if [ -s "${circle%.rotate.fasta}.blastn_intraspecific.out" ]; then
+@@ -1057,9 +1051,9 @@
+ 		awk -v seq_per_file="$AA_SEQS_PER_FILE" 'BEGIN {n_seq=0;} /^>/ {if(n_seq%seq_per_file==0){file=sprintf("SPLIT_DTR_RPS_AA_%d.fasta",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < all_DTR_rps_proteins.AA.fasta
+ 		SPLIT_DTR_AA_RPS=$( find * -maxdepth 0 -type f -name "SPLIT_DTR_RPS_AA_*.fasta" )
+ 
+-		echo "$SPLIT_DTR_AA_RPS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -seg yes -query {}.fasta -line_length 200 -out {}.rpsb.out >/dev/null 2>&1
++		echo "$SPLIT_DTR_AA_RPS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -seg yes -query {}.fasta -line_length 200 -out {}.rpsb.out >/dev/null 2>&1
+ 		cat *rpsb.out | awk '{ if ($0 ~ /^>/) {printf $0 ; getline; print $0} else { print $0}}' > COMBINED_RESULTS.rotate.AA.rpsblast.out
+-		perl ${CENOTE_SCRIPT_DIR}/rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
++		rpsblastreport2tbl_mt_annotation_pipe_biowulf.pl ;
+ 		grep "protein_id	" COMBINED_RESULTS.NT.tbl | sed 's/.*protein_id	lcl|//g' | sed 's/[^_]*$//' | sed 's/\(.*\)_/\1/' | sort -u | while read CONTIG ; do
+ 			#echo "${CONTIG}"
+ 			echo ">Feature ${CONTIG} Table1" > ${CONTIG}.NT.tbl
+@@ -1278,7 +1272,7 @@
+ #-#- can this be parallelized?
+ if [ -n "$dark_orf_list" ] ; then
+ 	if  [[ $HHSUITE_TOOL = "hhsearch" ]] ; then
+-		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU ${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhsearch -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
++		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU hhsearch -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
+ 		for dark_orf in $dark_orf_list ; do	
+ 			cat $dark_orf >> ${dark_orf%.rotate*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
+ 			rm -f $dark_orf
+@@ -1286,7 +1280,7 @@
+ 			rm -f ${dark_orf%.for_hhpred.fasta}.out.hhr 
+ 		done
+ 	elif [[ $HHSUITE_TOOL = "hhblits" ]] ; then
+-		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU ${CENOTE_SCRIPT_DIR}/hh-suite/build/src/hhblits -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
++		echo "$dark_orf_list" | sed 's/.for_hhpred.fasta//g' | xargs -n 1 -I {} -P $CPU hhblits -i {}.for_hhpred.fasta -d $PDB_HHSUITE -d $PFAM_HHSUITE -d $CD_HHSUITE -o {}.out.hhr -cpu 1 -maxmem 1 -p 80 -Z 20 -z 0 -b 0 -B 10 -ssm 2 -sc 1 >/dev/null 2>&1
+ 		for dark_orf in $dark_orf_list ; do	
+ 			cat $dark_orf >> ${dark_orf%.rotate*.for_hhpred.fasta}.all_hhpred_queries.AA.fasta
+ 			rm -f $dark_orf
+@@ -1305,7 +1299,7 @@
+ 
+ rm -f *.rotate.AA.fasta
+ 
+-perl ${CENOTE_SCRIPT_DIR}/hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl
++hhpredreport2tbl_mt_annotation_pipe_biowulf1_gjs_edits.pl
+ 
+ HH_TBL=$( find * -maxdepth 0 -type f -name "*.HH.tbl" )
+ if [ -n "$HH_TBL" ] ; then
+@@ -1451,9 +1445,9 @@
+ 
+ 				grep -A1 "$TAX_ORF " ${feat_tbl2%.comb3.tbl}.rotate.AA.sorted.fasta | sed '/--/d' > ${feat_tbl2%.comb3.tbl}.tax_orf.fasta
+ 				if [[ $STRUCTURAL_COUNT == 1 ]] || [[ $STRUCTURAL_COUNT -gt 1 ]] ; then
+-					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
++					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_adinto_polinton_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
+ 				else
+-					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
++					blastp -evalue 1e-2 -outfmt "6 qseqid stitle pident evalue length" -num_threads $CPU -num_alignments 1 -db ${CT2_DIR}/blast_DBs/virus_refseq_adinto_polinto_clean_plasmid_prot_190925 -query ${feat_tbl2%.comb3.tbl}.tax_orf.fasta -out ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out >/dev/null 2>&1
+ 				fi
+ 				if [ ! -s "${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out" ]; then
+ 					echo "unclassified virus" > ${feat_tbl2%.comb3.tbl}.tax_guide.blastx.out ;
+@@ -1498,7 +1492,7 @@
+ LIST_OF_VIRAL_DOMAIN_CONTIGS=$( find * -maxdepth 1 -type f -wholename "no_end_contigs_with_viral_domain/*fna" )
+ 
+ if [ -n "$LIST_OF_VIRAL_DOMAIN_CONTIGS" ] ; then
+-	. ${CENOTE_SCRIPT_DIR}/annotate_linear_contigs_2.1.1.sh
++	annotate_linear_contigs_2.1.1.sh
+ else
+ 	echo "No linear contigs with minimum hallmark genes found."
+ fi
+--- prune_linear_contigs_0.1.sh.old	2021-04-27 21:21:25.839624016 -0500
++++ prune_linear_contigs_0.1.sh	2021-04-28 21:29:18.651820983 -0500
+@@ -47,7 +47,7 @@
+ 	fi
+ 	awk -v seq_per_file="$AA_SEQS_PER_FILE" 'BEGIN {n_seq=0;} /^>/ {if(n_seq%seq_per_file==0){file=sprintf("SPLIT_PRUNE_SEQ_AA_%d.fasta",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < all_prunable_seq_proteins.AA.fasta
+ 	SPLIT_AA_PRUNE=$( find * -maxdepth 0 -type f -name "SPLIT_PRUNE_SEQ_AA_*.fasta" )
+-	echo "$SPLIT_AA_PRUNE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan2.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.fasta >/dev/null 2>&1
++	echo "$SPLIT_AA_PRUNE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan2.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/useful_hmms_baits_and_not2a {}.fasta >/dev/null 2>&1
+ 	cat SPLIT_PRUNE_SEQ_AA_*AA.hmmscan2.out | grep -v "^#" | sed 's/ \+/	/g' | sort -u -k3,3 > SPLIT_PRUNE_SEQ_COMBINED.AA.hmmscan2.sort.out
+ 	if [ -s SPLIT_PRUNE_SEQ_COMBINED.AA.hmmscan2.sort.out ] ; then
+ 		cut -f3 SPLIT_PRUNE_SEQ_COMBINED.AA.hmmscan2.sort.out | sed 's/[^_]*$//' | sed 's/\(.*\)_/\1/' | sort -u | while read HIT ; do
+@@ -115,9 +115,9 @@
+ 		SPLIT_AA_RPS=$( find * -maxdepth 0 -type f -name "SPLIT_PRUNE_RPS_AA_*.fasta" )
+ 		MDYT=$( date +"%m-%d-%y---%T" )
+ 		echo "time update: running RPSBLAST on each sequence " $MDYT
+-		echo "$SPLIT_AA_RPS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CENOTE_SCRIPT_DIR}/cdd_rps_db/Cdd -seg yes -query {}.fasta -line_length 200 -out {}.rpsb.out >/dev/null 2>&1
++		echo "$SPLIT_AA_RPS" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t rpsblast -evalue 1e-4 -num_descriptions 5 -num_alignments 1 -db ${CT2_DIR}/cdd_rps_db/Cdd -seg yes -query {}.fasta -line_length 200 -out {}.rpsb.out >/dev/null 2>&1
+ 		cat *rpsb.out > COMBINED_RESULTS_PRUNE.AA.rpsblast.out
+-		perl ${CENOTE_SCRIPT_DIR}/rpsblastreport_to_table2.pl
++		rpsblastreport_to_table2.pl
+ 		cut -f1 COMBINED_RESULTS_PRUNE.RPS_TABLE.txt | sed 's/[^_]*$//' | sed 's/\(.*\)_/\1/' | sort -u | while read CONTIG ; do
+ 			grep "^${CONTIG}_" COMBINED_RESULTS_PRUNE.RPS_TABLE.txt > ${CONTIG}.RPS_TABLE.txt
+ 		done
+@@ -143,7 +143,7 @@
+ 					elif [[ "$RPS_START" -gt "$RPS_END" ]] ; then 
+ 						awk -v startq="$RPS_START" -v endq="$RPS_END" 'BEGIN {for (i=endq;i<=startq;i++) print i, "X"}' | sed 's/ /	/g' >> ${TABLE1%.HMMSCAN_TABLE.txt}.virus_signal.tab
+ 					fi
+-				elif [[ $INFER == *"PHA0"* ]] || grep -q "$INFER" ${CENOTE_SCRIPT_DIR}/viral_cdds_and_pfams_191028.txt ; then
++				elif [[ $INFER == *"PHA0"* ]] || grep -q "$INFER" ${CT2_DIR}/viral_cdds_and_pfams_191028.txt ; then
+ 					if [[ "$RPS_END" -gt "$RPS_START" ]] ; then 
+ 						awk -v startq="$RPS_START" -v endq="$RPS_END" 'BEGIN {for (i=startq;i<=endq;i++) print i, "V"}' | sed 's/ /	/g' >> ${TABLE1%.HMMSCAN_TABLE.txt}.virus_signal.tab
+ 					elif [[ "$RPS_START" -gt "$RPS_END" ]] ; then 
+@@ -186,7 +186,7 @@
+ 	SIGNAL_SEQ=$( find * -maxdepth 0 -type f -name "*virus_signal.seq" )
+ 	if [ -n "$SIGNAL_SEQ" ] ; then
+ 		for VSEQ in *virus_signal.seq ; do
+-			python ${CENOTE_SCRIPT_DIR}/cenote_virus_segments_V6.py $VSEQ
++			cenote_virus_segments_V6.py $VSEQ
+ 		done
+ 	else
+ 		echo "No prophage signal files found"
+--- unlimited_breadsticks_0.1.sh.old	2021-04-28 21:31:13.993321766 -0500
++++ unlimited_breadsticks_0.1.sh	2021-04-28 21:34:08.997081586 -0500
+@@ -107,7 +107,7 @@
+ 	bioawk -v run_var="$run_title" -v contig_cutoff="$LENGTH_MINIMUM" -c fastx '{ if(length($seq) > contig_cutoff) { print ">"run_var NR" "$name; print $seq }}' $original_contigs > ${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta ;
+ 	cd $run_title
+ 	echo "unlimited_breadsticks" > ${run_title}_CONTIG_SUMMARY.tsv
+-	perl ${CENOTE_SCRIPT_DIR}/apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta  >/dev/null 2>&1
++	apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fasta}.over_${LENGTH_MINIMUM}nt.fasta  >/dev/null 2>&1
+ 	rm -f apc_aln*
+ 	APC_CIRCS=$( find * -maxdepth 0 -type f -name "${run_title}*.fa" )
+ 	if [ -n "$APC_CIRCS" ] ;then
+@@ -125,7 +125,7 @@
+ 	bioawk -v contig_cutoff="$LENGTH_MINIMUM" -c fastx '{ if(length($seq) > contig_cutoff) {print }}' $original_contigs | grep "[a-zA-Z0-9]:\|[a-zA-Z0-9];" | grep -v "':" | awk '{ print ">"$1 ; print $2 }' | sed 's/:.*//g; s/;.*//g' | bioawk -v run_var="$run_title" -c fastx '{ print ">"run_var NR" "$name; print $seq }' > ${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta
+ 	cd $run_title
+ 	echo "unlimited_breadsticks" > ${run_title}_CONTIG_SUMMARY.tsv
+-	perl ${CENOTE_SCRIPT_DIR}/apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta >/dev/null 2>&1
++	apc_cenote1.pl -b $run_title -c $CENOTE_SCRIPT_DIR ../${original_contigs%.fastg}.over_${LENGTH_MINIMUM}nt.fasta >/dev/null 2>&1
+ 	rm -f apc_aln*
+ 	APC_CIRCS=$( find * -maxdepth 0 * -type f -name "${run_title}*.fa" )
+ 	if [ -n "$APC_CIRCS" ] ;then
+@@ -241,12 +241,12 @@
+ 	awk -v seq_per_file="$AA_SEQS_PER_FILE" 'BEGIN {n_seq=0;} /^>/ {if(n_seq%seq_per_file==0){file=sprintf("SPLIT_LARGE_GENOME_AA_%d.fasta",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < all_large_genome_proteins.AA.fasta
+ 	SPLIT_AA_LARGE=$( find * -maxdepth 0 -type f -name "SPLIT_LARGE_GENOME_AA_*.fasta" )
+ 	if  [[ $virus_domain_db = "standard" ]] ; then
+-		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
+ 	elif [[ $virus_domain_db = "virion" ]]; then
+-		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1	
++		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1	
+ 	elif [[ $virus_domain_db = "rna_virus" ]]; then
+-		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_LARGE" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 	else
+ 		echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 		rm -f ./*{0..9}.fasta
+@@ -326,12 +326,12 @@
+ 	echo "time update: running hmmscan on circular/DTR contigs on virus hallmark gene database: $virus_domain_db" $MDYT
+ 	SPLIT_AA_CIRC=$( find * -maxdepth 0 -type f -name "SPLIT_CIRCULAR_AA_*.fasta" )
+ 	if  [[ $virus_domain_db = "standard" ]] ; then
+-		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+-		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan_replicate.out --cpu 1 -E 1e-15 --noali ${CT2_DIR}/hmmscan_DBs/virus_replication_clusters3 {}.fasta >/dev/null 2>&1
+ 	elif [[ $virus_domain_db = "virion" ]]; then
+-		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/virus_specific_baits_plus_missed6a {}.fasta >/dev/null 2>&1
+ 	elif [[ $virus_domain_db = "rna_virus" ]]; then
+-		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CENOTE_SCRIPT_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
++		echo "$SPLIT_AA_CIRC" | sed 's/.fasta//g' | xargs -n 1 -I {} -P $CPU -t hmmscan --tblout {}.AA.hmmscan.out --cpu 1 -E 1e-8 --noali ${CT2_DIR}/hmmscan_DBs/rna_virus_rdrp_capsid_hmms1 {}.fasta >/dev/null 2>&1
+ 	else
+ 		echo "$(tput setaf 5) Incorrect argument given for virus_domain_db variable. Try standard, virion, or rna_virus as arguments. For this run, no contigs with viral domains but without circularity or ITRs will be detected $(tput sgr 0)"
+ 		rm -f ./*{0..9}.fasta
+@@ -423,7 +423,7 @@
+ if [ ! -z "$LIST_OF_VIRAL_DOMAIN_CONTIGS" ] && [ "$PROPHAGE" == "True" ] ;then
+ 	echo "$(tput setaf 3) Starting pruning of non-DTR/circular contigs with viral domains $(tput sgr 0)"
+ 
+-	. ${CENOTE_SCRIPT_DIR}/prune_linear_contigs_0.1.sh
++	prune_linear_contigs_0.1.sh
+ fi
+ 
+ 

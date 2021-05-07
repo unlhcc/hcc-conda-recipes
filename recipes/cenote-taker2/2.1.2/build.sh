@@ -7,6 +7,7 @@ cp *.py ${PREFIX}/bin
 cp *.sh ${PREFIX}/bin
 cp irf307.linux.exe ${PREFIX}/bin
 cp anicalc/anicalc.py ${PREFIX}/bin
+cp dummy_template.sbt ${PREFIX}/bin
 chmod +x ${PREFIX}/bin/*.pl
 chmod +x ${PREFIX}/bin/*.py
 chmod +x ${PREFIX}/bin/*.sh
@@ -23,9 +24,8 @@ cp viral_cdds_and_pfams_191028.txt ${target}/db/
 # ln -s ${CT2}/taxonomy/ ${PREFIX}/opt/krona/
 
 # copy script to download database
-chmod +x ${RECIPE_DIR}/download-db.sh
 cp ${RECIPE_DIR}/download-db.sh ${PREFIX}/bin
-
+chmod +x ${PREFIX}/bin/download-db.sh
 
 # set CT2 variable on env activation
 mkdir -p ${PREFIX}/etc/conda/activate.d ${PREFIX}/etc/conda/deactivate.d

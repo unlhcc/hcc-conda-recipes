@@ -7,6 +7,7 @@ variables:
   SUBDAG: "0"
   LANG: "en_US.UTF-8"
   LC_ALL: "en_US.UTF-8"
+  DEFAULT_LINUX_VERSION: "cos7"
 
 stages:
   - build

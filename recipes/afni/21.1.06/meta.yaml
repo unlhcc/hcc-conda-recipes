@@ -1,0 +1,81 @@
+{% set name = "AFNI" %}
+{% set version = "21.1.06" %}
+{% set sha256 = "56354d4ca85cb9a9dfa8f8ee00fc902f9fffb6981f37f5787258cd72058e3637" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/afni/afni/archive/refs/tags/{{ name }}_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - git_version.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-libegl-devel') }}
+    - cmake
+    - python 3.6
+  host:
+    - python 3.6
+    - freetype
+    - openmotif
+    - openmotif-dev
+    - gsl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - xorg-libxpm
+    - libglu
+    - glib
+    - expat
+    - freeglut
+    - tcsh
+    - r-base
+  run:
+    - python 3.6
+    - freetype
+    - openmotif
+    - openmotif-dev
+    - gsl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - xorg-libxpm
+    - libglu
+    - glib
+    - expat
+    - freeglut
+    - tcsh
+    - r-base
+
+test:
+  commands:
+    - afni --help
+    - 3dRSFC -help
+
+about:
+  home: https://afni.nimh.nih.gov/afni
+  summary: "AFNI is a suite of programs for looking at and analyzing 3D brain images."
+  license: GPL-2.0
+  license_family: GPL
+  license_file: doc/README/README.copyright
+  dev_url: https://github.com/afni/afni
+
+extra:
+  container:
+    extended-base: True

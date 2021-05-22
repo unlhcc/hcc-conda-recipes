@@ -12,80 +12,74 @@ source:
   patches:
     - makefile.patch
     - suma_makefile.patch
+    - dcm2niix.patch
 
 build:
-  number: 2
+  number: 3
   skip: True # [osx]
-  skip: True # [py3k]
+#  skip: True # [py3k]
 
 requirements:
   build:
-    - gcc_linux-64
-    - gxx_linux-64
-    - gfortran_linux-64
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
     - autoconf
-    - {{ cdt('mesa-libglw-devel') }}
+    - make
+    - {{ cdt('mesa-libegl-devel') }}
     - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-libglw-devel') }}
+    - python 2.7*
 
   host:
-    - python
-    - libpng 1.6*
+    - python 2.7*
+    - libpng
+    - glib
     - jpeg
     - zlib
     - openssl
     - openmp
     - freetype
-    - mesa
+#    - mesa
     - libglu
     - xorg-libx11
     - xorg-libxt
     - xorg-libxext
-    - xorg-libxmu
-    - xorg-libxpm
     - xorg-libxi
     - xorg-libxft
     - xorg-libxcb
+    - xorg-libxpm
     - expat
     - gsl
     - openmotif
     - openmotif-dev
-    - glib 2.56*
     - netpbm
-    - r
-    - r-rmpi
-    - r-afex
-    - r-phia
-    - r-snow
-    - r-nlme
-    - r-lme4
-    - r-paran
-    - r-psych
-    - r-brms
+    - r-base
+    - tcsh
 
   run:
-    - python
-    - libpng 1.6*
+    - python 2.7*
+    - libpng
+    - glib
     - jpeg
     - zlib
     - openssl
     - openmp
     - freetype
-    - mesa
+#    - mesa
     - libglu
     - xorg-libx11
     - xorg-libxt
     - xorg-libxext
-    - xorg-libxmu
-    - xorg-libxpm
     - xorg-libxi
     - xorg-libxft
     - xorg-libxcb
+    - xorg-libxpm
     - expat
     - gsl
     - openmotif
-    - glib 2.56*
     - netpbm
-    - r
+    - r-base
     - r-rmpi
     - r-afex
     - r-phia
@@ -99,6 +93,7 @@ requirements:
 test:
   commands:
     - afni --help
+    - 3dRSFC -help
 
 about:
   home: https://afni.nimh.nih.gov/afni

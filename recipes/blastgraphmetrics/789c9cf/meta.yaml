@@ -1,0 +1,48 @@
+{% set name = "BlastGraphMetrics" %}
+{% set version = "789c9cf" %}
+{% set commit = "789c9cf064693be90337617c32834e3d4d4f58e2" %}
+{% set sha256 = "1fae29df6a305ab65b7bc2bb793a9d078256c2f247b32481151981ef4213c770" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/trgibbons/BlastGraphMetrics/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+    - python 2.7
+    - r-base 3.5
+  run:
+    - python 2.7
+    - r-base 3.5
+    - blast 2.2
+    - mcl
+    - r-base 3.5
+    - biopython
+    - networkx 1.11
+    - r-plyr
+    - r-ggplot2
+    - mafft
+    - raxml
+
+test:
+  commands:
+    - eckTestData.py --help
+    - downloadEckDatabase.py --help
+    - blast2graphs.py --help
+
+about:
+  home: https://github.com/trgibbons/BlastGraphMetrics
+  license: OTHER
+  license_family: OTHER
+  summary: "Evaluation of BLAST-based edge-weighting metrics used for homology prediction with the Markov Clustering algorithm."
+  dev_url: https://github.com/trgibbons/BlastGraphMetrics

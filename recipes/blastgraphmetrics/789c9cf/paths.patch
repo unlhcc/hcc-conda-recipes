@@ -1,0 +1,214 @@
+--- barcharts.R.org	2021-05-24 23:10:03.165700595 +0000
++++ barcharts.R	2021-05-24 23:10:15.980803820 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- blast2graphs.py.org	2021-05-24 23:10:33.612945843 +0000
++++ blast2graphs.py	2021-05-24 23:10:55.269120283 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ # Standard Python libraries
+ from sys import stderr
+--- downloadEckDatabase.py.org	2021-05-24 23:10:59.135151424 +0000
++++ downloadEckDatabase.py	2021-05-24 23:11:07.629219843 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # -*- coding: utf-8 -*-
+ """
+ Created on Fri Aug  8 14:29:56 2014
+--- eckTestData.py.org	2021-05-24 23:11:29.838398738 +0000
++++ eckTestData.py	2021-05-24 23:11:40.605485466 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ 
+ import sys
+--- fasta2phylip.py.org	2021-05-24 23:11:47.119537937 +0000
++++ fasta2phylip.py	2021-05-24 23:11:58.973633421 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # -*- coding: utf-8 -*-
+ """
+ Created on Wed Mar 12 20:55:58 2014
+--- mcl2rtab.py.org	2021-05-24 23:12:23.958834676 +0000
++++ mcl2rtab.py	2021-05-24 23:12:41.637977080 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ This script should work with clusters of any sequences whose IDs contain the
+--- figure_scripts/databaseComparisonSensitivity.R.org	2021-05-24 23:13:25.289328691 +0000
++++ figure_scripts/databaseComparisonSensitivity.R	2021-05-24 23:14:12.416708300 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/databaseComparisonSpecificity.R.org	2021-05-24 23:13:25.291328707 +0000
++++ figure_scripts/databaseComparisonSpecificity.R	2021-05-24 23:14:12.417708308 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckFragmentationOrderedRandomSensitivity.R.org	2021-05-24 23:13:25.293328723 +0000
++++ figure_scripts/eckFragmentationOrderedRandomSensitivity.R	2021-05-24 23:14:12.417708308 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckFragmentationOrderedRandomSpecificity.R.org	2021-05-24 23:13:25.295328739 +0000
++++ figure_scripts/eckFragmentationOrderedRandomSpecificity.R	2021-05-24 23:14:12.417708308 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckFragmentationShuffledEvenSensitivity.R.org	2021-05-24 23:13:25.297328755 +0000
++++ figure_scripts/eckFragmentationShuffledEvenSensitivity.R	2021-05-24 23:14:12.418708316 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckFragmentationShuffledEvenSpecificity.R.org	2021-05-24 23:13:25.299328771 +0000
++++ figure_scripts/eckFragmentationShuffledEvenSpecificity.R	2021-05-24 23:14:12.418708316 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckFragmentationShuffledRandomSensitivity.R.org	2021-05-24 23:13:25.301328787 +0000
++++ figure_scripts/eckFragmentationShuffledRandomSensitivity.R	2021-05-24 23:14:12.418708316 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckFragmentationShuffledRandomSpecificity.R.org	2021-05-24 23:13:25.302328795 +0000
++++ figure_scripts/eckFragmentationShuffledRandomSpecificity.R	2021-05-24 23:14:12.419708324 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckNormalizationSensitivity.R.org	2021-05-24 23:13:25.304328811 +0000
++++ figure_scripts/eckNormalizationSensitivity.R	2021-05-24 23:14:12.419708324 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- figure_scripts/eckNormalizationSpecificity.R.org	2021-05-24 23:13:25.306328827 +0000
++++ figure_scripts/eckNormalizationSpecificity.R	2021-05-24 23:14:12.419708324 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/Rscript --vanilla --default-packages=utils
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript --vanilla --default-packages=utils
+ 
+ library(tools)
+ library(grDevices)
+--- eckPipeline.sh.org	2021-05-25 23:03:35.940347894 +0000
++++ eckPipeline.sh	2021-05-25 23:07:54.052427413 +0000
+@@ -87,7 +87,7 @@
+ ################################################################################
+ date >> $log
+ echo "Splitting ECK seqs..." >> $log
+-nice ${dir0}/eckTestData.py $eck $scheme ${filepref}
++nice /opt/anaconda1anaconda2anaconda3/bin/eckTestData.py $eck $scheme ${filepref}
+ echo >> $log
+ 
+ date >> $log
+@@ -167,7 +167,7 @@
+         ########################################################################
+         date >> $log
+         echo "Generating abc graphs from ${blastp} for MCL" >> $log
+-        nice ${dir0}/blast2graphs.py \
++        nice /opt/anaconda1anaconda2anaconda3/bin/blast2graphs.py \
+              $blastp \
+              ${blastp%.blastp} \
+              --fasta ${dir2}/$fasta
+@@ -211,7 +211,7 @@
+             echo $mfa "-->" >> $log
+             echo $phy >> $log
+             phy=${file%.fasta}.phy
+-            nice ${dir0}/fasta2phylip.py \
++            nice /opt/anaconda1anaconda2anaconda3/bin/fasta2phylip.py \
+                  --cleanup \
+                  $mfa \
+                  $phy
+@@ -313,7 +313,7 @@
+             ####################################################################
+             date >> $log
+             echo "Compiling Rtab file for ${abc_pref} clusters" >> $log
+-            nice ${dir0}/mcl2rtab.py \
++            nice /opt/anaconda1anaconda2anaconda3/bin/mcl2rtab.py \
+                  ${abc_pref} \
+                  ${abc_pref}_???_I??.mcl
+             echo >> $log
+@@ -321,7 +321,7 @@
+             date >> $log
+             echo "Generating stacked barchart PDFs for:" >> $log
+             echo ${abc_pref} >> $log
+-            nice ${dir0}/barcharts.R \
++            nice /opt/anaconda1anaconda2anaconda3/bin/barcharts.R \
+                  ${abc_pref}_*.Rtab
+             echo >> $log
+ 
+@@ -331,7 +331,7 @@
+             ####################################################################
+             date >> $log
+             echo "Generating GML files for Cytoscape" >> $log
+-            nice ${dir0}/graphs2gml.py \
++            nice /opt/anaconda1anaconda2anaconda3/bin/graphs2gml.py \
+                  --gexf \
+                  --graphml \
+                  --compress bz2 \
+--- graphs2gml.py.org	2021-05-24 23:12:04.777680173 +0000
++++ graphs2gml.py	2021-05-27 16:43:06.726211186 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # -*- coding: utf-8 -*-
+ """
+ Created on Thu Mar  6 21:20:18 2014
+@@ -172,8 +172,8 @@
+                 kog_match = True
+ 
+             MG.add_edge(u, v, attr_dict={metric: w, 'interaction': 'graph',
+-                                         'Org_match': org_match,
+-                                         'KOG_match': kog_match})
++                                         'OrgMatch': org_match,
++                                         'KOGMatch': kog_match})
+ 
+ 
+ def get_metric_from_filename(filename):
+@@ -225,8 +225,8 @@
+                             MG.add_edge(u, v,
+                                         attr_dict={metric: 1,
+                                                    'interaction': 'cluster',
+-                                                   'Org_match': org_match,
+-                                                   'KOG_match': kog_match})
++                                                   'OrgMatch': org_match,
++                                                   'KOGMatch': kog_match})
+ 
+ 
+ if __name__ == "__main__":

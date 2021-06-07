@@ -1,0 +1,51 @@
+{% set name = "WGDdetector" %}
+{% set version = "1.1" %}
+{% set sha256 = "c20988a716e1457006f13b79015ae1ed754290e54a5583fc2ec599335fd7683a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/yongzhiyang2012/WGDdetector/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - perl.patch
+    - config.patch
+
+build:
+  noarch: python
+  number: 0
+
+requirements:
+  build:
+    - python 2.7
+    - perl 5.26
+  host:
+    - python 2.7
+    - perl 5.26
+  run:
+    - perl 5.26
+    - perl-bioperl
+    - python 2.7
+    - r-base 3.5
+    - parallel
+    - mmseqs2
+    - blast 2.2
+    - blastgraphmetrics
+    - mcl
+    - muscle
+    - fastme
+    - pal2nal
+    - phylip
+
+test:
+  commands:
+    - wgddetector.pl
+
+about:
+  home: https://github.com/yongzhiyang2012/WGDdetector_paper_results
+  license: OTHER
+  license_family: OTHER
+  summary: "WGDdetector: a pipeline for whole genome duplication (WGD) detecting with the genome or transcriptome annotations."
+  dev_url: https://github.com/yongzhiyang2012/WGDdetector

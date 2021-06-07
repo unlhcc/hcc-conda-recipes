@@ -1,0 +1,33 @@
+--- config/software.config.org	2021-06-04 23:24:10.152005057 +0000
++++ config/software.config	2021-06-04 23:29:02.961185318 +0000
+@@ -1,16 +1,16 @@
+ ## multithread
+-parallel = /usr/bin/parallel
++parallel = /opt/anaconda1anaconda2anaconda3/bin/parallel
+ ## clustering
+-mmseqs2 = /home/share/users/yangyongzhi2012/tools/mmseqs/mmseqs2/bin/mmseqs
+-makeblastdb = /home/share/software/blast/ncbi-blast-2.2.28+/bin/makeblastdb
+-blastp = /home/share/software/blast/ncbi-blast-2.2.28+/bin/blastp
+-blast2graphs = /home/share/users/yangyongzhi2012/tools/BlastGraphMetrics/blast2graphs.py ## the python script from the pipeline of BlastGraphMetrics
+-mcl = /home/share/software/mcl/mcl-14-137/bin/mcl
++mmseqs2 = /opt/anaconda1anaconda2anaconda3/bin/mmseqs
++makeblastdb = /opt/anaconda1anaconda2anaconda3/bin/makeblastdb
++blastp = /opt/anaconda1anaconda2anaconda3/bin/blastp
++blast2graphs = /opt/anaconda1anaconda2anaconda3/bin/blast2graphs.py ## the python script from the pipeline of BlastGraphMetrics
++mcl = /opt/anaconda1anaconda2anaconda3/bin/mcl
+ ## ks value estimated
+-#codeml = /home/share/software/PAML/paml4.8/bin/codeml
+-#mafft = /home/share/users/yangyongzhi2012//tools/mafft/mafft-7.402-without-extensions-build/bin/mafft
+-muscle = /home/share/users/yangyongzhi2012//tools/Muscle/muscle
+-pal2nal = /home/share/users/yangyongzhi2012/tools/pal2nal/pal2nal.v14/pal2nal.pl
+-Rscript = /usr/bin/Rscript
+-#protdist = /home/share/software/phylip/phylip-3.696/exe/protdist
+-fastme = /home/share/users/yangyongzhi2012/tools/phylogenomics/fastame/fastme-2.1.5-build/bin/fastme
+\ No newline at end of file
++#codeml = /opt/anaconda1anaconda2anaconda3/bin/codeml
++#mafft = /opt/anaconda1anaconda2anaconda3/bin/mafft
++muscle = /opt/anaconda1anaconda2anaconda3/bin/muscle
++pal2nal = /opt/anaconda1anaconda2anaconda3/bin/pal2nal.pl
++Rscript = /opt/anaconda1anaconda2anaconda3/bin/Rscript
++#protdist = /opt/anaconda1anaconda2anaconda3/bin/protdist
++fastme = /opt/anaconda1anaconda2anaconda3/bin/fastme

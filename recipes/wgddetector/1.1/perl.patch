@@ -1,0 +1,167 @@
+--- src/calculate_ks.pl.org	2021-05-28 22:17:51.715730338 +0000
++++ src/calculate_ks.pl	2021-05-28 23:54:50.682823718 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Bio::SeqIO;
+@@ -10,8 +10,7 @@
+ my ($max_cpu,$cds,$pep,$muscle,$pal2nal)=@ARGV;
+ die "perl $0 max_cpu cds_file pep_file mafft_path pal2nal_path\n" if (! $pal2nal);
+ 
+-my $basedir=abs_path($0);
+-$basedir=~s/\/[^\/]+\/[^\/]+$//;
++my $basedir="/opt/anaconda1anaconda2anaconda3";
+ 
+ ## align ##
+ #my $cmd_align="$mafft --quiet --thread $max_cpu --auto $pep > $pep.align";
+--- src/calculate_ks.single.pl.org	2021-05-28 22:17:51.717730354 +0000
++++ src/calculate_ks.single.pl	2021-05-28 22:18:21.439960626 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Bio::SeqIO;
+--- src/conver_dist.pl.org	2021-05-28 22:17:51.721730385 +0000
++++ src/conver_dist.pl	2021-05-28 22:18:21.440960634 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/Fasta2Phylip.pl.org	2021-05-28 22:17:51.723730400 +0000
++++ src/Fasta2Phylip.pl	2021-05-28 22:18:21.440960634 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Bio::SeqIO;
+--- src/hclust_ks.pl.org	2021-05-28 22:17:51.725730416 +0000
++++ src/hclust_ks.pl	2021-05-28 22:18:21.440960634 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/merge_final_ks.pl.org	2021-05-28 22:17:51.727730431 +0000
++++ src/merge_final_ks.pl	2021-05-28 22:18:21.440960634 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/phase.id.pl.org	2021-05-28 22:17:51.729730447 +0000
++++ src/phase.id.pl	2021-05-28 22:18:21.440960634 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Bio::SeqIO;
+--- src/phase.mcloutp2orthomcl.format.pl.org	2021-05-28 22:17:51.731730462 +0000
++++ src/phase.mcloutp2orthomcl.format.pl	2021-05-28 22:18:21.440960634 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/phase.new_sub_GF_seq.pl.org	2021-05-28 22:17:51.733730478 +0000
++++ src/phase.new_sub_GF_seq.pl	2021-05-28 23:55:24.706087100 +0000
+@@ -1,10 +1,9 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Cwd 'abs_path';
+ 
+-my $basedir=abs_path($0);
+-$basedir=~s/\/[^\/]+$//;
++my $basedir="/opt/anaconda1anaconda2anaconda3/bin";
+ 
+ my ($cds,$pep,$tmpdir,$thread_num,$muscle,$pal2nal,$outputdir)=@ARGV;
+ die "perl $0 cds pep tmp thread_num muscle pal2nal outputdir\n" if ! $outputdir;
+--- src/protein_blastp_cluster.pl.org	2021-05-28 22:17:51.735730493 +0000
++++ src/protein_blastp_cluster.pl	2021-05-28 22:18:21.441960642 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/protein_mmseqs2_cluster.pl.org	2021-05-28 22:17:51.737730509 +0000
++++ src/protein_mmseqs2_cluster.pl	2021-05-28 22:18:21.441960642 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/split_large_gf.pl.org	2021-05-28 22:17:51.738730516 +0000
++++ src/split_large_gf.pl	2021-05-28 23:56:31.256602288 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Cwd 'abs_path';
+@@ -7,8 +7,7 @@
+ die "perl $0 imput_pep mucle protdist\n" if ! $Rscript;
+ 
+ my $cluastermaxnum=50;
+-my $basedir=abs_path($0);
+-$basedir=~s/split_large_gf.pl$//;
++my $basedir="/opt/anaconda1anaconda2anaconda3/bin";
+ $pep=~/^(\S+)\/input.pep.file/ or die "$pep\n";
+ my $tmpdir=$1;
+ my $pwd=`pwd`;chomp $pwd;
+--- src/split_seq.pl.org	2021-05-28 22:17:51.740730532 +0000
++++ src/split_seq.pl	2021-05-28 23:56:48.566736294 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Bio::SeqIO;
+@@ -11,8 +11,7 @@
+ `mkdir $tmp/align` if (! -e "$tmp/align");
+ `mkdir $tmp/align_large` if (! -e "$tmp/align_large");
+ 
+-my $basedir=abs_path($0);
+-$basedir=~s/\/[^\/]+\/[^\/]+$//;
++my $basedir="/opt/anaconda1anaconda2anaconda3";
+ my $cluastermaxnum=50;
+ my %list=&read_cluster($cluster_file);
+ my %cds=&read_fasta($cds);
+--- src/sub_ks_family.pl.org	2021-05-28 22:17:51.742730547 +0000
++++ src/sub_ks_family.pl	2021-05-28 22:18:21.442960649 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ 
+--- src/wgddetector.pl.org	2021-05-28 22:17:51.744730563 +0000
++++ src/wgddetector.pl	2021-05-29 00:35:37.753800357 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use warnings;
+ use Getopt::Long;
+@@ -28,8 +28,7 @@
+ `mkdir $output_dir` if (! -e "$output_dir");
+ `mkdir $tmp_dir` if (! -e "$tmp_dir");
+ 
+-my $basedir=abs_path($0);
+-$basedir=~s/\/[^\/]+\/[^\/]+$//;
++my $basedir="/opt/anaconda1anaconda2anaconda3";
+ my %par=&read_config("$basedir/config/software.config");
+ 
+ ## phase raw input cds and pep

@@ -1,0 +1,59 @@
+{% set name = "carveme" %}
+{% set version = "1.5.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 6956ce92c9a2d433a51f73193901b63588be963429b640befe07a05de5b490e0
+
+build:
+  noarch: python
+  number: 0
+  entry_points:
+    - build_universe=carveme.cli.build_universe:main
+    - curate_universe=carveme.cli.curate_universe:main
+    - carve=carveme.cli.carve:main
+    - gapfill=carveme.cli.gapfill:main
+    - merge_community=carveme.cli.merge_community:main
+    - benchmark=carveme.cli.benchmark:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+    - setuptools_scm
+  run:
+    - pandas >=1.0
+    - python >=3.6
+    - reframed >=1.2.1
+    - diamond
+
+test:
+    # imports:
+    # - carveme
+    # - carveme.cli
+    # - carveme.reconstruction
+    # - carveme.universe
+  commands:
+    - test -f ${PREFIX}/bin/build_universe
+    - test -f ${PREFIX}/bin/curate_universe
+    - test -f ${PREFIX}/bin/carve
+    - test -f ${PREFIX}/bin/gapfill
+    - test -f ${PREFIX}/bin/merge_community
+    - test -f ${PREFIX}/bin/benchmark
+
+about:
+  home: https://github.com/cdanielmachado/carveme
+  license: Apache
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "CarveMe is a python-based tool for genome-scale metabolic model reconstruction."
+  doc_url: https://carveme.readthedocs.io
+  dev_url: https://github.com/cdanielmachado/carveme
+
+extra:
+  notes: CarveMe requires CPLEX that needs to be additionally installed due to licence restrictions.

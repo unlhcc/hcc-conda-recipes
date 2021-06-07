@@ -1,0 +1,49 @@
+{% set name = "reframed" %}
+{% set version = "1.2.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 80af4d3bd88066a56240cc297bbba97302b38f1de908fbafdb952a98d8b45600
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+  run:
+    - numpy
+    - python >=3.6
+    - python-libsbml
+    - scipy
+    - sympy
+
+test:
+  imports:
+    - reframed
+    - reframed.alpha
+    - reframed.cobra
+    - reframed.community
+    - reframed.core
+    - reframed.external
+    - reframed.io
+    - reframed.solvers
+
+about:
+  home: "https://github.com/cdanielmachado/reframed"
+  license: Apache
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "ReFramed is metabolic modeling package."
+  doc_url: https://reframed.readthedocs.io/
+  dev_url: https://github.com/cdanielmachado/reframed
+
+extra:
+  notes: ReFramed requires CPLEX that needs to be additionally installed due to licence restrictions.

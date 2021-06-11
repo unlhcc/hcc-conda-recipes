@@ -1,0 +1,15 @@
+blas_impl:
+  - openblas
+opencv:
+  - 4.3
+cub:
+  - 1.9
+c_compiler_version:
+  - 7
+cxx_compiler_version:
+  - 7
+
+
+pin_run_as_build:
+  opencv:
+    max_pin: x.x

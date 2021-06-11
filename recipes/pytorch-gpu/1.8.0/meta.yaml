@@ -1,0 +1,99 @@
+{% set name = "pytorch-gpu" %}
+{% set version = "1.8.0" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/pytorch/pytorch.git
+  git_rev: v{{ version }}
+  patches:
+    - fix_blas_lapack.patch
+    - fix_cross_compile.patch
+    - fix_dispatch_apply_auto.patch
+    - fix_std_stdint.patch
+    - fix_openblas.patch
+
+build:
+  number: 1000
+  skip: True # [osx or py<38 ]
+#  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}  # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('libxext') }}     # [linux]
+    - cmake
+    - make
+    - git
+  host:
+    - python 3.8
+    - gflags
+    - glog
+    - pybind11
+    - fftw
+    - mpfr
+    - pyyaml
+    - cffi
+    - setuptools
+    - numpy
+    - cudatoolkit 10.1
+    - cudnn 7
+    - cub
+    - nccl
+    - lmdb
+    - leveldb
+    - ffmpeg
+    - opencv
+    - {{ blas_impl }}
+    - xorg-libxfixes  # [linux]
+    - typing_extensions
+
+  run:
+    - python 3.8
+    - typing_extensions
+    - pybind11
+    - gflags
+    - glog
+    - fftw
+    - mpfr
+    - pyyaml
+    - cffi
+    - numpy
+    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
+    - {{ pin_compatible('cudnn', max_pin='x.x') }}
+    - nccl
+    - lmdb
+    - leveldb
+    - ffmpeg
+    - opencv
+    - libblas * *{{ blas_impl }}
+    - {{ blas_impl }}
+    - mkl 2020.4
+    - typing_extensions
+
+test:
+  imports:
+    - torch
+
+about:
+  home: https://pytorch.org/
+  dev_url: https://github.com/pytorch/pytorch
+  license: OTHER
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "Tensors and Dynamic neural networks in Python with strong GPU acceleration"
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - uses_vcs_url
+    - missing_hash
+    - setup_py_install_args

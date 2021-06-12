@@ -1,0 +1,43 @@
+{% set name = "SICERpy" %}
+{% set version = "0.1.1" %}
+{% set sha256 = "467a5a35ae5ed4528067604ceb1f93f4e9b28ba90c8fff9fd748687f0031c340" %}
+{% set commit = "3ceae65c094490eaf46d46d2de78ed5d94f27f1b" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/dariober/SICERpy/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gettext
+  host:
+    - python 2.7
+  run:
+    - python 2.7
+    - scipy
+    - numpy
+    - pysam
+
+test:
+  commands:
+    - SICER.py --help
+
+about:
+  home: https://github.com/dariober/SICERpy
+  license: OTHER
+  license_family: OTHER
+  summary: "Python wrapper around the popular ChIP-Seq peak caller SICER."
+  dev_url: https://github.com/dariober/SICERpy
+
+extra:
+  skip-lints:
+    - should_be_noarch_python

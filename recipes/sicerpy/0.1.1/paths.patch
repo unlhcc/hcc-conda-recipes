@@ -1,0 +1,190 @@
+--- SICERpy/SICER-df.sh.org	2021-06-11 04:57:52.578607737 +0000
++++ SICERpy/SICER-df.sh	2021-06-11 05:01:30.469234729 +0000
+@@ -14,7 +14,7 @@
+ # ##### Please replace PATHTO with your own directory ###### #
+ ##############################################################
+ 
+-SICER=/home/data/SICER1.1/SICER
++SICER=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ PYTHONPATH=$SICER/lib
+ export PYTHONPATH
+ 
+--- SICERpy/SICER.sh.org	2021-06-11 04:57:24.987401713 +0000
++++ SICERpy/SICER.sh	2021-06-11 05:01:15.315121574 +0000
+@@ -11,8 +11,7 @@
+ # ##### Please replace PATHTO with your own directory ###### #
+ ##############################################################
+ 
+-PATHTO=/home/data/SICER1.1
+-SICER=$PATHTO/SICER
++SICER=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ PYTHONPATH=$SICER/lib
+ export PYTHONPATH
+ 
+--- SICERpy/SICER-rb.sh.org	2021-06-11 04:58:11.476748849 +0000
++++ SICERpy/SICER-rb.sh	2021-06-11 05:02:44.734789270 +0000
+@@ -10,8 +10,7 @@
+ ##############################################################
+ # ##### Please replace PATHTO with your own directory ###### #
+ ##############################################################
+-PATHTO=/home/data/SICER1.1
+-SICER=$PATHTO/SICER
++SICER=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ PYTHONPATH=$SICER/lib
+ export PYTHONPATH
+
+--- SICERpy/lib/associate_tags_with_regions.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/associate_tags_with_regions.py	2021-06-11 05:14:47.123181987 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Authors: Chongzhi Zang, Weiqun Peng
+ #
+ # Disclaimer
+--- SICERpy/lib/bed_preprocessing.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/bed_preprocessing.py	2021-06-11 05:14:47.125182001 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Authors: Weiqun Peng, Chongzhi Zang, Dustin E Schones and Keji Zhao
+ #
+ # Disclaimer
+--- SICERpy/lib/BED.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/BED.py	2021-06-11 05:14:47.126182009 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (c) 2007 NHLBI, NIH
+ # Authors: Dustin E Schones and Keji Zhao
+ #
+--- SICERpy/lib/GenomeData.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/GenomeData.py	2021-06-11 05:14:47.126182009 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (c) 2007 NHLBI, NIH
+ # Copyright (c) 2010 The George Washington University
+ # Authors: Chongzhi Zang, Weiqun Peng, Dustin E Schones and Keji Zhao
+--- SICERpy/lib/get_total_tag_counts.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/get_total_tag_counts.py	2021-06-11 05:14:47.127182016 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (c) 2010 The George Washington University
+ # Copyright (c) 2007 NHLBI, NIH
+ # Authors: Weiqun Peng, Chongzhi Zang and Keji Zhao
+--- SICERpy/lib/make_graph_file.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/make_graph_file.py	2021-06-11 05:14:47.127182016 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Authors: Weiqun Peng, Chongzhi Zang, Dustin E Schones and Keji Zhao
+ #
+ # This software is distributable under the terms of the GNU General
+--- SICERpy/lib/SeparateByChrom.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/SeparateByChrom.py	2021-06-11 05:14:47.128182024 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (c) 2007 NHLBI, NIH
+ # Authors: Dustin E Schones and Keji Zhao
+ #
+--- SICERpy/lib/UCSC.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/UCSC.py	2021-06-11 05:14:47.128182024 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Authors: Dustin E Schones, Weiqun Peng and Keji Zhao
+ #
+ # Extended by Weiqun Peng 2009.7, to add TSS, genebody, promoter+gene body functionality
+--- SICERpy/lib/Utility.py	2021-06-11 05:13:29.421603116 +0000
++++ SICERpy/lib/Utility.py	2021-06-11 05:14:47.129182031 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Copyright (c) 2010 The George Washington University
+ # Author: Weiqun Peng
+ #
+--- SICERpy/SICER.py	2021-06-11 05:13:29.419603101 +0000
++++ SICERpy/SICER.py	2021-06-11 05:14:25.140018370 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import argparse
+ import subprocess
+--- SICERpy/utility/calculate_cross_correlation_long_range.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/calculate_cross_correlation_long_range.py	2021-06-11 05:15:02.579297023 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # 
+ # Authors: Chongzhi Zang, Weiqun Peng
+ #
+--- SICERpy/utility/convert_summary_to_bed.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/convert_summary_to_bed.py	2021-06-11 05:15:02.579297023 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # 
+ # Authors: Weiqun Peng
+ #
+--- SICERpy/utility/filter_raw_tags_by_islands.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/filter_raw_tags_by_islands.py	2021-06-11 05:15:02.579297023 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # 
+ # Authors: Chongzhi Zang, Weiqun Peng
+ #
+--- SICERpy/utility/filter_summary_graphs.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/filter_summary_graphs.py	2021-06-11 05:15:02.580297031 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # Authors: Chongzhi Zang, Weiqun Peng
+ #
+ # Disclaimer
+--- SICERpy/utility/find_overlapped_islands.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/find_overlapped_islands.py	2021-06-11 05:15:02.580297031 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # 
+ # Authors: Chongzhi Zang, Weiqun Peng
+ #
+--- SICERpy/utility/get_windows_histogram.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/get_windows_histogram.py	2021-06-11 05:15:02.581297038 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #
+ # Authors: Weiqun Peng
+ #
+--- SICERpy/utility/islands_statistics_pr.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/islands_statistics_pr.py	2021-06-11 05:15:02.581297038 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #
+ # Authors: Weiqun Peng
+ #
+--- SICERpy/utility/slice_raw_bed.py	2021-06-11 05:13:29.422603123 +0000
++++ SICERpy/utility/slice_raw_bed.py	2021-06-11 05:15:02.582297046 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # 
+ # Authors: Weiqun Peng
+ #
+--- SICERpy/SICER-df-rb.sh.org	2021-06-11 05:50:34.700129983 +0000
++++ SICERpy/SICER-df-rb.sh	2021-06-11 05:51:10.916402640 +0000
+@@ -14,7 +14,7 @@
+ # ##### Please replace PATHTO with your own directory ###### #
+ ##############################################################
+ 
+-SICER=/home/data/SICER1.1/SICER
++SICER=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ PYTHONPATH=$SICER/lib
+ export PYTHONPATH
+ 

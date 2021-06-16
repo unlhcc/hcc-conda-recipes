@@ -1,0 +1,54 @@
+{% set name = "framed" %}
+{% set version = "0.5.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: df41aaf62f6dd591f34512385d5ceed883eeb2d670727d7f22da24f9e5c2c935
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python 2.7
+  run:
+    - matplotlib-base
+    - numpy
+    - pandas
+    - python 2.7
+    - python-libsbml
+    - scipy
+    - sympy
+    - flake8-builtins
+    - future
+
+test:
+  imports:
+    - framed
+    - framed.bioreactor
+    - framed.cobra
+    - framed.community
+    - framed.experimental
+    - framed.experimental.visualization
+    - framed.io
+    - framed.kinetic
+    - framed.model
+    - framed.omics
+    - framed.solvers
+    - framed.unittests
+
+about:
+  home: "https://github.com/cdanielmachado/framed"
+  license: Apache
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "framed - metabolic modeling for python"
+  doc_url: https://framed.readthedocs.io
+  dev_url: https://github.com/cdanielmachado/framed

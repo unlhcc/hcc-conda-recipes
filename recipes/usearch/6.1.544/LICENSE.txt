@@ -1,0 +1,50 @@
+*USEARCH 32-bit license agreement for individuals*
+
+This is an agreement between Licensor and Licensee, who is being
+licensed to use USEARCH, hereinafter the Software, under the conditions
+specified herein
+
+This License permits Licensee to install and use the Software.
+
+Licensee acknowledges that this is only a limited nonexclusive license
+that grants no rights of ownership or title.
+
+Rights and obligations under this Agreement are granted and accepted at
+no charge to either party. Should Licensee violate the terms of this
+Agreement, Licensor reserves the right, without limitation, to charge
+fees and seek other remedies.
+
+Licensee may make copies of the Software for backup purposes. Licensee
+will not allow copies of the Software to be made or used by others.
+
+Licensee agrees to exercise due care in fulfilling Licensee's
+obligations in this Agreement, including but not limited to ensuring
+that no copy of the Software installed by Licensee is accessible via the
+internet.
+
+To the maximum extent permitted by applicable law, LICENSOR DISCLAIMS
+ALL IMPLIED WARRANTIES INCLUDING ANY IMPLIED WARRANTY OF TITLE,
+MERCHANTABILITY, NONINFRINGEMENT, OR OF FITNESS FOR A PARTICULAR
+PURPOSE. No agent of Licensor is authorized to make any other warranties
+or to modify this limited warranty.
+
+To the maximum extent permitted by applicable law, LICENSOR IS NOT
+LIABLE TO LICENSEE FOR ANY DAMAGES, INCLUDING COMPENSATORY, SPECIAL,
+INCIDENTAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES, CONNECTED
+WITH OR RESULTING FROM THIS LICENSE AGREEMENT OR LICENSEE'S USE OF THIS
+SOFTWARE.
+
+Licensee agrees to defend and indemnify Licensor and hold Licensor
+harmless from all claims, losses, damages, complaints, or expenses
+connected with or resulting from Licensee's use of the Software..
+
+Licensor has the right to terminate this License Agreement and
+Licensee's right to use this Software upon any material breach by Licensee.
+
+Licensee agrees to return to Licensor or to destroy all copies of the
+Software upon termination of the License.
+
+This License Agreement is the entire and exclusive agreement between
+Licensor and Licensee regarding this Software. This License Agreement
+replaces and supersedes all prior negotiations, dealings, and agreements
+between Licensor and Licensee regarding this Software.

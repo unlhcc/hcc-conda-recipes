@@ -14,15 +14,19 @@ source:
     - run_example.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx]
 
 requirements:
   build:
     - gettext
   host:
+    - ncurses 5.9
+    - zlib
   run:
     - mcr 8.3*
+    - ncurses 5.9
+    - zlib
 
 test:
   commands:

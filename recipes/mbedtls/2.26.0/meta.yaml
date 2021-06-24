@@ -1,0 +1,41 @@
+{% set name = "mbedtls" %}
+{% set version = "2.26.0" %}
+{% set sha256 = "37949e823c7e1f6695fc56858578df355da0770c284b1c1304cfc8b396d539cd" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/ARMmbed/mbedtls/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - make
+    - {{ compiler('c') }}
+  host:
+    - perl
+    - python 3.6
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libmbedcrypto.so
+    - test -f ${PREFIX}/lib/libmbedx509.so
+    - test -f ${PREFIX}/lib/libmbedtls.so
+    - test -f ${PREFIX}/include/mbedtls/certs.h
+    - mbedtls_selftest
+
+about:
+  home: "https://tls.mbed.org/"
+  license: Apache 2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "An open source, portable, easy to use, readable and flexible SSL library"
+  doc_url: "https://tls.mbed.org/kb"
+  dev_url: "https://github.com/ARMmbed/mbedtls"

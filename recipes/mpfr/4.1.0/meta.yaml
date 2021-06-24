@@ -1,0 +1,48 @@
+{% set name = "mpfr" %}
+{% set version = "4.1.0" %}
+{% set sha256 = "3127fe813218f3a1f0adf4e8899de23df33b4cf4b4b3831a5314f78e65ffa2d6" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://ftp.gnu.org/gnu/mpfr/mpfr-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+  - patches/corei5.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage("mpfr") }}
+
+requirements:
+  build:
+    - libtool
+    - m4
+    - make
+    - {{ compiler('c') }}
+  host:
+    - gmp
+
+test:
+  requires:
+    - {{ compiler('c') }}
+    - libtool
+    - m4
+
+  commands:
+    - test -f ${PREFIX}/lib/libmpfr.a
+    - test -f ${PREFIX}/lib/libmpfr${SHLIB_EXT}
+
+about:
+  home: http://www.mpfr.org/
+  license: LGPL-3.0-only
+  license_file: {{ SRC_DIR }}/COPYING.LESSER
+  summary: The MPFR library is a C library for multiple-precision floating-point computations with correct rounding.
+
+extra:
+  skip-lints:
+    - in_other_channels

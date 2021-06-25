@@ -1,0 +1,46 @@
+{% set name = "openlibm" %}
+{% set version = "0.7.3" %}
+{% set sha256 = "d3bcc4ef21c033a0cc408a30186bb3dbe21219e0c52d328ca70eb688cf867354" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/JuliaLang/openlibm/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 0001-no-CC-override.patch
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler("c") }}
+    - make
+  host:
+
+test:
+  requires:
+    - {{ compiler("c") }}
+  files:
+    - test_openlibm.c
+  commands:
+    - test -d "${PREFIX}/include/openlibm"
+    - test -f "${PREFIX}/lib/libopenlibm.a"
+    - test -f "${PREFIX}/lib/libopenlibm${SHLIB_EXT}"
+    - ${CC} -o test_openlibm test_openlibm.c -I${CONDA_PREFIX}/include/openlibm -L${CONDA_PREFIX}/lib -lopenlibm ${CFLAGS} ${LDFLAGS}
+    - ./test_openlibm
+
+about:
+  home: http://openlibm.org/
+  license: MIT, ISC, BSD 2-Clause
+  license_file: LICENSE.md
+  summary: "High quality system independent, portable, open source libm implementation"
+  dev_url: https://github.com/JuliaLang/openlibm
+
+extra:
+  skip-lints:
+    - in_other_channels

@@ -1,0 +1,72 @@
+{% set name = "tensorpack" %}
+{% set version = "0.10.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: ae6af59794459de910725d268061f0c86d78f01948f9fd5d7b11dd9770ad71ef
+
+build:
+  number: 1
+  script: "{{ PYTHON }} -m pip install . -vv"
+  noarch: python
+
+requirements:
+  host:
+    - msgpack-python >=0.5.2
+    - msgpack-numpy >=0.4.4.2
+    - numpy >=1.14
+    - pip
+    - psutil >=5
+    - python >=3.3
+    - pyzmq >=16
+    - six
+    - tabulate >=0.7.7
+    - termcolor >=1.1
+    - tqdm >4.29.0
+  run:
+    - msgpack-python >=0.5.2
+    - msgpack-numpy >=0.4.4.2
+    - numpy >=1.14
+    - psutil >=5
+    - python >=3.3
+    - pyzmq >=16
+    - six
+    - tabulate >=0.7.7
+    - termcolor >=1.1
+    - tqdm >4.29.0
+  run_constrained:
+    - tensorflow >=1.5,<=2
+    - tensorflow-gpu >=1.5,<=2
+
+test:
+  imports:
+    - tensorpack
+    - tensorpack.callbacks
+    - tensorpack.compat
+    - tensorpack.contrib
+    - tensorpack.dataflow
+    - tensorpack.dataflow.dataset
+    - tensorpack.dataflow.imgaug
+    - tensorpack.graph_builder
+    - tensorpack.input_source
+    - tensorpack.models
+    - tensorpack.predict
+    - tensorpack.tfutils
+    - tensorpack.train
+    - tensorpack.utils
+  requires:
+    - flake8
+    - scikit-image
+    - tensorflow>=1.5,<2
+
+about:
+  home: "https://github.com/tensorpack/tensorpack"
+  license: Apache
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "A Neural Network Training Interface on TensorFlow"
+  doc_url: "https://tensorpack.readthedocs.io/index.html"

@@ -1,0 +1,12 @@
+libimagequant:
+  - 2.15
+lcms2:
+  - 2.12
+pin_run_as_build:
+  libimagequant:
+    max_pin: x.x
+    min_pin: x.x.x
+  lcms2:
+    max_pin: x.x
+    min_pin: x.x.x
+

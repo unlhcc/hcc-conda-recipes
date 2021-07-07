@@ -1,0 +1,74 @@
+{% set name = "deeplabcut" %}
+{% set version = "2.2rc3" %}
+{% set sha256 = "8fe27ff3061040120ad539abd954066d013bbe97706f7f37ec3a2c42387958f9" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  entry_points:
+    - dlc=deeplabcut.cli:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+  noarch: python
+
+requirements:
+  host:
+    - python >3
+    - pip
+  run:
+    - python >3
+    - pytables
+    - ffmpeg
+    - ipython
+    - filterpy
+    - h5py
+    - ruamel.yaml >=0.15.0
+    - intel-openmp
+    - imgaug
+    - numba
+    - matplotlib-base
+    - networkx
+    - numpy
+    - opencv
+    - pandas >=1.0.1
+    - patsy
+    - pyyaml
+    - scikit-image >=0.17
+    - scikit-learn
+    - scipy >=1.4
+    - six
+    - statsmodels >=0.11
+    - pytables
+    - tensorpack
+    - tf_slim
+    - tqdm
+    - moviepy
+    - pillow >=7.1
+#    - jupyter #   \ Install for Jupyter support
+#    - nb_conda #  /
+  run_constrained:
+    - tensorflow =>2.5
+    - tensorflow-gpu >=2.5
+    - wxpython 4.1 # Install for GUI support
+
+test:
+  requires:
+    - tensorflow ==2.5
+  commands:
+    - dlc --help
+    - python -c 'import deeplabcut'
+
+about:
+  home: "http://www.mousemotorlab.org/deeplabcut"
+  license: "GNU Lesser General Public v3 (LGPLv3)"
+  license_family: LGPL
+  license_file:  LICENSE
+  summary: "Markerless pose-estimation of user-defined features with deep learning"
+  doc_url:  "https://github.com/DeepLabCut/DeepLabCut/tree/master/docs"
+  dev_url: "https://github.com/AlexEMG/DeepLabCut"

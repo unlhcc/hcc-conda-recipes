@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - dlc=deeplabcut.cli:main
   script: "{{ PYTHON }} -m pip install . -vv"
@@ -53,8 +53,8 @@ requirements:
 #    - jupyter #   \ Install for Jupyter support
 #    - nb_conda #  /
   run_constrained:
-    - tensorflow =>2.5
-    - tensorflow-gpu >=2.5
+    - tensorflow =>2
+    - tensorflow-gpu >=2
     - wxpython 4.1 # Install for GUI support
 
 test:

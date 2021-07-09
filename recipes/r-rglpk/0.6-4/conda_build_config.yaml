@@ -1,0 +1,7 @@
+glpk:
+  - 4.65
+
+pin_run_as_build:
+  glpk:
+    min_pin: x.x
+    max_pin: x

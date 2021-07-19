@@ -1,0 +1,49 @@
+{% set name = "AMORPH" %}
+{% set version = "0.0.2021.05.10" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # DNest3 header and library are required for AMORPH in specific location
+  - url: https://github.com/eggplantbren/DNest4/archive/0.2.4.tar.gz
+    sha256: bbdf1a1e1e6aa50afd5156c2b2e87e3d2c29e3566ce12dc071afdc9c2d0acdbc
+    folder: DNest4
+    patches: 
+      - Makefile.patch
+  - url: https://bitbucket.org/eggplantbren/amorph/get/446369e9adce.zip
+    sha256: 64c9f76384ec3b18299662366e865a0a18413e673a9d58b91894a361466574d5
+    folder: AMORPH
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - make
+  host:
+    - yaml-cpp
+  run:
+    - python >=3
+    - dnest4 0.2.4
+    - pandas
+    - pyyaml
+
+test:
+  commands:
+    - AMORPH 2>&1 | grep "YAML" > /dev/null
+
+about:
+  home: https://bitbucket.org/eggplantbren/amorph
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "AMORPH utilizes a new Bayesian statistical approach to interpreting X-ray diffraction results of samples with both crystalline and amorphous components."
+  dev_url: https://bitbucket.org/eggplantbren/amorph
+
+extra:
+  notes: "AMORPH requires the input/config files to be in the same directory as the executable, so please copy/symlink the executable to the working directory."
+  identifiers:
+    - doi:10.1016/j.cageo.2018.07.004

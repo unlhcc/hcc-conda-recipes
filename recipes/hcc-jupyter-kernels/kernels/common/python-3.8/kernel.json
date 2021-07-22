@@ -1,0 +1,11 @@
+{
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/python/envs/python-3.8/bin/python",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "Python 3.8",
+ "language": "python"
+}

@@ -1,0 +1,11 @@
+{
+ "argv": [
+   "/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/kernels/common/matlab-r2017b/wrapper_python.sh",
+   "-f",
+   "{connection_file}"
+ ],
+ "display_name": "Matlab r2017b",
+ "language": "matlab",
+ "mimetype": "text/x-octave",
+ "name": "matlab"
+}

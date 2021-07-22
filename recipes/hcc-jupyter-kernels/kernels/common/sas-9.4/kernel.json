@@ -1,0 +1,1 @@
+{"argv": ["/util/opt/anaconda/4.3.14/envs/sas-ipykernel/bin/python", "-m", "sas_kernel", "-f", "{connection_file}"], "codemirror_mode": "sas", "display_name": "SAS 9.4", "language": "sas", "name": "sas"}

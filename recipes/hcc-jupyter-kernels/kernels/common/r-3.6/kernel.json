@@ -1,0 +1,5 @@
+{
+  "argv": ["/util/opt/anaconda/deployed-conda-envs/packages/r/envs/r-3.6.1/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+  "display_name": "R 3.6",
+  "language": "R"
+}

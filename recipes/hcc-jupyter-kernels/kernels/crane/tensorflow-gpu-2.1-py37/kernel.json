@@ -1,0 +1,13 @@
+{
+ "display_name": "TensorFlow GPU 2.1 (py37)", 
+ "language": "python", 
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/tensorflow-gpu/envs/tensorflow-gpu-2.1.0-py37/bin/python",
+  "-W",
+  "ignore",
+  "-m", 
+  "ipykernel_launcher", 
+  "-f", 
+  "{connection_file}"
+ ]
+}

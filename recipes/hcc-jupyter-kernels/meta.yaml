@@ -13,12 +13,12 @@ build:
   noarch: true
   script:
     - mkdir -p ${PREFIX}/share/hcc-jupyter-kernels
-    - cp -aR kernels ${PREFIX}/share/hcc-jupyter-kernels
+    - cp -aR kernels/* ${PREFIX}/share/hcc-jupyter-kernels
 
 test:
   commands:
-    - test -f ${PREFIX}/share/hcc-jupyter-kernels/kernels/common/python-3.7/kernel.json
-    - test -f ${PREFIX}/share/hcc-jupyter-kernels/kernels/common/julia-1.6/wrapper_julia.sh
+    - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/python-3.7/kernel.json
+    - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/julia-1.6/wrapper_julia.sh
 
 about:
   home: https://git.unl.edu/hcc/hcc-conda-recipes

@@ -1,0 +1,37 @@
+{% set name = "jupyterlab-slurm" %}
+{% set version = "2.0.0" %}
+{% set sha256 = "87ada82e7746745bcc47d19f3caf54cc18798b058aedcd5d1005e19b784c2d4f" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://files.pythonhosted.org/packages/2b/04/490fea18a0a74a0be993f5dc8126e4c487437e682874ef16ba68a6740842/jupyterlab_slurm-2.0.0.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - notebook
+    - pip
+    - python >=3.6
+  run:
+    - notebook
+    - python >=3.6
+
+test:
+  imports:
+    - jupyterlab_slurm
+
+about:
+  home: "https://github.com/NERSC/jupyterlab-slurm"
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: "A Jupyter Notebook server extension that implements common Slurm commands."
+  dev_url: "https://github.com/NERSC/jupyterlab-slurm"

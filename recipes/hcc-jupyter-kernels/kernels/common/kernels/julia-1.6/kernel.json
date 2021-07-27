@@ -1,7 +1,7 @@
 {
   "display_name": "Julia 1.6",
   "argv": [
-    "/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/kernels/common/julia-1.6/wrapper_julia.sh",
+    "/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/common/kernels/julia-1.6/wrapper_julia.sh",
     "-i",
     "--startup-file=yes",
     "--color=yes",

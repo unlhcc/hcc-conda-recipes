@@ -1,6 +1,6 @@
 {
  "argv": [
-   "/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/kernels/common/matlab-r2017b/wrapper_python.sh",
+   "/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/common/kernels/matlab-r2017b/wrapper_python.sh",
    "-f",
    "{connection_file}"
  ],

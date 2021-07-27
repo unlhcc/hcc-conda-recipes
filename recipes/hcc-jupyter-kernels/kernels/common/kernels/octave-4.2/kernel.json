@@ -1,5 +1,5 @@
 {
-    "argv": ["/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/kernels/common/octave-4.2/wrapper_python.sh",
+    "argv": ["/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/common/kernels/octave-4.2/wrapper_python.sh",
              "-m", "octave_kernel",
              "-f", "{connection_file}"],
     "display_name": "Octave 4.2",

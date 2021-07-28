@@ -1,0 +1,42 @@
+{% set name = "matlab-kernel" %}
+{% set version = "0.16.11" %}
+{% set sha256 = "93a58dda4d865a1cb3c9f1f9cdf5786a4aed09467bdf3e8d089124a7900fd73e" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name | replace("-", "_") }}/{{ name | replace("-", "_") }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - ipython >=4.0.0
+    - jupyter_client >=4.4.0
+    - metakernel >=0.23.0
+    - pip
+    - python >=3
+    - wurlitzer >=1.0.2
+  run:
+    - ipython >=4.0.0
+    - jupyter_client >=4.4.0
+    - metakernel >=0.23.0
+    - python >=3
+    - wurlitzer >=1.0.2
+
+test:
+  imports:
+    - matlab_kernel
+
+about:
+  home: https://github.com/Calysto/matlab_kernel
+  license: BSD
+  license_family: BSD
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE.txt'
+  summary: Jupyter Kernel for Matlab

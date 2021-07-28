@@ -1,5 +1,0 @@
-{
-  "argv": ["/util/opt/anaconda/4.3.14/envs/r-ipykernel/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
-  "display_name": "R 3.4",
-  "language": "R"
-}

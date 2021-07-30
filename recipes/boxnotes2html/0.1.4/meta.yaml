@@ -1,0 +1,44 @@
+{% set name = "boxnotes2html" %}
+{% set version = "0.1.4" %}
+{% set sha256 = "e30889acdb665982284ee2fddefb61954b4fe5ccaebdf9ab8ccf4f1e8c66f6cb" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  entry_points:
+    - boxnotes2html=boxnotes2html.cli:run
+    - boxnote2html=boxnotes2html.cli:run
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python >=3.5
+    - pytest-runner
+  run:
+    - python >=3.5
+
+test:
+  imports:
+    - boxnotes2html
+  commands:
+    - boxnotes2html --help
+    - boxnote2html --help
+  requires:
+    - pytest
+
+about:
+  home: "https://github.com/alexwennerberg/boxnotes2html"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "Converting from Box Notes to HTML or other formats"
+  dev_url: "https://github.com/alexwennerberg/boxnotes2html"

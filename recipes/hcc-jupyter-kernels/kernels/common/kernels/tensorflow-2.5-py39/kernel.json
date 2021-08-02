@@ -1,0 +1,13 @@
+{
+ "display_name": "TensorFlow 2.5 (py39)", 
+ "language": "python", 
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/tensorflow/envs/tensorflow-2.5.0-py39/bin/python",
+  "-W",
+  "ignore",
+  "-m", 
+  "ipykernel_launcher", 
+  "-f", 
+  "{connection_file}"
+ ]
+}

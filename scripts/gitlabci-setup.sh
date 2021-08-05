@@ -30,14 +30,11 @@ then
 
 else
     tag=MacOSX
-    SUDO=""
-    # install conda
-    curl -L -O https://repo.continuum.io/miniconda/Miniconda3-$MINICONDA_VER-$tag-x86_64.sh
-    $SUDO bash Miniconda3-$MINICONDA_VER-$tag-x86_64.sh -b -p $ANACONDA_PREFIX
+    # install conda via micromambaa
+    curl -Ls https://micromamba.snakepit.net/api/micromamba/osx-64/latest | tar -xvj bin/micromamba
+    ./bin/micromamba create -y -q --ssl-verify=true -p $ANACONDA_PREFIX conda=4.8.4 conda-build=3.21.4 -c conda-forge
     source $ANACONDA_PREFIX/etc/profile.d/conda.sh
     conda activate base
-    # https://github.com/acaprez/bioconda-utils/commit/ac7924ef3ce5a8239fdc8a9516a81d1c09af7df5
-    conda install -y -q --freeze-installed conda=4.8.2
 
     # set channels
     conda config --system --add channels bioconda

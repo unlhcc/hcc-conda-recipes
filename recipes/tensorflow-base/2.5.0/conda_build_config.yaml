@@ -1,0 +1,129 @@
+# Builds fail on linux with gcc 7.x, see
+# https://github.com/tensorflow/tensorflow/issues/25323
+c_compiler_version:    # [linux]
+  - 7.5                # [linux]
+cxx_compiler_version:  # [linux]
+  - 7.5                # [linux]
+tflow_variant:
+  - gpu
+python:
+  - 3.7
+  - 3.8
+python_impl:
+  - cpython
+  - cpython
+cudatoolkit:
+  - 11.2
+cudnn:
+  - 8.1
+  - 8.1
+cuda_compiler_version:
+  - 11.2
+  - 11.2
+nccl:
+ - 2.10
+mkl:
+ - 2021
+numpy:
+  - 1.19
+  - 1.19
+bazel:
+  - 3.7.2
+astunparse:
+  - 1.6.3
+protobuf:
+  - 3.9.2
+python_flatbuffers:
+  - 1.12
+gast:
+  - 0.4.0
+google_pasta:
+  - 0.2
+opt_einsum:
+  - 3.3.0
+abseil_cpp:
+  - 20200923.3
+absl_py:
+  - 0.10.0
+icu:
+  - 64.2
+cython:
+  - 0.29.21
+tensorboard:
+  - 2.5
+tensorflow_estimator:
+  - 2.5
+h5py:
+  - 3.1.0
+keras_preprocessing:
+  - 1.1.2
+termcolor:
+  - 1.1.0
+typing_extensions:
+  - 3.7.4
+wrapt:
+  - 1.12.1
+six:
+  - 1.15.0
+grpcio:
+  - 1.34.0
+flatbuffers:
+  - 2.0
+pin_run_as_build:
+  numpy:
+    min_pin: x.x
+    max_pin: x.x
+  astunparse:
+    min_pin: x.x
+    max_pin: x.x
+  opt_einsum:
+    min_pin: x.x
+    max_pin: x.x
+  google-pasta:
+    min_pin: x.x
+    max_pin: x.x
+  python-flatbuffers:
+    min_pin: x.x
+    max_pin: x.x
+  absl-py:
+    min_pin: x.x
+    max_pin: x.x
+  h5py:
+    min_pin: x.x
+    max_pin: x.x
+  gast:
+    min_pin: x.x.x
+    max_pin: x.x.x
+  termcolor:
+    min_pin: x.x
+    max_pin: x.x
+  wrapt:
+    min_pin: x.x
+    max_pin: x.x
+  tensorboard:
+    min_pin: x.x
+    max_pin: x.x
+  tensorflow-estimator:
+    min_pin: x.x
+    max_pin: x.x
+  keras-preprocessing:
+    min_pin: x.x
+    max_pin: x.x
+  termcolor:
+    min_pin: x.x
+    max_pin: x.x
+  typing_extensions:
+    min_pin: x.x
+    max_pin: x.x
+  six:
+    min_pin: x.x
+    max_pin: x.x
+  grpcio:
+    min_pin: x.x
+    max_pin: x.x
+  protobuf:
+    min_pin: x.x
+    max_pin: x.x
+  flatbuffers:
+    min_pin: x.x.x
+    max_pin: x.x

@@ -1,0 +1,153 @@
+{% set version = "2.5.0" %}
+
+# This is the recipe for the "gpu" variant of tensorflow-base
+package:
+  name: tensorflow-base
+  version: {{ version }}
+
+source:
+  url: https://github.com/tensorflow/tensorflow/archive/v{{ version }}.tar.gz
+  sha256: 233875ea27fc357f6b714b2a0de5f6ff124b50c1ee9b3b41f9e726e9e677b86c
+  patches:
+    - 0004-loosen-requirements.patch
+    - 0101-include-c-and-cc-headers.patch
+    - 0103-BUILD-changes-for-external-sqlite-package.patch
+    - 0107-do-not-hardcode-ca-cert-location.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+  string: {{ tflow_variant }}_py{{ CONDA_PY }}h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
+  entry_points:
+    - toco_from_protos = tensorflow.lite.toco.python.toco_from_protos:main
+    - tflite_convert = tensorflow.lite.python.tflite_convert:main
+    - toco = tensorflow.lite.python.tflite_convert:main
+    - saved_model_cli = tensorflow.python.tools.saved_model_cli:main
+    # The tensorboard package adds this entry point.
+    # - tensorboard = tensorboard.main:run_main
+    - tf_upgrade_v2 = tensorflow.tools.compatibility.tf_upgrade_v2_main:main
+    - estimator_ckpt_converter = tensorflow_estimator.python.estimator.tools.checkpoint_converter:main
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - bazel
+    - binutils
+    - coreutils
+    - cython
+    - sqlite
+    - wheel <0.36
+    - python
+    - icu
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel <0.36
+    - libcurl
+    - unzip
+    - zip
+    - nsync
+    - astor >=0.7.1
+    - cython
+    - dill >=0.3.1.1
+    - giflib
+    - flatbuffers
+    - icu
+    - jpeg
+    - libpng
+    - openssl
+    - pybind11
+    - sqlite
+    - snappy
+    - zlib
+    # requirements specified by the pip package itself
+    - abseil-cpp
+    - absl-py
+    - astunparse
+    - python-flatbuffers
+    - gast
+    - google-pasta
+    - grpcio
+    - h5py
+    - keras-preprocessing
+    - numpy
+    - opt_einsum
+    # build only requirement, doesn't need a run dep below
+    - protobuf
+    # build only requirement, doesn't need a run dep below
+    - scipy
+    - six
+    - typing_extensions # py<38
+    # build only requirement, doesn't need a run dep below
+    - swig
+    - termcolor
+    - wrapt
+    # has run_exports, doesn't need a run dep below
+    - snappy
+    - tensorboard
+    - tensorflow-estimator
+    - cudatoolkit
+    - cudnn
+    - nccl
+  run:
+    - python
+    - absl-py
+    - astunparse
+    - python-flatbuffers
+    - google-pasta
+    - h5py
+    - keras-preprocessing
+    - numpy
+    - opt_einsum
+    - protobuf
+    - six
+    - termcolor
+    - typing_extensions
+    - wheel <0.36
+    - wrapt
+    - grpcio
+    # upstream wants exact pin for gast
+    - gast
+    - {{ pin_compatible('scipy', max_pin=None) }}
+    - flatbuffers
+    - tensorboard
+    - tensorflow-estimator
+    - cudatoolkit
+    - cudnn
+    - nccl
+
+test:
+  imports:
+    - tensorflow
+  commands:
+    # estimator_ckpt_converter requires tensorflow-estimator
+    #- estimator_ckpt_converter --help
+    - saved_model_cli --help
+    - tf_upgrade_v2 --help
+    {% if unix -%}
+    - tflite_convert --help
+    - toco --help
+    - toco_from_protos --help
+    {%- endif %}
+
+about:
+  home: http://tensorflow.org/
+  license: Apache 2.0
+  license_family: Apache
+  summary: TensorFlow is a machine learning library, base package contains only tensorflow.
+  description: |
+    TensorFlow provides multiple APIs.The lowest level API, TensorFlow Core
+    provides you with complete programming control.
+    Base package contains only tensorflow, not tensorflow-tensorboard.
+  dev_url: https://github.com/tensorflow/tensorflow
+  doc_url: https://www.tensorflow.org/get_started/get_started
+  doc_source_url: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/docs_src
+
+extra:
+  tflow_variant: {{ tflow_variant }}
+  skip-lints:
+    - in_other_channels
+    - build_number_needs_bump
+    - cython_must_be_in_host

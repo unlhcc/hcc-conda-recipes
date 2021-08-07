@@ -1,0 +1,43 @@
+{% set version = "2.5.0" %}
+
+package:
+  name: tensorflow
+  version: {{ version }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  string: {{ tflow_variant }}_py{{ py_version | replace(".", "") }}h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
+
+requirements:
+  run:
+    - tensorflow-base {{ full_base_version }}
+    - _tflow_select   {{ select_version }}
+    - tensorboard            >={{version}}
+    - tensorflow-estimator   >={{version}}
+    - python  {{ py_version }}
+
+test:
+  imports:
+    - tensorflow
+    - tensorboard
+  commands:
+    - tensorboard --help
+
+about:
+  home: http://tensorflow.org/
+  license: Apache 2.0
+  license_family: Apache
+  summary: TensorFlow is a machine learning library.
+  description: |
+    TensorFlow provides multiple APIs.The lowest level API, TensorFlow Core
+    provides you with complete programming control.
+  dev_url: https://github.com/tensorflow/tensorflow
+  doc_url: https://www.tensorflow.org/get_started/get_started
+  doc_source_url: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/docs_src
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
+    - in_other_channels
+    - build_number_needs_bump

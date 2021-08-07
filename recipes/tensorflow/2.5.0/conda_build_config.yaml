@@ -1,0 +1,22 @@
+# configuration for linux-64 gpu variants
+full_base_version:
+  - "2.5.0 gpu_py37h993fef8_1"
+  - "2.5.0 gpu_py38h993fef8_1"
+  - "2.5.0 gpu_py39h993fef8_1"
+select_version:
+  - "2.1.0 gpu"
+  - "2.1.0 gpu"
+  - "2.1.0 gpu"
+tflow_variant:
+  - "gpu"
+  - "gpu"
+  - "gpu"
+py_version:
+  - 3.7
+  - 3.8
+  - 3.9
+zip_keys:
+  - full_base_version
+  - select_version
+  - tflow_variant
+  - py_version

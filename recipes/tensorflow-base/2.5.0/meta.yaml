@@ -15,7 +15,7 @@ source:
     - 0107-do-not-hardcode-ca-cert-location.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
   string: {{ tflow_variant }}_py{{ CONDA_PY }}h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
   entry_points:

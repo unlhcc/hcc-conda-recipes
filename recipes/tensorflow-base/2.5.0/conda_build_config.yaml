@@ -9,7 +9,9 @@ tflow_variant:
 python:
   - 3.7
   - 3.8
+  - 3.9
 python_impl:
+  - cpython
   - cpython
   - cpython
 cudatoolkit:
@@ -25,6 +27,7 @@ nccl:
 mkl:
  - 2021
 numpy:
+  - 1.19
   - 1.19
   - 1.19
 bazel:

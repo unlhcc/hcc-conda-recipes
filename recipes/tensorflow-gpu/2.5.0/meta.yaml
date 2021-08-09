@@ -1,0 +1,31 @@
+{% set version = "2.5.0" %}
+
+package:
+  name: tensorflow-gpu
+  version: {{ version }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  run:
+    - tensorflow =={{ version }}
+    - _tflow_select =={{ select_version }}
+
+test:
+  imports:
+    - tensorflow
+    - tensorboard
+  commands:
+    - tensorboard --help
+
+about:
+  summary: Metapackage for selecting a TensorFlow variant.
+  home: http://tensorflow.org/
+  license: Apache 2.0
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
+    - in_other_channels

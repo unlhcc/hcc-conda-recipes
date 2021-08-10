@@ -1,5 +1,5 @@
 {
-  "argv": ["/util/opt/anaconda/deployed-conda-envs/packages/r/envs/r-3.6.1/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+  "argv": ["/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/kernels/common/kernels/r-3.6/wrapper_R.sh", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
   "display_name": "R 3.6",
   "language": "R"
 }

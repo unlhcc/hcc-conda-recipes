@@ -9,16 +9,20 @@ source:
   path: .
 
 build:
-  number: 0
+  number: 1
   noarch: true
   script:
     - mkdir -p ${PREFIX}/share/hcc-jupyter-kernels
     - cp -aR kernels/* ${PREFIX}/share/hcc-jupyter-kernels
 
 test:
+  requires:
+    - jupyterlab
   commands:
     - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/python-3.7/kernel.json
     - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/julia-1.6/wrapper_julia.sh
+    - export JUPYTER_PATH=${PREFIX}/share/hcc-jupyter-kernels/common:${PREFIX}/share/hcc-jupyter-kernels/crane:${PREFIX}/share/hcc-jupyter-kernels/rhino
+    - jupyter kernelspec list
 
 about:
   home: https://git.unl.edu/hcc/hcc-conda-recipes
@@ -30,3 +34,4 @@ about:
 extra:
   skip-lints:
     - missing_hash
+    - build_number_needs_reset

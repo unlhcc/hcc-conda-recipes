@@ -9,7 +9,7 @@ source:
   path: .
 
 build:
-  number: 1
+  number: 2
   noarch: true
   script:
     - mkdir -p ${PREFIX}/share/hcc-jupyter-kernels

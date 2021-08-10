@@ -30,4 +30,3 @@ about:
 extra:
   skip-lints:
     - missing_hash
-    - build_number_needs_reset

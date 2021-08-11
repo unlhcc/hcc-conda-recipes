@@ -1,0 +1,40 @@
+{% set name = "docloud" %}
+{% set version = "1.0.375" %}
+{% set sha256 = "996d55407498fd01e6c6c480f367048f92255e9ca9db0e9ea19aaef91328a441" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv --no-deps"
+  noarch: python
+
+requirements:
+  host:
+    - pip
+    - python
+    - requests
+    - six
+  run:
+    - python
+    - requests
+    - six
+    - enum34 # [py<34]
+
+test:
+  imports:
+    - docloud
+
+about:
+  home: "https://onboarding-oaas.docloud.ibmcloud.com/software/analytics/docloud/"
+  license: Apache Software
+  license_family: APACHE
+  license_file: LICENSE.txt
+  summary: "The IBM Decision Optimization on Cloud Python client"
+  doc_url: "https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/pythondoc/"

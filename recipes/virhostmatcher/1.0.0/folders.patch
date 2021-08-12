@@ -1,0 +1,45 @@
+--- computeMeasure.cpp.old	2021-08-12 12:25:23.785254488 -0500
++++ computeMeasure.cpp	2021-08-12 12:27:58.974007215 -0500
+@@ -12,6 +12,7 @@
+ #include <sstream>
+ #include <string>
+ #include <stdlib.h> 
++#include <cstdlib>
+ 
+ #include <iomanip>
+ 
+@@ -1809,7 +1810,7 @@
+ 	// cp Yang's visualization files to outDIR
+ 	string cmdString = string(argv[0]);
+ 	size_t found = cmdString.find_last_of("/");
+-	string cmdDIR = cmdString.substr(0,found);
++	string cmdDIR = getenv("AUX_DATA");
+ 
+ 	string cpCssCMD = "cp -r " + cmdDIR + "/css" + " " + outDIR;
+ 	system(cpCssCMD.c_str());
+--- computeMeasure_onlyd2star.cpp.old	2021-08-12 12:25:33.702302589 -0500
++++ computeMeasure_onlyd2star.cpp	2021-08-12 12:29:21.095405533 -0500
+@@ -12,6 +12,7 @@
+ #include <sstream>
+ #include <string>
+ #include <stdlib.h> 
++#include <cstdlib>
+ //strtol(s.c_str(),0,10);
+ using namespace std;
+ 
+@@ -1907,7 +1908,7 @@
+ 	// cp Yang's visualization files to outDIR
+ 	string cmdString = string(argv[0]);
+ 	size_t found = cmdString.find_last_of("/");
+-	string cmdDIR = cmdString.substr(0,found);
++	string cmdDIR = getenv("AUX_DATA");
+ 	
+ 	string cpCssCMD = "cp -r " + cmdDIR + "/css" + " " + outDIR;
+ 	system(cpCssCMD.c_str());
+@@ -2492,4 +2493,4 @@
+ //				cout << resultMatrix[statID][IDA][IDB] << ",";
+ //			}
+ //			cout << endl;
+-//		}
+\ No newline at end of file
++//		}

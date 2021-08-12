@@ -1,0 +1,44 @@
+{% set name = "VirHostMatcher" %}
+{% set version = "1.0.0" %}
+{% set sha256 = "4956dbf3bb1afbe8a386703b55a0865a18b926f2368303a02a7e9e9484a7b95c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/jessieren/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+    - folders.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - make
+  host:
+    - python >=3.6
+    - numpy
+  run:
+    - python >=3.6
+    - numpy
+
+test:
+  commands:
+    - vhm.py --help
+    - vhm_NGS.py --help
+
+about:
+  home: https://github.com/jessieren/VirHostMatcher
+  license: USC-RL v1.0
+  license_family: Other
+  license_file: licence.md
+  summary: "VirHostMatcher: matching hosts of viruses based on oligonucleotide frequency (ONF) comparison."
+
+extra:
+  identifiers:
+    - doi:10.1093/nar/gkw1002

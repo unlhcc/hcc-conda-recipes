@@ -1,0 +1,58 @@
+--- vhm.py.old	2021-08-11 22:57:02.395995362 -0500
++++ vhm.py	2021-08-11 23:19:37.156021759 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import os,sys
+ import optparse
+ import subprocess
+@@ -53,7 +53,7 @@
+ #################### 0: preparation ############################
+ 
+ ## path to the programs
+-vhmPath = os.path.dirname(sys.argv[0])
++vhmPath = os.path.dirname(os.path.abspath(__file__))
+ if len(vhmPath) == 0 :
+ 	vhmPath="./"
+ #print vhmPath
+@@ -65,9 +65,9 @@
+ ## compile c++ code if not
+ optSys = platform.system()
+ if optSys == 'Linux' :
+-	exePath = os.path.join(vhmPath, "bin", "linux64")
++	exePath = os.path.dirname(os.path.abspath(__file__))
+ elif optSys == 'Darwin' :
+-	exePath = os.path.join(vhmPath, "bin", "macDarwin")
++	exePath = os.path.dirname(os.path.abspath(__file__))
+ elif optSys == 'Windows' :
+ 	exePath = os.path.join(vhmPath, "bin", "windows64")
+ else :
+--- vhm_NGS.py.old	2021-08-11 22:57:11.097034046 -0500
++++ vhm_NGS.py	2021-08-11 23:21:30.968528268 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import os,sys
+ import optparse
+ import subprocess
+@@ -53,7 +53,7 @@
+ #################### 0: preparation ############################
+ 
+ ## path to the programs
+-vhmPath = os.path.dirname(sys.argv[0])
++vhmPath = os.path.dirname(os.path.abspath(__file__))
+ if len(vhmPath) == 0 :
+ 	vhmPath="./"
+ #print vhmPath
+@@ -65,9 +65,9 @@
+ ## compile c++ code if not
+ optSys = platform.system()
+ if optSys == 'Linux' :
+-	exePath = os.path.join(vhmPath, "bin", "linux64")
++	exePath = os.path.dirname(os.path.abspath(__file__))
+ elif optSys == 'Darwin' :
+-	exePath = os.path.join(vhmPath, "bin", "macDarwin")
++	exePath = os.path.dirname(os.path.abspath(__file__))
+ elif optSys == 'Windows' :
+ 	exePath = os.path.join(vhmPath, "bin", "windows64")
+ else :

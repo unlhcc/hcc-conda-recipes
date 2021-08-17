@@ -1,0 +1,51 @@
+{% set name = "tensorflow-addons" %}
+{% set version = "0.13.0" %}
+{% set sha256 = "5a8c33ecef5a3daca7f6b27c4b4e3a2badfe55f55a13e97066ee2e03ef98fab0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/tensorflow/addons/archive/v{{ version }}.tar.gz
+  sha256:  {{ sha256 }}
+  patches:
+    -  pythonpath.patch
+
+build:
+  number: 0
+  skip: True # [py<37 or osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - bazel >=3
+    - rsync
+  host:
+    - python
+    - typeguard >=2.7
+    - tensorflow >=2.3.0,<2.6.0
+    - protobuf
+  run:
+    - python
+    - typeguard >=2.7
+    - protobuf
+  run_constrained:
+    - tensorflow >=2.3.0,<2.6.0
+    - tensorflow-gpu >=2.3.0,<2.6.0
+
+test:
+  requires:
+    - tensorflow >=2.3.0,<2.6.0
+  imports:
+    - tensorflow_addons
+
+about:
+  home: https://www.tensorflow.org/addons
+  dev_url: https://github.com/tensorflow/addons
+  doc_url: https://www.tensorflow.org/addons/overview
+  license: Apache 2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "TensorFlow Addons is a repository of contributions that conform to well-established API patterns, but implement new functionality not available in core TensorFlow."

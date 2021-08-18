@@ -1,0 +1,11 @@
+--- official/pip_package/setup.py.org	2020-10-24 00:26:02.176664523 +0000
++++ official/pip_package/setup.py	2020-10-24 00:26:16.872662873 +0000
+@@ -42,7 +42,7 @@
+   install_requires_tmp = []
+   dependency_links_tmp = []
+   with open(
+-      os.path.join(os.path.dirname(__file__), '../requirements.txt'), 'r') as f:
++      os.path.join('requirements.txt'), 'r') as f:
+     for line in f:
+       package_name = line.strip()
+       if package_name.startswith('-e '):

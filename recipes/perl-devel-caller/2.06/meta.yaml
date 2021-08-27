@@ -1,0 +1,38 @@
+{% set name = "perl-devel-caller" %}
+{% set version = "2.06" %}
+{% set sha256 = "6a73ae6a292834255b90da9409205425305fcfe994b148dcb6d2d6ef628db7df" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Devel-Caller-2.06.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  ignore_run_exports:
+    - perl-padwalker
+
+requirements:
+  build:
+    - make
+    - {{ compiler('c') }}
+
+  host:
+    - perl
+    - perl-padwalker
+
+  run:
+    - perl
+    - perl-padwalker
+
+test:
+  imports:
+    - Devel::Caller
+
+about:
+  home: http://metacpan.org/pod/Devel-Caller
+  license: perl_5
+  summary: 'meatier versions of caller'

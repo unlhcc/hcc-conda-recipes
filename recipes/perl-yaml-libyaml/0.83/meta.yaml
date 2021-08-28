@@ -1,0 +1,43 @@
+{% set name = "perl-yaml-libyaml" %}
+{% set version = "0.83" %}
+{% set sha256 = "b47175b4ff397ad75a4f7781d3d83c08637da6ff0bae326af3b389d854bec490" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/T/TI/TINITA/YAML-LibYAML-0.83.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    weak:
+      - {{ name }} ={{ version }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+
+  # Run exports are used now
+  host:
+    - perl
+
+  run:
+    - perl
+
+test:
+  imports:
+    - YAML::XS
+    - YAML::XS::LibYAML
+
+about:
+  home: https://github.com/ingydotnet/yaml-libyaml-pm
+  license: perl_5
+  summary: 'Perl YAML Serialization using XS and libyaml'
+
+extra:
+  skip-lints:
+    - in_other_channels

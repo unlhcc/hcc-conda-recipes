@@ -1,0 +1,47 @@
+{% set name = "perl-moosex-params-validate" %}
+{% set version = "0.21" %}
+{% set sha256 = "88295446aba999cbb8f998d7fb9a2701d6617394a51d6d724c774e6d9ff139d9" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/MooseX-Params-Validate-0.21.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - make
+
+  host:
+    - perl
+    - perl-moose
+    - perl-sub-exporter
+    - perl-params-validate
+    - perl-devel-caller
+    - perl-test-fatal
+    - perl-padwalker
+
+  run:
+    - perl
+    - perl-moose
+    - perl-sub-exporter
+    - perl-params-validate
+    - perl-devel-caller
+    - perl-padwalker
+
+test:
+  # Perl 'use' tests
+  imports:
+    - MooseX::Params::Validate
+    - MooseX::Params::Validate::Exception::ValidationFailedForTypeConstraint
+
+about:
+  home: http://metacpan.org/release/MooseX-Params-Validate
+  license: perl_5
+  summary: "an extension of Params::Validate using Moose's types"

@@ -1,0 +1,49 @@
+{% set name = "VirHostMatcher-Net" %}
+{% set version = "0.0.2021.08.29" %}
+{% set sha256 = "326cdf809f098df0dbe45a23cfc6865db2843901fa20a6a0b1c59c1815c55194" %}
+{% set commit = "7bf7dc00437fae8d59420d69df6055827f2c5899" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/WeiliWw/{{ name }}/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - python >=3.4
+    - numpy
+    - pandas
+    - biopython
+    - blast
+    - curl
+  run:
+    - python >=3.4
+    - numpy
+    - pandas
+    - biopython
+    - blast
+    - curl
+
+test:
+  commands:
+    - VirHostMatcher-Net.py --help
+
+about:
+  home: https://github.com/WeiliWw/VirHostMatcher-Net
+  license: GPL (>=3)
+  license_family: GPL
+  # https://github.com/WeiliWw/VirHostMatcher-Net/blob/master/README.md#copyright-and-license-information
+  license_file: ""
+  summary: "VirHostMatcher-Net: A network-based computational tool for predicting virus-host interactions."
+
+extra:
+  identifiers:
+    - doi:10.1093/nargab/lqaa044

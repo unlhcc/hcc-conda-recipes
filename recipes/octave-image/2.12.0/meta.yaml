@@ -1,0 +1,43 @@
+{% set prefix = "octave" %}
+{% set name = "image" %}
+{% set version = "2.12.0" %}
+{% set sha256 = "e7d58ced612bc6420d99bb06313250694e5f1d8dcc093293604c253c17c473b4" %}
+
+package:
+  name: {{ prefix }}-{{ name }}
+  version: {{ version }}
+
+source:
+  url: https://octave.sourceforge.io/download.php?package={{ name }}-{{ version }}.tar.gz
+  folder: {{ name }}-{{ version }}
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  script:
+    - tar -czf {{ name }}-{{ version }}.tar.gz {{ name }}-{{ version }}
+    - octave -W -H --eval "pkg install -global -verbose {{ name }}-{{ version }}.tar.gz"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - make
+  host:
+    - octave
+  run:
+    - octave
+
+test:
+  commands:
+    - octave -W -H --eval 'pkg load {{ name }}'
+
+about:
+  home: https://octave.sourceforge.io/{{ name }}/index.html
+  license: GPLv3
+  license_family: GPL
+  license_file: {{ name }}-{{ version }}/COPYING
+  doc_url: https://octave.sourceforge.io/{{ name }}/overview.html
+  summary: 'The Octave-forge Image package provides functions for processing images.'

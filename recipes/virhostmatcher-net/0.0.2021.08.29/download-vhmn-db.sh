@@ -9,6 +9,7 @@ cd ${VHMN_DATA}
 # the link for https://github.com/WeiliWw/VirHostMatcher-Net#complete-genome-mode-and-short-viral-contig-mode is broken
 # so only the complete genome is downloaded
 # https://github.com/WeiliWw/VirHostMatcher-Net#complete-genome-mode-alone
+# other download links, https://github.com/WeiliWw/VirHostMatcher-Net/issues/14
 fileid="185U3ZLYe1uNmB5oCaIlb0IQNURnlyXcN"
 filename="data_VirHostMatcher-Net_complete_genome_mode_alone.tar.gz"
 curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}" > /dev/null

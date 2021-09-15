@@ -13,8 +13,8 @@ chmod +x ${PREFIX}/bin/*.py
 DB="$PREFIX/share/$PKG_NAME-$PKG_VERSION-$PKG_BUILDNUM/data"
 mkdir -p ${DB}
 touch ${DB}/.tmp
-chmod +x ${RECIPE_DIR}/download-vhmn-db.sh
-cp ${RECIPE_DIR}/download-vhmn-db.sh ${PREFIX}/bin
+cp ${RECIPE_DIR}/download-vhmn-db.sh ${PREFIX}/bin/
+chmod +x ${PREFIX}/bin/download-vhmn-db.sh
 
 # set VHMN_DATA variable on env activation
 mkdir -p ${PREFIX}/etc/conda/activate.d ${PREFIX}/etc/conda/deactivate.d

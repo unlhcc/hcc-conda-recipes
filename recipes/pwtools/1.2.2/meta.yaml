@@ -1,0 +1,72 @@
+{% set name = "pwtools" %}
+{% set version = "1.2.2" %}
+{% set sha256 = "3209bb32ed38ddbedd002e103332583da4f664e017e9c68657f81f4d8dfded79" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/elcorto/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - make.patch
+    - setup.py.patch
+
+build:
+  number: 1000
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+  skip: True  # [not linux or py2k]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - make
+  host:
+    - python
+    - pip
+    - numpy
+    - libblas
+    - libcblas
+    - liblapack
+    - liblapacke
+    - openmp
+  run:
+    - python
+    - matplotlib-base
+    - nose
+    - numpy
+    - scipy
+    - h5py
+    - ase
+    - numpydoc
+    - pycifrw
+    - spglib
+    - openmp
+
+test:
+  imports:
+    - pwtools
+    - pwtools.io
+
+about:
+  home: http://elcorto.github.io/pwtools
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: pwtools is a Python package for pre- and postprocessing of atomistic calculations, mostly targeted to Quantum Espresso, CPMD, CP2K and LAMMPS.
+  description: |
+    pwtools is a Python package for pre- and postprocessing of atomistic 
+    calculations, mostly targeted to Quantum Espresso, CPMD, CP2K and 
+    LAMMPS. It is almost, but not quite, entirely unlike ASE, with some 
+    tools extending numpy/scipy. It has a set of powerful parsers and 
+    data types for storing calculation data.
+  doc_url: http://elcorto.github.io/pwtools
+  dev_url: https://github.com/elcorto/pwtools
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - build_number_needs_reset

@@ -1,0 +1,11 @@
+--- setup.py.org	2021-10-06 17:18:07.343964220 -0500
++++ setup.py	2021-10-06 17:18:32.821932052 -0500
+@@ -44,7 +44,7 @@
+     we just need to tell setuptools that these are "data files" that we wish to
+     copy when installing, along with all *.py files.
+     """
+-    subprocess.run(r"cd src; make clean; make", shell=True, check=True)
++    subprocess.run(r"cd src; make clean; make gfortran-omp", shell=True, check=True)
+ 
+ 
+ def make_cmd_class(base):

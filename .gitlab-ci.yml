@@ -57,6 +57,8 @@ deploy-linux:
   tags:
     - docker
   before_script:
+    - sudo yum update -y -q ca-certificates
+    - git config --global http.sslCAinfo /etc/ssl/certs/ca-bundle.crt
     - export ANACONDA_PREFIX=/opt/conda
     - export HOME=/home/conda
     - scripts/gitlabci-setup.sh

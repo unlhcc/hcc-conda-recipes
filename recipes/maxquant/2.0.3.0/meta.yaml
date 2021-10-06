@@ -14,7 +14,7 @@ source:
 
 build:
   noarch: generic
-  number: 0
+  number: 1000
 
   script:
     - cp -r mq/bin $PREFIX
@@ -54,3 +54,4 @@ extra:
     - should_not_use_fn
     - should_be_noarch_python
     - in_other_channels
+    - build_number_needs_reset

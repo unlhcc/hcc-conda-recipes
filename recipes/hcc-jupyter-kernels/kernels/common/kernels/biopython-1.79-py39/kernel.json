@@ -1,0 +1,11 @@
+{
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/biopython/envs/biopython-1.79-py39/bin/python",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "Biopython 1.79 (py39)",
+ "language": "python"
+}

@@ -1,0 +1,35 @@
+{% set name = "unikmer" %}
+{% set version = "0.18.7" %}
+{% set sha256 = "6153a990c0eb1f890fcdf3c59cc0e78e20579e06bcdba6918c1f26a9e57212ad" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/shenwei356/unikmer/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  binary_relocation: False
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - go-cgo
+  host:
+  run:
+
+test:
+  commands:
+    - unikmer help
+
+about:
+  home: https://github.com/shenwei356/unikmer
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "unikmer: toolkit for nucleic acid k-mer analysis, including set operations on k-mers (sketch) optional with TaxIDs but without count information."
+  dev_url: https://github.com/shenwei356/unikmer

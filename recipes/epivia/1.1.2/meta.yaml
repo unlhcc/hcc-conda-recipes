@@ -1,0 +1,48 @@
+{% set name = "epiVIA" %}
+{% set version = "1.1.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 91850fcbe51a48e49becff852fbfefd0735ac4ef8f48c785f9ab1d9e45af2495
+
+build:
+  number: 0
+  entry_points:
+    - epiVIA = epiVIA.chimera:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+  noarch: python
+
+requirements:
+  host:
+    - biopython
+    - pandas
+    - pip
+    - pybedtools
+    - pysam
+    - python >=3
+    - requests
+  run:
+    - biopython
+    - pandas
+    - pybedtools
+    - pysam
+    - python >=3
+    - requests
+    - pyyaml
+
+test:
+  imports:
+    - epiVIA
+  commands:
+    - epiVIA --help
+
+about:
+  home: "https://github.com/wangwl/epiVIA"
+  license: MIT
+  license_family: MIT
+  summary: "Virial Integration Analysis with epigenetic data" 
+

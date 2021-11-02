@@ -11,28 +11,41 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - make
     - cmake
+    - extra-cmake-modules
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}  # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
   host:
     - numpy
     - pip
     - python
     - fftw
     - openmp
+    - qt
+    - mesalib
+    - xorg-libxfixes  # [linux]
+    - xorg-libxext
   run:
     - numpy
     - python
     - fftw
     - openmp
+    - qt
+    - mesalib
 
 test:
   commands:
-    - spirit --version
+    - spirit -h 2>&1 | grep spirit > /dev/null
   imports:
     - spirit
     - spirit.parameters

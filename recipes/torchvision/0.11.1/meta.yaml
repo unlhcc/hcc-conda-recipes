@@ -1,0 +1,69 @@
+{% set name = "torchvision" %}
+{% set version = "0.11.1" %}
+{% set sha256 = "32a06ccf755e4d75006ce03701f207652747a63dbfdf65f0f20a1b6f93a2e834" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/pytorch/vision/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - gcc_detection.patch
+
+build:
+  number: 1000
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+    - git
+    # these should be in host: but the setup.py script looks for them in build for some unknown reason
+    - ffmpeg
+    - jpeg
+    - libpng
+  host:
+    - python 3.8
+    - pip
+    - setuptools
+    - cudatoolkit 11.2
+    - pytorch-gpu 1.10.0
+  run:
+    - python 3.8
+    - pillow >=4.1.1
+    - numpy >=1.11
+    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
+    - pytorch-gpu 1.10.0
+    - ffmpeg
+    - jpeg
+    - libpng
+
+test:
+  imports:
+    - torchvision
+    - torchvision.datasets
+    - torchvision.transforms
+  source_files:
+    - test
+  requires:
+    - pytest
+    - scipy
+    - av
+    - ca-certificates
+
+about:
+  home: https://github.com/pytorch/vision
+  license: BSD
+  license_family: BSD
+  license_file: LICENSE
+  summary: 'image and video datasets and models for torch deep learning'
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - build_number_needs_reset

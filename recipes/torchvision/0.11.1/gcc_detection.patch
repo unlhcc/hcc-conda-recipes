@@ -1,0 +1,11 @@
+--- setup.py.org	2021-09-03 22:49:49.139662015 -0500
++++ setup.py	2021-09-03 22:50:23.863584798 -0500
+@@ -362,7 +362,7 @@
+         ffmpeg_include_dir = os.path.join(ffmpeg_root, 'include')
+         ffmpeg_library_dir = os.path.join(ffmpeg_root, 'lib')
+ 
+-        gcc = distutils.spawn.find_executable('gcc')
++        gcc = distutils.spawn.find_executable('x86_64-conda-linux-gnu-cc')
+         platform_tag = subprocess.run(
+             [gcc, '-print-multiarch'], stdout=subprocess.PIPE)
+         platform_tag = platform_tag.stdout.strip().decode('utf-8')

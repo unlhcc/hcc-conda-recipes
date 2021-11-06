@@ -1,0 +1,54 @@
+{% set name = "microbiome_helper" %}
+{% set version = "1.0" %}
+{% set sha256 = "58733dab762f78c3724821bd7ce99ae585c6eab68ad0779ba3225d66a91e5b32" %}
+
+package:
+  name: "{{ name|lower|replace('_','-') }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/LangilleLab/microbiome_helper/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - perl_path.patch
+    - python_path.patch
+    - Rscript_path.patch
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p ${PREFIX}/bin
+    - cp -v *.py *.pl *.R ${PREFIX}/bin
+
+requirements:
+  host:
+  run:
+    - python >=3
+    - numpy
+    - pandas
+    - biom-format
+    - perl
+    - perl-sys-cpu
+    - perl-parallel-forkmanager
+    - perl-getopt-long
+    - perl-pod-usage
+    - perl-list-util
+    - r-base
+    - r-ggplot2
+    - r-optparse
+    - bioconductor-shortread
+
+test:
+  commands:
+    - biom_to_stamp.py --help
+    - run_trimmomatic.pl --version
+    - merge_logfiles.R --help
+
+about:
+  home: https://github.com/LangilleLab/microbiome_helper
+  doc_url: https://github.com/LangilleLab/microbiome_helper/wiki
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "A repository of bioinformatic scripts, SOPs, and tutorials for analyzing microbiome data."

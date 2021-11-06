@@ -1,0 +1,72 @@
+--- add_picrust_metadata.py.org	2021-11-05 17:34:40.159393638 -0500
++++ add_picrust_metadata.py	2021-11-05 17:35:07.555343484 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python 
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import sys
+ import argparse
+--- biom_to_stamp.py.org	2021-11-05 17:34:40.161393634 -0500
++++ biom_to_stamp.py	2021-11-05 17:35:16.922326338 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import division, print_function
+ 
+--- fix_ITS2_spf.py.org	2021-11-05 17:34:40.163393631 -0500
++++ fix_ITS2_spf.py	2021-11-05 17:35:24.691312111 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import print_function
+ import argparse
+--- fix_spf.py.org	2021-11-05 17:34:40.165393627 -0500
++++ fix_spf.py	2021-11-05 17:35:34.702293787 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import print_function
+ import argparse
+--- humann_stamp_to_biom.py.org	2021-11-05 17:34:40.167393623 -0500
++++ humann_stamp_to_biom.py	2021-11-05 17:35:43.972276816 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import division, print_function
+ 
+--- metaphlan2_stamp_to_biom.py.org	2021-11-05 17:34:40.169393620 -0500
++++ metaphlan2_stamp_to_biom.py	2021-11-05 17:35:55.196256269 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import division, print_function
+ 
+--- parse_cutadapt_logs.py.org	2021-11-05 17:34:40.171393616 -0500
++++ parse_cutadapt_logs.py	2021-11-05 17:36:04.779238728 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import print_function
+ 
+--- qiime2_fastq_lengths.py.org	2021-11-05 17:34:40.173393612 -0500
++++ qiime2_fastq_lengths.py	2021-11-05 17:36:15.283219496 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import print_function, division
+ from tempfile import TemporaryDirectory
+--- remove_low_confidence_otus.py.org	2021-11-05 17:34:40.175393609 -0500
++++ remove_low_confidence_otus.py	2021-11-05 17:36:21.080208885 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ from __future__ import division
+ 
+ __author__ = "Morgan Langille"

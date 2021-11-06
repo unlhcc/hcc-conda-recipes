@@ -1,0 +1,56 @@
+--- convert_dada2_out.R.org	2021-11-05 17:37:15.378109478 -0500
++++ convert_dada2_out.R	2021-11-05 17:37:33.880075611 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # Read in package to read in command-line options.
+ suppressMessages(library("optparse"))
+--- dada2_chimera_taxa.R.org	2021-11-05 17:37:15.380109475 -0500
++++ dada2_chimera_taxa.R	2021-11-05 17:37:46.342052797 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # Read in package to read in command-line options.
+ library("optparse")
+--- dada2_filter.R.org	2021-11-05 17:37:15.382109471 -0500
++++ dada2_filter.R	2021-11-05 17:37:51.293043732 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # Read in package to read in command-line options.
+ suppressMessages(library("optparse"))
+--- dada2_inference.R.org	2021-11-05 17:37:15.384109467 -0500
++++ dada2_inference.R	2021-11-05 17:37:55.830035427 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # Read in package to read in command-line options.
+ library("optparse")
+--- filter_feature_table.R.org	2021-11-05 17:37:15.386109464 -0500
++++ filter_feature_table.R	2021-11-05 17:38:01.494025059 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # Load optparse package to read in command-line arguments.
+ library("optparse")
+--- merge_logfiles.R.org	2021-11-05 17:37:15.388109460 -0500
++++ merge_logfiles.R	2021-11-05 17:38:09.749009947 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # Read in package to read in command-line options.
+ library("optparse")
+--- plot_metagenome_contributions.R.org	2021-11-05 17:37:15.390109457 -0500
++++ plot_metagenome_contributions.R	2021-11-05 17:38:14.645000984 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ version <- "1.0"
+ 

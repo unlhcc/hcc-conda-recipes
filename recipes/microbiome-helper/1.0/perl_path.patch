@@ -1,0 +1,160 @@
+--- chimera_filter.pl.org	2021-11-05 17:31:16.071766689 -0500
++++ chimera_filter.pl	2021-11-05 17:32:11.877665022 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- chimera_filter_usearch61.pl.org	2021-11-05 17:31:16.073766686 -0500
++++ chimera_filter_usearch61.pl	2021-11-05 17:32:11.877665022 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- concat_lanes.pl.org	2021-11-05 17:31:16.075766682 -0500
++++ concat_lanes.pl	2021-11-05 17:32:11.878665020 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- concat_paired_end.pl.org	2021-11-05 17:31:16.077766678 -0500
++++ concat_paired_end.pl	2021-11-05 17:32:11.878665020 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- count_fastq.pl.org	2021-11-05 17:31:16.079766675 -0500
++++ count_fastq.pl	2021-11-05 17:32:11.879665018 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- create_qiime_map.pl.org	2021-11-05 17:31:16.081766671 -0500
++++ create_qiime_map.pl	2021-11-05 17:32:11.879665018 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #Creates a qiime map file based on a list of input filenames that can then be used with the script "add_qiime_labels.py"
+ 
+--- filter_fastq.pl.org	2021-11-05 17:31:16.083766668 -0500
++++ filter_fastq.pl	2021-11-05 17:32:11.879665018 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- humann_to_stamp.pl.org	2021-11-05 17:31:16.085766664 -0500
++++ humann_to_stamp.pl	2021-11-05 17:32:11.880665016 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ #humann_to_stamp.py 04b-hit-keg-mpm-cop-nul-nve-nve.txt > hummann_modules.spf
+ #humann_to_stamp.py 04b-hit-keg-mpt-cop-nul-nve-nve.txt > hummann_pathways.spf
+--- metaphlan_to_stamp.pl.org	2021-11-05 17:31:16.087766661 -0500
++++ metaphlan_to_stamp.pl	2021-11-05 17:32:11.880665016 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #Created by: Morgan Langille
+ 
+ #Note: metaphlan file must contain merged files
+--- read_filter.pl.org	2021-11-05 17:31:16.089766657 -0500
++++ read_filter.pl	2021-11-05 17:32:11.881665014 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_contaminant_filter.pl.org	2021-11-05 17:31:16.091766653 -0500
++++ run_contaminant_filter.pl	2021-11-05 17:32:11.882665013 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_deconseq.pl.org	2021-11-05 17:31:16.093766650 -0500
++++ run_deconseq.pl	2021-11-05 17:32:11.882665013 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_fastq_to_fasta.pl.org	2021-11-05 17:31:16.095766646 -0500
++++ run_fastq_to_fasta.pl	2021-11-05 17:32:11.882665013 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_kraken.pl.org	2021-11-05 17:31:16.097766643 -0500
++++ run_kraken.pl	2021-11-05 17:32:11.883665011 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_metaphlan2.pl.org	2021-11-05 17:31:16.099766639 -0500
++++ run_metaphlan2.pl	2021-11-05 17:32:11.884665009 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_metaphlan.pl.org	2021-11-05 17:31:16.101766635 -0500
++++ run_metaphlan.pl	2021-11-05 17:32:11.884665009 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_pear.pl.org	2021-11-05 17:31:16.103766632 -0500
++++ run_pear.pl	2021-11-05 17:32:11.885665007 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_pre_humann.pl.org	2021-11-05 17:31:16.104766630 -0500
++++ run_pre_humann.pl	2021-11-05 17:32:11.886665005 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_sra_to_fastq.pl.org	2021-11-05 17:31:16.106766627 -0500
++++ run_sra_to_fastq.pl	2021-11-05 17:32:11.886665005 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;
+--- run_trimmomatic.pl.org	2021-11-05 17:31:16.108766623 -0500
++++ run_trimmomatic.pl	2021-11-05 17:32:11.887665004 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use warnings;
+ use strict;

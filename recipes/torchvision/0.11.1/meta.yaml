@@ -13,7 +13,7 @@ source:
     - gcc_detection.patch
 
 build:
-  number: 1000
+  number: 1001
   skip: True # [osx]
 
 requirements:
@@ -28,13 +28,13 @@ requirements:
     - jpeg
     - libpng
   host:
-    - python 3.8
+    - python {{ py_version }}
     - pip
     - setuptools
     - cudatoolkit 11.2
     - pytorch-gpu 1.10.0
   run:
-    - python 3.8
+    - python {{ py_version }}
     - pillow >=4.1.1
     - numpy >=1.11
     - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}

@@ -1,0 +1,33 @@
+{% set name = "cudatoolkit" %}
+{% set version = "11.0.3" %}
+{% set sha256 = "b079c4e408adf88c3f1ffb8418a97dc4227c37935676b4bf4ca0beec6c328cc0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
+    sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  detect_binary_files_with_prefix: False
+  binary_relocation: False
+
+test:
+  commands:
+    - nvcc --version
+
+about:
+  home: https://developer.nvidia.com/cuda-toolkit
+  license: PROPRIETARY
+  summary: 'NVIDIA CUDA Toolkit'
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_be_noarch_generic
+    - build_number_needs_bump
+

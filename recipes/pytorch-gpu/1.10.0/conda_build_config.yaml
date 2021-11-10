@@ -1,0 +1,39 @@
+blas_impl:
+  - mkl
+c_compiler_version:
+  - 7  # [linux64]
+cxx_compiler_version:
+  - 7  # [linux64]
+opencv:
+  - 4.3
+cudatoolkit:
+  - 11.2
+  - 11.2
+cuda_compiler_version:
+  - 11.2
+  - 11.2
+cudnn:
+  - 8.2
+  - 8.2
+nccl:
+  - 2.11
+libprotobuf:
+  - 3.16
+mkl:
+  - 2021
+python:
+  - 3.7
+  - 3.8
+  - 3.9
+python_impl:
+  - cpython
+  - cpython
+  - cpython
+numpy:
+  - 1.19
+  - 1.19
+  - 1.19
+
+pin_run_as_build:
+  opencv:
+    max_pin: x.x

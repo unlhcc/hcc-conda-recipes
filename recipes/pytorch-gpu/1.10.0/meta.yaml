@@ -1,0 +1,92 @@
+{% set name = "pytorch-gpu" %}
+{% set version = "1.10.0" %}
+{% set commit = "v" + version %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/pytorch/pytorch.git
+  git_tag: {{ commit }}
+  patches:
+    - fix_dispatch_apply_auto.patch
+
+build:
+  number: 1000
+  skip: True  # [osx]
+  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  detect_binary_files_with_prefix: False
+
+requirements:
+    build:
+      - sysroot_linux-64 2.17
+      - {{ compiler('c') }}
+      - {{ compiler('cxx') }}
+      - patch
+      - git
+      - libgomp
+      - cmake
+      - git
+      - protobuf {{ libprotobuf }}
+      - make
+      - ninja
+    host:
+      # GPU requirements
+      - cudnn
+      - nccl
+      - magma
+      # other requirements
+      - python
+      - numpy
+      # dataclasses is a backport of python 3.7 module
+      - dataclasses   # [py==36]
+      - pip
+      - setuptools
+      - pyyaml
+      - requests
+      - future
+      - six
+      - cffi
+      - mkl-devel {{ mkl }}   # [x86]
+      - mkl {{ mkl }}         # [x86]
+      - libblas * *_mkl       # [x86]
+      - libprotobuf
+      - sleef
+      - typing
+      - libuv
+      - pkg-config  # [unix]
+      - typing_extensions
+    run:
+      - mkl {{ mkl }}     # [x86]
+      - libblas * *_mkl   # [x86]
+      # GPU requirements without run_exports
+      - {{ pin_compatible('cudnn') }}
+      - {{ pin_compatible('magma', max_pin='x.x.x') }}
+      # other requirements
+      - python
+      - {{ pin_compatible('numpy') }}
+      - cffi
+      # if future isn't installed on python 3, `pip check` can give
+      # the user an error
+      - future
+      - typing_extensions
+      - setuptools
+      # Need ninja to load C++ extensions
+      - ninja
+test:
+  imports:
+    - torch
+
+about:
+  home: https://pytorch.org/
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: PyTorch is an optimized tensor library for deep learning using GPUs and CPUs.
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - uses_vcs_url
+    - missing_hash

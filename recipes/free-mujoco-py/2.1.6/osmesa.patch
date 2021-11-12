@@ -1,0 +1,11 @@
+--- mujoco_py/builder.py.org	2021-11-11 17:17:20.338839548 -0600
++++ mujoco_py/builder.py	2021-11-11 17:17:37.280813556 -0600
+@@ -266,7 +266,7 @@
+ 
+         self.extension.sources.append(
+             join(self.CYMJ_DIR_PATH, "gl", "osmesashim.c"))
+-        self.extension.libraries.extend(['glewosmesa', 'OSMesa', 'GL'])
++        self.extension.libraries.extend(['glewosmesa', 'OSMesa32', 'GL'])
+         self.extension.runtime_library_dirs = [join(mujoco_path, 'bin')]
+ 
+     def _build_impl(self):

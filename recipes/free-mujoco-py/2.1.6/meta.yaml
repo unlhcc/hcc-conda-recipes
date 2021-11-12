@@ -1,0 +1,67 @@
+{% set name = "free-mujoco-py" %}
+{% set version = "2.1.6" %}
+{% set sha256 = "77e18302e21979bbd77a7c1584070815843cab1b1249f8a17667e15aba528a9a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: {{ sha256 }}
+  patches:
+    - osmesa.patch
+
+build:
+  number: 0
+  skip: True # [osx or py<37]
+  script:
+    - rm -f pyproject.toml
+    - "{{ PYTHON }} -m pip install . -vv"
+    # free-mujoco-py creates the cython bits on first load (not install)
+    - {{ PYTHON }} -I -c 'import mujoco_py'
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}
+    - patchelf
+  host:
+    - python
+    - pip
+    - mesalib
+    - cffi >=1.15.0,<2.0.0
+    - cython >=0.29.24,<0.30.0
+    - fasteners ==0.15
+    - pyglfw >=1.4.0,<2.0.0
+    - imageio >=2.9.0,<3.0.0
+    - numpy >=1.21.3,<2.0.0
+  run:
+    - python
+    - mesalib
+    - cffi >=1.15.0,<2.0.0
+    - cython >=0.29.24,<0.30.0
+    - fasteners ==0.15
+    - pyglfw >=1.4.0,<2.0.0
+    - imageio >=2.9.0,<3.0.0
+    - numpy >=1.21.3,<2.0.0
+
+test:
+  imports:
+    - mujoco_py
+    - mujoco_py.generated
+    - mujoco_py.gl
+    - mujoco_py.pxd
+    - mujoco_py.tests
+
+about:
+  home: "https://pypi.org/project/free-mujoco-py"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.md
+  summary: 'free-mujoco-py'
+
+extra:
+  skip-lints:
+    - cython_must_be_in_host

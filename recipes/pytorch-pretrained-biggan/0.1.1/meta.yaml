@@ -1,0 +1,52 @@
+{% set name = "pytorch-pretrained-biggan" %}
+{% set version = "0.1.1" %}
+{% set sha256 = "5a911d9372a87a4fa1e4673ffef55a9bcd1954890b9d8474c3564b1ca7869df4" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://files.pythonhosted.org/packages/85/38/93d2cc3e1642af251518adbe5f5996c7c8e127ed744afdf51e74694a651c/pytorch_pretrained_biggan-0.1.1.tar.gz"
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  entry_points:
+    - pytorch_pretrained_biggan=pytorch_pretrained_biggan.convert_tf_to_pytorch:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - boto3
+    - numpy
+    - pip
+    - python >=3
+    - requests
+    - pytorch >=0.4.1
+    - tqdm
+  run:
+    - boto3
+    - numpy
+    - python >=3
+    - requests
+    - pytorch >=0.4.1
+    - tqdm
+    - scipy
+
+test:
+  imports:
+    - pytorch_pretrained_biggan
+  commands:
+    - pytorch_pretrained_biggan --help
+  requires:
+    - pytest
+
+about:
+  home: "https://github.com/huggingface/pytorch-pretrained-BigGAN"
+  license: Apache Software
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "PyTorch version of DeepMind's BigGAN model with pre-trained models"
+  doc_url: "https://github.com/huggingface/pytorch-pretrained-BigGAN#doc"

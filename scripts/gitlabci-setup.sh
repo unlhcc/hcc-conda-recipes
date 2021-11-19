@@ -21,10 +21,10 @@ then
     tag=Linux
     sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
     mv -f -v $HOME/.condarc $ANACONDA_PREFIX
-    mkdir -p /ramdisk/conda-bld
-    ln -s /ramdisk/conda-bld $ANACONDA_PREFIX/conda-bld
+#    mkdir -p /ramdisk/conda-bld
+#    ln -s /ramdisk/conda-bld $ANACONDA_PREFIX/conda-bld
     mkdir -p .cache/conda_build_src .cache/conda_pkgs
-    ln -s ${CI_PROJECT_DIR}/.cache/conda_build_src /ramdisk/conda-bld/src_cache
+#    ln -s ${CI_PROJECT_DIR}/.cache/conda_build_src /ramdisk/conda-bld/src_cache
     conda config --system --add pkgs_dirs /opt/conda/pkgs
     conda config --system --add pkgs_dirs ${CI_PROJECT_DIR}/.cache/conda_pkgs
 
@@ -46,6 +46,10 @@ conda install -q -y --file https://raw.githubusercontent.com/acaprez/bioconda-ut
 
 # add HCC channel
 conda config --system --add channels hcc
+# more threads
+conda config --system --set repodata_threads 4
+conda config --system --set execute_threads 2
+conda config --system --set verify_threads 4
 
 # install HCC-ized bioconda-utils
 pip install -q --force-reinstall git+https://github.com/acaprez/bioconda-utils.git@${HCC_BIOCONDA_UTILS_TAG}

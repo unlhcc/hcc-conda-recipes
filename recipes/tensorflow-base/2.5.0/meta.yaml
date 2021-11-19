@@ -15,7 +15,7 @@ source:
     - 0107-do-not-hardcode-ca-cert-location.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [osx]
   string: {{ tflow_variant }}_py{{ CONDA_PY }}h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
   entry_points:
@@ -75,7 +75,7 @@ requirements:
     - numpy
     - opt_einsum
     # build only requirement, doesn't need a run dep below
-    - protobuf
+    - protobuf 3.9
     # build only requirement, doesn't need a run dep below
     - scipy
     - six
@@ -101,7 +101,7 @@ requirements:
     - keras-preprocessing
     - numpy
     - opt_einsum
-    - protobuf
+    - protobuf >=3.9
     - six
     - termcolor
     - typing_extensions

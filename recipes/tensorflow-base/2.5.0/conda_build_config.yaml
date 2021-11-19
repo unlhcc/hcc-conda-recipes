@@ -34,8 +34,6 @@ bazel:
   - 3.7.2
 astunparse:
   - 1.6.3
-protobuf:
-  - 3.9.2
 python_flatbuffers:
   - 1.12
 gast:
@@ -122,9 +120,6 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
   grpcio:
-    min_pin: x.x
-    max_pin: x.x
-  protobuf:
     min_pin: x.x
     max_pin: x.x
   flatbuffers:

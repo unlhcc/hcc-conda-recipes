@@ -39,7 +39,7 @@ export TF_CONFIGURE_IOS=0
 # CUDA details
 export TF_NEED_CUDA=1
 export TF_CUDA_VERSION="11.2"
-export TF_CUDNN_VERSION="8.1"
+export TF_CUDNN_VERSION="8.2"
 export TF_CUDA_CLANG=0
 export TF_DOWNLOAD_CLANG=0
 export TF_NEED_TENSORRT=0
@@ -63,7 +63,7 @@ bazel shutdown
 #   --subcommands \
 # jobs can be used to limit parallel builds and reduce resource needs
 #    --jobs=20             \
-bazel ${BAZEL_OPTS} build ${BAZEL_MKL_OPT} \
+bazel ${BAZEL_OPTS} build --noshow_progress ${BAZEL_MKL_OPT} \
     --copt=-march=nocona \
     --copt=-mtune=haswell \
     --copt=-ftree-vectorize \

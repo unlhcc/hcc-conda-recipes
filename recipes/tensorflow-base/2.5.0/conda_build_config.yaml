@@ -17,8 +17,8 @@ python_impl:
 cudatoolkit:
   - 11.2
 cudnn:
-  - 8.1
-  - 8.1
+  - 8.2
+  - 8.2
 cuda_compiler_version:
   - 11.2
   - 11.2

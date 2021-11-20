@@ -1,8 +1,8 @@
 # configuration for linux-64 gpu variants
 full_base_version:
-  - "2.5.0 gpu_py37h993fef8_1"
-  - "2.5.0 gpu_py38h993fef8_1"
-  - "2.5.0 gpu_py39h993fef8_1"
+  - "2.5.0 gpu_py37h7833399_2"
+  - "2.5.0 gpu_py38h7833399_2"
+  - "2.5.0 gpu_py39h7833399_2"
 select_version:
   - "2.1.0 gpu"
   - "2.1.0 gpu"

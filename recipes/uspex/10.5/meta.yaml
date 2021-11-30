@@ -1,0 +1,57 @@
+{% set name = "USPEX" %}
+{% set version = "10.5" %}
+{% set sha256 = "24ffeabafc66c9ff6cc890d3c11486fa538774435e819481e953268a03e112cc" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  folder: uspex
+  fn: uspex.tar.gz
+  url: "https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/ETaUE9pgycpErj49t9EnmvoB99m6QUIFGB6W1bfmVxL-ow?e=DyzU2b&download=1"
+  sha256: "{{ sha256 }}"
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  host:
+    - unzip
+    - python >=3
+    - numpy
+    - scipy
+    - spglib
+    - pysqlite3
+    - ase
+  run:
+    - python >=3
+    - numpy
+    - scipy
+    - spglib
+    - pysqlite3
+    - ase
+
+test:
+  commands:
+    - USPEX --help
+
+about:
+  home: https://uspex-team.org/en/uspex/overview
+  doc_url: https://uspex-team.org/en/uspex/documentation
+  license: Custom OSS
+  license_family: OTHER
+  license_file:
+    - uspex/USPEX_license.txt
+    - uspex/MCR_license.txt
+  summary: "Universal Structure Predictor: Evolutionary Xtallography"
+
+extra:
+  identifiers:
+    - doi:10.1063/1.2210932
+    - doi:10.1021/ar1001318 
+    - doi:10.1016/j.cpc.2012.12.009
+  skip-lints:
+    - should_be_noarch_generic
+    - should_not_use_fn

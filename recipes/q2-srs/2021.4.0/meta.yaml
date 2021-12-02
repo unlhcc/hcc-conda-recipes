@@ -1,0 +1,49 @@
+{% set name = "q2-srs" %}
+{% set version = "2021.4.0" %}
+{% set sha256 = "801f8014b2129a9a3cfde5c282859450001668b3cbc955aa8aec951d80f14111" %}
+{% set commit = "5c0ce69" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/vitorheidrich/q2-srs/archive/{{ commit }}.tar.gz
+  sha256:  {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python >=3
+    - pip
+
+  run:
+    - python >=3
+    - biom-format
+    - pandas
+
+# these are also runtime deps, but since we can't specify channels in recipes we can't
+# list them directly in run reqs, so this is the next best thing
+  run_constrained:
+    - qiime2 2021.4.*
+    - q2-types 2021.4.*
+
+test:
+  imports:
+    - q2_srs
+
+about:
+  home: https://github.com/vitorheidrich/q2-srs
+  dev_url: https://github.com/vitorheidrich/q2-srs
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: "QIIME 2 plugin for microbiome count data normalization by scaling with ranked subsampling (SRS)."
+
+extra:
+  identifiers:
+    - doi:10.7717/peerj.9593

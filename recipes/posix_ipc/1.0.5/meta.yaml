@@ -1,0 +1,39 @@
+{% set name = "posix_ipc" %}
+{% set version = "1.0.5" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 6cddb1ce2cf4aae383f2a0079c26c69bee257fe2720f372201ef047f8ceb8b97
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - pip
+    - python 2.7
+  run:
+    - python 2.7
+
+test:
+  imports:
+    - posix
+    - posix_ipc
+
+about:
+  home: http://semanchuk.com/philip/posix_ipc/
+  license: BSD
+  license_family: BSD
+  license_file: LICENSE
+  summary: POSIX IPC primitives (semaphores, shared memory and message queues) for Python
+  dev_url: https://github.com/osvenskan/posix_ipc/
+
+extra:
+  skip-lints:
+    - in_other_channels

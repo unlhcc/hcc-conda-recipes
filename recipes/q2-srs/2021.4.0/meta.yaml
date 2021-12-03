@@ -10,10 +10,12 @@ package:
 source:
   url: https://github.com/vitorheidrich/q2-srs/archive/{{ commit }}.tar.gz
   sha256:  {{ sha256 }}
+  patches:
+    - rscript.patch
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
@@ -25,6 +27,7 @@ requirements:
     - python >=3
     - biom-format
     - pandas
+    - r-srs
 
 # these are also runtime deps, but since we can't specify channels in recipes we can't
 # list them directly in run reqs, so this is the next best thing

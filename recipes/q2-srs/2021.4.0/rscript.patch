@@ -1,0 +1,16 @@
+--- q2_srs/assets/SRS.R.org	2021-12-02 18:35:53.473032940 -0600
++++ q2_srs/assets/SRS.R	2021-12-02 18:36:18.709982805 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ #R  script to load SRS R package and run SRS function
+ 
+ cat(R.version$version.string, "\n")
+--- q2_srs/assets/SRScurve.R.org	2021-12-02 18:36:02.025015950 -0600
++++ q2_srs/assets/SRScurve.R	2021-12-02 18:36:40.815938892 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ #R  script to load SRS R package and run SRScurve function
+ 
+ cat(R.version$version.string, "\n")

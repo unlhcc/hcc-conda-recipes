@@ -1,0 +1,11 @@
+--- scripts/phono3py-kdeplot.old	2021-12-08 20:13:02.239716827 -0600
++++ scripts/phono3py-kdeplot	2021-12-08 20:13:24.776801210 -0600
+@@ -256,7 +256,7 @@
+     import matplotlib.pyplot as plt
+     from matplotlib import rc
+ 
+-    rc("text", usetex=True)
++    # rc("text", usetex=True)
+     rc("font", family="serif")
+     # rc('font', serif='Times New Roman')
+     rc("font", serif="Liberation Serif")

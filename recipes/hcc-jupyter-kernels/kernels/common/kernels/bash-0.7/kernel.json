@@ -1,0 +1,11 @@
+{
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/bash-kernel/envs/bash-kernel-0.7.2/bin/python",
+  "-m",
+  "bash_kernel",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "Bash",
+ "language": "bash"
+}

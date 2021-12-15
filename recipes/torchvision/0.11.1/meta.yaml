@@ -13,7 +13,7 @@ source:
     - gcc_detection.patch
 
 build:
-  number: 1001
+  number: 1002
   skip: True # [osx]
 
 requirements:

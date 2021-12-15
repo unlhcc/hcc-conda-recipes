@@ -11,9 +11,10 @@ source:
   git_tag: {{ commit }}
   patches:
     - fix_dispatch_apply_auto.patch
+    - distutils.patch
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [osx]
   string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   detect_binary_files_with_prefix: False

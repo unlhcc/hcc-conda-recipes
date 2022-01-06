@@ -1,0 +1,50 @@
+{% set name = "MitoSAlt" %}
+{% set version = "1.1.1" %}
+{% set sha256 = "5d362e40620c6536d234571f25557613d73fbf30014dd9dbf530ba4c61f13819" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://sourceforge.net/projects/mitosalt/files/{{ name }}_{{ version }}.zip
+  sha256: {{ sha256 }}
+  patches:
+    - paths.patch
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+  run:
+    - hisat2=2.1.0
+    - bbmap=38.06
+    - last=941
+    - bedtools=2.27.1
+    - samtools=1.8
+    - sambamba=0.6.8
+    - ucsc-bedgraphtobigwig=366
+    - ucsc-fasomerecords=366
+    - ucsc-fasize=366
+    - r-plotrix=3.7_3
+    - r-rcolorbrewer=1.1
+    - bioconductor-biostrings
+    - perl=5.26
+    - r-base=3.5
+    - python
+
+test:
+  commands:
+    - test -f ${PREFIX}/bin/mitosalt.pl
+    - test -f ${PREFIX}/bin/mitosalt_se.pl
+    # - mitosalt.pl 2>&1 | grep "mitopoint.pl" > /dev/null 
+    # - mitosalt_se.pl 2>&1 | grep "mitopoint.pl" > /dev/null 
+
+about:
+  home: https://sourceforge.net/projects/mitosalt/
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "Identification of mitochondrial structural alterations."

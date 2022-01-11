@@ -2,6 +2,7 @@ HCC Conda Recipes
 =================
 
 Recipes for the [conda](https://conda.io) build system.
+All the recipes are licensed with the BSD 3-Clause License.
 
 How to use:
 -----------
@@ -184,4 +185,3 @@ Once merged, you can update your local repo and delete the branch:
 `git pull origin master`
 
 `git branch -d mypackage-1.0`
-

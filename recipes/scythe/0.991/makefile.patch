@@ -1,0 +1,19 @@
+--- Makefile.org	2022-02-02 18:30:06.746609288 -0600
++++ Makefile	2022-02-02 18:32:52.267189796 -0600
+@@ -2,14 +2,14 @@
+ VERSION = 0.991
+ CC = gcc
+ DEBUG ?= 0
+-CFLAGS = -Wall -pedantic -DVERSION=$(VERSION) -std=gnu99
++CFLAGS = -Wall -pedantic -DVERSION=$(VERSION) -std=gnu99 -I$(PREFIX)/include
+ ifeq ($(DEBUG), 1)
+ 	CFLAGS += -g -O0
+ else 
+ 	CFLAGS += -O3
+ endif
+ ARCHIVE = $(PROGRAM_NAME)_$(VERSION)
+-LDFLAGS = -lz -lm
++LDFLAGS = -L$(PREFIX)/lib -lz -lm
+ LDTESTFLAGS = -lcheck
+ SDIR = src
+ OBJS = match.o scythe.o util.o prob.o 

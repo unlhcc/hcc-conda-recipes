@@ -1,0 +1,39 @@
+{% set name = "scythe" %}
+{% set version = "0.991" %}
+{% set commit = "20d3cff7" %}
+{% set sha256 = "da6c1e3bd96d8571787addee3ab0cc6f2776d1595561d1a2e238fd5244fdd876" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/vsbuffalo/scythe/archive/{{ commit }}.zip
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - zlib
+  run:
+    - zlib
+
+test:
+  commands:
+    - scythe --help
+
+about:
+  home: "https://github.com/vsbuffalo/scythe"
+  dev_url: "https://github.com/vsbuffalo/scythe"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "A 3'-end adapter contaminant trimmer."

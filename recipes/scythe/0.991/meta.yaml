@@ -14,7 +14,7 @@ source:
     - makefile.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
 requirements:
@@ -37,3 +37,6 @@ about:
   license_family: MIT
   license_file: LICENSE
   summary: "A 3'-end adapter contaminant trimmer."
+
+extra:
+  notes: "The provided Illumina adapters are part of the recipe and stored in the SCYTHE_ADAPTERS variable."

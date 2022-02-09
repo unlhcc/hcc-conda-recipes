@@ -34,7 +34,7 @@ build-linux:
       - .cache/conda_build_src
       - .cache/conda_pkgs
 
-.build-osx:
+build-osx:
   stage: build
   except:
     - master
@@ -43,7 +43,6 @@ build-linux:
   before_script:
     - git fetch origin +master:master
     - export ANACONDA_PREFIX=`mktemp -d`/anaconda
-    - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh
@@ -71,7 +70,7 @@ deploy-linux:
       - .cache/conda_pkgs
     policy: pull
 
-.deploy-osx:
+deploy-osx:
   stage: deploy
   only:
     - master
@@ -80,7 +79,6 @@ deploy-linux:
   before_script:
     - git fetch origin +master:master
     - export ANACONDA_PREFIX=`mktemp -d`/anaconda
-    - export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
     - scripts/gitlabci-setup.sh
   script:
     - scripts/gitlabci-run.sh

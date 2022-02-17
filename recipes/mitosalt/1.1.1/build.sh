@@ -31,9 +31,11 @@ mkdir -p ${PREFIX}/etc/conda/activate.d ${PREFIX}/etc/conda/deactivate.d
 cat <<EOF >> ${PREFIX}/etc/conda/activate.d/mitosalt.sh
 export MITOSALT_DATA=${TGT}/db/
 export MITOSALT_CONFIG_FILE=${TGT}
+export CONDA_ENV_BIN=${PREFIX}/bin/
 EOF
 
 cat <<EOF >> ${PREFIX}/etc/conda/deactivate.d/mitosalt.sh
 unset MITOSALT_DATA
 unset MITOSALT_CONFIG_FILE
+unset CONDA_ENV_BIN
 EOF

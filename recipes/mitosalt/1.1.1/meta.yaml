@@ -10,11 +10,13 @@ source:
   url: https://sourceforge.net/projects/mitosalt/files/{{ name }}_{{ version }}.zip
   sha256: {{ sha256 }}
   patches:
-    - paths.patch
+    - config_patches.patch
+    - perl_script.patch
+    - r_script.patch
 
 build:
   noarch: generic
-  number: 0
+  number: 1
 
 requirements:
   host:

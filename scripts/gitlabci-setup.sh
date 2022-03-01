@@ -32,7 +32,7 @@ else
     tag=MacOSX
     # install conda via micromambaa
     curl -Ls https://micromamba.snakepit.net/api/micromamba/osx-64/0.20.0 | tar -xvj bin/micromamba
-    ./bin/micromamba create -y -q --ssl-verify=true -p $ANACONDA_PREFIX conda=4.8.4 conda-build=3.21.4 -c conda-forge
+    ./bin/micromamba create -y -q --ssl-verify=true -p $ANACONDA_PREFIX conda=4.8.4 conda-build=3.21.4 markupsafe=2.0.1 -c conda-forge
     export CONDARC=$ANACONDA_PREFIX/.condarc && rm -rf ~/.condarc
     source $ANACONDA_PREFIX/etc/profile.d/conda.sh
     conda activate base

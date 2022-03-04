@@ -1,0 +1,42 @@
+{% set name = "aspera-cli" %}
+{% set version = "3.9.6" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: aspera.sh
+  url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EXBXcfNd3rlLp0KOQyZwLU0BPfJFyaSw5U5j7DrNGflZMA?e=kHbfjU&download=1  # [linux]
+  sha256: 895b142ab073aa2525f43e18b5f9a1b63ac7e41d64ddb01ca6b566473b7883cc  # [linux]
+  url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EWdDbZgJmlVMngGEzsR_chgBdTtQz49GgVmDCaplUaa9FQ?e=ar4ITo&download=1  # [osx]
+  sha256: 2fa779fea1dfca16e294719b2ad3022835ef4f3609542335404c356a1ba10a0a # [osx]
+
+build:
+  number: 0
+
+requirements:
+  host:
+  build:
+  run:
+
+test:
+  commands:
+    - ascp --help
+    - ascp4 --help
+    - aspera help
+
+about:
+  home: https://developer.asperasoft.com/desktop-advance/command-line-client
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: LICENSE-IBM-Aspera-CLI
+  summary: "IBM Aspera Command-Line Interface (the Aspera CLI) is a collection of Aspera tools for performing high-speed, secure data transfers from the command line."
+  # http://www-03.ibm.com/software/sla/sladb.nsf/displaylis/2ABD3328689EBBFE8525830C007A5F3
+  # https://github.com/IBM/charts/blob/master/stable/ibm-aspera-cli/LICENSES/LICENSE-IBM-Aspera-CLI8
+  notes: Please check post-build.sh for License details.
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+    - should_be_noarch_generic

@@ -1,0 +1,12 @@
+python:
+  - 3.8.*  *_cpython
+  - 3.7.*  *_cpython
+  - 3.6.*  *_cpython
+python_impl:
+  - cpython
+  - cpython
+  - cpython
+numpy:
+  - 1.17.*
+  - 1.17.*
+  - 1.17.*

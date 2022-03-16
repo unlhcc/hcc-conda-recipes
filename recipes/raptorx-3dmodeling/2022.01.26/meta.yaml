@@ -1,0 +1,76 @@
+{% set name = "RaptorX-3DModeling" %}
+{% set version = "2022.01.26" %}
+{% set revision = "22b58bc98d9ace7e9686cbed0b25bee3aadbede0" %}
+{% set sha256 = "1b6c3165c41270b17b6250747ca8969d42ca42d7e83b957b460f1371197e84ed" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/j3xugit/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - db_path.patch
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+    - theano=1.0.3
+    - matplotlib-base
+    - scikit-plot
+    - scikit-learn
+    - mkl-service
+    - python=2.7
+    - cudatoolkit=8.0
+    - cudnn=7.0.5
+    - numpy=1.14
+    - biopython=1.76
+    - hhsuite
+    - parallel
+    - shared-ndarray
+    - msgpack-python
+    - pillow
+    - scipy
+    - mkl
+    - wget
+    - pygpu
+    - mako=1.0.14
+  run:
+    - theano=1.0.3 
+    - matplotlib-base
+    - scikit-plot 
+    - scikit-learn 
+    - mkl-service 
+    - python=2.7 
+    - cudatoolkit=8.0 
+    - cudnn=7.0.5 
+    - numpy=1.14 
+    - biopython=1.76 
+    - hhsuite 
+    - parallel 
+    - shared-ndarray 
+    - msgpack-python 
+    - pillow 
+    - scipy 
+    - mkl
+    - wget
+    - pygpu
+    - mako=1.0.14
+
+test:
+  commands:
+    - test -f ${PREFIX}/bin/download-raptorx-3dmodeling-db.sh
+          #    - test -f share/raptorx-3dmodeling-*/Server/RaptorXFolder.sh
+          #    - test -f $ModelingHome/Server/RaptorXFolder.sh
+
+about:
+  home: https://github.com/j3xugit/RaptorX-3DModeling
+  license: GPL-3.0
+  license_family: GPL3
+  license_file: LICENSE
+  summary: "Prediction of protein contact/distance/orientation and local structure properties."
+  description: "RaptorX predicts protein contact/distance/orientation and local structure properties (e.g, secondary structure and phi/psi angles) by deep convolutional residual networks."

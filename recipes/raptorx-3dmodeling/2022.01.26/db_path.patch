@@ -1,0 +1,18 @@
+--- raptorx-external.sh.old	2022-01-10 15:03:07.291052350 -0600
++++ raptorx-external.sh	2022-01-10 15:08:27.942226115 -0600
+@@ -1,12 +1,12 @@
+ ## the install folder of the hhsuite package, needed for MSA generation.
+-export HHDIR=/mnt/data/RaptorXCommon/HHblits/hhsuite-3.2.0-SSE2-Linux/
++export HHDIR=${CONDA_PREFIX}
+ export PATH=$HHDIR/bin:$HHDIR/scripts:$PATH
+ 
+ ## the location of the HHM database to be searched by HHblits for MSA generation. Needed unless you already have an MSA and do not want to generate any new MSAs.
+-export HHDB=/mnt/data/RaptorXCommon/HHblits/DB/uniref30_2020_02/UniRef30_2020_02
++export HHDB=${RAPTORX_3DMODELING_DATA}/UniRef30_2020_03
+ 
+ ## the location of the metagenome data file to be searched by hmmsearch. Not needed unless you want to build MSAs using metagenome data.
+-export MetaDB=/mnt/data/conmod_databases/metaclust_series/metaclust_50.fasta
++export MetaDB=${RAPTORX_3DMODELING_DATA}/metaclust_50.fasta
+ 
+ ## the location of the uniref data to be searched by jackhmmer. Not needed unless you want to build MSAs by jackhmmer.
+ export JackDB=/mnt/data/conmod_databases/uniref100_series/uniref90_2020_06.fasta

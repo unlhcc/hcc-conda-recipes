@@ -1,6 +1,6 @@
 {% set name = "AFNI" %}
-{% set version = "21.1.06" %}
-{% set sha256 = "56354d4ca85cb9a9dfa8f8ee00fc902f9fffb6981f37f5787258cd72058e3637" %}
+{% set version = "22.0.21" %}
+{% set sha256 = "165afc28d714877c5b70af22f6b51d0c57742b9e6c6113e55a51794c246c0428" %}
 
 package:
   name: {{ name|lower }}
@@ -9,11 +9,9 @@ package:
 source:
   url: https://github.com/afni/afni/archive/refs/tags/{{ name }}_{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - git_version.patch
 
 build:
-  number: 1
+  number: 0
   skip: True # [osx]
 
 requirements:

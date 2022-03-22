@@ -1,0 +1,40 @@
+{% set name = "gym-2048" %}
+{% set version = "0.2.6" %}
+{% set sha256 = "13b15d0cd5ee556df33eab6861bfa94ae88aeb063fc1fd6d3e7fee230a0fa662" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  noarch: python
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+    - numpy
+    - gym 0.10.*
+
+  run:
+    - python >=3.6
+    - numpy
+    - gym 0.10.*
+
+test:
+  imports:
+    - gym_2048
+
+about:
+  home: "https://github.com/activatedgeek/gym-2048"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "OpenAI Gym Environment for 2048."
+  dev_url: "https://github.com/activatedgeek/gym-2048"

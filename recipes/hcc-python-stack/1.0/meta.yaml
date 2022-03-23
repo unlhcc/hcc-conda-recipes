@@ -1,0 +1,38 @@
+{% set name = "hcc-python-stack" %}
+{% set version = "1.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+build:
+  number: 0
+  noarch: python
+
+requirements:
+  run:
+    - python
+    - matplotlib
+    - scipy
+    - numpy
+    - scikit-learn
+    - scikit-plot
+    - statsmodels
+    - pandas
+    - ipykernel
+    - seaborn
+    - sympy
+test:
+  imports:
+    - numpy
+
+about:
+  home: "https://hcc.unl.edu"
+  license: BSD-3
+  license_family: BSD
+  summary: "Meta-package for standard python packages included in envs."
+  dev_url: "https://github.com/unlhcc/hcc-conda-recipes"
+
+extra:
+  skip-lints:
+    - uses_matplotlib

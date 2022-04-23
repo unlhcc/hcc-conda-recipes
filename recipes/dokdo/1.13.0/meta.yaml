@@ -1,0 +1,60 @@
+{% set name = "dokdo" %}
+{% set version = "1.13.0" %}
+{% set sha256 = "83993697c30df854689c49ffccda61014eafbb0aee0fd69cb34aef283edef7bc" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/sbslee/dokdo/archive/1.13.0.tar.gz
+  sha256:  {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python >=3
+    - pip
+  run:
+    - python >=3
+    - pandas
+    - scikit-bio
+    - pathlib
+    - scipy
+    - matplotlib-base
+    - seaborn
+    - numpy
+    - statsmodels
+
+# these are also runtime deps, but since we can't specify channels in recipes we can't
+# list them directly in run reqs, so this is the next best thing
+  run_constrained:
+    - qiime2 2022.2.*
+    - q2-types 2022.2.*
+    - q2-diversity-lib 2022.2.*
+    - q2-feature-table 2022.2.*
+    - q2-diversity 2022.2.*
+    - q2-taxa 2022.2.*
+
+# all the executables and scripts require qiime2 in order to run
+# so we just test if the executable is there
+test:
+  commands:
+    - test -f ${PREFIX}/bin/dokdo
+
+about:
+  home: https://github.com/sbslee/dokdo
+  dev_url: https://github.com/sbslee/dokdo
+  doc_url: https://dokdo.readthedocs.io
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "A Python package for microbiome sequencing analysis with QIIME 2."
+
+extra:
+  identifiers:
+    - doi:10.21203/rs.3.rs-1062191/v1

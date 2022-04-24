@@ -1,0 +1,40 @@
+{% set name = "libint-cp2k" %}
+{% set version = "2.6.0" %}
+{% set sha256 = "bea76a433cd32bde280879f73b5fc8228c78b62e3ea57ace4c6d74b65910b8af" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/cp2k/libint-cp2k/releases/download/v2.6.0/libint-v2.6.0-cp2k-lmax-6.tgz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: true  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+  host:
+    - boost-cpp
+    - make
+    - eigen
+    - openmp
+      
+test:
+  commands:
+    # Verify library and headers
+    - test -f "${PREFIX}/lib/libint2.a"
+    - test -f "${PREFIX}/include/libint2.h"
+    - test -f "${PREFIX}/include/libint2.hpp"
+
+about:
+    home: https://github.com/cp2k/libint-cp2k  
+    doc_url: https://github.com/cp2k/libint-cp2k
+    license: LGPL-3.0
+    license_file: LICENSE
+    license_family: LGPL
+    summary: "CP2K-configured libint releases for different maximum angular momenta."

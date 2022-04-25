@@ -11,13 +11,14 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [osx]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
   host:
     - boost-cpp
     - make
@@ -30,6 +31,7 @@ test:
     - test -f "${PREFIX}/lib/libint2.a"
     - test -f "${PREFIX}/include/libint2.h"
     - test -f "${PREFIX}/include/libint2.hpp"
+    - test -f "${PREFIX}/include/libint_f.mod"
 
 about:
     home: https://github.com/cp2k/libint-cp2k  

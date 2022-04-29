@@ -1,0 +1,26 @@
+# CP2K ARCH file for linux build on conda-forge (MS Azure runners)
+#
+### Environment variables set in build environment (2020-12-06):
+#
+# CC=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cc
+# CXX=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++
+# CPP=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cpp
+# CPPFLAGS=-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem $PREFIX/include
+# CC=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cc
+# AR=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-ar
+# GCC_AR=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ar
+# FC=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gfortran
+# FFLAGS=-fopenmp -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/cp2k-7.1.0 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix
+# LD=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-ld
+# LDFLAGS=-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -L$PREFIX/lib
+
+AR          = $(GCC_AR) -r
+FC          = x86_64-conda-linux-gnu-gfortran
+CFLAGS     += -fopenmp
+CPPFLAGS   += -C -P -traditional -D__NO_IPI_DRIVER -nostdinc
+DFLAGS      = -D__FFTW3 -D__LIBXSMM -D__SPGLIB -D__LIBXC -D__LIBINT
+FCFLAGS     = $(FFLAGS) -I $(PREFIX)/include -fbacktrace -ffree-form -fimplicit-none -std=f2008 -fopenmp $(DFLAGS)
+LIBS        = -lopenblas -llapack -lblas -lfftw3 -lfftw3_omp -lxsmmf -lxsmm -ldl -lrt -lsymspg -lxcf03 -lxc -L$(PREFIX)/lib -lint2 -lstdc++
+# Since LDFLAGS_LD is missing, we are linking using gfortran (which can use LDFLAGS)
+LD          = $(FC)
+LDFLAGS    += -fopenmp -Wl,-lgomp

@@ -23,6 +23,8 @@ build-linux:
   before_script:
     - sudo yum update -y -q ca-certificates
     - git config --global http.sslCAinfo /etc/ssl/certs/ca-bundle.crt
+    # Workaround for https://github.blog/2022-04-12-git-security-vulnerability-announced/
+    - git config --global --add safe.directory ${CI_PROJECT_DIR}
     - export ANACONDA_PREFIX=/opt/conda
     - export HOME=/home/conda
     - scripts/gitlabci-setup.sh
@@ -58,6 +60,8 @@ deploy-linux:
   before_script:
     - sudo yum update -y -q ca-certificates
     - git config --global http.sslCAinfo /etc/ssl/certs/ca-bundle.crt
+    # Workaround for https://github.blog/2022-04-12-git-security-vulnerability-announced/
+    - git config --global --add safe.directory ${CI_PROJECT_DIR}
     - export ANACONDA_PREFIX=/opt/conda
     - export HOME=/home/conda
     - scripts/gitlabci-setup.sh

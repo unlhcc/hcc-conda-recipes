@@ -28,9 +28,6 @@ then
     conda config --system --add pkgs_dirs /opt/conda/pkgs
     conda config --system --add pkgs_dirs ${CI_PROJECT_DIR}/.cache/conda_pkgs
 
-    # Workaround for https://github.blog/2022-04-12-git-security-vulnerability-announced/
-    git config --global --add safe.directory ${CI_PROJECT_DIR}
-
 else
     tag=MacOSX
     # install conda via micromambaa

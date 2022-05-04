@@ -1,0 +1,13 @@
+mpi:
+  - openmpi
+plumed:
+  - 2.6
+python:
+  - 3.9.*  *_cpython
+  - 3.8.*  *_cpython
+python_impl:
+  - cpython
+  - cpython
+numpy:
+  - 1.19.*
+  - 1.17.*

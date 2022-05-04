@@ -1,3 +1,5 @@
 mpi:
   - openmpi
   - nompi
+plumed:
+  - 2.8

@@ -18,9 +18,9 @@ AR          = $(GCC_AR) -r
 FC          = x86_64-conda-linux-gnu-gfortran
 CFLAGS     += -fopenmp
 CPPFLAGS   += -C -P -traditional -D__NO_IPI_DRIVER -nostdinc
-DFLAGS      = -D__FFTW3 -D__LIBXSMM -D__SPGLIB -D__LIBXC -D__LIBINT
+DFLAGS      = -D__FFTW3 -D__LIBXSMM -D__SPGLIB -D__LIBXC -D__LIBINT -D__PLUMED2
 FCFLAGS     = $(FFLAGS) -I $(PREFIX)/include -fbacktrace -ffree-form -fimplicit-none -std=f2008 -fopenmp $(DFLAGS)
-LIBS        = -lopenblas -llapack -lblas -lfftw3 -lfftw3_omp -lxsmmf -lxsmm -ldl -lrt -lsymspg -lxcf03 -lxc -L$(PREFIX)/lib -lint2 -lstdc++
+LIBS        = -lopenblas -llapack -lblas -lfftw3 -lfftw3_omp -lxsmmf -lxsmm -ldl -lrt -lsymspg -lxcf03 -lxc -L$(PREFIX)/lib -lint2 -lstdc++ -lplumed
 # Since LDFLAGS_LD is missing, we are linking using gfortran (which can use LDFLAGS)
 LD          = $(FC)
 LDFLAGS    += -fopenmp -Wl,-lgomp

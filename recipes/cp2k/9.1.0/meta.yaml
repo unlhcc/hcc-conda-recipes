@@ -1,9 +1,10 @@
+# Adapted from https://github.com/conda-forge/cp2k-feedstock, modified to add plumed and libint support
 {% set name = "cp2k" %}
 {% set version = "9.1.0" %}
 # Define build matrix for MPI vs. non-mpi
 # ensure mpi is defined (needed for conda-smithy recipe-lint)
 {% set mpi = mpi or 'nompi' %}
-{% set build = 1000 %}
+{% set build = 1001 %}
 {% set build_string = "{}_{}".format(mpi, build) %}
 
 package:
@@ -31,7 +32,7 @@ requirements:
     - libtool
     - python
   host:
-    - openmpi 4.1.2=hbfc84c5_*
+    - {{ mpi }} # [mpi != 'nompi']
     - scalapack  # [mpi != 'nompi']
     - openblas * *openmp*  # [linux]
     - liblapack
@@ -42,6 +43,7 @@ requirements:
     - libxc >=5.1
     - sirius 7.3.*
     - libint-cp2k
+    - plumed
   run:
     - {{ mpi }}  # [mpi != 'nompi']
     - scalapack  # [mpi != 'nompi']
@@ -49,6 +51,7 @@ requirements:
     - openblas * *openmp*  # [linux]
     - libint-cp2k
     - gsl
+    - plumed
 
 test:
   commands:

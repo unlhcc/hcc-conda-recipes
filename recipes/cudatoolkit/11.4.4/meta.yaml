@@ -1,17 +1,17 @@
 {% set name = "cudatoolkit" %}
-{% set version = "11.2.2" %}
-{% set sha256 = "0a2e477224af7f6003b49edfd2bfee07667a8148fe3627cfd2765f6ad72fa19d" %}
+{% set version = "11.4.4" %}
+{% set sha256 = "44545a7abb4b66dfc201dcad787b5e8352e5b7ddf3e3cc5b2e9177af419c25c8" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda_11.2.2_460.32.03_linux.run
+  - url: https://developer.download.nvidia.com/compute/cuda/11.4.4/local_installers/cuda_11.4.4_470.82.01_linux.run
     sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 0
   skip: True # [osx]
   detect_binary_files_with_prefix: False
   binary_relocation: False

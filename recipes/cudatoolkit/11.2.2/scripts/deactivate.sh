@@ -1,0 +1,5 @@
+export CUDA_HOME=$CUDA_HOME_CONDA_BACKUP
+unset CUDA_HOME_CONDA_BACKUP
+if [ -z $CUDA_HOME ]; then
+    unset CUDA_HOME
+fi

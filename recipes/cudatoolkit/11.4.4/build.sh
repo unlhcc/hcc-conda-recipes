@@ -4,7 +4,7 @@
 sudo yum -y -q install perl
 
 # silent install, toolkit only
-FN='cuda_11.2.2_460.32.03_linux.run'
+FN='cuda_11.4.4_470.82.01_linux.run'
 chmod +x $FN
 ./$FN --override --no-opengl-libs --silent --no-man-page --toolkit --installpath=${PREFIX}
 

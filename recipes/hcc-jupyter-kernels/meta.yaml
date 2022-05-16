@@ -20,7 +20,7 @@ test:
     - jupyterlab
   commands:
     - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/python-3.7/kernel.json
-    - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/julia-1.6/wrapper_julia.sh
+    - test -f ${PREFIX}/share/hcc-jupyter-kernels/common/kernels/julia-1.7/wrapper_julia.sh
     - export JUPYTER_PATH=${PREFIX}/share/hcc-jupyter-kernels/common:${PREFIX}/share/hcc-jupyter-kernels/crane:${PREFIX}/share/hcc-jupyter-kernels/rhino
     - jupyter kernelspec list
 

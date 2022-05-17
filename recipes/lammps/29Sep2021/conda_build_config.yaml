@@ -1,7 +1,7 @@
 mpi:
   - openmpi
 plumed:
-  - 2.6
+  - 2.7.* mpi_openmpi_*
 python:
   - 3.9.*  *_cpython
   - 3.8.*  *_cpython

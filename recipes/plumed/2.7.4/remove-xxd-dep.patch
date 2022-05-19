@@ -1,0 +1,190 @@
+From e84a4aee8a997952866303b080d5f50058645593 Mon Sep 17 00:00:00 2001
+From: Giovanni Bussi <giovanni.bussi@gmail.com>
+Date: Thu, 13 May 2021 10:32:12 +0200
+Subject: [PATCH] replacing xxd with an awk script
+
+---
+ README.md            |  1 -
+ configure            | 44 ------------------------------------
+ configure.ac         |  7 ------
+ src/cltools/Makefile |  2 +-
+ src/config/Makefile  |  2 +-
+ src/maketools/xxd    | 53 ++++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 55 insertions(+), 54 deletions(-)
+ create mode 100755 src/maketools/xxd
+
+diff --git a/README.md b/README.md
+index c5a1cf13d7..ed4730531d 100644
+--- a/README.md
++++ b/README.md
+@@ -94,7 +94,6 @@ Required software:
+ * C/c++ compiler (c++11 support is required as of version 2.4).
+ * A modern version of the `patch` command line tool.
+ * Support for POSIX library `dirent.h`.
+-* `xxd` (present in most UNIX distributions).
+ 
+ Suggested software (libraries are checked by `./configure` and enabled if available):
+ 
+diff --git a/configure b/configure
+index 296d11c521..b2af308f14 100755
+--- a/configure
++++ b/configure
+@@ -630,7 +630,6 @@ use_loader_path
+ use_absolute_soname
+ program_can_run_mpi
+ program_can_run
+-xxd
+ make_pdfdoc
+ dot
+ doxygen
+@@ -9800,49 +9799,6 @@ $as_echo "$as_me: A PDF version of the manual will not be generated" >&6;}
+   make_pdfdoc=no
+ fi
+ 
+-### Look for xxd
+-# Extract the first word of "xxd", so it can be a program name with args.
+-set dummy xxd; ac_word=$2
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+-$as_echo_n "checking for $ac_word... " >&6; }
+-if ${ac_cv_prog_xxd+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  if test -n "$xxd"; then
+-  ac_cv_prog_xxd="$xxd" # Let the user override the test.
+-else
+-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+-for as_dir in $PATH
+-do
+-  IFS=$as_save_IFS
+-  test -z "$as_dir" && as_dir=.
+-    for ac_exec_ext in '' $ac_executable_extensions; do
+-  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+-    ac_cv_prog_xxd="found"
+-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+-    break 2
+-  fi
+-done
+-  done
+-IFS=$as_save_IFS
+-
+-fi
+-fi
+-xxd=$ac_cv_prog_xxd
+-if test -n "$xxd"; then
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $xxd" >&5
+-$as_echo "$xxd" >&6; }
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-fi
+-
+-
+-if test "$xxd" != found
+-then
+-  as_fn_error $? "xxd should be installed for PLUMED to compile properly" "$LINENO" 5
+-fi
+-
+ 
+ program_can_run=""
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether a program can be run on this machine" >&5
+diff --git a/configure.ac b/configure.ac
+index 2ce10aca11..5227622de5 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1002,13 +1002,6 @@ else
+   make_pdfdoc=no
+ fi
+ 
+-### Look for xxd
+-AC_CHECK_PROG([xxd],[xxd],[found])
+-if test "$xxd" != found
+-then
+-  AC_MSG_ERROR([xxd should be installed for PLUMED to compile properly])
+-fi
+-
+ AC_SUBST(program_can_run)
+ program_can_run=""
+ AC_MSG_CHECKING([whether a program can be run on this machine])
+diff --git a/src/cltools/Makefile b/src/cltools/Makefile
+index fbaef65d0c..2e1ea03593 100644
+--- a/src/cltools/Makefile
++++ b/src/cltools/Makefile
+@@ -6,5 +6,5 @@ include ../maketools/make.module
+ Completion.o: completion.xxd
+ 
+ completion.xxd: completion.sh ../../scripts/*.sh ../../patches/*.sh
+-	{ ../maketools/make-scripts-options.sh ; cat completion.sh ; }| xxd -i > completion.xxd
++	{ ../maketools/make-scripts-options.sh ; cat completion.sh ; }| bash ../maketools/xxd  > completion.xxd
+ 
+diff --git a/src/config/Makefile b/src/config/Makefile
+index b2edd92bfc..5d968c6181 100644
+--- a/src/config/Makefile
++++ b/src/config/Makefile
+@@ -64,7 +64,7 @@ Config.o: Config.inc Makefile.conf.xxd version.h
+ ConfigInstall.o: ConfigInstall.inc Makefile.conf.xxd version.h
+ 
+ Makefile.conf.xxd: ../../Makefile.conf
+-	cat ../../Makefile.conf | xxd -i > Makefile.conf.xxd
++	cat ../../Makefile.conf | bash ../maketools/xxd > Makefile.conf.xxd
+ 
+ # file to import compilation options inside a bash script
+ compile_options.sh: ../../Makefile.conf
+diff --git a/src/maketools/xxd b/src/maketools/xxd
+new file mode 100755
+index 0000000000..c9da7145cd
+--- /dev/null
++++ b/src/maketools/xxd
+@@ -0,0 +1,53 @@
++#! /bin/bash
++awk '
++BEGIN    {
++  _ord_init()
++  FS=""
++  newline=1
++}
++function _ord_init(    low, high, i, t)
++{
++    low = sprintf("%c", 7) # BEL is ascii 7
++    if (low == "\a") {    # regular ascii
++        low = 0
++        high = 127
++    } else if (sprintf("%c", 128 + 7) == "\a") {
++        # ascii, mark parity
++        low = 128
++        high = 255
++    } else {        # ebcdic(!)
++        low = 0
++        high = 255
++    }
++    for (i = low; i <= high; i++) {
++        t = sprintf("%c", i)
++        _ord_[t] = i
++    }
++}
++
++function add(x) {
++  if(newline==1){
++    printf(" ");
++    newline=0
++  }
++  if(j!=0 && j%12==0) {
++    print ","
++    printf(" ")
++  } else if(j!=0) {
++    printf(",")
++  }
++  printf(" 0x%.2x",_ord_[x]);
++  j++;
++}
++
++{
++  for(i=1;i<=NF;i++) add($i)
++  add("\n")
++}
++
++END{
++print ""
++}
++
++
++'

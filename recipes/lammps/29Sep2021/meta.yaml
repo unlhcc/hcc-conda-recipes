@@ -1,5 +1,5 @@
 # adapted from https://github.com/conda-forge/lammps-feedstock to include plumed and more packages
-{% set build = 1001 %}
+{% set build = 1002 %}
 {% set name = "lammps" %}
 {% set version = "stable_29Sep2021_update3" %}
 {% set sha256 = "e4c274f0dc5fdedc43f2b365156653d1105197a116ff2bafe893523cdb22532e" %}

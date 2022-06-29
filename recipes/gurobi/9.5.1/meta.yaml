@@ -1,0 +1,40 @@
+{% set name = "gurobi" %}
+{% set version = "9.5.1" %}
+{% set sha256 = "fa82859d33f08fb8aeb9da66b0fbd91718ed573c534f571aa52372c9deb891da" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://packages.gurobi.com/9.5/gurobi{{ version }}_linux64.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - gurobi.sh.patch
+    - makefile.patch
+
+build:
+  number: 0
+  skip: True  # [osx or py<37]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+  host:
+    - python
+  run:
+    - python
+
+test:
+  commands:
+    - gurobi_cl -v
+    - gurobi.sh -V
+
+about:
+  home: http://www.gurobi.com
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: linux64/EULA.pdf
+  summary: "The Gurobi Optimizer is the state-of-the-art math programming solver able to handle all major problem types."

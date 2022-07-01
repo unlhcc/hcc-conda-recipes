@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
@@ -22,6 +22,7 @@ requirements:
     - ipykernel
     - seaborn
     - sympy
+    - python-graphviz
 test:
   imports:
     - numpy

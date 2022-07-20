@@ -1,0 +1,26 @@
+#last_revision_hash:
+#  - 7ea0f439e837fca8c92a315fb0b2a9b0ff28e1e4
+#last_revision_date:
+#  - 2022-07-08
+qt:
+  - 5.15.4
+libffi:
+  - 3.4.2
+libxml2:
+  - 2.9.*
+boost:
+  - 1.74.0
+
+pin_run_as_build:
+  qt:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  libffi:
+    max_pin: x.x.x
+    min_pin: x.x.x
+  libxml2:
+    max_pin: x.x
+    min_pin: x.x
+  boost:
+    max_pin: x.x.x
+    min_pin: x.x.x

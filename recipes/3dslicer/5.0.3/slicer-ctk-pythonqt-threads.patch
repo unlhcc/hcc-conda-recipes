@@ -1,0 +1,10 @@
+--- SuperBuild/External_CTK.cmake	2022-07-09 00:04:30.081751034 -0500
++++ SuperBuild/External_CTK.cmake.new	2022-07-13 18:50:33.535448514 -0500
+@@ -84,6 +84,7 @@
+     ${${proj}_EP_ARGS}
+     GIT_REPOSITORY "${Slicer_${proj}_GIT_REPOSITORY}"
+     GIT_TAG "${Slicer_${proj}_GIT_TAG}"
++    PATCH_COMMAND patch -p1 < $ENV{RECIPE_DIR}/ctk-pythonqt-threads.patch
+     SOURCE_DIR ${EP_SOURCE_DIR}
+     BINARY_DIR ${EP_BINARY_DIR}
+     CMAKE_CACHE_ARGS

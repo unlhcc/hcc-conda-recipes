@@ -1,0 +1,174 @@
+{% set name = "3dslicer" %}
+{% set version = "5.0.3" %}
+{% set sha256 = "56b7e9055bb930153a0ab5b5ca23f9e0368937436fafdc44544800c9ce0a9a47" %}
+
+# when updating the version, update last_revision_hash/last_revision_date to match to match the git sha/date of the version tag
+#{% set last_revision_hash = "7ea0f439e837fca8c92a315fb0b2a9b0ff28e1e4" %}
+#{% set last_revision_date = "2022-07-08" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/Slicer/Slicer.git
+  git_rev: v5.0.3
+  patches:
+    - simpleitk-cxx-standard.patch
+    - slicer-ctk-pythonqt-threads.patch
+
+# The tarball source builds, but slicer uses git info to construct default
+# URLs for extensions so we use the repo source for now.
+#  url: https://github.com/Slicer/Slicer/archive/refs/tags/v5.0.3.tar.gz
+#  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [py<39 or osx]
+  script_env:
+    - QT_QPA_PLATFORM=offscreen
+#    - last_revision_hash={{ last_revision_hash }}
+#    - last_revision_date={{ last_revision_date }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}  # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('libxext') }}     # [linux]
+    - cmake
+    - ninja
+    - make
+    - git
+    - patch
+  host:
+    - pip
+    - python
+    - xorg-libxfixes  # [linux]
+    - numpy
+    - scipy
+    - setuptools
+    - wheel
+    - packaging
+    - nose
+    - qt
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxrender
+    - xorg-libxcomposite
+    - xorg-libxrandr
+    - xorg-libxtst
+    - curl
+    - openssl
+    - xz
+    - zlib
+    - bzip2
+    - curl
+    - sqlite
+    - rapidjson
+    - libffi
+    - dcmtk
+    - libxml2
+    - hdf5
+    - boost
+    - certifi
+    - idna
+    - requests
+    - urllib3
+    - charset-normalizer
+    - chardet
+    - pydicom
+    - six
+    - pillow
+    - dicomweb-client
+    - couchdb-python
+    - gitpython
+    - pyjwt
+    - deprecated
+    - wrapt
+    - cffi
+    - pynacl
+    - pygithub
+    - ffmpeg
+    - libpng
+    - libogg
+    - libtheora
+    - gl2ps
+    - jpeg
+    - libtiff
+    - eigen
+    - expat
+    - libarchive
+  run:
+    - python
+    - numpy
+    - scipy
+    - wheel
+    - qt
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxrender
+    - xorg-libxcomposite
+    - xorg-libxrandr
+    - xorg-libxtst
+    - curl
+    - openssl
+    - xz
+    - zlib
+    - bzip2
+    - curl
+    - sqlite
+    - rapidjson
+    - libffi
+    - dcmtk
+    - libxml2
+    - hdf5
+    - boost
+    - certifi
+    - idna
+    - requests
+    - urllib3
+    - charset-normalizer
+    - chardet
+    - pydicom
+    - six
+    - pillow
+    - dicomweb-client
+    - couchdb-python
+    - gitpython
+    - pyjwt
+    - wrapt
+    - cffi
+    - pynacl
+    - pygithub
+    - ffmpeg
+    - libpng
+    - libogg
+    - libtheora
+    - gl2ps
+    - jpeg
+    - libtiff
+    - expat
+    - libarchive
+
+test:
+  commands:
+    - Slicer --help
+
+about:
+  home: "https://slicer.org"
+  dev_url: "https://github.com/Slicer/Slicer"
+  doc_url: "https://slicer.readthedocs.io/en/latest/"
+  summary: "Multi-platform, free open source software for visualization and image computing."
+  license: Custom OSS
+  license_family: BSD
+  license_file: License.txt
+
+extra:
+  skip-lints:
+    - uses_vcs_url
+    - missing_hash

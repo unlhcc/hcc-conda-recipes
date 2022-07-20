@@ -1,0 +1,36 @@
+{% set name = "libgeotrans" %}
+{% set version = "3.7" %}
+{% set sha256 = "12f1775c5afee9cf2ff814f2ce5da90debd5318b333e87b7874ceff8da169921" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/jwidauer/geotrans/archive/1b66587.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+  host:
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libgeotrans${SHLIB_EXT}
+    - test -f ${PREFIX}/include/geotrans/geotrans.h
+
+about:
+  home: "https://earth-info.nga.mil/"
+  dev_url: "https://github.com/jwidauer/geotrans"
+  license: Custom OSS
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "MSP GEOTRANS is the NGA and DOD approved coordinate converter and datum translator."

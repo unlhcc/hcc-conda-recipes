@@ -1,0 +1,74 @@
+{% set name = "saga-gis" %}
+{% set version = "2.3" %}
+{% set sha256 = "000dd656a6425db39e8ebf62a1aaae257dee324fb5acedd6097bf28a44da84f9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://git.code.sf.net/p/saga-gis/code
+  git_rev: release-2-3-lts
+#  url: https://downloads.sourceforge.net/project/saga-gis/SAGA%20-%208/SAGA%20-%208.3.0/saga-8.3.0.tar.gz
+#  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - libgomp  # [linux]
+    - make
+    - autoconf
+    - automake
+    - pkg-config
+    - libtool
+    - file
+  host:
+    - python
+    - wxwidgets
+    - proj4
+    - gdal
+    - opencv
+    - libharu
+    - vigra
+    - hdf5
+    - postgresql
+    - fftw
+    - libgeotrans
+    - swig
+    - unixodbc
+  run:
+    - python
+    - wxwidgets
+    - proj4
+    - gdal
+    - opencv
+    - libharu
+    - vigra
+    - hdf5
+    - postgresql
+    - fftw
+    - libgeotrans
+    - swig
+    - unixodbc
+
+test:
+  commands:
+    - saga_cmd --help
+
+about:
+  home: "https://saga-gis.sourceforge.io/en/index.html"
+  dev_url: "https://sourceforge.net/projects/saga-gis"
+  license: GPLv2/LGPL
+  license_family: GPL
+  license_file: saga-gis/src/gpl.txt
+  summary: "SAGA - System for Automated Geoscience Analysis."
+
+extra:
+  skip-lints:
+    - uses_vcs_url
+    - missing_hash

@@ -1,0 +1,37 @@
+python:
+  - 2.7.*
+python_impl:
+  - cpython
+numpy:
+  - 1.16.*
+gdal:
+  - 2.2.*
+wxwidgets:
+  - 3.1.*
+opencv:
+  - 2.4.*
+proj4:
+  - 5.0.*
+vigra:
+  - 1.11.*
+hdf5:
+  - 1.10.*
+pin_run_as_build:
+  wxwidgets:
+    min_pin: x.x
+    max_pin: x.x
+  gdal:
+    min_pin: x.x
+    max_pin: x.x
+  opencv:
+    min_pin: x.x
+    max_pin: x.x
+  proj4:
+    min_pin: x.x
+    max_pin: x.x
+  vigra:
+    min_pin: x.x
+    max_pin: x.x
+  hdf5:
+    min_pin: x.x
+    max_pin: x.x

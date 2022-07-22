@@ -17,16 +17,10 @@ vigra:
 hdf5:
   - 1.10.*
 pin_run_as_build:
-  wxwidgets:
-    min_pin: x.x
-    max_pin: x.x
   gdal:
     min_pin: x.x
     max_pin: x.x
   opencv:
-    min_pin: x.x
-    max_pin: x.x
-  proj4:
     min_pin: x.x
     max_pin: x.x
   vigra:

@@ -1,0 +1,20 @@
+--- netlogo-gui.sh.org	2022-09-08 13:49:16.950271643 -0500
++++ netlogo-gui.sh	2022-09-08 13:51:00.750088191 -0500
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+ 
+-BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
++BASE_DIR=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ 
+ if [[ ${JAVA_HOME+1} ]]; then
+   JAVA="${JAVA_HOME}/bin/java"
+--- netlogo-headless.sh.org	2022-09-08 13:49:07.119289019 -0500
++++ netlogo-headless.sh	2022-09-08 13:50:52.302103120 -0500
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+ 
+-BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
++BASE_DIR=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}
+ 
+ if [[ ${JAVA_HOME+1} ]]; then
+   JAVA="${JAVA_HOME}/bin/java"

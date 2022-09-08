@@ -1,0 +1,41 @@
+{% set name = "netlogo" %}
+{% set version = "6.2.2" %}
+{% set sha256 = "543cbfc60b6e75aa56c1a66f78c08fa8763d591185eb79e6aaee5f42c8aae461" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://ccl.northwestern.edu/netlogo/{{ version }}/NetLogo-{{ version }}-64.tgz
+  sha256: {{ sha256 }}
+  patches:
+    - 001-basedir.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+  binary_relocation: False
+
+requirements:
+  build:
+    - gettext
+  host:
+  run:
+    - openjdk 8.*
+
+test:
+  commands:
+    - netlogo-headless.sh 2>&1 | grep model
+
+about:
+  home: "http://ccl.northwestern.edu/netlogo/index.shtml"
+  dev_url: "https://github.com/NetLogo/NetLogo"
+  license: GPLv2
+  license_family: GPL
+  license_file: LICENSE.txt
+  summary: "NetLogo is a multi-agent programmable modeling environment"
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

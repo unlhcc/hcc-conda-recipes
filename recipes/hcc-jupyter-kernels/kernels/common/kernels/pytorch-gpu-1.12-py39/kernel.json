@@ -1,0 +1,13 @@
+{
+ "display_name": "PyTorch GPU 1.12 (py39)",
+ "language": "python",
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/pytorch-gpu/envs/pytorch-gpu-1.12.1-py39/bin/python",
+  "-W",
+  "ignore",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ]
+}

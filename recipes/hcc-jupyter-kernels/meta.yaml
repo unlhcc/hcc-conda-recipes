@@ -9,8 +9,8 @@ source:
   path: .
 
 build:
-  number: 1
-  noarch: true
+  number: 0
+  noarch: True
   script:
     - mkdir -p ${PREFIX}/share/hcc-jupyter-kernels
     - cp -aR kernels/* ${PREFIX}/share/hcc-jupyter-kernels

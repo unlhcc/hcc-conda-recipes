@@ -1,0 +1,21 @@
+From f23a6a954b6754f1e3e54d3760c495533497be5b Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Fri, 5 Jun 2020 12:25:59 +0200
+Subject: [PATCH] Update fc_gnu_default-optim.conf
+
+---
+ config/optim/fc_gnu_default-optim.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config/optim/fc_gnu_default-optim.conf b/config/optim/fc_gnu_default-optim.conf
+index 31dd76e83..2ad12aebb 100644
+--- a/config/optim/fc_gnu_default-optim.conf
++++ b/config/optim/fc_gnu_default-optim.conf
+@@ -17,5 +17,5 @@
+ 
+ [DEFAULT]
+ safe_comp = -O2
+-standard_comp = -O2 -mtune=native -march=native 
+-aggressive_comp = -O3 -mtune=native -march=native -funroll-loops -faggressive-function-elimination
++standard_comp = -O2 -march=nocona -mtune=haswell
++aggressive_comp = -O3 -march=nocona -mtune=haswell -funroll-loops -faggressive-function-elimination

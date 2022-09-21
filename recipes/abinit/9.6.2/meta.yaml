@@ -1,0 +1,92 @@
+# Adapted from https://github.com/conda-forge/abinit-feedstock
+# to add openmpi, include more optional packages, and simplify/bugfix recipe.
+{% set name = "abinit" %}
+{% set version = "9.6.2" %}
+{% set sha256 = "5fba537bac99f53ae02781f1f374247503241b80ce329dc51fe2e986b13198f0" %}
+{% set build = 1000 %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/abinit/abinit/archive/refs/tags/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - optim.patch
+
+build:
+  number: {{ build }}
+  skip: true  # [osx]
+  string: mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ build }}
+
+{% if mpi != 'nompi' %}
+{% set mpi_prefix = "mpi_" + mpi %}
+{% else %}
+{% set mpi_prefix = "nompi" %}
+{% endif %}
+
+requirements:
+  build:
+    - m4
+    - autoconf
+    - automake
+    - make
+    - libtool
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - {{ mpi }}
+    - libblas
+    - liblapack
+    - libxc <5.0
+    - zlib
+    - libgomp
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - hdf5 * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - libnetcdf * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - netcdf-fortran * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - wannier90
+    - libxml2
+    - libpsml
+    - xmlf90
+  run:
+    - {{ mpi }}
+    - libxc <5.0
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - hdf5 * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - libnetcdf * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - netcdf-fortran * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - wannier90
+    - libxml2
+    - xmlf90
+
+test:
+  files:
+    - 01h.pspgth
+    - tbase1_1.files
+    - tbase1_1.in
+  commands:
+    - abinit -b
+    - abinit tbase1_1.in
+
+about:
+  home: https://www.abinit.org
+  license: GPL-3.0-only
+  license_family: GPL
+  license_file: COPYING
+  summary: ABINIT is an atomic-scale simulation software suite.
+
+  description: |
+    ABINIT is a software suite to calculate the optical, mechanical,
+    vibrational, and other observable properties of materials. Starting
+    from the quantum equations of density functional theory, you can
+    build up to advanced applications with perturbation theories based on
+    DFT, and many-body Green's functions (GW and DMFT) ...
+  doc_url: https://wiki.abinit.org/doku.php
+  dev_url: https://github.com/abinit/abinit/
+
+extra:
+  skip-lints:
+    - in_other_channels

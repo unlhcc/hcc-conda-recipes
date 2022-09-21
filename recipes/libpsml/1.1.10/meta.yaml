@@ -1,0 +1,40 @@
+{% set name = "libpsml" %}
+{% set version = "1.1.10" %}
+{% set sha256 = "67c38b5bc26acbb77fd13794d1d92f41197a44311314f5453c82506205e0717b" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://gitlab.com/siesta-project/libraries/libpsml/uploads/95c4d83d750d1ca87659b6395c8f7ea7/libpsml-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('fortran') }}
+    - make
+  host:
+    - xmlf90
+  run:
+    - xmlf90
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libpsml${SHLIB_EXT}
+
+about:
+  home: "https://gitlab.com/siesta-project/libraries/libpsml"
+  dev_url: "https://gitlab.com/siesta-project/libraries/libpsml"
+  summary: "A library to handle pseudopotentials in PSML format."
+  license: Custom
+  license_family: OTHER
+  license_file: LICENSE
+
+extra:
+  identifiers:
+    - doi:10.1016/j.cpc.2018.02.011

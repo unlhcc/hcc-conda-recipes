@@ -1,0 +1,43 @@
+{% set name = "jupyterlmod" %}
+{% set version = "3.0.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyterlmod-{{ version }}.tar.gz
+  sha256: da769078650766b1fca6ef1e673d15ddd6ce7428001e05cc364cba246a77c3fe
+
+build:
+  noarch: python
+  number: 0
+  script_env:
+    - LMOD_CMD="/util/opt/lmod"
+
+requirements:
+  host:
+    - python
+    - pip
+
+  run:
+    - python
+    - jupyterlab >=2
+    - notebook >=6.0.0
+
+test:
+  imports:
+    - jupyterlmod
+    - lmod
+  commands:
+    - pip check
+    - jupyter labextension list
+  requires:
+    - pip
+
+about:
+  home: http://www.calculquebec.ca
+  summary: 'jupyterlmod: notebook server extension to interact with Lmod system'
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE

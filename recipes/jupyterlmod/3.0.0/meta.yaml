@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script_env:
     - LMOD_CMD="/util/opt/lmod"
 
@@ -19,6 +19,8 @@ requirements:
   host:
     - python
     - pip
+    - jupyterlab >=2
+    - nodejs >=18
 
   run:
     - python
@@ -37,6 +39,7 @@ test:
 
 about:
   home: http://www.calculquebec.ca
+  dev_url: https://github.com/cmd-ntrf/jupyter-lmod
   summary: 'jupyterlmod: notebook server extension to interact with Lmod system'
   license: MIT
   license_family: MIT

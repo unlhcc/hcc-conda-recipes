@@ -14,7 +14,7 @@ source:
 
 build:
   number: {{ build }}
-  string: h{{ PKG_HASH }}_{{ mpi }}_{{ build }}
+  string: mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ build }}
   skip: True  # [osx]
 
 requirements:

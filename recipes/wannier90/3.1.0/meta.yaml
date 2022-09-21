@@ -2,6 +2,7 @@
 {% set name = "wannier90" %}
 {% set version = "3.1.0" %}
 {% set sha256 = "40651a9832eb93dec20a8360dd535262c261c34e13c41b6755fa6915c936b254" %}
+{% set build = 1000 %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +13,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1000
+  number: {{ build }}
+  string: h{{ PKG_HASH }}_{{ mpi }}_{{ build }}
   skip: True  # [osx]
 
 requirements:

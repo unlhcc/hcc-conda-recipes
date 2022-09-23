@@ -3,7 +3,7 @@
 {% set name = "abinit" %}
 {% set version = "9.6.2" %}
 {% set sha256 = "5fba537bac99f53ae02781f1f374247503241b80ce329dc51fe2e986b13198f0" %}
-{% set build = 1000 %}
+{% set build = 1001 %}
 
 package:
   name: {{ name|lower }}
@@ -51,6 +51,7 @@ requirements:
     - libxml2
     - libpsml
     - xmlf90
+    - openssl
   run:
     - {{ mpi }}
     - libxc <5.0

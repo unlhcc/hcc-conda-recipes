@@ -1,0 +1,5 @@
+{
+  "argv": ["/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/common/kernels/r-4.2/wrapper_R.sh", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+  "display_name": "R 4.2",
+  "language": "R"
+}

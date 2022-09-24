@@ -1,0 +1,1 @@
+c.OctaveKernel.plot_settings = dict(backend='gnuplot')

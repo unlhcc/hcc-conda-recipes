@@ -11,7 +11,7 @@ source:
     sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 3
   skip: True # [osx]
   detect_binary_files_with_prefix: False
   binary_relocation: False
@@ -23,6 +23,7 @@ test:
 about:
   home: https://developer.nvidia.com/cuda-toolkit
   license: PROPRIETARY
+  license_file: EULA.txt
   summary: 'NVIDIA CUDA Toolkit'
 
 extra:

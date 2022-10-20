@@ -1,0 +1,13 @@
+c_compiler:
+  - icc # [linux]
+cxx_compiler:
+  - icpc # [linux]
+fortran_compiler:
+  - ifort # [linux]
+
+c_compiler_version:        # [unix]
+  - 2021 # [linux]
+cxx_compiler_version:      # [unix]
+  - 2021 # [linux]
+fortran_compiler_version:  # [unix]
+  - 2021 # [linux]

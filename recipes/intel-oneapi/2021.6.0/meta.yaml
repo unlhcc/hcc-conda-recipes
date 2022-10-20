@@ -1,0 +1,100 @@
+# OneAPI compilers
+{% set name = "intel-oneapi" %}
+{% set version = "2021.6.0" %}
+{% set build = 0 %}
+{% set sha256 = "a29d808cd2fb67c38b3c13e9646dd2154da4d9b458423c25e61c15bb12279f6b" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://registrationcenter-download.intel.com/akdlm/irc_nas/18679/l_HPCKit_p_2022.2.0.191_offline.sh
+  fn: webimage.sh
+  sha256: {{ sha256 }}
+
+build:
+  number: {{ build }}
+  skip: True # [osx]
+
+outputs:
+  - name: oneapi
+    script: build-oneapi.sh
+    build:
+      run_exports:
+        - {{ pin_subpackage('oneapi', min_pin='x.x.x', max_pin='x') }}
+      detect_binary_files_with_prefix: False
+      binary_relocation: False
+    requirements:
+      build:
+        - ncurses
+  - name: icc_linux-64
+    version: {{ version }}
+    build:
+      script: echo "icc build"
+      run_exports:
+        strong:
+          - dpcpp-cpp-rt {{ c_compiler_version }}*
+    requirements:
+      run:
+        - {{ pin_subpackage('oneapi', exact=True) }}
+        - gcc 10.*
+        - sysroot_linux-64 >=2.17
+    test:
+      commands:
+        - sh tests/icc_test.sh
+      files:
+        - tests/icc_test.sh
+        - tests/hello.c
+
+  - name: icpc_linux-64
+    version: {{ version }}
+    build:
+      script: echo "icpc build"
+      run_exports:
+        strong:
+          - dpcpp-cpp-rt {{ c_compiler_version }}*
+    requirements:
+      run:
+        - {{ pin_subpackage('oneapi', exact=True) }}
+        - gxx 10.*
+        - sysroot_linux-64 >=2.17
+    test:
+      commands:
+        - sh tests/icpc_test.sh
+      files:
+        - tests/icpc_test.sh
+        - tests/hello.c
+
+  - name: ifort_linux-64
+    version: {{ version }}
+    build:
+      script: echo "ifort build"
+      run_exports:
+        strong:
+          - intel-fortran-rt {{ fortran_compiler_version }}*
+    requirements:
+      run:
+        - {{ pin_subpackage('oneapi', exact=True) }}
+        - gcc 10.*
+        - sysroot_linux-64 >=2.17
+    test:
+      commands:
+        - sh tests/ifort_test.sh
+      files:
+        - tests/ifort_test.sh
+        - tests/hello.f90
+
+about:
+  home: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html"
+  dev_url: "https://github.com/oneapi-src/oneapi-ci"
+  license: PROPRIETARY
+  license_file: license.pdf 
+  summary: 'Intel OneAPI classic compilers (icc, icpc, ifort). '
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+    - should_use_compilers
+    - missing_tests
+    - should_be_noarch_generic

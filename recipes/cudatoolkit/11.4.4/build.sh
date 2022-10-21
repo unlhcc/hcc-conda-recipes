@@ -18,17 +18,13 @@ mv ${PREFIX}/extras/Debugger/lib64/* ${PREFIX}/lib
 mv ${PREFIX}/extras/Debugger/include/* ${PREFIX}/include
 mv ${PREFIX}/extras/CUPTI/lib64/* ${PREFIX}/lib
 mv ${PREFIX}/extras/CUPTI/include/* ${PREFIX}/include
-mv ${PREFIX}/nvvm/bin/* ${PREFIX}/bin
-mv ${PREFIX}/nvvm/lib64/* ${PREFIX}/lib
-mv ${PREFIX}/nvvm/include/* ${PREFIX}/include
-mv ${PREFIX}/nvvm/libdevice/* ${PREFIX}/lib
 mv ${PREFIX}/compute-sanitizer/{compute-sanitizer,TreeLauncherSubreaper,TreeLauncherTargetLdPreloadHelper} ${PREFIX}/bin
 mv ${PREFIX}/compute-sanitizer/lib*.so ${PREFIX}/lib
 mv ${PREFIX}/compute-sanitizer/include/* ${PREFIX}/include
 mv ${PREFIX}/pkgconfig ${PREFIX}/lib
 
 # remove unneeded bits to get the size more manageable
-rm -rf ${PREFIX}/{extras,libnsight,nsight-*,nsightee_plugins,nvvm-prev,nvvm,DOCS,README,EULA.txt,compute-sanitizer,nvml,version.json,tools}
+rm -rf ${PREFIX}/{extras,libnsight,nsight-*,nsightee_plugins,DOCS,README,EULA.txt,compute-sanitizer,nvml,version.json,tools}
 
 # some things still look for lib64
 ln -rsv ${PREFIX}/lib ${PREFIX}/lib64

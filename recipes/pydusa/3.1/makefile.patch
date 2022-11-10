@@ -1,0 +1,22 @@
+--- Makefile.am.org	2022-11-09 14:14:15.350620931 -0600
++++ Makefile.am	2022-11-09 14:14:44.922748175 -0600
+@@ -8,7 +8,7 @@
+ 	make
+ 	mkdir -p ${prefix}
+ 	echo "Adding mpi.so to ${prefix}"
+-	cp src/mpi.so ${prefix}
++	cp src/mpi.so ${prefix}/lib/python*/site-packages/
+ 	mkdir -p ${prefix}/mpi_examples
+ 	echo "Installing mpi examples"
+ 	cp -r mpi_tests/* ${prefix}/mpi_examples/
+--- Makefile.in.org	2022-11-09 14:54:41.389069016 -0600
++++ Makefile.in	2022-11-09 14:55:16.819221674 -0600
+@@ -590,7 +590,7 @@
+ 	make
+ 	mkdir -p ${prefix}
+ 	echo "Adding mpi.so to ${prefix}"
+-	cp src/mpi.so ${prefix}
++	cp src/mpi.so ${prefix}/lib/python*/site-packages/
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

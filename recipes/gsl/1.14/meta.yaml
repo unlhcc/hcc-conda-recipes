@@ -1,0 +1,39 @@
+{% set name = "gsl" %}
+{% set version = "1.14" %}
+{% set sha256 = "3d4a47afd9a1e7c73b97791b4180d8cc4d5f0e5db6027fe06437f1f3f957fafb" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://ftpmirror.gnu.org/gsl/gsl-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - file
+  host:
+  run:
+
+test:
+  commands:
+    - gsl-config --prefix
+    - ls -al $PREFIX/lib/libgsl.so.*
+
+about:
+  home: http://www.gnu.org/software/gsl/
+  license: GPLv3
+  license_file: COPYING
+  license_family: GPL
+  summary: "GNU Scientific Library"
+
+extra:
+  skip-lints:
+    - in_other_channels

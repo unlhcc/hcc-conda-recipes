@@ -1,0 +1,121 @@
+{% set name = "EMAN2" %}
+{% set version = "2022.11.06" %}
+{% set git_rev = "88184e6" %}
+{% set sha256 = "363d23b90ef298ef0ff363faf66896159281857d9ffea3a67e7c295e92b6e845" %}
+{% set build = 1001 %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/cryoem/{{ name|lower }}/archive/{{ git_rev }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [py<39 or osx]
+  string: mpi_{{ mpi }}_py{{ PY_VER }}_h{{ PKG_HASH }}_{{ build }}
+
+{% if mpi != 'nompi' %}
+{% set mpi_prefix = "mpi_" + mpi %}
+{% else %}
+{% set mpi_prefix = "nompi" %}
+{% endif %}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake >=3.14
+    - make
+    - {{ cdt('xorg-x11-proto-devel') }}           # [linux]
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}        # [linux]
+    - {{ cdt('libxdamage') }}        # [linux]
+    - {{ cdt('libxxf86vm') }}        # [linux]
+    - {{ cdt('libxfixes') }}         # [linux]
+  host:
+    - python
+    - pyqt 5.* 
+    - pyopengl
+    - ipywidgets 
+    - matplotlib 
+    - scipy 
+    - ipython 
+    - scikit-learn 
+    - pandas 
+    - tensorflow 
+    - pydusa 3.1 
+    - nose 
+    - future 
+    - configparser 
+    - tqdm 
+    - jupyterlab 
+    - nodejs 
+    - boost  
+    - numpy 
+    - ftgl 
+    - freetype 
+    - gsl 
+    - hdf5 1.12.*
+    - jpeg 
+    - libtiff 
+    - libpng 
+    - zlib
+    - {{ mpi }}
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+  run:
+    - python
+    - pyqt 5.*
+    - pyopengl
+    - ipywidgets 
+    - matplotlib 
+    - scipy 
+    - ipython 
+    - scikit-learn 
+    - pandas 
+    - tensorflow 
+    - pydusa 3.1 
+    - nose 
+    - future 
+    - configparser 
+    - tqdm 
+    - jupyterlab 
+    - nodejs 
+    - boost  
+    - numpy 
+    - ftgl 
+    - freetype 
+    - gsl 
+    - hdf5 1.12.* 
+    - jpeg 
+    - libtiff 
+    - libpng 
+    - zlib
+    - {{ mpi }}
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+
+test:
+  commands:
+    - e2version.py
+    - e2speedtest.py
+    - e2proc3d.py -h
+    - e2segment3d.py -h
+
+about:
+  home: https://github.com/cryoem/eman2
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file:
+    - BSD-3-Clause.txt
+    - gpl-2.0.txt
+  summary: A scientific image processing software suite with a focus on CryoEM and CryoET.
+
+extra:
+  skip-lints:
+    - uses_matplotlib
+  container:
+    # EMAN2 requires OpenGL to compile
+    extended-base: True

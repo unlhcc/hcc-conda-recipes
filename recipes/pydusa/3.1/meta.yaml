@@ -1,0 +1,53 @@
+{% set name = "pydusa" %}
+{% set version = "3.1" %}
+{% set sha256 = "698ba6863cf5f8d4debb28c37e972f21949e7e11bac80bc3d34f8fb8ab59f77e" %}
+{% set build = 1001 %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/cryoem/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  skip: True  # [py<39 or osx]
+  string: mpi_{{ mpi }}_py{{ PY_VER }}_h{{ PKG_HASH }}_{{ build }}
+
+{% if mpi != 'nompi' %}
+{% set mpi_prefix = "mpi_" + mpi %}
+{% else %}
+{% set mpi_prefix = "nompi" %}
+{% endif %}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - python
+    - numpy
+    - {{ mpi }}
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+  run:
+    - python
+    - numpy
+    - {{ mpi }}
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+
+test:
+  imports:
+   - mpi
+  commands:
+    - python -c "import mpi; print(mpi.pydusa_version())"
+
+about:
+  home: https://github.com/cryoem/pydusa
+  license: GPL-2.0
+  license_family: GPL
+  license_file: COPYING
+  summary: Pydusa is a package for parallel programming using Python.

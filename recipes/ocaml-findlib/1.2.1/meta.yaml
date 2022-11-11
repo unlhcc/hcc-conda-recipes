@@ -1,0 +1,43 @@
+# Based off of https://github.com/conda-forge/ocaml-findlib-feedstock for old version
+{% set name = "ocaml-findlib" %}
+{% set version = "1.2.1" %}
+{% set sha256 = "fe3db7c9f9707eb589e8f194ac4364f854e8a57aace826d59ee52cf9fa2a2a4e" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://download.camlcity.org/download/findlib-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - m4
+    - make
+  host:
+    - ocaml
+  run:
+    - ocaml
+
+test:
+  commands:
+    - ocamlfind install -help
+
+about:
+  home: http://projects.camlcity.org/projects/findlib.html
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: 'opam is a source-based package manager for OCaml'
+  doc_url: http://projects.camlcity.org/projects/dl/findlib-{{ version }}/doc/guide-html/index.html
+  dev_url: https://github.com/ocaml/opam
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_be_noarch_generic

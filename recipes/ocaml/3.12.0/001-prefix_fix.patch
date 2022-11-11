@@ -1,0 +1,62 @@
+diff -r -u ocaml-3.12.0/byterun/dynlink.c ocaml-3.12.0.new/byterun/dynlink.c
+--- ocaml-3.12.0/byterun/dynlink.c	2010-01-22 06:48:24.000000000 -0600
++++ ocaml-3.12.0.new/byterun/dynlink.c	2022-11-10 18:18:09.088819218 -0600
+@@ -80,7 +80,6 @@
+ 
+   stdlib = getenv("OCAMLLIB");
+   if (stdlib == NULL) stdlib = getenv("CAMLLIB");
+-  if (stdlib == NULL) stdlib = OCAML_STDLIB_DIR;
+   ldconfname = caml_stat_alloc(strlen(stdlib) + 2 + sizeof(LD_CONF_NAME));
+   strcpy(ldconfname, stdlib);
+   strcat(ldconfname, "/" LD_CONF_NAME);
+diff -r -u ocaml-3.12.0/stdlib/Makefile ocaml-3.12.0.new/stdlib/Makefile
+--- ocaml-3.12.0/stdlib/Makefile	2010-01-22 06:48:24.000000000 -0600
++++ ocaml-3.12.0.new/stdlib/Makefile	2022-11-10 18:24:02.150278980 -0600
+@@ -44,11 +44,11 @@
+ 
+ camlheader camlheader_ur: header.c ../config/Makefile
+ 	if $(SHARPBANGSCRIPTS); then \
+-	  echo '#!$(BINDIR)/ocamlrun' > camlheader && \
++	  echo '#!/usr/bin/env ocamlrun' > camlheader && \
+ 	  echo '#!' | tr -d '\012' > camlheader_ur; \
+ 	else \
+ 	  $(BYTECC) $(BYTECCCOMPOPTS) $(BYTECCLINKOPTS) \
+-	            -DRUNTIME_NAME='"$(BINDIR)/ocamlrun"' \
++	            -DRUNTIME_NAME='"#!/usr/bin/env ocamlrun"' \
+ 	            header.c -o tmpheader$(EXE) && \
+ 	  strip tmpheader$(EXE) && \
+ 	  mv tmpheader$(EXE) camlheader && \
+diff -r -u ocaml-3.12.0/tools/ocamlmklib.mlp ocaml-3.12.0.new/tools/ocamlmklib.mlp
+--- ocaml-3.12.0/tools/ocamlmklib.mlp	2010-05-20 09:06:29.000000000 -0500
++++ ocaml-3.12.0.new/tools/ocamlmklib.mlp	2022-11-10 18:27:28.208963684 -0600
+@@ -17,8 +17,7 @@
+ 
+ (* PR#4783: under Windows, don't use absolute paths because we do
+    not know where the binary distribution will be installed. *)
+-let compiler_path name =
+-  if Sys.os_type = "Win32" then name else Filename.concat bindir name
++let compiler_path name = name
+ 
+ let bytecode_objs = ref []  (* .cmo,.cma,.ml,.mli files to pass to ocamlc *)
+ and native_objs = ref []    (* .cmx,.cmxa,.ml,.mli files to pass to ocamlopt *)
+diff -r -u ocaml-3.12.0/utils/config.mlp ocaml-3.12.0.new/utils/config.mlp
+--- ocaml-3.12.0/utils/config.mlp	2010-05-19 06:29:38.000000000 -0500
++++ ocaml-3.12.0.new/utils/config.mlp	2022-11-10 18:28:29.685869612 -0600
+@@ -25,7 +25,7 @@
+ (* The main OCaml version string has moved to ../VERSION *)
+ let version = Sys.ocaml_version
+ 
+-let standard_library_default = "%%LIBDIR%%"
++let standard_library_default = (Sys.getenv "OCAML_PREFIX") ^ "/lib/ocaml"
+ 
+ let standard_library =
+   try
+@@ -36,7 +36,7 @@
+   with Not_found ->
+     standard_library_default
+ 
+-let standard_runtime = "%%BYTERUN%%"
++let standard_runtime = (Sys.getenv "OCAML_PREFIX") ^ "/bin/ocamlrun"
+ let ccomp_type = "%%CCOMPTYPE%%"
+ let bytecomp_c_compiler = "%%BYTECC%%"
+ let bytecomp_c_libraries = "%%BYTECCLIBS%%"

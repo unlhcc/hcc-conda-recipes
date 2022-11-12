@@ -1,0 +1,11 @@
+--- CMakeLists.txt.org	2022-11-11 20:10:50.844622189 +0000
++++ CMakeLists.txt	2022-11-11 20:12:23.770981172 +0000
+@@ -175,7 +175,7 @@
+ 	SET (OPT_FLAGS "-O3")
+ #	SET (OPT_FLAGS "-Os -ffast-math")
+ ELSEIF(ENABLE_OPTIMIZE_MACHINE)
+-	SET (OPT_FLAGS "-O5 -march=native -m64 -ffast-math -pipe")
++	SET (OPT_FLAGS "-O5 -march=sandybridge -mtune=haswell -m64 -ffast-math -pipe")
+ ELSEIF(ENABLE_OPTIMIZE_COMPATIBILITY)
+ 	SET (OPT_FLAGS "-O5 -march=haswell -m64 -ffast-math -pipe")
+ ELSEIF(ENABLE_OPTIMIZE_X86_64)

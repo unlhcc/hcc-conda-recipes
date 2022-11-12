@@ -11,11 +11,13 @@ package:
 source:
   url: https://github.com/cryoem/{{ name|lower }}/archive/{{ git_rev }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - cmake.patch
 
 build:
   number: 0
   skip: True  # [py<39 or osx]
-  string: mpi_{{ mpi }}_py{{ PY_VER }}_h{{ PKG_HASH }}_{{ build }}
+  string: mpi_{{ mpi }}_py{{ CONDA_PY }}_h{{ PKG_HASH }}_{{ build }}
 
 {% if mpi != 'nompi' %}
 {% set mpi_prefix = "mpi_" + mpi %}
@@ -37,6 +39,7 @@ requirements:
     - {{ cdt('libxxf86vm') }}        # [linux]
     - {{ cdt('libxfixes') }}         # [linux]
   host:
+    - cmake
     - python
     - pyqt 5.* 
     - pyopengl
@@ -66,6 +69,7 @@ requirements:
     - zlib
     - {{ mpi }}
     - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - gsl >2.4
   run:
     - python
     - pyqt 5.*
@@ -96,6 +100,7 @@ requirements:
     - zlib
     - {{ mpi }}
     - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - gsl >2.4
 
 test:
   commands:

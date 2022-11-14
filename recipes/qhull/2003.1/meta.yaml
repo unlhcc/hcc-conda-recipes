@@ -1,0 +1,44 @@
+# Based off of https://github.com/conda-forge/qhull-feedstock for old version
+{% set name = "qhull" %}
+{% set version = "2003.1" %}
+{% set sha256 = "c97d1982e6f5423379bf0ad6dd7293886ac69cae1596b59a305614aec4ae54f8" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/qhull/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage('qhull', max_pin='x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+  run:
+
+test:
+  commands:
+    - test -f $PREFIX/lib/libqhull.a
+    - rbox c P0 D2 | qvoronoi s o
+    - rbox c | qconvex FQ FV n | qhalf Fp
+    - rbox 1000 D3 | qhull C-1e-4 FO Ts
+
+about:
+  home: http://www.qhull.org/
+  license: Qhull
+  license_file: COPYING.txt
+  summary: Qhull computes the convex hull
+  doc_url: http://www.qhull.org/html
+  dev_url: https://github.com/qhull/qhull
+
+extra:
+  skip-lints:
+    - in_other_channels

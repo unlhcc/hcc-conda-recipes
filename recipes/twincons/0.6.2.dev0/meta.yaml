@@ -1,0 +1,54 @@
+{% set name = "TwinCons" %}
+{% set version = "0.6.2.dev0" %}
+{% set sha256 = "9ec52fc214866cb146def560a11b82687abfe7c03be1e5f24bf57d22195b5b9a" %}
+{% set commit = "666ad03abfe5065d1487c944c733ab0324edde80" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/LDWLab/TwinCons/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - pip
+    - python >=3.5
+  run:
+    - biopython >=0.1.0
+    - biopandas >=0.2.5
+    - matplotlib-base >=3.1.1
+    - numpy >=1.17.2
+    - pandas >=0.25.1
+    - plotly >=4.7.0
+    - python >=3.5
+    - scikit-learn ==0.23.2
+    - scipy >=1.3.1
+    - seaborn >=0.9.0
+    - mafft
+    - dssp 3.0.*
+
+test:
+  imports:
+    - twincons
+  commands:
+    - TwinCons.py -h
+    - twcCalculateSegments.py -h
+
+about:
+  home: "https://github.com/LDWLab/TwinCons"
+  summary: "This projects provides several packages for analysis of MSAs comprised of two sequence groups."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  identifiers:
+    - biotools:twincons
+    - doi:10.1371/journal.pcbi.1009541

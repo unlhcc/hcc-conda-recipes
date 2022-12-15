@@ -1,0 +1,54 @@
+{% set name = "dssp" %}
+{% set version = "3.0.11" %}
+{% set sha256 = "ac75dd6d4a80f84b80c2d557b52dcde38d7aeab4a85f35bbb750cbb8223346ef" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/cmbi/hssp/archive/refs/tags/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    -  001-iostream.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - autoconf
+    - automake
+    - make
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cppcheck
+  host:
+    - boost
+    - zeep >=3
+    - bzip2
+    - zlib
+  run:
+    - boost
+    - zeep >=3
+    - bzip2
+    - zlib
+
+test:
+  commands:
+    - dssp --version
+    - mkhssp --version
+    - hsspconv --version
+
+about:
+  home: https://swift.cmbi.umcn.nl/gv/dssp/
+  dev_url: https://github.com/cmbi/hssp
+  summary: "Create DSSP and HSSP files."
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+
+extra:
+  identifiers:
+    - biotools:dssp
+    - doi:10.1093/nar/gku1028

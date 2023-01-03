@@ -1,5 +1,5 @@
 {% set name = "hcc-jupyter-kernels" %}
-{% set version = datetime.datetime.utcnow().strftime('%Y.%m.%d') %}
+{% set version = "2023.01.03" %}
 
 package:
   name: "{{ name|lower }}"

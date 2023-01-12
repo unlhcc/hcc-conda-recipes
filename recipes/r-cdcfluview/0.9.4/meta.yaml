@@ -1,0 +1,68 @@
+{% set version = '0.9.4' %}
+
+package:
+  name: r-cdcfluview
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/cdcfluview_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/cdcfluview/cdcfluview_{{ version }}.tar.gz
+  sha256: 776a155c4f0cc678fde94a6d47cc2783ff5c199f26cce642461092e1b6311dad
+
+build:
+  number: 0
+  noarch: generic
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat, covr
+requirements:
+  host:
+    - r-base
+    - r-mmwrweek
+    - r-dplyr
+    - r-httr
+    - r-jsonlite
+    - r-progress
+    - r-purrr
+    - r-readr
+    - r-sf
+    - r-tibble
+    - r-units >=0.4_6
+    - r-xml2
+
+  run:
+    - r-base
+    - r-mmwrweek
+    - r-dplyr
+    - r-httr
+    - r-jsonlite
+    - r-progress
+    - r-purrr
+    - r-readr
+    - r-sf
+    - r-tibble
+    - r-units >=0.4_6
+    - r-xml2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('cdcfluview')"
+
+about:
+  home: https://github.com/hrbrmstr/cdcfluview
+  license: MIT
+  summary: The 'U.S.' Centers for Disease Control and Prevention (CDC) maintain a portal <https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html>
+    for accessing state, regional and national influenza statistics as well as mortality
+    surveillance data. The web interface makes it difficult and time-consuming to select
+    and retrieve influenza data. Tools are provided to access the data provided by the
+    portal's underlying 'API'.
+  license_family: MIT
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE

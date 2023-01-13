@@ -1,0 +1,42 @@
+{% set name = "libde265" %}
+{% set version = "1.0.9" %}
+{% set sha256 = "29bc6b64bf658d81a4446a3f98e0e4636fd4fd3d971b072d440cef987d5439de" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/strukturag/libde265/releases/download/v{{ version }}/libde265-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+  host:
+    - ffmpeg
+    - libvideogfx #  [linux]
+    - sdl
+  run:
+    - ffmpeg
+    - libvideogfx #  [linux]
+    - sdl
+
+test:
+  commands:
+    - dec265 --help
+    - enc265 --help
+
+about:
+  home: "https://www.libde265.org"
+  dev_url: "https://github.com/strukturag/libde265"
+  license: LGPL
+  license_family: GPL
+  license_file: COPYING
+  summary: "Open h.265 video codec implementation."

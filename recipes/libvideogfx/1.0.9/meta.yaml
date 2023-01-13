@@ -1,0 +1,49 @@
+{% set name = "libvideogfx" %}
+{% set version = "1.0.9" %}
+{% set sha256 = "8f7e614290d516963b9a5c9d7eaacce88bdf99767a543aff63c049df862d34ea" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/farindk/libvideogfx/releases/download/v{{ version }}/libvideogfx-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - pkg-config
+    - file
+  host:
+    - jpeg
+    - libpng
+    - xorg-libx11
+    - xorg-libice
+    - xorg-libxext
+    - zlib
+  run:
+    - jpeg
+    - libpng
+    - xorg-libx11
+    - xorg-libice
+    - xorg-libxext
+    - zlib
+
+test:
+  commands:
+    - libvideogfx-config --version
+
+about:
+  home: "https://www.dirk-farin.net/software/libvideogfx/index.html"
+  dev_url: "https://github.com/farindk/libvideogfx"
+  license: LGPL-2.1
+  license_family: GPL
+  license_file: COPYING
+  summary: "LibVideoGfx - video processing library."

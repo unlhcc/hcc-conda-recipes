@@ -1,0 +1,39 @@
+{% set name = "cargo-c" %}
+{% set version = "0.9.15" %}
+{% set sha256 = "c43a764c435a2bd812e20e68a1fe44c6b63e449c706184129d5309d421b84557" %} #  [linux]
+{% set sha256 = "541dabbd10938144aff4126f90e92151ec0f796e96ea05aaf7c98e0897709b02" %} #  [osx]
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/lu-zero/cargo-c/releases/download/v{{ version }}/cargo-c-x86_64-unknown-linux-musl.tar.gz #  [linux]
+  url: https://github.com/lu-zero/cargo-c/releases/download/v{{ version }}/cargo-c-macos.zip #  [osx]
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  binary_relocation: False
+
+requirements:
+  run:
+    - rust
+
+test:
+  commands:
+    - cargo capi --help
+    - cargo cbuild --help
+    - cargo cinstall --help
+
+about:
+  home: "https://crates.io/crates/cargo-c"
+  dev_url: "https://github.com/lu-zero/cargo-c"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "build and install C-compatible libraries"
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

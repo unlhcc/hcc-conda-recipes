@@ -1,0 +1,60 @@
+{% set name = "libheif" %}
+{% set version = "1.14.2" %}
+{% set sha256 = "d016905e247d6952cd7ee4f9b90957350b6a6caa466bc76fdfe6eb302b6d088c" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/strukturag/libheif/releases/download/v{{ version }}/libheif-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+    - pkg-config
+  host:
+    - rav1e
+    - libde265
+    - jpeg
+    - libpng
+    - x265
+    - zlib
+    - dav1d
+    - aom
+    - svt-av1
+    - gdk-pixbuf
+    - glib
+    - zlib
+  run:
+    - rav1e
+    - libde265
+    - jpeg
+    - libpng
+    - x265
+    - zlib
+    - dav1d
+    - aom
+    - svt-av1
+    - gdk-pixbuf
+    - zlib
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libheif${SHLIB_EXT}
+    - test -f ${PREFIX}/include/libheif/heif.h
+
+about:
+  home: "https://github.com/strukturag/libheif"
+  dev_url: "https://github.com/strukturag/libheif"
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: "libheif is an HEIF and AVIF file format decoder and encoder."

@@ -1,0 +1,40 @@
+{% set name = "rav1e" %}
+{% set version = "0.6.3" %}
+{% set sha256 = "660a243dd9ee3104c0844a7af819b406193a7726614a032324557f81bb2bebaa" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/xiph/rav1e/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('rust') }}
+    - make
+    - cargo-c
+    - nasm
+    - cargo-bundle-licenses
+  host:
+  run:
+
+test:
+  commands:
+    - rav1e --help
+    - test -f ${PREFIX}/lib/librav1e${SHLIB_EXT}
+
+about:
+  home: "https://github.com/xiph/rav1e"
+  dev_url: "https://github.com/xiph/rav1e"
+  license: BSD-2
+  license_family: BSD
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: "The fastest and safest AV1 encoder."

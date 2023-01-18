@@ -11,8 +11,10 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage('libvideogfx', max_pin='x.x.x') }}
 
 requirements:
   build:
@@ -29,8 +31,6 @@ requirements:
     - xorg-libxext
     - zlib
   run:
-    - jpeg
-    - libpng
     - xorg-libx11
     - xorg-libice
     - xorg-libxext

@@ -1,0 +1,47 @@
+diff -Naur ghostscript-9.53.1.orig/base/msvccmd.mak ghostscript-9.53.1/base/msvccmd.mak
+--- ghostscript-9.53.1.orig/base/msvccmd.mak	2020-09-14 10:40:08.000000000 -0300
++++ ghostscript-9.53.1/base/msvccmd.mak	2020-09-16 14:47:56.781410271 -0300
+@@ -178,7 +178,7 @@
+ !if $(DEBUGSYM)==0
+ CT=
+ LCT=
+-CMT=/MT
++CMT=/MD
+ COMPILE_WITHOUT_FRAMES=/Oy
+ !else
+ # Assume that DEBUGSYM != 0 implies a PROFILE build
+diff -Naur ghostscript-9.53.1.orig/psi/msvc.mak ghostscript-9.53.1/psi/msvc.mak
+--- ghostscript-9.53.1.orig/psi/msvc.mak	2020-09-14 10:40:08.000000000 -0300
++++ ghostscript-9.53.1/psi/msvc.mak	2020-09-16 14:49:35.169034198 -0300
+@@ -1765,7 +1765,6 @@
+ !ifdef METRO
+ 	echo kernel32.lib runtimeobject.lib rpcrt4.lib >> $(PSGEN)lib.rsp
+ !else
+-	echo LIBCMT.lib >> $(PSGEN)lib.rsp
+ !endif
+ !endif
+ 
+@@ -1786,7 +1785,6 @@
+ !ifdef METRO
+ 	echo kernel32.lib runtimeobject.lib rpcrt4.lib >> $(PCLGEN)pcllib.rsp
+ !else
+-	echo LIBCMT.lib >> $(PCLGEN)pcllib.rsp
+ !endif
+ !endif
+ 
+@@ -1807,7 +1805,6 @@
+ !ifdef METRO
+ 	echo kernel32.lib runtimeobject.lib rpcrt4.lib >> $(XPSGEN)xpslib.rsp
+ !else
+-	echo LIBCMT.lib >> $(XPSGEN)xpslib.rsp
+ !endif
+ !endif
+ 
+@@ -1828,7 +1825,6 @@
+ !ifdef METRO
+ 	echo kernel32.lib runtimeobject.lib rpcrt4.lib >> $(XPSGEN)gpdllib.rsp
+ !else
+-	echo LIBCMT.lib >> $(XPSGEN)gpdllib.rsp
+ !endif
+ !endif
+ 

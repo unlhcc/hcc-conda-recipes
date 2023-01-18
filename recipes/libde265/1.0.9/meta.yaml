@@ -11,7 +11,9 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
+  run_exports:
+    - {{ pin_subpackage('libde265', max_pin='x.x.x') }}
 
 requirements:
   build:
@@ -25,7 +27,6 @@ requirements:
     - sdl
   run:
     - ffmpeg
-    - libvideogfx #  [linux]
     - sdl
 
 test:

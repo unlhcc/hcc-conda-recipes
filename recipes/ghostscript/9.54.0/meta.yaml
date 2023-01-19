@@ -14,7 +14,7 @@ source:
     - dynlink_runtime.patch
 
 build:
-  number: 1000
+  number: 1001
 
 requirements:
   build:
@@ -23,19 +23,6 @@ requirements:
     - {{ compiler('cxx') }}
     - pkg-config
   host:
-    - zlib
-    - jpeg
-    - libtiff
-    - openjpeg 2.5.*
-    - libpng
-    - expat
-    - xorg-libx11
-    - xorg-libxext
-    - xorg-libxt
-    - freetype
-    - libidn
-    - jbig2dec 0.19
-  run:
     - zlib
     - jpeg
     - libtiff
@@ -48,6 +35,10 @@ requirements:
     - freetype
     - libidn
     - jbig2dec
+  run:
+    - zlib
+    - xorg-libx11
+    - xorg-libxt
 
 test:
   commands:

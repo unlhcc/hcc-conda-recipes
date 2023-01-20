@@ -4,5 +4,5 @@ mkdir build && pushd build
 cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} \
 ..
 
-make
+make -j 4
 make install

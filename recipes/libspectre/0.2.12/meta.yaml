@@ -1,0 +1,40 @@
+{% set name = "libspectre" %}
+{% set version = "0.2.12" %}
+{% set sha256 = "55a7517cd3572bd2565df0cf450944a04d5273b279ebb369a895391957f0f960" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: http://libspectre.freedesktop.org/releases/libspectre-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('libspectre', max_pin='x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - pkg-config
+    - make
+  host:
+    - ghostscript
+    - cairo
+  run:
+    - ghostscript
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/libspectre/spectre.h
+    - test -f ${PREFIX}/lib/libspectre${SHLIB_EXT}
+
+about:
+  home: "https://www.freedesktop.org/wiki/Software/libspectre/"
+  dev_url: "http://cgit.freedesktop.org/libspectre"
+  license: GPLv2
+  license_family: GPL
+  license_file: COPYING
+  summary: "libspectre is a small library for rendering Postscript documents."

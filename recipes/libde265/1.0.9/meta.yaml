@@ -9,9 +9,11 @@ package:
 source:
   url: https://github.com/strukturag/libde265/releases/download/v{{ version }}/libde265-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - 001-cmake-name.patch
 
 build:
-  number: 2
+  number: 3
   run_exports:
     - {{ pin_subpackage('libde265', max_pin='x.x.x') }}
 
@@ -21,6 +23,8 @@ requirements:
     - {{ compiler('cxx') }}
     - make
     - cmake
+    - pkg-config
+
   host:
     - ffmpeg
     - libvideogfx #  [linux]

@@ -1,0 +1,74 @@
+commit 29698db09134bef7be5b0bb6b270cdd28ee66f1e
+Author: Dirk Farin <dirk.farin@gmail.com>
+Date:   Sun Nov 20 22:22:01 2022 +0100
+
+    fix library name for cmake build (#360)
+
+diff --git a/dec265/CMakeLists.txt b/dec265/CMakeLists.txt
+index 499125dc..8bf2d54c 100644
+--- a/dec265/CMakeLists.txt
++++ b/dec265/CMakeLists.txt
+@@ -1,6 +1,6 @@
+ add_executable (dec265 dec265.cc)
+ 
+-target_link_libraries (dec265 PRIVATE ${PROJECT_NAME})
++target_link_libraries (dec265 PRIVATE de265)
+ 
+ if(SDL_FOUND)
+   target_sources(dec265 PRIVATE sdl.cc)
+@@ -22,7 +22,7 @@ if(NOT MSVC)
+   # hdrcopy uses internal APIs that are not available when compiled for Windows
+   add_executable (hdrcopy hdrcopy.cc)
+ 
+-  target_link_libraries (hdrcopy PRIVATE ${PROJECT_NAME})
++  target_link_libraries (hdrcopy PRIVATE de265)
+ 
+   install (TARGETS hdrcopy DESTINATION ${CMAKE_INSTALL_BINDIR})
+ endif()
+diff --git a/enc265/CMakeLists.txt b/enc265/CMakeLists.txt
+index cfa7033d..2b489ccf 100644
+--- a/enc265/CMakeLists.txt
++++ b/enc265/CMakeLists.txt
+@@ -10,6 +10,6 @@ if(MSVC)
+   )
+ endif()
+ 
+-target_link_libraries (enc265 PRIVATE ${PROJECT_NAME})
++target_link_libraries (enc265 PRIVATE de265)
+ 
+ install (TARGETS enc265 DESTINATION ${CMAKE_INSTALL_BINDIR})
+diff --git a/libde265/CMakeLists.txt b/libde265/CMakeLists.txt
+index 749c7fba..432e4069 100644
+--- a/libde265/CMakeLists.txt
++++ b/libde265/CMakeLists.txt
+@@ -107,21 +107,21 @@ if(NOT DISABLE_SSE)
+   endif()
+ endif()
+ 
+-add_library(${PROJECT_NAME} ${libde265_sources} ${ENCODER_OBJECTS} ${X86_OBJECTS})
+-target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
++add_library(de265 ${libde265_sources} ${ENCODER_OBJECTS} ${X86_OBJECTS})
++target_link_libraries(de265 PRIVATE Threads::Threads)
+ 
+-write_basic_package_version_file(${PROJECT_NAME}ConfigVersion.cmake COMPATIBILITY ExactVersion)
++write_basic_package_version_file(libde265ConfigVersion.cmake COMPATIBILITY ExactVersion)
+ 
+-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Config
++install(TARGETS de265 EXPORT libde265Config
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ )
+ 
+-install(FILES ${libde265_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/de265-version.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
++install(FILES ${libde265_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libde265)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/de265-version.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libde265)
+ 
+-install(EXPORT ${PROJECT_NAME}Config DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
++install(EXPORT libde265Config DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/libde265")
+ 
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake DESTINATION
+-    "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libde265ConfigVersion.cmake DESTINATION
++    "${CMAKE_INSTALL_LIBDIR}/cmake/libde265")

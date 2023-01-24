@@ -1,0 +1,20 @@
+--- src/modules/loaders/Makefile.am.org	2023-01-24 00:43:21.000000000 -0600
++++ src/modules/loaders/Makefile.am	2023-01-24 00:45:35.000000000 -0600
+@@ -87,7 +87,7 @@
+ 
+ heif_la_SOURCES      = loader_heif.c
+ heif_la_CPPFLAGS     = $(HEIF_CFLAGS) $(AM_CPPFLAGS)
+-heif_la_LDFLAGS      = -module -avoid-version -Wl,-z,nodelete
++heif_la_LDFLAGS      = -module -avoid-version
+ heif_la_LIBADD       = $(HEIF_LIBS) $(top_builddir)/src/lib/libImlib2.la
+ heif_la_LIBTOOLFLAGS = --tag=disable-static
+ 
+@@ -138,7 +138,7 @@
+ 
+ svg_la_SOURCES       = loader_svg.c
+ svg_la_CPPFLAGS      = $(SVG_CFLAGS) $(AM_CPPFLAGS)
+-svg_la_LDFLAGS       = -module -avoid-version -Wl,-z,nodelete
++svg_la_LDFLAGS       = -module -avoid-version
+ svg_la_LIBADD        = $(SVG_LIBS) $(top_builddir)/src/lib/libImlib2.la
+ svg_la_LIBTOOLFLAGS  = --tag=disable-static
+ 

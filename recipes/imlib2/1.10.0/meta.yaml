@@ -1,0 +1,64 @@
+{% set name = "imlib2" %}
+{% set version = "1.10.0" %}
+{% set sha256 = "6e5f5cff73e5a819593d908e391082d6b531e245e3f1f2c9e09f638e5012968e" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://downloads.sourceforge.net/project/enlightenment/imlib2-src/{{ version }}/imlib2-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 001-OSX-ldflags.patch #  [osx]
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - pkg-config
+    - automake #  [osx]
+    - libtool #  [osx]
+  host:
+    # versions of attr >2.4.47 give "ls: relocation error: /lib64/libacl.so.1: symbol getxattr, version ATTR_1.0 not defined in file libattr.so.1 with link time reference" error
+    - attr 2.4.47 #  [linux]
+    - jpeg
+    - libpng
+    - freetype
+    - zlib
+    - bzip2
+    - libtiff
+    - giflib
+    - libwebp
+    - xorg-libx11
+    - xorg-libxext
+    - ffmpeg
+    - libheif
+    - libjxl
+    - librsvg
+    - openjpeg
+    - glib
+    - libspectre
+  run:
+    - zlib
+    - giflib
+    - libwebp
+    - xorg-libx11
+    - xorg-libxext
+    - ffmpeg
+    - libjxl
+
+test:
+  commands:
+    - imlib2_conv -h
+
+about:
+  home: https://docs.enlightenment.org/api/imlib2/html/index.html
+  dev_url: https://sourceforge.net/projects/enlightenment/files/imlib2-src/
+  license: Custom OSS
+  license_family: OTHER
+  license_file: COPYING
+  summary: "Imlib 2 is the successor to Imlib. It is NOT a newer version - it is a completely new library."

@@ -1,0 +1,47 @@
+{% set name = "feh" %}
+{% set version = "3.9.1" %}
+{% set sha256 = "1c5458fb73d4d18cc603261fd2cd6b4712c17b690c94acf514bf1e2fc30e77f2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/derf/feh/archive/refs/tags/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    # versions of attr >2.4.47 give "ls: relocation error: /lib64/libacl.so.1: symbol getxattr, version ATTR_1.0 not defined in file libattr.so.1 with link time reference" error
+    - attr 2.4.47 #  [linux]
+    - libcurl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxinerama
+    - imlib2
+    - libexif
+    - libpng
+  run:
+    - xorg-libx11
+    - xorg-libxinerama
+    - imlib2
+    - libexif
+    - imagemagick
+
+test:
+  commands:
+    - feh --version
+
+about:
+  home: https://feh.finalrewind.org
+  license: MIT
+  license_family: MIT
+  license_file: COPYING
+  summary: "feh is an X11 image viewer aimed mostly at console users."

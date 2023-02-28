@@ -1,0 +1,37 @@
+{% set name = "php-composer" %}
+{% set version = "2.5.4" %}
+{% set installer_commit = "be31d0a5e5e835063c29bb45804bd94eefd4cf34" %}
+{% set sha256 = "f0b0b57181bb740bab692ab66567a51480b99ebde864f2fe9d21f77f558fa690" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://raw.githubusercontent.com/composer/getcomposer.org/{{ installer_commit }}/web/installer
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - php installer --install-dir=${PREFIX}/bin --version={{ version }} --filename=composer
+
+requirements:
+  host:
+    - php
+  run:
+    - php
+
+test:
+  commands:
+    - composer -V
+
+about:
+  home: https://getcomposer.org
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Dependency Manager for PHP
+  doc_url: https://getcomposer.org/doc/
+  dev_url: https://github.com/composer/composer

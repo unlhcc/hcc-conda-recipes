@@ -1,0 +1,70 @@
+# Based on https://github.com/conda-forge/php-feedstock, updated and additional modules
+{% set name = "php" %}
+{% set version = "8.2.3" %}
+{% set sha256 = "7c475bcbe61d28b6878604b1b6f387f39d1a63b5f21fa8156fd7aa615d43e259" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://www.php.net/distributions/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 0005-iconv_basic_001.phpt-iconv-update.patch
+    - 0006-bug61367-read.phpt-libxml2-update.patch
+    - 0007-libxml_disable_entity_loader.phpt-libxml2-update.patch
+    - 0008-xxhash-static-assert.patch # backport of upstream fix, remove for v8.2.4+
+
+build:
+  number: 0
+  skip: true  # [not unix]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - bison
+    - libtool
+    - pkg-config
+    - util-linux  # [linux]
+  host:
+    - libiconv
+    - libxml2
+    - openssl
+    - re2c
+    - sqlite
+    - pcre2
+    - zlib
+    - bzip2
+    - libcurl
+    - libgd
+    - openldap
+    - libffi
+    - gmp
+    - libzip
+    - libxslt
+    - readline
+
+test:
+  commands:
+    - php --version
+    - php --help
+    - php -m
+
+about:
+  home: https://github.com/php/php-src
+  license: PHP-3.01
+  license_family: OTHER
+  license_file: LICENSE
+  summary: PHP is a popular general-purpose scripting language that is especially suited to web development.
+  description: |
+    PHP is a popular general-purpose scripting language that is especially suited to web development. 
+    Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world. 
+    PHP is distributed under the PHP License v3.01.
+  doc_url: https://www.php.net/
+  dev_url: https://github.com/php/php-src
+
+extra:
+  skip-lints:
+    - in_other_channels

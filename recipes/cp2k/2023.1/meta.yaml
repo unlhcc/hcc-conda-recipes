@@ -1,0 +1,80 @@
+# Adapted from https://github.com/conda-forge/cp2k-feedstock, modified to add plumed and libint support
+{% set name = "cp2k" %}
+{% set version = "2023.1" %}
+{% set sha256 = "dff343b4a80c3a79363b805429bdb3320d3e1db48e0ff7d20a3dfd1c946a51ce" %}
+# Define build matrix for MPI vs. non-mpi
+# ensure mpi is defined (needed for conda-smithy recipe-lint)
+{% set mpi = mpi or 'nompi' %}
+{% set build = 1001 %}
+{% set build_string = "{}_{}".format(mpi, build) %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/cp2k/cp2k/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
+
+build:
+  number: {{ build }}
+  skip: True  # [osx]
+  string: {{ build_string }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - make
+    - autoconf
+    - automake
+    - cmake
+    - libtool
+    - python
+  host:
+    - {{ mpi }} # [mpi != 'nompi']
+    - scalapack  # [mpi != 'nompi']
+    - openblas * *openmp*  # [linux]
+    - liblapack
+    - libgomp  # [linux]
+    - libxsmm
+    - fftw
+    - spglib
+    - libxc >=5.1
+    - sirius 7.3.*
+    - libint-cp2k
+    - plumed
+  run:
+    - {{ mpi }}  # [mpi != 'nompi']
+    - scalapack  # [mpi != 'nompi']
+    - libblas * *openblas  # [linux]
+    - openblas * *openmp*  # [linux]
+    - libint-cp2k
+    - gsl
+    - plumed
+
+test:
+  commands:
+    # note: regtests are running at the "build" stage; this is just a smoke test
+    - cp2k.ssmp --help  # [mpi == 'nompi']
+    # we need openmpi for cp2k.psmp so we just check if it exists
+    - test -f "${PREFIX}/bin/cp2k.psmp"  # [mpi != 'nompi']
+
+about:
+  home: https://www.cp2k.org
+  license: GPL-2.0-only
+  license_family: GPL
+  license_file: LICENSE
+  summary: Quantum chemistry and solid state physics software package
+  description: |
+    CP2K is a quantum chemistry and solid state physics software package 
+    that can perform atomistic simulations of solid state, liquid, 
+    molecular, periodic, material, crystal, and biological systems. 
+  doc_url: https://manual.cp2k.org
+  dev_url: https://github.com/cp2k/cp2k
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - build_number_needs_reset

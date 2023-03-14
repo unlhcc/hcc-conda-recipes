@@ -1,5 +1,5 @@
 # adapted from https://github.com/conda-forge/lammps-feedstock to include plumed and more packages
-{% set build = 1002 %}
+{% set build = 1003 %}
 {% set name = "lammps" %}
 {% set version = "stable_29Sep2021_update3" %}
 {% set sha256 = "e4c274f0dc5fdedc43f2b365156653d1105197a116ff2bafe893523cdb22532e" %}
@@ -12,7 +12,7 @@ package:
 source:
   - url: https://github.com/lammps/lammps/archive/{{ version }}.tar.gz
     sha256: {{ sha256 }}
-    patches: 
+    patches:
       - vcsgc_mtp_n2p2.patch
       - mliappy.patch
   - url: https://vcsgc-lammps.materialsmodeling.org/vcsgc-lammps.tgz
@@ -39,7 +39,7 @@ requirements:
     - pkg-config
   
   host:
-    - {{ mpi }}
+    - openmpi
     - python
     - cython
     - setuptools
@@ -61,7 +61,7 @@ requirements:
     - plumed
 
   run:
-    - {{ mpi }}
+    - openmpi
     - python
     - setuptools
     - kim-api
@@ -69,7 +69,6 @@ requirements:
     - n2p2 =2.1.4  # [linux]
     - quippy =0.0.1=*_4  # [linux]
     - ffmpeg
-    - jpeg
     - plumed {{ plumed }}
 
 test:

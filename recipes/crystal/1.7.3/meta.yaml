@@ -1,0 +1,97 @@
+{% set name = "crystal" %}
+{% set version = "1.7.3" %}
+{% set shards_version = "0.17.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/crystal-lang/crystal/archive/refs/tags/{{ version }}.tar.gz
+    sha256: 3ad94dd2835a58af8dabf18d6cdf3791eb49cdfc6fdc6fd6a4e59abf0e860a6f
+    folder: crystal
+  - url: https://github.com/crystal-lang/shards/archive/refs/tags/v{{ shards_version }}.tar.gz
+    sha256: ca3963512db8316b3624c0fba57f803419d67502416fe44938a27aa616cf9d70
+    folder: shards
+  - url: https://github.com/crystal-lang/crystal/releases/download/1.7.3/crystal-1.7.3-1-linux-x86_64.tar.gz
+    sha256: c3231735948c8f45f5f5a05b99de01236a3e408888eb28c7ab707daa9bb1fd9c
+    folder: binary
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  run:
+    - crystal-compiler
+    - shards
+
+outputs:
+  - name: crystal-binary
+    version: {{ version }}
+    script: build-binary.sh
+    build:
+      binary_relocation: False
+  - name: crystal-compiler
+    version: {{ version }}
+    script: build-crystal.sh
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - make
+        - crystal-binary
+      host:
+        - bdw-gc >7.6
+        - llvm 14.*
+        - llvmdev 14.*
+        - libxml2
+        - libedit
+        - yaml
+        - openssl
+        - libevent
+        - gmp
+        - pcre
+        - zlib
+      run:
+        - {{ compiler('c') }}
+        - bdw-gc >7.6
+        - llvm
+        - libedit
+        - yaml
+        - openssl
+        - pcre
+        - zlib
+
+  - name: shards
+    version: {{ shards_version }}
+    script: build-shards.sh
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - make
+        - crystal-compiler
+      host:
+        - yaml
+        - libevent
+        - pcre
+      run:
+        - git
+test:
+  commands:
+    - crystal --version
+    - shards --version
+
+about:
+  home: https://crystal-lang.org/
+  license: Apache 2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "The Crystal Programming Language"
+  dev_url: https://github.com/crystal-lang/crystal
+
+extra:
+  skip-lints:
+    - should_use_compilers
+    - compilers_must_be_in_build

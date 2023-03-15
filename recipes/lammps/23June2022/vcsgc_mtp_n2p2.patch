@@ -1,0 +1,78 @@
+From 5b5f6a643b961d9a07b30e7cfb08082fa3d8daf4 Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Fri, 28 May 2021 09:11:33 +0200
+Subject: [PATCH] Patches
+
+---
+ cmake/CMakeLists.txt                   |  6 ++++--
+ cmake/Modules/FindMLIP.cmake           | 27 ++++++++++++++++++++++++++
+ cmake/Modules/Packages/USER-MLIP.cmake |  2 ++
+ 3 files changed, 33 insertions(+), 2 deletions(-)
+ create mode 100644 cmake/Modules/FindMLIP.cmake
+ create mode 100644 cmake/Modules/Packages/USER-MLIP.cmake
+
+diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
+index a778c89d42e..23a3140fbbf 100644
+--- a/cmake/CMakeLists.txt
++++ b/cmake/CMakeLists.txt
+@@ -269,7 +269,9 @@ set(STANDARD_PACKAGES
+   UEF
+   VORONOI
+   VTK
+-  YAFF)
++  YAFF
++  USER-VCSGC
++  USER-MLIP)
+ 
+ set(SUFFIX_PACKAGES CORESHELL GPU KOKKOS OPT INTEL OPENMP)
+ 
+@@ -473,7 +475,7 @@ else()
+ endif()
+ 
+ foreach(PKG_WITH_INCL KSPACE PYTHON ML-IAP VORONOI COLVARS ML-HDNNP MDI MOLFILE NETCDF
+-        PLUMED QMMM ML-QUIP SCAFACOS MACHDYN VTK KIM LATTE MSCG COMPRESS ML-PACE)
++        PLUMED QMMM ML-QUIP SCAFACOS MACHDYN VTK KIM LATTE MSCG COMPRESS ML-PACE USER-MLIP)
+   if(PKG_${PKG_WITH_INCL})
+     include(Packages/${PKG_WITH_INCL})
+   endif()
+diff --git a/cmake/Modules/FindMLIP.cmake b/cmake/Modules/FindMLIP.cmake
+new file mode 100644
+index 00000000000..97c229ef148
+--- /dev/null
++++ b/cmake/Modules/FindMLIP.cmake
+@@ -0,0 +1,27 @@
++# - Find mlip
++# Find the native MLIP libraries.
++#
++#  MLIP_LIBRARIES    - List of libraries of the MLIP package
++#  MLIP_FOUND        - True if MLIP library was found.
++#
++
++find_library(MLIP_LIBRARY NAMES mlip)
++
++include(FindPackageHandleStandardArgs)
++# handle the QUIETLY and REQUIRED arguments and set MLIP_FOUND to TRUE
++# if all listed variables are TRUE
++
++find_package_handle_standard_args(MLIP DEFAULT_MSG MLIP_LIBRARY)
++
++# Copy the results to the output variables and target.
++if(MLIP_FOUND)
++  set(MLIP_LIBRARIES ${MLIP_LIBRARY})
++
++  if(NOT TARGET MLIP::MLIP)
++    add_library(MLIP::MLIP UNKNOWN IMPORTED)
++    set_target_properties(MLIP::MLIP PROPERTIES
++      IMPORTED_LOCATION "${MLIP_LIBRARY}")
++  endif()
++endif()
++
++mark_as_advanced(MLIP_LIBRARY)
+diff --git a/cmake/Modules/Packages/USER-MLIP.cmake b/cmake/Modules/Packages/USER-MLIP.cmake
+new file mode 100644
+index 00000000000..15df686bdc4
+--- /dev/null
++++ b/cmake/Modules/Packages/USER-MLIP.cmake
+@@ -0,0 +1,2 @@
++find_package(MLIP REQUIRED)
++target_link_libraries(lammps PRIVATE MLIP::MLIP)

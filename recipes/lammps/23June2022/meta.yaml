@@ -1,0 +1,99 @@
+# adapted from https://github.com/conda-forge/lammps-feedstock to include additional packages, no python
+{% set build = 1000 %}
+{% set name = "lammps" %}
+{% set version = "stable_23Jun2022_update1" %}
+{% set sha256 = "58e3b2b984f8935bb0db5631e143be2826c45ffd48844f7c394f36624a3e17a2" %}
+{% set date = datetime.datetime.strptime(version.split('_')[1], "%d%b%Y") %}
+{% set conda_version = "2022.06.23" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ conda_version }}
+
+source:
+  - fn: {{ name }}-{{ conda_version }}.tar.gz
+    url: https://github.com/lammps/lammps/archive/{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+    patches:
+      - macos_install.patch
+      - vcsgc_mtp_n2p2.patch
+      - mliappy.patch
+      - fix-cython.patch
+  - fn: lammps-plugins.tar.gz
+    url: https://github.com/lammps/lammps-plugins/archive/{{ version }}.tar.gz
+    sha256: 6d8bd8bc29cfebfddf215232acce910eaef403032ea8e276745455446875f1ac
+    folder: lammps-plugins
+  - fn: mlip.tar.gz
+    url: https://gitlab.com/ashapeev/interface-lammps-mlip-2/-/archive/dd71d892c590fe79c9800946dc8984de91c05480/interface-lammps-mlip-2-master.tar.gz
+    sha256: ee720576097469e2c66db75625362a5e649a64fff7bddc9d0e36959bce4d72ff
+    folder: mlip
+    patches:
+      - mlip.patch
+
+build:
+  number: {{ build }}
+  string: h{{ PKG_HASH }}_{{ mpi }}_{{ build }}
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - cmake
+    - make
+    - pkg-config
+
+  host:
+    - openmpi
+    - zlib
+    - fftw
+    - hdf5
+    - libpng
+    - libcblas  # [linux]
+    - libblas  # [linux]
+    - liblapack  # [linux]
+    - libnetcdf
+    - kim-api
+    - libcurl
+    - mlip  # [linux]
+    - n2p2 =2.2.0  # [linux]
+    - quippy =0.9.12  # [linux]
+    - voro
+    - plumed
+    - ffmpeg
+
+  run:
+    - openmpi
+    - kim-api
+    - mlip  # [linux]
+    - n2p2 =2.2.0  # [linux]
+    - quippy =0.9.12  # [linux]
+    - voro
+    - plumed
+    - ffmpeg
+
+test:
+  commands:
+    - mpiexec -n 1 lmp -help
+
+about:
+  home: http://lammps.sandia.gov
+  license: GPL-2.0-only
+  license_family: GPL
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: 'LAMMPS stands for Large-scale Atomic/Molecular Massively Parallel Simulator.'
+
+  description: |
+    LAMMPS is a classical molecular dynamics simulation code designed to
+    run efficiently on parallel computers.  It was developed at Sandia
+    National Laboratories, a US Department of Energy facility, with
+    funding from the DOE.  It is an open-source code, distributed freely
+    under the terms of the GNU Public License (GPL).
+  doc_url: http://lammps.sandia.gov/doc/Manual.html
+  dev_url: https://github.com/lammps/lammps
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_not_use_fn

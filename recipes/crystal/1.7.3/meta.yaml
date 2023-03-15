@@ -18,13 +18,13 @@ source:
     folder: binary
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
 
 requirements:
   run:
-    - crystal-compiler
-    - shards
+    - crystal-compiler {{ version }}
+    - shards {{ shards_version }}
 
 outputs:
   - name: crystal-binary

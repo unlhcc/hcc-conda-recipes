@@ -1,7 +1,7 @@
 # OneAPI compilers
 {% set name = "intel-oneapi" %}
 {% set version = "2021.6.0" %}
-{% set build = 0 %}
+{% set build = 1 %}
 {% set sha256 = "a29d808cd2fb67c38b3c13e9646dd2154da4d9b458423c25e61c15bb12279f6b" %}
 
 package:
@@ -98,3 +98,4 @@ extra:
     - should_use_compilers
     - missing_tests
     - should_be_noarch_generic
+    - build_number_needs_reset

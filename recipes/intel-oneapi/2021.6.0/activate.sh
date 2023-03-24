@@ -80,6 +80,7 @@ fi
 
 export CC=/opt/anaconda1anaconda2anaconda3/bin/icc CXX=/opt/anaconda1anaconda2anaconda3/bin/icpc CPP="/opt/anaconda1anaconda2anaconda3/bin/icc -E"
 export FC=/opt/anaconda1anaconda2anaconda3/bin/ifort F77=/opt/anaconda1anaconda2anaconda3/bin/ifort F90=/opt/anaconda1anaconda2anaconda3/bin/ifort
+export CPLUS_INCLUDE_PATH=/opt/anaconda1anaconda2anaconda3/x86_64-conda-linux-gnu/include/c++/$(gcc -dumpversion)
 export CFLAGS="-march=nocona -mtune=haswell -fPIC -fstack-protector-strong -O2 -ffunction-sections -isystem /opt/anaconda1anaconda2anaconda3/x86_64-conda-linux-gnu/sysroot/usr/include"
 export DEBUG_CFLAGS="-march=nocona -mtune=haswell -fPIC -fstack-protector-all -O0 -g -Wall -ffunction-sections -isystem /opt/anaconda1anaconda2anaconda3/x86_64-conda-linux-gnu/sysroot/usr/include"
 export CXXFLAGS="-march=nocona -mtune=haswell -fPIC -fstack-protector-strong -O2 -ffunction-sections  -isystem /opt/anaconda1anaconda2anaconda3/x86_64-conda-linux-gnu/sysroot/usr/include"

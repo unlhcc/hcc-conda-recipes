@@ -10,8 +10,7 @@ set +u
 [[ -z $DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK  ]] && DISABLE_BIOCONDA_UTILS_BUILD_GIT_RANGE_CHECK="false"
 set -u
 
-# avoid unbound var error on libxml2 activation
-export XML_CATALOG_FILES=""
+export xml_catalog_files_libxml2=""
 
 export PS1="[\u@\h \W]\$ "
 source $ANACONDA_PREFIX/etc/profile.d/conda.sh

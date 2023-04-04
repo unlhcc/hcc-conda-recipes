@@ -1,7 +1,7 @@
 # OneAPI compilers
 {% set name = "intel-oneapi" %}
 {% set version = "2021.6.0" %}
-{% set build = 1 %}
+{% set build = 2 %}
 {% set sha256 = "a29d808cd2fb67c38b3c13e9646dd2154da4d9b458423c25e61c15bb12279f6b" %}
 
 package:
@@ -21,6 +21,8 @@ outputs:
   - name: oneapi
     script: build-oneapi.sh
     build:
+      features:
+        - oneapi
       run_exports:
         - {{ pin_subpackage('oneapi', min_pin='x.x.x', max_pin='x') }}
       detect_binary_files_with_prefix: False
@@ -31,6 +33,8 @@ outputs:
   - name: icc_linux-64
     version: {{ version }}
     build:
+      features:
+        - oneapi
       script: echo "icc build"
       run_exports:
         strong:
@@ -50,6 +54,8 @@ outputs:
   - name: icpc_linux-64
     version: {{ version }}
     build:
+      features:
+        - oneapi
       script: echo "icpc build"
       run_exports:
         strong:
@@ -69,6 +75,8 @@ outputs:
   - name: ifort_linux-64
     version: {{ version }}
     build:
+      features:
+        - oneapi
       script: echo "ifort build"
       run_exports:
         strong:

@@ -1,0 +1,75 @@
+{% set name = "LS-BSR" %}
+{% set version = "0.0.2022.11.15" %}
+{% set rev = "2c35a01" %}
+{% set sha256 = "d80af8778333de05766288761f8ce910503ec91b34101b46d3cfcdd62e4cc79a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/jasonsahl/LS-BSR/archive/{{ rev }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - setup.patch
+    - python.patches
+
+build: 
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - pip
+    - python <=3.9
+  run:
+    - python <=3.9
+    - blast 
+    - vsearch 
+    - cd-hit 
+    - prodigal 
+    - ucsc-blat 
+    - diamond 
+    - biopython 
+    - mmseqs2 
+    - pandas
+    - scipy
+    - numpy
+    - scikit-bio
+
+test:
+  imports:
+    - ls_bsr
+  commands:
+    - ls_bsr.py --help
+    - annotate_matrix_by_locus_tags.py --help
+    - BSR_to_cluster_dendrogram.py --help
+    - BSR_to_gene_accumulation_scatter.py --help
+    - BSR_to_PANGP.py --help
+    - BSR_to_scoary.py --help
+    - compare_BSR.py --help
+    - extract_core_genome.py --help
+    - extract_locus_tags.py --help
+    - extract_tree_names.py --help
+    - filter_BSR_variome.py --help
+    - filter_column_BSR.py --help
+    - invert_select_group.py --help
+    - isolate_uniques_BSR.py --help
+    - pan_genome_stats.py --help
+    - quantify_BSR_uniques.py --help
+    - reorder_BSR_matrix_by_tree.py --help
+    - reorder_matrix_by_list.py --help
+    - select_seqs_by_IDs.py --help
+    - slice_ref_genome.py --help
+    - transfer_annotation.py --help
+
+about:
+  home: https://github.com/jasonsahl/LS-BSR
+  license: GPL-3
+  license_family: GPL
+  license_file: license.txt
+  summary: Large scale Blast Score Ratio (BSR) analysis.
+
+extra:
+  identifiers:
+    - doi:10.7717/peerj.332

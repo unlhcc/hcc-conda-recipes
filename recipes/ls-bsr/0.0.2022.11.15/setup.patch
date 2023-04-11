@@ -1,0 +1,13 @@
+--- setup.py.old	2023-04-10 18:00:00.135028129 -0500
++++ setup.py	2023-04-10 18:00:19.212111371 -0500
+@@ -16,8 +16,8 @@
+ # Fields marked as "Optional" may be commented out.
+ 
+ setup(
+-    name=os.getenv('PKG_NAME', 'ls_bsr'),
+-    version=os.getenv('PKG_VERSION', 'dev'),
++    name='LS-BSR',
++    version='0.0.2022.11.15',
+     description='Large scale blast score ratio',
+ 
+     # This is an optional longer description of your project that represents

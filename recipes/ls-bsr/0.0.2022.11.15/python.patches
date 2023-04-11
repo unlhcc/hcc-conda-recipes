@@ -1,0 +1,171 @@
+--- tools/annotate_matrix_by_locus_tags.py.old	2023-04-09 23:03:30.319459286 -0500
++++ tools/annotate_matrix_by_locus_tags.py	2023-04-09 23:03:42.692511845 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """annotate a BSR matrix,
+ based on a GenBank file"""
+--- tools/BSR_to_cluster_dendrogram.py.old	2023-04-09 23:03:30.320459290 -0500
++++ tools/BSR_to_cluster_dendrogram.py	2023-04-09 23:03:58.855580490 -0500
+@@ -1,4 +1,5 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import sys
+ import optparse
+ try:
+--- tools/BSR_to_gene_accumulation_scatter.py.old	2023-04-09 23:03:30.322459298 -0500
++++ tools/BSR_to_gene_accumulation_scatter.py	2023-04-09 23:04:10.680630728 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """Sub-samples a LS-BSR matrix
+ and creates data that can generate
+--- tools/BSR_to_PANGP.py.old	2023-04-09 23:03:30.323459303 -0500
++++ tools/BSR_to_PANGP.py	2023-04-09 23:04:26.032695938 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """Converts a LS-BSR matrix
+ into a format that can be read
+--- tools/compare_BSR.py.old	2023-04-09 23:03:30.327459320 -0500
++++ tools/compare_BSR.py	2023-04-09 23:04:50.111798214 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """compares BSR values between two groups in a BSR matrix
+ Numpy and BioPython need to be installed.  Python version must be at
+--- tools/extract_core_genome.py.old	2023-04-09 23:03:30.328459324 -0500
++++ tools/extract_core_genome.py	2023-04-09 23:05:00.401841917 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """If given core seqs and a
+ set of genomes, extract the core
+--- tools/extract_locus_tags.py.old	2023-04-09 23:03:30.330459333 -0500
++++ tools/extract_locus_tags.py	2023-04-09 23:05:09.481880489 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """If given a GenBank file,
+ extract the locus tags into
+--- tools/extract_tree_names.py.old	2023-04-09 23:03:30.331459337 -0500
++++ tools/extract_tree_names.py	2023-04-09 23:05:21.761932655 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from Bio import Phylo
+ from optparse import OptionParser
+--- tools/filter_BSR_variome.py.old	2023-04-09 23:03:30.333459346 -0500
++++ tools/filter_BSR_variome.py	2023-04-09 23:05:33.880984129 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """removes conserve ORFs, so we are only looking at
+ the variable region of the pan-genome"""
+--- tools/filter_column_BSR.py.old	2023-04-09 23:03:30.334459350 -0500
++++ tools/filter_column_BSR.py	2023-04-09 23:05:44.886030873 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """from a BSR matrix, filter
+ out un-desired genomes"""
+--- tools/invert_select_group.py.old	2023-04-09 23:03:30.336459358 -0500
++++ tools/invert_select_group.py	2023-04-09 23:05:53.916069238 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from sys import argv
+ import sys
+--- tools/isolate_uniques_BSR.py.old	2023-04-09 23:03:30.337459363 -0500
++++ tools/isolate_uniques_BSR.py	2023-04-09 23:06:03.644110554 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """extract only the unique IDs from a BSR matrix"""
+ 
+--- tools/pan_genome_stats.py.old	2023-04-09 23:03:30.339459371 -0500
++++ tools/pan_genome_stats.py	2023-04-09 23:06:13.097150704 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """calculate several pan-genome type stats
+ from a BSR matrix"""
+--- tools/quantify_BSR_uniques.py.old	2023-04-09 23:03:30.340459376 -0500
++++ tools/quantify_BSR_uniques.py	2023-04-09 23:06:23.511194939 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/env/bin python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """from a BSR matrix, report back
+ the number of unique CDS regions
+--- tools/reorder_BSR_matrix_by_tree.py.old	2023-04-09 23:03:30.342459384 -0500
++++ tools/reorder_BSR_matrix_by_tree.py	2023-04-09 23:06:34.177240248 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """re-orders a BSR matrix, based on a user-defined
+ list of genomes.  This will typically be associated
+--- tools/reorder_matrix_by_list.py.old	2023-04-09 23:03:30.343459389 -0500
++++ tools/reorder_matrix_by_list.py	2023-04-09 23:06:42.610276063 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """re-orders a BSR matrix, based on a user-defined
+ list of genomes.  This will typically be associated
+--- tools/select_seqs_by_IDs.py.old	2023-04-09 23:03:30.345459397 -0500
++++ tools/select_seqs_by_IDs.py	2023-04-09 23:06:52.230316927 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """takes a list of record.ids and returns to you the sequences
+ from a fasta list that are part of the list"""
+--- tools/slice_ref_genome.py.old	2023-04-09 23:03:30.346459401 -0500
++++ tools/slice_ref_genome.py	2023-04-09 23:07:03.263363792 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """splits a reference sequence into chunks of N size,
+ with a provided step size"""
+--- tools/transfer_annotation.py.old	2023-04-09 23:03:30.348459410 -0500
++++ tools/transfer_annotation.py	2023-04-09 23:07:14.542411703 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """transfer annotation onto centroids"""
+ 
+--- ls_bsr.py.old	2023-04-09 23:02:42.367255607 -0500
++++ ls_bsr.py	2023-04-09 23:03:11.852380844 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """Calculate the BSR value for all predicted CDSs
+ in a set of genomes in fasta format.
+--- tools/BSR_to_scoary.py.old	2023-04-11 00:17:10.765274360 -0500
++++ tools/BSR_to_scoary.py	2023-04-11 00:17:23.967339088 -0500
+@@ -1,6 +1,4 @@
+-"""BSR to Scoary"""
+-
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from __future__ import print_function
+ from optparse import OptionParser

@@ -1,0 +1,42 @@
+{% set name = "cudatoolkit" %}
+{% set version = "11.6.0" %}
+{% set sha256 = "1783da6d63970786040980b57fa3cb6420142159fc7d0e66f8f05c4905d98c83" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://developer.download.nvidia.com/compute/cuda/11.6.0/local_installers/cuda_11.6.0_510.39.01_linux.run
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+  detect_binary_files_with_prefix: False
+  binary_relocation: False
+  missing_dso_whitelist:
+    - '*/ld-linux-x86-64.so.2'
+    - '*/libc.so.6'
+    - '*/libm.so.6'
+    - '*/libpthread.so.0'
+    - '*/librt.so.1'
+    - '*/libutil.so.1'
+    - '*/libdl.so.2'
+
+test:
+  commands:
+    - nvcc --version
+
+about:
+  home: https://developer.nvidia.com/cuda-toolkit
+  license: PROPRIETARY
+  license_file: EULA.txt
+  summary: 'NVIDIA CUDA Toolkit'
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_be_noarch_generic
+    - build_number_needs_bump
+

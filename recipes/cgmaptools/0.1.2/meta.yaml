@@ -1,0 +1,84 @@
+{% set name = "CGmapTools" %}
+{% set version = "0.1.2" %}
+{% set sha256 = "afcf3d7192e74bda94ec473c46de8406b56470463c3c75fcc3dce56d646c288c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/guoweilong/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - path.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - zlib
+    - samtools 0.1.17
+  host:
+    - zlib
+    - samtools 0.1.17
+    - bamtools
+  run:
+    - r-base
+    - r-gplots 
+    - r-optparse 
+    - r-rcolorbrewer
+    - python <3
+    - scipy
+    - matplotlib-base
+    - numpy
+    - perl
+    - samtools
+
+test:
+  commands:
+    - cgmaptools -h
+    - ATCGmapCovInBins --help
+    - ATCGmapStatCov --help
+    - ATCGmapToCGmapWig --help
+    - BismarkToCGmap --help
+    - CGmapCovInBins --help
+    - CGmapFillContext --help
+    - CGmapFillIndex --help
+    - CGmapInterDiffReg --help
+    - CGmapInterDiffSite --help
+    - CGmapIntersect --help
+    - CGmapMerge --help
+    - CGmapMethInBins --help
+    - CGmapSelectBySite --help
+    - CGmapsMethInBins --help
+    - CGmapSplitByChr --help
+    - CGmapStatCov --help
+    - CGmapStatMeth --help
+    - CGmapToRegion --help
+    - CGmapToWig --help
+    - FindCCGG --help
+    - FragRegFromBED --help
+    - MergeListOfCGmap --help
+    - SNVFromATCGmap --help
+    - Sort_chr_pos --help
+    - ASM -h 2>&1 | grep "USAGE" > /dev/null 
+    - mCTanghulu -h 2>&1 | grep "USAGE" > /dev/null 
+    - mCBinHeatmap --help
+    - mCFragRegView --help
+    - mCLollipop --help
+ 
+about:
+  home: https://github.com/guoweilong/cgmaptools
+  license: None
+  license_file: ''
+  summary: Command-line Toolset for Bisulfite Sequencing Data Analysis
+  dev_url: https://github.com/guoweilong/cgmaptools
+  doc_url: https://cgmaptools.github.io
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/btx595

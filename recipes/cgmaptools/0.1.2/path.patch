@@ -1,0 +1,249 @@
+--- src/ATCGmapCovInBins.py.old	2023-04-14 20:40:17.619506481 -0500
++++ src/ATCGmapCovInBins.py	2023-04-14 20:43:23.914321505 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - ATCGmapCovInBins.py
+--- src/ATCGmapStatCov.py.old	2023-04-14 20:40:17.621506490 -0500
++++ src/ATCGmapStatCov.py	2023-04-14 20:43:23.916321514 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - ATCGmapStatCov.py
+--- src/ATCGmapToCGmapWig.py.old	2023-04-14 20:40:17.622506494 -0500
++++ src/ATCGmapToCGmapWig.py	2023-04-14 20:43:23.918321523 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - ATCGmapToCGmapWig.py
+--- src/BismarkToCGmap.py.old	2023-04-14 20:40:17.624506503 -0500
++++ src/BismarkToCGmap.py	2023-04-14 20:43:23.920321532 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapToWig.py
+--- src/CGmapCovInBins.py.old	2023-04-14 20:40:17.625506507 -0500
++++ src/CGmapCovInBins.py	2023-04-14 20:43:23.922321540 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapCovInBins.py
+--- src/CGmapFillContext.py.old	2023-04-14 20:40:17.627506515 -0500
++++ src/CGmapFillContext.py	2023-04-14 20:43:23.924321549 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapFIllContext.py
+--- src/CGmapFillIndex.py.old	2023-04-14 20:40:17.629506524 -0500
++++ src/CGmapFillIndex.py	2023-04-14 20:43:23.926321558 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapFillIndex.py
+--- src/CGmapInterDiffReg.py.old	2023-04-14 20:40:17.630506528 -0500
++++ src/CGmapInterDiffReg.py	2023-04-14 20:43:23.928321567 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapInterDiffReg.py
+--- src/CGmapInterDiffSite.py.old	2023-04-14 20:40:17.632506537 -0500
++++ src/CGmapInterDiffSite.py	2023-04-14 20:43:23.930321576 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapInterDiffSite.py
+--- src/CGmapIntersect.py.old	2023-04-14 20:40:17.633506541 -0500
++++ src/CGmapIntersect.py	2023-04-14 20:43:23.932321584 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapIntersect.py
+--- src/CGmapMerge.py.old	2023-04-14 20:40:17.635506550 -0500
++++ src/CGmapMerge.py	2023-04-14 20:43:23.934321593 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapMerge.py
+--- src/CGmapMethInBins.py.old	2023-04-14 20:40:17.637506558 -0500
++++ src/CGmapMethInBins.py	2023-04-14 20:43:23.936321602 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapMethInBins.py
+--- src/CGmapSelectBySite.py.old	2023-04-14 20:40:17.638506563 -0500
++++ src/CGmapSelectBySite.py	2023-04-14 20:43:23.938321611 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapSelectBySite.py
+--- src/CGmapsMethInBins.py.old	2023-04-14 20:40:17.640506571 -0500
++++ src/CGmapsMethInBins.py	2023-04-14 20:43:23.941321624 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapsMethInBins.py
+--- src/CGmapSplitByChr.py.old	2023-04-14 20:40:17.641506575 -0500
++++ src/CGmapSplitByChr.py	2023-04-14 20:43:23.943321633 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapSlitByChr.py
+--- src/CGmapStatCov.py.old	2023-04-14 20:40:17.643506584 -0500
++++ src/CGmapStatCov.py	2023-04-14 20:43:23.945321642 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapSplitByChr.py
+--- src/CGmapStatMeth.py.old	2023-04-14 20:40:17.644506588 -0500
++++ src/CGmapStatMeth.py	2023-04-14 20:43:23.947321651 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapStatMeth.py
+--- src/CGmapToRegion.py.old	2023-04-14 20:40:17.646506597 -0500
++++ src/CGmapToRegion.py	2023-04-14 20:43:23.949321659 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapToRegion.py
+--- src/CGmapToWig.py.old	2023-04-14 20:40:17.647506601 -0500
++++ src/CGmapToWig.py	2023-04-14 20:43:23.951321668 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - CGmapToWig.py
+--- src/FindCCGG.py.old	2023-04-14 20:40:17.649506610 -0500
++++ src/FindCCGG.py	2023-04-14 20:43:24.022321980 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - FindCCGG.py
+--- src/FragRegFromBED.py.old	2023-04-14 20:40:17.650506614 -0500
++++ src/FragRegFromBED.py	2023-04-14 20:43:24.024321988 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - FragRegFromBED.py
+--- src/MergeListOfCGmap.py.old	2023-04-14 20:40:17.652506623 -0500
++++ src/MergeListOfCGmap.py	2023-04-14 20:43:24.026321997 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - MergeListOfCGmap.py
+--- src/SNVFromATCGmap.py.old	2023-04-14 20:40:17.653506627 -0500
++++ src/SNVFromATCGmap.py	2023-04-14 20:43:24.029322010 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - SNVFromATCGmap.py
+--- src/Sort_chr_pos.py.old	2023-04-14 20:40:17.655506636 -0500
++++ src/Sort_chr_pos.py	2023-04-14 20:43:24.031322019 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools - Sort_chr_pos.py
+--- src/mCBinHeatmap.R.old	2023-04-14 20:40:30.419562472 -0500
++++ src/mCBinHeatmap.R	2023-04-14 20:45:27.194862307 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # cgmaptools - mCBinHeatmap.R
+ # 
+--- src/mCFragRegView.R.old	2023-04-14 20:40:30.420562477 -0500
++++ src/mCFragRegView.R	2023-04-14 20:45:27.196862316 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ # cgmaptools - mCFragRegView.R
+ #
+--- src/mCLollipop.R.old	2023-04-14 20:40:30.422562485 -0500
++++ src/mCLollipop.R	2023-04-14 20:45:27.199862329 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ 
+ 
+ 
+--- src/ASM.pl.old	2023-04-14 20:40:22.211526563 -0500
++++ src/ASM.pl	2023-04-14 20:44:39.601653137 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # cgmaptools - ASM.pl
+ #
+--- src/mCTanghulu.pl.old	2023-04-14 20:40:22.212526567 -0500
++++ src/mCTanghulu.pl	2023-04-14 20:44:39.604653151 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # cgmaptools - mCTanghulu.pl
+ #
+--- cgmaptools.old	2023-04-15 00:20:07.346566364 -0500
++++ cgmaptools	2023-04-15 00:20:45.998732689 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+     cgmaptools
+@@ -33,7 +33,7 @@
+ #print sys.argv[0]
+ #print sys.argv[1]
+ #print sys.argv[-1]
+-DIR=os.path.dirname(sys.argv[0])
++DIR=os.getenv('PREFIX')
+ #print DIR
+ 
+ import subprocess

@@ -6,6 +6,8 @@ export CFLAGS="$CFLAGS -I$PREFIX/include"
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
 export CPATH=${PREFIX}/include
 
+# based on install.sh script
+
 # copy main script
 cp cgmaptools ${PREFIX}/bin
 
@@ -31,3 +33,13 @@ pn=`basename $file | cut -d"." -f1`
 cp $file ${PREFIX}/bin/$pn
 chmod +x ${PREFIX}/bin/$pn
 done
+
+# set variable
+mkdir -p ${PREFIX}/etc/conda/activate.d ${PREFIX}/etc/conda/deactivate.d
+cat <<EOF >> ${PREFIX}/etc/conda/activate.d/cgmaptools-activate.sh
+export CGMAPTOOLS_SCRIPTS=${PREFIX}
+EOF
+
+cat <<EOF >> ${PREFIX}/etc/conda/deactivate.d/cgmaptools-deactivate.sh
+unset CGMAPTOOLS_SCRIPTS
+EOF

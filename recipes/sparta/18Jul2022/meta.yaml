@@ -1,0 +1,56 @@
+{% set name = "Sparta" %}
+{% set version = "18Jul2022" %}
+{% set sha256 = "f292107b42071eea66c62dad9b8511fd3b271789af853114c9d389cff16e59e3" %}
+{% set build = 0 %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: {{ build }}
+  string: mpi_openmpi_h{{ PKG_HASH }}_{{ build }}
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - binutils
+    - make
+    - cmake
+
+  host:
+    - openmpi
+    - libpng
+    - jpeg
+    - zlib
+    - kokkos
+    - mkl
+    - mkl-devel
+
+  run:
+    - openmpi
+
+test:
+  commands:
+    run_test.sh
+ 
+about:
+  home: https://sparta.github.io/
+  license: GPL
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'Stochastic PArallel Rarefied-gas Time-accurate Analyzer.'
+
+  description: SPARTA is a parallel DSMC or Direct Simulation Monte Carlo code for performing simulations of low-density gases in 2d or 3d. Particles advect through a hierarchical Cartesian grid that overlays the simulation box. The grid is used to group particles by grid cell for purposes of performing collisions and chemistry. Physical objects with triangulated surfaces can be embedded in the grid, creating cut and split grid cells. The grid is also used to efficiently find particle/surface collisions. 
+  doc_url: https://sparta.github.io/doc/Manual.html
+  dev_url: https://github.com/sparta/sparta
+
+extra:
+  skip-lints:
+    - in_other_channels
+

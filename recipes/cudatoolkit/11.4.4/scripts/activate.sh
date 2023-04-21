@@ -32,6 +32,11 @@ then
   export CMAKE_ARGS_CONDA_NVCC_BACKUP="${CMAKE_ARGS:-}"
 fi
 
+if [[ ! -z "${XLA_FLAGS+x}" ]]
+then
+  export XLA_FLAGS_CONDA_NVCC_BACKUP="${XLA_FLAGS:-}"
+fi
+
 CUDA_HOME=/opt/anaconda1anaconda2anaconda3
 
 if [[ ! -d "${CUDA_HOME}" ]]
@@ -50,6 +55,7 @@ export CUDA_HOME="${CUDA_HOME}"
 export CFLAGS="${CFLAGS} -isystem ${CUDA_HOME}/include"
 export CPPFLAGS="${CPPFLAGS} -isystem ${CUDA_HOME}/include"
 export CXXFLAGS="${CXXFLAGS} -isystem ${CUDA_HOME}/include"
+export XLA_FLAGS="--xla_gpu_cuda_data_dir=/opt/anaconda1anaconda2anaconda3"
 
 ### CMake configurations
 

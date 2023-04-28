@@ -1,0 +1,8 @@
+--- make/ln-if-absent.org	2023-04-27 19:14:27.380594463 -0500
++++ make/ln-if-absent	2023-04-27 19:15:28.539461801 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/csh -f
++#!/usr/bin/env tcsh
+ # NOTE:  use "/bin/tcsh" above if "/bin/csh" is absent (e.g. on QNX OS)
+ #        use a "ln-if-absent.beos" on the BeOS platform (rename it to ln-if-absent)
+ #

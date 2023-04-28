@@ -1,0 +1,11 @@
+--- build_mgblast.sh.org	2023-04-27 19:45:34.888580762 -0500
++++ build_mgblast.sh	2023-04-27 19:45:44.065561033 -0500
+@@ -8,7 +8,7 @@
+ 
+ case "$os" in
+   *Linux*)
+-     if [ "$mtype" == *x86_64* ]; then
++     if [[ "$mtype" == *x86_64* ]]; then
+        platform=linux64
+      else
+        platform=linux

@@ -1,0 +1,22 @@
+--- platform/linux64.ncbi.mk.org	2023-04-27 19:19:36.902923090 -0500
++++ platform/linux64.ncbi.mk	2023-04-27 19:25:07.218214986 -0500
+@@ -4,7 +4,7 @@
+ NCBI_DEFAULT_LCL = lnx
+ NCBI_MAKE_SHELL = /bin/sh
+ NCBI_AR=ar
+-NCBI_CC = gcc -pipe
++NCBI_CC = ${CC} -pipe
+ NCBI_CFLAGS1 = -c
+ NCBI_LDFLAGS1 = -O3
+ NCBI_OPTFLAG = -O3
+@@ -38,8 +38,8 @@
+ 
+ # uncomment (and change appropriately) these lines to build PNG
+ # output support into Cn3D (OpenGL version only)
+-#LIBPNG_DIR = /home/paul/Programs/libpng
+-#ZLIB_DIR = /home/paul/Programs/zlib
++LIBPNG_DIR = ${PREFIX}
++ZLIB_DIR = ${PREFIX}
+ 
+ NCBI_LBSM_SRC = ncbi_lbsmd_stub.c
+ NCBI_LBSM_OBJ = ncbi_lbsmd_stub.o

@@ -1,0 +1,42 @@
+{% set name = "mgblast" %}
+{% set version = "2.2.14" %}
+{% set commit = "d06af0c" %}
+{% set sha256 = "51acc9a94e5f42306f4b2678974dce66c645c508b2ce1cf62e320dfc880e3932" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/gpertea/mgblast/archive/{{ commit }}.zip
+  sha256: {{ sha256 }}
+  patches:
+    - 001-csh.patch
+    - 002-platform.patch
+    - 003-mtype.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - tcsh
+  host:
+    - libpng
+    - zlib
+    - gnutls
+  run:
+
+test:
+  commands:
+    - mgblast 2>&1 | grep mgblast
+ 
+about:
+  home: https://github.com/gpertea/mgblast
+  license: OTHER
+  license_family: OTHER
+  summary: 'fast all-vs-all DNA alignment tool, modification of megablast from a 2006 version of NCBI C Toolkit'
+  dev_url: https://github.com/gpertea/mgblast

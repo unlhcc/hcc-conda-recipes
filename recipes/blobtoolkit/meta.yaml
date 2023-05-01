@@ -1,0 +1,57 @@
+{% set name = "BlobToolKit" %}
+{% set version = "4.1.4" %}
+{% set sha256 = "4c0efd68b4635bd198b7bef4287b70fe6d002b2b2d13e08309fa0fc261dafc2b" %}
+        
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/blobtoolkit/{{ name|lower }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.7,<3.12
+    - pip
+  run:
+    - python >=3.7,<3.12
+    - blobtk >=0.2.3
+    - python-blobtk >=0.2.3
+    - python-chromedriver-binary
+    - docopt >=0.6.2
+    - python-fastjsonschema ==2.15.3
+    - psutil ==5.9.4
+    - pyvirtualdisplay ==3.0
+    - pyyaml
+    - selenium ==4.7.2
+    - tolkein >=0.5.0
+    - tqdm ==4.64.1
+    - ujson >=5.7.0
+    - firefox
+    - geckodriver
+
+test:
+  commands:
+    - blobtools --help 2>&1 | grep -i 'usage' > /dev/null
+    - btk --help 2>&1 | grep -i 'usage' > /dev/null
+
+about:
+  home: https://github.com/blobtoolkit/blobtoolkit
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "Interactive quality assessment of genome assemblies."
+  dev_url: https://github.com/blobtoolkit/blobtoolkit
+  doc_url: http://blobtoolkit.genomehubs.org/
+
+extra:
+  recipe-maintainers:
+    - npavlovikj
+  identifiers:
+     - doi:10.1534/g3.119.400908

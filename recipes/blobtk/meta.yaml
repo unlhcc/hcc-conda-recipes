@@ -1,0 +1,46 @@
+{% set name = "BlobTk" %}
+{% set version = "0.2.4" %}
+{% set sha256 = "c5546001802dccb52fcd0d6eeec04d7239c35b5322b2e1b9c42d67e2027c184a" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/blobtoolkit/{{ name|lower }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('rust') }}
+    - make
+    - cmake
+    - python >=3.8
+    - maturin >=0.13,<0.14
+  host:
+    - pip
+    - python >=3.8
+    - maturin >=0.13,<0.14
+  run:
+    - python >=3.8
+
+test:
+  commands:
+    - blobtk --help
+
+about:
+  home: https://github.com/blobtoolkit/blobtk
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "Core functionality shared across BlobToolKit tools."
+  dev_url: https://github.com/blobtoolkit/blobtk
+
+extra:
+  recipe-maintainers:
+    - npavlovikj

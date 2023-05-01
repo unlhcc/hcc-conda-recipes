@@ -1,0 +1,42 @@
+{% set name = "geckodriver-autoinstaller" %}
+{% set version = "0.1.0" %}
+{% set sha256 = "08953404903750a7e0905913d86eab13849c75ed61eb281c45697d9f5b5e2eb2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - geckodriver-path=geckodriver_autoinstaller.utils:print_geckodriver_path
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.0
+    - pip
+  run:
+    - python >=3.0
+
+test:
+  imports:
+    - geckodriver_autoinstaller
+  commands:
+    - geckodriver-path --help
+
+about:
+  home: https://github.com/yeongbin-jo/python-geckodriver-autoinstaller
+  summary: "Automatically install geckodriver that supports the currently installed version of chrome."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - npavlovikj

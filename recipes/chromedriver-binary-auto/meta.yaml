@@ -1,0 +1,44 @@
+{% set name = "chromedriver-binary-auto" %}
+{% set version = "0.2.3" %}
+{% set sha256 = "13b48b2ad78ae90f580b56cbc372618dabfd6844153cd652fa5670f0ef62e643" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/chromedriver-binary-auto-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - chromedriver-path=chromedriver_binary.utils:print_chromedriver_path
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  number: 0
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - python-chromedriver-binary
+    - chromedriver-binary
+
+test:
+  imports:
+    - chromedriver_binary
+  commands:
+    - chromedriver-path --help
+
+about:
+  home: https://github.com/danielkaiser/python-chromedriver-binary
+  summary: "Installer for chromedriver."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - npavlovikj

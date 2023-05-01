@@ -13,7 +13,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -24,6 +24,7 @@ requirements:
     - blobtk >=0.2.3
     - python-blobtk >=0.2.3
     - python-chromedriver-binary
+    - chromedriver-binary-auto ==0.2.3
     - docopt >=0.6.2
     - python-fastjsonschema ==2.15.3
     - psutil ==5.9.4
@@ -35,6 +36,7 @@ requirements:
     - ujson >=5.7.0
     - firefox
     - geckodriver
+    - geckodriver-autoinstaller ==0.1.0
 
 test:
   commands:

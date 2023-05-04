@@ -12,6 +12,7 @@ source:
 
 build:
   number: 0
+  skip: True  # [py<38 or osx]
 
 requirements:
   build:
@@ -20,14 +21,14 @@ requirements:
     - {{ compiler('rust') }}
     - make
     - cmake
-    - python >=3.8
+    - python
     - maturin >=0.13,<0.14
   host:
     - pip
-    - python >=3.8
+    - python
     - maturin >=0.13,<0.14
   run:
-    - python >=3.8
+    - python
 
 test:
   commands:

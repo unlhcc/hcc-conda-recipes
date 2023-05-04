@@ -12,8 +12,9 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   number: 0
+  skip: True  # [py<38 or osx]
 
 requirements:
   build:
@@ -23,11 +24,11 @@ requirements:
     - cmake
     - make
   host:
-    - python >=3.8
+    - python
     - maturin >=0.13,<0.14
     - pip
   run:
-    - python >=3.8
+    - python
 
 test:
   imports:

@@ -1,0 +1,49 @@
+{% set name = "NOMAD" %}
+{% set version = "2.0.0" %}
+{% set sha256 = "288ca65c1612cc974c48cb06b7d1d41079976e28c99dec7969851eb7fd2d06fc" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/refresh-bio/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - fixes.patch
+
+build:
+  number: 0
+  # only Linux supported, https://github.com/refresh-bio/NOMAD#compile-from-sources
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - make
+  host:
+    - python
+    - wget
+  run:
+    - python
+    - time
+    - requests
+
+test:
+  commands:
+    - nomad --help
+
+about:
+  home: https://github.com/refresh-bio/NOMAD
+  summary: "NOMAD is an unsupervised and reference-free unifying framework to discover regulated sequence variation through statistical analysis of k-mer composition in both DNA and RNA sequence."
+  # no license in repo/release, request is here https://github.com/refresh-bio/NOMAD/issues/3
+  license: OTHER
+  license_family: OTHER
+  license_file: ''
+
+extra:
+  identifiers:
+    - doi:10.1101/2022.06.24.497555
+    - doi:10.1101/2023.03.16.533008
+    - doi:10.1101/2023.03.17.533189

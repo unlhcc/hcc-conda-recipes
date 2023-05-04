@@ -1,0 +1,71 @@
+--- src/sig_anch/sig_anch.cpp.old	2023-05-04 12:10:53.773331446 -0500
++++ src/sig_anch/sig_anch.cpp	2023-05-04 12:11:06.846384808 -0500
+@@ -8,7 +8,7 @@
+ #include <algorithm>
+ #include <regex>
+ #include <memory>
+-
++#include <iterator>
+ #include "../common/version.h"
+ #include "../common/csv.h"
+ #include "../common/base_coding.h"
+--- src/nomad.py.old	2023-05-04 12:20:08.480595843 -0500
++++ src/nomad.py	2023-05-04 12:22:40.146215333 -0500
+@@ -210,7 +210,7 @@
+ def run_cmd(cmd, out, err):
+     global was_error
+     check_and_handle_error()
+-    cmd = f"/usr/bin/time -v {cmd}"
++    cmd = f"time -v {cmd}"
+     out.write(get_cur_time() + ": " + cmd + "\n")
+     out.flush()
+     p = subprocess.Popen(cmd, stderr=err,stdout=out, shell=True)
+--- Makefile.old	2023-05-04 16:30:26.458865091 -0500
++++ Makefile	2023-05-04 16:33:37.878635568 -0500
+@@ -13,7 +13,7 @@
+ 
+ OUT_BIN_DIR=bin
+ 
+-CC 	= g++
++CC 	= $CXX
+ CFLAGS	= -fPIC -Wall -O3 -m64 -std=c++17 -mavx -pthread -I $(INCLUDE_DIR) -I $(MIMALLOC_INLUCDE_DIR) -fpermissive
+ CLINK	= -lm -std=c++17 -lpthread -static-libstdc++ -lgfortran
+ 
+@@ -42,7 +42,7 @@
+ endif
+ 
+ # default install location (binary placed in the /bin folder)
+-prefix      = /usr/local
++prefix      = ${PREFIX}
+ 
+ # optional install location
+ exec_prefix = $(prefix)
+@@ -93,19 +93,19 @@
+ 	./download_kmc.sh $(OUT_BIN_DIR)
+ 
+ nomad:
+-	cp src/nomad.py bin/nomad
++	cp src/nomad.py ${PREFIX}/bin/nomad
+ 
+ install: all
+-	install bin/* /usr/local/bin
++	install bin/* ${PREFIX}/bin
+ 
+ uninstall:
+-	-rm /usr/local/bin/satc 
+-	-rm /usr/local/bin/satc_dump
+-	-rm /usr/local/bin/satc_merge
+-	-rm /usr/local/bin/sig_anch 
+-	-rm /usr/local/bin/nomad
+-	-rm /usr/local/bin/kmc
+-	-rm /usr/local/bin/kmc_tools
++	-rm ${PREFIX}/bin/satc 
++	-rm ${PREFIX}/bin/satc_dump
++	-rm ${PREFIX}/bin/satc_merge
++	-rm ${PREFIX}/bin/sig_anch 
++	-rm ${PREFIX}/bin/nomad
++	-rm ${PREFIX}/bin/kmc
++	-rm ${PREFIX}/bin/kmc_tools
+ 
+ clean:	
+ 	-rm $(SATC_MAIN_DIR)/*.o

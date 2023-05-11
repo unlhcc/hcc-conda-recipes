@@ -1,20 +1,19 @@
-{% set name = "T-COFFEE" %}
 {% set version = "13.45.0.4846264" %}
-{% set sha256 = "c8e5ba17de11ddf07cf2ed37f077d81c1432d55b77761f115f9374de6f8d0d03" %}
 
 package:
-  name: {{ name|lower }}
+  name: t-coffee
   version: {{ version }}
 
 build:
-  number: 6
-  skip: True  # [osx]
+  number: 7
 
 source:
   # The latest stable release is at http://www.tcoffee.org/Packages/Stable/Latest/ ,
   # but is then archived at http://www.tcoffee.org/Packages/Archives/
   url: https://s3.eu-central-1.amazonaws.com/tcoffee-packages/Stable/Latest/T-COFFEE_distribution_Version_{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: c8e5ba17de11ddf07cf2ed37f077d81c1432d55b77761f115f9374de6f8d0d03
+  patches:
+    - expose-os-detection.patch
 
 requirements:
   build:
@@ -70,10 +69,16 @@ requirements:
     
 test:
   commands:
-    - HOME=/tmp t_coffee --help
+    - HOME=/tmp t_coffee -version
+    # These messages don't end up getting compiled in correctly under OSX
+    - HOME=/tmp t_coffee 2>&1 | grep "kalign is  Installed"  # [not osx]
+    - HOME=/tmp t_coffee 2>&1 | grep "mafft is  Installed"  # [not osx]
+    - HOME=/tmp t_coffee 2>&1 | grep "probcons is  Installed"  # [not osx]
+    - HOME=/tmp t_coffee 2>&1 | grep "probconsRNA is  Installed"  # [not osx]
+    - HOME=/tmp t_coffee 2>&1 | grep "sap is  Installed"  # [not osx]
 
 about:
-  home: https://github.com/cbcrg/tcoffee
+  home: http://www.tcoffee.org/Projects/tcoffee/
   license: GPL-2.0-only
   license_file: license.txt
   summary: "A collection of tools for Multiple Alignments of DNA, RNA, Protein Sequence"

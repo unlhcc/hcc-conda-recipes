@@ -7,6 +7,7 @@
 # $PKG_VERSION The version of the package
 # $PKG_BUILDNUM The build number of the package
 #
+
 set -eux -o pipefail
 
 SHARE_DIR="${PREFIX}/libexec/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}"
@@ -21,7 +22,7 @@ if [ "$OS" = macosx ]
 then
     for bad_plug in probconsRNA prank
     do
-	rm -fv "${SHARE_DIR}/plugins/macosx/${bad_plug}"
+        rm -fv "${SHARE_DIR}/plugins/macosx/${bad_plug}"
     done
 fi
 

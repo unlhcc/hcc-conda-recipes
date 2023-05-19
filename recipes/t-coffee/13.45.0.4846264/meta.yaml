@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 6
+  number: 7
   skip: True  # [osx]
 
 source:
@@ -15,8 +15,6 @@ source:
   # but is then archived at http://www.tcoffee.org/Packages/Archives/
   url: https://s3.eu-central-1.amazonaws.com/tcoffee-packages/Stable/Latest/{{ name }}_distribution_Version_{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - expose-os-detection.patch
 
 requirements:
   build:
@@ -47,6 +45,7 @@ requirements:
     - tmalign
     - viennarna 2.1.9
   run:
+    - perl-xml-simple
     - blast
     - clustalo
     - clustalw

@@ -1,0 +1,86 @@
+# adapted from https://github.com/conda-forge/git-feedstock/blob/76a835d065de9e18158338b96b42c0f9bac1a08f/recipe/meta.yaml
+{% set version = "2.39.3" %}
+
+package:
+  name: git
+  version: {{ version }}
+
+source:
+  - url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-{{ version }}.tar.gz
+    folder: code
+    sha256: 2f9aa93c548941cc5aff641cedc24add15b912ad8c9b36ff5a41b1a9dcad783e
+    patches:
+      - 0001-macOS-Do-not-use-the-system-Wish-urgh.patch
+  - url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-{{ version }}.tar.gz
+    folder: manpages
+    sha256: c8377b5a3ff497d7e6377363c270931496e982509ff27a1e46956d6637671642
+  - url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-{{ version }}.tar.gz
+    folder: htmldocs
+    sha256: 2aefd34d16da12edf41aeada0fe607eab1de282998e29c702b93e3d224fb44f9
+
+build:
+  number: 0
+  # git hardcodes paths to external utilities (e.g. curl)
+  detect_binary_files_with_prefix: true
+  ignore_run_exports_from:
+    - perl 5.*
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - autoconf
+    - make
+    - tk
+    - gettext
+  host:
+    - curl
+    - expat
+    - libiconv
+    - openssl
+    - pcre2
+    - perl 5.*
+    - zlib
+  run:
+    # Without the explicit dependency on curl, it seems
+    # that linux_64 fails on the symbol lookup for curl_global_sslset
+    - curl
+    - gettext
+    - perl 5.*
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
+
+test:
+  commands:
+    # Verify git location.
+    - test -f $PREFIX/bin/git
+    - test -f $PREFIX/bin/gitk
+    - test -f $PREFIX/bin/git-credential-osxkeychain        # [osx]
+
+    # Verify interactive support.
+    - test -f $PREFIX/libexec/git-core/git-add--interactive
+
+    # Run git commands.
+    - git --version
+    - git clone https://github.com/conda-forge/git-feedstock
+
+    # Git credential commands
+    - git-credential-osxkeychain 2>&1 | grep -q usage  # [osx]
+
+    # test completions
+    - bash $PREFIX/share/bash-completion/completions/git
+
+    # confirm toplevel manpage
+    - test -f $PREFIX/man/man1/git.1
+    - test -f $PREFIX/share/man/man1/git.1  # [osx]
+
+    # confirm toplevel html doc page
+    - test -f $PREFIX/share/doc/git/index.html
+
+about:
+  home: https://git-scm.com/
+  license: GPL-2.0-or-later and LGPL-2.1-or-later
+  license_file: code/COPYING
+  summary: distributed version control system
+
+extra:
+  skip-lints:
+    - in_other_channels

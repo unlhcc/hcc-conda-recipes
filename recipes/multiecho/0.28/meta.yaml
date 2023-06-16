@@ -1,0 +1,42 @@
+{% set name = "multiecho" %}
+{% set version = "0.28" %}
+{% set sha256 = "d0459bd03398547116d8e989b2d2b7922af0ae7ae77e233794dd7253a2abced3" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - mecombine = multiecho.combination:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+  run:
+    - python >=3.6
+    - coloredlogs
+    - numpy
+    - nibabel
+
+test:
+  imports:
+    - multiecho
+  commands:
+    - mecombine --help
+
+about:
+  home: https://github.com/Donders-Institute/multiecho
+  summary: "Combine multi-echoes from a multi-echo fMRI acquisition."
+  license: Apache-2.0 AND MIT
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT

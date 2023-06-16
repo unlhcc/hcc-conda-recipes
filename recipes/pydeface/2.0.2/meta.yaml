@@ -1,0 +1,49 @@
+{% set name = "PyDeface" %}
+{% set version = "2.0.2" %}
+{% set sha256 = "662263072ccccff9929432568caf5c183075f7fbf8f9d5c170767c3202c78f36" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0]|lower }}/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - pydeface = pydeface.__main__:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.7
+    - pip
+  run:
+    - python >=3.7
+    - numpy
+    - nibabel
+    - nipype
+    - setuptools
+    - traits <6.4
+
+test:
+  imports:
+    - pydeface
+  commands:
+    - pydeface --help
+
+about:
+  home: http://poldracklab.org
+  summary: "A tool to remove facial structure from MRI images."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  doc_url: https://github.com/poldracklab/pydeface
+  dev_url: https://github.com/poldracklab/pydeface
+
+extra:
+  identifiers:
+    - doi:10.5281/zenodo.6856482

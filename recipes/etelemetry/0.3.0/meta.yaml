@@ -1,0 +1,43 @@
+{% set name = "etelemetry" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "25cb99effa393c4f36980ea4e0c8acded002aae906f947f8eaafa36855efd47c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/sensein/{{ name }}-client/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - version.patch
+
+build:
+  noarch: python
+  number: 1
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python >=3.7
+    - pip
+  run:
+    - python >=3.7
+    - requests
+    - ci-info
+
+test:
+  imports:
+    - etelemetry
+
+about:
+  home: https://github.com/sensein/etelemetry-client
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "A lightweight python client to communicate with the etelemetry server."
+  dev_url: https://github.com/sensein/etelemetry-client
+
+extra:
+  skip-lints:
+    - in_other_channels

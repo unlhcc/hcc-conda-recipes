@@ -29,7 +29,7 @@ then
 fi
 
 # When building master or bulk, upload packages to anaconda and quay.io.
-if [[  $CI_BUILD_REF_NAME == "master"  ]]
+if [[  $CI_COMMIT_REF_NAME == "master"  ]]
 then
         UPLOAD_ARG="--anaconda-upload"
         RANGE_ARG="--git-range ${CI_COMMIT_BEFORE_SHA} ${CI_COMMIT_SHA}"

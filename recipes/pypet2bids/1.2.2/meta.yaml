@@ -1,0 +1,66 @@
+{% set name = "pypet2bids" %}
+{% set version = "1.2.2" %}
+{% set sha256 = "de3898a1d12ef93f310519552ef131cd26e356d8375cfce58843b1f63ac0722a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pypet2bids-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - convert-pmod-to-blood = pypet2bids.convert_pmod_to_blood:main
+    - dcm2niix4pet = pypet2bids.dcm2niix4pet:main
+    - dcm2petbids = pypet2bids.dicom_convert:cli
+    - ecatpet2bids = pypet2bids.ecat_cli:main
+    - ispet = pypet2bids.is_pet:main
+    - pet2bids-spreadsheet-template = pypet2bids.helper_functions:write_out_module
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.8,<=3.11
+    - poetry-core >=1.0.0
+    - pip
+  run:
+    - python >=3.8,<=3.11
+    - nibabel >=3.2.1
+    - numpy >=1.21.3,<2.0.0
+    - pyparsing >=3.0.4,<4.0.0
+    - python-dateutil >=2.8.2,<3.0.0
+    - python-dotenv >=0.19.1,<0.20.0
+    - scipy >=1.7.1,<2.0.0
+    - six >=1.16.0,<2.0.0
+    - pytest >=6.2.5,<7.0.0
+    - pydicom >=2.2.2,<3.0.0
+    - openpyxl >=3.0.9,<4.0.0
+    - xlrd >=2.0.1,<3.0.0
+    - termcolor >=1.1.0,<2.0.0
+    - json-maj >=0.0.7,<0.0.8
+    - pandas >=1.4.4,<2.0.0
+    - pyxlsb >=1.0.9,<2.0.0
+    - joblib >=1.2.0,<2.0.0
+
+test:
+  imports:
+    - pypet2bids
+  commands:
+    - convert-pmod-to-blood --help
+    - dcm2niix4pet --help
+    - dcm2petbids --help
+    - ecatpet2bids --help
+    - ispet --help
+    - pet2bids-spreadsheet-template --help
+
+about:
+  home: https://pypi.org/project/pypet2bids/
+  summary: "A python implementation of an ECAT to BIDS converter."
+  license: MIT
+  license_family: MIT
+  license_file: ""
+  doc_url: https://pet2bids.readthedocs.io/en/latest/

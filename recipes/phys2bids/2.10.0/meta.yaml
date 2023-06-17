@@ -1,0 +1,48 @@
+{% set name = "phys2bids" %}
+{% set version = "2.10.0" %}
+{% set sha256 = "8d9a6559aa0d5f87d8eca930b93c393b2703fde527b5f29cc83fc51491b58d49" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/phys2bids-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - phys2bids=phys2bids.phys2bids:_main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.6
+    - setuptools >=30.3.0
+    - pip
+  run:
+    - python >=3.6
+    - numpy >=1.10,<1.24
+    - matplotlib-base >=3.1.1
+    - pyyaml >=5.1
+
+test:
+  imports:
+    - phys2bids
+  commands:
+    - phys2bids --help
+
+about:
+  home: https://github.com/physiopy/phys2bids
+  summary: "Python library to convert physiological data files into BIDS format."
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  dev_url: https://github.com/physiopy/phys2bids
+  doc_url: https://phys2bids.readthedocs.io/
+
+extra:
+  identifiers:
+    - doi:10.5281/zenodo.3470091

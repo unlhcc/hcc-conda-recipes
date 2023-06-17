@@ -1,0 +1,39 @@
+{% set name = "json-maj" %}
+{% set version = "0.0.7" %}
+{% set sha256 = "3af4da2bbb22f2890cbc48bf8790a7b49a2101290367821be128af93325f5b18" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/json_maj-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - updatejson = json_maj.cli:cli
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.5
+    - pip
+    - poetry-core >=1.0.0
+  run:
+    - python >=3.5
+
+test:
+  imports:
+    - json_maj
+  commands:
+    - updatejson --help
+
+about:
+  home: https://pypi.org/project/json-maj/
+  summary: "Updates Jsons w/ json, key pair, or entire dictionary as arguments."
+  license: MIT
+  license_family: MIT
+  license_file: ""

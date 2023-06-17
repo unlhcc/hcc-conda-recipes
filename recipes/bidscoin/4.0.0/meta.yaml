@@ -1,0 +1,94 @@
+{% set name = "BIDScoin" %}
+{% set version = "4.0.0" %}
+{% set sha256 = "3b0c26f2e250e06b6f526cdbee09517e1f339da8035c0a316609b4463d75824d" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0]|lower }}/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - bidscoin = bidscoin.bcoin:main
+    - bidseditor = bidscoin.bidseditor:main
+    - bidsmapper = bidscoin.bidsmapper:main
+    - bidscoiner = bidscoin.bidscoiner:main
+    - echocombine = bidscoin.bidsapps.echocombine:main
+    - deface = bidscoin.bidsapps.deface:main
+    - medeface = bidscoin.bidsapps.medeface:main
+    - skullstrip = bidscoin.bidsapps.skullstrip:main
+    - slicereport = bidscoin.bidsapps.slicereport:main
+    - dicomsort = bidscoin.utilities.dicomsort:main
+    - bidsparticipants = bidscoin.utilities.bidsparticipants:main
+    - rawmapper = bidscoin.utilities.rawmapper:main
+    - physio2tsv = bidscoin.utilities.physio2tsv:main
+    - plotphysio = bidscoin.utilities.plotphysio:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.8
+    - setuptools >=61.0.0
+    - pip
+  run:
+    - python >=3.8
+    - pandas
+    - matplotlib-base
+    - numpy
+    - pydicom >=2
+    - pyqt >=5.12.1
+    - ruamel.yaml >=0.15.35
+    - coloredlogs
+    - tqdm >=4.60.0
+    - multiecho >=0.25
+    - python-dateutil
+    - nibabel
+    - bids-validator
+    - pydeface
+    - pytest
+    - dcm2niix
+    - spec2nii
+    - drmaa
+    - pypet2bids
+    - bioread
+    - phys2bids
+    - pymatreader
+    - duecredit
+    - phys2bids >=2.0.0,<3.0.0
+
+test:
+  imports:
+    - bidscoin
+  commands:
+    - bidscoin --help
+    - bidseditor --help
+    - bidsmapper --help
+    - bidscoiner --help
+    - echocombine --help
+    - deface --help
+    - medeface --help
+    - skullstrip --help
+    - slicereport --help
+    - dicomsort --help
+    - bidsparticipants --help
+    - rawmapper --help
+    - physio2tsv --help
+    - plotphysio --help
+
+about:
+  home: https://github.com/Donders-Institute/bidscoin
+  summary: "Converts and organises raw MRI data-sets according to the Brain Imaging Data Structure (BIDS)."
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE.txt
+  dev_url: https://github.com/Donders-Institute/bidscoin
+  doc_url: https://bidscoin.readthedocs.io/
+
+extra:
+  identifiers:
+    - doi:10.3389/fninf.2021.770608

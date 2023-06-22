@@ -1,0 +1,33 @@
+--- create.c.old	2023-06-22 15:38:11.211956270 -0500
++++ create.c	2023-06-22 15:38:22.008008588 -0500
+@@ -4,7 +4,7 @@
+ #include <unistd.h>
+ #include <string.h>
+ 
+-#include "htslib/htslib/sam.h"
++#include "htslib/sam.h"
+ 
+ #include "dump_utils.h"
+ 
+--- lr_model_d.c.old	2023-06-22 15:40:30.647621162 -0500
++++ lr_model_d.c	2023-06-22 15:40:41.651673485 -0500
+@@ -5,7 +5,7 @@
+ #include <string.h>
+ #include <pthread.h>
+ 
+-#include "htslib/htslib/thread_pool.h"
++#include "htslib/thread_pool.h"
+ 
+ #include "d_model.h"
+ 
+--- view.c.old	2023-06-22 15:40:09.833522189 -0500
++++ view.c	2023-06-22 15:40:17.556558914 -0500
+@@ -4,7 +4,7 @@
+ #include <unistd.h>
+ #include <string.h>
+ 
+-#include "htslib/htslib/sam.h"
++#include "htslib/sam.h"
+ 
+ #include "dump_utils.h"
+ 

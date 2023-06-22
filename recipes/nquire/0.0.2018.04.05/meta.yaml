@@ -1,0 +1,43 @@
+{% set name = "nQuire" %}
+{% set version = "0.0.2018.04.05" %}
+{% set sha256 = "dd22df0fcc09d5ab47ff6f836bbc8b88d59a860d636c02f165196e4efe4c944f" %}
+{% set commit = "a990a88ef14b38f257f1a0d368ba8be1bd3d7e4b" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/clwgg/{{ name|lower }}/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - fix_htslib_loc.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - htslib >=1.6
+    - zlib
+  run:
+    - htslib >=1.6
+    - zlib
+
+test:
+  commands:
+    - nQuire --help
+
+about:
+  home: https://github.com/clwgg/nQuire
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "A statistical framework for ploidy estimation using NGS short-read data."
+
+extra:
+  identifiers:
+    - doi:10.1186/s12859-018-2128-z

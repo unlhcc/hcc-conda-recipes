@@ -5,7 +5,7 @@
 # Define build matrix for MPI vs. non-mpi
 # ensure mpi is defined (needed for conda-smithy recipe-lint)
 {% set mpi = mpi or 'nompi' %}
-{% set build = 1001 %}
+{% set build = 1002 %}
 {% set build_string = "{}_{}".format(mpi, build) %}
 
 package:
@@ -45,6 +45,7 @@ requirements:
     - sirius 7.3.*
     - libint-cp2k
     - plumed
+    - gsl
   run:
     - {{ mpi }}  # [mpi != 'nompi']
     - scalapack  # [mpi != 'nompi']

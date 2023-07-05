@@ -11,8 +11,10 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [osx]
+  # The binary relocation logic corrupts the .mex files somehow, so we disable it.
+  binary_relocation: False
 
 requirements:
   build:

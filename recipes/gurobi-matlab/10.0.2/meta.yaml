@@ -1,0 +1,35 @@
+{% set name = "gurobi-matlab" %}
+{% set version = "10.0.2" %}
+{% set sha256 = "03da2c61494f5f80098270ba459d7567db8b0bf05884ddbd8a78e5b28b008dc9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://packages.gurobi.com/10.0/gurobi{{ version }}_linux64.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+  host:
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/matlab/gurobi.m
+
+about:
+  home: http://www.gurobi.com
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: linux64/EULA.pdf
+  summary: "MATLAB files for Gurobi optimizer."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

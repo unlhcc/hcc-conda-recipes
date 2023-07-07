@@ -19,7 +19,7 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [[ `uname` == Linux ]]
 then
     tag=Linux
-    sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel
+    sudo yum install -y -q mesa-libGLU-devel mesa-libGL-devel tcsh
     mv -f -v $HOME/.condarc $ANACONDA_PREFIX
 #    mkdir -p /ramdisk/conda-bld
 #    ln -s /ramdisk/conda-bld $ANACONDA_PREFIX/conda-bld

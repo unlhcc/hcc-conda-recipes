@@ -11,9 +11,10 @@ source:
   sha256: {{ sha256 }}
   patches:
     - 001-pip-install-no-editable.patch
+    - 002-git-describe.patch
 
 build:
-  number: 0
+  number: 1
   skip: True # [osx or py<36]
 
 requirements:
@@ -24,11 +25,11 @@ requirements:
     - {{ cdt('mesa-libegl-devel') }}
     - cmake
     - make
+    - datalad
   host:
     - python
     - pip
     - freetype
-    - openmotif
     - openmotif-dev
     - gsl
     - xorg-libx11
@@ -38,6 +39,7 @@ requirements:
     - xorg-libxft
     - xorg-libxcb
     - xorg-libxpm
+    - xorg-libxmu
     - libglu
     - glib
     - expat
@@ -50,7 +52,6 @@ requirements:
     - matplotlib-base
     - freetype
     - openmotif
-    - openmotif-dev
     - gsl
     - xorg-libx11
     - xorg-libxt
@@ -59,18 +60,39 @@ requirements:
     - xorg-libxft
     - xorg-libxcb
     - xorg-libxpm
+    - xorg-libxmu
     - libglu
     - glib
     - expat
     - freeglut
-    - tcsh
     - r-base
+    - r-afex
+    - r-phia
+    - r-snow
+    - r-nlme
+    - r-lme4
+    - r-paran
+    - r-brms
+    - r-shiny
+    - r-shinydashboard
+    - r-plotly
+    - r-colourpicker
+    - r-data.table
+    - r-gplots
+    - r-rcolorbrewer
+    - r-psych
+    - r-ggplot2
+    - r-ggridges
+    - r-dplyr
+    - r-tidyr
+    - r-scales
+    - r-corrplot
+    - r-metafor
 
 test:
   commands:
     - afni --help
-    - 3dRSFC -help
-    - afni_proc.py -help
+    - afni_system_check.py -check_all
   imports:
     - afnipy
 

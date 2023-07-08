@@ -1,0 +1,11 @@
+--- cmake/make_sure_afnipy_is_installed.sh.org	2023-06-21 20:58:12.497417547 -0500
++++ cmake/make_sure_afnipy_is_installed.sh	2023-06-21 20:58:34.247385016 -0500
+@@ -32,7 +32,7 @@
+   if [ -z ${DO_NOT_USE_PIP+x} ]
+   then
+    # variable not set 
+-    eval "$py_interp -m pip install -e ."
++    eval "$py_interp -m pip install . -vv"
+   else 
+     eval "$py_interp setup.py develop"
+   fi

@@ -1,0 +1,111 @@
+{% set name = "AFNI" %}
+{% set version = "23.1.10" %}
+{% set sha256 = "9d04725ddf0aafb37b3602600533856a79664de47f994cd77d11cbdee3a866a2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/afni/afni/archive/refs/tags/{{ name }}_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 001-pip-install-no-editable.patch
+    - 002-git-describe.patch
+
+build:
+  number: 0
+  skip: True # [osx or py<36]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-libegl-devel') }}
+    - cmake
+    - make
+    - datalad
+  host:
+    - python
+    - pip
+    - freetype
+    - openmotif-dev
+    - gsl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - xorg-libxpm
+    - xorg-libxmu
+    - libglu
+    - glib
+    - expat
+    - freeglut
+    - tcsh
+    - r-base
+  run:
+    - python
+    - numpy >=1.14.5
+    - matplotlib-base
+    - freetype
+    - openmotif
+    - gsl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - xorg-libxpm
+    - xorg-libxmu
+    - libglu
+    - glib
+    - expat
+    - freeglut
+    - r-base
+    - r-afex
+    - r-phia
+    - r-snow
+    - r-nlme
+    - r-lme4
+    - r-paran
+    - r-brms
+    - r-shiny
+    - r-shinydashboard
+    - r-plotly
+    - r-colourpicker
+    - r-data.table
+    - r-gplots
+    - r-rcolorbrewer
+    - r-psych
+    - r-ggplot2
+    - r-ggridges
+    - r-dplyr
+    - r-tidyr
+    - r-scales
+    - r-corrplot
+    - r-metafor
+    - ffmpeg
+    - netpbm
+
+test:
+  commands:
+    - afni --help
+    - afni_system_check.py -check_all
+  imports:
+    - afnipy
+
+about:
+  home: https://afni.nimh.nih.gov/afni
+  summary: "AFNI is a suite of programs for looking at and analyzing 3D brain images."
+  license: GPL-2.0
+  license_family: GPL
+  license_file: doc/README/README.copyright
+  dev_url: https://github.com/afni/afni
+
+extra:
+  container:
+    extended-base: True

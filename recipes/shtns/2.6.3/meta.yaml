@@ -1,0 +1,56 @@
+{% set name = "SHTns" %}
+{% set version = "2.6.3" %}
+{% set rev = "ce1a9ce" %}
+{% set sha256 = "b3722ce85f11e5b1f629d82fc568d413c1397b3b57526519e5188fc82a422f68" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://bitbucket.org/nschaeff/{{ name|lower }}/get/{{ rev }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+    - fftw
+    - numpy
+    - python
+    - openmp
+  run:
+    - fftw
+    - numpy
+    - python
+    - openmp
+
+test:
+  imports:
+    - shtns
+  commands:
+    - ls ${PREFIX}/include/shtns.h
+
+about:
+  home: https://nschaeff.bitbucket.io/shtns/
+  license: CeCILL2.1
+  license_file: LICENSE
+  license_family: OTHER
+  summary: "SHTns is a high performance library for Spherical Harmonic Transform written in C, aimed at numerical simulation (fluid flows, mhd, ...) in spherical geometries."
+  doc_url: https://nschaeff.bitbucket.io/shtns/index.html
+  dev_url: https://gricad-gitlab.univ-grenoble-alpes.fr/schaeffn/shtns
+
+extra:
+  identifiers:
+    - doi:10.1002/ggge.20071  
+    - doi:10.2151/jmsj.2018-019
+    - doi:10.1109/ACCESS.2023.3242240
+  skip-lints:
+    - in_other_channels

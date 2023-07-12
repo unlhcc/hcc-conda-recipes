@@ -1,0 +1,11 @@
+--- Makefile.in.old	2023-07-11 12:57:42.095216292 -0500
++++ Makefile.in	2023-07-11 14:22:15.703026947 -0500
+@@ -25,7 +25,7 @@
+ 	./test_rot
+ 
+ @libname@ : Makefile $(objs)
+-	ar rcs @libname@ $(objs)
++	$(AR) rcs @libname@ $(objs)
+ 	@echo " "
+ 	@cat COPYRIGHT
+ 	@echo " "

@@ -1,0 +1,11 @@
+--- Makefile.in.old	2023-07-11 18:23:20.365582972 -0500
++++ Makefile.in	2023-07-11 18:23:34.290561893 -0500
+@@ -26,7 +26,7 @@
+ install : @install@
+ 
+ @libname@ : Makefile $(objs)
+-	ar rcs @libname@ $(objs)
++	$(AR) rcs @libname@ $(objs)
+ 	@echo " "
+ 	@cat COPYRIGHT
+ 	@echo " "

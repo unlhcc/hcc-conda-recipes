@@ -1,0 +1,41 @@
+{% set name = "ASHS" %}
+{% set version = "2.0.0" %}
+{% set build = "20220302" %}
+{% set sha256 = "4d0dc9b425879979b0e9b2ed47867dd8c8e9a75fe27979cc2a2966effcd6c090" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/pyushkevich/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  binary_relocation: False
+
+requirements:
+  build:
+  host:
+    - imagemagick
+  run:
+    - imagemagick
+
+test:
+  commands:
+    - ${PREFIX}/bin/ashs_train.sh -h
+    - ${PREFIX}/bin/ashs_main.sh -h
+
+about:
+  home: https://sites.google.com/view/ashs-dox/home
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "ASHS is software for automatic segmentation of the medial temporal lobe (MTL) substructures from brain MRI scans."
+  doc_url: https://sites.google.com/view/ashs-dox/home
+  dev_url: https://github.com/pyushkevich/ashs/
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

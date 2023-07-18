@@ -4,16 +4,16 @@ mkdir -p ${PREFIX}
 
 if [ "$(uname)" == "Darwin" ]; then
     os="Darwin"
+    chmod +x ./bin/*
+    chmod +x ./ext/${os}/bin/*
     cp -r * ${PREFIX}/
-    chmod +x ${PREFIX}/bin/*
-    chmod +x ${PREFIX}/ext/${os}/bin/*
 else
     os="Linux"
+    chmod +x ./bin/*
+    chmod +x ./ext/${os}/bin/*
+    chmod +x ./ext/${os}/bin/fsl/*
+    chmod +x ./ext/${os}/bin/ants_1042/*
     cp -r * ${PREFIX}/
-    chmod +x ${PREFIX}/bin/*
-    chmod +x ${PREFIX}/ext/${os}/bin/*
-    chmod +x ${PREFIX}/ext/${os}/bin/fsl/*
-    chmod +x ${PREFIX}/ext/${os}/bin/ants_1042/*
 fi
 
 # set ASHS_ROOT variable on env activation

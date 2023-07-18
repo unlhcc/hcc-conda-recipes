@@ -12,16 +12,20 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
+  binary_relocation: False
 
 requirements:
   build:
   host:
+    - imagemagick
   run:
+    - imagemagick
 
 test:
   commands:
     - ${PREFIX}/bin/ashs_train.sh -h
+    - ${PREFIX}/bin/ashs_main.sh -h
 
 about:
   home: https://sites.google.com/view/ashs-dox/home

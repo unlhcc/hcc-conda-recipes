@@ -1,0 +1,48 @@
+{% set name = "guppy-gpu" %}
+{% set version = "6.5.7" %}
+{% set sha256 = "7a87a0866f83f4219f56b7f94886a5a28807e33e6112ffd2945a47940c3d4bee" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: guppy.tar.gz
+  url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EYuBg8OX5Y9Arg16YeZs5TQB261OyQiRa7mpezyL1bl8_w?e=Bvhe8q&download=1
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  binary_relocation: False
+  script:
+    - cp -R {bin,lib,data} ${PREFIX}
+
+requirements:
+  build:
+  host:
+  run:
+
+test:
+  commands:
+    - guppy_basecaller --help
+    - guppy_aligner --help
+    - guppy_barcoder --help
+    - minimap2 --help
+  requires:
+    - cuda_driver
+
+about:
+  home: "https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html"
+  dev_url: "https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html"
+  license: PROPRIETARY
+  license_family: PROPRIETARY
+  license_file: 
+    - 'bin/Guppy End User License Agreement 17Feb22.pdf'
+    - 'bin/THIRD_PARTY_LICENSES'
+  summary: "Guppy is a data processing toolkit that contains the Oxford Nanopore Technologies’ basecalling algorithms, and several bioinformatic post-processing features."
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+    - should_be_noarch_generic

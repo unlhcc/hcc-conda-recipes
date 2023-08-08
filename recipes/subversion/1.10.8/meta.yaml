@@ -1,0 +1,68 @@
+{% set name = "subversion" %}
+{% set version = "1.10.8" %}
+{% set sha256 = "0a73ba3127b5a2fffb8fee2b702984f2a808de710a8db28b7dd4010d8be50e5a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://archive.apache.org/dist/subversion/subversion-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - autoconf  # [unix]
+    - libtool  # [unix]
+    - pkg-config  # [unix]
+    - nasm
+    - make
+    - python >=2.7,<3
+  host:
+    - boost-cpp
+    - libapr
+    - libaprutil
+    - sqlite
+    - zlib
+    - openssl
+    - libdb
+    - lz4-c
+    - libutf8proc
+    - gettext
+    - expat
+    - gnupg  # [unix]
+    - cyrus-sasl  # [unix]
+    - libmagic  # [unix]
+    - serf  # [linux]
+    - swig
+    - perl
+  run:
+    - libapr
+    - libaprutil
+    - gettext
+    - expat
+    - perl
+
+test:
+  commands:
+    - svn --help
+    - perl -e 'use SVN::Client; use SVN::Core;'
+
+about:
+  home: https://subversion.apache.org/
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: Enterprise-class centralized version control for the masses
+  doc_url: https://subversion.apache.org/docs/
+  dev_url: https://subversion.apache.org/source-code.html
+
+extra:
+  skip-lints:
+    - in_other_channels

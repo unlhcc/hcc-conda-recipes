@@ -1,0 +1,36 @@
+{% set name = "rate4site" %}
+{% set version = "3.0.0" %}
+{% set sha256 = "5f748131bc2d10383c35c3141a835efa4ec1e7088cd9d8970e8024021aa509ac" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://rostlab.org/public/rate4site/rate4site-3.0.0.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+  host:
+  run:
+
+test:
+  commands:
+    - echo 0 | rate4site -h
+
+about:
+  home: https://www.tau.ac.il/~itaymay/cp/rate4site.html
+  license: GPLv2
+  license_family: GPL
+  license_file: COPYING
+  summary: "Rate4Site is a program for detecting conserved amino-acid sites by computing the relative evolutionary rate for each site in the multiple sequence alignment (MSA).."

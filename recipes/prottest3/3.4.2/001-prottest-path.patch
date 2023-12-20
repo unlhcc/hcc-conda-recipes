@@ -1,0 +1,29 @@
+--- src/main/resources/prottest3.org	2023-12-19 18:54:10.058938924 -0600
++++ src/main/resources/prottest3	2023-12-19 18:54:32.488910073 -0600
+@@ -1,9 +1,9 @@
+ #!/bin/sh
+ if [ $# -eq 0 ]; then
+     # Run ProtTest GUI
+-    ./runXProtTestHPC.sh
++    /opt/anaconda1anaconda2anaconda3/bin/runXProtTestHPC.sh
+ else
+     # Run ProtTest console interface
+-    jarfile=`find . -name "prottest-3.*.jar" | sort | tail -n 1`
++    jarfile=`find /opt/anaconda1anaconda2anaconda3/share -name "prottest-3.*.jar" | sort | tail -n 1`
+     java -jar $jarfile $*
+ fi
+--- src/main/resources/runXProtTestHPC.sh.org	2023-12-19 18:59:10.487552495 -0600
++++ src/main/resources/runXProtTestHPC.sh	2023-12-19 18:59:19.359541083 -0600
+@@ -1,2 +1,2 @@
+-jarfile=`find . -name "prottest-3.*.jar" | sort | tail -n 1`
++jarfile=`find /opt/anaconda1anaconda2anaconda3/share -name "prottest-3.*.jar" | sort | tail -n 1`
+ java -cp $jarfile es.uvigo.darwin.xprottest.XProtTestApp
+--- src/main/resources/runProtTestHPC.sh.org	2023-12-19 18:57:59.525643773 -0600
++++ src/main/resources/runProtTestHPC.sh	2023-12-19 18:58:57.728568906 -0600
+@@ -1,5 +1,5 @@
+ export MPJ_HOME=$PWD/mpj
+ export NP=$1
+ shift
+-jarfile=`find . -name "prottest-3.*.jar" | sort | tail -n 1`
++jarfile=`find /opt/anaconda1anaconda2anaconda3/share -name "prottest-3.*.jar" | sort | tail -n 1`
+ $MPJ_HOME/bin/mpjrun.sh -dev niodev -wdir $PWD/ -np $NP -jar $jarfile  $*

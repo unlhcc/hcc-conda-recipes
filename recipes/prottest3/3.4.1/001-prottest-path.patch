@@ -1,0 +1,15 @@
+--- src/main/resources/runXProtTestHPC.sh.org	2023-12-19 19:40:33.634208513 -0600
++++ src/main/resources/runXProtTestHPC.sh	2023-12-19 19:41:09.124158126 -0600
+@@ -1 +1,2 @@
+-java -cp prottest-3.4.1.jar es.uvigo.darwin.xprottest.XProtTestApp
++jarfile=`find /opt/anaconda1anaconda2anaconda3/share -name "prottest-3.4.1.jar" | sort | tail -n 1`
++java -cp $jarfile es.uvigo.darwin.xprottest.XProtTestApp
+--- src/main/resources/runProtTestHPC.sh.org	2023-12-19 19:39:08.353329597 -0600
++++ src/main/resources/runProtTestHPC.sh	2023-12-19 19:40:18.264230337 -0600
+@@ -1,4 +1,5 @@
+ export MPJ_HOME=$PWD/mpj
+ export NP=$1
+ shift
+-$MPJ_HOME/bin/mpjrun.sh -dev niodev -wdir $PWD/ -np $NP -jar prottest-3.4.1.jar  $*
++jarfile=`find /opt/anaconda1anaconda2anaconda3/share -name "prottest-3.4.1.jar" | sort | tail -n 1`
++$MPJ_HOME/bin/mpjrun.sh -dev niodev -wdir $PWD/ -np $NP -jar $jarfile  $*

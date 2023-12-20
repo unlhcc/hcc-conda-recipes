@@ -1,0 +1,45 @@
+{% set name = "prottest3" %}
+{% set version = "3.4.1" %}
+{% set sha256 = "86282367ca709e518491d0bc71dab6212d0c87f333c3d6eb69d841d0f3411767" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ddarriba/prottest3/archive/refs/tags/{{ version }}-release.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 001-prottest-path.patch
+    - 002-phyml-global.patch
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+    - ant
+    - openjdk >=6,<=9
+  run:
+    - openjdk >=6,<=9
+    - phyml 3.2
+
+test:
+  commands:
+    - prottest3 | grep prottest
+
+about:
+  home: https://github.com/ddarriba/prottest3
+  dev_url: https://github.com/ddarriba/prottest3
+  doc_url: http://groups.google.com/group/prottest
+  license: GPLv2
+  license_family: GPL
+  license_file: COPYING
+  summary: "ProtTest is a bioinformatic tool for the selection of best-fit models of aminoacid replacement for the data at hand."
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/btr088

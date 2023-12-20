@@ -1,0 +1,39 @@
+{% set name = "gurobi-matlab" %}
+{% set version = "11.0.0" %}
+{% set sha256 = "6a1ec7499b230aea0542bc893bf0642ae8ce983dd5ef0c37cb3a253d827ce634" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://packages.gurobi.com/11.0/gurobi{{ version }}_linux64.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  # The binary relocation logic corrupts the .mex files somehow, so we disable it.
+  binary_relocation: False
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+  host:
+  run:
+
+test:
+  commands:
+    - test -f ${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/matlab/gurobi.m
+
+about:
+  home: http://www.gurobi.com
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: linux64/EULA.pdf
+  summary: "MATLAB files for Gurobi optimizer."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

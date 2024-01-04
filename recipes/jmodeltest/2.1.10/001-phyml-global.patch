@@ -1,0 +1,11 @@
+--- src/main/resources/conf/jmodeltest.conf.org	2024-01-03 18:43:17.943371709 -0600
++++ src/main/resources/conf/jmodeltest.conf	2024-01-03 18:43:29.812351672 -0600
+@@ -41,7 +41,7 @@
+ #    e.g., ${HOME} or ${PHYML_HOME}                      #
+ #                                                        #
+ ##########################################################
+-global-phyml-exe    = false
++global-phyml-exe    = true
+ exe-dir             = exe/phyml
+ 
+ ##########################################################

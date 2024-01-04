@@ -1,0 +1,11 @@
+--- src/main/resources/conf/jmodeltest.conf.org	2024-01-03 17:43:19.244450790 -0600
++++ src/main/resources/conf/jmodeltest.conf	2024-01-03 17:43:30.679431435 -0600
+@@ -40,7 +40,7 @@
+ # Environment variables in curly brackets can be used    #
+ #    e.g., ${HOME} or ${PHYML_HOME}                      #
+ ##########################################################
+-global-phyml-exe    = false
++global-phyml-exe    = true
+ exe-dir	            = exe/phyml
+ 
+ ##########################################################

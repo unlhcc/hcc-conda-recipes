@@ -1,0 +1,44 @@
+{% set name = "jmodeltest" %}
+{% set version = "2.1.7" %}
+{% set sha256 = "fe2c6c4555df0991e5a72cd5349184c96b58704ba4f02b80d123d1c634e16c81" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ddarriba/jmodeltest2/archive/refs/tags/v2.1.7r20150222.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - 001-phyml-global.patch
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+    - ant
+    - openjdk >=6,<=9
+  run:
+    - openjdk >=6,<=9
+    - phyml 3.2
+
+test:
+  commands:
+    - jmodeltest -help
+
+about:
+  home: https://github.com/ddarriba/jmodeltest2
+  dev_url: https://github.com/ddarriba/jmodeltest2
+  doc_url: http://groups.google.com/group/modeltest-ng
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: "jModelTest is a tool to carry out statistical selection of best-fit models of nucleotide substitution."
+
+extra:
+  identifiers:
+    - doi:10.1038/nmeth.2109

@@ -1,5 +1,5 @@
 {% set name = "hcc-jupyter-kernels" %}
-{% set version = "2023.08.08" %}
+{% set version = "2024.01.09" %}
 
 package:
   name: "{{ name|lower }}"
@@ -14,6 +14,8 @@ build:
   script:
     - mkdir -p ${PREFIX}/share/hcc-jupyter-kernels
     - cp -aR kernels/* ${PREFIX}/share/hcc-jupyter-kernels
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin=None) }}
 
 test:
   requires:

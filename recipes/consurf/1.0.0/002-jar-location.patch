@@ -1,0 +1,40 @@
+--- stand_alone_consurf-1.00/stand_alone_consurf.py.org	2023-12-19 17:30:14.825521481 -0600
++++ stand_alone_consurf-1.00/stand_alone_consurf.py	2024-01-04 15:51:52.686713972 -0600
+@@ -2837,7 +2837,7 @@
+ 
+ def run_protest(msa_file_path):
+ 
+-    PRT_JAR_FILE = "/bioseq/Programs/ModelTest/prottest-3.4.1/prottest-3.4.1.jar"
++    PRT_JAR_FILE = os.getenv("PROTTEST3_JAR")
+     output_file_path = "model_selection.txt"
+     cmd = "java -jar %s -log disabled -i %s -AICC -o %s -S 1 -JTT -LG -MtREV -Dayhoff -WAG -CpREV -threads 1" %(PRT_JAR_FILE, msa_file_path, output_file_path)
+     submit_job_to_Q("protest", cmd)
+@@ -2859,7 +2859,7 @@
+ 
+ def run_jmt(msa_file_path):
+ 
+-    JMT_JAR_FILE = "/bioseq/Programs/ModelTest/jmodeltest-2.1.7/jModelTest.jar"
++    JMT_JAR_FILE = os.getenv("JMODELTEST_JAR")
+     output_file_path = "model_selection.txt"
+     cmd = "java -jar %s -d %s -t BIONJ -AICc -f -o %s" %(JMT_JAR_FILE, msa_file_path, output_file_path)
+     submit_job_to_Q("jmt", cmd)
+--- stand_alone_consurf-1.00/consurf_run_calc_DNA_and_Prot.py.org	2024-01-04 15:46:09.135270004 -0600
++++ stand_alone_consurf-1.00/consurf_run_calc_DNA_and_Prot.py	2024-01-04 15:52:50.896619757 -0600
+@@ -2060,7 +2060,7 @@
+ 
+ def run_protest(msa_file_path):
+ 
+-    PRT_JAR_FILE = "/bioseq/Programs/ModelTest/prottest-3.4.1/prottest-3.4.1.jar"
++    PRT_JAR_FILE =  os.getenv("PROTTEST3_JAR")
+     output_file_path = "model_selection.out"
+     cmd = ["java", "-jar", PRT_JAR_FILE, "-log", "disabled", "-i", msa_file_path, "-AICC", "-o", output_file_path, "-S", "1", "-JTT", "-LG", "-MtREV", "-Dayhoff", "-WAG", "-CpREV", "-threads", "1"]
+     p = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, encoding = "utf-8")
+@@ -2084,7 +2084,7 @@
+ 
+ def run_jmt(msa_file_path):
+ 
+-    JMT_JAR_FILE = "/bioseq/Programs/ModelTest/jmodeltest-2.1.7/jModelTest.jar"
++    JMT_JAR_FILE =  os.getenv("JMODELTEST_JAR")
+     output_file_path = "model_selection.out"
+     cmd = ["java", "-jar", JMT_JAR_FILE, "-d", msa_file_path, "-t", "BIONJ", "-AICC", "-f", "-o", output_file_path]
+     p = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, encoding = "utf-8")

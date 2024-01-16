@@ -1,0 +1,52 @@
+{% set name = "consurf" %}
+{% set version = "3.0.0" %}
+{% set sha256 = "9b4a33ea4763ca0d13503c8a6b72b4561f19ec99f72321b93ee4593548ad3bf3" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/leezx/ConSurf-StandAlone/archive/56d5fb4.zip
+  sha256: {{ sha256 }}
+  patches:
+    - 001-paths.patch
+    - 002-jar-location.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+  host:
+  run:
+    - python >=3.6
+    - hmmer 3.1
+    - clustalw 2.1
+    - cd-hit
+    - mafft 7
+    - prank
+    - muscle
+    - biopython
+    - requests
+    - rate4site
+    - prottest3 3.4.1
+    - jmodeltest 2.1.7
+
+test:
+  commands:
+    - stand_alone_consurf.py -h
+
+about:
+  home: https://github.com/leezx/ConSurf-StandAlone
+  dev_url: https://github.com/leezx/ConSurf-StandAlone
+  license: Custom OSS
+  license_family: OTHER
+  summary: "Stand Alone version of ConSurf"
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

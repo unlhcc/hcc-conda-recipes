@@ -1,5 +1,5 @@
 {% set name = "consurf" %}
-{% set version = "3.0.0" %}
+{% set version = "1.0.0" %}
 {% set sha256 = "9b4a33ea4763ca0d13503c8a6b72b4561f19ec99f72321b93ee4593548ad3bf3" %}
 
 package:

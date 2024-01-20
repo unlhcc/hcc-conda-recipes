@@ -1,0 +1,13 @@
+{
+ "display_name": "PyTorch 2.0 (py310)",
+ "language": "python",
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/pytorch/envs/pytorch-2.0.0-py310/bin/python",
+  "-W",
+  "ignore",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ]
+}

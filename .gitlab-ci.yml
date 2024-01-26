@@ -36,7 +36,7 @@ build-linux:
       - .cache/conda_build_src
       - .cache/conda_pkgs
 
-.build-osx:
+build-osx:
   stage: build
   except:
     - master
@@ -74,7 +74,7 @@ deploy-linux:
       - .cache/conda_pkgs
     policy: pull
 
-.deploy-osx:
+deploy-osx:
   stage: deploy
   only:
     - master

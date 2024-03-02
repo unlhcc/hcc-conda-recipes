@@ -1,0 +1,37 @@
+--- source/merge/MergeWorkflow.cpp.old	2024-03-01 14:52:01.829465851 -0600
++++ source/merge/MergeWorkflow.cpp	2024-03-01 14:52:44.778393745 -0600
+@@ -20,6 +20,7 @@
+ //
+ //
+ 
++#define FMT_HEADER_ONLY
+ #include "merge/MergeWorkflow.hh"
+ 
+ #include <fstream>
+@@ -294,4 +295,4 @@
+ 
+     spdlog::info("Done");
+     return 0;
+-}
+\ No newline at end of file
++}
+--- source/app/ExpansionHunterDenovo.cpp.old	2024-03-01 14:52:13.058447013 -0600
++++ source/app/ExpansionHunterDenovo.cpp	2024-03-01 14:52:56.434374151 -0600
+@@ -20,6 +20,7 @@
+ //
+ //
+ 
++#define FMT_HEADER_ONLY
+ #include <iostream>
+ 
+ #include <boost/program_options.hpp>
+--- source/profile/ProfileWorkflow.cpp.old	2024-03-01 14:52:28.733420713 -0600
++++ source/profile/ProfileWorkflow.cpp	2024-03-01 14:53:04.673360304 -0600
+@@ -20,6 +20,7 @@
+ //
+ //
+ 
++#define FMT_HEADER_ONLY
+ #include "profile/ProfileWorkflow.hh"
+ 
+ #include <fstream>

@@ -1,0 +1,24 @@
+--- scripts/casecontrol.py.old	2024-02-29 18:24:01.825057637 -0600
++++ scripts/casecontrol.py	2024-02-29 18:24:23.022019709 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #
+ # ExpansionHunter Denovo
+ # Copyright 2016-2019 Illumina, Inc.
+--- scripts/make-bamlet.py.old	2024-02-29 18:24:31.282004929 -0600
++++ scripts/make-bamlet.py	2024-02-29 18:24:39.340990503 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #
+ # ExpansionHunter Denovo
+ # Copyright 2016-2020 Illumina, Inc.
+--- scripts/outlier.py.old	2024-02-29 18:24:46.246978148 -0600
++++ scripts/outlier.py	2024-02-29 18:24:54.389963578 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ #
+ # ExpansionHunter Denovo
+ # Copyright 2016-2019 Illumina, Inc.

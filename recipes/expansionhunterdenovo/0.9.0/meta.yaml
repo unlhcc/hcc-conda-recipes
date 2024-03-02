@@ -1,0 +1,66 @@
+{% set name = "ExpansionHunterDenovo" %}
+{% set version = "0.9.0" %}
+{% set sha256 = "2cddd07a2b2a6a438d1b1cb756b2b6fc8d76a0213699e035db72f265f98a6b44" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/Illumina/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - fmt.patches
+    - python.patches
+
+build:
+  number: 8
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}  
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('cxx') }}
+  host:
+    - zlib
+    - bzip2
+    - backports.lzma
+    - htslib
+    - boost-cpp
+    - spdlog 1.4.2
+    - python >3.8
+    - numpy
+    - scipy
+  run:
+    - zlib
+    - bzip2
+    - cmake
+    - backports.lzma
+    - htslib
+    - boost-cpp
+    - spdlog 1.4.2
+    - python >3.8
+    - numpy
+    - scipy
+
+test:
+  commands:
+    - ExpansionHunterDenovo --help
+
+about:
+  home: https://github.com/Illumina/ExpansionHunterDenovo
+  # License is PolyForm Strict License 1.0.0
+  license: Other
+  license_file:
+    - LICENSE.txt
+    - COPYRIGHT.txt
+  license_family: Other
+  summary: ExpansionHunter Denovo (EHdn) is a suite of tools for detecting novel expansions of short tandem repeats (STRs).
+  dev_url: https://github.com/Illumina/ExpansionHunterDenovo
+
+extra:
+  skip-lints:
+    - in_other_channels

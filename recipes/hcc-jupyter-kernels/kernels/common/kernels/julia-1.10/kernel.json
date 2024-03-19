@@ -1,0 +1,12 @@
+{
+  "display_name": "Julia 1.10",
+  "argv": [
+    "/opt/anaconda1anaconda2anaconda3/share/hcc-jupyter-kernels/common/kernels/julia-1.10/wrapper_julia.sh",
+    "-i",
+    "--startup-file=yes",
+    "--color=yes",
+    "/util/opt/anaconda/deployed-conda-envs/packages/julia/envs/julia-1.10.2/share/julia/packages/IJulia/Vo51o/src/kernel.jl",
+    "{connection_file}"
+  ],
+  "language": "julia"
+}

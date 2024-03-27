@@ -1,0 +1,34 @@
+--- runpsipred.org	2024-03-26 17:59:05.421241402 -0500
++++ runpsipred	2024-03-26 18:00:27.148141551 -0500
+@@ -14,13 +14,13 @@
+ set dbname = uniref90
+ 
+ # Where the NCBI programs have been installed
+-set ncbidir = /usr/local/bin
++set ncbidir = /opt/anaconda1anaconda2anaconda3/bin
+ 
+ # Where the PSIPRED V4 programs have been installed
+-set execdir = ./bin
++set execdir = /opt/anaconda1anaconda2anaconda3/bin
+ 
+ # Where the PSIPRED V4 data files have been installed
+-set datadir = ./data
++set datadir = /opt/anaconda1anaconda2anaconda3/share/psipred/data
+ 
+ set basename = $1:r
+ set rootname = $basename:t
+--- runpsipred_single.org	2024-03-26 18:12:37.889258741 -0500
++++ runpsipred_single	2024-03-26 18:13:41.953184357 -0500
+@@ -10,10 +10,10 @@
+ # NOTE: Script modified to be more cluster friendly (DTJ April 2008)
+ 
+ # Where the PSIPRED V4 programs have been installed
+-set execdir = ./bin
++set execdir = /opt/anaconda1anaconda2anaconda3/bin
+ 
+ # Where the PSIPRED V4 data files have been installed
+-set datadir = ./data
++set datadir = /opt/anaconda1anaconda2anaconda3/share/psipred/data
+ 
+ set basename = $1:r
+ set rootname = $basename:t

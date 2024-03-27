@@ -1,5 +1,5 @@
 {% set name = "psipred" %}
-{% set version = "0.8.2" %}
+{% set version = "4.02" %}
 
 package:
   name: {{ name|lower }}

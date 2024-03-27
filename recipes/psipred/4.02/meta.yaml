@@ -1,0 +1,40 @@
+{% set name = "psipred" %}
+{% set version = "0.8.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://bioinfadmin.cs.ucl.ac.uk/downloads/psipred/psipred.4.02.tar.gz
+  sha256: b4009b6a5f8b76c6d60ac91c4a743512d844864cf015c492fb6d1dc0d092c467
+  patches:
+    - 001-runpsipred.patch
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+  host:
+  run:
+    - blast-legacy
+
+test:
+  commands:
+    - psipred 2>&1 | grep psipred
+
+about:
+  home: http://bioinf.cs.ucl.ac.uk/psipred/
+  summary: "The PSIPRED Workbench provides a range of protein structure prediction methods."
+  license: Custom OSS
+  license_file: LICENSE
+
+extra:
+  identifiers:
+    - biotools:psipred
+    - doi:10.1006/jmbi.1999.3091

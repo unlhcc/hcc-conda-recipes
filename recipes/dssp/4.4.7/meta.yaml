@@ -1,0 +1,44 @@
+{% set name = "DSSP" %}
+{% set version = "4.4.7" %}
+{% set sha256 = "d9d4b17143cc8b58080b28c4694eb11b6e167f9ad7c2dfd238b9436500c2de8c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/PDB-REDO/{{ name|lower }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+  host:
+    - boost-cpp
+    - zlib
+  run:
+    - boost-cpp
+    - zlib
+    - libcifpp
+    - libmcfp
+
+test:
+  commands:
+    - mkdssp --help
+
+about:
+  home: https://pdb-redo.eu/dssp
+  dev_url: https://github.com/PDB-REDO/dssp
+  summary: "Application to assign secondary structure to proteins."
+  license: BSD 2-Clause
+  license_family: BSD
+  license_file: LICENSE

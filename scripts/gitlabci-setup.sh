@@ -52,6 +52,7 @@ conda config --system --add channels hcc
 conda config --system --set repodata_threads 4
 conda config --system --set execute_threads 2
 conda config --system --set verify_threads 4
+conda config --set channel_priority flexible
 
 # install HCC-ized bioconda-utils
 pip install -q --force-reinstall git+https://github.com/acaprez/bioconda-utils.git@${HCC_BIOCONDA_UTILS_TAG}

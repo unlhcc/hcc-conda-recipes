@@ -8,6 +8,7 @@ variables:
   LANG: "en_US.UTF-8"
   LC_ALL: "en_US.UTF-8"
   DEFAULT_LINUX_VERSION: "cos7"
+  CONDA_OVERRIDE_CUDA: "12.2"
 
 stages:
   - build

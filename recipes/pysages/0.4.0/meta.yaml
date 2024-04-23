@@ -1,0 +1,97 @@
+{% set name = "PySAGES" %}
+{% set version = "0.4.0" %}
+# Define build matrix for GPU vs. CPU
+{% set pysages_variant = pysages_variant or "cuda" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/SSAGESLabs/PySAGES.git
+  git_tag: "v{{ version }}"
+
+build:
+  number: 0
+  skip: True  # [osx or py2k or py<39]
+  string: {{ pysages_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  script:
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - pip
+    - python
+    - cudatoolkit  # [pysages_variant == "cuda"]
+    - numpy 1.22.4
+    - scipy <=1.10
+    - optax 0.2.0
+    - mpi4py
+    - hoomd * gpu_*  # [pysages_variant == "cuda"]
+    - hoomd * cpu_*  # [pysages_variant == "cpu"]
+    - openmm
+    - lammps * {{ pysages_variant }}*
+    - ase
+    - gsd
+    - dill
+    - matplotlib-base
+    - pyparsing <3
+    - dm-haiku <0.0.11
+    - jax-md >=0.2.7
+    - jaxopt
+    - e3nn-jax !=0.20.4
+    - jax <=0.4.23
+    - jaxlib * {{ pysages_variant }}*
+    - openmpi
+    - plum-dispatch
+    - git-lfs
+    - setuptools-scm
+  run:
+    - python
+    - cudatoolkit  # [pysages_variant == "cuda"]
+    - numpy 1.22.4
+    - scipy <=1.10
+    - optax 0.2.0
+    - mpi4py
+    - hoomd * gpu_*  # [pysages_variant == "cuda"]
+    - hoomd * cpu_*  # [pysages_variant == "cpu"]
+    - openmm
+    - lammps * {{ pysages_variant }}*
+    - ase
+    - gsd
+    - dill
+    - matplotlib-base
+    - pyparsing <3
+    - dm-haiku <0.0.11
+    - jax-md >=0.2.7
+    - jaxopt
+    - e3nn-jax !=0.20.4
+    - jax <=0.4.23
+    - jaxlib * {{ pysages_variant }}*
+    - openmpi
+    - plum-dispatch
+    - git-lfs
+
+test:
+  imports:
+    - pysages
+
+about:
+  home: https://pysages.readthedocs.io/
+  dev_url: https://github.com/SSAGESLabs/PySAGES
+  doc_url: https://pysages.readthedocs.io/
+  license: GPL-3.0-or-later AND MIT
+  license_file: 
+    - LICENSE.md
+    - licenses/GPL-3.0.md
+  summary: "Python Suite for Advanced General Ensemble Simulations."
+
+extra:
+  skip-lints:
+    - uses_vcs_url
+    - missing_hash
+    - should-be-noarch-python
+    - should_not_use_skip_python
+    - should_be_noarch_generic

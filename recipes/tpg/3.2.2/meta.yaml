@@ -1,0 +1,39 @@
+{% set name = "tpg" %}
+{% set version = "3.2.2" %}
+{% set sha256 = "0e55e873624ff12d043aa1115f04682ecff74c2ccab1c0de17f74ce051daed16" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/CDSoft/{{ name|lower }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x") }}
+  script:
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python <3
+    - pip <20
+  run:
+    - python <3
+
+test:
+  imports:
+    - tpg
+
+about:
+  home: http://cdsoft.fr/tpg
+  dev_url: https://github.com/CDSoft/tpg
+  doc_url: https://github.com/CDSoft/tpg
+  license: LGPL-2.1
+  license_family: LGPL
+  license_file: License.txt
+  summary: "Toy Parser Generator is a lexical and syntactic parser generator for Python."

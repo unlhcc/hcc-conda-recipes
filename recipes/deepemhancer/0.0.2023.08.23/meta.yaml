@@ -1,0 +1,80 @@
+{% set name = "deepEMhancer" %}
+{% set version = "0.0.2023.08.23" %}
+{% set commit = "32dd3787b59807511ffcfdef10a357bd1e0e9d97" %}
+{% set sha256 = "54ae5c12145d0e130271e39bd48cd70fdb6ac046ff0f570320c531f7c2cf31b0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/rsanchezgarc/{{ name }}/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  entry_points:
+    - deepemhancer=deepEMhancer.exeDeepEMhancer:commanLineFun
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  script:
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - pip
+    - python 
+    - cudatoolkit
+    - numpy
+    - scipy
+    - scikit-image
+    - tqdm
+    - python-flatbuffers
+    - flatbuffers
+    - keras 
+    - requests
+    - matplotlib-base
+    - mrcfile
+    - joblib
+    - tensorboard
+    - tensorboard-data-server
+    - tensorflow-estimator 
+    - tensorflow-gpu
+  run:
+    - pip
+    - python
+    - cudatoolkit
+    - numpy
+    - scipy
+    - scikit-image
+    - tqdm
+    - python-flatbuffers
+    - flatbuffers
+    - keras
+    - requests
+    - matplotlib-base
+    - mrcfile
+    - joblib
+    - tensorboard
+    - tensorboard-data-server
+    - tensorflow-estimator
+    - tensorflow-gpu
+
+test:
+  imports:
+    - deepEMhancer
+  commands:
+    - deepemhancer --help
+
+about:
+  home: https://github.com/rsanchezgarc/deepEMhancer
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: "Deep learning for cryo-EM maps post-processing."
+  dev_url: https://github.com/rsanchezgarc/deepEMhancer
+
+extra:
+  identifiers:
+    - doi:10.1038/s42003-021-02399-1

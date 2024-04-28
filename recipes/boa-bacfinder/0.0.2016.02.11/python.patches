@@ -1,0 +1,694 @@
+--- ./data/training/genbank/download.py.old	2024-04-24 23:08:21.726014531 -0500
++++ ./data/training/genbank/download.py	2024-04-24 23:08:25.618010669 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ from Bio import Entrez
+ from Bio import SeqIO, SeqFeature
+ from Bio.SeqRecord import SeqRecord
+--- ./data/training/protein/download.py.old	2024-04-24 23:08:36.544999828 -0500
++++ ./data/training/protein/download.py	2024-04-24 23:08:40.681995724 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ from Bio import Entrez
+ from Bio import SeqIO, SeqFeature
+ from Bio.SeqRecord import SeqRecord
+--- ./scripts/analyze.py.old	2024-04-24 23:04:39.108235398 -0500
++++ ./scripts/analyze.py	2024-04-24 23:04:48.221226360 -0500
+@@ -1,5 +1,4 @@
+-
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import os
+ import sys
+--- ./scripts/cp_genomes.py.old	2024-04-24 23:04:39.109235397 -0500
++++ ./scripts/cp_genomes.py	2024-04-24 23:04:56.139218507 -0500
+@@ -1,5 +1,6 @@
+-import argparse
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
++import argparse
+ import os
+ import sys
+ import site
+--- ./scripts/filterBacteriocins.py.old	2024-04-24 23:04:39.111235395 -0500
++++ ./scripts/filterBacteriocins.py	2024-04-24 23:05:01.735212950 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import Bio
+ from Bio import SeqIO, SeqFeature
+ from Bio.SeqRecord import SeqRecord
+--- ./scripts/gene_crawler.py.old	2024-04-24 23:04:39.113235393 -0500
++++ ./scripts/gene_crawler.py	2024-04-24 23:05:07.047207679 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ A simple genbank crawler that identifies all genbank records that 
+ identify bacteriocins, lanbiotics or ABC transporters
+--- ./scripts/heatmap.py.old	2024-04-24 23:04:39.115235392 -0500
++++ ./scripts/heatmap.py	2024-04-24 23:05:12.009202759 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ ###./imp.py deletedOrg /home/asmariyaz/Desktop/phylo_order /home/asmariyaz/Desktop/txtnames
+ import numpy as np
+ from matplotlib.colors import LinearSegmentedColormap
+--- ./scripts/orffasta.py.old	2024-04-24 23:04:39.116235391 -0500
++++ ./scripts/orffasta.py	2024-04-24 23:05:17.465197348 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Creates fasta file from orfs
+ """
+--- ./scripts/overlapping.py.old	2024-04-24 23:04:39.118235389 -0500
++++ ./scripts/overlapping.py	2024-04-24 23:05:23.779191081 -0500
+@@ -1,4 +1,4 @@
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import os
+ import sys
+--- ./scripts/plot_context_genes.py.old	2024-04-24 23:04:39.120235387 -0500
++++ ./scripts/plot_context_genes.py	2024-04-24 23:05:36.298178662 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Commands to obtain preprocessed data
+ cat classify | tr '|' '\t' | sort -k17 | sort -k16 | sort -k9 > classified.txt
+@@ -74,4 +76,4 @@
+     
+     
+     
+-    
+\ No newline at end of file
++    
+--- ./scripts/plot_histogram.py.old	2024-04-24 23:04:39.122235385 -0500
++++ ./scripts/plot_histogram.py	2024-04-24 23:05:42.123172884 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Plot histogram of all context genes
+ """
+--- ./scripts/plot_mixture.py.old	2024-04-24 23:04:39.123235384 -0500
++++ ./scripts/plot_mixture.py	2024-04-24 23:05:51.441163637 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Plots gaussian mixture model
+ """
+--- ./scripts/plot_roc.py.old	2024-04-24 23:04:39.125235382 -0500
++++ ./scripts/plot_roc.py	2024-04-24 23:05:57.834157293 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Plots ROC curves for classifiers 
+ """
+--- ./scripts/plot_tree.py.old	2024-04-24 23:04:39.127235380 -0500
++++ ./scripts/plot_tree.py	2024-04-24 23:06:03.660151514 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ Plot the phylogenetic trees for toxins and immunity genes
+--- ./scripts/plot_violinplot.py.old	2024-04-24 23:04:39.128235379 -0500
++++ ./scripts/plot_violinplot.py	2024-04-24 23:06:09.124146094 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import os,sys,site
+ import argparse
+--- ./scripts/postHMMER.py.old	2024-04-24 23:04:39.130235377 -0500
++++ ./scripts/postHMMER.py	2024-04-24 23:06:14.362140898 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import os
+ import sys
+ import site
+--- ./scripts/runValidation.py.old	2024-04-24 23:04:39.132235375 -0500
++++ ./scripts/runValidation.py	2024-04-24 23:06:20.994134316 -0500
+@@ -1,7 +1,4 @@
+-
+-
+-
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import os
+ import sys
+--- ./scripts/treeVisualize.py.old	2024-04-24 23:04:39.133235374 -0500
++++ ./scripts/treeVisualize.py	2024-04-24 23:06:26.505128850 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import re
+ import os
+ import sys
+--- ./src/alignment/blast.py.old	2024-04-24 22:54:26.494845483 -0500
++++ ./src/alignment/blast.py	2024-04-24 22:54:50.935820796 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ A blast pipeline to blast bacteriocin proteins against intergenic regions
+ 
+--- ./src/alignment/cdhit.py.old	2024-04-24 22:54:26.496845481 -0500
++++ ./src/alignment/cdhit.py	2024-04-24 22:54:56.316815358 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import sys
+ import os
+--- ./src/alignment/clustalw.py.old	2024-04-24 22:54:26.497845480 -0500
++++ ./src/alignment/clustalw.py	2024-04-24 22:55:00.800810829 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ Perform clustalw multiple alignment on a single file
+@@ -80,4 +81,4 @@
+     unittest.main()
+     
+     
+-    
+\ No newline at end of file
++    
+--- ./src/alignment/hmmer.py.old	2024-04-24 22:54:26.499845478 -0500
++++ ./src/alignment/hmmer.py	2024-04-24 22:55:07.786803773 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ A wrapper script for hmmsearch, hmmbuild and the 
+ multiple alignment step using ClustalW
+--- ./src/alignment/mafft.py.old	2024-04-24 22:54:26.501845476 -0500
++++ ./src/alignment/mafft.py	2024-04-24 22:55:13.874797623 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Perform mafft multiple alignment on a single file
+ """
+--- ./src/alignment/multiplealignment.py.old	2024-04-24 22:54:26.503845474 -0500
++++ ./src/alignment/multiplealignment.py	2024-04-24 22:55:22.842788565 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import abc
+ import training
+--- ./src/alignment/muscle.py.old	2024-04-24 22:54:26.505845472 -0500
++++ ./src/alignment/muscle.py	2024-04-24 22:55:27.866783491 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Perform clustalw multiple alignment on a single file
+ """
+--- ./src/annotation/genbank_annotation.py.old	2024-04-24 22:55:37.313773948 -0500
++++ ./src/annotation/genbank_annotation.py	2024-04-24 22:55:54.180756910 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Given a directory, walks into all of the subdirectorys and identifies all of the annotated regions
+ 
+--- ./src/annotation/gff_annotation.py.old	2024-04-24 22:55:37.314773947 -0500
++++ ./src/annotation/gff_annotation.py	2024-04-24 22:56:00.680750344 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ This is similar to gff.py
+@@ -164,4 +165,4 @@
+             self.assertTrue(2712 in end)
+     unittest.main()
+         
+-        
+\ No newline at end of file
++        
+--- ./src/classify/dtree.py.old	2024-04-24 22:56:13.543737349 -0500
++++ ./src/classify/dtree.py	2024-04-24 22:56:26.045724720 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ NOTE: OUT OF DATE
+ Decision Trees classifier
+--- ./src/classify/mnbayes.py.old	2024-04-24 22:56:13.544737348 -0500
++++ ./src/classify/mnbayes.py	2024-04-24 22:56:31.097719620 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """ 
+ NOTE: OUT OF DATE
+ Multinomial Naive Bayes classifier
+--- ./src/classify/mvote.py.old	2024-04-24 22:56:13.546737346 -0500
++++ ./src/classify/mvote.py	2024-04-24 22:56:37.624713111 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ This module conducts a majority vote on each cluster to determine the function
+ There should only be 7 possible function classes: toxins, modifiers, regulators, transporters, immunity, null, NA (not assigned)
+@@ -124,4 +126,4 @@
+     
+     
+     
+-    
+\ No newline at end of file
++    
+--- ./src/classify/nbayes.py.old	2024-04-24 22:56:13.548737344 -0500
++++ ./src/classify/nbayes.py	2024-04-24 22:56:42.774708000 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ NOTE: OUT OF DATE
+ Trys to assign a function to a gene based on its annotated text
+--- ./src/classify/rforests.py.old	2024-04-24 22:56:13.549737343 -0500
++++ ./src/classify/rforests.py	2024-04-24 22:56:47.863702950 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """ 
+ Random forests classifier
+ Note: Need to fix unittest.  Need to check the version of sklearn
+--- ./src/classify/text_classifier.py.old	2024-04-24 22:56:13.551737341 -0500
++++ ./src/classify/text_classifier.py	2024-04-24 22:56:53.854697005 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ This is the abstract class for all text classifiers
+ """
+--- ./src/classify/training.py.old	2024-04-24 22:56:13.553737339 -0500
++++ ./src/classify/training.py	2024-04-24 22:56:58.680692220 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Obtains training dataset
+ 
+--- ./src/filter/clique_filter.py.old	2024-04-24 22:57:12.789678220 -0500
++++ ./src/filter/clique_filter.py	2024-04-24 22:57:24.011667086 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ 
+--- ./src/filter/interval_filter.py.old	2024-04-24 22:57:12.791678218 -0500
++++ ./src/filter/interval_filter.py	2024-04-24 22:57:28.861662275 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Performs filtering methods
+ 
+--- ./src/filter/threshold_filter.py.old	2024-04-24 22:57:12.792678217 -0500
++++ ./src/filter/threshold_filter.py	2024-04-24 22:57:33.917657257 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ Filters out all HMMER hits that have a score below a certain threshold
+--- ./src/format/acc2species.py.old	2024-04-24 22:57:43.480647767 -0500
++++ ./src/format/acc2species.py	2024-04-24 22:57:56.839634515 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Converts accesion id into a species name
+ """
+@@ -20,4 +22,4 @@
+            return self.accessions[accID]
+        
+ 
+-            
+\ No newline at end of file
++            
+--- ./src/format/accessionMap.py.old	2024-04-24 22:57:43.482647765 -0500
++++ ./src/format/accessionMap.py	2024-04-24 22:58:02.065629331 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import Bio
+ from Bio import SeqIO, SeqFeature
+ from Bio.SeqRecord import SeqRecord
+--- ./src/format/faa.py.old	2024-04-24 22:57:43.484647763 -0500
++++ ./src/format/faa.py	2024-04-24 22:58:07.610623826 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Data structure that stores faa entries
+ """
+@@ -53,4 +55,4 @@
+ 
+     
+     
+-    
+\ No newline at end of file
++    
+--- ./src/format/fasta.py.old	2024-04-24 22:57:43.486647761 -0500
++++ ./src/format/fasta.py	2024-04-24 22:58:12.658618818 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ from Bio.Seq import Seq
+ from Bio import SeqIO
+ import os,sys,site,shutil
+@@ -527,4 +529,4 @@
+         
+         
+         
+-        
+\ No newline at end of file
++        
+--- ./src/format/gff.py.old	2024-04-24 22:57:43.488647759 -0500
++++ ./src/format/gff.py	2024-04-24 22:58:20.565610973 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Parses gff files and creates a fasta file complete with all of the genomic coordinates and sequences
+ """
+@@ -396,4 +398,4 @@
+         
+         
+         
+-        
+\ No newline at end of file
++        
+--- ./src/format/phyloformat.py.old	2024-04-24 22:57:43.489647758 -0500
++++ ./src/format/phyloformat.py	2024-04-24 22:58:25.758605823 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Takes blast output and reformats it to prepare for iTOL
+ """
+--- ./src/format/text.py.old	2024-04-24 22:57:43.491647756 -0500
++++ ./src/format/text.py	2024-04-24 22:58:34.449597198 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from nltk import PorterStemmer
+ """Format the text to aid naive bayes"""
+--- ./src/genome/acc_gi_db.py.old	2024-04-24 22:59:16.550555427 -0500
++++ ./src/genome/acc_gi_db.py	2024-04-24 22:59:29.054543020 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import os, sys, site
+ import argparse
+ import re
+--- ./src/genome/bacteriocin.py.old	2024-04-24 22:59:16.552555425 -0500
++++ ./src/genome/bacteriocin.py	2024-04-24 22:59:34.094538020 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """ 
+ OUTPUT:
+ Bacteriocins
+--- ./src/genome/context_gene.py.old	2024-04-24 22:59:16.554555423 -0500
++++ ./src/genome/context_gene.py	2024-04-24 22:59:39.813532346 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ A module for finding context genes associated with bacteriocins
+ using a training dataset and blast
+@@ -163,4 +165,4 @@
+          
+          
+          
+-    
+\ No newline at end of file
++    
+--- ./src/genome/genbank.py.old	2024-04-24 22:59:16.556555421 -0500
++++ ./src/genome/genbank.py	2024-04-24 23:00:00.316512004 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Wrapper class for genbank files
+ """
+@@ -184,4 +186,4 @@
+         
+         
+         
+-        
+\ No newline at end of file
++        
+--- ./src/genome/genbank_sqlite3.py.old	2024-04-24 22:59:16.557555420 -0500
++++ ./src/genome/genbank_sqlite3.py	2024-04-24 23:00:07.346505029 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import Bio
+ from Bio import SeqIO, SeqFeature
+--- ./src/genome/genome.py.old	2024-04-24 22:59:16.559555418 -0500
++++ ./src/genome/genome.py	2024-04-24 23:00:14.076498352 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import Bio
+ from Bio import SeqIO, SeqFeature
+ from Bio.SeqRecord import SeqRecord
+--- ./src/genome/intergene.py.old	2024-04-24 22:59:16.561555416 -0500
++++ ./src/genome/intergene.py	2024-04-24 23:00:24.015488490 -0500
+@@ -1,4 +1,5 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Finds intergenic regions in a bacterial genome
+ """
+--- ./src/genome/rRNA.py.old	2024-04-24 22:59:16.563555414 -0500
++++ ./src/genome/rRNA.py	2024-04-24 23:00:29.380483167 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Finds all 16S RNA in bacterial genomes and stores it in a database
+ """
+--- ./src/job/quorum.py.old	2024-04-24 23:00:50.359462349 -0500
++++ ./src/job/quorum.py	2024-04-24 23:00:55.176457572 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ This code was contributed by Dr. John Karro 
+ """
+--- ./src/phylo/fasttree.py.old	2024-04-24 23:01:04.258448560 -0500
++++ ./src/phylo/fasttree.py	2024-04-24 23:01:15.699437205 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Runs fasttree and generates a phylogenetic tree
+ """
+@@ -239,4 +241,4 @@
+         
+         
+         
+-        
+\ No newline at end of file
++        
+--- ./src/phylo/hypertree.py.old	2024-04-24 23:01:04.261448557 -0500
++++ ./src/phylo/hypertree.py	2024-04-24 23:01:20.690432259 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Given a newick tree, this computes a hypermetric tree
+ """
+@@ -209,4 +211,4 @@
+     
+     
+     
+-    
+\ No newline at end of file
++    
+--- ./src/phylo/itol.py.old	2024-04-24 23:01:04.262448556 -0500
++++ ./src/phylo/itol.py	2024-04-24 23:01:26.418426575 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ The purpose of this is to create phylogenetic trees through iTOL
+--- ./src/phylo/raxml.py.old	2024-04-24 23:01:04.264448555 -0500
++++ ./src/phylo/raxml.py	2024-04-24 23:01:31.565421469 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import sys
+ import os
+ import site
+--- ./src/pipeline/pipeline.py.old	2024-04-24 23:01:49.570403605 -0500
++++ ./src/pipeline/pipeline.py	2024-04-24 23:02:00.515392744 -0500
+@@ -1,4 +1,4 @@
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ 1. Gather blasted bacteriocins and context genes
+--- ./src/pipeline/quorum_pipeline.py.old	2024-04-24 23:01:49.572403602 -0500
++++ ./src/pipeline/quorum_pipeline.py	2024-04-24 23:02:05.966387337 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """ 
+ A pipeline to launch parallelize computation on the 
+ quorum computing cluster
+--- ./src/pipeline/sim_pipeline.py.old	2024-04-24 23:01:49.574403600 -0500
++++ ./src/pipeline/sim_pipeline.py	2024-04-24 23:02:10.822382519 -0500
+@@ -1,4 +1,4 @@
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ """
+ 1. Gather blasted bacteriocins and context genes
+--- ./src/plot/heatmap.py.old	2024-04-24 23:02:19.574373835 -0500
++++ ./src/plot/heatmap.py	2024-04-24 23:02:28.520364959 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ ###./imp.py deletedOrg /home/asmariyaz/Desktop/phylo_order /home/asmariyaz/Desktop/txtnames
+ import numpy as np
+ from matplotlib.colors import LinearSegmentedColormap
+--- ./src/plot/roc.py.old	2024-04-24 23:02:19.575373834 -0500
++++ ./src/plot/roc.py	2024-04-24 23:02:33.884359639 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Code taken from pydoc.net
+ 
+--- ./src/plot/violinplot.py.old	2024-04-24 23:02:19.577373832 -0500
++++ ./src/plot/violinplot.py	2024-04-24 23:02:38.384355172 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import numpy as np
+ from matplotlib.colors import LinearSegmentedColormap
+ import matplotlib.pyplot as plt
+--- ./src/sim/textseq_sim.py.old	2024-04-24 23:02:46.705346920 -0500
++++ ./src/sim/textseq_sim.py	2024-04-24 23:02:50.655343001 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Simulator used to help train the naive bayes model
+ 
+--- ./src/test/test_modules.py.old	2024-04-24 23:03:48.601285511 -0500
++++ ./src/test/test_modules.py	2024-04-24 23:03:55.602278566 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ A set of test functions for unittests
+ """
+--- ./src/validation/bagel_validation.py.old	2024-04-24 23:04:07.098267161 -0500
++++ ./src/validation/bagel_validation.py	2024-04-24 23:04:18.457255891 -0500
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ import os,site,sys
+ from collections import *
+--- ./src/validation/hmmer_validation.py.old	2024-04-24 23:04:07.100267159 -0500
++++ ./src/validation/hmmer_validation.py	2024-04-24 23:04:23.304251083 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Run validation tests
+ 
+@@ -71,4 +73,4 @@
+     
+     
+     
+-    
+\ No newline at end of file
++    
+--- ./src/validation/mixture.py.old	2024-04-24 23:04:07.102267157 -0500
++++ ./src/validation/mixture.py	2024-04-24 23:04:27.753246668 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Perform expectation maximization algorithm to figure out the mixture model that best represents the data
+ The data is made up of true bacteriocin associated genes and not bacteriocin associated genes.
+--- ./tools/blast2fa.py.old	2024-04-24 22:53:04.872927928 -0500
++++ ./tools/blast2fa.py	2024-04-24 22:53:21.872910759 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import os
+ import sys
+ 
+--- ./tools/blast_parse.py.old	2024-04-24 22:53:04.874927926 -0500
++++ ./tools/blast_parse.py	2024-04-24 22:53:31.979900551 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from multiprocessing import Pool
+ import time
+--- ./tools/blast_script.py.old	2024-04-24 22:53:04.876927924 -0500
++++ ./tools/blast_script.py	2024-04-24 22:53:40.496891947 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ from multiprocessing import Pool
+ import time
+--- ./tools/download.py.old	2024-04-24 22:53:04.877927923 -0500
++++ ./tools/download.py	2024-04-24 22:53:47.410884965 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import os
+ import argparse
+ import time
+--- ./tools/download_script.py.old	2024-04-24 22:53:04.879927921 -0500
++++ ./tools/download_script.py	2024-04-24 22:53:54.679877621 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ 
+ # Copyright(C) 2013 David Ream
+ # Released under Biopython license. http://www.biopython.org/DIST/LICENSE
+--- ./tools/homolog.py.old	2024-04-24 22:53:04.881927919 -0500
++++ ./tools/homolog.py	2024-04-24 22:54:02.805869412 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ #in this version i have removed the seq, as it serves no purpose for what i am doing now
+ import math
+ 
+--- src/annotation/annotation.py.old	2024-04-27 21:24:09.530822125 -0500
++++ src/annotation/annotation.py	2024-04-27 21:24:28.804808420 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Base class for annotations
+ """
+@@ -7,6 +9,7 @@
+ import genbank_annotation
+ import gff_annotation
+ import os,sys,site
++import argparse
+ """
+ A container to process fasta objects and obtain information for annotations
+ """

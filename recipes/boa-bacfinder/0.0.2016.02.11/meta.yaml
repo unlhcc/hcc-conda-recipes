@@ -1,0 +1,58 @@
+{% set name = "boa-bacfinder" %}
+{% set version = "0.0.2016.02.11" %}
+{% set commit = "d986aa01744f4a143f493960c0421e54a97a49ab" %}
+{% set sha256 = "bed6535c29820bf72ae475fcdbfcf82cd59d7facd0f44138b8fafec4db9cf76b" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/mortonjt/Boa/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - python.patches
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python <3
+    - biopython <1.70
+    - matplotlib-base
+    - numpy <=1.16
+    - pandas <=0.24
+    - bx-python <=0.8.9
+    - blast
+    - hmmer
+    - cd-hit
+    - clustalw
+    - nltk
+    - tpg
+  run:
+    - python <3
+    - biopython <1.70
+    - matplotlib-base
+    - numpy <=1.16
+    - pandas <=0.24
+    - bx-python <=0.8.9
+    - blast
+    - hmmer
+    - cd-hit
+    - clustalw
+    - nltk
+    - tpg
+
+test:
+  commands:
+    - analyze.py --help
+
+about:
+  home: https://github.com/mortonjt/Boa
+  license: Other
+  license_file: ""
+  summary: "Find bacteriocins in bacterial genomes"

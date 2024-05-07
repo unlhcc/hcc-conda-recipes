@@ -37,20 +37,6 @@ build-linux:
       - .cache/conda_build_src
       - .cache/conda_pkgs
 
-build-osx:
-  stage: build
-  except:
-    - master
-  tags:
-    - osx
-  before_script:
-    - git fetch origin +master:master
-    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
-    - scripts/gitlabci-setup.sh
-  script:
-    - scripts/gitlabci-run.sh
-    - rm -rf $ANACONDA_PREFIX
-
 deploy-linux:
   stage: deploy
   image: quay.io/bioconda/bioconda-utils-build-env-cos7:latest
@@ -75,16 +61,3 @@ deploy-linux:
       - .cache/conda_pkgs
     policy: pull
 
-deploy-osx:
-  stage: deploy
-  only:
-    - master
-  tags:
-    - osx
-  before_script:
-    - git fetch origin +master:master
-    - export ANACONDA_PREFIX=`mktemp -d`/anaconda
-    - scripts/gitlabci-setup.sh
-  script:
-    - scripts/gitlabci-run.sh
-    - rm -rf $ANACONDA_PREFIX

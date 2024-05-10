@@ -1,0 +1,39 @@
+{% set name = "gviz-api" %}
+{% set version = "1.10.0" %}
+{% set sha256 = "846692dd8cc73224fc31b18e41589bd934e1cc05090c6576af4b4b26c2e71b90" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/gviz_api-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - six
+
+test:
+  imports:
+    - gviz_api
+
+about:
+  home: https://github.com/google/google-visualization-python
+  summary: Python API for Google Visualization
+  license: Apache-2.0
+  license_family: Apache
+  license_file: COPYRIGHT
+  doc_url: https://developers.google.com/chart/interactive/docs/dev/gviz_api_lib
+  dev_url: https://github.com/google/google-visualization-python

@@ -1,0 +1,41 @@
+{% set name = "tensorboard-plugin-profile" %}
+{% set version = "2.15.1" %}
+{% set sha256 = "84bb33e446eb4a9c0616f669fc6a42cdd40eadd9ae1d74bf756f4f0479993273" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tensorboard_plugin_profile-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - python !=3.0,!=3.1
+    - pip
+  run:
+    - python !=3.0,!=3.1
+    - gviz-api >=1.9.0
+    - protobuf >=3.19.6,<5.0.0dev
+    - setuptools >=41.0.0
+    - six >=1.10.0
+    - werkzeug >=0.11.15
+
+test:
+  imports:
+    - tensorboard_plugin_profile
+
+about:
+  home: https://github.com/tensorflow/profiler
+  summary: A profiling and performance analysis tool for TensorFlow.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE

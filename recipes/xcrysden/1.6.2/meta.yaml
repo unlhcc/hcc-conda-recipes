@@ -1,0 +1,55 @@
+{% set name = "xcrysden" %}
+{% set version = "1.6.2" %}
+{% set sha256 = "811736ee598bec1a5b427fd10e4e063a30dd7cadae96a43a50b36ce90a4f503f" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: http://www.xcrysden.org/download/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
+    - make
+    - wget
+    - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-libglu-devel') }}
+
+  host:
+    - tk
+    - fftw 3.*
+    - togl
+    - xorg-libxmu
+    - xorg-libx11
+    - zlib
+
+  run:
+    - tk
+    - fftw 3.*
+    - togl
+    - xorg-libxmu
+    - xorg-libx11
+    - zlib
+
+test:
+  commands:
+    - xcrysden --help
+    - conda inspect linkages -p $PREFIX $PKG_NAME
+
+about:
+  home: http://www.xcrysden.org/XCrySDen.html
+  license: GPLv2
+  license_family: GPL
+  license_file: COPYRIGHT
+  summary: 'XCrySDen is a crystalline and molecular structure visualisation program aiming at display of isosurfaces and contours, which can be superimposed on crystalline structures and interactively rotated and manipulated.'

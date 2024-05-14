@@ -1,0 +1,67 @@
+--- system/Make.sys-shared	2019-08-16 06:34:18.000000000 -0500
++++ system/Make.sys-shared.new	2024-05-07 18:06:39.167686996 -0500
+@@ -19,15 +19,15 @@
+ # C-preprocessor flags
+ CPPFLAGS ?=
+ # C-compiler flags
+-CFLAGS += -ffast-math -funroll-loops -fPIC -pedantic -Wall
++CFLAGS += -ffast-math -funroll-loops -fPIC -pedantic -Wall -fcommon
+ 
+-CC     = gcc 
++CC     = ${GCC}
+ #LDLIB  = -ldl
+ MATH   = -lm -lc
+ 
+ 
+ FFLAGS ?= -fdefault-double-8 -fdefault-real-8 -O2
+-FC     = gfortran
++FC     = ${GFORTRAN}
+ 
+ #-------------------------------------------
+ #debug options
+@@ -38,20 +38,20 @@
+ #------------------------------------------------------------------------
+ # X-libraries & include files
+ #------------------------------------------------------------------------
+-X_LIB     = -lXmu -lX11 
+-X_INCDIR  = 
++X_LIB     = -L${PREFIX}/lib -lXmu -lX11 
++X_INCDIR  = -I${PREFIX}/include
+ 
+ #------------------------------------------------------------------------
+ #
+ # Libraries
+ #
+ 
+-TCL_LIB      = -ltcl$(TCL_VER2)
+-TK_LIB       = -ltk$(TCL_VER2)
+-TOGL_LIB     = -lTogl
+-GLU_LIB      = -lGLU
+-GL_LIB       = -lGL
+-FFTW3_LIB    = -lfftw3
++TCL_LIB      = -L${PREFIX}/lib -ltcl$(TCL_VER2)
++TK_LIB       = -L${PREFIX}/lib -ltk$(TCL_VER2)
++TOGL_LIB     = -L${PREFIX}/lib -lTogl2.0
++GLU_LIB      = -L${PREFIX}/lib -lGLU
++GL_LIB       = -L${PREFIX}/lib -lGL
++FFTW3_LIB    = -L${PREFIX}/lib -lfftw3
+ EXT_LIB      =
+ # this is only used for some testing purposes
+ #MESCHACH_LIB = -lmeschach
+@@ -60,11 +60,11 @@
+ # Include directories
+ #
+ 
+-TCL_INCDIR      = -I/usr/include/tcl$(TCL_VER2)
+-TK_INCDIR       =
+-TOGL_INCDIR     =
+-GL_INCDIR       = 
+-FFTW3_INCDIR    =
++TCL_INCDIR      = -I${PREFIX}/include
++TK_INCDIR       = -I${PREFIX}/include
++TOGL_INCDIR     = -I${PREFIX}/include
++GL_INCDIR       = -I${PREFIX}/include
++FFTW3_INCDIR    = -I${PREFIX}/include
+ # this is only used for some testing purposes
+ #MESCHACH_INCDIR =
+ 

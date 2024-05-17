@@ -1,0 +1,24 @@
+--- bin/Plot_OnePop.pl.old	2024-05-17 14:45:16.953071819 -0500
++++ bin/Plot_OnePop.pl	2024-05-17 14:46:41.257011567 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1/anaconda2anaconda3/bin/perl
+ use strict;
+ 
+ use Data::Dumper;
+--- bin/Plot_MultiPop.pl.old	2024-05-17 14:45:09.875076875 -0500
++++ bin/Plot_MultiPop.pl	2024-05-17 14:46:51.276004403 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1/anaconda2anaconda3/bin/perl
+ use strict;
+ 
+ use Data::Dumper;
+--- bin/mis/plink2genotype.pl.old	2024-05-17 14:47:42.072968100 -0500
++++ bin/mis/plink2genotype.pl	2024-05-17 14:48:22.330939323 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl-w
++#!/opt/anaconda1/anaconda2anaconda3/bin/perl
+ use strict;
+ 
+ use Data::Dumper;

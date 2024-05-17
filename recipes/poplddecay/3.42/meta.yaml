@@ -1,0 +1,47 @@
+{% set name = "PopLDdecay" %}
+{% set version = "3.42" %}
+{% set sha256 = "68c482a94c072e6e53854c36d57b7f2d93955d92bf7b5faf7fc0caca33750773" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/BGI-shenzhen/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - perl.patches
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}  
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('cxx') }}
+  host:
+    - zlib
+    - perl
+  run:
+    - zlib
+    - perl
+
+test:
+  commands:
+    - PopLDdecay --help | grep "PopLDdecay" > /dev/null 
+
+about:
+  home: https://github.com/BGI-shenzhen/PopLDdecay
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+  summary: Fast and effective tool for linkage disequilibrium decay analysis.
+  dev_url: https://github.com/BGI-shenzhen/PopLDdecay
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/bty875

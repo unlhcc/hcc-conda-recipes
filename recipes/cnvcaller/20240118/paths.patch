@@ -1,0 +1,1260 @@
+--- Individual.Process.sh.old	2024-06-05 14:23:56.361573754 -0500
++++ Individual.Process.sh	2024-06-06 11:08:19.334687016 -0500
+@@ -2,7 +2,7 @@
+ # Samtools executables must be on your path.
+ which samtools > /dev/null || exit 1
+ # CNVcaller is the installation directory for CNVcaller - it must be an exported environment variable
+-export CNVcaller=`pwd`
++export CNVcaller=${PREFIX}
+ echo "CNVcaller install directory $CNVcaller"
+ if [ ! -f "$CNVcaller/bin/1.1.CNVprocess.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
+ ##############
+--- CNV.Discovery.sh.old	2024-06-05 14:26:27.166464113 -0500
++++ CNV.Discovery.sh	2024-06-06 11:08:19.332687018 -0500
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ # CNVcaller installation directory
+-export CNVcaller=/stor9000/apps/users/NWSUAF/2015060152/script/CNVcaller/GitHub/04.version
++export CNVcaller=${PREFIX}
+ echo "CNVcaller install directory $CNVcaller"
+ if [ ! -f "$CNVcaller/bin/2.1.CNVDiscoveryMerge.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
+ ##############
+--- Genotype.py.old	2024-06-06 11:04:52.263850139 -0500
++++ Genotype.py	2024-06-06 11:08:13.133691898 -0500
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ # -*- coding: utf-8 -*-
+ """
+ Clustering the input samples into genotypes uses Gaussian mixture modes.
+--- bin/0.1.Kmer_Generate.py.old	2024-06-06 11:05:35.643815965 -0500
++++ bin/0.1.Kmer_Generate.py	2024-06-06 11:08:02.948699924 -0500
+@@ -1,44 +1,43 @@
+-# -*- coding: utf-8 -*-
+-
+-
+-import click
+-from collections import OrderedDict
+-
+-
+-
+-def loadfa(fafile):
+-    seqdict = OrderedDict()
+-    with open(fafile) as f:
+-        seq_id = f.readline().strip().split()[0][1:]
+-        tmp_seq = []
+-        for line in f:
+-            if line[0] != '>':
+-                tmp_seq.append(line.strip())
+-            else:
+-                seqdict[seq_id] = ''.join(tmp_seq)
+-                seq_id = line.strip().split()[0][1:]
+-                tmp_seq = []
+-        seqdict[seq_id] = ''.join(tmp_seq)
+-    return seqdict
+-
+-
+-@click.command()
+-@click.argument('fafile')
+-@click.argument('winsize', type=int)
+-@click.argument('outfile')
+-def main(fafile, winsize, outfile):
+-    """
+-    produce kmer(<OUTFILE>) from refrence fasta(<FAFILE>) according to window size(<WINSIZE>)
+-    """
+-    seqdict = loadfa(fafile)
+-    stepsize = int(winsize / 2)
+-    print(f'winsize is {winsize}')
+-    print(f'stepsize is {stepsize}')
+-    with open(outfile, 'w') as f:
+-        for name, seq in seqdict.items():
+-            for start in range(0, len(seq), stepsize):
+-                f.write(f'>{name}_{start}\n{seq[start: start+winsize]}\n')
+-
+-if __name__ == '__main__':
+-    main()
+-
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
++# -*- coding: utf-8 -*-
++
++import click
++from collections import OrderedDict
++
++def loadfa(fafile):
++    seqdict = OrderedDict()
++    with open(fafile) as f:
++        seq_id = f.readline().strip().split()[0][1:]
++        tmp_seq = []
++        for line in f:
++            if line[0] != '>':
++                tmp_seq.append(line.strip())
++            else:
++                seqdict[seq_id] = ''.join(tmp_seq)
++                seq_id = line.strip().split()[0][1:]
++                tmp_seq = []
++        seqdict[seq_id] = ''.join(tmp_seq)
++    return seqdict
++
++
++@click.command()
++@click.argument('fafile')
++@click.argument('winsize', type=int)
++@click.argument('outfile')
++def main(fafile, winsize, outfile):
++    """
++    produce kmer(<OUTFILE>) from refrence fasta(<FAFILE>) according to window size(<WINSIZE>)
++    """
++    seqdict = loadfa(fafile)
++    stepsize = int(winsize / 2)
++    print(f'winsize is {winsize}')
++    print(f'stepsize is {stepsize}')
++    with open(outfile, 'w') as f:
++        for name, seq in seqdict.items():
++            for start in range(0, len(seq), stepsize):
++                f.write(f'>{name}_{start}\n{seq[start: start+winsize]}\n')
++
++if __name__ == '__main__':
++    main()
++
+--- bin/0.2.Kmer_Link.py.old	2024-06-06 11:05:59.720797002 -0500
++++ bin/0.2.Kmer_Link.py	2024-06-06 11:08:02.950699923 -0500
+@@ -1,64 +1,64 @@
+-# -*- coding: utf-8 -*-
+-
+-
+-import gzip
+-import click
+-import numpy as np
+-import pandas as pd
+-
+-
+-def rename(x):
+-    """
+-    reshape seq ID from chr1_0 to chr1:1
+-    _ -> :
+-    pos += 1
+-    """
+-    id_ = '_'.join(x.split('_')[:-1])
+-    pos = int(x.split('_')[-1])
+-    pos += 1
+-    return f'{id_}:{pos}'
+-
+-
+-
+-@click.command()
+-@click.argument('blasr')
+-@click.argument('winsize', type=int)
+-@click.argument('outfile')
+-def main(blasr, winsize, outfile):
+-    """
+-    produce duplicated window record file from blasr outputfile.\n
+-    blasr command:\n
+-    \b
+-    blasr <kmer.fa> <ref.fa> --sa <ref.sa> --out <aln.out> \\
+-          -m 5 --noSplitSubreads --minMatch 15 --maxMatch 20 \\
+-          --advanceHalf --advanceExactMatches 10 --fastMaxInterval \\
+-          --fastSDP --aggressiveIntervalCut --bestn 10 \\
+-          --nproc <number of process>
+-    """
+-    # blasr outfmt https://github.com/PacificBiosciences/blasr/wiki/Blasr-Output-Format
+-    stepsize = int(winsize / 2)
+-    print(f'winsize {winsize}. stepsize {stepsize}')
+-    col_names = ['qName', 'qLength', 'qStart', 'qEnd', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']
+-    col_index = [0, 1, 2, 3, 5, 7, 11, 12, 13, 14]
+-    df = pd.read_csv(blasr, sep='\s+', header=None, usecols=col_index, names=col_names, compression='infer')
+-    df['qName'] = df['qName'].map(rename)
+-    print(f'parse blasr finsh, records number is {df.shape[0]}')
+-    df['coverage'] = (df['qEnd'] - df['qStart']) / df['qLength']
+-    df = df.loc[df['coverage'] >= 0.9, ['qName', 'qStart', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']]
+-    print(f'drop coverage lower than 90%, {df.shape[0]} records remained')
+-    df['ident'] = df['numMatch'] / (df['numMatch'] + df['numMismatch'] + df['numIns'] + df['numDel'])
+-    df = df.loc[df['ident'] >= 0.97, ['qName', 'tName', 'tStart']]
+-    print(f'drop identity lower than 97%, {df.shape[0]} records remained')
+-    df['tNewstart'] = df['tStart'].map(lambda x: round(x / stepsize) * stepsize + 1)
+-    df['tNewname'] = df['tName'].astype(str) + ':' + df['tNewstart'].astype(str)
+-    df = df.groupby('qName')['qName', 'tNewname'].agg({'qName': np.unique,
+-                                                      'tNewname': lambda x: '\t'.join(x)})
+-    with open(outfile, 'w') as f:
+-        for line in df.values:
+-            if len(line[1].split()) > 1:
+-                outline = [str(x) for x in line]
+-                f.write('\t'.join(outline) + '\n')
+-
+-
+-if __name__ == '__main__':
+-    main()
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
++# -*- coding: utf-8 -*-
++
++import gzip
++import click
++import numpy as np
++import pandas as pd
++
++def rename(x):
++    """
++    reshape seq ID from chr1_0 to chr1:1
++    _ -> :
++    pos += 1
++    """
++    id_ = '_'.join(x.split('_')[:-1])
++    pos = int(x.split('_')[-1])
++    pos += 1
++    return f'{id_}:{pos}'
++
++
++
++@click.command()
++@click.argument('blasr')
++@click.argument('winsize', type=int)
++@click.argument('outfile')
++def main(blasr, winsize, outfile):
++    """
++    produce duplicated window record file from blasr outputfile.\n
++    blasr command:\n
++    \b
++    blasr <kmer.fa> <ref.fa> --sa <ref.sa> --out <aln.out> \\
++          -m 5 --noSplitSubreads --minMatch 15 --maxMatch 20 \\
++          --advanceHalf --advanceExactMatches 10 --fastMaxInterval \\
++          --fastSDP --aggressiveIntervalCut --bestn 10 \\
++          --nproc <number of process>
++    """
++    # blasr outfmt https://github.com/PacificBiosciences/blasr/wiki/Blasr-Output-Format
++    stepsize = int(winsize / 2)
++    print(f'winsize {winsize}. stepsize {stepsize}')
++    col_names = ['qName', 'qLength', 'qStart', 'qEnd', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']
++    col_index = [0, 1, 2, 3, 5, 7, 11, 12, 13, 14]
++    df = pd.read_csv(blasr, sep='\s+', header=None, usecols=col_index, names=col_names, compression='infer')
++    df['qName'] = df['qName'].map(rename)
++    print(f'parse blasr finsh, records number is {df.shape[0]}')
++    df['coverage'] = (df['qEnd'] - df['qStart']) / df['qLength']
++    df = df.loc[df['coverage'] >= 0.9, ['qName', 'qStart', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']]
++    print(f'drop coverage lower than 90%, {df.shape[0]} records remained')
++    df['ident'] = df['numMatch'] / (df['numMatch'] + df['numMismatch'] + df['numIns'] + df['numDel'])
++    df = df.loc[df['ident'] >= 0.97, ['qName', 'tName', 'tStart']]
++    print(f'drop identity lower than 97%, {df.shape[0]} records remained')
++    df['tNewstart'] = df['tStart'].map(lambda x: round(x / stepsize) * stepsize + 1)
++    df['tNewname'] = df['tName'].astype(str) + ':' + df['tNewstart'].astype(str)
++    df = df.groupby('qName')['qName', 'tNewname'].agg({'qName': np.unique,
++                                                      'tNewname': lambda x: '\t'.join(x)})
++    with open(outfile, 'w') as f:
++        for line in df.values:
++            if len(line[1].split()) > 1:
++                outline = [str(x) for x in line]
++                f.write('\t'.join(outline) + '\n')
++
++
++if __name__ == '__main__':
++    main()
+--- bin/1.1.CNVprocess.pl.old	2024-06-05 14:28:38.980368273 -0500
++++ bin/1.1.CNVprocess.pl	2024-06-06 11:07:58.038703792 -0500
+@@ -1,88 +1,88 @@
+-#!/usr/bin/perl -w
+-use strict;
+-use Getopt::Long;
+-my $program=`basename $0`; chomp $program;
+-my $usage=<<USAGE; #******* Instruction of this program *********#
+-
+-Program: count the number of reads map to each window based on BWA mapped BAM files, need to install samtools software
+-
+-Usage: $program <refdb> <BAM>
+-
+-	-w	window size (bp)
+-		default = 800, keep the same with reference database
+-
+-USAGE
+-
+-my %opts;
+-GetOptions(\%opts, "w:i","help!");
+-die $usage if ( @ARGV != 2 || defined($opts{"help"}));
+-
+-#****************************************************************#
+-#--------------------Main-----Function-----Start-----------------#
+-#****************************************************************#
+-
+-$opts{w} = (defined $opts{w}) ? $opts{w} : 800;
+-
+-=pod
+-HWI-D00621:25:HAJ30ADXX:2:2216:19030:101341 147     1       237421248       60      12S68M  =       237420928       -388    CATCCAGTCTGTTCTCTGCCTAGAGTGTCATTTTTTTTCCTTGTCTTGTCTGGCTAACTCATTAGTCTTTTAATTCTCAG        ############@@D?;@=7)=).).).);A76IIIEDB?9ED?EE@EFA?@FEBEC<,?<+<EIEEBDDC=:B;D????     RG:Z:aal        XC:i:68 XT:A:U  NM:i:0  SM:i:37 AM:i:37 X0:i:1  X1:i:0  XM:i:0  XO:i:0  XG:i:0  MD:Z:68
+-=cut
+-
+-my $window_size = $opts{w};
+-my $step_size = $opts{w}/2;
+-my %uniq;
+-my %mul;
+-print STDERR "stats read depth per window start!\n";
+-print STDERR scalar localtime,"\n";	
+-##########################BAM file loading and reads depth stat###############################################################
+-my $header;
+-open (HEAD, "-|", "samtools view -H $ARGV[1]") or die "$!\n";
+-while (<HEAD>){
+-	chomp;
+-	next unless /^\@RG/;
+-	($header) = $_ =~ /SM:(\S+)/;
+-}
+-close HEAD;
+-die "Unexpected bam format...\n" unless defined $header;
+-print STDERR "Parsing sample $header ...\n";
+-open (IN, "-|", "samtools view -F 0x504 $ARGV[1]") or die "$!\n";
+-while (<IN>){
+-	chomp;
+-	my @read_inf = split/\t/;
+-	$read_inf[3] += (length($read_inf[9])/2);
+-	my $start = int($read_inf[3]/$opts{w})*$opts{w}+1;
+-	my $end = int($read_inf[3]/$opts{w}+0.5)*$opts{w}-$step_size+1;
+-	if ($_ =~ /\sXA:Z/){
+-		$mul{$read_inf[2]}{$start}++;	
+-		$mul{$read_inf[2]}{$end}++;
+-	}
+-	else{
+-		$uniq{$read_inf[2]}{$start}++;
+-		$uniq{$read_inf[2]}{$end}++;
+-	}
+-}
+-close IN;
+-print STDERR "$ARGV[1] file loading done!";
+-print STDERR scalar localtime,"\n";
+-##############################################################################################################################
+-open (REFDB, "$ARGV[0]") or die "Failed to open fasta.db file!\n";
+-open (OUT, ">$header\_raw") or die "raw file writing failed\n";
+-print OUT "#chr\tindex\tpos\tuniq\tmul\tGC\trepeat\n";
+-while (<REFDB>){
+-	chomp;
+-	my @genome_inf = split/\t/;
+-	if (exists $uniq{$genome_inf[0]}{$genome_inf[2]} and exists $mul{$genome_inf[0]}{$genome_inf[2]}){
+-		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",$uniq{$genome_inf[0]}{$genome_inf[2]},"\t",$mul{$genome_inf[0]}{$genome_inf[2]},"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
+-	}
+-	elsif (exists $uniq{$genome_inf[0]}{$genome_inf[2]} and not exists $mul{$genome_inf[0]}{$genome_inf[2]}){
+-		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",$uniq{$genome_inf[0]}{$genome_inf[2]},"\t",0,"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
+-	}
+-	elsif (not exists $uniq{$genome_inf[0]}{$genome_inf[2]} and exists $mul{$genome_inf[0]}{$genome_inf[2]}){
+-		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",0,"\t",$mul{$genome_inf[0]}{$genome_inf[2]},"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
+-	}
+-	else{
+-		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",0,"\t",0,"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
+-	}
+-}
+-close REFDB;
+-close OUT;
+-print STDERR "completed bam parsing!\n";
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
++use strict;
++use Getopt::Long;
++my $program=`basename $0`; chomp $program;
++my $usage=<<USAGE; #******* Instruction of this program *********#
++
++Program: count the number of reads map to each window based on BWA mapped BAM files, need to install samtools software
++
++Usage: $program <refdb> <BAM>
++
++	-w	window size (bp)
++		default = 800, keep the same with reference database
++
++USAGE
++
++my %opts;
++GetOptions(\%opts, "w:i","help!");
++die $usage if ( @ARGV != 2 || defined($opts{"help"}));
++
++#****************************************************************#
++#--------------------Main-----Function-----Start-----------------#
++#****************************************************************#
++
++$opts{w} = (defined $opts{w}) ? $opts{w} : 800;
++
++=pod
++HWI-D00621:25:HAJ30ADXX:2:2216:19030:101341 147     1       237421248       60      12S68M  =       237420928       -388    CATCCAGTCTGTTCTCTGCCTAGAGTGTCATTTTTTTTCCTTGTCTTGTCTGGCTAACTCATTAGTCTTTTAATTCTCAG        ############@@D?;@=7)=).).).);A76IIIEDB?9ED?EE@EFA?@FEBEC<,?<+<EIEEBDDC=:B;D????     RG:Z:aal        XC:i:68 XT:A:U  NM:i:0  SM:i:37 AM:i:37 X0:i:1  X1:i:0  XM:i:0  XO:i:0  XG:i:0  MD:Z:68
++=cut
++
++my $window_size = $opts{w};
++my $step_size = $opts{w}/2;
++my %uniq;
++my %mul;
++print STDERR "stats read depth per window start!\n";
++print STDERR scalar localtime,"\n";	
++##########################BAM file loading and reads depth stat###############################################################
++my $header;
++open (HEAD, "-|", "samtools view -H $ARGV[1]") or die "$!\n";
++while (<HEAD>){
++	chomp;
++	next unless /^\@RG/;
++	($header) = $_ =~ /SM:(\S+)/;
++}
++close HEAD;
++die "Unexpected bam format...\n" unless defined $header;
++print STDERR "Parsing sample $header ...\n";
++open (IN, "-|", "samtools view -F 0x504 $ARGV[1]") or die "$!\n";
++while (<IN>){
++	chomp;
++	my @read_inf = split/\t/;
++	$read_inf[3] += (length($read_inf[9])/2);
++	my $start = int($read_inf[3]/$opts{w})*$opts{w}+1;
++	my $end = int($read_inf[3]/$opts{w}+0.5)*$opts{w}-$step_size+1;
++	if ($_ =~ /\sXA:Z/){
++		$mul{$read_inf[2]}{$start}++;	
++		$mul{$read_inf[2]}{$end}++;
++	}
++	else{
++		$uniq{$read_inf[2]}{$start}++;
++		$uniq{$read_inf[2]}{$end}++;
++	}
++}
++close IN;
++print STDERR "$ARGV[1] file loading done!";
++print STDERR scalar localtime,"\n";
++##############################################################################################################################
++open (REFDB, "$ARGV[0]") or die "Failed to open fasta.db file!\n";
++open (OUT, ">$header\_raw") or die "raw file writing failed\n";
++print OUT "#chr\tindex\tpos\tuniq\tmul\tGC\trepeat\n";
++while (<REFDB>){
++	chomp;
++	my @genome_inf = split/\t/;
++	if (exists $uniq{$genome_inf[0]}{$genome_inf[2]} and exists $mul{$genome_inf[0]}{$genome_inf[2]}){
++		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",$uniq{$genome_inf[0]}{$genome_inf[2]},"\t",$mul{$genome_inf[0]}{$genome_inf[2]},"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
++	}
++	elsif (exists $uniq{$genome_inf[0]}{$genome_inf[2]} and not exists $mul{$genome_inf[0]}{$genome_inf[2]}){
++		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",$uniq{$genome_inf[0]}{$genome_inf[2]},"\t",0,"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
++	}
++	elsif (not exists $uniq{$genome_inf[0]}{$genome_inf[2]} and exists $mul{$genome_inf[0]}{$genome_inf[2]}){
++		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",0,"\t",$mul{$genome_inf[0]}{$genome_inf[2]},"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
++	}
++	else{
++		print OUT $genome_inf[0],"\t",$genome_inf[1],"\t",$genome_inf[2],"\t",0,"\t",0,"\t",$genome_inf[3],"\t",$genome_inf[4],"\n";
++	}
++}
++close REFDB;
++close OUT;
++print STDERR "completed bam parsing!\n";
+--- bin/1.2.CNVcorrect.pl.old	2024-06-05 14:29:04.744349545 -0500
++++ bin/1.2.CNVcorrect.pl	2024-06-06 11:07:58.040703791 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ my $program=`basename $0`; chomp $program;
+ die "Program: Sum the raw reads count from the high similarity windows record in the duplicated window record file\n\nUsage: perl $program <raw> <dup> <output>\n" unless @ARGV == 3;
+--- bin/1.3.CNVnormalize.pl.old	2024-06-05 14:29:25.370334549 -0500
++++ bin/1.3.CNVnormalize.pl	2024-06-06 11:07:58.041703790 -0500
+@@ -1,197 +1,197 @@
+-#!/usr/bin/perl -w
+-use strict;
+-use Data::Dumper;
+-use Getopt::Long;
+-my $program=`basename $0`; chomp $program;
+-my $usage=<<USAGE; #******* Instruction of this program *********#
+-
+-Program: GC correction and RD normalization
+-
+-Usage: $program <corrected raw_reads_count>
+-
+-	-w	window_size (bp)
+-		default = 800, keep the same with reference database
+-
+-	-s	sex chromosome name, i.e. X,chrX,Z,chrZ
+-		default = X
+-
+-	-p	the percentage of the windows with the highest absolute reads count will be excluded during calculating the average of reads count
+-		default = 0.05
+-
+-	-l	the percentage of the windows with the lowest absolute reads count will be excluded during calculating the average of reads count
+-		default = 0.05
+-
+-USAGE
+-
+-my %opts;
+-my @sex = ("X");
+-GetOptions(\%opts, "w:i","s:s@","p:f","l:f","help!");
+-die $usage if ( @ARGV < 1 || defined($opts{"help"}));
+-
+-#****************************************************************#
+-#--------------------Main-----Function-----Start-----------------#
+-#****************************************************************#
+-
+-$opts{w} = (defined $opts{w}) ? $opts{w} : 800;
+-$opts{s} = (defined $opts{s}) ? $opts{s} : \@sex;
+-$opts{p} = (defined $opts{p}) ? $opts{p} : 0.05;
+-$opts{l} = (defined $opts{l}) ? $opts{l} : 0.05;
+-##############################################################################################################################
+-my $repeat_max=$opts{w}*0.3;
+-my %GC_region_average;
+-my @global_array = ();
+-my @X_array = ();
+-open (IN, "$ARGV[0]") or die "Error: Cannot read your input absolute reads count file $ARGV[0].\n";
+-my $header = (split/\//,$ARGV[0])[-1];
+-print STDERR "parsing $header ......\n";
+-my %genome_copy;
+-while(<IN>){
+-	chomp;
+-	my @RAW = split/\t/;
+-	$genome_copy{$RAW[0]}{$RAW[1]} = $RAW[-1];
+-	if (grep (/^$RAW[0]$/ ,@{$opts{s}})){
+-		if ($RAW[4] <= $repeat_max and $RAW[-1] eq '1') {
+-			push @X_array, $RAW[2];
+-		}
+-	}
+-	else{
+-		if ($RAW[4] <= $repeat_max and $RAW[-1] eq '1' ) {
+-			push @{$GC_region_average{$RAW[3]}}, $RAW[2];
+-			push @global_array, $RAW[2];
+-		}
+-	}
+-}
+-close IN;
+-print STDERR "$ARGV[0] file loading finished.\n";
+-##############################################################################################################################
+-@global_array = sort {$a <=> $b} @global_array;
+-my $median90 = $global_array[int(0.9*@global_array)];
+-my $median50 = $global_array[int(0.5*@global_array)];
+-my $median10 = $global_array[int(0.1*@global_array)];
+-my $median8 = $global_array[int(0.08*@global_array)];
+-my $median6 = $global_array[int(0.06*@global_array)];
+-my $median4 = $global_array[int(0.04*@global_array)];
+-my $median2 = $global_array[int(0.02*@global_array)];
+-print STDERR "tail 2 percent window is lower than $median2\n";
+-print STDERR "tail 4 percent window is lower than $median4\n";
+-print STDERR "tail 6 percent window is lower than $median6\n";
+-print STDERR "tail 8 percent window is lower than $median8\n";
+-print STDERR "tail 10 percent window is lower than $median10\n";
+-print STDERR "tail 50 percent window is lower than $median50\n";
+-print STDERR "tail 90 percent window is lower than $median90\n";
+-my $Xmedian50 = 0;
+-if (@X_array >= 1){
+-	@X_array = sort {$a <=> $b} @X_array;
+-	my $Xmedian90= $X_array[int(0.9*@X_array)];
+-	$Xmedian50= $X_array[int(0.5*@X_array)];
+-	my $Xmedian10= $X_array[int(0.1*@X_array)];
+-	print STDERR "tail 10 percent ",join(" ", @{$opts{s}}), " window is lower than $Xmedian10\n";
+-	print STDERR "tail 50 percent ",join(" ", @{$opts{s}}), " window is lower than $Xmedian50\n";
+-	print STDERR "tail 90 percent ",join(" ", @{$opts{s}}), " window is lower than $Xmedian90\n";
+-}
+-
+-my $sex_correct_fold = 0;
+-if ($Xmedian50>$median50*0.75 && $Xmedian50<$median50*1.5 ){
+-	print STDERR "sex chromosome ",join(" ", @{$opts{s}}), " show similar coverage of autosome!\n";
+-	$sex_correct_fold=1;
+-}
+-elsif($Xmedian50<$median50*0.75 && $Xmedian50>$median50*0.25){
+-	print STDERR "sex chromosome ",join(" ", @{$opts{s}}), " show ~ half coverage of autosome!\n";
+-	$sex_correct_fold=2;
+-}
+-else {
+-	$sex_correct_fold=1;
+-	print STDERR "sex chromosome ",join(" ", @{$opts{s}}), " show UNKOWN relationship with autosome?\n";
+-}
+-
+-@global_array = ();
+-@X_array = ();
+-####################################calculate average value for each GC content region #######################################
+-my %region_average_sd;
+-my @sorted_tmp = ();
+-my $sum = 0;
+-my $sum_window = 0;
+-foreach my $tmp_gc (sort {$a <=> $b} keys %GC_region_average){
+-	@sorted_tmp = sort {$a <=> $b} @{$GC_region_average{$tmp_gc}};
+-	for my $i (int($opts{l}*@sorted_tmp)..int((1-$opts{p})*@sorted_tmp)) {
+-		$sum_window += 1;
+-		$sum += $sorted_tmp[$i];
+-	}
+-	$region_average_sd{$tmp_gc} = $sum_window > 0 ? sprintf "%.2f", ($sum/$sum_window) : 0 ;
+-	print STDERR "$tmp_gc\t$region_average_sd{$tmp_gc}\t$sum_window\t$#sorted_tmp\n";######################################GC group output test
+-	$sum = 0;
+-	$sum_window = 0;
+-}
+-%GC_region_average=();
+-
+-print STDERR "calculate average value for each GC content region done!\n";
+-print STDERR scalar localtime,"\n";
+-#######################################correct read depth according to GC content, into 40% average GC########################
+-my $standard_average = $region_average_sd{$opts{w}*0.4};
+-foreach my $tmp_gc (sort {$a <=> $b} keys %region_average_sd){
+-	$region_average_sd{$tmp_gc} = $region_average_sd{$tmp_gc} > 0 ? sprintf "%.2f",($standard_average/$region_average_sd{$tmp_gc}) : 0;
+-}
+-my %clean_record;
+-open (RAW, "$ARGV[0]") or die "Error: Cannot read your input absolute reads count file $ARGV[0].\n";
+-while (<RAW>){
+-	chomp;
+-	my @read_inf = split/\t/;
+-	$region_average_sd{$read_inf[3]} = 0 if not exists $region_average_sd{$read_inf[3]};
+-	if (grep (/^$read_inf[0]$/ ,@{$opts{s}})) {
+-		$read_inf[2]=sprintf "%.2f",($sex_correct_fold*$read_inf[2]*$region_average_sd{$read_inf[3]});
+-	}
+-	else{
+-		$read_inf[2]=sprintf "%.2f",($read_inf[2]*$region_average_sd{$read_inf[3]});
+-		push @global_array, $read_inf[2];
+-	}
+-	$clean_record{$read_inf[0]}{$read_inf[1]}=$read_inf[2];
+-}
+-close RAW;
+-print STDERR "correct read count according to GC content done!\n";
+-print STDERR scalar localtime,"\n";
+-@global_array = sort {$a <=> $b} @global_array;
+-my $correct_median50 = sprintf "%.2f", $global_array[int(0.5*@global_array)];
+-print STDERR "global median50 $correct_median50\n";
+-##########################################calculate the global average and SD#################################################
+-my $global_max = &top_percent(1-$opts{p}, @global_array);
+-my $global_min = &top_percent($opts{l}, @global_array);
+-@global_array = ();
+-foreach my $tmp_chr (keys %clean_record){
+-	foreach my $tmp_pos(keys %{$clean_record{$tmp_chr}}){
+-		next if ($clean_record{$tmp_chr}{$tmp_pos} > $global_max || $clean_record{$tmp_chr}{$tmp_pos} < $global_min);
+-		push @global_array, $clean_record{$tmp_chr}{$tmp_pos};
+-	}
+-}
+-$sum = 0;
+-for my $value (@global_array) {
+-	$sum += $value;
+-}
+-my $global_average = sprintf "%.2f",$sum/@global_array;
+-$sum = 0;
+-for my $value (@global_array) {
+-	$sum += ($value-$global_average)**2;
+-}
+-my $global_sd = sprintf "%.2f", sqrt($sum/(@global_array-1));
+-
+-print STDERR "global average: $global_average\tglobal SD: $global_sd\n";
+-print STDERR "the ",1-$opts{p}," th percentile absolute reads count: $global_max\n";
+-print STDERR "the ",$opts{l}," th percentile absolute reads count: $global_min\n";
+-####################################################correct window and candiate CNVR##########################################
+-open (OUT2, ">$header\_mean_$correct_median50\_SD_$global_sd\_sex_$sex_correct_fold") or die "Permission denied!\n";
+-foreach my $tmp_chr (sort keys %clean_record){
+-	foreach my $i (sort {$a <=> $b} keys %{$clean_record{$tmp_chr}}){
+-		my $copynumber = sprintf "%.2f",$clean_record{$tmp_chr}{$i}/$correct_median50;
+-		print OUT2 $tmp_chr,"\t",$i,"\t",$copynumber,"\t",$genome_copy{$tmp_chr}{$i},"\n";
+-	}
+-}
+-close OUT2;
+-print STDERR "output normalization copy number done!\n";
+-##########################################subroutine##########################################################################
+-sub top_percent {
+-	my $cutoff;
+-	my ($percent, @tmp) = @_;
+-	my @sorted_tmp = sort {$a <=> $b} @tmp;
+-	my $int_cutoff = int($percent*(@sorted_tmp-1));
+-	$cutoff = $sorted_tmp[$int_cutoff];
+-	return $cutoff;
+-}
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
++use strict;
++use Data::Dumper;
++use Getopt::Long;
++my $program=`basename $0`; chomp $program;
++my $usage=<<USAGE; #******* Instruction of this program *********#
++
++Program: GC correction and RD normalization
++
++Usage: $program <corrected raw_reads_count>
++
++	-w	window_size (bp)
++		default = 800, keep the same with reference database
++
++	-s	sex chromosome name, i.e. X,chrX,Z,chrZ
++		default = X
++
++	-p	the percentage of the windows with the highest absolute reads count will be excluded during calculating the average of reads count
++		default = 0.05
++
++	-l	the percentage of the windows with the lowest absolute reads count will be excluded during calculating the average of reads count
++		default = 0.05
++
++USAGE
++
++my %opts;
++my @sex = ("X");
++GetOptions(\%opts, "w:i","s:s@","p:f","l:f","help!");
++die $usage if ( @ARGV < 1 || defined($opts{"help"}));
++
++#****************************************************************#
++#--------------------Main-----Function-----Start-----------------#
++#****************************************************************#
++
++$opts{w} = (defined $opts{w}) ? $opts{w} : 800;
++$opts{s} = (defined $opts{s}) ? $opts{s} : \@sex;
++$opts{p} = (defined $opts{p}) ? $opts{p} : 0.05;
++$opts{l} = (defined $opts{l}) ? $opts{l} : 0.05;
++##############################################################################################################################
++my $repeat_max=$opts{w}*0.3;
++my %GC_region_average;
++my @global_array = ();
++my @X_array = ();
++open (IN, "$ARGV[0]") or die "Error: Cannot read your input absolute reads count file $ARGV[0].\n";
++my $header = (split/\//,$ARGV[0])[-1];
++print STDERR "parsing $header ......\n";
++my %genome_copy;
++while(<IN>){
++	chomp;
++	my @RAW = split/\t/;
++	$genome_copy{$RAW[0]}{$RAW[1]} = $RAW[-1];
++	if (grep (/^$RAW[0]$/ ,@{$opts{s}})){
++		if ($RAW[4] <= $repeat_max and $RAW[-1] eq '1') {
++			push @X_array, $RAW[2];
++		}
++	}
++	else{
++		if ($RAW[4] <= $repeat_max and $RAW[-1] eq '1' ) {
++			push @{$GC_region_average{$RAW[3]}}, $RAW[2];
++			push @global_array, $RAW[2];
++		}
++	}
++}
++close IN;
++print STDERR "$ARGV[0] file loading finished.\n";
++##############################################################################################################################
++@global_array = sort {$a <=> $b} @global_array;
++my $median90 = $global_array[int(0.9*@global_array)];
++my $median50 = $global_array[int(0.5*@global_array)];
++my $median10 = $global_array[int(0.1*@global_array)];
++my $median8 = $global_array[int(0.08*@global_array)];
++my $median6 = $global_array[int(0.06*@global_array)];
++my $median4 = $global_array[int(0.04*@global_array)];
++my $median2 = $global_array[int(0.02*@global_array)];
++print STDERR "tail 2 percent window is lower than $median2\n";
++print STDERR "tail 4 percent window is lower than $median4\n";
++print STDERR "tail 6 percent window is lower than $median6\n";
++print STDERR "tail 8 percent window is lower than $median8\n";
++print STDERR "tail 10 percent window is lower than $median10\n";
++print STDERR "tail 50 percent window is lower than $median50\n";
++print STDERR "tail 90 percent window is lower than $median90\n";
++my $Xmedian50 = 0;
++if (@X_array >= 1){
++	@X_array = sort {$a <=> $b} @X_array;
++	my $Xmedian90= $X_array[int(0.9*@X_array)];
++	$Xmedian50= $X_array[int(0.5*@X_array)];
++	my $Xmedian10= $X_array[int(0.1*@X_array)];
++	print STDERR "tail 10 percent ",join(" ", @{$opts{s}}), " window is lower than $Xmedian10\n";
++	print STDERR "tail 50 percent ",join(" ", @{$opts{s}}), " window is lower than $Xmedian50\n";
++	print STDERR "tail 90 percent ",join(" ", @{$opts{s}}), " window is lower than $Xmedian90\n";
++}
++
++my $sex_correct_fold = 0;
++if ($Xmedian50>$median50*0.75 && $Xmedian50<$median50*1.5 ){
++	print STDERR "sex chromosome ",join(" ", @{$opts{s}}), " show similar coverage of autosome!\n";
++	$sex_correct_fold=1;
++}
++elsif($Xmedian50<$median50*0.75 && $Xmedian50>$median50*0.25){
++	print STDERR "sex chromosome ",join(" ", @{$opts{s}}), " show ~ half coverage of autosome!\n";
++	$sex_correct_fold=2;
++}
++else {
++	$sex_correct_fold=1;
++	print STDERR "sex chromosome ",join(" ", @{$opts{s}}), " show UNKOWN relationship with autosome?\n";
++}
++
++@global_array = ();
++@X_array = ();
++####################################calculate average value for each GC content region #######################################
++my %region_average_sd;
++my @sorted_tmp = ();
++my $sum = 0;
++my $sum_window = 0;
++foreach my $tmp_gc (sort {$a <=> $b} keys %GC_region_average){
++	@sorted_tmp = sort {$a <=> $b} @{$GC_region_average{$tmp_gc}};
++	for my $i (int($opts{l}*@sorted_tmp)..int((1-$opts{p})*@sorted_tmp)) {
++		$sum_window += 1;
++		$sum += $sorted_tmp[$i];
++	}
++	$region_average_sd{$tmp_gc} = $sum_window > 0 ? sprintf "%.2f", ($sum/$sum_window) : 0 ;
++	print STDERR "$tmp_gc\t$region_average_sd{$tmp_gc}\t$sum_window\t$#sorted_tmp\n";######################################GC group output test
++	$sum = 0;
++	$sum_window = 0;
++}
++%GC_region_average=();
++
++print STDERR "calculate average value for each GC content region done!\n";
++print STDERR scalar localtime,"\n";
++#######################################correct read depth according to GC content, into 40% average GC########################
++my $standard_average = $region_average_sd{$opts{w}*0.4};
++foreach my $tmp_gc (sort {$a <=> $b} keys %region_average_sd){
++	$region_average_sd{$tmp_gc} = $region_average_sd{$tmp_gc} > 0 ? sprintf "%.2f",($standard_average/$region_average_sd{$tmp_gc}) : 0;
++}
++my %clean_record;
++open (RAW, "$ARGV[0]") or die "Error: Cannot read your input absolute reads count file $ARGV[0].\n";
++while (<RAW>){
++	chomp;
++	my @read_inf = split/\t/;
++	$region_average_sd{$read_inf[3]} = 0 if not exists $region_average_sd{$read_inf[3]};
++	if (grep (/^$read_inf[0]$/ ,@{$opts{s}})) {
++		$read_inf[2]=sprintf "%.2f",($sex_correct_fold*$read_inf[2]*$region_average_sd{$read_inf[3]});
++	}
++	else{
++		$read_inf[2]=sprintf "%.2f",($read_inf[2]*$region_average_sd{$read_inf[3]});
++		push @global_array, $read_inf[2];
++	}
++	$clean_record{$read_inf[0]}{$read_inf[1]}=$read_inf[2];
++}
++close RAW;
++print STDERR "correct read count according to GC content done!\n";
++print STDERR scalar localtime,"\n";
++@global_array = sort {$a <=> $b} @global_array;
++my $correct_median50 = sprintf "%.2f", $global_array[int(0.5*@global_array)];
++print STDERR "global median50 $correct_median50\n";
++##########################################calculate the global average and SD#################################################
++my $global_max = &top_percent(1-$opts{p}, @global_array);
++my $global_min = &top_percent($opts{l}, @global_array);
++@global_array = ();
++foreach my $tmp_chr (keys %clean_record){
++	foreach my $tmp_pos(keys %{$clean_record{$tmp_chr}}){
++		next if ($clean_record{$tmp_chr}{$tmp_pos} > $global_max || $clean_record{$tmp_chr}{$tmp_pos} < $global_min);
++		push @global_array, $clean_record{$tmp_chr}{$tmp_pos};
++	}
++}
++$sum = 0;
++for my $value (@global_array) {
++	$sum += $value;
++}
++my $global_average = sprintf "%.2f",$sum/@global_array;
++$sum = 0;
++for my $value (@global_array) {
++	$sum += ($value-$global_average)**2;
++}
++my $global_sd = sprintf "%.2f", sqrt($sum/(@global_array-1));
++
++print STDERR "global average: $global_average\tglobal SD: $global_sd\n";
++print STDERR "the ",1-$opts{p}," th percentile absolute reads count: $global_max\n";
++print STDERR "the ",$opts{l}," th percentile absolute reads count: $global_min\n";
++####################################################correct window and candiate CNVR##########################################
++open (OUT2, ">$header\_mean_$correct_median50\_SD_$global_sd\_sex_$sex_correct_fold") or die "Permission denied!\n";
++foreach my $tmp_chr (sort keys %clean_record){
++	foreach my $i (sort {$a <=> $b} keys %{$clean_record{$tmp_chr}}){
++		my $copynumber = sprintf "%.2f",$clean_record{$tmp_chr}{$i}/$correct_median50;
++		print OUT2 $tmp_chr,"\t",$i,"\t",$copynumber,"\t",$genome_copy{$tmp_chr}{$i},"\n";
++	}
++}
++close OUT2;
++print STDERR "output normalization copy number done!\n";
++##########################################subroutine##########################################################################
++sub top_percent {
++	my $cutoff;
++	my ($percent, @tmp) = @_;
++	my @sorted_tmp = sort {$a <=> $b} @tmp;
++	my $int_cutoff = int($percent*(@sorted_tmp-1));
++	$cutoff = $sorted_tmp[$int_cutoff];
++	return $cutoff;
++}
+--- bin/2.1.CNVDiscoveryMerge.pl.old	2024-06-05 14:29:52.475314844 -0500
++++ bin/2.1.CNVDiscoveryMerge.pl	2024-06-06 11:07:58.043703789 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl -w
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use strict;
+ use List::Util qw(first max maxstr min minstr reduce shuffle sum);
+ use Getopt::Long;
+--- bin/2.2.CNVRRedundancy.pl.old	2024-06-05 14:30:15.668297979 -0500
++++ bin/2.2.CNVRRedundancy.pl	2024-06-06 11:07:58.045703787 -0500
+@@ -1,127 +1,127 @@
+-#!/usr/bin/perl -w
+-use strict;
+-my $program=`basename $0`; chomp $program;
+-die "Usage: $program <primaryCNVR> <pearsonCorrelation> <mergedCNVR>\n" unless @ARGV == 3;
+-open (IN, "$ARGV[0]") or die "Error: cannot read primaryCNVR file $ARGV[0].\n";
+-open (OUT,">$ARGV[2]") or die "permission denied!\n";
+-my $percent = 0.1; #the percent for the distance of two adjacent CNV in their CNV length when merge
+-my $correlation = $ARGV[1]; # the pearson correlation of copy numbers between two adjacent CNV when merge
+-#############################################input format####################################
+-=pod
+-chr	start	end	number	duplication	repeat	gc	abnormal ID1 ID2 ... AVERAGE SD
+-=cut
+-my %hash;   #chr -> $start -> @array
+-my $header = <IN>;
+-print OUT $header;
+-my $firstline = <IN>;
+-chomp $firstline;
+-my @tmp_start_array = split/\s+/,$firstline;
+-my $tmp_chr = shift  @tmp_start_array;
+-my $tmp_start = shift @tmp_start_array;
+-my $tmp_end = shift @tmp_start_array;
+-my $tmp_effective_windows = shift @tmp_start_array;
+-my $tmp_length = $tmp_end - $tmp_start + 1;
+-my @tmp_weight_array1 = ($tmp_effective_windows, @tmp_start_array);
+-my $tmp_gap = shift @tmp_start_array;
+-my $tmp_repeat = shift @tmp_start_array;
+-my $tmp_gc = shift @tmp_start_array;
+-my $tmp_kmer = shift @tmp_start_array;
+-my $tmp_sd = pop @tmp_start_array;
+-my $tmp_average = pop @tmp_start_array;
+-$hash{$tmp_chr}{$tmp_start} = [$tmp_end,@tmp_weight_array1];
+-##############################################################################################
+-while (<IN>) {
+-	chomp;
+-	my @tmp = split/\s+/,$_;
+-	my $chr = shift @tmp;
+-	my $start = shift @tmp;
+-	my $end = shift @tmp;
+-	my $effective_windows = shift @tmp;
+-	my $length = $end - $start + 1;
+-	my @tmp_weight_array2 = ($effective_windows, @tmp);
+-	my $gap = shift @tmp;
+-	my $repeat = shift @tmp;
+-	my $gc = shift @tmp;
+-	my $kmer = shift @tmp;
+-	my $sd = pop @tmp;
+-	my $average = pop @tmp;
+-	die "unexpected sample number!\n" unless length(@tmp_start_array) == length(@tmp);
+-	my $tmp_cor = &pearson(\@tmp,\@tmp_start_array);
+-	if ($tmp_chr eq $chr && (($start-$tmp_end+1) <= ($tmp_length + $length)*$percent or $start-$tmp_end+1 <= 300) && $tmp_cor >= $correlation){
+-		my @tmp_weight = &weight_average(\@tmp_weight_array1, \@tmp_weight_array2);
+-		$hash{$tmp_chr}{$tmp_start} = [$end,@tmp_weight];
+-		@tmp_weight_array1 = @tmp_weight;
+-		shift @tmp_weight;
+-		shift @tmp_weight;
+-		shift @tmp_weight;
+-		shift @tmp_weight;
+-		shift @tmp_weight;
+-		pop @tmp_weight;
+-		pop @tmp_weight;
+-		@tmp_start_array = @tmp_weight;
+-		$tmp_chr = $chr;
+-		$tmp_end = $end;
+-		$tmp_length = $end - $tmp_start + 1;
+-	}else{
+-		undef @tmp_weight_array1;
+-		$hash{$chr}{$start} = [$end,@tmp_weight_array2];
+-		@tmp_weight_array1 = @tmp_weight_array2;
+-		@tmp_start_array = @tmp;
+-		$tmp_chr = $chr;
+-		$tmp_end = $end;
+-		$tmp_start = $start;
+-		$tmp_length = $start - $end + 1;
+-	}
+-}
+-foreach my $chr(sort keys %hash){
+-	foreach my $pos_start (sort {$a <=> $b} keys %{$hash{$chr}}){
+-		print OUT $chr,"\t",$pos_start,"\t",join("\t",@{$hash{$chr}{$pos_start}}),"\n";
+-	}
+-}
+-############################################subroutine######################
+-sub pearson {
+-	my ($ref_a, $ref_b) = @_;
+-	my @x = @{$ref_a};
+-	my @y = @{$ref_b};
+-	if($#x == $#y){
+-		my $N = $#x;
+-		my $sum_sq_x = 0;
+-		my $sum_sq_y = 0;
+-		my $sum_coproduct = 0;
+-		my $mean_x = &get_average(@x);
+-		my $mean_y = &get_average(@y);
+-		for(my $i=0;$i<=$N;$i++){
+-			my $delta_x = $x[$i] - $mean_x;
+-			my $delta_y = $y[$i] - $mean_y;
+-			$sum_sq_x += $delta_x * $delta_x;
+-			$sum_sq_y += $delta_y * $delta_y;
+-			$sum_coproduct += $delta_x * $delta_y;
+-		}
+-		my $pop_sd_x = sqrt($sum_sq_x);
+-		my $pop_sd_y = sqrt($sum_sq_y);
+-		my $cov_x_y = $sum_coproduct;
+-		my $correlation = $pop_sd_x * $pop_sd_y > 0 ? $cov_x_y / ($pop_sd_x * $pop_sd_y) : 0;
+-		return $correlation;
+-	}
+-}
+-sub weight_average {
+-	my ($array1, $array2) = @_;
+-	my @weight;
+-	my $effective_windows_array1 = shift @{$array1};
+-	my $effective_windows_array2 = shift @{$array2};
+-	my $sum_effective_windows = $effective_windows_array1+$effective_windows_array2;
+-	push @weight, $sum_effective_windows;
+-	for my $i (0..$#{$array1}){
+-		push @weight, $sum_effective_windows ? sprintf "%.2f",($array1->[$i]*$effective_windows_array1+$array2->[$i]*$effective_windows_array2)/$sum_effective_windows : 0;
+-	}
+-	return @weight;
+-}
+-sub get_average {
+-	my @array = @_;
+-	my $sum;
+-	for my $value (@array) {
+-		$sum += $value;
+-	}
+-	my $average = @array > 0 ? $sum/@array : 0;
+-	return $average;
+-}
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
++use strict;
++my $program=`basename $0`; chomp $program;
++die "Usage: $program <primaryCNVR> <pearsonCorrelation> <mergedCNVR>\n" unless @ARGV == 3;
++open (IN, "$ARGV[0]") or die "Error: cannot read primaryCNVR file $ARGV[0].\n";
++open (OUT,">$ARGV[2]") or die "permission denied!\n";
++my $percent = 0.1; #the percent for the distance of two adjacent CNV in their CNV length when merge
++my $correlation = $ARGV[1]; # the pearson correlation of copy numbers between two adjacent CNV when merge
++#############################################input format####################################
++=pod
++chr	start	end	number	duplication	repeat	gc	abnormal ID1 ID2 ... AVERAGE SD
++=cut
++my %hash;   #chr -> $start -> @array
++my $header = <IN>;
++print OUT $header;
++my $firstline = <IN>;
++chomp $firstline;
++my @tmp_start_array = split/\s+/,$firstline;
++my $tmp_chr = shift  @tmp_start_array;
++my $tmp_start = shift @tmp_start_array;
++my $tmp_end = shift @tmp_start_array;
++my $tmp_effective_windows = shift @tmp_start_array;
++my $tmp_length = $tmp_end - $tmp_start + 1;
++my @tmp_weight_array1 = ($tmp_effective_windows, @tmp_start_array);
++my $tmp_gap = shift @tmp_start_array;
++my $tmp_repeat = shift @tmp_start_array;
++my $tmp_gc = shift @tmp_start_array;
++my $tmp_kmer = shift @tmp_start_array;
++my $tmp_sd = pop @tmp_start_array;
++my $tmp_average = pop @tmp_start_array;
++$hash{$tmp_chr}{$tmp_start} = [$tmp_end,@tmp_weight_array1];
++##############################################################################################
++while (<IN>) {
++	chomp;
++	my @tmp = split/\s+/,$_;
++	my $chr = shift @tmp;
++	my $start = shift @tmp;
++	my $end = shift @tmp;
++	my $effective_windows = shift @tmp;
++	my $length = $end - $start + 1;
++	my @tmp_weight_array2 = ($effective_windows, @tmp);
++	my $gap = shift @tmp;
++	my $repeat = shift @tmp;
++	my $gc = shift @tmp;
++	my $kmer = shift @tmp;
++	my $sd = pop @tmp;
++	my $average = pop @tmp;
++	die "unexpected sample number!\n" unless length(@tmp_start_array) == length(@tmp);
++	my $tmp_cor = &pearson(\@tmp,\@tmp_start_array);
++	if ($tmp_chr eq $chr && (($start-$tmp_end+1) <= ($tmp_length + $length)*$percent or $start-$tmp_end+1 <= 300) && $tmp_cor >= $correlation){
++		my @tmp_weight = &weight_average(\@tmp_weight_array1, \@tmp_weight_array2);
++		$hash{$tmp_chr}{$tmp_start} = [$end,@tmp_weight];
++		@tmp_weight_array1 = @tmp_weight;
++		shift @tmp_weight;
++		shift @tmp_weight;
++		shift @tmp_weight;
++		shift @tmp_weight;
++		shift @tmp_weight;
++		pop @tmp_weight;
++		pop @tmp_weight;
++		@tmp_start_array = @tmp_weight;
++		$tmp_chr = $chr;
++		$tmp_end = $end;
++		$tmp_length = $end - $tmp_start + 1;
++	}else{
++		undef @tmp_weight_array1;
++		$hash{$chr}{$start} = [$end,@tmp_weight_array2];
++		@tmp_weight_array1 = @tmp_weight_array2;
++		@tmp_start_array = @tmp;
++		$tmp_chr = $chr;
++		$tmp_end = $end;
++		$tmp_start = $start;
++		$tmp_length = $start - $end + 1;
++	}
++}
++foreach my $chr(sort keys %hash){
++	foreach my $pos_start (sort {$a <=> $b} keys %{$hash{$chr}}){
++		print OUT $chr,"\t",$pos_start,"\t",join("\t",@{$hash{$chr}{$pos_start}}),"\n";
++	}
++}
++############################################subroutine######################
++sub pearson {
++	my ($ref_a, $ref_b) = @_;
++	my @x = @{$ref_a};
++	my @y = @{$ref_b};
++	if($#x == $#y){
++		my $N = $#x;
++		my $sum_sq_x = 0;
++		my $sum_sq_y = 0;
++		my $sum_coproduct = 0;
++		my $mean_x = &get_average(@x);
++		my $mean_y = &get_average(@y);
++		for(my $i=0;$i<=$N;$i++){
++			my $delta_x = $x[$i] - $mean_x;
++			my $delta_y = $y[$i] - $mean_y;
++			$sum_sq_x += $delta_x * $delta_x;
++			$sum_sq_y += $delta_y * $delta_y;
++			$sum_coproduct += $delta_x * $delta_y;
++		}
++		my $pop_sd_x = sqrt($sum_sq_x);
++		my $pop_sd_y = sqrt($sum_sq_y);
++		my $cov_x_y = $sum_coproduct;
++		my $correlation = $pop_sd_x * $pop_sd_y > 0 ? $cov_x_y / ($pop_sd_x * $pop_sd_y) : 0;
++		return $correlation;
++	}
++}
++sub weight_average {
++	my ($array1, $array2) = @_;
++	my @weight;
++	my $effective_windows_array1 = shift @{$array1};
++	my $effective_windows_array2 = shift @{$array2};
++	my $sum_effective_windows = $effective_windows_array1+$effective_windows_array2;
++	push @weight, $sum_effective_windows;
++	for my $i (0..$#{$array1}){
++		push @weight, $sum_effective_windows ? sprintf "%.2f",($array1->[$i]*$effective_windows_array1+$array2->[$i]*$effective_windows_array2)/$sum_effective_windows : 0;
++	}
++	return @weight;
++}
++sub get_average {
++	my @array = @_;
++	my $sum;
++	for my $value (@array) {
++		$sum += $value;
++	}
++	my $average = @array > 0 ? $sum/@array : 0;
++	return $average;
++}
+--- bin/CNVReferenceDB.pl.old	2024-06-05 14:45:31.042628847 -0500
++++ bin/CNVReferenceDB.pl	2024-06-06 11:07:58.046703786 -0500
+@@ -1,79 +1,79 @@
+-#!/usr/bin/perl -w
+-use strict;
+-use Getopt::Long;
+-my $program=`basename $0`; chomp $program;
+-my $usage=<<USAGE; #******* Instruction of this program *********#
+-
+-Program: format reference genome into state table of GC and repeat content per window, as removing gapped regions.
+-
+-Usage: $program <ref>
+-		
+-  -w  window_size
+-      default = 800
+-
+-  -l  GC content lower limit
+-      default = 0.2
+-
+-  -u  GC content upper limit
+-      default = 0.7
+-
+-  -g  gap content
+-      default = 0.5			
+-USAGE
+-my $help;
+-my %opts = (w=>800, l=>0.2, u=>0.7, g=>0.5);
+-GetOptions(\%opts, "w:i","l:f","u:f","g:f","help!");
+-die $usage if ( @ARGV!=1 || defined($opts{"help"}));
+-#****************************************************************#
+-#--------------------Main-----Function-----Start-----------------#
+-#****************************************************************#
+-my $window_size=$opts{w};
+-my $step_size=$opts{w}/2;
+-my $GC_count_max=$window_size*$opts{u};
+-my $GC_count_min=$window_size*$opts{l};
+-print STDERR "Window_size: $opts{w}\n";
+-print STDERR "GC lower limit :$GC_count_min\nGC upper limit :$GC_count_max\n";
+-print STDERR "genome format start!\n";
+-print STDERR scalar localtime,"\n";
+-#######################calculate GC content, repeat content for genome############
+-my $reffile = &FastaReader($ARGV[0]) or die "ref fasta file required!\n";
+-open (OUT, ">referenceDB.$opts{w}") or die "$!\n";
+-my $number;
+-my $window_number;
+-foreach my $chr (sort keys %{$reffile}){
+-	$window_number = int(length($reffile->{$chr})/$step_size);
+-	my $i = 0;
+-	for $number (0..$window_number){
+-		my $position=$number*$step_size;
+-		my $sub_seq = substr($reffile->{$chr}, $position, $window_size);
+-		my $gap_count = () = $sub_seq =~ /N/gi;
+-		my $gap_content = $window_size > 0 ? sprintf "%.2f",$gap_count/$window_size : 0;
+-		next if $gap_content > $opts{g};
+-		my $GC_count = () = $sub_seq =~ /[GC]/gi;
+-		next if ($GC_count > $GC_count_max || $GC_count < $GC_count_min);
+-		my $repeat_count = () = $sub_seq =~ /[atgc]/g ;
+-		$i++;############used window NO. per chromosome.
+-		print OUT "$chr\t$i\t",$position+1,"\t$GC_count\t$repeat_count\t$gap_content\n";
+-	}
+-}
+-sub FastaReader {
+-	my ($file) = @_;
+-	open IN, "<", $file or die "Fail to open file: $file!\n";
+-	local $/ = '>';
+-	<IN>;
+-	my ($head, $seq, %hash);
+-	while (<IN>){
+-		s/\r?\n>?$//;
+-		( $head, $seq ) = split /\r?\n/, $_, 2;
+-		my $tmp = (split/\s+/,$head)[0];
+-		$seq =~ s/\s+//g;
+-		$hash{$tmp} = $seq;
+-	}
+-	close IN;
+-	$/ = "\n";
+-	return \%hash;
+-}
+-close OUT;
+-local $/ = "\n";
+-print STDERR "genome format done!\n";
+-print STDERR scalar localtime,"\n";
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
++use strict;
++use Getopt::Long;
++my $program=`basename $0`; chomp $program;
++my $usage=<<USAGE; #******* Instruction of this program *********#
++
++Program: format reference genome into state table of GC and repeat content per window, as removing gapped regions.
++
++Usage: $program <ref>
++		
++  -w  window_size
++      default = 800
++
++  -l  GC content lower limit
++      default = 0.2
++
++  -u  GC content upper limit
++      default = 0.7
++
++  -g  gap content
++      default = 0.5			
++USAGE
++my $help;
++my %opts = (w=>800, l=>0.2, u=>0.7, g=>0.5);
++GetOptions(\%opts, "w:i","l:f","u:f","g:f","help!");
++die $usage if ( @ARGV!=1 || defined($opts{"help"}));
++#****************************************************************#
++#--------------------Main-----Function-----Start-----------------#
++#****************************************************************#
++my $window_size=$opts{w};
++my $step_size=$opts{w}/2;
++my $GC_count_max=$window_size*$opts{u};
++my $GC_count_min=$window_size*$opts{l};
++print STDERR "Window_size: $opts{w}\n";
++print STDERR "GC lower limit :$GC_count_min\nGC upper limit :$GC_count_max\n";
++print STDERR "genome format start!\n";
++print STDERR scalar localtime,"\n";
++#######################calculate GC content, repeat content for genome############
++my $reffile = &FastaReader($ARGV[0]) or die "ref fasta file required!\n";
++open (OUT, ">referenceDB.$opts{w}") or die "$!\n";
++my $number;
++my $window_number;
++foreach my $chr (sort keys %{$reffile}){
++	$window_number = int(length($reffile->{$chr})/$step_size);
++	my $i = 0;
++	for $number (0..$window_number){
++		my $position=$number*$step_size;
++		my $sub_seq = substr($reffile->{$chr}, $position, $window_size);
++		my $gap_count = () = $sub_seq =~ /N/gi;
++		my $gap_content = $window_size > 0 ? sprintf "%.2f",$gap_count/$window_size : 0;
++		next if $gap_content > $opts{g};
++		my $GC_count = () = $sub_seq =~ /[GC]/gi;
++		next if ($GC_count > $GC_count_max || $GC_count < $GC_count_min);
++		my $repeat_count = () = $sub_seq =~ /[atgc]/g ;
++		$i++;############used window NO. per chromosome.
++		print OUT "$chr\t$i\t",$position+1,"\t$GC_count\t$repeat_count\t$gap_content\n";
++	}
++}
++sub FastaReader {
++	my ($file) = @_;
++	open IN, "<", $file or die "Fail to open file: $file!\n";
++	local $/ = '>';
++	<IN>;
++	my ($head, $seq, %hash);
++	while (<IN>){
++		s/\r?\n>?$//;
++		( $head, $seq ) = split /\r?\n/, $_, 2;
++		my $tmp = (split/\s+/,$head)[0];
++		$seq =~ s/\s+//g;
++		$hash{$tmp} = $seq;
++	}
++	close IN;
++	$/ = "\n";
++	return \%hash;
++}
++close OUT;
++local $/ = "\n";
++print STDERR "genome format done!\n";
++print STDERR scalar localtime,"\n";

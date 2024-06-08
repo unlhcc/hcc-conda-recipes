@@ -1,255 +1,85 @@
---- Individual.Process.sh.old	2024-06-05 14:23:56.361573754 -0500
-+++ Individual.Process.sh	2024-06-06 11:08:19.334687016 -0500
+--- CNV.Discovery.sh.old	2024-06-07 16:50:43.124756992 -0500
++++ CNV.Discovery.sh	2024-06-07 16:51:07.502737938 -0500
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ # CNVcaller installation directory
+-export CNVcaller=/stor9000/apps/users/NWSUAF/2015060152/script/CNVcaller/GitHub/04.version
++export CNVcaller=${CONDA_PREFIX}
+ echo "CNVcaller install directory $CNVcaller"
+ if [ ! -f "$CNVcaller/bin/2.1.CNVDiscoveryMerge.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
+ ##############
+--- Individual.Process.sh.old	2024-06-07 16:52:12.565687078 -0500
++++ Individual.Process.sh	2024-06-07 16:52:24.406677825 -0500
 @@ -2,7 +2,7 @@
  # Samtools executables must be on your path.
  which samtools > /dev/null || exit 1
  # CNVcaller is the installation directory for CNVcaller - it must be an exported environment variable
 -export CNVcaller=`pwd`
-+export CNVcaller=${PREFIX}
++export CNVcaller=${CONDA_PREFIX}
  echo "CNVcaller install directory $CNVcaller"
  if [ ! -f "$CNVcaller/bin/1.1.CNVprocess.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
  ##############
---- CNV.Discovery.sh.old	2024-06-05 14:26:27.166464113 -0500
-+++ CNV.Discovery.sh	2024-06-06 11:08:19.332687018 -0500
-@@ -1,6 +1,6 @@
- #!/bin/sh
- # CNVcaller installation directory
--export CNVcaller=/stor9000/apps/users/NWSUAF/2015060152/script/CNVcaller/GitHub/04.version
-+export CNVcaller=${PREFIX}
- echo "CNVcaller install directory $CNVcaller"
- if [ ! -f "$CNVcaller/bin/2.1.CNVDiscoveryMerge.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
- ##############
---- Genotype.py.old	2024-06-06 11:04:52.263850139 -0500
-+++ Genotype.py	2024-06-06 11:08:13.133691898 -0500
+--- Genotype.py.old	2024-06-07 16:51:13.536733218 -0500
++++ Genotype.py	2024-06-07 16:52:05.469692625 -0500
 @@ -1,3 +1,5 @@
 +#!/opt/anaconda1anaconda2anaconda3/bin/python
 +
  # -*- coding: utf-8 -*-
  """
  Clustering the input samples into genotypes uses Gaussian mixture modes.
---- bin/0.1.Kmer_Generate.py.old	2024-06-06 11:05:35.643815965 -0500
-+++ bin/0.1.Kmer_Generate.py	2024-06-06 11:08:02.948699924 -0500
-@@ -1,44 +1,43 @@
+@@ -15,8 +17,6 @@
+ from sklearn.metrics import silhouette_score
+ from sklearn.metrics import calinski_harabasz_score
+ 
+-
+-
+ def loadcnvrfile(cnvfile):
+     """
+     parse raw CNVcaller output format
+--- bin/0.1.Kmer_Generate.py.old	2024-06-07 16:53:28.624627725 -0500
++++ bin/0.1.Kmer_Generate.py	2024-06-07 16:53:55.575606764 -0500
+@@ -1,11 +1,9 @@
 -# -*- coding: utf-8 -*-
 -
--
--import click
--from collections import OrderedDict
--
--
--
--def loadfa(fafile):
--    seqdict = OrderedDict()
--    with open(fafile) as f:
--        seq_id = f.readline().strip().split()[0][1:]
--        tmp_seq = []
--        for line in f:
--            if line[0] != '>':
--                tmp_seq.append(line.strip())
--            else:
--                seqdict[seq_id] = ''.join(tmp_seq)
--                seq_id = line.strip().split()[0][1:]
--                tmp_seq = []
--        seqdict[seq_id] = ''.join(tmp_seq)
--    return seqdict
--
--
--@click.command()
--@click.argument('fafile')
--@click.argument('winsize', type=int)
--@click.argument('outfile')
--def main(fafile, winsize, outfile):
--    """
--    produce kmer(<OUTFILE>) from refrence fasta(<FAFILE>) according to window size(<WINSIZE>)
--    """
--    seqdict = loadfa(fafile)
--    stepsize = int(winsize / 2)
--    print(f'winsize is {winsize}')
--    print(f'stepsize is {stepsize}')
--    with open(outfile, 'w') as f:
--        for name, seq in seqdict.items():
--            for start in range(0, len(seq), stepsize):
--                f.write(f'>{name}_{start}\n{seq[start: start+winsize]}\n')
--
--if __name__ == '__main__':
--    main()
--
 +#!/opt/anaconda1anaconda2anaconda3/bin/python
-+
+ 
 +# -*- coding: utf-8 -*-
-+
-+import click
-+from collections import OrderedDict
-+
-+def loadfa(fafile):
-+    seqdict = OrderedDict()
-+    with open(fafile) as f:
-+        seq_id = f.readline().strip().split()[0][1:]
-+        tmp_seq = []
-+        for line in f:
-+            if line[0] != '>':
-+                tmp_seq.append(line.strip())
-+            else:
-+                seqdict[seq_id] = ''.join(tmp_seq)
-+                seq_id = line.strip().split()[0][1:]
-+                tmp_seq = []
-+        seqdict[seq_id] = ''.join(tmp_seq)
-+    return seqdict
-+
-+
-+@click.command()
-+@click.argument('fafile')
-+@click.argument('winsize', type=int)
-+@click.argument('outfile')
-+def main(fafile, winsize, outfile):
-+    """
-+    produce kmer(<OUTFILE>) from refrence fasta(<FAFILE>) according to window size(<WINSIZE>)
-+    """
-+    seqdict = loadfa(fafile)
-+    stepsize = int(winsize / 2)
-+    print(f'winsize is {winsize}')
-+    print(f'stepsize is {stepsize}')
-+    with open(outfile, 'w') as f:
-+        for name, seq in seqdict.items():
-+            for start in range(0, len(seq), stepsize):
-+                f.write(f'>{name}_{start}\n{seq[start: start+winsize]}\n')
-+
-+if __name__ == '__main__':
-+    main()
-+
---- bin/0.2.Kmer_Link.py.old	2024-06-06 11:05:59.720797002 -0500
-+++ bin/0.2.Kmer_Link.py	2024-06-06 11:08:02.950699923 -0500
-@@ -1,64 +1,64 @@
+ import click
+ from collections import OrderedDict
+ 
+-
+-
+ def loadfa(fafile):
+     seqdict = OrderedDict()
+     with open(fafile) as f:
+--- bin/0.2.Kmer_Link.py.old	2024-06-07 16:53:28.626627724 -0500
++++ bin/0.2.Kmer_Link.py	2024-06-07 16:54:21.019586965 -0500
+@@ -1,12 +1,11 @@
 -# -*- coding: utf-8 -*-
 -
--
--import gzip
--import click
--import numpy as np
--import pandas as pd
--
--
--def rename(x):
--    """
--    reshape seq ID from chr1_0 to chr1:1
--    _ -> :
--    pos += 1
--    """
--    id_ = '_'.join(x.split('_')[:-1])
--    pos = int(x.split('_')[-1])
--    pos += 1
--    return f'{id_}:{pos}'
--
--
--
--@click.command()
--@click.argument('blasr')
--@click.argument('winsize', type=int)
--@click.argument('outfile')
--def main(blasr, winsize, outfile):
--    """
--    produce duplicated window record file from blasr outputfile.\n
--    blasr command:\n
--    \b
--    blasr <kmer.fa> <ref.fa> --sa <ref.sa> --out <aln.out> \\
--          -m 5 --noSplitSubreads --minMatch 15 --maxMatch 20 \\
--          --advanceHalf --advanceExactMatches 10 --fastMaxInterval \\
--          --fastSDP --aggressiveIntervalCut --bestn 10 \\
--          --nproc <number of process>
--    """
--    # blasr outfmt https://github.com/PacificBiosciences/blasr/wiki/Blasr-Output-Format
--    stepsize = int(winsize / 2)
--    print(f'winsize {winsize}. stepsize {stepsize}')
--    col_names = ['qName', 'qLength', 'qStart', 'qEnd', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']
--    col_index = [0, 1, 2, 3, 5, 7, 11, 12, 13, 14]
--    df = pd.read_csv(blasr, sep='\s+', header=None, usecols=col_index, names=col_names, compression='infer')
--    df['qName'] = df['qName'].map(rename)
--    print(f'parse blasr finsh, records number is {df.shape[0]}')
--    df['coverage'] = (df['qEnd'] - df['qStart']) / df['qLength']
--    df = df.loc[df['coverage'] >= 0.9, ['qName', 'qStart', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']]
--    print(f'drop coverage lower than 90%, {df.shape[0]} records remained')
--    df['ident'] = df['numMatch'] / (df['numMatch'] + df['numMismatch'] + df['numIns'] + df['numDel'])
--    df = df.loc[df['ident'] >= 0.97, ['qName', 'tName', 'tStart']]
--    print(f'drop identity lower than 97%, {df.shape[0]} records remained')
--    df['tNewstart'] = df['tStart'].map(lambda x: round(x / stepsize) * stepsize + 1)
--    df['tNewname'] = df['tName'].astype(str) + ':' + df['tNewstart'].astype(str)
--    df = df.groupby('qName')['qName', 'tNewname'].agg({'qName': np.unique,
--                                                      'tNewname': lambda x: '\t'.join(x)})
--    with open(outfile, 'w') as f:
--        for line in df.values:
--            if len(line[1].split()) > 1:
--                outline = [str(x) for x in line]
--                f.write('\t'.join(outline) + '\n')
--
--
--if __name__ == '__main__':
--    main()
 +#!/opt/anaconda1anaconda2anaconda3/bin/python
-+
+ 
 +# -*- coding: utf-8 -*-
-+
-+import gzip
-+import click
-+import numpy as np
-+import pandas as pd
-+
-+def rename(x):
-+    """
-+    reshape seq ID from chr1_0 to chr1:1
-+    _ -> :
-+    pos += 1
-+    """
-+    id_ = '_'.join(x.split('_')[:-1])
-+    pos = int(x.split('_')[-1])
-+    pos += 1
-+    return f'{id_}:{pos}'
-+
-+
-+
-+@click.command()
-+@click.argument('blasr')
-+@click.argument('winsize', type=int)
-+@click.argument('outfile')
-+def main(blasr, winsize, outfile):
-+    """
-+    produce duplicated window record file from blasr outputfile.\n
-+    blasr command:\n
-+    \b
-+    blasr <kmer.fa> <ref.fa> --sa <ref.sa> --out <aln.out> \\
-+          -m 5 --noSplitSubreads --minMatch 15 --maxMatch 20 \\
-+          --advanceHalf --advanceExactMatches 10 --fastMaxInterval \\
-+          --fastSDP --aggressiveIntervalCut --bestn 10 \\
-+          --nproc <number of process>
-+    """
-+    # blasr outfmt https://github.com/PacificBiosciences/blasr/wiki/Blasr-Output-Format
-+    stepsize = int(winsize / 2)
-+    print(f'winsize {winsize}. stepsize {stepsize}')
-+    col_names = ['qName', 'qLength', 'qStart', 'qEnd', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']
-+    col_index = [0, 1, 2, 3, 5, 7, 11, 12, 13, 14]
-+    df = pd.read_csv(blasr, sep='\s+', header=None, usecols=col_index, names=col_names, compression='infer')
-+    df['qName'] = df['qName'].map(rename)
-+    print(f'parse blasr finsh, records number is {df.shape[0]}')
-+    df['coverage'] = (df['qEnd'] - df['qStart']) / df['qLength']
-+    df = df.loc[df['coverage'] >= 0.9, ['qName', 'qStart', 'tName', 'tStart', 'numMatch', 'numMismatch', 'numIns', 'numDel']]
-+    print(f'drop coverage lower than 90%, {df.shape[0]} records remained')
-+    df['ident'] = df['numMatch'] / (df['numMatch'] + df['numMismatch'] + df['numIns'] + df['numDel'])
-+    df = df.loc[df['ident'] >= 0.97, ['qName', 'tName', 'tStart']]
-+    print(f'drop identity lower than 97%, {df.shape[0]} records remained')
-+    df['tNewstart'] = df['tStart'].map(lambda x: round(x / stepsize) * stepsize + 1)
-+    df['tNewname'] = df['tName'].astype(str) + ':' + df['tNewstart'].astype(str)
-+    df = df.groupby('qName')['qName', 'tNewname'].agg({'qName': np.unique,
-+                                                      'tNewname': lambda x: '\t'.join(x)})
-+    with open(outfile, 'w') as f:
-+        for line in df.values:
-+            if len(line[1].split()) > 1:
-+                outline = [str(x) for x in line]
-+                f.write('\t'.join(outline) + '\n')
-+
-+
-+if __name__ == '__main__':
-+    main()
---- bin/1.1.CNVprocess.pl.old	2024-06-05 14:28:38.980368273 -0500
-+++ bin/1.1.CNVprocess.pl	2024-06-06 11:07:58.038703792 -0500
+ import gzip
+ import click
+ import numpy as np
+ import pandas as pd
+ 
+-
+ def rename(x):
+     """
+     reshape seq ID from chr1_0 to chr1:1
+@@ -18,8 +17,6 @@
+     pos += 1
+     return f'{id_}:{pos}'
+ 
+-
+-
+ @click.command()
+ @click.argument('blasr')
+ @click.argument('winsize', type=int)
+--- bin/1.1.CNVprocess.pl.old	2024-06-07 16:53:36.574621544 -0500
++++ bin/1.1.CNVprocess.pl	2024-06-07 19:54:09.073389965 -0500
 @@ -1,88 +1,88 @@
 -#!/usr/bin/perl -w
 -use strict;
@@ -427,16 +257,16 @@
 +close REFDB;
 +close OUT;
 +print STDERR "completed bam parsing!\n";
---- bin/1.2.CNVcorrect.pl.old	2024-06-05 14:29:04.744349545 -0500
-+++ bin/1.2.CNVcorrect.pl	2024-06-06 11:07:58.040703791 -0500
+--- bin/1.2.CNVcorrect.pl.old	2024-06-07 16:53:36.576621542 -0500
++++ bin/1.2.CNVcorrect.pl	2024-06-07 19:54:12.485387396 -0500
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl -w
 +#!/opt/anaconda1anaconda2anaconda3/bin/perl
  use strict;
  my $program=`basename $0`; chomp $program;
  die "Program: Sum the raw reads count from the high similarity windows record in the duplicated window record file\n\nUsage: perl $program <raw> <dup> <output>\n" unless @ARGV == 3;
---- bin/1.3.CNVnormalize.pl.old	2024-06-05 14:29:25.370334549 -0500
-+++ bin/1.3.CNVnormalize.pl	2024-06-06 11:07:58.041703790 -0500
+--- bin/1.3.CNVnormalize.pl.old	2024-06-07 16:53:36.578621540 -0500
++++ bin/1.3.CNVnormalize.pl	2024-06-07 19:54:15.484385136 -0500
 @@ -1,197 +1,197 @@
 -#!/usr/bin/perl -w
 -use strict;
@@ -832,16 +662,16 @@
 +	$cutoff = $sorted_tmp[$int_cutoff];
 +	return $cutoff;
 +}
---- bin/2.1.CNVDiscoveryMerge.pl.old	2024-06-05 14:29:52.475314844 -0500
-+++ bin/2.1.CNVDiscoveryMerge.pl	2024-06-06 11:07:58.043703789 -0500
+--- bin/2.1.CNVDiscoveryMerge.pl.old	2024-06-07 16:53:36.580621539 -0500
++++ bin/2.1.CNVDiscoveryMerge.pl	2024-06-07 19:54:18.736382688 -0500
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl -w
 +#!/opt/anaconda1anaconda2anaconda3/bin/perl
  use strict;
  use List::Util qw(first max maxstr min minstr reduce shuffle sum);
  use Getopt::Long;
---- bin/2.2.CNVRRedundancy.pl.old	2024-06-05 14:30:15.668297979 -0500
-+++ bin/2.2.CNVRRedundancy.pl	2024-06-06 11:07:58.045703787 -0500
+--- bin/2.2.CNVRRedundancy.pl.old	2024-06-07 16:53:36.582621537 -0500
++++ bin/2.2.CNVRRedundancy.pl	2024-06-07 19:54:21.618380519 -0500
 @@ -1,127 +1,127 @@
 -#!/usr/bin/perl -w
 -use strict;
@@ -1097,8 +927,8 @@
 +	my $average = @array > 0 ? $sum/@array : 0;
 +	return $average;
 +}
---- bin/CNVReferenceDB.pl.old	2024-06-05 14:45:31.042628847 -0500
-+++ bin/CNVReferenceDB.pl	2024-06-06 11:07:58.046703786 -0500
+--- bin/CNVReferenceDB.pl.old	2024-06-07 16:53:36.584621535 -0500
++++ bin/CNVReferenceDB.pl	2024-06-07 19:54:29.911374274 -0500
 @@ -1,79 +1,79 @@
 -#!/usr/bin/perl -w
 -use strict;

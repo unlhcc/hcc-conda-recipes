@@ -6,7 +6,6 @@ mkdir -p $outdir
 
 chmod +x bin/vaspkit
 cp bin/vaspkit ${PREFIX}/bin/
-
 cp how_to_set_environment_variables $outdir/vaspkit_config
 cp -r utilities $outdir
 cp -r crystals $outdir
@@ -14,10 +13,10 @@ cp -r examples $outdir
 
 # modify config file
 VASPKIT_UTILITIES_PATH_VARIABLE="VASPKIT_UTILITIES_PATH    ${outdir}/utilities"
-n=`grep -rin "VASPKIT_UTILITIES_PATH" $outdir/vaspkit | awk -F ':'  '{print $1}'`
+n=`grep -rin "VASPKIT_UTILITIES_PATH" $outdir/vaspkit_config | awk -F ':'  '{print $1}'`
 sed -i ""${n}"c  ${VASPKIT_UTILITIES_PATH_VARIABLE}" $outdir/vaspkit_config
 PYTHON_BIN_VARIABLE="PYTHON_BIN    ${PREFIX}/bin/python"
-n=`grep -rin "PYTHON_BIN" $outdir/vaspkit | awk -F ':'  '{print $1}'`
+n=`grep -rin "PYTHON_BIN" $outdir/vaspkit_config | awk -F ':'  '{print $1}'`
 sed -i ""${n}"c  ${PYTHON_BIN_VARIABLE}" $outdir/vaspkit_config
 
 # set vaspkit variables

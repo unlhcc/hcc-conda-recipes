@@ -39,6 +39,7 @@ about:
   license: PROPRIETARY
   license_family: PROPRIETARY
   license_file: license
+  note: VASPKIT requires for the config file in $VASPKIT_CONFIG to be copied to ~/.vaspkit.
 
 extra:
   identifiers:

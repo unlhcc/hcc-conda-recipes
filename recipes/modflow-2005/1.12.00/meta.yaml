@@ -1,0 +1,43 @@
+{% set name = "MODFLOW-2005" %}
+{% set version = "1.12.00" %}
+{% set sha256 = "e5188ae499bc65d124983d9f295f01ee4257543849083878e38dfe8dca39f0ad" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://water.usgs.gov/water-resources/software/{{ name }}/MF2005.1_12u.zip
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('gfortran') }}
+    - {{ compiler('c') }}
+    - make
+
+test:
+  commands:
+    - mf2005 --help
+
+about:
+  home: https://www.usgs.gov/software/modflow-2005-usgs-three-dimensional-finite-difference-ground-water-model
+  # https://water.usgs.gov/ogw/modflow/MODFLOW-2005-Guide/frequently_asked_questions.html
+  # https://www.usgs.gov/about/organization/science-support/office-science-quality-and-integrity/fundamental-science-5#5
+  license: Custom OSS
+  license_family: PUBLIC-DOMAIN
+  license_file: ""
+  summary: "Three-dimensional finite-difference ground-water flow model."
+  doc_url: https://water.usgs.gov/ogw/modflow/MODFLOW-2005-Guide/
+
+extra:
+  identifiers:
+    - doi:10.3133/tm6A16
+    - doi:10.5066/F7RF5S7G

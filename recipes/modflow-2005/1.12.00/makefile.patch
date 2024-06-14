@@ -1,0 +1,14 @@
+--- make/makefile.old	2024-06-14 00:25:39.564490570 -0500
++++ make/makefile	2024-06-14 00:30:16.175325499 -0500
+@@ -16,11 +16,9 @@
+ .SUFFIXES: .c .cpp .f .f90 .F90 .fpp .o
+ 
+ # Define the Fortran compile flags
+-F90 = gfortran
+ F90FLAGS = -O2 -fbacktrace -ffpe-summary=overflow 
+ 
+ # Define the C compile flags
+-CC = cc
+ CFLAGS = -O3 
+ 
+ # Define the libraries

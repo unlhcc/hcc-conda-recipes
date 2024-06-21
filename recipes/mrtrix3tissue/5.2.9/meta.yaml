@@ -1,0 +1,59 @@
+{% set name = "MRtrix3Tissue" %}
+{% set version = "5.2.9" %}
+{% set sha256 = "7ab349e9635fa4df2b74fb504b6494c746a77de06f425eebda505ad579fc79ee" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/3Tissue/MRtrix3Tissue/archive/3Tissue_v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - anaconda.patch
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ cdt('xorg-x11-proto-devel') }}
+    - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-dri-drivers') }}
+    - make
+  host:
+    - python
+    - zlib
+    - eigen 3.3
+    - qt >=3.8
+    - libtiff >=4.0
+    - fftw >=3.0
+    - libpng
+  run:
+    - python
+    - zlib
+    - eigen 3.3
+    - qt >=3.8
+    - libtiff >=4.0
+    - fftw >=3.0
+    - libpng
+
+test:
+  commands:
+    - mrinfo --help
+
+about:
+  home: https://3tissue.github.io/
+  license: MPL-2.0
+  license_family: MOZILLA
+  license_file: LICENCE.txt
+  summary: "MRtrix3Tissue adds capabilities for 3-Tissue CSD modelling and analysis to a complete version of MRtrix3."
+  doc_url: https://3tissue.github.io/doc/
+  dev_url: https://github.com/3Tissue/MRtrix3Tissue
+
+extra:
+  identifiers:
+    - doi:10.1016/j.neuroimage.2019.116137

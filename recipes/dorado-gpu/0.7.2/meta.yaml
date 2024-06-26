@@ -11,10 +11,11 @@ source:
     sha256: {{ sha256 }}  # [linux]
 
 build:
-  number: 0
+  number: 1
   binary_relocation: False
   script:
     - cp -R {bin,lib} ${PREFIX}
+    - chmod +x ${PREFIX}/bin/dorado
   run_exports:
     - {{ pin_subpackage(name, max_pin="x.x") }}
 

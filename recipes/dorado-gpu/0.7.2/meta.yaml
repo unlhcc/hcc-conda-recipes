@@ -1,0 +1,47 @@
+{% set name = "dorado-gpu" %}
+{% set version = "0.7.2" %}
+{% set sha256 = "08ba055df86dca3fad35ab22c801536d22f1954fb080eb1b9b3e08ae0838755f" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+    url: https://cdn.oxfordnanoportal.com/software/analysis/dorado-{{ version }}-linux-x64.tar.gz  # [linux]
+    sha256: {{ sha256 }}  # [linux]
+
+build:
+  number: 0
+  binary_relocation: False
+  script:
+    - cp -R {bin,lib} ${PREFIX}
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
+
+requirements:
+  build:
+  host:
+    - minimap2
+  run:
+    - minimap2
+
+test:
+  commands:
+    - dorado --help
+    - dorado aligner --help
+    - dorado basecaller --help
+    - dorado demux --help
+  requires:
+    - cuda_driver
+
+about:
+  home: https://github.com/nanoporetech/dorado
+  dev_url: https://github.com/nanoporetech/dorado
+  license: Oxford Nanopore Technologies PLC. Public License Version 1.0
+  license_family: PROPRIETARY
+  license_file: LICENCE.txt
+  summary: "Dorado is a high-performance, easy-to-use, open source basecaller for Oxford Nanopore reads."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

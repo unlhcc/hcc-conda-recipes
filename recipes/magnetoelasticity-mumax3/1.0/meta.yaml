@@ -1,0 +1,55 @@
+{% set name = "magnetoelasticity-mumax3" %}
+{% set version = "1.0" %}
+{% set sha256 = "0e310577b4bf4a8d8862ebcca2548b2a29bb4a59b5e6b42fd2a510b7b2fee9ea" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/Fredericvdv/Magnetoelasticity_MuMax3/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  folder: src/github.com/mumax/3
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - cuda_driver 440.*
+    - go-cgo <1.11
+    - make
+    - sysroot_linux-64 >=2.14
+  host:
+    - cudatoolkit 11.*
+    - sysroot_linux-64 >=2.14
+  run:
+    - cudatoolkit 11.*
+    - gnuplot
+    - sysroot_linux-64 >=2.14
+
+test:
+  commands:
+    - mumax3 -h 2>&1 | grep mumax3 > /dev/null
+      #- mumax3-convert -h 2>&1 | grep mumax3-convert > /dev/null
+      #- mumax3-httpfsd -h 2>&1 | grep mumax3-httpfsd > /dev/null
+      #- mumax3-plot -h 2>&1 | grep mumax3-plot > /dev/null
+      #- mumax3-script -h 2>&1 | grep mumax3-script > /dev/null
+      #- mumax3-server -h 2>&1 | grep mumax3-server > /dev/null
+  requires:
+    - cuda_driver
+
+about:
+  home: https://github.com/Fredericvdv/Magnetoelasticity_MuMax3
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file: src/github.com/mumax/3/LICENSE
+  summary: "A magnetoelastic module for mumax3"
+  dev_url: https://github.com/Fredericvdv/Magnetoelasticity_MuMax3
+
+extra:
+  identifiers:
+    - doi:10.12688/openreseurope.13302.1

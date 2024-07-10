@@ -16,7 +16,7 @@ stages:
 
 build-linux:
   stage: build
-  image: quay.io/bioconda/bioconda-utils-build-env-cos7:latest
+  image: quay.io/condaforge/linux-anvil-cos7-x86_64:latest
   except:
     - master
   tags:
@@ -39,7 +39,7 @@ build-linux:
 
 deploy-linux:
   stage: deploy
-  image: quay.io/bioconda/bioconda-utils-build-env-cos7:latest
+  image: quay.io/condaforge/linux-anvil-cos7-x86_64:latest
   only:
     - master
   tags:

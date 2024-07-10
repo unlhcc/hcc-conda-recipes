@@ -1,6 +1,7 @@
 {% set name = "AutoDock-GPU" %}
 {% set version = "1.5.3" %}
 {% set sha256 = "6557df95eed99323befddcef6b8da8b67eba22476efccd1e69a87ffdf075e5f4" %}
+{% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
 
 package:
   name: "{{ name|lower }}"
@@ -13,8 +14,10 @@ source:
     - makefile.cuda.patch
 
 build:
-  number: 0
-  skip: True # [osx]
+  number: 1
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
 
 requirements:
   build:
@@ -23,7 +26,7 @@ requirements:
     - make
     - sysroot_linux-64 2.17
   host:
-    - cudatoolkit 11.4
+    - cudatoolkit 12.*
   run:
     - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
 

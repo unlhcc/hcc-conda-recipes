@@ -5,7 +5,7 @@
  UNAME := $(shell uname)
  
 -TARGETS = 52 60 61 70
-+TARGETS = 52 60 61 70 75
++TARGETS = 52 60 61 70 80 86 89 90
  CUDA_TARGETS=$(foreach target,$(TARGETS),-gencode arch=compute_$(target),code=sm_$(target))
  
  ifeq ($(DEVICE), CPU)

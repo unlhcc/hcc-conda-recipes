@@ -1,0 +1,49 @@
+{% set name = "AutoDock-GPU" %}
+{% set version = "0.2024.03.05" %}
+{% set revision = "f5cf6ff" %}
+{% set sha256 = "e679b596e748a40a869a41dd282a6a12d7c789d5ea18f21cb3942b6cdb3f59c0" %}
+{% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/ccsb-scripps/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.cuda.patch
+
+build:
+  number: 0
+  skip: True  # [osx]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - sysroot_linux-64 2.17
+  host:
+    - cudatoolkit 12.*
+  run:
+    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/bin/autodock_gpu_32wi
+    - test -f ${PREFIX}/bin/autodock_gpu_64wi
+    - test -f ${PREFIX}/bin/autodock_gpu_128wi
+    - test -f ${PREFIX}/bin/autodock_gpu_256wi
+
+about:
+  home: https://github.com/ccsb-scripps/AutoDock-GPU
+  dev_url: https://github.com/ccsb-scripps/AutoDock-GPU
+  doc_url: https://github.com/ccsb-scripps/AutoDock-GPU/wiki/
+  license: GPL-2.0 AND LGPL-2.1-or-later
+  license_file:
+    - LICENSE
+    - LICENSE_LGPL
+  summary: "AutoDock for GPUs using OpenCL."

@@ -1,0 +1,64 @@
+{% set name = "Juicer" %}
+{% set version = "1.6" %}
+{% set juicer_tools_version = "1.22.01" %}
+{% set sha256 = "cef7783a2ddfbacbf4b229f6a4e236c534780b6bb4ec7f84fe8497cd6e57d3b0" %}
+{% set juicer_tools_sha256 = "5bd863e1fbc4573de09469e0adc5ab586e2b75b14dd718465e14dc299d7243a0" %}
+# Define build matrix for GPU vs. CPU
+{% set juicer_variant = juicer_variant or "cuda" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - url: https://github.com/aidenlab/{{ name|lower }}/archive/{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+    folder: juicer
+  - url: https://s3.amazonaws.com/hicfiles.tc4ga.com/public/juicer/juicer_tools_{{ juicer_tools_version }}.jar
+    fn: juicer_tools.jar
+    sha256: {{ juicer_tools_sha256 }}
+    folder: juicer
+
+build:
+  noarch: generic
+  number: 0
+  string: {{ juicer_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - cudatoolkit  # [juicer_variant == "cuda"]
+    - bwa >=0.7.17
+    - samtools >=1.6
+    - openjdk >=18
+    - coreutils
+    - python
+    - perl
+  run:
+    - cudatoolkit  # [juicer_variant == "cuda"]
+    - bwa >=0.7.17
+    - samtools >=1.6
+    - openjdk >=18
+    - coreutils
+    - python
+    - perl
+
+test:
+  commands:
+    - juicer_tools -h | grep "Usage:"
+
+about:
+  home: https://aidenlab.org/
+  dev_url: https://github.com/aidenlab/juicer
+  doc_url: https://github.com/aidenlab/juicer/wiki
+  license: MIT
+  license_family: MIT
+  license_file: "juicer/LICENSE"
+  summary: "A One-Click System for Analyzing Loop-Resolution Hi-C Experiments."
+
+extra:
+  skip-lints:
+    - should_not_use_fn
+  identifiers:
+    - doi:10.1016/j.cels.2016.07.002

@@ -1,0 +1,10 @@
+--- src/Makefile.am	2022-03-22 13:01:39.000000000 +0000
++++ src/Makefile.am.new	2024-07-25 00:02:12.130207396 +0000
+@@ -1,6 +1,6 @@
+ AM_LDFLAGS =
+ AM_CFLAGS =
+-freesasa_LDADD = -lc++
++freesasa_LDADD = -lstdc++
+ AM_CPPFLAGS = -I$(top_srcdir)/third-party/gemmi/include/
+ 
+ if COND_GCOV

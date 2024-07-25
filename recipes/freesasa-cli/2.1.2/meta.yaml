@@ -1,0 +1,46 @@
+{% set name = "freesasa-cli" %}
+{% set version = "2.1.2" %}
+{% set sha256 = "a031c4eb8cd59e802d715a37ef72930ec2d90ec53dfcf1bea0b0255980490fd5" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/mittinatten/freesasa/releases/download/{{ version}}/freesasa-{{ version }}.zip
+  sha256: {{ sha256 }}
+  patches:
+    - 001-stdc++.patch
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('freesasa-cli', max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - autoconf
+    - automake
+    - pkg-config
+  host:
+    - libxml2
+    - json-c
+  run:
+
+test:
+  commands:
+    - freesasa --version
+
+about:
+  home: http://freesasa.github.io/
+  dev_url: https://github.com/mittinatten/freesasa
+  summary: Calculate solvent accessible surface areas of proteins
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  identifiers:
+    - doi:10.12688/f1000research.7931.1

@@ -1,0 +1,44 @@
+{% set name = "duo-client" %}
+{% set version = "5.3.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/duo_client-{{ version }}.tar.gz
+  sha256: afa5ef98a42f06965a2702ca41dba9c85c483abd945e0a440f0ec4871b7593bf
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('duo-client', max_pin="x") }}
+
+requirements:
+  host:
+    - pip
+    - python >3
+    - six
+  run:
+    - python >3
+    - six
+
+test:
+  imports:
+    - duo_client
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/duosecurity/duo_client_python
+  summary: Reference client for Duo Security APIs
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - acaprez

@@ -1,0 +1,55 @@
+{% set name = "seq" %}
+{% set version = "0.11.3" %}
+{% set sha256 = "cfe4297f14562305a00e14f171ccf27934f8de8325be9865e4bec42f77828678" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/exaloop/seq/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('seq', max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+    - git
+    - clang 15.*
+    - clangxx 15.*
+    - llvmdev 15.*
+  host:
+    - codon >=0.15.4
+    - bzip2
+    - zlib
+    - zstd
+  run:
+    - codon >=0.15.4
+    - bzip2
+    - zlib
+    - zstd
+
+test:
+  files:
+    - fib.codon
+  commands:
+    - codon run --plugin seq fib.codon
+
+about:
+  home: https://docs.seq-lang.org/
+  dev_url: https://github.com/exaloop/seq
+  summary: Seq — the bioinformatics module for Codon.
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  identifiers:
+    - doi:10.1145/3360551

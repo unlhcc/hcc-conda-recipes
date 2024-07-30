@@ -1,0 +1,46 @@
+{% set name = "codon" %}
+{% set version = "0.16.3" %}
+{% set sha256 = "f28b9d8fd5349257aab47154703e9bc744a4884d5975c55776f4b0a72302eb31" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/exaloop/codon/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('codon', max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+    - git
+    - clang 15.*
+    - clangxx 15.*
+    - llvmdev 15.*
+  host:
+    - libxml2
+    - zlib
+    - zstd
+  run:
+    - libxml2
+    - zlib
+    - zstd
+
+test:
+  commands:
+    - codon --version
+
+about:
+  home: https://docs.exaloop.io/codon
+  dev_url: https://github.com/exaloop/codon
+  summary: A high-performance, zero-overhead, extensible Python compiler using LLVM.
+  license: BSL1.1
+  license_file: LICENSE

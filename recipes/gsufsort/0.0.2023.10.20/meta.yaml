@@ -1,0 +1,41 @@
+{% set name = "gsufsort" %}
+{% set version = "0.0.2023.10.20" %}
+{% set rev = "186852a37b6f618543dd9b007db644502e7f512f" %}
+{% set sha256 = "0794229aed06683ac7da48c00d3966f9b4cb7405cca321c006bba74619c23d3c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/felipelouza/gsufsort/archive/{{ rev }}.tar.gz
+  sha256: {{ sha256 }}
+
+build: 
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - zlib
+  host:
+    - zlib
+
+test:
+  commands:
+    - gsufsort --help | grep "Usage:"
+    - gsufsort-64 --help | grep "Usage:"
+
+about:
+  home: https://github.com/felipelouza/gsufsort
+  license: GPL-3
+  license_family: GPL
+  license_file: LICENSE
+  summary: Building suffix arrays, LCP-arrays and BWTs for string collections.
+
+extra:
+  identifiers:
+    - doi:10.1186/s13015-020-00177-y

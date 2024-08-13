@@ -38,6 +38,7 @@ else
     conda activate base
 
     # set channels
+    conda config --system --add channels nodefaults
     conda config --system --add channels bioconda
     conda config --system --add channels conda-forge
 

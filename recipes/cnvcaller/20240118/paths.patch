@@ -4,7 +4,7 @@
  #!/bin/sh
  # CNVcaller installation directory
 -export CNVcaller=/stor9000/apps/users/NWSUAF/2015060152/script/CNVcaller/GitHub/04.version
-+export CNVcaller=${CONDA_PREFIX}
++export CNVcaller=${CNVCALLER_ROOT}
  echo "CNVcaller install directory $CNVcaller"
  if [ ! -f "$CNVcaller/bin/2.1.CNVDiscoveryMerge.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
  ##############
@@ -15,7 +15,7 @@
  which samtools > /dev/null || exit 1
  # CNVcaller is the installation directory for CNVcaller - it must be an exported environment variable
 -export CNVcaller=`pwd`
-+export CNVcaller=${CONDA_PREFIX}
++export CNVcaller=${CNVCALLER_ROOT}
  echo "CNVcaller install directory $CNVcaller"
  if [ ! -f "$CNVcaller/bin/1.1.CNVprocess.pl" ]; then echo "You should set CNVcaller installation directory"; exit 1; fi
  ##############

@@ -1,0 +1,65 @@
+{% set name = "compass-cplex" %}
+{% set version = "0.2022.04.02" %}
+{% set revision = "7664cb0" %}
+{% set sha256 = "87529c5fae108fa2a8e3e35438d3b25874faa78af670a2349228c76fa0843376" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/YosefLab/Compass/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - pip
+    - python >=3.6,<3.9
+    - numpy >=1.12
+    - pandas >=0.20
+    - tqdm >=4.11
+    - python-libsbml >=5.13
+    - six >=1.10
+    - scipy >=1.0
+    - scikit-learn >=0.19
+    - python-igraph >=0.9
+    - leidenalg >=0.8.2
+    - anndata
+  run:
+    - python >=3.6,<3.9
+    - numpy >=1.12
+    - pandas >=0.20
+    - tqdm >=4.11
+    - python-libsbml >=5.13
+    - six >=1.10
+    - scipy >=1.0
+    - scikit-learn >=0.19
+    - python-igraph >=0.9
+    - leidenalg >=0.8.2
+    - anndata
+
+test:
+  commands:
+    # - compass -h
+    - test -f ${PREFIX}/bin/compass
+
+about:
+  home: https://github.com/YosefLab/Compass
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.md
+  summary: "In-Silico Modeling of Metabolic Heterogeneity using Single-Cell Transcriptomes."
+  doc_url: https://yoseflab.github.io/Compass/
+  dev_url: https://github.com/YosefLab/Compass
+
+extra:
+  identifiers:
+    - doi:10.1016/j.cell.2021.05.045
+  notes: Compass requires CPLEX that needs to be additionally installed due to licence restrictions.

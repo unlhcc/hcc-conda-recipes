@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin="x.x") }}
@@ -23,7 +23,7 @@ requirements:
     - pip
     - python >=3.6,<3.9
     - numpy >=1.12
-    - pandas >=0.20
+    - pandas >=0.20,<2
     - tqdm >=4.11
     - python-libsbml >=5.13
     - six >=1.10
@@ -32,10 +32,11 @@ requirements:
     - python-igraph >=0.9
     - leidenalg >=0.8.2
     - anndata
+    - git
   run:
     - python >=3.6,<3.9
     - numpy >=1.12
-    - pandas >=0.20
+    - pandas >=0.20,<2
     - tqdm >=4.11
     - python-libsbml >=5.13
     - six >=1.10
@@ -44,6 +45,7 @@ requirements:
     - python-igraph >=0.9
     - leidenalg >=0.8.2
     - anndata
+    - git
 
 test:
   commands:

@@ -1,0 +1,47 @@
+{% set name = "sniffles2-plot" %}
+{% set version = "0.2.1" %}
+{% set sha256 = "938a5dda606f4221cec905ecc72542f4fc461e55b8ec9533c62d55fcd2c43fee" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/sniffles2_plot-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - sniffles2_plot = sniffles2_plot.__main__:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python >=3.8
+    - setuptools >=61.0.0
+    - wheel
+    - pip
+  run:
+    - python >=3.8
+    - seaborn >=0.11.0,<1
+    - upsetplot >=0.8.0,<1
+    - pandas >=1.1.3,<2
+    - matplotlib-base >=3.3.2,<4
+    - numpy <2
+
+test:
+  imports:
+    - sniffles2_plot
+  commands:
+    - python -m sniffles2_plot --help
+
+about:
+  home: https://github.com/farhangus/Sniffles2_plot
+  summary: "Visualizer tool for plot generating"
+  license: None
+  license_file: ""
+  license_family: None

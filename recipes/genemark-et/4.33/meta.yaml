@@ -7,14 +7,17 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://unl.box.com/shared/static/xbeoo0h4lqsoxq2ret8u5ui1hvc2tljq.tgz
+  fn: gm.tar.gz
+  url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EYAC9HOTgzBKs11npYc8xWkBwTzLOqRHEY9P88Ar_DfLkw?e=SPDXDf&download=1
   sha256: {{ sha256 }}
   patches:
     - perlpaths.patch
 
 build:
-  number: 0
-  skip: True # [osx]
+  number: 1
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
 
 requirements:
   host:
@@ -39,3 +42,7 @@ about:
   license_family: PROPRIETARY
   license_file: gmes_petap/LICENSE
   summary: "GeneMark-ES Suite."
+
+extra:
+  skip-lints:
+    - should_not_use_fn

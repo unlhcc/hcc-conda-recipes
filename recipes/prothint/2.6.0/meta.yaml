@@ -1,0 +1,57 @@
+{% set name = "ProtHint" %}
+{% set version = "2.6.0" %}
+{% set sha256 = "d77ddd3a7a1f676069a6530a389c2958791eeb59d9b9d862018b2d93f4d0908f" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/gatech-genemark/ProtHint/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - patch.patches 
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - perl
+    - python
+    - perl-mce
+    - perl-yaml
+    - perl-math-utils
+    - diamond
+    - spaln
+    - orthodb
+    - genemark-et
+  run:
+    - perl
+    - python
+    - perl-mce
+    - perl-yaml
+    - perl-math-utils
+    - diamond
+    - spaln
+    - orthodb
+    - genemark-et
+
+test:
+  commands:
+    - prothint.py -h
+    - gmes_petap.pl | grep GeneMark-ES 2>&1
+    
+about:
+  home: https://github.com/gatech-genemark/ProtHint
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: LICENSE
+  summary: "Protein hint generation pipeline for gene finding in eukaryotic genomes."
+
+extra:
+  identifiers:
+    - doi:10.1093/nargab/lqaa026

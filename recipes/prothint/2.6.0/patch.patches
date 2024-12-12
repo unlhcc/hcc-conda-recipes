@@ -1,0 +1,151 @@
+--- bin/combine_gff_records.pl.old	2024-12-12 14:43:13.701606754 -0600
++++ bin/combine_gff_records.pl	2024-12-12 14:45:50.661464518 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze, Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/gff_from_region_to_contig.pl.old	2024-12-12 14:43:13.703606752 -0600
++++ bin/gff_from_region_to_contig.pl	2024-12-12 14:45:50.664464516 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/nucseq_for_selected_genes.pl.old	2024-12-12 14:43:13.704606751 -0600
++++ bin/nucseq_for_selected_genes.pl	2024-12-12 14:45:50.666464514 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/proteins_from_gtf.pl.old	2024-12-12 14:43:13.706606749 -0600
++++ bin/proteins_from_gtf.pl	2024-12-12 14:45:50.669464512 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/run_spliced_alignment_pbs.pl.old	2024-12-12 14:43:13.708606748 -0600
++++ bin/run_spliced_alignment_pbs.pl	2024-12-12 14:45:50.672464509 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Tomas Bruna, Alex Lomsadze
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/run_spliced_alignment.pl.old	2024-12-12 14:43:13.710606746 -0600
++++ bin/run_spliced_alignment.pl	2024-12-12 14:45:50.674464507 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Tomas Bruna, Alex Lomsadze
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/cds_with_upstream_support.py.old	2024-12-12 14:43:19.771601250 -0600
++++ bin/cds_with_upstream_support.py	2024-12-12 14:45:00.093510341 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/count_cds_overlaps.py.old	2024-12-12 14:43:19.772601249 -0600
++++ bin/count_cds_overlaps.py	2024-12-12 14:45:00.095510339 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/flag_top_proteins.py.old	2024-12-12 14:43:19.774601247 -0600
++++ bin/flag_top_proteins.py	2024-12-12 14:45:00.098510337 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/make_chains.py.old	2024-12-12 14:43:19.776601245 -0600
++++ bin/make_chains.py	2024-12-12 14:45:00.100510335 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/print_high_confidence.py.old	2024-12-12 14:43:19.778601243 -0600
++++ bin/print_high_confidence.py	2024-12-12 14:45:00.102510333 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/print_longest_isoform.py.old	2024-12-12 14:43:19.780601241 -0600
++++ bin/print_longest_isoform.py	2024-12-12 14:45:00.104510332 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/prothint2augustus.py.old	2024-12-12 14:43:19.781601240 -0600
++++ bin/prothint2augustus.py	2024-12-12 14:45:00.106510330 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- bin/prothint.py.old	2024-12-12 14:43:19.783601238 -0600
++++ bin/prothint.py	2024-12-12 14:45:00.108510328 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/select_best_proteins.py.old	2024-12-12 14:43:19.785601237 -0600
++++ bin/select_best_proteins.py	2024-12-12 14:45:00.111510325 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- bin/select_for_next_iteration.py.old	2024-12-12 14:43:19.787601235 -0600
++++ bin/select_for_next_iteration.py	2024-12-12 14:45:00.113510323 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- bin/spaln_to_gff.py.old	2024-12-12 14:43:19.788601234 -0600
++++ bin/spaln_to_gff.py	2024-12-12 14:45:00.115510321 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2019, Georgia Institute of Technology, USA
+--- dependencies/log_reg_prothints.pl.old	2024-12-12 15:44:33.458275131 -0600
++++ dependencies/log_reg_prothints.pl	2024-12-12 15:44:54.536256049 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ # Katharina J. Hoff
+ # Parse ProtHint prothint.gff (file for GeneMark-EX) to produce two classes of hints for AUGUSTUS
+@@ -94,4 +94,4 @@
+ }
+ 
+ close(OUT) or die("ERROR: in file " . __FILE__ ." at line "
+-    . __LINE__ ."\nFailed to close file $out_file!\n");
+\ No newline at end of file
++    . __LINE__ ."\nFailed to close file $out_file!\n");

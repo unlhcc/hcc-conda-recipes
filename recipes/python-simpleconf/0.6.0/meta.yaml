@@ -1,0 +1,52 @@
+{% set name = "python-simpleconf" %}
+{% set version = "0.6.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/python_simpleconf-{{ version }}.tar.gz
+  sha256: 06c29e0c08e22a41024028c46cd845bdfe3cbba402730fa65fb007fa89315801
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - python >=3.7,<4.0
+    - poetry >=0.12
+    - poetry-core
+    - pip
+  run:
+    - python >=3.7.0,<4.0.0
+    - diot >=0.2.1,<0.3.0
+  run_constrained:
+    - python-dotenv >=0.21.0,<0.22.0
+    - pyyaml >=6.0.0,<7.0.0
+    - rtoml >=0.8.0,<0.9.0
+    - tomli >=2.0.0,<3.0.0
+    - iniconfig >=2.0.0,<3.0.0
+
+test:
+  imports:
+    - simpleconf
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/pwwang/simpleconf
+  summary: Simple configuration management with python.
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - in_other_channels

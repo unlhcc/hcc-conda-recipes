@@ -1,0 +1,55 @@
+{% set name = "GeneMark-ET" %}
+{% set version = "4.72" %}
+{% set sha256 = "629f430e7262bdb5df8f24413e65d26e35eb10ea34212145b692ee4689591e54" %}
+{% set sha256_key = "69d6abb945b8335f9c5442a056d4ba90fedecc2cf6ef7a0b14c4c8d7d1c33eae" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - fn: gm.tar.gz
+    url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/ERilYQFa4mdDqM0u1OF6RPMBcU3s-ZYkl-Wa2XyTtSQ9VA?e=EiJkvA&download=1
+    sha256: {{ sha256 }}
+    patches:
+      - paths.patch
+  - fn: gm_key.gz
+    url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EQqaTc_1pxJAvRTz7J2PX4wBMb0fbIC4r2KboSkujAZzfA?e=0r8naf&download=1
+    sha256: {{ sha256_key }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - perl
+    - python
+  run:
+    - perl
+    - python
+    - perl-yaml
+    - perl-hash-merge
+    - perl-parallel-forkmanager
+    - perl-data-dumper
+    - perl-logger-simple
+    - perl-findbin
+    - perl-file-spec
+    - perl-mce
+
+test:
+  commands:
+    - gmes_petap.pl | grep GeneMark-ES 2>&1
+    
+about:
+  home: http://exon.gatech.edu/GeneMark
+  license: Proprietary
+  license_family: PROPRIETARY
+  license_file: LICENSE
+  summary: "GeneMark-ES/ET/EP."
+
+extra:
+  skip-lints:
+    - should_not_use_fn

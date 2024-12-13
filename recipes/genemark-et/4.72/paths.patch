@@ -1,0 +1,259 @@
+--- countFullySupportedTranscripts.py.old	2024-12-12 18:27:52.086287785 -0600
++++ countFullySupportedTranscripts.py	2024-12-12 18:35:12.385874739 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- flag_anchored_elements.py.old	2024-12-12 18:27:52.088287783 -0600
++++ flag_anchored_elements.py	2024-12-12 18:35:12.386874738 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- generateReport.py.old	2024-12-12 18:27:52.089287782 -0600
++++ generateReport.py	2024-12-12 18:35:12.388874736 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- predictionAnalysis.py.old	2024-12-12 18:27:52.091287780 -0600
++++ predictionAnalysis.py	2024-12-12 18:35:12.391874733 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- selectSupportedSubsets.py.old	2024-12-12 18:27:52.093287778 -0600
++++ selectSupportedSubsets.py	2024-12-12 18:35:12.394874731 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # ==============================================================
+ # Tomas Bruna
+ # Copyright 2020, Georgia Institute of Technology, USA
+--- bed_to_gff.pl.old	2024-12-12 18:27:46.810292710 -0600
++++ bed_to_gff.pl	2024-12-12 18:33:24.840975840 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology
+--- bp_seq_select.pl.old	2024-12-12 18:27:46.812292709 -0600
++++ bp_seq_select.pl	2024-12-12 18:33:24.842975838 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ---------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- build_mod.pl.old	2024-12-12 18:27:46.814292707 -0600
++++ build_mod.pl	2024-12-12 18:33:24.844975836 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- calc_introns_from_gtf.pl.old	2024-12-12 18:27:46.816292705 -0600
++++ calc_introns_from_gtf.pl	2024-12-12 18:33:24.847975833 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology
+--- change_path_in_perl_scripts.pl.old	2024-12-12 18:27:46.817292704 -0600
++++ change_path_in_perl_scripts.pl	2024-12-12 18:33:24.849975831 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ========================
+ # Alex Lomsadze
+ # 2019
+@@ -13,8 +13,8 @@
+ if ( ! $path )
+ {
+ 	print "usage: $0 new_path_to_perl\n";
+-	print "   example:  $0 \"/usr/bin/perl\"\n";
+-	print "   example:  $0 \"/usr/bin/env perl\"\n";
++	print "   example:  $0 \"/opt/anaconda1anaconda2anaconda3/bin/perl\"\n";
++	print "   example:  $0 \"/opt/anaconda1anaconda2anaconda3/bin/perl\"\n";
+ 	exit 1;
+ }
+ 
+--- compare_intervals_exact.pl.old	2024-12-12 18:27:46.819292702 -0600
++++ compare_intervals_exact.pl	2024-12-12 18:33:24.851975829 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze, Tomas Bruna
+ # Georgia Institute of Technology, Atlanta, Georgia, US
+--- gc_distr.pl.old	2024-12-12 18:27:46.821292700 -0600
++++ gc_distr.pl	2024-12-12 18:33:24.853975827 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- get_below_gc.pl.old	2024-12-12 18:27:46.823292698 -0600
++++ get_below_gc.pl	2024-12-12 18:33:24.856975825 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ 
+ use strict;
+ use warnings;
+--- get_sequence_from_GTF.pl.old	2024-12-12 18:27:46.824292697 -0600
++++ get_sequence_from_GTF.pl	2024-12-12 18:33:24.858975823 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #-------------------------------------------------
+ # Alex Lomsadze
+ # December 23, 2008
+--- gmes_petap.pl.old	2024-12-12 18:27:46.826292695 -0600
++++ gmes_petap.pl	2024-12-12 18:33:24.860975821 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ #
+--- hc_exons2hints.pl.old	2024-12-12 18:27:46.828292693 -0600
++++ hc_exons2hints.pl	2024-12-12 18:33:24.863975818 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ----------------------
+ # AL
+ #
+--- histogram.pl.old	2024-12-12 18:27:46.830292691 -0600
++++ histogram.pl	2024-12-12 18:33:24.865975816 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- make_nt_freq_mat.pl.old	2024-12-12 18:27:46.831292690 -0600
++++ make_nt_freq_mat.pl	2024-12-12 18:33:24.867975814 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- parse_by_introns.pl.old	2024-12-12 18:27:46.833292689 -0600
++++ parse_by_introns.pl	2024-12-12 18:33:24.870975811 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- parse_ET.pl.old	2024-12-12 18:27:46.835292687 -0600
++++ parse_ET.pl	2024-12-12 18:33:24.872975809 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- parse_gibbs.pl.old	2024-12-12 18:27:46.837292685 -0600
++++ parse_gibbs.pl	2024-12-12 18:33:24.874975807 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ---------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- parse_set.pl.old	2024-12-12 18:27:46.838292684 -0600
++++ parse_set.pl	2024-12-12 18:33:24.877975805 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ==============================================================
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- predict_genes.pl.old	2024-12-12 18:27:46.840292682 -0600
++++ predict_genes.pl	2024-12-12 18:33:24.879975803 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- reformat_gff.pl.old	2024-12-12 18:27:46.842292680 -0600
++++ reformat_gff.pl	2024-12-12 18:33:24.881975801 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- rescale_gff.pl.old	2024-12-12 18:27:46.843292679 -0600
++++ rescale_gff.pl	2024-12-12 18:33:24.883975799 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- rnaseq_introns_to_gff.pl.old	2024-12-12 18:27:46.845292677 -0600
++++ rnaseq_introns_to_gff.pl	2024-12-12 18:33:24.886975796 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # --------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- run_es.pl.old	2024-12-12 18:27:46.847292675 -0600
++++ run_es.pl	2024-12-12 18:33:24.888975794 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------------------
+ # Alex Lomsadze
+ # GeorgiaTech
+--- run_hmm_pbs.pl.old	2024-12-12 18:27:46.848292674 -0600
++++ run_hmm_pbs.pl	2024-12-12 18:33:24.890975792 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ===========================================
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- scan_for_bp.pl.old	2024-12-12 18:27:46.850292672 -0600
++++ scan_for_bp.pl	2024-12-12 18:33:24.892975790 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ---------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2014
+--- star_to_gff.pl.old	2024-12-12 18:27:46.852292670 -0600
++++ star_to_gff.pl	2024-12-12 18:33:24.894975788 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze
+ # Georgia Institute of Technology, -2015
+--- verify_evidence_gmhmm.pl.old	2024-12-12 18:27:46.854292668 -0600
++++ verify_evidence_gmhmm.pl	2024-12-12 18:33:24.896975786 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ # ------------------------------------------------
+ # Alex Lomsadze, Tomas Bruna
+ # Georgia Institute of Technology, -2019

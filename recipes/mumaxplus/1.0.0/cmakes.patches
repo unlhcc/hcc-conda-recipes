@@ -1,0 +1,44 @@
+--- CMakeLists.txt.org	2024-12-09 16:48:01.767653674 -0600
++++ CMakeLists.txt	2024-12-09 16:39:57.747107966 -0600
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.16)
++cmake_minimum_required(VERSION 3.24)
+ project(mumaxplus LANGUAGES CUDA CXX)
+ 
+ set(CMAKE_CXX_EXTENSIONS OFF)
+@@ -15,15 +15,7 @@
+     set(CMAKE_CUDA_RESOLVE_DEVICE_SYMBOLS TRUE)
+ endif()
+ 
+-# automatically detect best CUDA architecture
+-# this is bad undocumented code which works
+-# https://stackoverflow.com/a/68223399
+-include(FindCUDA/select_compute_arch)
+-CUDA_DETECT_INSTALLED_GPUS(INSTALLED_GPU_CCS_1)
+-string(STRIP "${INSTALLED_GPU_CCS_1}" INSTALLED_GPU_CCS_2)
+-string(REPLACE " " ";" INSTALLED_GPU_CCS_3 "${INSTALLED_GPU_CCS_2}")
+-string(REPLACE "." "" CUDA_ARCH_LIST "${INSTALLED_GPU_CCS_3}")
+-SET(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
++set(CMAKE_CUDA_ARCHITECTURES all)
+ 
+ add_definitions(-DFP_PRECISION=SINGLE) # FP_PRECISION should be SINGLE or DOUBLE
+ add_definitions(-D_USE_MATH_DEFINES) # Needed for cmath constants on Windows
+--- src/bindings/CMakeLists.txt.org	2024-12-09 16:48:11.559644358 -0600
++++ src/bindings/CMakeLists.txt	2024-12-09 16:41:33.702020407 -0600
+@@ -1,5 +1,9 @@
+ project(mumaxplus)
+ 
++# disable pybind11::(thin_)lto, as this does not work with CUDA
++# https://github.com/pybind/pybind11/issues/4825
++set(CMAKE_INTERPROCEDURAL_OPTIMIZATION OFF)
++
+ add_subdirectory(pybind11)
+ 
+ pybind11_add_module(_mumaxpluscpp
+@@ -26,4 +30,4 @@
+ )
+ 
+ target_include_directories(_mumaxpluscpp PRIVATE ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
+-target_link_libraries(_mumaxpluscpp PRIVATE core physics)
+\ No newline at end of file
++target_link_libraries(_mumaxpluscpp PRIVATE core physics)

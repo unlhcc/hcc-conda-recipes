@@ -1,0 +1,70 @@
+{% set name = "mumaxplus" %}
+{% set version = "1.0.0" %}
+{% set sha256 = "d876f39ec0734843e819b4442431649c7b1c3ff44a740f4760b0b79f3bef041e" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # requires custom pybind11 bindings
+  git_url: https://github.com/mumax/plus.git
+  git_tag: v{{ version }}
+  patches:
+    - cmakes.patches
+
+build:
+  number: 0
+  skip: True  # [py>310]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make
+    - cmake
+    - gcc
+    - gxx
+  host:
+    - python
+    - cudatoolkit
+    - gnuplot
+    - matplotlib-base
+    - scipy
+    - pandas
+    - numpy
+    - pyvista
+    - pybind11 >=2.13
+  run:
+    - python
+    - cudatoolkit
+    - gnuplot
+    - matplotlib-base
+    - scipy
+    - pandas
+    - numpy
+    - pyvista
+    - pybind11 >=2.13
+
+test:
+  imports:
+    - mumaxplus
+
+about:
+  home: https://github.com/mumax/plus
+  license: GPL-3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "More versatile and extensible GPU-accelerated micromagnetic simulator."
+  dev_url: https://github.com/mumax/plus
+
+extra:
+  skip-lints:
+    - missing_hash
+    - uses_vcs_url
+    - should_use_compilers
+  identifiers:
+    - doi:10.48550/arXiv.2411.18194

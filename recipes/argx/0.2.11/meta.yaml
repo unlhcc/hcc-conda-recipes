@@ -1,0 +1,38 @@
+{% set name = "argx" %}
+{% set version = "0.2.11" %}
+{% set sha256 = "6ae35dbd3ee3be4036022bc67eb8f2d5f87411c4398cee5fa022d85910833f7d" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/argx-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python
+    - poetry-core
+    - pip
+  run:
+    - python
+    - python-simpleconf >=0.6.0,<0.7.0
+
+test:
+  imports:
+    - argx
+
+about:
+  home: https://github.com/pwwang/argx
+  summary: "Super-charged argparse for python"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE

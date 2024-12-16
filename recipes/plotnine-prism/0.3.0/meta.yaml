@@ -1,0 +1,39 @@
+{% set name = "plotnine-prism" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "d2bafacc232ed41494d76b690611243afedb81ae24c0b06e9a20a61187a3e860" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/plotnine_prism-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python
+    - poetry-core >=1.0.0
+    - pip
+  run:
+    - python
+    - plotnine >=0.12.0,<0.13.0
+    - rtoml >=0.8.0,<0.9.0
+    - diot >=0.2.0,<0.3.0
+
+test:
+  imports:
+    - plotnine_prism
+
+about:
+  home: https://github.com/pwwang/plotnine-prism
+  summary: Prism themes for plotnine, inspired by ggprism
+  license: GPL-2.0-only
+  license_file: ''

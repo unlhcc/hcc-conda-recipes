@@ -1,0 +1,47 @@
+{% set name = "datar" %}
+{% set version = "0.13.1" %}
+{% set sha256 = "323f89b36590c76968fcc3752272e0b90a42d26bbed7c949847c1c815b7f5097" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/datar-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python 
+    - poetry-core
+    - pip
+  run:
+    - python 
+    - simplug >=0.3.0,<0.4.0
+    - pipda >=0.12.0,<0.13.0
+    - python-simpleconf >=0.6.0,<0.7.0
+  run_constrained:
+    - datar-numpy >=0.2.0,<0.3.0
+    - datar-pandas >=0.3.0,<0.4.0
+    - datar-arrow >=0.0.0,<0.1.0
+
+test:
+  imports:
+    - datar
+
+about:
+  home: https://github.com/pwwang/datar
+  summary: A Grammar of Data Manipulation in python
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - in_other_channels

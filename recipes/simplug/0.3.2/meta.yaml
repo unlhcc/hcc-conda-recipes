@@ -1,0 +1,38 @@
+{% set name = "simplug" %}
+{% set version = "0.3.2" %}
+{% set sha256 = "a940503e3ce4bb8f381403383eb47ba1b38fc2360c66f6c3b930da03bcb841c0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/simplug-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python 
+    - poetry >=0.12
+    - poetry-core
+    - pip
+  run:
+    - python
+    - diot >=0.2.0,<0.3.0
+
+test:
+  imports:
+    - simplug
+
+about:
+  home: https://github.com/pwwang/simplug
+  summary: A simple plugin system for python with async hooks supported
+  license: MIT
+  license_file: LICENSE

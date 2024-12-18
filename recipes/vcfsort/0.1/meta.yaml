@@ -1,0 +1,40 @@
+{% set name = "vcfsort" %}
+{% set version = "0.1" %}
+{% set sha256 = "3fbe33f846ce85b9f90a2be92c23036cef843f45429748191e24a1bd28d9e6c9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/danieldanciu/vcfsort/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - python.patch
+
+build:
+  number: 0
+  noarch: python
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+  script:
+    - chmod +x sort_vcf.py
+    - cp sort_vcf.py ${PREFIX}/bin
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+
+test:
+  commands:
+    - sort_vcf.py --help
+
+about:
+  home: https://github.com/danieldanciu/vcfsort
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "Sorts a VCF file (for human) by chromosome."
+  dev_url: https://github.com/danieldanciu/vcfsort

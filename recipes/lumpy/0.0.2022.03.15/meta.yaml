@@ -1,5 +1,5 @@
 {% set name = "LumPy" %}
-{% set version = "0.1.2022.03.15" %}
+{% set version = "0.0.2022.03.15" %}
 {% set commit = "ad4f08666e79e3e2560833003c52f427fa94dafb" %}
 {% set sha256 = "ecba6d9955f0bbf799cfa9b98eb7162860a971437c4d9cf97446ca95f5507fd1" %}
 

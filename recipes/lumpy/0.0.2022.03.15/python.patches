@@ -1,0 +1,112 @@
+--- ./ClusterEngine.py.old	2024-12-19 20:08:07.268118485 +0000
++++ ./ClusterEngine.py	2024-12-18 23:56:44.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import model_parser
+ import numpy as np
+ from utilities import *
+--- ./DegreeClusterEngine.py.old	2024-12-19 20:08:07.270118497 +0000
++++ ./DegreeClusterEngine.py	2024-12-18 23:56:55.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ from utilities import *
+ import numpy as np
+ import collections
+--- ./ExprGenerator.py.old	2024-12-19 20:08:07.271118503 +0000
++++ ./ExprGenerator.py	2024-12-18 23:57:03.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import numpy as np
+ 
+ def gen_ame(s, k, m, i_rules, c_rules, states):
+--- ./LumpEngine.py.old	2024-12-19 20:08:07.273118514 +0000
++++ ./LumpEngine.py	2024-12-18 23:57:07.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import numpy as np
+ import pandas as pd
+ #import matplotlib.pyplot as plt
+--- ./VisualizeSolution.py.old	2024-12-19 20:08:07.275118525 +0000
++++ ./VisualizeSolution.py	2024-12-18 23:57:39.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ """
+ Visualization of 2-State solutions.
+ Input is the .csv file containing all trajectories.
+--- ./ame.py.old	2024-12-19 20:08:07.277118537 +0000
++++ ./ame.py	2024-12-18 23:56:35.000000000 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # -*- coding: UTF-8 -*-
+ 
+ """
+--- ./dbmf.py.old	2024-12-19 20:08:07.278118543 +0000
++++ ./dbmf.py	2024-12-18 23:56:49.000000000 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # -*- coding: UTF-8 -*-
+ 
+ """
+--- ./evaluation.py.old	2024-12-19 20:08:07.280118554 +0000
++++ ./evaluation.py	2024-12-18 23:56:59.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import ame
+ import glob
+ from utilities import *
+--- ./main.py.old	2024-12-19 20:08:07.282118566 +0000
++++ ./main.py	2024-12-18 23:57:11.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import os, glob
+ 
+ for i, f in enumerate(sorted(glob.glob('model/*.model'))[::-1]):
+--- ./model_parser.py.old	2024-12-19 20:08:07.283118571 +0000
++++ ./model_parser.py	2024-12-18 23:57:15.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import re
+ import numpy as np
+ from utilities import *
+--- ./pa.py.old	2024-12-19 20:08:07.284118577 +0000
++++ ./pa.py	2024-12-18 23:57:18.000000000 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ # -*- coding: UTF-8 -*-
+ 
+ """
+--- ./simulation.py.old	2024-12-19 20:08:07.286118588 +0000
++++ ./simulation.py	2024-12-18 23:57:22.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import os,sys
+ sys.path.append('PA_DBMF/')
+ from model_parser import read_model
+--- ./stopping_heuristic.py.old	2024-12-19 20:08:07.287118594 +0000
++++ ./stopping_heuristic.py	2024-12-18 23:57:27.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import ame
+ import glob
+ from utilities import *
+--- ./utilities.py.old	2024-12-19 20:08:07.289118606 +0000
++++ ./utilities.py	2024-12-18 23:57:32.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
++
+ import numpy as np
+ import sympy
+ import os

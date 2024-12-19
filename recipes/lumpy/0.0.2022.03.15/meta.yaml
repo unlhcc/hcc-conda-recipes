@@ -1,0 +1,58 @@
+{% set name = "LumPy" %}
+{% set version = "0.1.2022.03.15" %}
+{% set commit = "ad4f08666e79e3e2560833003c52f427fa94dafb" %}
+{% set sha256 = "ecba6d9955f0bbf799cfa9b98eb7162860a971437c4d9cf97446ca95f5507fd1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/gerritgr/LumPy/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - python.patches
+  
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  
+requirements:
+  host:
+    - python >=3.5,<3.10
+    - pip
+    - matplotlib-base >=3.3.4
+    - numpy >=1.19.5
+    - imageio
+    - blist
+    - scipy
+    - pandas
+    
+  run:
+    - python >=3.5,<3.10
+    - pip
+    - pandas
+    - seaborn >=0.8.1
+    - numpy >=1.19.5
+    - matplotlib-base >=3.3.4
+    - networkx >=2.1
+    - symengine
+    - imageio
+    - scipy
+    - pathos
+    - blist
+    - sympy
+    - tqdm
+
+test:
+  commands:
+    - ame.py --help
+
+about:
+  home: https://github.com/gerritgr/LumPy
+  license: GPL-3.0
+  license_file: LICENSE
+  summary: "The LumPy toolset provides a proof of concept for lumping for DBMF/PA/AME equations for contact processes on complex networks."
+

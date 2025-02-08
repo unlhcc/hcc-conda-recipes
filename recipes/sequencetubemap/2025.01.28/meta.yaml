@@ -1,0 +1,37 @@
+{% set name = "sequenceTubeMap" %}
+{% set version = "0.0.2025.01.28" %}
+{% set revision = "a85a9a5299dacb77501d4067d513713ce77eec27" %}
+{% set sha256 = "5ee93888fe55beb46c865f5fa15c5e464d06ceacfb2288dfa9d331eca18d4e59" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/vgteam/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: generic
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - nodejs 18.7.0
+    - vg
+  run:
+    - nodejs 18.7.0
+    - vg
+
+test:
+  commands:
+    - test -f ${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}-${PKG_BUILDNUM}/${PKG_NAME}/src/config.json
+
+about:
+  home: https://github.com/vgteam/sequenceTubeMap
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  summary: "Displays multiple genomic sequences in the form of a tube map."

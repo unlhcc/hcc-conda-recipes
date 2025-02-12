@@ -1,0 +1,13 @@
+{
+ "display_name": "PyTorch 2.5 (py39)",
+ "language": "python",
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/pytorch/envs/pytorch-2.5.1-py39/bin/python",
+  "-W",
+  "ignore",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ]
+}

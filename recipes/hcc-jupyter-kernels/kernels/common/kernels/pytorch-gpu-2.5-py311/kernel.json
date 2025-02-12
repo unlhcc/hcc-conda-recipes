@@ -1,0 +1,13 @@
+{
+ "display_name": "PyTorch GPU 2.5 (py311)",
+ "language": "python",
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/pytorch-gpu/envs/pytorch-gpu-2.5.1-py311/bin/python",
+  "-W",
+  "ignore",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ]
+}

@@ -1,0 +1,45 @@
+{% set name = "fpocket" %}
+{% set version = "4.2.2" %}
+{% set sha256 = "4042125e7243e03465200bee787e55a54c16c1a10908718af75275c46bfafaad" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/Discngine/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
+    - make
+  host:
+    - libnetcdf
+  run:
+    - libnetcdf
+
+test:
+  commands:
+    - fpocket
+
+about:
+  home: https://github.com/Discngine/fpocket
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: fpocket is a very fast open source protein pocket detection algorithm based on Voronoi tessellation.
+  doc_url: https://github.com/Discngine/fpocket/tree/master/doc
+  dev_url: https://github.com/Discngine/fpocket
+
+extra:
+  skip-lints:
+    - in_other_channels
+    # https://github.com/bioconda/bioconda-recipes/issues/51185
+    - version_constraints_missing_whitespace

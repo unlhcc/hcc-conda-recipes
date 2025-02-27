@@ -1,0 +1,13 @@
+{
+ "display_name": "TensorFlow 2.17 (py311)",
+ "language": "python",
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/tensorflow/envs/tensorflow-2.17.0-py311/bin/python",
+  "-W",
+  "ignore",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ]
+}

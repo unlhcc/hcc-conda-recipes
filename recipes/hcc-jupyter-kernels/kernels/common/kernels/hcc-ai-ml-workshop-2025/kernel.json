@@ -1,0 +1,13 @@
+{
+ "display_name": "hcc-ai-ml-workshop-2025",
+ "language": "python",
+ "argv": [
+  "/util/opt/anaconda/deployed-conda-envs/packages/hcc-ai-ml-workshop-2025/envs/hcc-ai-ml-workshop-2025/bin/python",
+  "-W",
+  "ignore",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ]
+}

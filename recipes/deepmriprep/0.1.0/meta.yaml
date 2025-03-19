@@ -31,20 +31,22 @@ requirements:
     - cudatoolkit  # [deepmriprep_variant == "cuda"]
     - pytorch >=1.11.0 cuda11*  # [deepmriprep_variant == "cuda"]
     - pytorch >=1.11.0 cpu_*  # [deepmriprep_variant == "cpu"]
-    - deepmriprep >=1.0.2 {{ deepmriprep_variant }}*
+    - deepbet >=1.0.2 {{ deepmriprep_variant }}*
     - torchreg >=0.1.2 {{ deepmriprep_variant }}*
     - tk * xft_*
     - xorg-libxft
+    - requests
   run:
     - python
     - poetry-core
     - cudatoolkit  # [deepmriprep_variant == "cuda"]
     - pytorch >=1.11.0 cuda11*  # [deepmriprep_variant == "cuda"]
     - pytorch >=1.11.0 cpu_*  # [deepmriprep_variant == "cpu"]
-    - deepmriprep >=1.0.2 {{ deepmriprep_variant }}*
+    - deepbet >=1.0.2 {{ deepmriprep_variant }}*
     - torchreg >=0.1.2 {{ deepmriprep_variant }}*
     - tk * xft_*
     - xorg-libxft
+    - requests
 
 test:
   imports:

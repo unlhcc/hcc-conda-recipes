@@ -1,0 +1,69 @@
+{% set name = "deepmriprep" %}
+{% set version = "0.1.0" %}
+{% set sha256 = "0987f09526fdc752434ca3708995de9e9c6aa586a6d1afbba031c226655d243c" %}
+# Define build matrix for GPU vs. CPU
+{% set deepmriprep_variant = deepmriprep_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: True  # [py2k or py>=40]
+  number: 0
+  string: {{ deepmriprep_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="x.x") }}
+  entry_points:
+    - deepmriprep-cli = deepmriprep.ui.cli:run_cli
+    - deepmriprep-gui = deepmriprep.ui.gui:run_gui
+  script: $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python
+    - pip
+    - poetry-core
+    - cudatoolkit  # [deepmriprep_variant == "cuda"]
+    - pytorch >=1.11.0 cuda11*  # [deepmriprep_variant == "cuda"]
+    - pytorch >=1.11.0 cpu_*  # [deepmriprep_variant == "cpu"]
+    - deepmriprep >=1.0.2 {{ deepmriprep_variant }}*
+    - torchreg >=0.1.2 {{ deepmriprep_variant }}*
+    - tk * xft_*
+    - xorg-libxft
+  run:
+    - python
+    - poetry-core
+    - cudatoolkit  # [deepmriprep_variant == "cuda"]
+    - pytorch >=1.11.0 cuda11*  # [deepmriprep_variant == "cuda"]
+    - pytorch >=1.11.0 cpu_*  # [deepmriprep_variant == "cpu"]
+    - deepmriprep >=1.0.2 {{ deepmriprep_variant }}*
+    - torchreg >=0.1.2 {{ deepmriprep_variant }}*
+    - tk * xft_*
+    - xorg-libxft
+
+test:
+  imports:
+    - deepmriprep
+  commands:
+    - deepmriprep-cli --help
+    # - deepmriprep-gui --help
+
+about:
+  home: https://github.com/wwu-mmll/deepmriprep
+  summary: Neural network-based preprocessing of MRI data. Prepping brain images in seconds.
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic
+  identifiers:
+    - doi:10.48550/arXiv.2408.10656

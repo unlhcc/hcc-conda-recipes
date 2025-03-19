@@ -13,7 +13,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  skip: True  # [py2k or py>39]
+  skip: True  # [py2k or py>=40]
   number: 0
   string: {{ torchreg_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:

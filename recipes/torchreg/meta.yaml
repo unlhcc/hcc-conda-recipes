@@ -1,0 +1,57 @@
+{% set name = "torchreg" %}
+{% set version = "0.1.2" %}
+{% set sha256 = "7b472888a25193a7730819bcf453636ca62c68fe4ee3c23430f6ee428c7a19db" %}
+# Define build matrix for GPU vs. CPU
+{% set torchreg_variant = torchreg_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/torchreg-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: True  # [py2k or py>39]
+  number: 0
+  string: {{ torchreg_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  script:
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python
+    - pip
+    - poetry-core
+    - cudatoolkit  # [torchreg_variant == "cuda"]
+    - pytorch * cuda11*  # [torchreg_variant == "cuda"]
+    - pytorch * cpu_*  # [torchreg_variant == "cpu"]
+    - tqdm
+  run:
+    - python
+    - pip
+    - poetry-core
+    - cudatoolkit  # [torchreg_variant == "cuda"]
+    - pytorch * cuda11*  # [torchreg_variant == "cuda"]
+    - pytorch * cpu_*  # [torchreg_variant == "cpu"]
+    - tqdm
+
+test:
+  imports:
+    - torchreg
+
+about:
+  home: https://github.com/codingfisch/torchreg
+  summary: Lightweight image registration library using PyTorch
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic

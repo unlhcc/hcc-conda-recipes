@@ -1,0 +1,44 @@
+{% set name = "fill-voids" %}
+{% set version = "2.0.8" %}
+{% set sha256 = "2045803c0270e806a357a49ba9b7f9ee3e538b298161eb5b2910620468378bde" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fill_voids-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+  host:
+    - python
+    - cython
+    - numpy
+    - pbr
+    - pip
+  run:
+    - python
+    - fastremap
+    - {{ pin_compatible('numpy') }}
+
+test:
+  imports:
+    - fill_voids
+
+about:
+  home: https://github.com/seung-lab/fill_voids/
+  summary: Fill voids in 3D binary images fast.
+  license: LGPL-3.0 AND GPL-3.0
+  license_file:
+    - COPYING.LESSER
+    - COPYING

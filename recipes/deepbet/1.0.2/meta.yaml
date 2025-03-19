@@ -1,0 +1,77 @@
+{% set name = "deepbet" %}
+{% set version = "1.0.2" %}
+{% set sha256 = "2c679474ad627ea54d2c2c052e6f0a5b29204b5a542ceb15e745bb73a60a2d37" %}
+# Define build matrix for GPU vs. CPU
+{% set deepbet_variant = deepbet_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: True  # [py2k or py>=40]
+  number: 0
+  string: {{ deepbet_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x") }}
+  entry_points:
+    - deepbet-cli = deepbet.ui.cli:run_cli
+    - deepbet-gui = deepbet.ui.gui:run_gui
+  script: $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python
+    - pip
+    - poetry-core
+    - connected-components-3d
+    - fill-voids
+    - nibabel
+    - pandas
+    - cudatoolkit  # [deepbet_variant == "cuda"]
+    - pytorch >=1.11.0 cuda11*  # [deepbet_variant == "cuda"]
+    - pytorch >=1.11.0 cpu_*  # [deepbet_variant == "cpu"]
+    - tqdm
+    - customtkinter
+    - tk * xft_*
+    - xorg-libxft
+  run:
+    - python
+    - poetry-core
+    - connected-components-3d
+    - fill-voids
+    - nibabel
+    - pandas
+    - cudatoolkit  # [deepbet_variant == "cuda"]
+    - pytorch >=1.11.0 cuda11*  # [deepbet_variant == "cuda"]
+    - pytorch >=1.11.0 cpu_*  # [deepbet_variant == "cpu"]
+    - tqdm
+    - customtkinter
+    - tk * xft_*
+    - xorg-libxft
+
+test:
+  imports:
+    - deepbet
+  commands:
+    - deepbet-cli --help
+    # - deepbet-gui --help
+
+about:
+  home: https://github.com/wwu-mmll/deepbet
+  summary: Fast brain extraction using neural networks
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic
+  identifiers:
+    - doi:10.1016/j.compbiomed.2024.108845

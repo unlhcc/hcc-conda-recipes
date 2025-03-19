@@ -1,0 +1,5 @@
+deepbet_variant:
+  - cuda
+  - cpu
+cudatoolit:
+  - 11.6

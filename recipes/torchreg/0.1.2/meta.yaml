@@ -32,7 +32,6 @@ requirements:
     - tqdm
   run:
     - python
-    - pip
     - poetry-core
     - cudatoolkit  # [torchreg_variant == "cuda"]
     - pytorch * cuda11*  # [torchreg_variant == "cuda"]

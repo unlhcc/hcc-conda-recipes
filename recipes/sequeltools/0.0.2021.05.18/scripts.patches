@@ -1,0 +1,56 @@
+--- Scripts/filterReads.py.org	2025-03-26 00:22:30.895897136 -0500
++++ Scripts/filterReads.py	2025-03-26 00:23:01.097873235 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+ This script is designed to filter SAM PacBio Sequel data files by minimum
+ CLR length and/or having at least one complete pass of the DNA molecule past 
+--- Scripts/generateReadLenStats_noScraps.py.org	2025-03-26 00:22:30.897897135 -0500
++++ Scripts/generateReadLenStats_noScraps.py	2025-03-26 00:23:14.509862624 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+ This script is designed to generate statistics from read lengths for subreads  
+ and output them in this format with one stat per line: subsTotalBases, 
+--- Scripts/generateReadLenStats_wScraps.py.org	2025-03-26 00:22:30.898897134 -0500
++++ Scripts/generateReadLenStats_wScraps.py	2025-03-26 00:23:24.677854582 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+ This script is designed to generate statistics from read lengths for both
+ subreads and scraps and output them in this format with one stat per line: 
+--- Scripts/subsampleReads_noScraps.py.org	2025-03-26 00:22:30.900897132 -0500
++++ Scripts/subsampleReads_noScraps.py	2025-03-26 00:23:42.988840085 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+ This script is designed to take a SAM format Pacbio Sequel subreads sequence 
+ files, and potentially scraps files, and sumsample the reads in up to two
+--- Scripts/subsampleReads_wScraps.py.org	2025-03-26 00:22:30.902897131 -0500
++++ Scripts/subsampleReads_wScraps.py	2025-03-26 00:23:53.299831924 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ """
+ This script is designed to take a SAM format Pacbio Sequel subreads sequence 
+ files, and potentially scraps files, and sumsample the reads in up to two
+--- Scripts/plotForSequelQC_noScraps.R.org	2025-03-26 00:30:19.276526856 -0500
++++ Scripts/plotForSequelQC_noScraps.R	2025-03-26 00:30:51.144501689 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ #This script is designed to make all plots for SequelQC
+ #Created by David E. Hufnagel on Nov 24, 2018
+ 
+--- Scripts/plotForSequelQC_wScraps.R.org	2025-03-26 00:30:25.775521720 -0500
++++ Scripts/plotForSequelQC_wScraps.R	2025-03-26 00:31:03.922491600 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env Rscript
++#!/opt/anaconda1anaconda2anaconda3/bin/Rscript
+ #This script is designed to make all plots for SequelQC
+ #Created by David E. Hufnagel on Aug 1, 2018
+ 

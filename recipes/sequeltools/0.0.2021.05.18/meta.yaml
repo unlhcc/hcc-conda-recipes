@@ -1,0 +1,46 @@
+{% set name = "SequelTools" %}
+{% set version = "0.0.2021.05.18" %}
+{% set commit = "553b9fe" %}
+{% set sha256 = "8afc541743d8c637dbb45809fc1c6b792020be4c1990b0bf34811ffcf1995b00" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ISUgenomics/{{ name }}/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - scripts.patches
+  
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  
+requirements:
+  host:
+    - python >=3.5,<3.11
+    - r-base
+    - samtools
+  run:
+    - python >=3.5,<3.11
+    - r-base
+    - samtools
+
+test:
+  commands:
+    - SequelTools.sh -h | grep "SequelTools" > /dev/null 
+
+about:
+  home: https://github.com/ISUgenomics/SequelTools/
+  license: GPL-3.0
+  license_file: LICENSE
+  license_family: GPL
+  summary: "A suite of tools for working with PacBio Sequel raw sequence data."
+
+extra:
+  identifiers:
+    - doi:10.1186/s12859-020-03751-8
+

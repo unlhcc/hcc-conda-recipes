@@ -14,6 +14,7 @@ source:
     - scripts.patches
   
 build:
+  skip: True  # [py>310]
   number: 0
   noarch: generic
   run_exports:
@@ -21,11 +22,11 @@ build:
   
 requirements:
   host:
-    - python >=3.5,<3.11
+    - python
     - r-base
     - samtools
   run:
-    - python >=3.5,<3.11
+    - python
     - r-base
     - samtools
 
@@ -41,6 +42,8 @@ about:
   summary: "A suite of tools for working with PacBio Sequel raw sequence data."
 
 extra:
+  skip-lints:
+    - should_not_be_noarch_skip
   identifiers:
     - doi:10.1186/s12859-020-03751-8
 

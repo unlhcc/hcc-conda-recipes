@@ -1,0 +1,42 @@
+{% set name = "julia" %}
+{% set version = "1.11.4" %}
+{% set sha256 = "fb3d3c5fccef82158a70677c0044ac5ae40410eceb0604cdc8e643eeff21df8d" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://julialang-s3.julialang.org/bin/linux/x64/1.11/{{ name }}-{{ version }}-linux-x86_64.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="x") }}
+  script: 
+    - cp -r * ${PREFIX}
+    - cat "${RECIPE_DIR}/startup.jl" >> "${PREFIX}/etc/julia/startup.jl"
+  ignore_prefix_files:
+    - bin/julia
+  binary_relocation: False
+
+requirements:
+  build:
+  host:
+  run:
+
+test:
+  commands:
+    - julia -v
+
+about:
+  home: http://julialang.org/
+  license: MIT
+  license_file: LICENSE.md
+  summary: A high-performance dynamic programming language for data science
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - should_be_noarch_generic

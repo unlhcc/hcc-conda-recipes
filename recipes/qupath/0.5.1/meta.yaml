@@ -1,0 +1,47 @@
+{% set name = "QuPath" %}
+{% set version = "0.5.1" %}
+{% set sha256 = "db23690ef7e2583ec4f00bf96faf047df6732e2d4689350898fe4c36a34f5318" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+    url: https://github.com/{{ name|lower }}/{{ name|lower }}/releases/download/v{{ version }}/{{ name }}-v{{ version }}-Linux.tar.xz  # [linux]
+    sha256: {{ sha256 }}  # [linux]
+
+build:
+  number: 0
+  binary_relocation: False
+  script:
+    - cp -R QuPath/bin/QuPath ${PREFIX}/bin/
+    - chmod +x ${PREFIX}/bin/QuPath
+    - cp -R QuPath/lib/* ${PREFIX}/lib/
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  build:
+  host:
+    - openslide >=4.0.0
+    - openjdk >=20
+  run:
+    - openslide >=4.0.0
+    - openjdk >=20
+
+test:
+  commands:
+    - QuPath --help
+
+about:
+  home: https://qupath.github.io/
+  dev_url: https://github.com/qupath/qupath
+  doc_url: https://qupath.readthedocs.io/en/stable/
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "QuPath is open source software for bioimage analysis."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

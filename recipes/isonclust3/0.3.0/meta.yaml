@@ -1,0 +1,38 @@
+{% set name = "isONclust3" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "f62e3c35365fbe0ed7240a4ab83480f6dfa8b47fec29b27900689f2b85909079" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/aljpetri/isONclust3/archive/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script:
+    - "cargo install --no-track --locked --verbose --root \"${PREFIX}\" --path ."
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler('rust') }}
+
+test:
+  commands:
+    - isONclust3 --help
+
+about:
+  home: https://github.com/aljpetri/isONclust3
+  license: GPL-3.0
+  license_family: GPL3
+  license_file: LICENSE
+  summary: "De novo clustering of long transcript reads into genes."
+  dev_url: https://github.com/aljpetri/isONclust3
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/btaf207

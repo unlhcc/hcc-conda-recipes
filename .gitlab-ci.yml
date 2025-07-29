@@ -7,8 +7,8 @@ variables:
   SUBDAG: "0"
   LANG: "en_US.UTF-8"
   LC_ALL: "en_US.UTF-8"
-  DEFAULT_LINUX_VERSION: "cos7"
-  CONDA_OVERRIDE_CUDA: "12.4"
+  DEFAULT_LINUX_VERSION: "alma8"
+  CONDA_OVERRIDE_CUDA: "12.8"
 
 stages:
   - build
@@ -16,7 +16,7 @@ stages:
 
 build-linux:
   stage: build
-  image: quay.io/condaforge/linux-anvil-cos7-x86_64:latest
+  image: quay.io/condaforge/linux-anvil-x86_64:alma8
   except:
     - master
   tags:
@@ -39,7 +39,7 @@ build-linux:
 
 deploy-linux:
   stage: deploy
-  image: quay.io/condaforge/linux-anvil-cos7-x86_64:latest
+  image: quay.io/condaforge/linux-anvil-x86_64:alma8
   only:
     - master
   tags:

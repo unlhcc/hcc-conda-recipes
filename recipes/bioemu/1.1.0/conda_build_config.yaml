@@ -1,0 +1,3 @@
+bioemu_variant:
+  - cuda
+  - cpu

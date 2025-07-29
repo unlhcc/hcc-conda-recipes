@@ -1,0 +1,73 @@
+{% set name = "bioemu" %}
+{% set version = "1.1.0" %}
+{% set sha256 = "976818fbc1f0f46fb5b292d966cdba5fced01fd658f845986a2f7d5161c1107d" %}
+# Define build matrix for GPU vs. CPU
+{% set bioemu_variant = bioemu_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bioemu-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: True  # [py<310]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  string: {{ bioemu_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - pip
+    - setuptools
+    - python
+    - mdtraj >=1.9.9
+    - torch-geometric >=2.6.1
+    - pytorch >=2.6.0 cuda126*  # [bioemu_variant == "cuda"]
+    - pytorch >=2.6.0 cpu_*  # [bioemu_variant == "cpu"]
+    - modelcif ==0.7
+    - bio >=1.5.9
+    - fire >=0.7.0
+    - huggingface_hub
+    - hydra-core
+    - dm-tree >=0.1.6
+    - stackprinter
+    - typer
+    - uv
+  run:
+    - python
+    - mdtraj >=1.9.9
+    - torch-geometric >=2.6.1
+    - pytorch >=2.6.0 cuda126*  # [bioemu_variant == "cuda"]
+    - pytorch >=2.6.0 cpu_*  # [bioemu_variant == "cpu"]
+    - modelcif ==0.7
+    - bio >=1.5.9
+    - fire >=0.7.0
+    - huggingface_hub
+    - hydra-core
+    - dm-tree >=0.1.6
+    - stackprinter
+    - typer
+    - uv
+
+test:
+  imports:
+    - bioemu
+
+about:
+  home: https://github.com/microsoft/bioemu/
+  summary: Inference code for scalable emulation of protein equilibrium ensembles with generative deep learning.
+  license: MIT AND Apache-2.0
+  license_file:
+    - NOTICE.md
+    - LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
+  identifiers:
+    - doi:10.1101/2024.12.05.626885

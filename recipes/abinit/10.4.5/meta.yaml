@@ -1,0 +1,95 @@
+# Adapted from https://github.com/conda-forge/abinit-feedstock
+# to add openmpi, include more optional packages, and simplify/bugfix recipe.
+{% set name = "abinit" %}
+{% set version = "10.4.5" %}
+{% set sha256 = "ccb3af00603f574208b6d5bea6f857d7040be5748e7a93a689ffad84eb6a65ce" %}
+{% set build = 0 %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/abinit/abinit/archive/refs/tags/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - optim.patch
+
+build:
+  number: {{ build }}
+  string: mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ build }}
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+{% if mpi != 'nompi' %}
+{% set mpi_prefix = "mpi_" + mpi %}
+{% else %}
+{% set mpi_prefix = "nompi" %}
+{% endif %}
+
+requirements:
+  build:
+    - m4
+    - autoconf
+    - automake
+    - make
+    - libtool
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - {{ mpi }}
+    - libblas
+    - liblapack
+    - libxc
+    - zlib
+    - libgomp
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - hdf5 * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - libnetcdf * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - netcdf-fortran * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - wannier90
+    - libxml2
+    - libpsml
+    - xmlf90
+    - openssl
+  run:
+    - {{ mpi }}
+    - libxc
+    - fftw * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - hdf5 * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - libnetcdf * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - netcdf-fortran * {{ mpi_prefix }}_*  # [mpi != 'nompi']
+    - wannier90
+    - libxml2
+    - xmlf90
+
+test:
+  files:
+    - 01h.pspgth
+    - tbase1_1.in
+  commands:
+    - ls ${PREFIX}/bin/abinit    
+    #- abinit -b
+    #- abinit tbase1_1.in
+
+about:
+  home: https://www.abinit.org
+  license: GPL-3.0-only
+  license_family: GPL
+  license_file: COPYING
+  summary: ABINIT is an atomic-scale simulation software suite.
+
+  description: |
+    ABINIT is a software suite to calculate the optical, mechanical,
+    vibrational, and other observable properties of materials. Starting
+    from the quantum equations of density functional theory, you can
+    build up to advanced applications with perturbation theories based on
+    DFT, and many-body Green's functions (GW and DMFT) ...
+  doc_url: https://wiki.abinit.org/doku.php
+  dev_url: https://github.com/abinit/abinit/
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - version_constraints_missing_whitespace

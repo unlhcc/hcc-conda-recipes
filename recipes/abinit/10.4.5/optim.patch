@@ -1,0 +1,10 @@
+--- config/optim/fc_gnu_default-optim.conf.old	2025-07-21 20:02:44.512509556 -0500
++++ config/optim/fc_gnu_default-optim.conf	2025-07-21 20:03:52.010475870 -0500
+@@ -17,5 +17,5 @@
+ 
+ [DEFAULT]
+ safe_comp = -O2
+-standard_comp = -O2 -march=native 
+-aggressive_comp = -O3 -march=native -funroll-loops -faggressive-function-elimination
++standard_comp = -O2 -march=nocona -mtune=haswell
++aggressive_comp = -O3 -march=nocona -mtune=haswell -funroll-loops -faggressive-function-elimination

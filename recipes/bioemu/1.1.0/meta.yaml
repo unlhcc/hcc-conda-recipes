@@ -15,7 +15,7 @@ source:
 build:
   skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   string: {{ bioemu_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x") }}

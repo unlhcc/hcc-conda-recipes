@@ -15,7 +15,7 @@ source:
 build:
   skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   string: {{ bioemu_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x") }}
@@ -37,7 +37,9 @@ requirements:
     - dm-tree >=0.1.6
     - stackprinter
     - typer
+    - python-uv
     - uv
+    - patch
   run:
     - python
     - mdtraj >=1.9.9
@@ -52,7 +54,9 @@ requirements:
     - dm-tree >=0.1.6
     - stackprinter
     - typer
+    - python-uv
     - uv
+    - patch
 
 test:
   imports:

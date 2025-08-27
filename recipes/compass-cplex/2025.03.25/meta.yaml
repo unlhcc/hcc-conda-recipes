@@ -1,0 +1,67 @@
+{% set name = "compass-cplex" %}
+{% set version = "0.2025.03.25" %}
+{% set revision = "11350bdb3c429f3fcc6f58a10ea1e6c9c3622805" %}
+{% set sha256 = "36cfca0db75cb748de6e1201b774202e3a5bbd13924e25d1a870a359b10d1a8b" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/wagnerlab-berkeley/Compass/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - pip
+    - python >=3.10
+    - numpy >=1.12
+    - pandas >=0.20,<2
+    - tqdm >=4.11
+    - python-libsbml >=5.13
+    - six >=1.10
+    - scipy >=1.0
+    - scikit-learn >=0.19
+    - python-igraph >=0.9
+    - leidenalg >=0.8.2
+    - anndata
+    - git
+  run:
+    - python >=3.10
+    - numpy >=1.12
+    - pandas >=0.20,<2
+    - tqdm >=4.11
+    - python-libsbml >=5.13
+    - six >=1.10
+    - scipy >=1.0
+    - scikit-learn >=0.19
+    - python-igraph >=0.9
+    - leidenalg >=0.8.2
+    - anndata
+    - git
+
+test:
+  commands:
+    # - compass -h
+    - test -f ${PREFIX}/bin/compass
+
+about:
+  home: https://github.com/wagnerlab-berkeley/Compass
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.md
+  summary: "In-Silico Modeling of Metabolic Heterogeneity using Single-Cell Transcriptomes."
+  doc_url: https://compass-wagnerlab.readthedocs.io/
+  dev_url: https://github.com/wagnerlab-berkeley/Compass
+
+extra:
+  identifiers:
+    - doi:10.1016/j.cell.2021.05.045
+  notes: Compass requires CPLEX that needs to be additionally installed due to licence restrictions.

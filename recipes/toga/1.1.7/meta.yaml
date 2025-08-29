@@ -1,0 +1,64 @@
+{% set name = "TOGA" %}
+{% set version = "1.1.7" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # requires recursive checkout 
+  git_url: https://github.com/hillerlab/TOGA
+  git_rev: v{{ version }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - python
+    - nextflow 23.*
+    - twobitreader >=3.1.7
+    - networkx >=3.2.1
+    - pandas >=2.1.2
+    - numpy >=1.26.1,<2
+    - py-xgboost >=2.0.1
+    - scikit-learn >=1.3.2
+    - joblib >=1.3.2
+    - h5py >=3.10.0 
+    - git
+  run:
+    - python
+    - nextflow 23.*
+    - twobitreader >=3.1.7
+    - networkx >=3.2.1
+    - pandas >=2.1.2
+    - numpy >=1.26.1,<2
+    - py-xgboost >=2.0.1
+    - scikit-learn >=1.3.2
+    - joblib >=1.3.2
+    - h5py >=3.10.0 
+    - git
+
+test:
+  commands:
+    - test -f $PREFIX/share/toga-1.1.7-0/toga.py
+
+about:
+  home: https://github.com/hillerlab/TOGA
+  summary: "TOGA is a new method that integrates gene annotation, inferring orthologs and classifying genes as intact or lost."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/hillerlab/TOGA
+  doc_url: https://github.com/hillerlab/TOGA/wiki/Usage-and-best-practices
+  note: TOGA requires the pipeline to be run from the source directory in $PREFIX/share/$PKG_NAME-$PKG_VERSION-$PKG_BUILDNUM.
+
+extra:
+  identifiers:
+    - doi:10.1126/science.abn3107
+  skip-lints:
+    - missing_run_exports
+    - missing_hash
+    - uses_vcs_url

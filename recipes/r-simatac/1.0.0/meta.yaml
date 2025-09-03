@@ -1,0 +1,57 @@
+{% set name = "r-simatac" %}
+{% set version = "1.0.0" %}
+{% set sha256 = "601ec51f6091744397be02b9eb44c7772f6ee1926eed34b9274281e4d92240de" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/bowang-lab/simATAC/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x") }}
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base
+    - bioconductor-singlecellexperiment
+    - bioconductor-biocgenerics
+    - r-matrix
+    - bioconductor-summarizedexperiment
+    - r-checkmate
+    - r-imgur
+    - r-ggplot2
+    - r-ggpubr
+    - r-mixtools
+    - bioconductor-rhdf5
+  run:
+    - r-base
+    - bioconductor-singlecellexperiment
+    - bioconductor-biocgenerics
+    - r-matrix
+    - bioconductor-summarizedexperiment
+    - r-checkmate
+    - r-imgur
+    - r-ggplot2
+    - r-ggpubr
+    - r-mixtools
+    - bioconductor-rhdf5
+
+test:
+  commands:
+    - $R -e "library('simATAC')"
+
+about:
+  home: https://github.com/bowang-lab/simATAC
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+  summary: "simATAC is a framework provided as an R package that generates a single-cell Assay for Transposase-Accessible Chromatin sequencing (scATAC-seq) count matrix, highly resembling real scATAC-seq datasets in library size, sparsity, and averaged chromatin accessibility signals."

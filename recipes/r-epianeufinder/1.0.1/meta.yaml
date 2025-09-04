@@ -1,0 +1,71 @@
+{% set name = "r-epianeufinder" %}
+{% set version = "1.0.1" %}
+{% set sha256 = "06674472cda2ddd15d4a2cf9be25618e8d38cc82993212bc012cb3d21dece706" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/colomemaria/epiAneufinder/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x") }}
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base
+    - r-essentials
+    - r-ggdendro
+    - r-cowplot
+    - r-r.utils
+    - bioconductor-genomicalignments
+    - bioconductor-summarizedexperiment
+    - bioconductor-plyranges
+    - bioconductor-rsamtools
+    - bioconductor-genomeinfodb
+    - bioconductor-bsgenome.hsapiens.ucsc.hg38
+    - bioconductor-genomicranges
+    - bioconductor-biostrings
+    - bioconductor-biocgenerics
+    - bioconductor-s4vectors
+    - bioconductor-genomicfeatures
+  run:
+    - r-base
+    - r-essentials
+    - r-ggdendro
+    - r-cowplot
+    - r-r.utils
+    - bioconductor-genomicalignments
+    - bioconductor-summarizedexperiment
+    - bioconductor-plyranges
+    - bioconductor-rsamtools
+    - bioconductor-genomeinfodb
+    - bioconductor-bsgenome.hsapiens.ucsc.hg38
+    - bioconductor-genomicranges
+    - bioconductor-biostrings
+    - bioconductor-biocgenerics
+    - bioconductor-s4vectors
+    - bioconductor-genomicfeatures
+
+test:
+  commands:
+    - $R -e "library('epiAneufinder')"
+
+about:
+  home: https://github.com/colomemaria/epiAneufinder
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE.md
+  summary: "R package to detect breakpoints and assign somies to scATAC-seq data."
+
+extra:
+  identifiers:
+    - doi:10.1038/s41467-023-41076-1

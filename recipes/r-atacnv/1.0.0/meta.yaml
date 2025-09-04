@@ -1,0 +1,53 @@
+{% set name = "r-atacnv" %}
+{% set version = "1.0.0" %}
+{% set sha256 = "7c63fa4cbf2330b18b036831ca147d0d7bdff068b4d408910dcb7362c23a0129" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/Aelita-Stone/AtaCNV/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x") }}
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base {{ r_base }}
+    - r-simatac
+    - r-dlm
+    - r-irlba
+    - r-paralleldist
+    - bioconductor-edger
+    - bioconductor-complexheatmap
+  run:
+    - r-base {{ r_base }}
+    - r-simatac
+    - r-dlm
+    - r-irlba
+    - r-paralleldist
+    - bioconductor-edger
+    - bioconductor-complexheatmap
+
+test:
+  commands:
+    - $R -e "library('AtaCNV')"
+
+about:
+  home: https://github.com/Aelita-Stone/AtaCNV
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "This is the R package implementation for AtaCNA, a CNA detection algorithm for scATAC-seq datasets."
+
+extra:
+  identifiers:
+    - doi:10.1016/j.crmeth.2024.100939

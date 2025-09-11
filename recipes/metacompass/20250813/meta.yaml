@@ -1,0 +1,77 @@
+{% set name = "Metacompass" %}
+{% set version = "0.2025.08.13" %}
+{% set revision = "ace4259" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/marbl/{{ name }}/archive/{{ revision }}.tar.gz
+    sha256: 1aa45c8cf65a5f1dbbfae43cf7371723f8ad14a715bceed6b92fca314e33b07a
+    folder: MetaCompass
+
+  - url: https://github.com/marbl/MetaCompass/raw/1.12/bin/kmer-mask
+    sha256: 3dc8b9cbc7653ddc29343fe64a90af8374911c7ab3c48e7754239207291aaa29
+  
+build:
+  number: 0
+  noarch: generic
+  
+  post-link:
+    - post-link.sh
+requirements:
+  host:
+    - boost
+    - python >=3.8
+  run:
+    - python >=3.8
+    - nextflow >=22.10.6
+    - openjdk >=11.*
+    - perl >=5.16
+    - blast >=2.4.0
+    - bowtie2 >=2.2.9
+    - samtools >=1.12
+    - megahit >=1.0.6
+    - biopython
+    - mash >=2.1
+    - pilon >=1.23
+    - libzlib
+    - bbmap
+    - minimap2 >=2.24
+    - seqkit
+    - bedtools
+    - pandas
+    - ncbi-datasets-cli
+    - kmc >=3.2.1
+    - numpy ==2.3.3
+    - scipy ==1.16.1
+    - libgcc-ng
+    - libstdcxx-ng
+    - libzlib
+    - skani
+
+test:
+  commands:
+    - go_metacompass.py --help
+
+about:
+  home: "https://github.com/marbl/MetaCompass"
+  license: "Artistic-License-2.0"
+  license_file: MetaCompass/LICENSE
+  summary: 'MetaCompass: Reference-guided Assembly of Metagenomes.' 
+  description: |
+    MetaCompass is a metagenomic assembler that leverages reference genomes 
+    to improve the quality of metagenome assemblies. It supports workflows for 
+    assembly, polishing, and evaluation of metagenomic data using Nextflow.
+  dev_url: "https://github.com/marbl/MetaCompass"
+  doc_url: "https://github.com/marbl/MetaCompass/wiki"
+
+extra:
+  identifiers:
+    - biotools:MetaCompass
+    - doi:10.1101/212506
+  skip-lints:
+    - in_other_channels
+    - should_be_noarch_generic
+    - missing_run_exports

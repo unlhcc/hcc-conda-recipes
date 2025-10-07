@@ -1,0 +1,38 @@
+{% set name = "django-migration-linter" %}
+{% set version = "5.2.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/django_migration_linter-{{ version }}.tar.gz
+  sha256: ba8b4d5aeacce9a2441c4d863321867eaeb498a873ac6657f91350f5b3119bc7
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - python >=3.9
+    - setuptools
+    - pip
+  run:
+    - python >=3.9
+    - django >=2.2
+    - appdirs >=1.4.3
+    - toml >=0.10.2
+
+test:
+  imports:
+    - django_migration_linter
+
+about:
+  home: https://github.com/3YOURMIND/django-migration-linter
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Detect backward incompatible migrations for your django project.

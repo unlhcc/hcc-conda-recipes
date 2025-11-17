@@ -1,0 +1,49 @@
+--- training/make_dataset.py.org	2025-11-17 19:49:55.798536627 +0000
++++ training/make_dataset.py	2025-11-17 19:50:13.710027334 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ 
+ import numpy as np
+--- training/model.py.org	2025-11-17 19:50:19.388511866 +0000
++++ training/model.py	2025-11-17 19:50:24.759579353 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import torch
+ import torch.nn as nn
+ 
+--- training/test_make_star.py.org	2025-11-17 19:50:33.451497116 +0000
++++ training/test_make_star.py	2025-11-17 19:50:49.419964951 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ import os
+ import pickle
+--- training/test_plot_confusion.py.org	2025-11-17 19:50:56.131473306 +0000
++++ training/test_plot_confusion.py	2025-11-17 19:51:02.834605722 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ import os
+ import pickle
+--- training/test.py.org	2025-11-17 19:51:08.492460341 +0000
++++ training/test.py	2025-11-17 19:51:22.437966552 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ import os
+ import pickle
+--- training/train.py.org	2025-11-17 19:51:28.285439564 +0000
++++ training/train.py	2025-11-17 19:51:33.899645870 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ import os
+ import sys
+--- training/train_resnet.py.org	2025-11-17 19:51:39.860427414 +0000
++++ training/train_resnet.py	2025-11-17 19:51:43.992841449 +0000
+@@ -1,3 +1,4 @@
++#!/opt/anaconda1anaconda2anaconda3/bin/python
+ import argparse
+ import os
+ import sys

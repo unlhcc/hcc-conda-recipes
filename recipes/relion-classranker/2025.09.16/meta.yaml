@@ -1,0 +1,69 @@
+{% set name = "relion-classranker" %}
+{% set version = "0.0.2025.09.16" %}
+{% set revision = "352adf8b690ba56e9f4073cfee41c8fcad3dfb81" %}
+{% set sha256 = "2b98a9ac639464f38fe2079586e1b93ec7255a29579c1c9b3c872bc4cd50add7" %}
+# Define build matrix for GPU vs. CPU
+{% set relion_variant = relion_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/3dem/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - python_path.patch
+
+build:
+  skip: True  # [py2k or py>=40]
+  number: 0
+  string: {{ relion_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="None") }}
+  script: 
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+    - cp training/*.py ${PREFIX}/bin
+    - cp -r training ${PREFIX}/bin/
+    - chmod +x ${PREFIX}/bin/*.py
+
+requirements:
+  host:
+    - python
+    - pip
+    - cuda-version  {{ cuda_compiler_version }} # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cuda12*  # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cpu_*  # [relion_variant == "cpu"]
+    - torchvision >=0.15.2 {{ relion_variant }}*
+    - numpy >=1.24.4
+    - matplotlib-base
+  run:
+    - python
+    - cuda-version {{ cuda_compiler_version }}  # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cuda12*  # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cpu_*  # [relion_variant == "cpu"]
+    - torchvision >=0.15.2 {{ relion_variant }}*
+    - numpy >=1.24.4
+    - matplotlib-base
+
+test:
+  imports:
+    - relion_classranker
+  commands:
+    - make_dataset.py --help
+    - train.py --help
+
+about:
+  home: https://github.com/3dem/relion-classranker/
+  summary: RELION automatic 2D class selection.
+  license: GPL-3.0
+  license_family: GPL
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic
+  identifiers:
+    - doi:10.1042/BCJ20210708

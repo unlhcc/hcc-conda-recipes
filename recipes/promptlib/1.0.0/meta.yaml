@@ -1,0 +1,37 @@
+{% set name = "promptlib" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/promptlib-{{ version }}.tar.gz
+  sha256: b2aee79f39253241bdba09f997a89f23f497a655629580a2d78deead1a7426da
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="None") }}
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - promptlib
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  summary: Prompt library
+  license: UNKNOWN
+  home: https://pypi.org/project/promptlib/

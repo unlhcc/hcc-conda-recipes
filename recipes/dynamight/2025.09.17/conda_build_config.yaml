@@ -1,0 +1,5 @@
+dynamight_variant:
+  - cuda
+  - cpu
+cuda_compiler_version:
+  - 12.4

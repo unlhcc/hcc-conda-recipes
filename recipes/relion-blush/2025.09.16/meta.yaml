@@ -1,0 +1,65 @@
+{% set name = "relion-blush" %}
+{% set version = "0.0.2025.09.16" %}
+{% set revision = "87c01af09da8351adae3aa43ab99657585e3af7f" %}
+{% set sha256 = "8abc9a193d226db0c456b4049d0f0f92f7709e1b02b8adad6af56475defcb0f4" %}
+# Define build matrix for GPU vs. CPU
+{% set relion_variant = relion_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/3dem/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: True  # [py2k or py>=40]
+  number: 0
+  string: {{ relion_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="None") }}
+  script: 
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python
+    - pip
+    - cuda-version  {{ cuda_compiler_version }} # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cuda12*  # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cpu_*  # [relion_variant == "cpu"]
+    - torchvision >=0.15.2 {{ relion_variant }}*
+    - numpy >=1.24.4
+    - matplotlib-base
+    - loguru
+    - mrcfile >=1.4.3
+  run:
+    - python
+    - cuda-version {{ cuda_compiler_version }}  # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cuda12*  # [relion_variant == "cuda"]
+    - pytorch >=2.0.1 cpu_*  # [relion_variant == "cpu"]
+    - torchvision >=0.15.2 {{ relion_variant }}*
+    - numpy >=1.24.4
+    - matplotlib-base
+    - loguru
+    - mrcfile >=1.4.3
+
+test:
+  imports:
+    - relion_blush
+
+about:
+  home: https://github.com/3dem/relion-blush/
+  summary: Blush regularization in RELION-5.
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic
+  identifiers:
+    - doi:10.1101/2023.10.23.563586

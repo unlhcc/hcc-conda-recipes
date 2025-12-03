@@ -1,0 +1,47 @@
+{% set name = "memelite" %}
+{% set version = "0.2.0" %}
+{% set sha256 = "f028a7751369d6d1d88d736e3ac0a8ef1dfdc917618a3a6f958bdc9f380ed5d0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/memelite-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - numpy >=1.14.2,<=2.0.1
+    - numba >=0.55.1
+    - pandas >=1.3.3
+    - pyfaidx >=0.7.2.1
+    - tqdm >=4.64.1
+
+test:
+  imports:
+    - memelite
+  commands:
+    - ttl --help
+
+about:
+  home: https://github.com/jmschrei/memesuite-lite
+  summary: "Biological sequence analysis for the modern age."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  identifiers:
+    - doi:10.1101/2025.05.27.656386

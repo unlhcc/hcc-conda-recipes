@@ -7,6 +7,7 @@ target=${PREFIX}/share/${PKG_NAME}-${PKG_VERSION}
 mkdir -p ${target}/db/
 
 # copy script to download models
+touch ${target}/db/.tmp
 chmod +x ${RECIPE_DIR}/download-db.sh
 cp ${RECIPE_DIR}/download-db.sh ${PREFIX}/bin
 

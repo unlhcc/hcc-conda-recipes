@@ -8,8 +8,8 @@ mkdir -p ${target}/db/
 
 # copy script to download models
 touch ${target}/db/.tmp
-chmod +x ${RECIPE_DIR}/download-db.sh
 cp ${RECIPE_DIR}/download-db.sh ${PREFIX}/bin
+chmod +x ${PREFIX}/bin/download-db.sh
 
 # set TORCH_HOME variable on env activation
 mkdir -p ${PREFIX}/etc/conda/activate.d ${PREFIX}/etc/conda/deactivate.d

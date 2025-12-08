@@ -1,0 +1,53 @@
+{% set name = "modisco" %}
+{% set version = "0.5.16.4.1" %}
+{% set sha256 = "a302ac69da3851b32f3d2e748043d8169c097f94bf3d382410125a104321d373" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/modisco-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python >=3.8
+    - pip
+    - setuptools
+  run:
+    - python >=3.8
+    - numpy >=1.9
+    - joblib >=0.11
+    - psutil >=5.4.8
+    - matplotlib-base >=2.2.5
+    - scipy >=1.6.2
+    - numba >=0.53.1
+    - scikit-learn >=0.19
+    - leidenalg >=0.8.7
+    - igraph >=0.9.11
+    - tqdm >=4.38.0
+    - pandas >=1.4.3
+    - logomaker >=0.8
+    - h5py >=2.5
+    - hdf5plugin
+    - memelite
+    - jinja2
+
+test:
+  imports:
+    - modisco
+
+about:
+  home: https://github.com/kundajelab/tfmodisco
+  summary: "Transcription Factor MOtif Discovery from Importance SCOres."
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE

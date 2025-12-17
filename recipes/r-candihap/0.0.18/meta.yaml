@@ -1,0 +1,93 @@
+{% set name = "r-candihap" %}
+{% set version = "0.0.18" %}
+{% set sha256 = "adc85b66df0e4d45029ce8f531c86fb5b9b20aded255cb9a207cd7cfed07c7d1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/guokai8/CandiHap/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base {{ r_base }}
+    - r-dplyr
+    - r-magrittr
+    - r-pegas
+    - bioconductor-muscle
+    - r-ape
+    - r-sf
+    - r-rlang
+    - r-ggplot2
+    - bioconductor-venndetail
+    - bioconductor-biocgenerics
+    - bioconductor-iranges
+    - r-ggpubr
+    - r-tidyr
+    - r-broom
+    - r-ggally
+    - r-igraph
+    - bioconductor-genomicranges
+    - bioconductor-biostrings
+    - bioconductor-trackviewer
+    - bioconductor-s4vectors
+    - r-scales
+    - r-ggrepel
+    - r-tibble
+    - r-readr
+    - bioconductor-rtracklayer
+    - bioconductor-biocparallel
+  run:
+    - r-base {{ r_base }}
+    - r-dplyr
+    - r-magrittr
+    - r-pegas
+    - bioconductor-muscle
+    - r-ape
+    - r-sf
+    - r-rlang
+    - r-ggplot2
+    - bioconductor-venndetail
+    - bioconductor-biocgenerics
+    - bioconductor-iranges
+    - r-ggpubr
+    - r-tidyr
+    - r-broom
+    - r-ggally
+    - r-igraph
+    - bioconductor-genomicranges
+    - bioconductor-biostrings
+    - bioconductor-trackviewer
+    - bioconductor-s4vectors
+    - r-scales
+    - r-ggrepel
+    - r-tibble
+    - r-readr
+    - bioconductor-rtracklayer
+    - bioconductor-biocparallel
+
+test:
+  commands:
+    - $R -e "library('CandiHap')"
+
+about:
+  home: https://github.com/guokai8/CandiHap
+  license: GPL-3
+  license_family: GPL
+  license_file: LICENSE
+  summary: "CandiHap is a user-friendly local software, that can fast preselect candidate causal SNPs from Sanger or next-generation sequencing data, and report results in table and exquisite vector-graphs within a minute."
+
+extra:
+  identifiers:
+    - doi:10.1007/s11032-023-01366-4

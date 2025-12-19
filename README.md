@@ -4,6 +4,9 @@ HCC Conda Recipes
 Recipes for the [conda](https://conda.io) build system.
 All the recipes are licensed with the BSD 3-Clause License.
 
+> [!NOTE]
+> Please use EL8 Anvil VM for development to avoid any GLIBC errors when building packages and set `CONDA_OVERRIDE_GLIBC="2.28"`.
+
 How to use:
 -----------
 

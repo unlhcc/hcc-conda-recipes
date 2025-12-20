@@ -1,0 +1,5 @@
+ankh_variant:
+  - cuda
+  - cpu
+cudatoolkit:
+  - 11.*

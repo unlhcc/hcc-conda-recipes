@@ -1,6 +1,8 @@
 {% set name = "ankh" %}
 {% set version = "1.10.0" %}
 {% set sha256 = "e26f92d81844a1c5550cda5c5367cb176a4af667cb42a79e17e3ef1a9aefdb97" %}
+# Define build matrix for GPU vs. CPU
+{% set ankh_variant = ankh_variant or "cuda" %}
 
 package:
   name: {{ name|lower }}
@@ -20,26 +22,30 @@ build:
 
 requirements:
   host:
-    - python >=3.7,<4.0
+    - python <3.11
     - poetry-core
     - pip
     - cudatoolkit  # [ankh_variant == "cuda"]
-    - pytorch >=2.2 cuda11*  # [ankh_variant == "cuda"]
-    - pytorch >=2.2 cpu_*  # [ankh_variant == "cpu"]
+    - pytorch >=2.2,<2.4 *cuda11*  # [ankh_variant == "cuda"]
+    - pytorch >=2.2,<2.4 *cpu_*  # [ankh_variant == "cpu"]
+    - tensorflow >=2.0,<2.10 *cuda11*  # [ankh_variant == "cuda"]
+    - tensorflow >=2.0,<2.10 *cpu_*  # [ankh_variant == "cpu"]
     - numpy >=1.22,<=1.24.3
     - scipy
     - transformers
     - pathlib
     - scikit-learn
   run:
-    - python >=3.7.0,<4.0.0
+    - python <3.11
     - biopython >=1.80.0,<2.0.0
     - transformers >=4.25.1,<5.0.0
     - sentencepiece >=0.1.97,<0.2.0
     - datasets >=2.7.1,<3.0.0
     - cudatoolkit  # [ankh_variant == "cuda"]
-    - pytorch >=2.2 cuda11*  # [ankh_variant == "cuda"]
-    - pytorch >=2.2 cpu_*  # [ankh_variant == "cpu"]
+    - pytorch >=2.2,<2.4 *cuda11*  # [ankh_variant == "cuda"]
+    - pytorch >=2.2,<2.4 *cpu_*  # [ankh_variant == "cpu"]
+    - tensorflow >=2.0,<2.10 *cuda11*  # [ankh_variant == "cuda"]
+    - tensorflow >=2.0,<2.10 *cpu_*  # [ankh_variant == "cpu"]
     - numpy >=1.22,<=1.24.3
     - scipy
     - transformers

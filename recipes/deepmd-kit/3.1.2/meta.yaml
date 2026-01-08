@@ -1,0 +1,111 @@
+# Adapted from https://github.com/conda-forge/deepmd-kit-feedstock/
+# to add openmpi 4 and simplify recipe.
+{% set name = "deepmd-kit" %}
+{% set version = "3.1.2" %}
+{% set lammps_version = "patch_7Feb2024_update1" %}
+{% set lammps_conda_version = "2024.02.07" %}
+{% set deepmodeling_sha256 = "8042a4939c5c0eba4f1c8adc530a83343630c42f9e268dff372c03ae0ec3f1f2" %}
+{% set lammps_sha256 = "3ba62c2a1ed463fceedf313a1c3ea2997994aa102379a8d35b525ea424f56776" %}
+{% set build = 1000 %}
+{% set mpi = mpi or "nompi" %}
+# Define build matrix for GPU vs. CPU
+{% set deepmd_variant = deepmd_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/deepmodeling/{{ name }}/archive/v{{ version }}.tar.gz
+    sha256: {{ deepmodeling_sha256 }}
+  - url: https://github.com/lammps/lammps/archive/{{ lammps_version }}.tar.gz
+    sha256: {{ lammps_sha256 }}
+    folder: lammps
+
+build:
+  number: {{ build }}
+  {% if mpi != "nompi" %}
+  {% set mpi_prefix = "mpi_" + mpi %}
+  {% else %}
+  {% set mpi_prefix = "nompi" %}
+  {% endif %}
+  string: {{ deepmd_variant }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ mpi_prefix }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ stdlib("c") }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cuda-nvcc_linux-64  # [deepmd_variant == "cuda"]
+    - cmake >=3.23
+    - make
+    - ninja
+    - {{ mpi }}  # [mpi != "nompi"]
+  host:
+    - python >=3.10,<3.13
+    - pip
+    - scikit-build-core
+    - hatch-fancy-pypi-readme
+    - pytorch 2.9.* cuda12*  # [deepmd_variant == "cuda"]
+    - pytorch 2.9.* cpu_*  # [deepmd_variant == "cpu"]
+    - tensorflow 2.19.* cuda12*  # [deepmd_variant == "cuda"]
+    - tensorflow 2.19.* cpu_*  # [deepmd_variant == "cpu"]
+    - setuptools_scm
+    - {{ mpi }}  # [mpi != "nompi"]
+    - cuda-cudart-dev  # [deepmd_variant == "cuda"]
+    - cuda-version {{ cuda_compiler_version }}  # [deepmd_variant == "cuda"]
+    - libcublas-dev  # [deepmd_variant == "cuda"]
+    - libcurand-dev  # [deepmd_variant == "cuda"]
+    - libcufft-dev  # [deepmd_variant == "cuda"]
+    - cuda-nvrtc-dev  # [deepmd_variant == "cuda"]
+    - cuda-nvtx-dev  # [deepmd_variant == "cuda"]
+    - dependency-groups
+    - tomli
+  run:
+    - python >=3.10,<3.13
+    - pytorch 2.9.* cuda12*  # [deepmd_variant == "cuda"]
+    - pytorch 2.9.* cpu_*  # [deepmd_variant == "cpu"]
+    - tensorflow 2.19.* cuda12*  # [deepmd_variant == "cuda"]
+    - tensorflow 2.19.* cpu_*  # [deepmd_variant == "cpu"]
+    - numpy >=1.21
+    - scipy
+    - dargs >=0.4.7
+    - pyyaml
+    - {{ mpi }}  # [mpi != "nompi"]
+    - h5py
+    - wcmatch
+    - packaging
+    - ml_dtypes
+    - mendeleev
+    - array-api-compat
+  run_constrained:
+    - lammps {{ lammps_conda_version }} *_{{ mpi_prefix }}_*
+
+test:
+  imports:
+    - deepmd
+    - deepmd.tf
+    - deepmd.pt
+  requires:
+    - lammps
+  commands:
+    - dp -h
+    - dp train -h
+    - dp freeze -h
+    - dp test -h
+
+about:
+  home: https://github.com/deepmodeling/deepmd-kit
+  license: LGPL-3.0-only
+  license_family: LGPL
+  license_file: LICENSE
+  summary: A deep learning package for many-body potential energy representation and molecular dynamics
+  doc_url: https://github.com/deepmodeling/deepmd-kit
+  dev_url: https://github.com/deepmodeling/deepmd-kit
+
+extra:
+  skip-lints:
+    - in_other_channels
+    - version_constraints_missing_whitespace

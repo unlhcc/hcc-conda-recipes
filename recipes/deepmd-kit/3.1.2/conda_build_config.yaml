@@ -1,0 +1,8 @@
+mpi:
+  - openmpi
+  #- nompi
+deepmd_variant:
+  - cuda
+  - cpu
+cuda_compiler_version:
+  - 12.9

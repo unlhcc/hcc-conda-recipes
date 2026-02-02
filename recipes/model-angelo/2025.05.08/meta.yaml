@@ -24,11 +24,11 @@ build:
 
 requirements:
   host:
-    - python
+    - python 3.9
     - pip
     - cuda-version  {{ cuda_compiler_version }} # [model_angelo_variant == "cuda"]
-    - pytorch >=2.0.1 cuda12*  # [model_angelo_variant == "cuda"]
-    - pytorch >=2.0.1 cpu_*  # [model_angelo_variant == "cpu"]
+    - pytorch 2.4.1 cuda12*  # [model_angelo_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [model_angelo_variant == "cpu"]
     - torchvision >=0.15.2 {{ model_angelo_variant }}*
     - torchaudio >=2.0.2 cuda12*  # [model_angelo_variant == "cuda"]
     - torchaudio >=2.0.2 py*  # [model_angelo_variant == "cpu"]
@@ -40,14 +40,14 @@ requirements:
     - mrcfile >=1.4.3
     - pandas
     - fair-esm >=1.0.3
-    - pyhmmer >=0.7.1
+    - pyhmmer >=0.7.1,<=0.12.0
     - loguru >=0.7.0
     - numpy >=1.24.4,<2.0
   run:
-    - python
+    - python 3.9
     - cuda-version {{ cuda_compiler_version }}  # [model_angelo_variant == "cuda"]
-    - pytorch >=2.0.1 cuda12*  # [model_angelo_variant == "cuda"]
-    - pytorch >=2.0.1 cpu_*  # [model_angelo_variant == "cpu"]
+    - pytorch 2.4.1 cuda12*  # [model_angelo_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [model_angelo_variant == "cpu"]
     - torchvision >=0.15.2 {{ model_angelo_variant }}*
     - torchaudio >=2.0.2 cuda12*  # [model_angelo_variant == "cuda"]
     - torchaudio >=2.0.2 py*  # [model_angelo_variant == "cpu"]
@@ -59,7 +59,7 @@ requirements:
     - mrcfile >=1.4.3
     - pandas
     - fair-esm >=1.0.3
-    - pyhmmer >=0.7.1
+    - pyhmmer >=0.7.1,<=0.12.0
     - loguru >=0.7.0
     - numpy >=1.24.4,<2.0
 

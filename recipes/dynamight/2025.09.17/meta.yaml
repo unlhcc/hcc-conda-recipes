@@ -74,7 +74,7 @@ test:
 
 about:
   home: https://github.com/3dem/DynaMight/
-  summary: Tool for reconstruction and analysis of continuous heterogeneity of a cryo-EM dataset.
+  summary: "Tool for reconstruction and analysis of continuous heterogeneity of a cryo-EM dataset."
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE

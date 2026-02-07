@@ -1,0 +1,88 @@
+{% set name = "DynaMight" %}
+{% set version = "0.0.2025.09.17" %}
+{% set revision = "358db04d5c2ec2997f3f17060a456293f0b02185" %}
+{% set sha256 = "c4f07a34f96f4c92a4babb310cc8f4f07e455abf79a8d901d4707b731b5436c6" %}
+# Define build matrix for GPU vs. CPU
+{% set dynamight_variant = dynamight_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # installation requires .git version files
+  git_url: https://github.com/3dem/{{ name }}/
+  git_rev: {{ revision }}
+
+build:
+  skip: True  # [py2k or py>=40]
+  number: 0
+  string: {{ dynamight_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="None") }}
+  script: 
+    - $PYTHON -m pip install --no-deps --ignore-installed .
+
+requirements:
+  host:
+    - python 3.9
+    - pip
+    - hatchling
+    - hatch-vcs
+    - cuda-version  {{ cuda_compiler_version }} # [dynamight_variant == "cuda"]
+    - pytorch 2.4.1 cuda12*  # [dynamight_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [dynamight_variant == "cpu"]
+    - numpy >=1.24.4
+    - mrcfile >=1.4.3
+    - starfile >=0.5.6
+    - scikit-learn >=1.3.0
+    - umap-learn >=0.5.3
+    - matplotlib-base >=3.7.2
+    - napari >=0.4.18
+    - tsnecuda >=3.0.1
+    - tqdm >=4.65.0
+    - tensorboard
+    - pyqt >=5.15.9
+    - typer >=0.9.0
+    - biopython >=1.81
+  run:
+    - python 3.9
+    - hatchling
+    - hatch-vcs
+    - cuda-version  {{ cuda_compiler_version }} # [dynamight_variant == "cuda"]
+    - pytorch 2.4.1 cuda12*  # [dynamight_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [dynamight_variant == "cpu"]
+    - numpy >=1.24.4
+    - mrcfile >=1.4.3
+    - starfile >=0.5.6
+    - scikit-learn >=1.3.0
+    - umap-learn >=0.5.3
+    - matplotlib-base >=3.7.2
+    - napari >=0.4.18
+    - tsnecuda >=3.0.1
+    - tqdm >=4.65.0
+    - tensorboard 
+    - pyqt >=5.15.9
+    - typer >=0.9.0
+    - biopython >=1.81
+
+test:
+  imports:
+    - dynamight
+  commands:
+    - dynamight --help
+
+about:
+  home: https://github.com/3dem/DynaMight/
+  summary: "Tool for reconstruction and analysis of continuous heterogeneity of a cryo-EM dataset."
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic
+    - uses_vcs_url
+    - missing_hash

@@ -1,0 +1,86 @@
+{% set name = "model-angelo" %}
+{% set version = "0.0.2025.05.08" %}
+{% set revision = "9a44a09cbff805b89220d2fbc89af8123926976c" %}
+{% set sha256 = "da3f388040af1800a09b03a5cc6cacfa59edc6a60b7ebf19eeb16d45e14809da" %}
+# Define build matrix for GPU vs. CPU
+{% set model_angelo_variant = model_angelo_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/3dem/{{ name }}/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: True  # [py2k or py>=40]
+  number: 0
+  string: {{ model_angelo_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    -  {{ pin_subpackage(name|lower, max_pin="None") }}
+  entry_points:
+    - model_angelo = model_angelo.__main__:main
+
+requirements:
+  host:
+    - python 3.9
+    - pip
+    - cuda-version  {{ cuda_compiler_version }} # [model_angelo_variant == "cuda"]
+    - pytorch 2.4.1 cuda12*  # [model_angelo_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [model_angelo_variant == "cpu"]
+    - torchvision >=0.15.2 {{ model_angelo_variant }}*
+    - torchaudio 2.4.1 cuda_12*  # [model_angelo_variant == "cuda"]
+    - torchaudio 2.4.1 cpu_*  # [model_angelo_variant == "cpu"]
+    - tqdm >=4.65.0
+    - scipy >=1.11.2
+    - biopython >=1.81
+    - einops 
+    - matplotlib-base >=3.7.2
+    - mrcfile >=1.4.3
+    - pandas
+    - fair-esm >=1.0.3
+    - pyhmmer >=0.7.1,<=0.12.0
+    - loguru >=0.7.0
+    - numpy >=1.24.4,<2.0
+  run:
+    - python 3.9
+    - cuda-version {{ cuda_compiler_version }}  # [model_angelo_variant == "cuda"]
+    - pytorch 2.4.1 cuda12*  # [model_angelo_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [model_angelo_variant == "cpu"]
+    - torchvision >=0.15.2 {{ model_angelo_variant }}*
+    - torchaudio 2.4.1 cuda_12*  # [model_angelo_variant == "cuda"]
+    - torchaudio 2.4.1 cpu_*  # [model_angelo_variant == "cpu"]
+    - tqdm >=4.65.0
+    - scipy >=1.11.2
+    - biopython >=1.81
+    - einops
+    - matplotlib-base >=3.7.2
+    - mrcfile >=1.4.3
+    - pandas
+    - fair-esm >=1.0.3
+    - pyhmmer >=0.7.1,<=0.12.0
+    - loguru >=0.7.0
+    - numpy >=1.24.4,<2.0
+
+test:
+  imports:
+    - model_angelo
+  commands:
+    - model_angelo --help
+
+about:
+  home: https://github.com/3dem/model-angelo
+  summary: Automatic atomic model building program for cryo-EM maps.
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+extra:
+  skip-lints:
+    - should_be_noarch_python
+    - should_not_use_skip_python
+    - should_be_noarch_generic
+  identifiers:
+    - doi:10.48550/arXiv.2210.00006
+    - doi:10.1038/s41586-024-07215-4

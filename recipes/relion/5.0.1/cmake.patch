@@ -1,0 +1,21 @@
+--- CMakeLists.txt.org	2026-01-30 00:33:21.922968108 +0000
++++ CMakeLists.txt	2026-01-30 00:33:41.584946342 +0000
+@@ -177,6 +177,7 @@
+ if(CUDA)
+     # -----------------------------------------------------------------------------CUDA--
+     # DOC: http://www.cmake.org/cmake/help/v3.0/module/FindCUDA.html
++    FIND_PACKAGE(CUDAToolkit)
+     FIND_PACKAGE(CUDA)
+ 
+     # "-arch=sm_XX" alone is equal to "-arch=compute_XX -code=compute_XX,sm_XX"
+--- cmake/BuildTypes.cmake.org	2026-01-30 02:37:59.039782197 +0000
++++ cmake/BuildTypes.cmake	2026-01-30 02:39:10.173714291 +0000
+@@ -5,7 +5,7 @@
+ # Add -G to allow cuda-gdb to break inside kernels.
+ 
+ if(CUDA)
+-    set(EXTRA_NVCC_FLAGS "-D__INTEL_COMPILER --default-stream per-thread --std=c++17")
++    set(EXTRA_NVCC_FLAGS " --default-stream per-thread --std=c++17")
+     set(RELION_NVCC_FLAGS "${CUDARCH} ${WARN_DBL} ${EXTRA_NVCC_FLAGS}" CACHE STRING "" FORCE)
+ elseif (HIP)
+     if (${HIP_VERSION} VERSION_LESS "5.3" )

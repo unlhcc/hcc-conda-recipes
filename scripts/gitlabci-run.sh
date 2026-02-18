@@ -16,6 +16,9 @@ export PS1="[\u@\h \W]\$ "
 source $ANACONDA_PREFIX/etc/profile.d/conda.sh
 conda activate base
 
+# install missing packages
+conda install entrypoints "setuptools<80" -c conda-forge
+
 export HOST_USER_ID=`id -u`
 SKIP_LINTING=false
 

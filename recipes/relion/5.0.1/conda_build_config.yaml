@@ -1,9 +1,0 @@
-mpi:
-  - openmpi
-relion_variant:
-  - cuda
-  - cpu
-cxx_compiler_version:
-  - 12
-c_compiler_version:
-  - 12

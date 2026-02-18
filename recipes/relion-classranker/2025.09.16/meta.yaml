@@ -16,7 +16,7 @@ source:
     - python_path.patch
 
 build:
-  skip: True  # [py2k or py>=40]
+  skip: True  # [py2k or py>=40 or py<39]
   number: 0
   string: {{ relion_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
@@ -32,16 +32,16 @@ requirements:
     - python
     - pip
     - cuda-version  {{ cuda_compiler_version }} # [relion_variant == "cuda"]
-    - pytorch >=2.0.1 cuda12*  # [relion_variant == "cuda"]
-    - pytorch >=2.0.1 cpu_*  # [relion_variant == "cpu"]
+    - pytorch 2.4.1 cuda12*  # [relion_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [relion_variant == "cpu"]
     - torchvision >=0.15.2 {{ relion_variant }}*
     - numpy >=1.24.4
     - matplotlib-base
   run:
     - python
     - cuda-version {{ cuda_compiler_version }}  # [relion_variant == "cuda"]
-    - pytorch >=2.0.1 cuda12*  # [relion_variant == "cuda"]
-    - pytorch >=2.0.1 cpu_*  # [relion_variant == "cpu"]
+    - pytorch 2.4.1 cuda12*  # [relion_variant == "cuda"]
+    - pytorch 2.4.1 cpu_*  # [relion_variant == "cpu"]
     - torchvision >=0.15.2 {{ relion_variant }}*
     - numpy >=1.24.4
     - matplotlib-base

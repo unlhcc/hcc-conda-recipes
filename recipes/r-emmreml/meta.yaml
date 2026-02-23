@@ -1,0 +1,41 @@
+{% set name = "r-emmreml" %}
+{% set version = "3.1" %}
+{% set sha256 = "b8b5cdfbe6c90826e668512ddff3574fd916cd4a04362a19eff25ee8a8249263" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cran.r-project.org/src/contrib/EMMREML_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x") }}
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base
+    - r-mass
+    - r-matrix
+
+  run:
+    - r-base
+    - r-mass
+    - r-matrix
+
+test:
+  commands:
+    - $R -e "library(EMMREML)"
+about:
+  home: https://cran.r-project.org/package=EMMREML
+  license: GPL-2
+  summary: Efficient Mixed Model Association using REML
+  license_family: GPL

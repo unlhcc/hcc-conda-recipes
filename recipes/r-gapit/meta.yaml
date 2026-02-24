@@ -1,0 +1,87 @@
+{% set name = "r-gapit" %}
+{% set version = "3.5.0" %}
+{% set tag = "GAPIT3.5" %}
+{% set sha256 = "13e13b294868d80212bd73dd3ff2835d0d281f123feab714bc6054de8d792e54" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/jiabowang/GAPIT3/archive/refs/tags/{{ tag }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x") }}
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base {{ r_base }}
+    - r-ape
+    - r-bigmemory
+    - r-emmreml
+    - r-genetics
+    - r-lme4
+    - r-plotly
+    - r-rcpparmadillo
+    - r-scatterplot3d
+    - r-snowfall
+    - r-data.table
+    - r-ggplot2
+    - r-mass
+    - r-matrix
+    - r-nlme
+    - r-bigsnpr
+    - r-scales
+    - r-htmlwidgets
+    - r-htmltools
+    - r-gplots
+    - r-gridextra
+    - r-lattice
+    - r-magrittr
+    - r-rgl
+    - r-nloptr
+    - bioconductor-multtest
+
+  run:
+    - r-base {{ r_base }}
+    - r-ape
+    - r-bigmemory
+    - r-emmreml
+    - r-genetics
+    - r-lme4
+    - r-plotly
+    - r-rcpparmadillo
+    - r-scatterplot3d
+    - r-snowfall
+    - r-data.table
+    - r-ggplot2
+    - r-mass
+    - r-matrix
+    - r-nlme
+    - r-bigsnpr
+    - r-scales
+    - r-htmlwidgets
+    - r-htmltools
+    - r-gplots
+    - r-gridextra
+    - r-lattice
+    - r-magrittr
+    - r-rgl
+    - r-nloptr
+    - bioconductor-multtest
+test:
+  commands:
+    - $R -e "library(GAPIT)"
+about:
+  home: https://github.com/jiabowang/GAPIT3
+  license: GPL-3.0-only
+  summary: Genome Association and Prediction Integrated Tool (GAPIT3) for genome-wide association studies and genomic prediction.
+  license_family: GPL3

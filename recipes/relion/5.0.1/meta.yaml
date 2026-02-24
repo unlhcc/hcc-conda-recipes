@@ -4,6 +4,7 @@
 {% set sha256 = "acbf898e96513b092514a56ff2a255c69a795e7a6f04131eacc8f55e2a900c23" %}
 # Define build matrix for GPU vs. CPU
 {% set relion_variant = relion_variant or "cuda" %}
+{% set mpi = mpi or "nompi" %}
 
 package:
   name: {{ name|lower }}
@@ -17,7 +18,12 @@ source:
 build:
   skip: True  # [py2k or py>=40 or py<39]
   number: 1000
-  string: {{ relion_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  {% if mpi != "nompi" %}
+  {% set mpi_prefix = "mpi_" + mpi %}
+  {% else %}
+  {% set mpi_prefix = "nompi" %}
+  {% endif %}
+  string: {{ relion_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ mpi_prefix }}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin="x") }}
 
@@ -33,6 +39,7 @@ requirements:
     - cuda-cudart-dev  # [relion_variant == "cuda"]
     - cuda-version >=12.0,<13  # [relion_variant == "cuda"]
     - python
+    - {{ mpi }}  # [mpi != "nompi"]
   host:
     - python
     - pip
@@ -46,7 +53,7 @@ requirements:
     - libcufft
     - libcufft-dev
     - mkl
-    - openmpi
+    - {{ mpi }}  # [mpi != "nompi"]
     - libgomp
     - pbzip2
     - xz
@@ -93,7 +100,7 @@ requirements:
     - libcufft
     - libcufft-dev
     - mkl
-    - openmpi
+    - {{ mpi }}  # [mpi != "nompi"]
     - libgomp
     - pbzip2
     - xz

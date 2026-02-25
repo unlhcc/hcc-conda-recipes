@@ -1,0 +1,39 @@
+{% set name = "OpenMPI" %}
+{% set version = "4.1.6" %}
+{% set build = 1000 %}
+
+package:
+  # must not match any outputs for requirements to be handled correctly
+  name: {{ name|lower }}
+  version: {{ version }}
+
+build:
+  number: {{ build }}
+  string: {{ mpi_type }}_{{ build }}
+  track_features:
+    - openmpi_{{ mpi_type }}
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  run:
+    - mpi 1.0 openmpi
+
+test:
+  commands:
+    - echo "It works!"
+
+about:
+  home: https://www.open-mpi.org/
+  license_file: LICENSE
+  license: Other OSS
+  license_family: Other
+  summary: Message Passing Interface
+  description: The Open MPI Project is an open source Message Passing Interface (MPI) implementation that is developed and maintained by a consortium of academic, research, and industry partners.
+  dev_url: https://github.com/open-mpi/ompi
+  doc_url: https://www.open-mpi.org/doc/
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
+    - in_other_channels

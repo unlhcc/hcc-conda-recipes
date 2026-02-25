@@ -38,8 +38,6 @@ requirements:
     - cuda-nvcc  # [relion_variant == "cuda"]
     - cuda-cudart-dev  # [relion_variant == "cuda"]
     - cuda-version >=12.0,<13  # [relion_variant == "cuda"]
-    - python
-    - {{ mpi }}  # [mpi != "nompi"]
   host:
     - python
     - pip
@@ -53,7 +51,7 @@ requirements:
     - libcufft
     - libcufft-dev
     - mkl
-    - {{ mpi }}  # [mpi != "nompi"]
+    - {{ mpi }} 4.1.6  # [mpi != "nompi"]
     - libgomp
     - pbzip2
     - xz
@@ -100,7 +98,7 @@ requirements:
     - libcufft
     - libcufft-dev
     - mkl
-    - {{ mpi }}  # [mpi != "nompi"]
+    - {{ mpi }} 4.1.6  # [mpi != "nompi"]
     - libgomp
     - pbzip2
     - xz

@@ -1,0 +1,45 @@
+{% set name = "perl-vcf" %}
+{% set version = "1.003" %}
+{% set sha256 = "2f5030485d790c52f405ba4779aabf40392024264bb651cf530bc32d6873acb0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/S/SN/SNKWATT/VCF-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="None") }}
+
+requirements:
+  build:
+    - make
+  host:
+    - perl <5.32
+    - perl-carp
+    - perl-exporter
+    - perl-data-dumper
+    - perl-test-most
+  run:
+    - perl <5.32
+    - perl-carp
+    - perl-exporter
+    - perl-data-dumper
+    - perl-test-most
+
+test:
+  imports:
+    - VCF
+
+about:
+  home: "https://metacpan.org/pod/VCF"
+  license: LGPL-3.0
+  license_family: LGPL
+  license_file: LICENSE
+  summary: "Module for validation, parsing and creating VCF files."
+  doc_url: "https://metacpan.org/pod/VCF"

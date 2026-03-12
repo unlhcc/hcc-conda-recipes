@@ -20,11 +20,11 @@ requirements:
   build:
     - make
   host:
-    - perl <5.32
+    - perl
     - perl-text-balanced
     - perl-filter-simple
   run:
-    - perl <5.32
+    - perl
     - perl-text-balanced
     - perl-filter-simple
 

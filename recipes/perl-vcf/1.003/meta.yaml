@@ -20,13 +20,13 @@ requirements:
   build:
     - make
   host:
-    - perl <5.32
+    - perl
     - perl-carp
     - perl-exporter
     - perl-data-dumper
     - perl-test-most
   run:
-    - perl <5.32
+    - perl
     - perl-carp
     - perl-exporter
     - perl-data-dumper

@@ -1,0 +1,73 @@
+{% set name = "fineSTRUCTURE" %}
+{% set version = "0.0.2026.02.04" %}
+{% set revision = "27a8f7f2921e16e7ab608abd987fd32971932eba" %}
+{% set sha256 = "2dc43dc07a134785f9cefd9ac38d5c9813188a74e81c8fd8e8c1c0f5f7bda2ab" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/danjlawson/finestructure4/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - makefile.patch
+    - perl.patch
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage('finestructure', max_pin='x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - automake
+    - make
+  host:
+    - perl
+    - perl-switch
+    - perl-vcf
+    - perl-list-moreutils
+    - r-xml
+    - r-ape
+  run:
+    - perl
+    - perl-switch
+    - perl-vcf
+    - perl-list-moreutils
+    - r-xml
+    - r-ape
+
+test:
+  commands:
+    - fs -help | grep "USAGE"
+    - mixPainter | grep "Usage"
+    - beagle2chromopainter.pl | grep "usage" 
+    - convertrecfile.pl | grep "Usage"
+    - impute2chromopainter.pl | grep "usage"
+    - makeuniformrecfile.pl | grep "Usage"
+    - msms2cp.pl | grep "usage"
+    - phasescreen.pl | grep "usage"
+    - phasesubsample.pl | grep "usage"
+    - vcf2cp.pl | grep "usage"
+    - transpose.pl | grep "usage"
+    - phaseremoveunused.pl | grep "usage"
+    - ids2ind.pl | grep "usage"
+    - ids2fam.pl | grep "usage"
+    - idfileFromFam.pl | grep "Usage"
+    - arlequin2chromopainter.pl | grep "usage"
+
+about:
+  home: https://people.maths.bris.ac.uk/~madjl/finestructure/finestructure.html
+  license: OTHER
+  license_file: LICENSE-FS
+  summary: 'fineSTRUCTURE is a fast and powerful algorithm for identifying population structure using dense sequencing data.'
+  dev_url: https://github.com/danjlawson/finestructure4
+
+extra:
+  identifiers:
+    - biotools:fineSTRUCTURE
+    - doi:10.1371/journal.pgen.1002453
+  skip-lints:
+    - in_other_channels

@@ -1,0 +1,112 @@
+--- scripts/vcf2cp.pl.old	2026-03-07 20:20:09.580663060 +0000
++++ scripts/vcf2cp.pl	2026-03-07 20:33:12.243034568 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## CONVERTS PHASED IMPUTE2 OUTPUT TO CHROMOPAINTER-STYLE INPUT FILES
+ 
+ 
+--- scripts/transpose.pl.old	2026-03-07 20:20:09.579663061 +0000
++++ scripts/transpose.pl	2026-03-07 20:32:57.633046570 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## TRANSPOSES FILES (WHICH MUST FIT IN MEMORY)
+ 
+ sub help {
+--- scripts/phasesubsample.pl.old	2026-03-07 20:20:09.577663063 +0000
++++ scripts/phasesubsample.pl	2026-03-07 20:32:36.013064327 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## CONVERTS PHASE (CHROMOPAINTER) FORMAT TO BEAGLE FORMAT
+ use strict;
+ use warnings;
+--- scripts/phasescreen.pl.old	2026-03-07 20:20:09.575663065 +0000
++++ scripts/phasescreen.pl	2026-03-07 20:32:18.035079095 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## REMOVE SINGLETONS OR NON-SNPS FROM PHASE DATA
+ use strict;
+ use warnings;
+--- scripts/phaseremoveunused.pl.old	2026-03-07 20:20:09.573663066 +0000
++++ scripts/phaseremoveunused.pl	2026-03-07 20:31:56.734096592 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## 
+ use Switch;
+ use strict;
+--- scripts/msms2cp.pl.old	2026-03-07 20:20:09.571663068 +0000
++++ scripts/msms2cp.pl	2026-03-07 20:31:31.188117574 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ use Switch;
+ use strict;
+ use POSIX;
+--- scripts/makeuniformrecfile.pl.old	2026-03-07 20:20:09.569663070 +0000
++++ scripts/makeuniformrecfile.pl	2026-03-07 20:30:19.770176239 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #
+ use strict;
+ use warnings;
+--- scripts/impute2chromopainter.pl.old	2026-03-07 20:20:09.567663071 +0000
++++ scripts/impute2chromopainter.pl	2026-03-07 20:30:02.013190827 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## CONVERTS PHASED IMPUTE2 OUTPUT TO CHROMOPAINTER-STYLE INPUT FILES
+ 
+ sub help {
+--- scripts/ids2ind.pl.old	2026-03-07 20:20:09.565663073 +0000
++++ scripts/ids2ind.pl	2026-03-07 20:29:37.639210846 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## 
+ use Switch;
+ use strict;
+--- scripts/ids2fam.pl.old	2026-03-07 20:20:09.564663074 +0000
++++ scripts/ids2fam.pl	2026-03-07 20:29:20.285225101 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## 
+ use Switch;
+ use strict;
+--- scripts/idfileFromFam.pl.old	2026-03-07 20:20:09.562663075 +0000
++++ scripts/idfileFromFam.pl	2026-03-07 20:29:02.542239676 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## 
+ use Switch;
+ use strict;
+--- scripts/convertrecfile.pl.old	2026-03-07 20:20:09.560663077 +0000
++++ scripts/convertrecfile.pl	2026-03-07 20:20:51.679630086 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ #   This program is distributed in the hope that it will be useful,
+ #   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--- scripts/beagle2chromopainter.pl.old	2026-03-07 20:20:09.558663079 +0000
++++ scripts/beagle2chromopainter.pl	2026-03-07 20:20:37.408641261 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## CONVERTS PHASED BEAGLE OUTPUT TO CHROMOPAINTER-STYLE INPUT FILES
+ 
+ sub help {
+--- scripts/arlequin2chromopainter.pl.old	2026-03-07 20:20:09.556663080 +0000
++++ scripts/arlequin2chromopainter.pl	2026-03-07 20:20:22.131653229 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/opt/anaconda1anaconda2anaconda3/bin/perl
+ ## CONVERTS PHASE (CHROMOPAINTER) FORMAT TO (CHROMOPAINTER)V2 
+ use strict;
+ use warnings;

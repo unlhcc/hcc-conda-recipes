@@ -1,0 +1,39 @@
+{% set name = "ChromoPainter" %}
+{% set version = "0.0.4" %}
+{% set sha256 = "190679a0f2720345d59a770437d1a1e1afa37eea2a25da2d8b865c174082c882" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://people.maths.bris.ac.uk/~madjl/finestructure-old/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - make
+  host:
+    - zlib
+  run:
+    - zlib
+
+test:
+  commands:
+    - chromopainter -h | grep "use"
+
+about:
+  home: https://people.maths.bris.ac.uk/~madjl/finestructure-old/chromopainter_info.html
+  license: OTHER
+  license_file: COPYING
+  summary: 'ChromoPainter is a tool for finding haplotypes in sequence data.'
+
+extra:
+  identifiers:
+    - doi:10.1371/journal.pgen.1002453

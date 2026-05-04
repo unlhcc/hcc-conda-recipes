@@ -9,16 +9,16 @@ package:
 
 source:
   - fn: gm.tar.gz
-    url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/ERilYQFa4mdDqM0u1OF6RPMBcU3s-ZYkl-Wa2XyTtSQ9VA?e=EiJkvA&download=1
+    url: https://uofnebraska.sharepoint.com/:u:/s/NU-HCC/IQDtX9QylQAzQJp9K-u7eswkARmCtabZ1JzjVXolP1bqyLU?e=5Qell6&download=1
     sha256: {{ sha256 }}
     patches:
       - paths.patch
   - fn: gm_key.gz
-    url: https://uofnelincoln.sharepoint.com/:u:/s/UNL-HollandComputingCenter/EQqaTc_1pxJAvRTz7J2PX4wBMb0fbIC4r2KboSkujAZzfA?e=0r8naf&download=1
+    url: https://uofnebraska.sharepoint.com/:u:/s/NU-HCC/IQCHJMseevaDT7azjnRLaTs-ATeBHU-s_vKTXCBo2Yf1YdE?e=4Ovzcb&download=1
     sha256: {{ sha256_key }}
 
 build:
-  number: 0
+  number: 1
   noarch: generic
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin="x") }}

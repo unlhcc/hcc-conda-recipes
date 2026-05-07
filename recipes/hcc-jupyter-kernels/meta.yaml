@@ -1,5 +1,5 @@
 {% set name = "hcc-jupyter-kernels" %}
-{% set version = "2025.04.18" %}
+{% set version = "2026.05.07" %}
 
 package:
   name: "{{ name|lower }}"

@@ -25,6 +25,7 @@ then
 #    ln -s /ramdisk/conda-bld $ANACONDA_PREFIX/conda-bld
     mkdir -p .cache/conda_build_src .cache/conda_pkgs
 #    ln -s ${CI_PROJECT_DIR}/.cache/conda_build_src /ramdisk/conda-bld/src_cache
+    conda install conda -q -y --force-reinstall
     conda config --system --add pkgs_dirs /opt/conda/pkgs
     conda config --system --add pkgs_dirs ${CI_PROJECT_DIR}/.cache/conda_pkgs
 

@@ -10,7 +10,7 @@ source:
   sha256: 9d258cd9bedd86d7c28b91587acd1132f4e01d4f095c657ad4dc93bd83d4f120
 
 build:
-  number: 0
+  number: 4
   run_exports:
     - {{ pin_subpackage('beagle-lib', max_pin="x") }}
 
@@ -49,7 +49,6 @@ about:
 extra:
   skip-lints:
     - in_other_channels
-    - build_number_needs_bump
   identifiers:
     - biotools:beagle-lib
     - doi:10.1093/sysbio/syr100

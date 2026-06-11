@@ -1,0 +1,44 @@
+{% set name = "robustica" %}
+{% set version = "0.1.4" %}
+{% set sha256 = "2ec0a10d8815a016c8319ffe4b460914044efd47cf4186e4ded2d3b96ca91aa9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/r/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - python >=3.8
+    - setuptools >=64
+    - wheel
+    - pip
+  run:
+    - python >=3.8
+    - numpy
+    - pandas
+    - scipy
+    - scikit-learn
+    - joblib
+    - tqdm
+
+test:
+  imports:
+    - robustica
+
+about:
+  home: https://github.com/CRG-CNAG/robustica
+  summary: Fully cumstomizable robust Independent Components Analysis (ICA)
+  doc_url: https://crg-cnag.github.io/robustica/
+  license: BSD-3-Clause
+  license_file: LICENSE

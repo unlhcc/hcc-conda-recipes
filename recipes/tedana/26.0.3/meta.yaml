@@ -1,0 +1,64 @@
+{% set name = "tedana" %}
+{% set version = "26.0.3" %}
+{% set sha256 = "3d767a09c2ae3a1e8fc0c62e8c86655de677ebd6424af1f7818af0e3c3aa5b2f" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  entry_points:
+    - ica_reclassify = tedana.workflows.ica_reclassify:_main
+    - t2smap = tedana.workflows.t2smap:_main
+    - tedana = tedana.workflows.tedana:_main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  host:
+    - python >=3.10
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=3.10
+    - bokeh >=3.0.0
+    - mapca >=0.0.7
+    - matplotlib-base >=3.7
+    - nibabel >=2.5.1
+    - nilearn >=0.11.0,!=0.13.0,!=0.13.1
+    - numpy >=1.21
+    - pandas >=2.0
+    - pybtex >=0.25
+    - pybtex-apa-style >=1.3
+    - robustica >=0.1.4
+    - scikit-learn >=0.21
+    - scipy >=1.2.0
+    - seaborn >=0.13.2
+    - setuptools >=65
+    - threadpoolctl >=3.2
+    - tqdm >=4.65
+    - robustica
+    - pybtex-apa-style
+
+test:
+  imports:
+    - tedana
+  commands:
+    - ica_reclassify --help
+    - t2smap --help
+    - tedana --help
+
+about:
+  home: https://github.com/ME-ICA/tedana
+  summary: TE-Dependent Analysis (tedana) of multi-echo functional magnetic resonance imaging (fMRI) data.
+  doc_url: https://www.tedana.readthedocs.io
+  license: LGPL-2.1-only
+  license_file: LICENSE

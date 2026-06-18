@@ -1,0 +1,89 @@
+{% set name = "esm" %}
+{% set version = "3.3.0" %}
+{% set sha256 = "0c97a91c7264a457c9640def73ab76c6401e85f4f189dac51d9dc3b9a27f4db9" %}
+# Define build matrix for GPU vs. CPU
+{% set esm_variant = esm_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+
+source:
+  - url: https://github.com/Biohub/esm/archive/81b3646c9429ea8458918415ad6a46178cb59833.tar.gz
+    sha256: {{ sha256 }}
+    folder: esm
+ 
+  # Biohub transformers fork — adds transformers.models.esmfold2.
+  # NOT available on PyPI or conda-forge; upstream transformers lacks esmfold2.
+  - url: https://github.com/Biohub/transformers/archive/3a8956fb4d4ea16b0ec8e71deef2c2909b6a5cbf.tar.gz
+    sha256: 9722117a51ec0b6983a663e3cc3aa45ed0016cc74df310994a7e7d09f60d0310
+    folder: transformers
+ 
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+  script: |
+    # Install Biohub transformers fork (provides transformers.models.esmfold2)
+    {{ PYTHON }} -m pip install "${SRC_DIR}/transformers" --no-deps --no-build-isolation -vv
+    # Install ESM
+    {{ PYTHON }} -m pip install "${SRC_DIR}/esm" --no-deps --no-build-isolation -vv
+
+
+requirements:
+  host:
+    - python >=3.12,<3.13
+    - pip
+    - setuptools
+    - wheel
+
+  run:
+    - python >=3.12,<3.13
+    - pytorch >=2.2
+    - pytorch * cuda*  # [esm_variant == "cuda"]
+    - pytorch * cpu*   # [esm_variant == "cpu"]
+    - numpy
+    - pandas
+    - scikit-learn
+    - scipy
+    - biopython
+    - biotite >=1.0.0
+    - huggingface_hub >=0.20,<1.0
+    - tokenizers
+    - safetensors
+    - accelerate
+    - regex
+    - einops
+    - attrs
+    - pygtrie
+    - ipython
+    - ipywidgets
+    - py3dmol
+    - httpx
+    - tenacity
+    - boto3
+    - cloudpathlib
+    - msgpack-numpy
+    - brotli
+    - python-zstd
+
+test:
+  imports:
+    - esm
+
+  commands:
+    - python -c "import esm; print('ESM import OK')"
+    - python -c "import esm; print('ESM version', esm.__version__)"
+    - python -c "from esm.models.esmc import ESMC; print('ESMC OK')"
+    - python -c "from esm.sdk.api import ESMProtein; print('ESMProtein OK')"
+    - python -c "from esm.sdk import esmc_client; print('esmc_client OK')"
+    - python -c "from esm.models.esmfold2 import DNAInput, ESMFold2InputBuilder, LigandInput, Modification, ProteinInput, StructurePredictionInput; print('ESMFold2 OK')"
+    - python -c "from transformers.models.esmfold2.modeling_esmfold2 import ESMFold2Model; print('transformers  ESMFold2Model OK')"
+
+about:
+  home: https://github.com/Biohub/esm
+  license: MIT
+  license_file: esm/LICENSE.md
+  summary: Biohub ESM protein foundation models and ESMFold2 structure prediction.

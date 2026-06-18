@@ -21,8 +21,7 @@ source:
     folder: transformers
  
 build:
-  number: 0
-  noarch: generic
+  number: 1
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
   script: |
@@ -87,3 +86,7 @@ about:
   license: MIT
   license_file: esm/LICENSE.md
   summary: Biohub ESM protein foundation models and ESMFold2 structure prediction.
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

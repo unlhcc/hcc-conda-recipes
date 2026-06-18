@@ -1,0 +1,3 @@
+esm_variant:
+  - cuda
+  - cpu

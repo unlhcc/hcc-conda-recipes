@@ -21,8 +21,8 @@ source:
     folder: transformers
 
 build:
+  skip: True  # [py!=312]
   number: 0
-  noarch: python
   string: {{ esm_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x") }}
@@ -85,3 +85,7 @@ about:
   license: MIT
   license_file: esm/LICENSE.md
   summary: Biohub ESM protein foundation models and ESMFold2 structure prediction.
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

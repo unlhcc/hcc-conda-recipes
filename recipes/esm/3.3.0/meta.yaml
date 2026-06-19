@@ -22,6 +22,7 @@ source:
  
 build:
   number: 2
+  skip: True  # [py < 312]
   string: {{ esm_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x.x") }}

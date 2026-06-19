@@ -13,18 +13,19 @@ source:
   - url: https://github.com/Biohub/esm/archive/81b3646c9429ea8458918415ad6a46178cb59833.tar.gz
     sha256: {{ sha256 }}
     folder: esm
- 
+
   # Biohub transformers fork — adds transformers.models.esmfold2.
   # NOT available on PyPI or conda-forge; upstream transformers lacks esmfold2.
   - url: https://github.com/Biohub/transformers/archive/3a8956fb4d4ea16b0ec8e71deef2c2909b6a5cbf.tar.gz
     sha256: 9722117a51ec0b6983a663e3cc3aa45ed0016cc74df310994a7e7d09f60d0310
     folder: transformers
- 
+
 build:
-  number: 4
+  number: 0
+  noarch: python
   string: {{ esm_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
-    -  {{ pin_subpackage( name|lower, max_pin="x.x") }}
+    -  {{ pin_subpackage( name|lower, max_pin="x") }}
   script: |
     # Install Biohub transformers fork (provides transformers.models.esmfold2)
     {{ PYTHON }} -m pip install "${SRC_DIR}/transformers" --no-deps --no-build-isolation -vv
@@ -34,13 +35,10 @@ build:
 
 requirements:
   host:
-    - python >=3.12,<3.13
+    - python 3.12
     - pip
-    - setuptools
-    - wheel
-
   run:
-    - python >=3.12,<3.13
+    - python 3.12
     - pytorch >=2.2
     - pytorch * cuda*  # [esm_variant == "cuda"]
     - pytorch * cpu*   # [esm_variant == "cpu"]
@@ -87,7 +85,3 @@ about:
   license: MIT
   license_file: esm/LICENSE.md
   summary: Biohub ESM protein foundation models and ESMFold2 structure prediction.
-
-extra:
-  skip-lints:
-    - should_be_noarch_generic

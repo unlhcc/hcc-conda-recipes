@@ -1,0 +1,123 @@
+{% set name = "AFNI" %}
+{% set version = "26.2.00" %}
+{% set sha256 = "299626836aa9e1583c488f378ac3f38169446e51259bbd959167d4a644a9e113" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/{{ name|lower }}/{{ name|lower }}/archive/{{ name }}_{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - git.patch
+    - afnipy.patch
+
+build:
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}
+    - {{ cdt('mesa-libegl-devel') }}
+    - {{ cdt('xorg-x11-proto-devel') }}
+    - {{ stdlib("c") }}
+    - cmake
+    - make
+    - binutils
+    - datalad <1
+  host:
+    - setuptools
+    - python >3.11
+    - pip
+    - datalad <1
+    - freetype
+    - openmotif-dev
+    - gsl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - xorg-libxpm
+    - xorg-libxmu
+    - libglu
+    - glib
+    - expat
+    - freeglut
+    - r-base <4.4
+    - tcsh 
+    - zlib
+    - git <2.50
+    - procps-ng
+  run:
+    - python >3.11
+    - numpy >=1.14.5
+    - matplotlib-base
+    - freetype
+    - openmotif
+    - gsl
+    - xorg-libx11
+    - xorg-libxt
+    - xorg-libxext
+    - xorg-libxi
+    - xorg-libxft
+    - xorg-libxcb
+    - xorg-libxpm
+    - xorg-libxmu
+    - libglu
+    - glib
+    - expat
+    - freeglut
+    - r-base <4.4
+    - r-afex 
+    - r-phia 
+    - r-snow 
+    - r-nlme 
+    - r-lme4 
+    - r-paran 
+    - r-brms 
+    - r-shiny 
+    - r-shinydashboard 
+    - r-plotly 
+    - r-colourpicker 
+    - r-data.table 
+    - r-gplots 
+    - r-rcolorbrewer 
+    - r-psych 
+    - r-ggplot2 
+    - r-ggridges 
+    - r-dplyr 
+    - r-tidyr 
+    - r-scales
+    - ffmpeg
+    - netpbm
+    - tedana
+    - flask
+    - flask_cors
+    - procps-ng
+
+test:
+  commands:
+    - afni --help
+    - afni_system_check.py -check_all
+  imports:
+    - afnipy
+
+about:
+  home: https://afni.nimh.nih.gov/afni
+  summary: "AFNI is a suite of programs for looking at and analyzing 3D brain images."
+  license: Public Domain
+  license_file: LICENSE.txt
+  dev_url: https://github.com/afni/afni
+
+extra:
+  container:
+    extended-base: True
+  skip-lints:
+    - in_other_channels

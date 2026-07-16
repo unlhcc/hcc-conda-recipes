@@ -12,6 +12,7 @@ source:
   patches:
     - git.patch
     - afnipy.patch
+    - count_afni.patch
 
 build:
   number: 0

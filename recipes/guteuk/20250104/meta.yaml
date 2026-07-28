@@ -1,0 +1,59 @@
+{% set name = "GutEuk" %}
+{% set version = "0.2025.01.04" %}
+{% set revision = "3a57b74" %}
+{% set sha256 = "4a6402895524497b4cacff9a3ce090b9e68a45a91d37ac0b49a78b927634b60b" %}
+{% set guteuk_variant = guteuk_variant or "cuda" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/yan1365/rumen_eukaryotes/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - script_location.patch
+
+build:
+  number: 0
+  noarch: generic
+  string: {{ guteuk_variant }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x") }}
+
+requirements:
+  host:
+    - "python >=3.9,<3.10"
+    - cudatoolkit  # [guteuk_variant == "cuda"]
+    - pytorch >=2.1,<2.2 *cuda12*  # [guteuk_variant == "cuda"]
+    - pytorch >=2.1,<2.2 *cpu_*  # [guteuk_variant == "cpu"]
+    - torchvision >=0.16,<0.17 *cuda12*  # [guteuk_variant == "cuda"]
+    - torchvision >=0.16,<0.17 *cpu*  # [guteuk_variant == "cpu"]
+
+  run:
+    - "python >=3.9,<3.10"
+    - cudatoolkit  # [guteuk_variant == "cuda"]
+    - pytorch >=2.1,<2.2 *cuda12*  # [guteuk_variant == "cuda"]
+    - pytorch >=2.1,<2.2 *cpu_*  # [guteuk_variant == "cpu"]
+    - torchvision >=0.16,<0.17 *cuda12*  # [guteuk_variant == "cuda"]
+    - torchvision >=0.16,<0.17 *cpu*  # [guteuk_variant == "cpu"]
+    - numpy
+    - pandas
+    - setuptools
+    - biopython
+
+test:
+  commands:
+    - GutEuk.py --help
+
+about:
+  home: https://github.com/yan1365/rumen_eukaryotes/
+  dev_url: https://github.com/yan1365/rumen_eukaryotes
+  license: MIT
+  license_family: MIT
+  license_file: ""
+  summary: "Deep-learning classifier for prokaryotic, fungal, and protozoan sequences from gut metagenomes."
+
+extra:
+  identifiers:
+    - doi:10.1101/gr.279825.124

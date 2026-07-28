@@ -1,0 +1,6 @@
+guteuk_variant:
+  - cuda
+  - cpu
+
+cudatoolkit:
+  - 12.*

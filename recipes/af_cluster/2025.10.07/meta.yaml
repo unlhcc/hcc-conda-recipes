@@ -1,0 +1,47 @@
+{% set name = "af_cluster" %}
+{% set version = "2025.10.07" %}
+{% set commit = "6b22451c5a9def576f43824bb5573a9c1faf6c55" %}
+{% set sha256 = "06b4b5ec496db05b3a81e4e1c41e883a8470d078232dbfe9ec85eee088b51112" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+
+source:
+  - url: https://github.com/HWaymentSteele/AF_Cluster/archive/{{ commit }}.tar.gz
+    sha256: {{ sha256 }}
+    folder: af_cluster
+
+build:
+  noarch: generic
+  number: 0
+  run_exports:
+    -  {{ pin_subpackage( name|lower, max_pin="x") }}
+
+requirements:
+  run:
+    - python
+    - biopython
+    - matplotlib-base
+    - mdtraj
+    - numpy
+    - pandas
+    - polyleven
+    - scikit-learn
+    - seaborn
+    # imported by CalculateModelFeatures.py, missing from requirements.txt
+    - pandarallel
+
+test:
+  commands:
+    - ClusterMSA.py --help
+    - CalculateModelFeatures.py --help
+    - test -x "${PREFIX}/bin/get_PCA_embedding.py"
+    - if python -c "import utils" 2>/dev/null; then exit 1; fi
+
+about:
+  home: https://github.com/HWaymentSteele/AF_Cluster
+  license: MIT
+  license_file: af_cluster/LICENSE
+  summary: Predict multiple protein conformations via MSA sequence clustering (AF-Cluster).

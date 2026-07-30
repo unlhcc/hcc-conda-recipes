@@ -2,6 +2,10 @@
 {% set version = "2025.10.07" %}
 {% set commit = "6b22451c5a9def576f43824bb5573a9c1faf6c55" %}
 {% set sha256 = "06b4b5ec496db05b3a81e4e1c41e883a8470d078232dbfe9ec85eee088b51112" %}
+{% set af2_version = "2.3.18" %}
+{% set af2_sha256 = "0ad91633f1dd47c22a96fe3c29eb07e537bf6457ff21a38460e0aa9a7c5a4eeb" %}
+# Define build matrix for GPU vs. CPU
+{% set af_cluster_variant = af_cluster_variant | default("cuda") %}
 
 package:
   name: {{ name|lower }}
@@ -12,14 +16,25 @@ source:
   - url: https://github.com/HWaymentSteele/AF_Cluster/archive/{{ commit }}.tar.gz
     sha256: {{ sha256 }}
     folder: af_cluster
+    patches:
+      - add-shebangs.patch
+
+  - url: https://pypi.io/packages/source/a/alphafold-colabfold/alphafold_colabfold-{{ af2_version }}.tar.gz
+    sha256: {{ af2_sha256 }}
+    folder: alphafold_colabfold
 
 build:
-  noarch: generic
-  number: 0
+  number: 1
+  string: {{ af_cluster_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x") }}
 
+
 requirements:
+  host:
+    - python
+    - pip
+    - setuptools
   run:
     - python
     - biopython
@@ -30,18 +45,45 @@ requirements:
     - polyleven
     - scikit-learn
     - seaborn
-    # imported by CalculateModelFeatures.py, missing from requirements.txt
     - pandarallel
+    - pytorch >=2.0
+    - pytorch * cuda*  # [af_cluster_variant == "cuda"]
+    - pytorch * cpu*   # [af_cluster_variant == "cpu"]
+    - fair-esm >=2.0.0
+    - biotite
+    - scipy
+    - tqdm
+    - jax >=0.4.36
+    - jaxlib * cuda*  # [af_cluster_variant == "cuda"]
+    - jaxlib * cpu*   # [af_cluster_variant == "cpu"]
+    - absl-py
+    - chex
+    - dm-haiku
+    - dm-tree
+    - immutabledict
+    - ml-collections
 
 test:
   commands:
     - ClusterMSA.py --help
     - CalculateModelFeatures.py --help
-    - test -x "${PREFIX}/bin/get_PCA_embedding.py"
-    - if python -c "import utils" 2>/dev/null; then exit 1; fi
+    - runESM.py --help
+    - RunAF2.py --help
 
 about:
   home: https://github.com/HWaymentSteele/AF_Cluster
   license: MIT
   license_file: af_cluster/LICENSE
   summary: Predict multiple protein conformations via MSA sequence clustering (AF-Cluster).
+  description: |
+    Commands: ClusterMSA.py, CalculateModelFeatures.py, get_PCA_embedding.py,
+    RunAF2.py, runESM.py
+
+
+    RunAF2.py needs AlphaFold2 parameters (not included). Pass --af2_dir
+    pointing at a directory where <af2_dir>/data/params/params_model_1_ptm.npz
+    exists. 
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic

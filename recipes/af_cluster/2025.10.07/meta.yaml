@@ -18,13 +18,13 @@ source:
     folder: af_cluster
     patches:
       - add-shebangs.patch
-
+      - fix-colabfold-predict-api.patch
   - url: https://pypi.io/packages/source/a/alphafold-colabfold/alphafold_colabfold-{{ af2_version }}.tar.gz
     sha256: {{ af2_sha256 }}
     folder: alphafold_colabfold
 
 build:
-  number: 1
+  number: 2
   string: {{ af_cluster_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     -  {{ pin_subpackage( name|lower, max_pin="x") }}
@@ -69,6 +69,7 @@ test:
     - CalculateModelFeatures.py --help
     - runESM.py --help
     - RunAF2.py --help
+    - python -c "from alphafold.model import model, config, data; print('model OK')"
 
 about:
   home: https://github.com/HWaymentSteele/AF_Cluster

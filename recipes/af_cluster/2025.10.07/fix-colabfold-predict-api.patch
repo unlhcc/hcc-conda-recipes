@@ -1,0 +1,9 @@
+--- a/scripts/RunAF2.py
++++ b/scripts/RunAF2.py
+@@ -148,7 +148,7 @@
+ name=os.path.basename(args.input_msa).replace('.a3m','')
+ 
+ features = make_processed_feature_dict(runner, args.input_msa, name=name, seed=args.seed)
+-result = parse_results(runner.predict(features, random_seed=args.seed), features)
++result = parse_results(runner.predict(features, random_seed=args.seed)[0], features)
+ write_results(result, args.output_dir+name+'.pdb')

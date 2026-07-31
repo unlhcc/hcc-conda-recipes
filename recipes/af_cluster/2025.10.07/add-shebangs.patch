@@ -1,0 +1,35 @@
+--- a/scripts/ClusterMSA.py
++++ b/scripts/ClusterMSA.py
+@@ -1,3 +1,4 @@
++#!/usr/bin/env python
+ import argparse
+ import pandas as pd
+ from Bio import SeqIO
+--- a/scripts/CalculateModelFeatures.py
++++ b/scripts/CalculateModelFeatures.py
+@@ -1,3 +1,4 @@
++#!/usr/bin/env python
+ from glob import glob
+ import sys, os, argparse
+ import pandas as pd
+--- a/scripts/get_PCA_embedding.py
++++ b/scripts/get_PCA_embedding.py
+@@ -1,3 +1,4 @@
++#!/usr/bin/env python
+ import numpy as np
+ from sklearn.decomposition import PCA
+ 
+--- a/scripts/RunAF2.py
++++ b/scripts/RunAF2.py
+@@ -1,3 +1,4 @@
++#!/usr/bin/env python
+ import sys
+ import os
+ import argparse
+--- a/scripts/runESM.py
++++ b/scripts/runESM.py
+@@ -1,3 +1,4 @@
++#!/usr/bin/env python
+ 
+ from typing import List, Tuple, Optional, Dict, NamedTuple, Union, Callable
+ import itertools

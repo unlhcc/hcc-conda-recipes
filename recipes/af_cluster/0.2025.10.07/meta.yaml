@@ -17,7 +17,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   string: {{ af_cluster_variant }}_py{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin="x.x") }}
@@ -39,14 +39,14 @@ requirements:
     - scipy
     - tqdm
     - biotite
+    - jax >=0.4.36
     - pytorch * cuda*  # [af_cluster_variant == "cuda"]
     - pytorch * cpu*   # [af_cluster_variant == "cpu"]
     - jaxlib * cuda*   # [af_cluster_variant == "cuda"]
     - jaxlib * cpu*    # [af_cluster_variant == "cpu"]
-    - cuda-version 12.*
-    - colabfold >=1.5.5
+    - cuda-version 12.*    # [af_cluster_variant == "cuda"]
+    - alphafold-colabfold >=2.3.18
     - fair-esm >=2.0.0
-    - dm-haiku <=0.0.12
 
 test:
   commands:
@@ -61,7 +61,6 @@ test:
     - esm
     - torch
     - jax
-
 about:
   home: https://github.com/HWaymentSteele/AF_Cluster
   license: MIT

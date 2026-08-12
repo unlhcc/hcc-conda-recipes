@@ -1,0 +1,45 @@
+{% set name = "HiCLift" %}
+{% set version = "1.0" %}
+{% set sha256 = "3573dc51894b1c9a44fcc448896912864fb7288d37ec5a5a861a756d10be1b0c" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/H/HiCLift/HiCLift-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - "python >=3.7"
+    - pip
+    - setuptools
+
+  run:
+    - "python >=3.7"
+    - cooler
+    - pairtools
+    - kerneltree
+    - hic-straw
+
+test:
+  imports:
+    - HiCLift
+  commands:
+    - HiCLift -h
+
+about:
+  home: https://github.com/XiaoTaoWang/HiCLift
+  dev_url: https://github.com/XiaoTaoWang/HiCLift
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file: LICENSE
+  summary: "Convert genomic coordinates of contact pairs from one assembly to another."

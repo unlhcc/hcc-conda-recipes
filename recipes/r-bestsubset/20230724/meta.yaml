@@ -1,0 +1,47 @@
+{% set name = "r-bestsubset" %}
+{% set version = "0.2023.07.24" %}
+{% set revision = "796e81713634aef8b66363f9740efed5df3ba213" %}
+{% set sha256 = "fa009a777c642c8694dcf30c59f1d0ba8900c63ad9d738312b958b9b6ffed2c0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ryantibs/best-subset/archive/{{ revision }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  run_exports:
+    - {{ pin_subpackage( name|lower, max_pin="x") }}
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - r-base {{ r_base }}
+    - r-ggplot2
+    - r-glmnet
+    - r-matrix
+    - r-devtools <2.5
+  run:
+    - r-base {{ r_base }}
+    - r-ggplot2
+    - r-glmnet
+    - r-matrix
+    - r-devtools <2.5
+
+test:
+  commands:
+    - $R -e "library(bestsubset)"
+
+about:
+  home: https://github.com/ryantibs/best-subset
+  license: GPL-2.0
+  license_file: LICENSE
+  license_family: GPL2
+  summary: "Comparisons between best subset selection and other popular sparse regression estimators."

@@ -1,6 +1,6 @@
 {% set name = "AFNI" %}
-{% set version = "26.2.00" %}
-{% set sha256 = "299626836aa9e1583c488f378ac3f38169446e51259bbd959167d4a644a9e113" %}
+{% set version = "26.2.09" %}
+{% set sha256 = "049ca59fd37361d802fb87cf610f864777339d82eabfbcc97617ba9637e813a7" %}
 
 package:
   name: {{ name|lower }}

@@ -1,0 +1,10 @@
+--- src/CMakeLists_binaries.txt.org	2026-07-16 13:24:44
++++ src/CMakeLists_binaries.txt	2026-07-16 13:25:01
+@@ -152,6 +152,7 @@
+   cat_matvec
+   cdf
+   count
++  count_afni
+   dicom_hdr
+   dicom_hinfo
+   dicom_to_raw

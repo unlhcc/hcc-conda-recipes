@@ -26,6 +26,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DDOWNLOAD_TEST_DATA=ON \
     -DBUILD_SHARED_LIBS=ON \
     -DCOMP_CORELIBS_ONLY=OFF \
+    -DUSE_SYSTEM_F2C=OFF \
     -DX11_X11_INCLUDE_PATH=${PREFIX}/include \
     -DREMOVE_BUILD_PARITY_CHECKS=ON \
     ..
@@ -37,15 +38,18 @@ make install
 LIBMRI_DIR=$(dirname "$(find "${SRC_DIR}/build" -name 'libmri.*' | head -n1)")
 NIML_DIR=$(dirname "$(find "${SRC_DIR}/src" -maxdepth 2 -name 'niml.h' | head -n1)")
 AFNI_VERSION_DIR=$(dirname "$(find "${SRC_DIR}/build" -name 'AFNI_version.h' | head -n1)")
+F2C_H=$(find "${SRC_DIR}" -name f2c.h -not -path "${PREFIX}/*" | head -n1)
+F2C_INC=$(dirname "$F2C_H")
+F2C_LIB=$(dirname "$(find "${SRC_DIR}/build" -name 'libf2c*' | head -n1)")
 
 cd ${SRC_DIR}/src
 
 cat > Makevars <<EOF
 PKG_CPPFLAGS = -I. -I${PREFIX}/include \
     -Inifti/nifti2 -Inifti/niftilib -Inifti/nifticdf -Inifti/znzlib \
-    -I${NIML_DIR} -I${AFNI_VERSION_DIR} \
+    -I${NIML_DIR} -I${AFNI_VERSION_DIR} -I${F2C_INC} \
     -I3DEdge/src -Irickr -DHAVE_ZLIB -DHAVE_GIFTI -I${PREFIX}/include
-PKG_LIBS = -L. -L${LIBMRI_DIR} -L${PREFIX}/lib \
+PKG_LIBS = -L. -L${LIBMRI_DIR} -L${F2C_LIB} -L${PREFIX}/lib \
     -lmri -lf2c -lXm -lXt -lXft -lXp -lXpm -lfontconfig -lXext -lXmu \
     -lSM -lICE -lX11 -lpng -ljpeg -lz -lexpat -lm -ldl -lc
 EOF

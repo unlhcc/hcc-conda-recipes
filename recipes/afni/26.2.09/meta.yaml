@@ -15,7 +15,7 @@ source:
     - count_afni.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin="x") }}
 
@@ -55,7 +55,6 @@ requirements:
     - tcsh 
     - zlib
     - git <2.50
-    - f2c
     - procps-ng
   run:
     - python >3.11
@@ -103,13 +102,13 @@ requirements:
     - flask
     - flask_cors
     - procps-ng
-    - f2c
 
 test:
   commands:
     - afni --help
     - afni_system_check.py -check_all
     - test -f $PREFIX/bin/R_io.so
+    - ccalc '1+2'
   imports:
     - afnipy
 
